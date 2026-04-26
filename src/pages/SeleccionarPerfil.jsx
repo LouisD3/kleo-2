@@ -1,25 +1,15 @@
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import usePerfilStore from '../store/usePerfilStore.js'
-import { ALUMNOS_MOCK } from '../mock/alumnos.js'
-import Modal from '../components/ui/Modal.jsx'
-import Boton from '../components/ui/Boton.jsx'
+import { useNavigate, Link } from 'react-router-dom'
+import useAuthStore from '../store/useAuthStore.js'
+import { useEffect } from 'react'
 
 export default function SeleccionarPerfil() {
   const navigate = useNavigate()
-  const { setPerfilProfesor, setPerfilAlumno } = usePerfilStore()
-  const [modalAlumno, setModalAlumno] = useState(false)
+  const { rol } = useAuthStore()
 
-  function elegirProfesor() {
-    setPerfilProfesor()
-    navigate('/profesor')
-  }
-
-  function elegirAlumno(alumno) {
-    setPerfilAlumno(alumno)
-    setModalAlumno(false)
-    navigate('/alumno')
-  }
+  useEffect(() => {
+    if (rol === 'profesor') navigate('/profesor')
+    if (rol === 'alumno') navigate('/alumno')
+  }, [rol, navigate])
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
@@ -50,7 +40,7 @@ export default function SeleccionarPerfil() {
         <div className="grid sm:grid-cols-2 gap-5 w-full max-w-lg">
           {/* Tarjeta Profesor */}
           <button
-            onClick={elegirProfesor}
+            onClick={() => navigate('/login')}
             className="group card p-8 text-left hover:shadow-lg hover:-translate-y-1 transition-all duration-200 cursor-pointer active:scale-95 focus:outline-none focus:ring-2 focus:ring-amarillo focus:ring-offset-2"
           >
             <div className="w-12 h-12 rounded-2xl bg-gray-900 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
@@ -72,7 +62,7 @@ export default function SeleccionarPerfil() {
 
           {/* Tarjeta Alumno */}
           <button
-            onClick={() => setModalAlumno(true)}
+            onClick={() => navigate('/acceso-alumno')}
             className="group card p-8 text-left hover:shadow-lg hover:-translate-y-1 transition-all duration-200 cursor-pointer active:scale-95 focus:outline-none focus:ring-2 focus:ring-amarillo focus:ring-offset-2"
           >
             <div className="w-12 h-12 rounded-2xl bg-amarillo flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
@@ -85,7 +75,7 @@ export default function SeleccionarPerfil() {
               Realiza tus tareas, recibe retroalimentación instantánea y descubre tus áreas de mejora.
             </p>
             <div className="mt-5 flex items-center gap-1 text-sm font-semibold text-gray-900 group-hover:gap-2 transition-all">
-              Entrar como alumno
+              Entrar con mi código
               <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
                 <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
               </svg>
@@ -95,40 +85,12 @@ export default function SeleccionarPerfil() {
       </main>
 
       {/* Footer */}
-      <footer className="text-center py-4 text-xs text-gray-400">
-        Kleo — Plataforma educativa mexicana · Demo
+      <footer className="text-center py-4 text-xs text-gray-400 space-x-3">
+        <span>Kleo — Plataforma educativa mexicana</span>
+        <span>·</span>
+        <Link to="/legal/privacidad" className="hover:text-gray-600 transition-colors">Privacidad</Link>
+        <Link to="/legal/terminos" className="hover:text-gray-600 transition-colors">Términos</Link>
       </footer>
-
-      {/* Modal selección alumno */}
-      <Modal
-        abierto={modalAlumno}
-        onCerrar={() => setModalAlumno(false)}
-        titulo="¿Quién eres?"
-      >
-        <p className="text-sm text-gray-500 mb-5">Selecciona tu perfil para continuar.</p>
-        <div className="space-y-3">
-          {ALUMNOS_MOCK.map((alumno) => (
-            <button
-              key={alumno.id}
-              onClick={() => elegirAlumno(alumno)}
-              className="w-full flex items-center gap-4 p-4 rounded-xl border border-gray-200 hover:border-amarillo hover:bg-yellow-50 transition-all text-left group"
-            >
-              <span
-                className={`inline-flex items-center justify-center w-10 h-10 rounded-full text-sm font-bold flex-shrink-0 ${alumno.color}`}
-              >
-                {alumno.avatar}
-              </span>
-              <div>
-                <p className="font-semibold text-gray-900 group-hover:text-gray-900">{alumno.nombre}</p>
-                <p className="text-xs text-gray-400">{alumno.grado}</p>
-              </div>
-              <svg className="w-4 h-4 text-gray-300 ml-auto group-hover:text-amarillo transition-colors" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
-              </svg>
-            </button>
-          ))}
-        </div>
-      </Modal>
     </div>
   )
 }

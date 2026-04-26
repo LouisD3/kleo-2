@@ -7,6 +7,7 @@ import MensajeError from '../../components/ui/MensajeError.jsx'
 import Modal from '../../components/ui/Modal.jsx'
 import { useAnthropicAPI } from '../../hooks/useAnthropicAPI.js'
 import useTareaStore from '../../store/useTareaStore.js'
+import useAuthStore from '../../store/useAuthStore.js'
 import { getPDAsByMateria } from '../../mock/pdas/index.js'
 
 const MATERIAS = ['Lenguajes', 'Matemáticas', 'Biología', 'Física', 'Química', 'Geografía', 'Historia de México', 'Historia Mundial', 'Formación Cívica y Ética']
@@ -26,16 +27,18 @@ export default function GenerarTarea() {
   const navigate = useNavigate()
   const { generarTarea, cargando, error, setError } = useAnthropicAPI()
   const { agregarTarea, actualizarTarea, publicarTarea } = useTareaStore()
+  const { profesor, clases } = useAuthStore()
 
   const [form, setForm] = useState({
     nombre: '',
     materia: 'Matemáticas',
-    grado: '1° Secundaria',
+    grado: clases?.[0]?.grado ?? '1° Secundaria',
     dificultad: 'Media',
     metodologia: 'Feynman',
     tipos: ['Opción múltiple'],
     numeroPreguntas: 5,
     pda: null,
+    fecha_limite: '',
   })
 
   const [tareaGenerada, setTareaGenerada] = useState(null)
@@ -44,6 +47,8 @@ export default function GenerarTarea() {
   const [textoEdicion, setTextoEdicion] = useState('')
   const [modalPDAabierto, setModalPDAabierto] = useState(false)
   const [busquedaPDA, setBusquedaPDA] = useState('')
+  const [clasesPublicar, setClasesPublicar] = useState(clases?.length ? [clases[0].id] : [])
+  const [publicando, setPublicando] = useState(false)
 
   function toggleTipo(tipo) {
     setForm((prev) => {
@@ -80,15 +85,61 @@ export default function GenerarTarea() {
     })
 
     if (resultado?.preguntas) {
-      const nueva = agregarTarea({ ...form, preguntas: resultado.preguntas })
+      const nueva = await agregarTarea({
+        profesor_id: profesor.id,
+        clase_id: clases[0]?.id,
+        nombre: form.nombre,
+        materia: form.materia,
+        dificultad: form.dificultad,
+        metodologia: form.metodologia,
+        tipos: form.tipos,
+        preguntas: resultado.preguntas,
+        fecha_limite: form.fecha_limite || null,
+        pda: form.pda,
+      })
       setTareaGenerada(resultado.preguntas)
       setTareaGuardada(nueva)
     }
   }
 
-  function handlePublicar() {
-    if (!tareaGuardada) return
-    publicarTarea(tareaGuardada.id)
+  function toggleClasePublicar(claseId) {
+    setClasesPublicar(prev =>
+      prev.includes(claseId)
+        ? prev.filter(id => id !== claseId)
+        : [...prev, claseId]
+    )
+  }
+
+  async function handlePublicar() {
+    if (!tareaGuardada || clasesPublicar.length === 0) return
+    setPublicando(true)
+
+    const [primera, ...resto] = clasesPublicar
+
+    // Update existing task to first selected class and publish
+    if (tareaGuardada.clase_id !== primera) {
+      await actualizarTarea(tareaGuardada.id, { clase_id: primera })
+    }
+    await publicarTarea(tareaGuardada.id)
+
+    // Create copies for additional classes
+    for (const claseId of resto) {
+      const copia = await agregarTarea({
+        profesor_id: profesor.id,
+        clase_id: claseId,
+        nombre: tareaGuardada.nombre,
+        materia: tareaGuardada.materia,
+        dificultad: tareaGuardada.dificultad,
+        metodologia: tareaGuardada.metodologia,
+        tipos: tareaGuardada.tipos,
+        preguntas: tareaGuardada.preguntas,
+        fecha_limite: tareaGuardada.fecha_limite || null,
+        pda: tareaGuardada.pda || null,
+      })
+      if (copia) await publicarTarea(copia.id)
+    }
+
+    setPublicando(false)
     navigate('/profesor')
   }
 
@@ -101,7 +152,7 @@ export default function GenerarTarea() {
     setEditando(true)
   }
 
-  function handleGuardarEdicion() {
+  async function handleGuardarEdicion() {
     const lineas = textoEdicion.split('\n').filter((l) => l.trim())
     const preguntasEditadas = tareaGenerada.map((p, i) => {
       const lineaEncontrada = lineas.find((l) => l.startsWith(`${i + 1}.`))
@@ -112,7 +163,7 @@ export default function GenerarTarea() {
     })
     setTareaGenerada(preguntasEditadas)
     if (tareaGuardada) {
-      actualizarTarea(tareaGuardada.id, { preguntas: preguntasEditadas })
+      await actualizarTarea(tareaGuardada.id, { preguntas: preguntasEditadas })
     }
     setEditando(false)
   }
@@ -218,6 +269,17 @@ export default function GenerarTarea() {
               </div>
             </div>
 
+            {/* Fecha límite */}
+            <div className="card p-6">
+              <label className="label-base">Fecha límite <span className="text-gray-400 font-normal">(opcional)</span></label>
+              <input
+                type="datetime-local"
+                value={form.fecha_limite}
+                onChange={(e) => setForm((p) => ({ ...p, fecha_limite: e.target.value }))}
+                className="input-base"
+              />
+            </div>
+
             {/* PDA */}
             <div className="card p-6">
               <div className="flex items-center justify-between mb-1">
@@ -241,7 +303,7 @@ export default function GenerarTarea() {
                       onClick={() => setForm((p) => ({ ...p, pda: null }))}
                       className="text-xs font-medium text-red-500 hover:text-red-700 border border-red-200 rounded-lg px-3 py-1.5 bg-white transition-colors"
                     >
-                      ✕ Quitar
+                      Quitar
                     </button>
                   </div>
                 </div>
@@ -363,7 +425,7 @@ export default function GenerarTarea() {
             </Boton>
           </div>
         ) : (
-          /* Vista previa del devoir généré */
+          /* Vista previa */
           <div className="animate-fade-in space-y-6">
             <div className="card p-6">
               <div className="flex items-start justify-between gap-4 mb-2">
@@ -371,6 +433,7 @@ export default function GenerarTarea() {
                   <h2 className="text-xl font-bold text-gray-900">{form.nombre}</h2>
                   <p className="text-sm text-gray-500 mt-0.5">
                     {form.materia} · {form.dificultad} · {tareaGenerada.length} preguntas
+                    {form.fecha_limite && ` · Fecha límite: ${new Date(form.fecha_limite).toLocaleDateString('es-MX', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })}`}
                   </p>
                 </div>
                 <span className="flex-shrink-0 inline-flex items-center gap-1 text-xs font-medium text-green-700 bg-green-50 border border-green-200 px-2.5 py-1 rounded-full">
@@ -440,14 +503,69 @@ export default function GenerarTarea() {
               </div>
             )}
 
+            {/* Selector de clases para publicar */}
+            {clases.length > 0 && (
+              <div className="card p-6">
+                <label className="label-base">
+                  Enviar a {clasesPublicar.length > 1 ? `${clasesPublicar.length} clases` : 'la clase'}
+                </label>
+                {clases.length > 1 && (
+                  <p className="text-xs text-gray-400 mb-3">Puedes seleccionar varias clases a la vez.</p>
+                )}
+                <div className="flex flex-wrap gap-2">
+                  {clases.length > 1 && (
+                    <button
+                      type="button"
+                      onClick={() => setClasesPublicar(
+                        clasesPublicar.length === clases.length ? [] : clases.map(c => c.id)
+                      )}
+                      className={`px-4 py-2 rounded-xl text-sm font-medium border transition-all ${
+                        clasesPublicar.length === clases.length
+                          ? 'border-gray-900 bg-gray-900 text-white'
+                          : 'border-gray-200 text-gray-600 hover:border-gray-300'
+                      }`}
+                    >
+                      Todas
+                    </button>
+                  )}
+                  {clases.map(c => (
+                    <button
+                      key={c.id}
+                      type="button"
+                      onClick={() => clases.length === 1 ? null : toggleClasePublicar(c.id)}
+                      className={`px-4 py-2 rounded-xl text-sm font-medium border transition-all ${
+                        clasesPublicar.includes(c.id)
+                          ? 'border-gray-900 bg-gray-900 text-white'
+                          : 'border-gray-200 text-gray-600 hover:border-gray-300'
+                      }`}
+                    >
+                      {c.nombre}
+                      <span className="text-xs opacity-60 ml-1">· {c.grado}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
             <MensajeError mensaje={error} onCerrar={() => setError(null)} />
 
             <div className="flex flex-col sm:flex-row gap-3">
-              <Boton variante="primario" size="lg" onClick={handlePublicar} className="flex-1">
-                <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clipRule="evenodd" />
-                </svg>
-                Publicar tarea
+              <Boton variante="primario" size="lg" onClick={handlePublicar} disabled={clasesPublicar.length === 0 || publicando} className="flex-1">
+                {publicando ? (
+                  <>
+                    <Spinner size="sm" />
+                    Publicando...
+                  </>
+                ) : (
+                  <>
+                    <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clipRule="evenodd" />
+                    </svg>
+                    {clasesPublicar.length > 1
+                      ? `Publicar en ${clasesPublicar.length} clases`
+                      : 'Publicar tarea'}
+                  </>
+                )}
               </Boton>
               {!editando && (
                 <Boton variante="secundario" size="lg" onClick={handleIniciarEdicion}>

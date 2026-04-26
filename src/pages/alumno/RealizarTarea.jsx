@@ -6,13 +6,13 @@ import Boton from '../../components/ui/Boton.jsx'
 import Spinner from '../../components/ui/Spinner.jsx'
 import MensajeError from '../../components/ui/MensajeError.jsx'
 import useTareaStore from '../../store/useTareaStore.js'
-import usePerfilStore from '../../store/usePerfilStore.js'
+import useAuthStore from '../../store/useAuthStore.js'
 import { useAnthropicAPI } from '../../hooks/useAnthropicAPI.js'
 
 export default function RealizarTarea() {
   const { tareaId } = useParams()
   const navigate = useNavigate()
-  const { perfilActivo, alumnoSeleccionado } = usePerfilStore()
+  const { alumno } = useAuthStore()
   const { getTareaById, guardarResultado } = useTareaStore()
   const { corregirTarea, cargando, error, setError } = useAnthropicAPI()
 
@@ -21,11 +21,10 @@ export default function RealizarTarea() {
   const [confirmando, setConfirmando] = useState(false)
 
   useEffect(() => {
-    if (!perfilActivo || !alumnoSeleccionado) navigate('/')
     if (!tarea) navigate('/alumno')
-  }, [perfilActivo, alumnoSeleccionado, tarea, navigate])
+  }, [tarea, navigate])
 
-  if (!tarea) return null
+  if (!tarea || !alumno) return null
 
   const totalPreguntas = tarea.preguntas?.length ?? 0
   const respondidas = Object.keys(respuestas).filter((k) => {
@@ -48,14 +47,20 @@ export default function RealizarTarea() {
   async function enviarTarea() {
     setConfirmando(false)
     const resultado = await corregirTarea({ tarea, respuestasAlumno: respuestas })
+    console.log('[RealizarTarea] resultado IA:', resultado)
     if (resultado) {
-      guardarResultado(tareaId, alumnoSeleccionado.id, {
+      const saved = await guardarResultado(tareaId, alumno.id, {
         respuestas,
         calificacion: resultado.calificacion,
         retroalimentacion: resultado.retroalimentacion,
         areas_de_mejora: resultado.areas_de_mejora ?? [],
       })
-      navigate(`/alumno/resultado/${tareaId}`)
+      console.log('[RealizarTarea] guardarResultado saved:', saved)
+      if (saved) {
+        navigate(`/alumno/resultado/${tareaId}`)
+      } else {
+        setError('No se pudo guardar tu resultado. Intenta de nuevo.')
+      }
     }
   }
 
@@ -84,7 +89,6 @@ export default function RealizarTarea() {
       </div>
 
       <main className="max-w-3xl mx-auto px-4 sm:px-6 py-8">
-        {/* Info de la tarea */}
         <div className="mb-6">
           <h1 className="text-xl font-bold text-gray-900 mb-1">{tarea.nombre}</h1>
           <p className="text-sm text-gray-500">
@@ -92,7 +96,6 @@ export default function RealizarTarea() {
           </p>
         </div>
 
-        {/* Preguntas */}
         <div className="space-y-4 mb-8">
           {tarea.preguntas?.map((pregunta, i) => (
             <RenderizadorPregunta
@@ -107,7 +110,6 @@ export default function RealizarTarea() {
 
         <MensajeError mensaje={error} onCerrar={() => setError(null)} />
 
-        {/* Modal de confirmación si hay preguntas sin responder */}
         {confirmando && (
           <div className="card p-5 mb-4 border-orange-200 bg-orange-50 animate-slide-up">
             <div className="flex items-start gap-3">
