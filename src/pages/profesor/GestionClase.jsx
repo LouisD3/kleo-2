@@ -10,7 +10,7 @@ import { supabase } from '../../lib/supabase.js'
 
 export default function GestionClase() {
   const navigate = useNavigate()
-  const { clase, profesor, setClase } = useAuthStore()
+  const { clase, profesor, setClase, agregarClaseLocal } = useAuthStore()
   const { alumnos, cargarAlumnos, agregarAlumno, eliminarAlumno } = useTareaStore()
 
   const [clases, setClases] = useState([])
@@ -64,6 +64,7 @@ export default function GestionClase() {
 
     setClases(prev => [data, ...prev])
     setClase(data)
+    agregarClaseLocal(data)
     setModalNuevaClase(false)
     setFormClase({ nombre: '', grado: '1° Secundaria' })
   }
@@ -235,6 +236,7 @@ export default function GestionClase() {
               {GRADOS.map(g => <option key={g}>{g}</option>)}
             </select>
           </div>
+          <MensajeError mensaje={error} onCerrar={() => setError(null)} />
           <Boton type="submit" variante="primario" size="md" className="w-full">
             Crear clase
           </Boton>

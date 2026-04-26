@@ -1,5 +1,5 @@
 import { useParams, useNavigate } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useMemo } from 'react'
 import NavBar from '../../components/layout/NavBar.jsx'
 import TablaResultadosAlumnos from '../../components/profesor/TablaResultadosAlumnos.jsx'
 import Badge from '../../components/ui/Badge.jsx'
@@ -21,9 +21,15 @@ function etiquetaTipo(tipo) {
 export default function DetalleTarea() {
   const { tareaId } = useParams()
   const navigate = useNavigate()
-  const { getTareaById, publicarTarea, getPromedioGrupo, getResultadosTarea, alumnos, guardarCalificacionManual } = useTareaStore()
-  const { clase } = useAuthStore()
+  const { getTareaById, publicarTarea, getPromedioGrupo, getResultadosTarea, alumnos, cargarAlumnos, guardarCalificacionManual } = useTareaStore()
+  const { clases } = useAuthStore()
   const tarea = getTareaById(tareaId)
+
+  const claseNombre = useMemo(() => {
+    if (!tarea) return ''
+    const c = clases.find(c => c.id === tarea.clase_id)
+    return c ? `${c.nombre} · ${c.grado}` : ''
+  }, [tarea, clases])
   const promedio = getPromedioGrupo(tareaId)
   const resultadosPorAlumno = getResultadosTarea(tareaId)
   const [editandoNota, setEditandoNota] = useState(null)
@@ -31,6 +37,7 @@ export default function DetalleTarea() {
 
   useEffect(() => {
     if (!tarea) navigate('/profesor')
+    else if (tarea.clase_id) cargarAlumnos(tarea.clase_id)
   }, [tarea, navigate])
 
   if (!tarea) return null
@@ -89,6 +96,7 @@ export default function DetalleTarea() {
                 {vencida && <span className="text-xs font-medium text-red-600 bg-red-50 px-2 py-0.5 rounded-full">Vencida</span>}
               </div>
               <div className="flex flex-wrap gap-4 text-sm text-gray-500">
+                {claseNombre && <span className="font-medium text-gray-700">{claseNombre}</span>}
                 <span>{tarea.materia}</span>
                 <span>{tarea.dificultad}</span>
                 <span>{tarea.metodologia}</span>

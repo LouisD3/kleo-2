@@ -37,6 +37,30 @@ const useTareaStore = create((set, get) => ({
     set({ tareas: tareas ?? [], resultados: resultadosMap, cargandoDatos: false })
   },
 
+  cargarTareasProfesor: async (profesorId) => {
+    if (!profesorId) return
+    set({ cargandoDatos: true })
+
+    const { data: tareas } = await supabase
+      .from('tareas')
+      .select('*')
+      .eq('profesor_id', profesorId)
+      .order('created_at', { ascending: false })
+
+    const { data: resultados } = await supabase
+      .from('resultados')
+      .select('*')
+      .in('tarea_id', (tareas ?? []).map(t => t.id))
+
+    const resultadosMap = {}
+    for (const r of (resultados ?? [])) {
+      if (!resultadosMap[r.tarea_id]) resultadosMap[r.tarea_id] = {}
+      resultadosMap[r.tarea_id][r.alumno_id] = r
+    }
+
+    set({ tareas: tareas ?? [], resultados: resultadosMap, cargandoDatos: false })
+  },
+
   cargarTareasAlumno: async (claseId) => {
     if (!claseId) return
     set({ cargandoDatos: true })

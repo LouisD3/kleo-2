@@ -5,6 +5,7 @@ const useAuthStore = create((set, get) => ({
   usuario: null,
   profesor: null,
   alumno: null,
+  clases: [],
   clase: null,
   rol: null,
   cargando: true,
@@ -14,23 +15,44 @@ const useAuthStore = create((set, get) => ({
     try {
       const { data: { session } } = await supabase.auth.getSession()
       if (session?.user) {
-        const { data: profesor } = await supabase
+        let { data: profesor } = await supabase
           .from('profesores')
           .select('*')
           .eq('id', session.user.id)
           .single()
 
+        // User auth exists but profesores row missing (failed registration)
+        if (!profesor) {
+          const { data: newProf } = await supabase
+            .from('profesores')
+            .upsert({ id: session.user.id, nombre: session.user.email?.split('@')[0] ?? 'Profesor' })
+            .select()
+            .single()
+          profesor = newProf
+        }
+
         if (profesor) {
-          const { data: clases } = await supabase
+          let { data: clases } = await supabase
             .from('clases')
             .select('*')
             .eq('profesor_id', profesor.id)
             .order('created_at', { ascending: false })
 
+          // No class exists, create default
+          if (!clases || clases.length === 0) {
+            const { data: newClase } = await supabase
+              .from('clases')
+              .insert({ profesor_id: profesor.id, nombre: 'Mi clase', grado: '1° Secundaria' })
+              .select()
+              .single()
+            clases = newClase ? [newClase] : []
+          }
+
           set({
             usuario: session.user,
             profesor,
             rol: 'profesor',
+            clases: clases ?? [],
             clase: clases?.[0] ?? null,
             cargando: false,
           })
@@ -71,6 +93,7 @@ const useAuthStore = create((set, get) => ({
       usuario: data.user,
       profesor: { id: userId, nombre, escuela },
       rol: 'profesor',
+      clases: claseData ? [claseData] : [],
       clase: claseData ?? null,
     })
     return true
@@ -100,6 +123,7 @@ const useAuthStore = create((set, get) => ({
       usuario: data.user,
       profesor,
       rol: 'profesor',
+      clases: clases ?? [],
       clase: clases?.[0] ?? null,
     })
     return true
@@ -134,6 +158,10 @@ const useAuthStore = create((set, get) => ({
 
   setClase: (clase) => set({ clase }),
 
+  agregarClaseLocal: (nuevaClase) => set(state => ({
+    clases: [nuevaClase, ...state.clases],
+  })),
+
   cerrarSesion: async () => {
     const { rol } = get()
     if (rol === 'profesor') {
@@ -143,6 +171,7 @@ const useAuthStore = create((set, get) => ({
       usuario: null,
       profesor: null,
       alumno: null,
+      clases: [],
       clase: null,
       rol: null,
       error: null,

@@ -27,12 +27,12 @@ export default function GenerarTarea() {
   const navigate = useNavigate()
   const { generarTarea, cargando, error, setError } = useAnthropicAPI()
   const { agregarTarea, actualizarTarea, publicarTarea } = useTareaStore()
-  const { profesor, clase } = useAuthStore()
+  const { profesor, clases } = useAuthStore()
 
   const [form, setForm] = useState({
     nombre: '',
     materia: 'Matemáticas',
-    grado: clase?.grado ?? '1° Secundaria',
+    grado: clases?.[0]?.grado ?? '1° Secundaria',
     dificultad: 'Media',
     metodologia: 'Feynman',
     tipos: ['Opción múltiple'],
@@ -47,6 +47,7 @@ export default function GenerarTarea() {
   const [textoEdicion, setTextoEdicion] = useState('')
   const [modalPDAabierto, setModalPDAabierto] = useState(false)
   const [busquedaPDA, setBusquedaPDA] = useState('')
+  const [clasePublicar, setClasePublicar] = useState(clases?.[0]?.id ?? null)
 
   function toggleTipo(tipo) {
     setForm((prev) => {
@@ -85,7 +86,7 @@ export default function GenerarTarea() {
     if (resultado?.preguntas) {
       const nueva = await agregarTarea({
         profesor_id: profesor.id,
-        clase_id: clase.id,
+        clase_id: clases[0]?.id,
         nombre: form.nombre,
         materia: form.materia,
         dificultad: form.dificultad,
@@ -101,7 +102,10 @@ export default function GenerarTarea() {
   }
 
   async function handlePublicar() {
-    if (!tareaGuardada) return
+    if (!tareaGuardada || !clasePublicar) return
+    if (tareaGuardada.clase_id !== clasePublicar) {
+      await actualizarTarea(tareaGuardada.id, { clase_id: clasePublicar })
+    }
     await publicarTarea(tareaGuardada.id)
     navigate('/profesor')
   }
@@ -466,10 +470,34 @@ export default function GenerarTarea() {
               </div>
             )}
 
+            {/* Selector de clase para publicar */}
+            {clases.length > 1 && (
+              <div className="card p-6">
+                <label className="label-base">Enviar a la clase</label>
+                <div className="flex flex-wrap gap-2">
+                  {clases.map(c => (
+                    <button
+                      key={c.id}
+                      type="button"
+                      onClick={() => setClasePublicar(c.id)}
+                      className={`px-4 py-2 rounded-xl text-sm font-medium border transition-all ${
+                        clasePublicar === c.id
+                          ? 'border-gray-900 bg-gray-900 text-white'
+                          : 'border-gray-200 text-gray-600 hover:border-gray-300'
+                      }`}
+                    >
+                      {c.nombre}
+                      <span className="text-xs opacity-60 ml-1">· {c.grado}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
             <MensajeError mensaje={error} onCerrar={() => setError(null)} />
 
             <div className="flex flex-col sm:flex-row gap-3">
-              <Boton variante="primario" size="lg" onClick={handlePublicar} className="flex-1">
+              <Boton variante="primario" size="lg" onClick={handlePublicar} disabled={!clasePublicar} className="flex-1">
                 <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clipRule="evenodd" />
                 </svg>

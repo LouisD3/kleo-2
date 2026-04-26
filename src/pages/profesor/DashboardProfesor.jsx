@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom'
-import { useEffect } from 'react'
+import { useEffect, useState, useMemo } from 'react'
 import NavBar from '../../components/layout/NavBar.jsx'
 import TablaTareas from '../../components/profesor/TablaTareas.jsx'
 import Boton from '../../components/ui/Boton.jsx'
@@ -9,19 +9,39 @@ import useAuthStore from '../../store/useAuthStore.js'
 
 export default function DashboardProfesor() {
   const navigate = useNavigate()
-  const { tareas, cargandoDatos, cargarTareas, cargarAlumnos } = useTareaStore()
-  const { clase } = useAuthStore()
+  const { tareas, cargandoDatos, cargarTareasProfesor } = useTareaStore()
+  const { profesor, clases } = useAuthStore()
+
+  const [filtroClases, setFiltroClases] = useState([])
 
   useEffect(() => {
-    if (clase?.id) {
-      cargarTareas(clase.id)
-      cargarAlumnos(clase.id)
+    if (profesor?.id) {
+      cargarTareasProfesor(profesor.id)
     }
-  }, [clase?.id])
+  }, [profesor?.id])
 
-  const completadas = tareas.filter((t) => t.estado === 'completada').length
-  const enCurso = tareas.filter((t) => t.estado === 'en_curso').length
-  const borradores = tareas.filter((t) => t.estado === 'borrador').length
+  const clasesMap = useMemo(() => {
+    const map = {}
+    for (const c of clases) map[c.id] = c
+    return map
+  }, [clases])
+
+  const tareasFiltradas = useMemo(() => {
+    if (filtroClases.length === 0) return tareas
+    return tareas.filter(t => filtroClases.includes(t.clase_id))
+  }, [tareas, filtroClases])
+
+  function toggleFiltroClase(claseId) {
+    setFiltroClases(prev =>
+      prev.includes(claseId)
+        ? prev.filter(id => id !== claseId)
+        : [...prev, claseId]
+    )
+  }
+
+  const completadas = tareasFiltradas.filter((t) => t.estado === 'completada').length
+  const enCurso = tareasFiltradas.filter((t) => t.estado === 'en_curso').length
+  const borradores = tareasFiltradas.filter((t) => t.estado === 'borrador').length
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -32,7 +52,7 @@ export default function DashboardProfesor() {
           <div>
             <h1 className="text-2xl font-bold text-gray-900">Mis tareas</h1>
             <p className="text-sm text-gray-500 mt-1">
-              {clase ? `${clase.nombre} · ${clase.grado}` : 'Gestiona y revisa el progreso de tu grupo'}
+              Gestiona y revisa el progreso de tus grupos
             </p>
           </div>
           <div className="flex gap-3">
@@ -44,7 +64,7 @@ export default function DashboardProfesor() {
               <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
                 <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
               </svg>
-              Mi clase
+              Mis clases
             </Boton>
             <Boton
               onClick={() => navigate('/profesor/generar')}
@@ -58,6 +78,35 @@ export default function DashboardProfesor() {
             </Boton>
           </div>
         </div>
+
+        {/* Filtro de clases */}
+        {clases.length > 1 && (
+          <div className="flex gap-2 mb-6 overflow-x-auto pb-2">
+            <button
+              onClick={() => setFiltroClases([])}
+              className={`px-4 py-2 rounded-xl text-sm font-medium border whitespace-nowrap transition-all ${
+                filtroClases.length === 0
+                  ? 'border-gray-900 bg-gray-900 text-white'
+                  : 'border-gray-200 text-gray-600 hover:border-gray-300'
+              }`}
+            >
+              Todas
+            </button>
+            {clases.map(c => (
+              <button
+                key={c.id}
+                onClick={() => toggleFiltroClase(c.id)}
+                className={`px-4 py-2 rounded-xl text-sm font-medium border whitespace-nowrap transition-all ${
+                  filtroClases.includes(c.id)
+                    ? 'border-gray-900 bg-gray-900 text-white'
+                    : 'border-gray-200 text-gray-600 hover:border-gray-300'
+                }`}
+              >
+                {c.nombre}
+              </button>
+            ))}
+          </div>
+        )}
 
         {/* Stats */}
         <div className="grid grid-cols-3 gap-4 mb-8">
@@ -79,7 +128,7 @@ export default function DashboardProfesor() {
           </div>
         ) : (
           <div className="card p-0 overflow-hidden">
-            <TablaTareas tareas={tareas} />
+            <TablaTareas tareas={tareasFiltradas} clasesMap={clasesMap} />
           </div>
         )}
       </main>

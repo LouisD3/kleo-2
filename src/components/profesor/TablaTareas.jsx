@@ -3,9 +3,10 @@ import Badge from '../ui/Badge.jsx'
 import Boton from '../ui/Boton.jsx'
 import useTareaStore from '../../store/useTareaStore.js'
 
-export default function TablaTareas({ tareas }) {
+export default function TablaTareas({ tareas, clasesMap }) {
   const navigate = useNavigate()
   const { getPromedioGrupo } = useTareaStore()
+  const mostrarClase = clasesMap && Object.keys(clasesMap).length > 1
 
   if (tareas.length === 0) {
     return (
@@ -25,9 +26,11 @@ export default function TablaTareas({ tareas }) {
         <thead>
           <tr className="bg-gray-50 border-b border-gray-100">
             <th className="text-left px-4 py-3 font-semibold text-gray-500 text-xs uppercase tracking-wide">Nombre</th>
+            {mostrarClase && (
+              <th className="text-left px-4 py-3 font-semibold text-gray-500 text-xs uppercase tracking-wide hidden sm:table-cell">Clase</th>
+            )}
             <th className="text-left px-4 py-3 font-semibold text-gray-500 text-xs uppercase tracking-wide hidden sm:table-cell">Materia</th>
             <th className="text-left px-4 py-3 font-semibold text-gray-500 text-xs uppercase tracking-wide hidden md:table-cell">Dificultad</th>
-            <th className="text-left px-4 py-3 font-semibold text-gray-500 text-xs uppercase tracking-wide hidden lg:table-cell">Tipo(s)</th>
             <th className="text-left px-4 py-3 font-semibold text-gray-500 text-xs uppercase tracking-wide">Estado</th>
             <th className="text-left px-4 py-3 font-semibold text-gray-500 text-xs uppercase tracking-wide hidden md:table-cell">Promedio</th>
             <th className="text-right px-4 py-3 font-semibold text-gray-500 text-xs uppercase tracking-wide">Acciones</th>
@@ -36,6 +39,7 @@ export default function TablaTareas({ tareas }) {
         <tbody className="divide-y divide-gray-50">
           {tareas.map((tarea) => {
             const promedio = getPromedioGrupo(tarea.id)
+            const clase = clasesMap?.[tarea.clase_id]
             return (
               <tr
                 key={tarea.id}
@@ -45,23 +49,18 @@ export default function TablaTareas({ tareas }) {
                 <td className="px-4 py-3.5">
                   <span className="font-medium text-gray-900">{tarea.nombre}</span>
                 </td>
+                {mostrarClase && (
+                  <td className="px-4 py-3.5 hidden sm:table-cell">
+                    <span className="text-xs text-gray-600 bg-gray-100 px-2 py-0.5 rounded-full">
+                      {clase?.nombre ?? '—'}
+                    </span>
+                  </td>
+                )}
                 <td className="px-4 py-3.5 hidden sm:table-cell">
                   <span className="text-gray-600">{tarea.materia}</span>
                 </td>
                 <td className="px-4 py-3.5 hidden md:table-cell">
                   <Badge valor={tarea.dificultad} />
-                </td>
-                <td className="px-4 py-3.5 hidden lg:table-cell">
-                  <div className="flex flex-wrap gap-1">
-                    {tarea.tipos.slice(0, 2).map((tipo) => (
-                      <span key={tipo} className="text-xs text-gray-500 bg-gray-100 px-2 py-0.5 rounded-full">
-                        {tipo}
-                      </span>
-                    ))}
-                    {tarea.tipos.length > 2 && (
-                      <span className="text-xs text-gray-400">+{tarea.tipos.length - 2}</span>
-                    )}
-                  </div>
                 </td>
                 <td className="px-4 py-3.5">
                   <Badge valor={tarea.estado} />
