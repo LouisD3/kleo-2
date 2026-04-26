@@ -1,13 +1,16 @@
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import NavBar from '../../components/layout/NavBar.jsx'
 import Boton from '../../components/ui/Boton.jsx'
 import Spinner from '../../components/ui/Spinner.jsx'
 import MensajeError from '../../components/ui/MensajeError.jsx'
+import Modal from '../../components/ui/Modal.jsx'
 import { useAnthropicAPI } from '../../hooks/useAnthropicAPI.js'
 import useTareaStore from '../../store/useTareaStore.js'
+import { getPDAsByMateria } from '../../mock/pdas/index.js'
 
-const MATERIAS = ['Matemáticas', 'Historia', 'Español', 'Ciencias', 'Geografía', 'Inglés', 'Biología', 'Física', 'Química', 'Formación Cívica']
+const MATERIAS = ['Lenguajes', 'Matemáticas', 'Biología', 'Física', 'Química', 'Geografía', 'Historia de México', 'Historia Mundial', 'Formación Cívica y Ética']
+const GRADOS = ['1° Secundaria', '2° Secundaria', '3° Secundaria']
 const DIFICULTADES = ['Fácil', 'Media', 'Difícil']
 const METODOLOGIAS = ['Feynman', 'Memorización activa', 'Resolución de problemas']
 const TIPOS_EJERCICIO = [
@@ -27,16 +30,20 @@ export default function GenerarTarea() {
   const [form, setForm] = useState({
     nombre: '',
     materia: 'Matemáticas',
+    grado: '1° Secundaria',
     dificultad: 'Media',
     metodologia: 'Feynman',
     tipos: ['Opción múltiple'],
     numeroPreguntas: 5,
+    pda: null,
   })
 
   const [tareaGenerada, setTareaGenerada] = useState(null)
   const [tareaGuardada, setTareaGuardada] = useState(null)
   const [editando, setEditando] = useState(false)
   const [textoEdicion, setTextoEdicion] = useState('')
+  const [modalPDAabierto, setModalPDAabierto] = useState(false)
+  const [busquedaPDA, setBusquedaPDA] = useState('')
 
   function toggleTipo(tipo) {
     setForm((prev) => {
@@ -69,6 +76,7 @@ export default function GenerarTarea() {
       metodologia: form.metodologia,
       tipos: form.tipos,
       numeroPreguntas: form.numeroPreguntas,
+      pda: form.pda,
     })
 
     if (resultado?.preguntas) {
@@ -115,6 +123,28 @@ export default function GenerarTarea() {
     'Resolución de problemas': 'Situaciones prácticas con contexto real y pasos intermedios.',
   }
 
+  const pdasDeMateria = useMemo(
+    () => getPDAsByMateria(form.materia, form.grado),
+    [form.materia, form.grado]
+  )
+
+  const pdasFiltrados = useMemo(() => {
+    const q = busquedaPDA.toLowerCase()
+    if (!q) return pdasDeMateria
+    return pdasDeMateria.filter(
+      (p) => p.titulo.toLowerCase().includes(q) || p.pda.toLowerCase().includes(q)
+    )
+  }, [busquedaPDA, pdasDeMateria])
+
+  const pdasPorTema = useMemo(() => {
+    const grupos = {}
+    for (const p of pdasFiltrados) {
+      if (!grupos[p.tema]) grupos[p.tema] = []
+      grupos[p.tema].push(p)
+    }
+    return grupos
+  }, [pdasFiltrados])
+
   return (
     <div className="min-h-screen bg-gray-50">
       <NavBar titulo="Generar tarea" volver="/profesor" />
@@ -138,18 +168,32 @@ export default function GenerarTarea() {
             </div>
 
             <div className="card p-6 space-y-5">
-              {/* Materia */}
-              <div>
-                <label className="label-base">Materia</label>
-                <select
-                  value={form.materia}
-                  onChange={(e) => setForm((p) => ({ ...p, materia: e.target.value }))}
-                  className="input-base"
-                >
-                  {MATERIAS.map((m) => (
-                    <option key={m}>{m}</option>
-                  ))}
-                </select>
+              {/* Materia + Grado */}
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="label-base">Materia</label>
+                  <select
+                    value={form.materia}
+                    onChange={(e) => setForm((p) => ({ ...p, materia: e.target.value, pda: null }))}
+                    className="input-base"
+                  >
+                    {MATERIAS.map((m) => (
+                      <option key={m}>{m}</option>
+                    ))}
+                  </select>
+                </div>
+                <div>
+                  <label className="label-base">Grado</label>
+                  <select
+                    value={form.grado}
+                    onChange={(e) => setForm((p) => ({ ...p, grado: e.target.value, pda: null }))}
+                    className="input-base"
+                  >
+                    {GRADOS.map((g) => (
+                      <option key={g}>{g}</option>
+                    ))}
+                  </select>
+                </div>
               </div>
 
               {/* Dificultad */}
@@ -172,6 +216,51 @@ export default function GenerarTarea() {
                   ))}
                 </div>
               </div>
+            </div>
+
+            {/* PDA */}
+            <div className="card p-6">
+              <div className="flex items-center justify-between mb-1">
+                <label className="label-base mb-0">PDA <span className="text-gray-400 font-normal">(opcional)</span></label>
+              </div>
+              <p className="text-xs text-gray-400 mb-3">Alinea las preguntas al programa NEM — {form.materia} {form.grado}.</p>
+              {form.pda ? (
+                <div className="rounded-xl border border-yellow-300 bg-yellow-50 p-4">
+                  <p className="text-xs font-semibold text-yellow-700 mb-1">Semana {form.pda.semana} · {form.pda.titulo}</p>
+                  <p className="text-sm text-gray-700 leading-snug">{form.pda.pda}</p>
+                  <div className="flex gap-2 mt-3">
+                    <button
+                      type="button"
+                      onClick={() => { setBusquedaPDA(''); setModalPDAabierto(true) }}
+                      className="text-xs font-medium text-gray-600 hover:text-gray-900 border border-gray-300 rounded-lg px-3 py-1.5 bg-white transition-colors"
+                    >
+                      Cambiar
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setForm((p) => ({ ...p, pda: null }))}
+                      className="text-xs font-medium text-red-500 hover:text-red-700 border border-red-200 rounded-lg px-3 py-1.5 bg-white transition-colors"
+                    >
+                      ✕ Quitar
+                    </button>
+                  </div>
+                </div>
+              ) : pdasDeMateria.length > 0 ? (
+                <button
+                  type="button"
+                  onClick={() => { setBusquedaPDA(''); setModalPDAabierto(true) }}
+                  className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl border border-dashed border-gray-300 text-sm font-medium text-gray-500 hover:border-gray-400 hover:text-gray-700 transition-colors"
+                >
+                  <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z" />
+                  </svg>
+                  Seleccionar de la biblioteca
+                </button>
+              ) : (
+                <p className="text-xs text-gray-400 italic text-center py-2">
+                  No hay PDAs disponibles para {form.materia} {form.grado} aún.
+                </p>
+              )}
             </div>
 
             {/* Metodología */}
@@ -238,14 +327,14 @@ export default function GenerarTarea() {
               <input
                 type="range"
                 min={3}
-                max={10}
+                max={20}
                 value={form.numeroPreguntas}
                 onChange={(e) => setForm((p) => ({ ...p, numeroPreguntas: Number(e.target.value) }))}
                 className="w-full accent-yellow-400 h-2 rounded-full"
               />
               <div className="flex justify-between text-xs text-gray-400 mt-1">
                 <span>3</span>
-                <span>10</span>
+                <span>20</span>
               </div>
             </div>
 
@@ -375,6 +464,54 @@ export default function GenerarTarea() {
           </div>
         )}
       </main>
+
+      <Modal
+        abierto={modalPDAabierto}
+        onCerrar={() => setModalPDAabierto(false)}
+        titulo={`Biblioteca de PDAs — ${form.materia} ${form.grado}`}
+        maxWidth="max-w-2xl"
+      >
+        <div className="space-y-4">
+          <input
+            type="text"
+            value={busquedaPDA}
+            onChange={(e) => setBusquedaPDA(e.target.value)}
+            placeholder="Buscar por título o descripción..."
+            className="input-base"
+            autoFocus
+          />
+          <div className="max-h-[60vh] overflow-y-auto space-y-5 pr-1">
+            {Object.keys(pdasPorTema).length === 0 && (
+              <p className="text-sm text-gray-400 text-center py-6">Sin resultados.</p>
+            )}
+            {Object.entries(pdasPorTema).map(([tema, lista]) => (
+              <div key={tema}>
+                <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">{tema}</p>
+                <div className="space-y-2">
+                  {lista.map((p) => (
+                    <button
+                      key={p.semana}
+                      type="button"
+                      onClick={() => {
+                        setForm((prev) => ({ ...prev, pda: p }))
+                        setModalPDAabierto(false)
+                      }}
+                      className={`w-full text-left p-3.5 rounded-xl border transition-all hover:border-yellow-400 hover:bg-yellow-50 ${
+                        form.pda?.semana === p.semana
+                          ? 'border-yellow-400 bg-yellow-50'
+                          : 'border-gray-200'
+                      }`}
+                    >
+                      <p className="text-xs font-semibold text-gray-500 mb-0.5">Semana {p.semana} · {p.titulo}</p>
+                      <p className="text-sm text-gray-700 leading-snug">{p.pda}</p>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </Modal>
     </div>
   )
 }
