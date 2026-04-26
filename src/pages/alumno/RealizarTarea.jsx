@@ -47,6 +47,7 @@ export default function RealizarTarea() {
   async function enviarTarea() {
     setConfirmando(false)
     const resultado = await corregirTarea({ tarea, respuestasAlumno: respuestas })
+    console.log('[RealizarTarea] resultado IA:', resultado)
     if (resultado) {
       const saved = await guardarResultado(tareaId, alumno.id, {
         respuestas,
@@ -54,8 +55,11 @@ export default function RealizarTarea() {
         retroalimentacion: resultado.retroalimentacion,
         areas_de_mejora: resultado.areas_de_mejora ?? [],
       })
+      console.log('[RealizarTarea] guardarResultado saved:', saved)
       if (saved) {
         navigate(`/alumno/resultado/${tareaId}`)
+      } else {
+        setError('No se pudo guardar tu resultado. Intenta de nuevo.')
       }
     }
   }

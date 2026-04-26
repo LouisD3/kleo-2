@@ -171,7 +171,7 @@ const useTareaStore = create((set, get) => ({
   },
 
   guardarResultado: async (tareaId, alumnoId, resultado) => {
-    const { data, error } = await supabase
+    const { error } = await supabase
       .from('resultados')
       .upsert({
         tarea_id: tareaId,
@@ -181,8 +181,6 @@ const useTareaStore = create((set, get) => ({
         retroalimentacion: resultado.retroalimentacion,
         areas_de_mejora: resultado.areas_de_mejora ?? [],
       })
-      .select()
-      .single()
 
     if (error) {
       console.error('Error saving result:', error)
@@ -192,7 +190,7 @@ const useTareaStore = create((set, get) => ({
     set(state => {
       const resultados = { ...state.resultados }
       if (!resultados[tareaId]) resultados[tareaId] = {}
-      resultados[tareaId][alumnoId] = data
+      resultados[tareaId][alumnoId] = { ...resultado, calificacion_manual: null }
 
       const totalAlumnos = state.alumnos.length
       const entregados = Object.keys(resultados[tareaId]).length
