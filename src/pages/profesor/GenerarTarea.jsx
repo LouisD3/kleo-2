@@ -47,7 +47,8 @@ export default function GenerarTarea() {
   const [textoEdicion, setTextoEdicion] = useState('')
   const [modalPDAabierto, setModalPDAabierto] = useState(false)
   const [busquedaPDA, setBusquedaPDA] = useState('')
-  const [clasePublicar, setClasePublicar] = useState(clases?.[0]?.id ?? null)
+  const [clasesPublicar, setClasesPublicar] = useState(clases?.length ? [clases[0].id] : [])
+  const [publicando, setPublicando] = useState(false)
 
   function toggleTipo(tipo) {
     setForm((prev) => {
@@ -101,12 +102,44 @@ export default function GenerarTarea() {
     }
   }
 
+  function toggleClasePublicar(claseId) {
+    setClasesPublicar(prev =>
+      prev.includes(claseId)
+        ? prev.filter(id => id !== claseId)
+        : [...prev, claseId]
+    )
+  }
+
   async function handlePublicar() {
-    if (!tareaGuardada || !clasePublicar) return
-    if (tareaGuardada.clase_id !== clasePublicar) {
-      await actualizarTarea(tareaGuardada.id, { clase_id: clasePublicar })
+    if (!tareaGuardada || clasesPublicar.length === 0) return
+    setPublicando(true)
+
+    const [primera, ...resto] = clasesPublicar
+
+    // Update existing task to first selected class and publish
+    if (tareaGuardada.clase_id !== primera) {
+      await actualizarTarea(tareaGuardada.id, { clase_id: primera })
     }
     await publicarTarea(tareaGuardada.id)
+
+    // Create copies for additional classes
+    for (const claseId of resto) {
+      const copia = await agregarTarea({
+        profesor_id: profesor.id,
+        clase_id: claseId,
+        nombre: tareaGuardada.nombre,
+        materia: tareaGuardada.materia,
+        dificultad: tareaGuardada.dificultad,
+        metodologia: tareaGuardada.metodologia,
+        tipos: tareaGuardada.tipos,
+        preguntas: tareaGuardada.preguntas,
+        fecha_limite: tareaGuardada.fecha_limite || null,
+        pda: tareaGuardada.pda || null,
+      })
+      if (copia) await publicarTarea(copia.id)
+    }
+
+    setPublicando(false)
     navigate('/profesor')
   }
 
@@ -470,18 +503,38 @@ export default function GenerarTarea() {
               </div>
             )}
 
-            {/* Selector de clase para publicar */}
-            {clases.length > 1 && (
+            {/* Selector de clases para publicar */}
+            {clases.length > 0 && (
               <div className="card p-6">
-                <label className="label-base">Enviar a la clase</label>
+                <label className="label-base">
+                  Enviar a {clasesPublicar.length > 1 ? `${clasesPublicar.length} clases` : 'la clase'}
+                </label>
+                {clases.length > 1 && (
+                  <p className="text-xs text-gray-400 mb-3">Puedes seleccionar varias clases a la vez.</p>
+                )}
                 <div className="flex flex-wrap gap-2">
+                  {clases.length > 1 && (
+                    <button
+                      type="button"
+                      onClick={() => setClasesPublicar(
+                        clasesPublicar.length === clases.length ? [] : clases.map(c => c.id)
+                      )}
+                      className={`px-4 py-2 rounded-xl text-sm font-medium border transition-all ${
+                        clasesPublicar.length === clases.length
+                          ? 'border-gray-900 bg-gray-900 text-white'
+                          : 'border-gray-200 text-gray-600 hover:border-gray-300'
+                      }`}
+                    >
+                      Todas
+                    </button>
+                  )}
                   {clases.map(c => (
                     <button
                       key={c.id}
                       type="button"
-                      onClick={() => setClasePublicar(c.id)}
+                      onClick={() => clases.length === 1 ? null : toggleClasePublicar(c.id)}
                       className={`px-4 py-2 rounded-xl text-sm font-medium border transition-all ${
-                        clasePublicar === c.id
+                        clasesPublicar.includes(c.id)
                           ? 'border-gray-900 bg-gray-900 text-white'
                           : 'border-gray-200 text-gray-600 hover:border-gray-300'
                       }`}
@@ -497,11 +550,22 @@ export default function GenerarTarea() {
             <MensajeError mensaje={error} onCerrar={() => setError(null)} />
 
             <div className="flex flex-col sm:flex-row gap-3">
-              <Boton variante="primario" size="lg" onClick={handlePublicar} disabled={!clasePublicar} className="flex-1">
-                <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clipRule="evenodd" />
-                </svg>
-                Publicar tarea
+              <Boton variante="primario" size="lg" onClick={handlePublicar} disabled={clasesPublicar.length === 0 || publicando} className="flex-1">
+                {publicando ? (
+                  <>
+                    <Spinner size="sm" />
+                    Publicando...
+                  </>
+                ) : (
+                  <>
+                    <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clipRule="evenodd" />
+                    </svg>
+                    {clasesPublicar.length > 1
+                      ? `Publicar en ${clasesPublicar.length} clases`
+                      : 'Publicar tarea'}
+                  </>
+                )}
               </Boton>
               {!editando && (
                 <Boton variante="secundario" size="lg" onClick={handleIniciarEdicion}>
