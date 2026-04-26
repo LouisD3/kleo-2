@@ -19,7 +19,7 @@
   }
 
   .input-base {
-    @apply w-full rounded-xl border border-gray-200 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-amarillo focus:border-transparent transition-all;
+    @apply w-full rounded-xl border border-gray-200 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-amarillo focus:border-amarillo transition-all;
   }
 
   .label-base {

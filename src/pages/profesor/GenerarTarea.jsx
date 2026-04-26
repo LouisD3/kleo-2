@@ -9,7 +9,7 @@ import { useAnthropicAPI } from '../../hooks/useAnthropicAPI.js'
 import useTareaStore from '../../store/useTareaStore.js'
 import { getPDAsByMateria } from '../../mock/pdas/index.js'
 
-const MATERIAS = ['Lenguajes', 'Matemáticas', 'Historia de México', 'Historia Mundial', 'Español', 'Ciencias', 'Geografía', 'Inglés', 'Biología', 'Física', 'Química', 'Formación Cívica y Ética']
+const MATERIAS = ['Lenguajes', 'Matemáticas', 'Biología', 'Física', 'Química', 'Geografía', 'Historia de México', 'Historia Mundial', 'Formación Cívica y Ética']
 const GRADOS = ['1° Secundaria', '2° Secundaria', '3° Secundaria']
 const DIFICULTADES = ['Fácil', 'Media', 'Difícil']
 const METODOLOGIAS = ['Feynman', 'Memorización activa', 'Resolución de problemas']
@@ -327,14 +327,14 @@ export default function GenerarTarea() {
               <input
                 type="range"
                 min={3}
-                max={10}
+                max={20}
                 value={form.numeroPreguntas}
                 onChange={(e) => setForm((p) => ({ ...p, numeroPreguntas: Number(e.target.value) }))}
                 className="w-full accent-yellow-400 h-2 rounded-full"
               />
               <div className="flex justify-between text-xs text-gray-400 mt-1">
                 <span>3</span>
-                <span>10</span>
+                <span>20</span>
               </div>
             </div>
 
