@@ -1,12 +1,12 @@
 import { useNavigate } from 'react-router-dom'
-import usePerfilStore from '../../store/usePerfilStore.js'
+import useAuthStore from '../../store/useAuthStore.js'
 
 export default function NavBar({ titulo, volver }) {
   const navigate = useNavigate()
-  const { perfilActivo, alumnoSeleccionado, resetPerfil } = usePerfilStore()
+  const { rol, profesor, alumno, cerrarSesion } = useAuthStore()
 
-  function handleSalir() {
-    resetPerfil()
+  async function handleSalir() {
+    await cerrarSesion()
     navigate('/')
   }
 
@@ -41,24 +41,26 @@ export default function NavBar({ titulo, volver }) {
         </div>
 
         <div className="flex items-center gap-3">
-          {perfilActivo === 'alumno' && alumnoSeleccionado && (
+          {rol === 'alumno' && alumno && (
             <div className="flex items-center gap-2">
               <span
-                className={`inline-flex items-center justify-center w-7 h-7 rounded-full text-xs font-bold ${alumnoSeleccionado.color}`}
+                className={`inline-flex items-center justify-center w-7 h-7 rounded-full text-xs font-bold ${alumno.color}`}
               >
-                {alumnoSeleccionado.avatar}
+                {alumno.avatar}
               </span>
               <span className="text-sm font-medium text-gray-700 hidden sm:block">
-                {alumnoSeleccionado.nombre}
+                {alumno.nombre}
               </span>
             </div>
           )}
-          {perfilActivo === 'profesor' && (
+          {rol === 'profesor' && profesor && (
             <div className="flex items-center gap-2">
               <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-gray-100 text-xs font-bold text-gray-600">
-                P
+                {profesor.nombre?.charAt(0)?.toUpperCase() ?? 'P'}
               </span>
-              <span className="text-sm font-medium text-gray-700 hidden sm:block">Profesor</span>
+              <span className="text-sm font-medium text-gray-700 hidden sm:block">
+                {profesor.nombre}
+              </span>
             </div>
           )}
           <button

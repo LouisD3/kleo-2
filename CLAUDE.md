@@ -17,7 +17,10 @@ The Vite dev server proxies `/api/*` requests to `http://localhost:3001` (Vercel
 
 ## Environment
 
-- `.env.local`: `VITE_API_URL=/api` (frontend)
+- `.env.local`:
+  - `VITE_API_URL=/api` (frontend API proxy)
+  - `VITE_SUPABASE_URL` (Supabase project URL)
+  - `VITE_SUPABASE_ANON_KEY` (Supabase anonymous key)
 - `ANTHROPIC_API_KEY`: Server-side only, set in Vercel dashboard (never in repo)
 
 ## Architecture
@@ -27,17 +30,30 @@ The Vite dev server proxies `/api/*` requests to `http://localhost:3001` (Vercel
 ### Tech Stack
 - **Frontend**: React 18 + React Router v6 + Zustand + Tailwind CSS v3
 - **Backend**: Single Vercel serverless function (`api/ia.js`)
+- **Database**: Supabase (PostgreSQL + Auth + Row Level Security)
 - **AI**: Anthropic Claude (`claude-sonnet-4-20250514`) via direct API calls
 - **Build**: Vite
 
 ### Data Flow
 
-All application state lives in Zustand (in-memory only — no persistence, data resets on page reload):
+Application state uses Zustand as a cache layer backed by Supabase:
 
-- **`usePerfilStore`** (`src/store/usePerfilStore.js`): active role (`'profesor'` | `'alumno'` | null) and selected student
-- **`useTareaStore`** (`src/store/useTareaStore.js`): tasks array, students array, and all student results
+- **`useAuthStore`** (`src/store/useAuthStore.js`): Supabase auth for teachers (email/password), code-based access for students, active role/session
+- **`useTareaStore`** (`src/store/useTareaStore.js`): tasks, students, results — all persisted to Supabase, loaded into Zustand on mount
 
-Pre-loaded mock data from `src/mock/` provides two sample tasks and three hardcoded students (Sofía, Carlos, Mia) for demo purposes.
+### Database Schema (`supabase-schema.sql`)
+
+5 tables with RLS policies:
+- `profesores` — teacher profiles (linked to Supabase auth.users)
+- `clases` — classrooms per teacher
+- `alumnos` — students per class (access via 6-char alphanumeric code)
+- `tareas` — tasks per class (with optional `fecha_limite` deadline)
+- `resultados` — student results (supports `calificacion_manual` override)
+
+### Auth Flow
+
+- **Teachers**: email/password registration via Supabase Auth → creates `profesores` row + default class
+- **Students**: enter 6-character access code → looked up in `alumnos` table, no Supabase auth account needed
 
 ### Task Lifecycle
 
@@ -54,14 +70,26 @@ Claude returns JSON embedded in text; the backend extracts it with a regex (`/\{
 ### Routes
 
 ```
-/                        → SeleccionarPerfil (role/student selection)
-/profesor                → DashboardProfesor
-/profesor/generar        → GenerarTarea (AI task generation form)
-/profesor/tarea/:tareaId → DetalleTarea (task detail + all student results)
-/alumno                  → DashboardAlumno
-/alumno/tarea/:tareaId   → RealizarTarea (answer questions)
+/                          → SeleccionarPerfil (role selection landing)
+/login                     → Login (teacher email/password)
+/registro                  → Registro (teacher registration)
+/acceso-alumno             → AccesoAlumno (student code entry)
+/profesor                  → DashboardProfesor (protected)
+/profesor/generar          → GenerarTarea (AI task generation form)
+/profesor/tarea/:tareaId   → DetalleTarea (task detail + results + CSV export + manual grading)
+/profesor/clase            → GestionClase (class & student management)
+/alumno                    → DashboardAlumno (protected)
+/alumno/tarea/:tareaId     → RealizarTarea (answer questions)
 /alumno/resultado/:tareaId → ResultadoTarea (grade + feedback display)
+/legal/privacidad          → AvisoPrivacidad
+/legal/terminos            → TerminosUso
 ```
+
+### Teacher Features
+- Deadline (`fecha_limite`) on tasks, shown to students with overdue indicator
+- Manual grade override (`calificacion_manual`) per student per task
+- CSV export of results per task
+- Class management: create classes, add/remove students, view access codes
 
 ### Custom Tailwind Theme
 

@@ -3,28 +3,30 @@ import { useEffect, useState } from 'react'
 import NavBar from '../../components/layout/NavBar.jsx'
 import Boton from '../../components/ui/Boton.jsx'
 import useTareaStore from '../../store/useTareaStore.js'
-import usePerfilStore from '../../store/usePerfilStore.js'
+import useAuthStore from '../../store/useAuthStore.js'
 
 export default function ResultadoTarea() {
   const { tareaId } = useParams()
   const navigate = useNavigate()
-  const { perfilActivo, alumnoSeleccionado } = usePerfilStore()
-  const { getTareaById } = useTareaStore()
+  const { alumno } = useAuthStore()
+  const { getTareaById, getResultadosTarea } = useTareaStore()
   const [notaVisible, setNotaVisible] = useState(false)
 
   const tarea = getTareaById(tareaId)
-  const resultado = tarea?.resultadosPorAlumno?.[alumnoSeleccionado?.id]
+  const resultados = getResultadosTarea(tareaId)
+  const resultado = resultados?.[alumno?.id]
 
   useEffect(() => {
-    if (!perfilActivo || !alumnoSeleccionado) navigate('/')
     if (!tarea || !resultado) navigate('/alumno')
     const t = setTimeout(() => setNotaVisible(true), 200)
     return () => clearTimeout(t)
-  }, [perfilActivo, alumnoSeleccionado, tarea, resultado, navigate])
+  }, [tarea, resultado, navigate])
 
   if (!tarea || !resultado) return null
 
-  const { calificacion, retroalimentacion, areas_de_mejora } = resultado
+  const calificacion = resultado.calificacion_manual ?? resultado.calificacion
+  const retroalimentacion = resultado.retroalimentacion
+  const areas_de_mejora = resultado.areas_de_mejora
   const aprobado = calificacion >= 6
   const excelente = calificacion >= 9
 
@@ -46,14 +48,14 @@ export default function ResultadoTarea() {
   }
 
   const mensajeMotivacion = excelente
-    ? '¡Desempeño sobresaliente! Dominaste el tema completamente. ¡Sigue así!'
+    ? 'Desempeño sobresaliente. Dominaste el tema completamente.'
     : calificacion >= 8
-    ? '¡Excelente trabajo! Tienes una comprensión muy sólida del tema.'
+    ? 'Excelente trabajo. Tienes una comprensión muy sólida del tema.'
     : calificacion >= 7
-    ? '¡Buen trabajo! Con un poco más de práctica llegarás al 10.'
+    ? 'Buen trabajo. Con un poco más de práctica llegarás al 10.'
     : aprobado
-    ? 'Pasaste, pero hay áreas donde puedes mejorar. ¡No te rindas!'
-    : 'Esta vez no fue suficiente, pero cada error es una oportunidad de aprender. ¡Tú puedes!'
+    ? 'Pasaste, pero hay áreas donde puedes mejorar.'
+    : 'Esta vez no fue suficiente, pero cada error es una oportunidad de aprender.'
 
   const correctas = retroalimentacion?.filter((r) => r.correcta).length ?? 0
   const total = retroalimentacion?.length ?? 0
@@ -72,6 +74,9 @@ export default function ResultadoTarea() {
             {calificacion}
           </div>
           <p className="text-2xl text-gray-400 font-light">/10</p>
+          {resultado.calificacion_manual != null && (
+            <p className="text-xs text-gray-400 mt-1">(Calificación ajustada por tu profesor)</p>
+          )}
           <p className="text-base text-gray-600 mt-4 max-w-sm mx-auto font-medium">
             {mensajeMotivacion}
           </p>

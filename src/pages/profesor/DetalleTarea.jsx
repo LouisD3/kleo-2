@@ -1,11 +1,11 @@
 import { useParams, useNavigate } from 'react-router-dom'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import NavBar from '../../components/layout/NavBar.jsx'
 import TablaResultadosAlumnos from '../../components/profesor/TablaResultadosAlumnos.jsx'
 import Badge from '../../components/ui/Badge.jsx'
 import Boton from '../../components/ui/Boton.jsx'
 import useTareaStore from '../../store/useTareaStore.js'
-import usePerfilStore from '../../store/usePerfilStore.js'
+import useAuthStore from '../../store/useAuthStore.js'
 
 function etiquetaTipo(tipo) {
   const mapa = {
@@ -21,17 +21,58 @@ function etiquetaTipo(tipo) {
 export default function DetalleTarea() {
   const { tareaId } = useParams()
   const navigate = useNavigate()
-  const { getTareaById, publicarTarea, getPromedioGrupo } = useTareaStore()
-  const { perfilActivo } = usePerfilStore()
+  const { getTareaById, publicarTarea, getPromedioGrupo, getResultadosTarea, alumnos, guardarCalificacionManual } = useTareaStore()
+  const { clase } = useAuthStore()
   const tarea = getTareaById(tareaId)
   const promedio = getPromedioGrupo(tareaId)
+  const resultadosPorAlumno = getResultadosTarea(tareaId)
+  const [editandoNota, setEditandoNota] = useState(null)
+  const [notaManual, setNotaManual] = useState('')
 
   useEffect(() => {
-    if (!perfilActivo) navigate('/')
     if (!tarea) navigate('/profesor')
-  }, [perfilActivo, tarea, navigate])
+  }, [tarea, navigate])
 
   if (!tarea) return null
+
+  const fechaLimite = tarea.fecha_limite
+    ? new Date(tarea.fecha_limite).toLocaleDateString('es-MX', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })
+    : null
+
+  const vencida = tarea.fecha_limite && new Date(tarea.fecha_limite) < new Date()
+
+  function handleExportCSV() {
+    const headers = ['Alumno', 'Calificación IA', 'Calificación Manual', 'Calificación Final', 'Áreas de Mejora', 'Fecha Entrega']
+    const rows = alumnos.map(a => {
+      const r = resultadosPorAlumno[a.id]
+      const final = r ? (r.calificacion_manual ?? r.calificacion) : ''
+      return [
+        a.nombre,
+        r?.calificacion ?? '',
+        r?.calificacion_manual ?? '',
+        final,
+        r?.areas_de_mejora?.join('; ') ?? '',
+        r?.submitted_at ? new Date(r.submitted_at).toLocaleDateString('es-MX') : '',
+      ]
+    })
+
+    const csv = [headers, ...rows].map(row => row.map(cell => `"${cell}"`).join(',')).join('\n')
+    const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;' })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = `${tarea.nombre.replace(/[^a-zA-Z0-9áéíóúñÁÉÍÓÚÑ ]/g, '')}_calificaciones.csv`
+    a.click()
+    URL.revokeObjectURL(url)
+  }
+
+  async function handleGuardarNota(resultadoId) {
+    const nota = parseFloat(notaManual)
+    if (isNaN(nota) || nota < 0 || nota > 10) return
+    await guardarCalificacionManual(resultadoId, nota)
+    setEditandoNota(null)
+    setNotaManual('')
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -45,13 +86,15 @@ export default function DetalleTarea() {
               <div className="flex flex-wrap items-center gap-2 mb-2">
                 <h1 className="text-2xl font-bold text-gray-900">{tarea.nombre}</h1>
                 <Badge valor={tarea.estado} />
+                {vencida && <span className="text-xs font-medium text-red-600 bg-red-50 px-2 py-0.5 rounded-full">Vencida</span>}
               </div>
               <div className="flex flex-wrap gap-4 text-sm text-gray-500">
-                <span>📚 {tarea.materia}</span>
-                <span>⚡ {tarea.dificultad}</span>
-                <span>🎯 {tarea.metodologia}</span>
-                <span>📝 {tarea.preguntas?.length ?? 0} preguntas</span>
-                <span>📅 {tarea.fechaCreacion}</span>
+                <span>{tarea.materia}</span>
+                <span>{tarea.dificultad}</span>
+                <span>{tarea.metodologia}</span>
+                <span>{tarea.preguntas?.length ?? 0} preguntas</span>
+                <span>{new Date(tarea.created_at).toLocaleDateString('es-MX')}</span>
+                {fechaLimite && <span className={vencida ? 'text-red-500 font-medium' : ''}>Límite: {fechaLimite}</span>}
               </div>
             </div>
             <div className="flex flex-col items-end gap-2">
@@ -61,11 +104,21 @@ export default function DetalleTarea() {
                   <p className="text-xs text-gray-400">Promedio del grupo</p>
                 </div>
               )}
-              {tarea.estado === 'borrador' && (
-                <Boton variante="primario" onClick={() => publicarTarea(tarea.id)}>
-                  Publicar tarea
-                </Boton>
-              )}
+              <div className="flex gap-2">
+                {tarea.estado === 'borrador' && (
+                  <Boton variante="primario" onClick={() => publicarTarea(tarea.id)}>
+                    Publicar tarea
+                  </Boton>
+                )}
+                {Object.keys(resultadosPorAlumno).length > 0 && (
+                  <Boton variante="secundario" size="sm" onClick={handleExportCSV}>
+                    <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+                      <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
+                    </svg>
+                    Exportar CSV
+                  </Boton>
+                )}
+              </div>
             </div>
           </div>
         </div>
@@ -119,12 +172,12 @@ export default function DetalleTarea() {
                     )}
                     {p.tipo === 'verdadero_falso' && (
                       <span className="mt-2 inline-block text-xs font-medium px-2.5 py-1 bg-green-50 text-green-700 border border-green-200 rounded-lg">
-                        ✓ {p.respuesta ? 'Verdadero' : 'Falso'}
+                        {p.respuesta ? 'Verdadero' : 'Falso'}
                       </span>
                     )}
                     {p.tipo === 'espacios' && p.respuesta && (
                       <span className="mt-2 inline-block text-xs font-medium px-2.5 py-1 bg-green-50 text-green-700 border border-green-200 rounded-lg">
-                        ✓ {p.respuesta}
+                        {p.respuesta}
                       </span>
                     )}
                   </div>
@@ -136,11 +189,28 @@ export default function DetalleTarea() {
 
         {/* Resultados por alumno */}
         <div className="card p-0 overflow-hidden">
-          <div className="px-6 py-4 border-b border-gray-100">
+          <div className="px-6 py-4 border-b border-gray-100 flex items-center justify-between">
             <h2 className="font-semibold text-gray-900">Resultados por alumno</h2>
+            {Object.keys(resultadosPorAlumno).length > 0 && (
+              <span className="text-xs text-gray-400">
+                {Object.keys(resultadosPorAlumno).length}/{alumnos.length} entregados
+              </span>
+            )}
           </div>
           <div className="p-4">
-            <TablaResultadosAlumnos resultadosPorAlumno={tarea.resultadosPorAlumno ?? {}} />
+            <TablaResultadosAlumnos
+              resultadosPorAlumno={resultadosPorAlumno}
+              alumnos={alumnos}
+              editandoNota={editandoNota}
+              notaManual={notaManual}
+              onEditarNota={(alumnoId, nota) => {
+                setEditandoNota(alumnoId)
+                setNotaManual(String(nota ?? ''))
+              }}
+              onCambiarNota={setNotaManual}
+              onGuardarNota={handleGuardarNota}
+              onCancelarEdicion={() => { setEditandoNota(null); setNotaManual('') }}
+            />
           </div>
         </div>
       </main>

@@ -7,6 +7,7 @@ import MensajeError from '../../components/ui/MensajeError.jsx'
 import Modal from '../../components/ui/Modal.jsx'
 import { useAnthropicAPI } from '../../hooks/useAnthropicAPI.js'
 import useTareaStore from '../../store/useTareaStore.js'
+import useAuthStore from '../../store/useAuthStore.js'
 import { getPDAsByMateria } from '../../mock/pdas/index.js'
 
 const MATERIAS = ['Lenguajes', 'Matemáticas', 'Biología', 'Física', 'Química', 'Geografía', 'Historia de México', 'Historia Mundial', 'Formación Cívica y Ética']
@@ -26,16 +27,18 @@ export default function GenerarTarea() {
   const navigate = useNavigate()
   const { generarTarea, cargando, error, setError } = useAnthropicAPI()
   const { agregarTarea, actualizarTarea, publicarTarea } = useTareaStore()
+  const { profesor, clase } = useAuthStore()
 
   const [form, setForm] = useState({
     nombre: '',
     materia: 'Matemáticas',
-    grado: '1° Secundaria',
+    grado: clase?.grado ?? '1° Secundaria',
     dificultad: 'Media',
     metodologia: 'Feynman',
     tipos: ['Opción múltiple'],
     numeroPreguntas: 5,
     pda: null,
+    fecha_limite: '',
   })
 
   const [tareaGenerada, setTareaGenerada] = useState(null)
@@ -80,15 +83,26 @@ export default function GenerarTarea() {
     })
 
     if (resultado?.preguntas) {
-      const nueva = agregarTarea({ ...form, preguntas: resultado.preguntas })
+      const nueva = await agregarTarea({
+        profesor_id: profesor.id,
+        clase_id: clase.id,
+        nombre: form.nombre,
+        materia: form.materia,
+        dificultad: form.dificultad,
+        metodologia: form.metodologia,
+        tipos: form.tipos,
+        preguntas: resultado.preguntas,
+        fecha_limite: form.fecha_limite || null,
+        pda: form.pda,
+      })
       setTareaGenerada(resultado.preguntas)
       setTareaGuardada(nueva)
     }
   }
 
-  function handlePublicar() {
+  async function handlePublicar() {
     if (!tareaGuardada) return
-    publicarTarea(tareaGuardada.id)
+    await publicarTarea(tareaGuardada.id)
     navigate('/profesor')
   }
 
@@ -101,7 +115,7 @@ export default function GenerarTarea() {
     setEditando(true)
   }
 
-  function handleGuardarEdicion() {
+  async function handleGuardarEdicion() {
     const lineas = textoEdicion.split('\n').filter((l) => l.trim())
     const preguntasEditadas = tareaGenerada.map((p, i) => {
       const lineaEncontrada = lineas.find((l) => l.startsWith(`${i + 1}.`))
@@ -112,7 +126,7 @@ export default function GenerarTarea() {
     })
     setTareaGenerada(preguntasEditadas)
     if (tareaGuardada) {
-      actualizarTarea(tareaGuardada.id, { preguntas: preguntasEditadas })
+      await actualizarTarea(tareaGuardada.id, { preguntas: preguntasEditadas })
     }
     setEditando(false)
   }
@@ -218,6 +232,17 @@ export default function GenerarTarea() {
               </div>
             </div>
 
+            {/* Fecha límite */}
+            <div className="card p-6">
+              <label className="label-base">Fecha límite <span className="text-gray-400 font-normal">(opcional)</span></label>
+              <input
+                type="datetime-local"
+                value={form.fecha_limite}
+                onChange={(e) => setForm((p) => ({ ...p, fecha_limite: e.target.value }))}
+                className="input-base"
+              />
+            </div>
+
             {/* PDA */}
             <div className="card p-6">
               <div className="flex items-center justify-between mb-1">
@@ -241,7 +266,7 @@ export default function GenerarTarea() {
                       onClick={() => setForm((p) => ({ ...p, pda: null }))}
                       className="text-xs font-medium text-red-500 hover:text-red-700 border border-red-200 rounded-lg px-3 py-1.5 bg-white transition-colors"
                     >
-                      ✕ Quitar
+                      Quitar
                     </button>
                   </div>
                 </div>
@@ -363,7 +388,7 @@ export default function GenerarTarea() {
             </Boton>
           </div>
         ) : (
-          /* Vista previa del devoir généré */
+          /* Vista previa */
           <div className="animate-fade-in space-y-6">
             <div className="card p-6">
               <div className="flex items-start justify-between gap-4 mb-2">
@@ -371,6 +396,7 @@ export default function GenerarTarea() {
                   <h2 className="text-xl font-bold text-gray-900">{form.nombre}</h2>
                   <p className="text-sm text-gray-500 mt-0.5">
                     {form.materia} · {form.dificultad} · {tareaGenerada.length} preguntas
+                    {form.fecha_limite && ` · Fecha límite: ${new Date(form.fecha_limite).toLocaleDateString('es-MX', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })}`}
                   </p>
                 </div>
                 <span className="flex-shrink-0 inline-flex items-center gap-1 text-xs font-medium text-green-700 bg-green-50 border border-green-200 px-2.5 py-1 rounded-full">
