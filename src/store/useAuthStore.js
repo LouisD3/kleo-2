@@ -1,6 +1,19 @@
 import { create } from 'zustand'
 import { supabase } from '../lib/supabase.js'
 
+function traducirError(msg) {
+  if (!msg) return 'Ocurrió un error inesperado.'
+  if (msg.includes('Invalid login credentials')) return 'Correo o contraseña incorrectos.'
+  if (msg.includes('Email not confirmed')) return 'Debes confirmar tu correo antes de iniciar sesión.'
+  if (msg.includes('User already registered')) return 'Ya existe una cuenta con ese correo electrónico.'
+  if (msg.includes('Password should be at least')) return 'La contraseña debe tener al menos 6 caracteres.'
+  if (msg.includes('Unable to validate email address')) return 'El correo electrónico no es válido.'
+  if (msg.includes('Email rate limit exceeded')) return 'Demasiados intentos. Espera unos minutos.'
+  if (msg.includes('For security purposes')) return 'Por seguridad, espera unos segundos antes de intentar de nuevo.'
+  if (msg.includes('over_email_send_rate_limit')) return 'Demasiados intentos. Espera unos minutos.'
+  return msg
+}
+
 const useAuthStore = create((set, get) => ({
   usuario: null,
   profesor: null,
@@ -21,11 +34,16 @@ const useAuthStore = create((set, get) => ({
           .eq('id', session.user.id)
           .single()
 
-        // User auth exists but profesores row missing (failed registration)
+        // User auth exists but profesores row missing (failed registration or email confirmation)
         if (!profesor) {
+          const meta = session.user.user_metadata ?? {}
           const { data: newProf } = await supabase
             .from('profesores')
-            .upsert({ id: session.user.id, nombre: session.user.email?.split('@')[0] ?? 'Profesor' })
+            .upsert({
+              id: session.user.id,
+              nombre: meta.nombre ?? session.user.email?.split('@')[0] ?? 'Profesor',
+              escuela: meta.escuela ?? null,
+            })
             .select()
             .single()
           profesor = newProf
@@ -67,23 +85,33 @@ const useAuthStore = create((set, get) => ({
 
   registrarse: async (email, password, nombre, escuela) => {
     set({ error: null })
-    const { data, error } = await supabase.auth.signUp({ email, password })
+    const { data, error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: { data: { nombre, escuela: escuela || null } },
+    })
     if (error) {
-      set({ error: error.message })
+      set({ error: traducirError(error.message) })
       return false
     }
 
+    // Email confirmation required — no session yet
+    if (!data.session) {
+      return 'verificar'
+    }
+
+    // Email confirmation disabled — proceed immediately
     const userId = data.user.id
     const { error: insertError } = await supabase
       .from('profesores')
       .insert({ id: userId, nombre, escuela })
 
     if (insertError) {
-      set({ error: insertError.message })
+      set({ error: traducirError(insertError.message) })
       return false
     }
 
-    const { error: claseError, data: claseData } = await supabase
+    const { data: claseData } = await supabase
       .from('clases')
       .insert({ profesor_id: userId, nombre: 'Mi clase', grado: '1° Secundaria' })
       .select()
@@ -103,7 +131,7 @@ const useAuthStore = create((set, get) => ({
     set({ error: null })
     const { data, error } = await supabase.auth.signInWithPassword({ email, password })
     if (error) {
-      set({ error: error.message })
+      set({ error: traducirError(error.message) })
       return false
     }
 
@@ -153,6 +181,28 @@ const useAuthStore = create((set, get) => ({
       },
       rol: 'alumno',
     })
+    return true
+  },
+
+  recuperarContrasena: async (email) => {
+    set({ error: null })
+    const { error } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: `${window.location.origin}/restablecer-contrasena`,
+    })
+    if (error) {
+      set({ error: traducirError(error.message) })
+      return false
+    }
+    return true
+  },
+
+  restablecerContrasena: async (nuevaPassword) => {
+    set({ error: null })
+    const { error } = await supabase.auth.updateUser({ password: nuevaPassword })
+    if (error) {
+      set({ error: traducirError(error.message) })
+      return false
+    }
     return true
   },
 

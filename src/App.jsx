@@ -8,6 +8,9 @@ import SeleccionarPerfil from './pages/SeleccionarPerfil.jsx'
 import Login from './pages/auth/Login.jsx'
 import Registro from './pages/auth/Registro.jsx'
 import AccesoAlumno from './pages/auth/AccesoAlumno.jsx'
+import VerificarCorreo from './pages/auth/VerificarCorreo.jsx'
+import RecuperarContrasena from './pages/auth/RecuperarContrasena.jsx'
+import RestablecerContrasena from './pages/auth/RestablecerContrasena.jsx'
 import DashboardProfesor from './pages/profesor/DashboardProfesor.jsx'
 import GenerarTarea from './pages/profesor/GenerarTarea.jsx'
 import DetalleTarea from './pages/profesor/DetalleTarea.jsx'
@@ -40,6 +43,9 @@ export default function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/registro" element={<Registro />} />
       <Route path="/acceso-alumno" element={<AccesoAlumno />} />
+      <Route path="/verificar-correo" element={<VerificarCorreo />} />
+      <Route path="/recuperar-contrasena" element={<RecuperarContrasena />} />
+      <Route path="/restablecer-contrasena" element={<RestablecerContrasena />} />
       <Route path="/legal/privacidad" element={<AvisoPrivacidad />} />
       <Route path="/legal/terminos" element={<TerminosUso />} />
 

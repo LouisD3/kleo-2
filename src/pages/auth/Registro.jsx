@@ -27,9 +27,10 @@ export default function Registro() {
     }
 
     setCargando(true)
-    const ok = await registrarse(form.email, form.password, form.nombre, form.escuela)
+    const result = await registrarse(form.email, form.password, form.nombre, form.escuela)
     setCargando(false)
-    if (ok) navigate('/profesor')
+    if (result === 'verificar') navigate('/verificar-correo')
+    else if (result === true) navigate('/profesor')
   }
 
   function update(field, value) {
