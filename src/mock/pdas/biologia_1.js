@@ -1,7 +1,8 @@
 export const PDAS_BIOLOGIA_1 = [
   // 1. Sistema nervioso y endocrino (sem. 1–3)
   {
-    semana: 1,
+    secuencia: 1,
+    contenido: 'Funcionamiento del cuerpo humano coordinado por los sistemas nervioso y endocrino.',
     titulo: 'El sistema nervioso',
     tema: 'Sistema nervioso y endocrino',
     pda: 'Explica la participación del sistema nervioso en la coordinación del funcionamiento del cuerpo humano.',
@@ -9,7 +10,8 @@ export const PDAS_BIOLOGIA_1 = [
     grado: '1° Secundaria',
   },
   {
-    semana: 2,
+    secuencia: 2,
+    contenido: 'Funcionamiento del cuerpo humano coordinado por los sistemas nervioso y endocrino.',
     titulo: 'El sistema endocrino',
     tema: 'Sistema nervioso y endocrino',
     pda: 'Describe la función de las glándulas endocrinas y la acción de las hormonas en la regulación de procesos corporales.',
@@ -17,7 +19,8 @@ export const PDAS_BIOLOGIA_1 = [
     grado: '1° Secundaria',
   },
   {
-    semana: 3,
+    secuencia: 3,
+    contenido: 'Funcionamiento del cuerpo humano coordinado por los sistemas nervioso y endocrino.',
     titulo: 'Coordinación nerviosa y hormonal',
     tema: 'Sistema nervioso y endocrino',
     pda: 'Relaciona la interacción entre el sistema nervioso y el sistema endocrino en el mantenimiento del equilibrio interno del organismo.',
@@ -27,7 +30,8 @@ export const PDAS_BIOLOGIA_1 = [
 
   // 2. Salud sexual y reproductiva (sem. 4–7)
   {
-    semana: 4,
+    secuencia: 4,
+    contenido: 'Salud sexual y reproductiva: prevención de infecciones de transmisión sexual y del embarazo en adolescentes.',
     titulo: 'Aparato reproductor',
     tema: 'Salud sexual y reproductiva',
     pda: 'Identifica la estructura y función del aparato reproductor femenino y masculino en relación con la reproducción humana.',
@@ -35,7 +39,8 @@ export const PDAS_BIOLOGIA_1 = [
     grado: '1° Secundaria',
   },
   {
-    semana: 5,
+    secuencia: 5,
+    contenido: 'Salud sexual y reproductiva: prevención de infecciones de transmisión sexual y del embarazo en adolescentes.',
     titulo: 'Ciclo menstrual y fecundación',
     tema: 'Salud sexual y reproductiva',
     pda: 'Explica el ciclo menstrual y el proceso de fecundación como parte de la reproducción humana.',
@@ -43,7 +48,8 @@ export const PDAS_BIOLOGIA_1 = [
     grado: '1° Secundaria',
   },
   {
-    semana: 6,
+    secuencia: 6,
+    contenido: 'Salud sexual y reproductiva: prevención de infecciones de transmisión sexual y del embarazo en adolescentes.',
     titulo: 'Métodos anticonceptivos',
     tema: 'Salud sexual y reproductiva',
     pda: 'Analiza los diferentes métodos anticonceptivos y su relación con el ejercicio responsable de la sexualidad.',
@@ -51,7 +57,8 @@ export const PDAS_BIOLOGIA_1 = [
     grado: '1° Secundaria',
   },
   {
-    semana: 7,
+    secuencia: 7,
+    contenido: 'Salud sexual y reproductiva: prevención de infecciones de transmisión sexual y del embarazo en adolescentes.',
     titulo: 'Infecciones de transmisión sexual',
     tema: 'Salud sexual y reproductiva',
     pda: 'Reconoce las principales infecciones de transmisión sexual (ITS), sus formas de prevención y la importancia de una sexualidad responsable.',
@@ -61,7 +68,8 @@ export const PDAS_BIOLOGIA_1 = [
 
   // 3. Alimentación y salud (sem. 8–11)
   {
-    semana: 8,
+    secuencia: 8,
+    contenido: 'Prevención de enfermedades relacionadas con la alimentación y el consumo de alimentos ultraprocesados',
     titulo: 'Nutrientes y alimentación',
     tema: 'Alimentación y salud',
     pda: 'Clasifica los nutrimentos y explica su función en el organismo para mantener una alimentación correcta.',
@@ -69,7 +77,8 @@ export const PDAS_BIOLOGIA_1 = [
     grado: '1° Secundaria',
   },
   {
-    semana: 9,
+    secuencia: 9,
+    contenido: 'Prevención de enfermedades relacionadas con la alimentación y el consumo de alimentos ultraprocesados',
     titulo: 'Digestión y absorción',
     tema: 'Alimentación y salud',
     pda: 'Describe el proceso de digestión y absorción de nutrimentos a lo largo del aparato digestivo.',
@@ -77,7 +86,8 @@ export const PDAS_BIOLOGIA_1 = [
     grado: '1° Secundaria',
   },
   {
-    semana: 10,
+    secuencia: 10,
+    contenido: 'Prevención de enfermedades relacionadas con la alimentación y el consumo de alimentos ultraprocesados',
     titulo: 'Enfermedades relacionadas con la alimentación',
     tema: 'Alimentación y salud',
     pda: 'Relaciona los hábitos alimentarios inadecuados con el desarrollo de enfermedades como obesidad, diabetes y desnutrición.',
@@ -85,7 +95,8 @@ export const PDAS_BIOLOGIA_1 = [
     grado: '1° Secundaria',
   },
   {
-    semana: 11,
+    secuencia: 11,
+    contenido: 'Prevención de enfermedades relacionadas con la alimentación y el consumo de alimentos ultraprocesados',
     titulo: 'Dieta correcta y etiquetado',
     tema: 'Alimentación y salud',
     pda: 'Evalúa la información del etiquetado nutricional para tomar decisiones que favorezcan una dieta correcta.',
@@ -95,7 +106,8 @@ export const PDAS_BIOLOGIA_1 = [
 
   // 4. Saberes de pueblos originarios (sem. 12–14)
   {
-    semana: 12,
+    secuencia: 12,
+    contenido: 'La diversidad de saberes e intercambio de conocimientos acerca de los seres vivos y las relaciones con el medio ambiente.',
     titulo: 'Medicina tradicional',
     tema: 'Saberes de pueblos originarios',
     pda: 'Reconoce los saberes de los pueblos originarios sobre el uso de plantas medicinales como parte del patrimonio cultural y biológico de México.',
@@ -103,7 +115,8 @@ export const PDAS_BIOLOGIA_1 = [
     grado: '1° Secundaria',
   },
   {
-    semana: 13,
+    secuencia: 13,
+    contenido: 'La diversidad de saberes e intercambio de conocimientos acerca de los seres vivos y las relaciones con el medio ambiente.',
     titulo: 'Etnobotánica y biodiversidad',
     tema: 'Saberes de pueblos originarios',
     pda: 'Relaciona los conocimientos etnobotánicos de comunidades indígenas con la conservación de la biodiversidad.',
@@ -111,7 +124,8 @@ export const PDAS_BIOLOGIA_1 = [
     grado: '1° Secundaria',
   },
   {
-    semana: 14,
+    secuencia: 14,
+    contenido: 'La diversidad de saberes e intercambio de conocimientos acerca de los seres vivos y las relaciones con el medio ambiente.',
     titulo: 'Diálogo de saberes',
     tema: 'Saberes de pueblos originarios',
     pda: 'Valora la complementariedad entre los saberes de los pueblos originarios y la ciencia occidental en el cuidado de la salud y el ambiente.',
@@ -121,7 +135,8 @@ export const PDAS_BIOLOGIA_1 = [
 
   // 5. Procesos vitales de los seres vivos (sem. 15–18)
   {
-    semana: 15,
+    secuencia: 15,
+    contenido: 'Los procesos vitales de los seres vivos: nutrición, relación con el medio y reproducción.',
     titulo: 'Características de los seres vivos',
     tema: 'Procesos vitales de los seres vivos',
     pda: 'Identifica las características comunes de los seres vivos: nutrición, respiración, reproducción, relación y excreción.',
@@ -129,7 +144,8 @@ export const PDAS_BIOLOGIA_1 = [
     grado: '1° Secundaria',
   },
   {
-    semana: 16,
+    secuencia: 16,
+    contenido: 'Los procesos vitales de los seres vivos: nutrición, relación con el medio y reproducción.',
     titulo: 'Fotosíntesis',
     tema: 'Procesos vitales de los seres vivos',
     pda: 'Explica el proceso de fotosíntesis y su importancia para la producción de materia orgánica y la liberación de oxígeno.',
@@ -137,7 +153,8 @@ export const PDAS_BIOLOGIA_1 = [
     grado: '1° Secundaria',
   },
   {
-    semana: 17,
+    secuencia: 17,
+    contenido: 'Los procesos vitales de los seres vivos: nutrición, relación con el medio y reproducción.',
     titulo: 'Respiración celular',
     tema: 'Procesos vitales de los seres vivos',
     pda: 'Describe la respiración celular como proceso de obtención de energía a partir de la glucosa en los seres vivos.',
@@ -145,7 +162,8 @@ export const PDAS_BIOLOGIA_1 = [
     grado: '1° Secundaria',
   },
   {
-    semana: 18,
+    secuencia: 18,
+    contenido: 'Los procesos vitales de los seres vivos: nutrición, relación con el medio y reproducción.',
     titulo: 'Reproducción asexual y sexual',
     tema: 'Procesos vitales de los seres vivos',
     pda: 'Compara la reproducción asexual y sexual en distintos grupos de seres vivos, identificando sus ventajas y desventajas.',
@@ -155,7 +173,8 @@ export const PDAS_BIOLOGIA_1 = [
 
   // 6. Biodiversidad y evolución (sem. 19–22)
   {
-    semana: 19,
+    secuencia: 19,
+    contenido: 'La biodiversidad como expresión del cambio de los seres vivos en el tiempo',
     titulo: 'Biodiversidad en México',
     tema: 'Biodiversidad y evolución',
     pda: 'Reconoce a México como país megadiverso y explica la importancia de conservar la biodiversidad.',
@@ -163,7 +182,8 @@ export const PDAS_BIOLOGIA_1 = [
     grado: '1° Secundaria',
   },
   {
-    semana: 20,
+    secuencia: 20,
+    contenido: 'La biodiversidad como expresión del cambio de los seres vivos en el tiempo',
     titulo: 'Clasificación de los seres vivos',
     tema: 'Biodiversidad y evolución',
     pda: 'Utiliza criterios taxonómicos para clasificar organismos en los distintos reinos y explica la importancia de la nomenclatura científica.',
@@ -171,7 +191,8 @@ export const PDAS_BIOLOGIA_1 = [
     grado: '1° Secundaria',
   },
   {
-    semana: 21,
+    secuencia: 21,
+    contenido: 'La biodiversidad como expresión del cambio de los seres vivos en el tiempo',
     titulo: 'Selección natural y adaptación',
     tema: 'Biodiversidad y evolución',
     pda: 'Explica el mecanismo de selección natural propuesto por Darwin y su relación con la adaptación y diversificación de las especies.',
@@ -179,7 +200,8 @@ export const PDAS_BIOLOGIA_1 = [
     grado: '1° Secundaria',
   },
   {
-    semana: 22,
+    secuencia: 22,
+    contenido: 'La biodiversidad como expresión del cambio de los seres vivos en el tiempo',
     titulo: 'Evidencias de la evolución',
     tema: 'Biodiversidad y evolución',
     pda: 'Analiza las evidencias fósiles, anatómicas y moleculares que sustentan la teoría de la evolución.',
@@ -189,7 +211,8 @@ export const PDAS_BIOLOGIA_1 = [
 
   // 7. Ecosistemas y calentamiento global (sem. 23–28)
   {
-    semana: 23,
+    secuencia: 23,
+    contenido: 'El calentamiento global como una consecuencia de la alteración de los ciclos biogeoquímicos en los ecosistemas.',
     titulo: 'Componentes del ecosistema',
     tema: 'Ecosistemas y calentamiento global',
     pda: 'Identifica los componentes bióticos y abióticos de un ecosistema y las interacciones que se establecen entre ellos.',
@@ -197,7 +220,8 @@ export const PDAS_BIOLOGIA_1 = [
     grado: '1° Secundaria',
   },
   {
-    semana: 24,
+    secuencia: 24,
+    contenido: 'El calentamiento global como una consecuencia de la alteración de los ciclos biogeoquímicos en los ecosistemas.',
     titulo: 'Cadenas y redes alimentarias',
     tema: 'Ecosistemas y calentamiento global',
     pda: 'Construye cadenas y redes alimentarias para explicar el flujo de energía y la transferencia de materia en los ecosistemas.',
@@ -205,7 +229,8 @@ export const PDAS_BIOLOGIA_1 = [
     grado: '1° Secundaria',
   },
   {
-    semana: 25,
+    secuencia: 25,
+    contenido: 'El calentamiento global como una consecuencia de la alteración de los ciclos biogeoquímicos en los ecosistemas.',
     titulo: 'Ciclos biogeoquímicos',
     tema: 'Ecosistemas y calentamiento global',
     pda: 'Describe los ciclos del carbono, nitrógeno y agua como procesos que regulan los flujos de materia en la biósfera.',
@@ -213,7 +238,8 @@ export const PDAS_BIOLOGIA_1 = [
     grado: '1° Secundaria',
   },
   {
-    semana: 26,
+    secuencia: 26,
+    contenido: 'El calentamiento global como una consecuencia de la alteración de los ciclos biogeoquímicos en los ecosistemas.',
     titulo: 'Efecto invernadero y cambio climático',
     tema: 'Ecosistemas y calentamiento global',
     pda: 'Relaciona el aumento de gases de efecto invernadero con el calentamiento global y sus consecuencias para los ecosistemas.',
@@ -221,7 +247,8 @@ export const PDAS_BIOLOGIA_1 = [
     grado: '1° Secundaria',
   },
   {
-    semana: 27,
+    secuencia: 27,
+    contenido: 'El calentamiento global como una consecuencia de la alteración de los ciclos biogeoquímicos en los ecosistemas.',
     titulo: 'Impacto humano en los ecosistemas',
     tema: 'Ecosistemas y calentamiento global',
     pda: 'Evalúa el impacto de las actividades humanas en la pérdida de biodiversidad y la degradación de los ecosistemas.',
@@ -229,7 +256,8 @@ export const PDAS_BIOLOGIA_1 = [
     grado: '1° Secundaria',
   },
   {
-    semana: 28,
+    secuencia: 28,
+    contenido: 'El calentamiento global como una consecuencia de la alteración de los ciclos biogeoquímicos en los ecosistemas.',
     titulo: 'Acciones para la sustentabilidad',
     tema: 'Ecosistemas y calentamiento global',
     pda: 'Propone acciones individuales y colectivas orientadas al desarrollo sustentable y la mitigación del cambio climático.',
@@ -239,7 +267,8 @@ export const PDAS_BIOLOGIA_1 = [
 
   // 8. El microscopio y la célula (sem. 29–34)
   {
-    semana: 29,
+    secuencia: 29,
+    contenido: 'Importancia del microscopio para el conocimiento de la unidad y la diversidad de los seres vivos.',
     titulo: 'El microscopio',
     tema: 'El microscopio y la célula',
     pda: 'Describe el funcionamiento del microscopio óptico y su importancia para el estudio de las células y microorganismos.',
@@ -247,7 +276,8 @@ export const PDAS_BIOLOGIA_1 = [
     grado: '1° Secundaria',
   },
   {
-    semana: 30,
+    secuencia: 30,
+    contenido: 'Importancia del microscopio para el conocimiento de la unidad y la diversidad de los seres vivos.',
     titulo: 'La célula: unidad de vida',
     tema: 'El microscopio y la célula',
     pda: 'Reconoce a la célula como la unidad estructural y funcional de los seres vivos y describe sus principales componentes.',
@@ -255,7 +285,8 @@ export const PDAS_BIOLOGIA_1 = [
     grado: '1° Secundaria',
   },
   {
-    semana: 31,
+    secuencia: 31,
+    contenido: 'Importancia del microscopio para el conocimiento de la unidad y la diversidad de los seres vivos.',
     titulo: 'Célula procariota y eucariota',
     tema: 'El microscopio y la célula',
     pda: 'Compara las características de las células procariotas y eucariotas, identificando semejanzas y diferencias.',
@@ -263,7 +294,8 @@ export const PDAS_BIOLOGIA_1 = [
     grado: '1° Secundaria',
   },
   {
-    semana: 32,
+    secuencia: 32,
+    contenido: 'Importancia del microscopio para el conocimiento de la unidad y la diversidad de los seres vivos.',
     titulo: 'Organelos celulares',
     tema: 'El microscopio y la célula',
     pda: 'Relaciona la estructura de los organelos celulares con las funciones que realizan dentro de la célula.',
@@ -271,7 +303,8 @@ export const PDAS_BIOLOGIA_1 = [
     grado: '1° Secundaria',
   },
   {
-    semana: 33,
+    secuencia: 33,
+    contenido: 'Importancia del microscopio para el conocimiento de la unidad y la diversidad de los seres vivos.',
     titulo: 'División celular: mitosis',
     tema: 'El microscopio y la célula',
     pda: 'Describe las etapas de la mitosis y su importancia en el crecimiento y la regeneración de los tejidos.',
@@ -279,7 +312,8 @@ export const PDAS_BIOLOGIA_1 = [
     grado: '1° Secundaria',
   },
   {
-    semana: 34,
+    secuencia: 34,
+    contenido: 'Importancia del microscopio para el conocimiento de la unidad y la diversidad de los seres vivos.',
     titulo: 'División celular: meiosis',
     tema: 'El microscopio y la célula',
     pda: 'Explica la meiosis como proceso de formación de células reproductoras y su relación con la variabilidad genética.',
@@ -289,7 +323,8 @@ export const PDAS_BIOLOGIA_1 = [
 
   // 9. Vacunas y enfermedades infecciosas (sem. 35–36)
   {
-    semana: 35,
+    secuencia: 35,
+    contenido: 'Las vacunas: su relevancia en el control de algunas enfermedades infecciosas.',
     titulo: 'El sistema inmune y las vacunas',
     tema: 'Vacunas y enfermedades infecciosas',
     pda: 'Explica el funcionamiento del sistema inmunológico y el papel de las vacunas en la prevención de enfermedades infecciosas.',
@@ -297,7 +332,8 @@ export const PDAS_BIOLOGIA_1 = [
     grado: '1° Secundaria',
   },
   {
-    semana: 36,
+    secuencia: 36,
+    contenido: 'Las vacunas: su relevancia en el control de algunas enfermedades infecciosas.',
     titulo: 'Enfermedades infecciosas emergentes',
     tema: 'Vacunas y enfermedades infecciosas',
     pda: 'Analiza las causas y consecuencias de las enfermedades infecciosas emergentes y reemergentes, y valora la importancia de las medidas de salud pública.',
