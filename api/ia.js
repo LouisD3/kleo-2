@@ -120,7 +120,8 @@ Reglas estrictas:
 - Para "opcion_multiple": incluye exactamente 4 opciones (A, B, C, D) y un campo "respuesta" con la letra correcta.
 - Para "verdadero_falso": incluye un campo "respuesta" con valor booleano true o false.
 - Para "espacios": la pregunta debe tener exactamente un ___ donde va la respuesta. Incluye "respuesta" con la palabra o frase correcta.
-- Para "abierta" y "calculo": no incluyas campo "respuesta".
+- Para "abierta": incluye un campo "respuesta" con una respuesta modelo completa y bien redactada que sirva de referencia al profesor para corregir.
+- Para "calculo": incluye un campo "respuesta" con la resolución paso a paso y el resultado final.
 - Todo en español mexicano, lenguaje claro y apropiado para estudiantes de secundaria o preparatoria.
 - El contenido debe ser coherente con la materia y la dificultad indicadas.
 
@@ -129,9 +130,9 @@ Formato de respuesta JSON requerido:
   "preguntas": [
     { "tipo": "opcion_multiple", "pregunta": "...", "opciones": ["A. ...", "B. ...", "C. ...", "D. ..."], "respuesta": "A" },
     { "tipo": "verdadero_falso", "pregunta": "...", "respuesta": true },
-    { "tipo": "abierta", "pregunta": "..." },
+    { "tipo": "abierta", "pregunta": "...", "respuesta": "Respuesta modelo completa..." },
     { "tipo": "espacios", "pregunta": "La capital de México es ___.", "respuesta": "Ciudad de México" },
-    { "tipo": "calculo", "pregunta": "..." }
+    { "tipo": "calculo", "pregunta": "...", "respuesta": "Paso 1: ... Paso 2: ... Resultado: ..." }
   ]
 }
 
@@ -149,6 +150,8 @@ function promptCorregir({ tarea, respuestasAlumno }) {
         base += `\nRespuesta correcta: ${p.respuesta ? 'Verdadero' : 'Falso'}`
       } else if (p.tipo === 'espacios') {
         base += `\nRespuesta correcta: ${p.respuesta}`
+      } else if ((p.tipo === 'abierta' || p.tipo === 'calculo') && p.respuesta) {
+        base += `\nRespuesta modelo: ${p.respuesta}`
       }
       return base
     })

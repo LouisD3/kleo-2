@@ -504,6 +504,12 @@ export default function GenerarTarea() {
                             Respuesta: <strong>{p.respuesta}</strong>
                           </span>
                         )}
+                        {(p.tipo === 'abierta' || p.tipo === 'calculo') && p.respuesta && (
+                          <div className="mt-2 p-2 bg-green-50 border border-green-200 rounded-lg">
+                            <p className="text-xs font-semibold text-green-700 mb-1">Respuesta modelo</p>
+                            <p className="text-xs text-green-900 whitespace-pre-line">{p.respuesta}</p>
+                          </div>
+                        )}
                       </div>
                     </div>
                   </div>
