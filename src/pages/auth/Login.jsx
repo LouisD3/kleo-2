@@ -71,6 +71,12 @@ export default function Login() {
           </form>
 
           <p className="text-sm text-gray-500 text-center mt-6">
+            <Link to="/recuperar-contrasena" className="hover:underline text-gray-500">
+              ¿Olvidaste tu contraseña?
+            </Link>
+          </p>
+
+          <p className="text-sm text-gray-500 text-center mt-3">
             ¿No tienes cuenta?{' '}
             <Link to="/registro" className="font-semibold text-gray-900 hover:underline">
               Regístrate gratis
