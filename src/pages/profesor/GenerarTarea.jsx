@@ -37,7 +37,7 @@ export default function GenerarTarea() {
     metodologia: 'Feynman',
     tipos: ['Opción múltiple'],
     numeroPreguntas: 5,
-    pda: null,
+    pdas: [],
     fecha_limite: '',
   })
 
@@ -81,7 +81,7 @@ export default function GenerarTarea() {
       metodologia: form.metodologia,
       tipos: form.tipos,
       numeroPreguntas: form.numeroPreguntas,
-      pda: form.pda,
+      pda: form.pdas.length > 0 ? form.pdas : null,
     })
 
     if (resultado?.preguntas) {
@@ -95,7 +95,7 @@ export default function GenerarTarea() {
         tipos: form.tipos,
         preguntas: resultado.preguntas,
         fecha_limite: form.fecha_limite || null,
-        pda: form.pda,
+        pda: form.pdas.length > 0 ? form.pdas : null,
       })
       setTareaGenerada(resultado.preguntas)
       setTareaGuardada(nueva)
@@ -225,7 +225,7 @@ export default function GenerarTarea() {
                   <label className="label-base">Materia</label>
                   <select
                     value={form.materia}
-                    onChange={(e) => setForm((p) => ({ ...p, materia: e.target.value, pda: null }))}
+                    onChange={(e) => setForm((p) => ({ ...p, materia: e.target.value, pdas: [] }))}
                     className="input-base"
                   >
                     {MATERIAS.map((m) => (
@@ -237,7 +237,7 @@ export default function GenerarTarea() {
                   <label className="label-base">Grado</label>
                   <select
                     value={form.grado}
-                    onChange={(e) => setForm((p) => ({ ...p, grado: e.target.value, pda: null }))}
+                    onChange={(e) => setForm((p) => ({ ...p, grado: e.target.value, pdas: [] }))}
                     className="input-base"
                   >
                     {GRADOS.map((g) => (
@@ -286,39 +286,46 @@ export default function GenerarTarea() {
                 <label className="label-base mb-0">PDA <span className="text-gray-400 font-normal">(opcional)</span></label>
               </div>
               <p className="text-xs text-gray-400 mb-3">Alinea las preguntas al programa NEM — {form.materia} {form.grado}.</p>
-              {form.pda ? (
-                <div className="rounded-xl border border-yellow-300 bg-yellow-50 p-4">
-                  <p className="text-xs font-semibold text-yellow-700 mb-1">Secuencia {form.pda.secuencia} · {form.pda.titulo}</p>
-                  {form.pda.contenido && <p className="text-xs text-gray-500 mb-1">{form.pda.contenido}</p>}
-                  <p className="text-sm text-gray-700 leading-snug">{form.pda.pda}</p>
-                  <div className="flex gap-2 mt-3">
-                    <button
-                      type="button"
-                      onClick={() => { setBusquedaPDA(''); setModalPDAabierto(true) }}
-                      className="text-xs font-medium text-gray-600 hover:text-gray-900 border border-gray-300 rounded-lg px-3 py-1.5 bg-white transition-colors"
-                    >
-                      Cambiar
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setForm((p) => ({ ...p, pda: null }))}
-                      className="text-xs font-medium text-red-500 hover:text-red-700 border border-red-200 rounded-lg px-3 py-1.5 bg-white transition-colors"
-                    >
-                      Quitar
-                    </button>
-                  </div>
+              {form.pdas.length > 0 && (
+                <div className="space-y-2 mb-3">
+                  {form.pdas.map((pda, idx) => (
+                    <div key={pda.secuencia} className="rounded-xl border border-yellow-300 bg-yellow-50 p-3 flex items-start gap-3">
+                      <div className="flex-1 min-w-0">
+                        <p className="text-xs font-semibold text-yellow-700 mb-0.5">Secuencia {pda.secuencia} · {pda.titulo}</p>
+                        {pda.contenido && <p className="text-xs text-gray-500 mb-0.5">{pda.contenido}</p>}
+                        <p className="text-sm text-gray-700 leading-snug">{pda.pda}</p>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => setForm((p) => ({ ...p, pdas: p.pdas.filter((_, i) => i !== idx) }))}
+                        className="flex-shrink-0 p-1 text-red-400 hover:text-red-600 transition-colors"
+                        title="Quitar PDA"
+                      >
+                        <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+                          <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+                        </svg>
+                      </button>
+                    </div>
+                  ))}
                 </div>
-              ) : pdasDeMateria.length > 0 ? (
-                <button
-                  type="button"
-                  onClick={() => { setBusquedaPDA(''); setModalPDAabierto(true) }}
-                  className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl border border-dashed border-gray-300 text-sm font-medium text-gray-500 hover:border-gray-400 hover:text-gray-700 transition-colors"
-                >
-                  <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
-                    <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z" />
-                  </svg>
-                  Seleccionar de la biblioteca
-                </button>
+              )}
+              {pdasDeMateria.length > 0 ? (
+                form.pdas.length >= 5 ? (
+                  <p className="text-xs text-gray-400 italic text-center py-2">
+                    Máximo de 5 PDAs alcanzado.
+                  </p>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() => { setBusquedaPDA(''); setModalPDAabierto(true) }}
+                    className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl border border-dashed border-gray-300 text-sm font-medium text-gray-500 hover:border-gray-400 hover:text-gray-700 transition-colors"
+                  >
+                    <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+                      <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z" />
+                    </svg>
+                    {form.pdas.length > 0 ? `Agregar PDA (${form.pdas.length}/5)` : 'Seleccionar de la biblioteca'}
+                  </button>
+                )
               ) : (
                 <p className="text-xs text-gray-400 italic text-center py-2">
                   No hay PDAs disponibles para {form.materia} {form.grado} aún.
@@ -591,14 +598,25 @@ export default function GenerarTarea() {
         maxWidth="max-w-2xl"
       >
         <div className="space-y-4">
-          <input
-            type="text"
-            value={busquedaPDA}
-            onChange={(e) => setBusquedaPDA(e.target.value)}
-            placeholder="Buscar por título o descripción..."
-            className="input-base"
-            autoFocus
-          />
+          <div className="flex gap-3">
+            <input
+              type="text"
+              value={busquedaPDA}
+              onChange={(e) => setBusquedaPDA(e.target.value)}
+              placeholder="Buscar por título o descripción..."
+              className="input-base flex-1"
+              autoFocus
+            />
+            {form.pdas.length > 0 && (
+              <button
+                type="button"
+                onClick={() => setModalPDAabierto(false)}
+                className="flex-shrink-0 px-4 py-2 rounded-xl bg-gray-900 text-white text-sm font-medium hover:bg-gray-800 transition-colors"
+              >
+                Listo ({form.pdas.length}/5)
+              </button>
+            )}
+          </div>
           <div className="max-h-[60vh] overflow-y-auto space-y-5 pr-1">
             {Object.keys(pdasPorTema).length === 0 && (
               <p className="text-sm text-gray-400 text-center py-6">Sin resultados.</p>
@@ -607,25 +625,49 @@ export default function GenerarTarea() {
               <div key={tema}>
                 <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">{tema}</p>
                 <div className="space-y-2">
-                  {lista.map((p) => (
-                    <button
-                      key={p.secuencia}
-                      type="button"
-                      onClick={() => {
-                        setForm((prev) => ({ ...prev, pda: p }))
-                        setModalPDAabierto(false)
-                      }}
-                      className={`w-full text-left p-3.5 rounded-xl border transition-all hover:border-yellow-400 hover:bg-yellow-50 ${
-                        form.pda?.secuencia === p.secuencia
-                          ? 'border-yellow-400 bg-yellow-50'
-                          : 'border-gray-200'
-                      }`}
-                    >
-                      <p className="text-xs font-semibold text-gray-500 mb-0.5">Secuencia {p.secuencia} · {p.titulo}</p>
-                      {p.contenido && <p className="text-xs text-gray-400 mb-0.5">{p.contenido}</p>}
-                      <p className="text-sm text-gray-700 leading-snug">{p.pda}</p>
-                    </button>
-                  ))}
+                  {lista.map((p) => {
+                    const seleccionado = form.pdas.some((s) => s.secuencia === p.secuencia)
+                    const limiteAlcanzado = form.pdas.length >= 5 && !seleccionado
+                    return (
+                      <button
+                        key={p.secuencia}
+                        type="button"
+                        disabled={limiteAlcanzado}
+                        onClick={() => {
+                          setForm((prev) => {
+                            if (seleccionado) {
+                              return { ...prev, pdas: prev.pdas.filter((s) => s.secuencia !== p.secuencia) }
+                            }
+                            return { ...prev, pdas: [...prev.pdas, p] }
+                          })
+                        }}
+                        className={`w-full text-left p-3.5 rounded-xl border transition-all ${
+                          seleccionado
+                            ? 'border-yellow-400 bg-yellow-50'
+                            : limiteAlcanzado
+                              ? 'border-gray-100 bg-gray-50 opacity-50 cursor-not-allowed'
+                              : 'border-gray-200 hover:border-yellow-400 hover:bg-yellow-50'
+                        }`}
+                      >
+                        <div className="flex items-start gap-2">
+                          <div className={`flex-shrink-0 mt-0.5 w-4 h-4 rounded border flex items-center justify-center ${
+                            seleccionado ? 'bg-yellow-400 border-yellow-400' : 'border-gray-300'
+                          }`}>
+                            {seleccionado && (
+                              <svg className="w-3 h-3 text-white" viewBox="0 0 20 20" fill="currentColor">
+                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                              </svg>
+                            )}
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <p className="text-xs font-semibold text-gray-500 mb-0.5">Secuencia {p.secuencia} · {p.titulo}</p>
+                            {p.contenido && <p className="text-xs text-gray-400 mb-0.5">{p.contenido}</p>}
+                            <p className="text-sm text-gray-700 leading-snug">{p.pda}</p>
+                          </div>
+                        </div>
+                      </button>
+                    )
+                  })}
                 </div>
               </div>
             ))}
