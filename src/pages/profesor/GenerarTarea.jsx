@@ -288,7 +288,8 @@ export default function GenerarTarea() {
               <p className="text-xs text-gray-400 mb-3">Alinea las preguntas al programa NEM — {form.materia} {form.grado}.</p>
               {form.pda ? (
                 <div className="rounded-xl border border-yellow-300 bg-yellow-50 p-4">
-                  <p className="text-xs font-semibold text-yellow-700 mb-1">Semana {form.pda.semana} · {form.pda.titulo}</p>
+                  <p className="text-xs font-semibold text-yellow-700 mb-1">Secuencia {form.pda.secuencia} · {form.pda.titulo}</p>
+                  {form.pda.contenido && <p className="text-xs text-gray-500 mb-1">{form.pda.contenido}</p>}
                   <p className="text-sm text-gray-700 leading-snug">{form.pda.pda}</p>
                   <div className="flex gap-2 mt-3">
                     <button
@@ -608,19 +609,20 @@ export default function GenerarTarea() {
                 <div className="space-y-2">
                   {lista.map((p) => (
                     <button
-                      key={p.semana}
+                      key={p.secuencia}
                       type="button"
                       onClick={() => {
                         setForm((prev) => ({ ...prev, pda: p }))
                         setModalPDAabierto(false)
                       }}
                       className={`w-full text-left p-3.5 rounded-xl border transition-all hover:border-yellow-400 hover:bg-yellow-50 ${
-                        form.pda?.semana === p.semana
+                        form.pda?.secuencia === p.secuencia
                           ? 'border-yellow-400 bg-yellow-50'
                           : 'border-gray-200'
                       }`}
                     >
-                      <p className="text-xs font-semibold text-gray-500 mb-0.5">Semana {p.semana} · {p.titulo}</p>
+                      <p className="text-xs font-semibold text-gray-500 mb-0.5">Secuencia {p.secuencia} · {p.titulo}</p>
+                      {p.contenido && <p className="text-xs text-gray-400 mb-0.5">{p.contenido}</p>}
                       <p className="text-sm text-gray-700 leading-snug">{p.pda}</p>
                     </button>
                   ))}

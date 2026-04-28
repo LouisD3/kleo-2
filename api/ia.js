@@ -101,7 +101,7 @@ function promptGenerar({ materia, dificultad, metodologia, tipos, numeroPregunta
   const tiposStr = tiposEfectivos.join(', ')
 
   const pdaLinea = pda
-    ? `\nPDA (Proceso de Desarrollo del Aprendizaje): ${pda.pda}\nLas preguntas deben estar directamente alineadas con este PDA del programa NEM.`
+    ? `\nPDA (Proceso de Desarrollo del Aprendizaje): ${pda.pda}${pda.contenido ? `\nContenido curricular: ${pda.contenido}` : ''}\nLas preguntas deben estar directamente alineadas con este PDA del programa NEM.`
     : ''
 
   return `Eres un experto en pedagogía mexicana. Genera una tarea escolar con exactamente ${numeroPreguntas} preguntas.
