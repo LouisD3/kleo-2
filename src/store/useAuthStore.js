@@ -88,7 +88,10 @@ const useAuthStore = create((set, get) => ({
     const { data, error } = await supabase.auth.signUp({
       email,
       password,
-      options: { data: { nombre, escuela: escuela || null } },
+      options: {
+        emailRedirectTo: `${window.location.origin}/profesor`,
+        data: { nombre, escuela: escuela || null },
+      },
     })
     if (error) {
       set({ error: traducirError(error.message) })
