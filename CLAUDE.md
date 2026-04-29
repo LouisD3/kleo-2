@@ -5,59 +5,80 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Commands
 
 ```bash
-npm run dev       # Start Vite dev server (frontend only, no serverless functions)
-vercel dev        # Start full local dev environment (frontend + /api serverless functions)
-npm run build     # Production build → dist/
-npm run preview   # Preview production build locally
+npm run dev       # Start Next.js dev server (frontend + API routes)
+npm run build     # Production build
+npm run start     # Start production server
+npm run lint      # Run Biome linter
+npm run lint:fix  # Run Biome linter with auto-fix
 ```
-
-There are no test or lint scripts configured.
-
-The Vite dev server proxies `/api/*` requests to `http://localhost:3001` (Vercel CLI default port).
 
 ## Environment
 
 - `.env.local`:
-  - `VITE_API_URL=/api` (frontend API proxy)
-  - `VITE_SUPABASE_URL` (Supabase project URL)
-  - `VITE_SUPABASE_ANON_KEY` (Supabase anonymous key)
-- `ANTHROPIC_API_KEY`: Server-side only, set in Vercel dashboard (never in repo)
+  - `NEXT_PUBLIC_SUPABASE_URL` (Supabase project URL)
+  - `NEXT_PUBLIC_SUPABASE_ANON_KEY` (Supabase anonymous key)
+  - `ANTHROPIC_API_KEY` (server-side only, set in Vercel dashboard)
 
 ## Architecture
 
 **Kleo** is a Mexican educational AI platform for teachers and students (secondary/preparatory level in Mexico). Teachers generate AI-powered assignments; students complete them and receive instant AI grading and feedback. All UI copy is in Spanish (Mexican).
 
 ### Tech Stack
-- **Frontend**: React 18 + React Router v6 + Zustand + Tailwind CSS v3
-- **Backend**: Single Vercel serverless function (`api/ia.js`)
+- **Frontend**: Next.js 16 (App Router) + React 19 + Zustand + Tailwind CSS v3
+- **Backend**: Next.js Route Handler (`src/app/api/ia/route.ts`)
 - **Database**: Supabase (PostgreSQL + Auth + Row Level Security)
 - **AI**: Anthropic Claude (`claude-sonnet-4-20250514`) via direct API calls (raw `fetch`, no SDK)
-- **Build**: Vite
+- **Build**: Next.js + Turbopack
+- **Linting**: Biome
 
 ### Project Structure
 
 ```
-api/
-  ia.js                  — Single serverless function (task generation + grading)
 src/
-  lib/supabase.js        — Supabase client init
+  app/                         — Next.js App Router
+    layout.tsx                 — Root layout (AuthProvider wrapper)
+    page.jsx                   — Landing page (role selection)
+    (auth)/                    — Public auth routes (route group, no layout)
+      login/page.jsx
+      registro/page.jsx
+      acceso-alumno/page.jsx
+      verificar-correo/page.tsx
+      recuperar-contrasena/page.jsx
+      restablecer-contrasena/page.jsx
+    (profesor)/                — Protected profesor routes (layout with auth guard)
+      layout.tsx               — ProtectedRoute requiere="profesor"
+      profesor/
+        page.jsx               — DashboardProfesor
+        generar/page.jsx       — GenerarTarea (AI task generation)
+        tarea/[tareaId]/page.jsx — DetalleTarea
+        clase/page.jsx         — GestionClase
+    (alumno)/                  — Protected alumno routes (layout with auth guard)
+      layout.tsx               — ProtectedRoute requiere="alumno"
+      alumno/
+        page.jsx               — DashboardAlumno
+        tarea/[tareaId]/page.jsx — RealizarTarea
+        resultado/[tareaId]/page.jsx — ResultadoTarea
+    legal/
+      privacidad/page.tsx      — AvisoPrivacidad (Server Component)
+      terminos/page.tsx        — TerminosUso (Server Component)
+    api/
+      ia/route.ts              — AI endpoint (task generation + grading)
+  lib/supabase.js              — Supabase client init
   store/
-    useAuthStore.js      — Auth state (teacher Supabase Auth + student code-based)
-    useTareaStore.js     — Tasks, students, results state (backed by Supabase)
+    useAuthStore.js            — Auth state (teacher Supabase Auth + student code-based)
+    useTareaStore.js           — Tasks, students, results state (backed by Supabase)
   components/
-    auth/ProtectedRoute.jsx  — Role-based route guard (requiere="profesor"|"alumno")
-    layout/NavBar.jsx        — Shared navigation bar
-    ui/                      — Reusable UI: Badge, Boton, MensajeError, Modal, Spinner
+    auth/
+      AuthProvider.jsx         — Root auth initializer (wraps app)
+      ProtectedRoute.jsx       — Role-based route guard
+    layout/NavBar.jsx          — Shared navigation bar
+    ui/                        — Reusable UI: Badge, Boton, MensajeError, Modal, Spinner
     alumno/RenderizadorPregunta.jsx — Question renderer for student task view
     profesor/
-      TablaTareas.jsx              — Task list table
-      TablaResultadosAlumnos.jsx   — Per-task student results table
-  pages/
-    SeleccionarPerfil.jsx    — Landing page (role selection)
-    auth/                    — Login, Registro, AccesoAlumno
-    profesor/                — DashboardProfesor, GenerarTarea, DetalleTarea, GestionClase
-    alumno/                  — DashboardAlumno, RealizarTarea, ResultadoTarea
-    legal/                   — AvisoPrivacidad, TerminosUso
+      TablaTareas.jsx          — Task list table
+      TablaResultadosAlumnos.jsx — Per-task student results table
+  hooks/useAnthropicAPI.js     — Client-side hook for /api/ia calls
+  mock/pdas/                   — PDA library data (NEM curriculum)
 ```
 
 ### Data Flow
@@ -85,9 +106,9 @@ Application state uses Zustand as a cache layer backed by Supabase:
 
 Tasks move through three states: `'borrador'` → `'en_curso'` (published) → `'completada'` (all students submitted).
 
-### API Endpoint (`api/ia.js`)
+### API Route (`src/app/api/ia/route.ts`)
 
-Single endpoint accepting `{ type, payload }`:
+Single POST endpoint accepting `{ type, payload }`:
 - `type: 'generar'` — generates questions for a task from subject/difficulty/methodology/PDA parameters. Supports 3 pedagogical methodologies: Feynman, Memorización activa, Resolución de problemas. Question types: opcion_multiple, verdadero_falso, abierta, espacios, calculo.
 - `type: 'corregir'` — grades student responses, returns score (0–10) + per-question feedback + areas_de_mejora
 
@@ -96,19 +117,22 @@ Claude returns JSON embedded in text; the backend extracts it with a regex (`/\{
 ### Routes
 
 ```
-/                          → SeleccionarPerfil (role selection landing)
-/login                     → Login (teacher email/password)
-/registro                  → Registro (teacher registration)
-/acceso-alumno             → AccesoAlumno (student code entry)
-/profesor                  → DashboardProfesor (protected)
-/profesor/generar          → GenerarTarea (AI task generation form)
-/profesor/tarea/:tareaId   → DetalleTarea (task detail + results + CSV export + manual grading)
-/profesor/clase            → GestionClase (class & student management)
-/alumno                    → DashboardAlumno (protected)
-/alumno/tarea/:tareaId     → RealizarTarea (answer questions)
-/alumno/resultado/:tareaId → ResultadoTarea (grade + feedback display)
-/legal/privacidad          → AvisoPrivacidad
-/legal/terminos            → TerminosUso
+/                              → Landing (role selection)
+/login                         → Login (teacher email/password)
+/registro                      → Registro (teacher registration)
+/acceso-alumno                 → AccesoAlumno (student code entry)
+/verificar-correo              → VerificarCorreo
+/recuperar-contrasena          → RecuperarContrasena
+/restablecer-contrasena        → RestablecerContrasena
+/profesor                      → DashboardProfesor (protected)
+/profesor/generar              → GenerarTarea (AI task generation form)
+/profesor/tarea/[tareaId]      → DetalleTarea (task detail + results + CSV export + manual grading)
+/profesor/clase                → GestionClase (class & student management)
+/alumno                        → DashboardAlumno (protected)
+/alumno/tarea/[tareaId]        → RealizarTarea (answer questions)
+/alumno/resultado/[tareaId]    → ResultadoTarea (grade + feedback display)
+/legal/privacidad              → AvisoPrivacidad
+/legal/terminos                → TerminosUso
 ```
 
 ### Teacher Features
