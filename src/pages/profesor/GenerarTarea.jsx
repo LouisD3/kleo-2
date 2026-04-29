@@ -39,6 +39,7 @@ export default function GenerarTarea() {
     numeroPreguntas: 5,
     pdas: [],
     fecha_limite: '',
+    instrucciones: '',
   })
 
   const [tareaGenerada, setTareaGenerada] = useState(null)
@@ -82,6 +83,7 @@ export default function GenerarTarea() {
       tipos: form.tipos,
       numeroPreguntas: form.numeroPreguntas,
       pda: form.pdas.length > 0 ? form.pdas : null,
+      instrucciones: form.instrucciones.trim() || null,
     })
 
     if (resultado?.preguntas) {
@@ -333,6 +335,19 @@ export default function GenerarTarea() {
               )}
             </div>
 
+            {/* Instrucciones */}
+            <div className="card p-6">
+              <label className="label-base">Instrucciones específicas <span className="text-gray-400 font-normal">(opcional)</span></label>
+              <p className="text-xs text-gray-400 mb-3">Indica el tema, concepto o punto específico que quieres trabajar.</p>
+              <textarea
+                value={form.instrucciones}
+                onChange={(e) => setForm((p) => ({ ...p, instrucciones: e.target.value }))}
+                placeholder="Ej. Enfocarse en las ecuaciones de segundo grado, solo usar ejemplos con números enteros positivos"
+                rows={2}
+                className="input-base resize-none"
+              />
+            </div>
+
             {/* Metodología */}
             <div className="card p-6">
               <label className="label-base">Metodología de aprendizaje</label>
@@ -474,6 +489,12 @@ export default function GenerarTarea() {
               </div>
             ) : (
               <div className="space-y-3">
+                <div className="flex items-start gap-2 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                  <svg className="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+                  </svg>
+                  <p className="text-xs text-blue-700">Las respuestas modelo son solo para ti. Los alumnos no las verán al realizar la tarea.</p>
+                </div>
                 {tareaGenerada.map((p, i) => (
                   <div key={i} className="card p-5">
                     <div className="flex items-start gap-3">

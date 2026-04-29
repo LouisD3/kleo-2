@@ -83,7 +83,7 @@ function construirPrompt(type, payload) {
   throw new Error(`Tipo desconocido: ${type}`)
 }
 
-function promptGenerar({ materia, dificultad, metodologia, tipos, numeroPreguntas, pda }) {
+function promptGenerar({ materia, dificultad, metodologia, tipos, numeroPreguntas, pda, instrucciones }) {
   const instruccionMetodologia = {
     Feynman:
       'Las preguntas deben pedirle al alumno que explique el concepto con sus propias palabras, como si se lo explicara a alguien que no sabe nada del tema. Fomenta la comprensión profunda, no la memorización.',
@@ -113,7 +113,7 @@ Materia: ${materia}
 Dificultad: ${dificultad}
 Metodología pedagógica: ${metodologia}
 Instrucción pedagógica específica: ${instruccionMetodologia}
-Tipos de ejercicios a incluir: ${tiposStr}${pdaLinea}
+Tipos de ejercicios a incluir: ${tiposStr}${pdaLinea}${instrucciones ? `\nInstrucciones específicas del profesor: ${instrucciones}` : ''}
 
 Reglas estrictas:
 - Distribuye las preguntas equitativamente entre los tipos indicados.
