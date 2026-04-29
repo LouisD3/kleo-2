@@ -14,7 +14,7 @@ const generarPayloadSchema = z.object({
   tipos: z.array(z.string().min(1)).min(1, 'Selecciona al menos un tipo de ejercicio'),
   numeroPreguntas: z.number().int().min(3).max(20),
   pda: z.union([pdaItemSchema, z.array(pdaItemSchema).max(5)]).optional(),
-  instrucciones: z.string().optional(),
+  instrucciones: z.string().nullable().optional(),
 })
 
 const preguntaSchema = z.object({
