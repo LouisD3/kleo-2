@@ -6,14 +6,16 @@ import NavBar from '@/components/layout/NavBar.jsx'
 import Boton from '@/components/ui/Boton.jsx'
 import Modal from '@/components/ui/Modal.jsx'
 import MensajeError from '@/components/ui/MensajeError.jsx'
-import useTareaStore from '@/store/useTareaStore.js'
+import { useAlumnos, useAgregarAlumno, useEliminarAlumno } from '@/hooks/useTareas.js'
 import useAuthStore from '@/store/useAuthStore.js'
 import { supabase } from '@/lib/supabase.js'
 
 export default function GestionClase() {
   const router = useRouter()
   const { clase, profesor, setClase, agregarClaseLocal } = useAuthStore()
-  const { alumnos, cargarAlumnos, agregarAlumno, eliminarAlumno } = useTareaStore()
+  const { data: alumnos = [] } = useAlumnos(clase?.id)
+  const agregarAlumnoMut = useAgregarAlumno()
+  const eliminarAlumnoMut = useEliminarAlumno()
 
   const [clases, setClases] = useState([])
   const [nuevoAlumno, setNuevoAlumno] = useState('')
@@ -28,10 +30,6 @@ export default function GestionClase() {
   useEffect(() => {
     cargarClases()
   }, [profesor])
-
-  useEffect(() => {
-    if (clase?.id) cargarAlumnos(clase.id)
-  }, [clase?.id])
 
   async function cargarClases() {
     if (!profesor) return
@@ -75,10 +73,10 @@ export default function GestionClase() {
     e.preventDefault()
     if (!nuevoAlumno.trim()) return
     setError(null)
-    const result = await agregarAlumno(clase.id, nuevoAlumno.trim())
-    if (result) {
+    try {
+      await agregarAlumnoMut.mutateAsync({ claseId: clase.id, nombre: nuevoAlumno.trim() })
       setNuevoAlumno('')
-    } else {
+    } catch {
       setError('No se pudo agregar al alumno. Intenta de nuevo.')
     }
   }
@@ -91,7 +89,7 @@ export default function GestionClase() {
 
   async function handleEliminarAlumno() {
     if (!confirmEliminar) return
-    await eliminarAlumno(confirmEliminar)
+    await eliminarAlumnoMut.mutateAsync({ alumnoId: confirmEliminar, claseId: clase.id })
     setConfirmEliminar(null)
   }
 

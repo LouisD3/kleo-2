@@ -1,26 +1,22 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { useEffect, useState, useMemo } from 'react'
+import { useState, useMemo } from 'react'
 import NavBar from '@/components/layout/NavBar.jsx'
 import TablaTareas from '@/components/profesor/TablaTareas.jsx'
 import Boton from '@/components/ui/Boton.jsx'
 import Spinner from '@/components/ui/Spinner.jsx'
-import useTareaStore from '@/store/useTareaStore.js'
+import { useTareasProfesor } from '@/hooks/useTareas.js'
 import useAuthStore from '@/store/useAuthStore.js'
 
 export default function DashboardProfesor() {
   const router = useRouter()
-  const { tareas, cargandoDatos, cargarTareasProfesor } = useTareaStore()
   const { profesor, clases } = useAuthStore()
+  const { data, isLoading } = useTareasProfesor(profesor?.id)
+  const tareas = data?.tareas ?? []
+  const resultados = data?.resultados ?? {}
 
   const [filtroClases, setFiltroClases] = useState([])
-
-  useEffect(() => {
-    if (profesor?.id) {
-      cargarTareasProfesor(profesor.id)
-    }
-  }, [profesor?.id])
 
   const clasesMap = useMemo(() => {
     const map = {}
@@ -124,13 +120,13 @@ export default function DashboardProfesor() {
           ))}
         </div>
 
-        {cargandoDatos ? (
+        {isLoading ? (
           <div className="card p-16 flex items-center justify-center">
             <Spinner size="lg" />
           </div>
         ) : (
           <div className="card p-0 overflow-hidden">
-            <TablaTareas tareas={tareasFiltradas} clasesMap={clasesMap} />
+            <TablaTareas tareas={tareasFiltradas} clasesMap={clasesMap} resultados={resultados} />
           </div>
         )}
       </main>

@@ -7,7 +7,7 @@ import RenderizadorPregunta from '@/components/alumno/RenderizadorPregunta.jsx'
 import Boton from '@/components/ui/Boton.jsx'
 import Spinner from '@/components/ui/Spinner.jsx'
 import MensajeError from '@/components/ui/MensajeError.jsx'
-import useTareaStore from '@/store/useTareaStore.js'
+import { useTareasAlumno, useGuardarResultado } from '@/hooks/useTareas.js'
 import useAuthStore from '@/store/useAuthStore.js'
 import { useAnthropicAPI } from '@/hooks/useAnthropicAPI.js'
 
@@ -15,10 +15,11 @@ export default function RealizarTarea() {
   const { tareaId } = useParams()
   const router = useRouter()
   const { alumno } = useAuthStore()
-  const { getTareaById, guardarResultado } = useTareaStore()
+  const { data } = useTareasAlumno(alumno?.clase_id)
+  const guardarResultadoMut = useGuardarResultado()
   const { corregirTarea, cargando, error, setError } = useAnthropicAPI()
 
-  const tarea = getTareaById(tareaId)
+  const tarea = (data?.tareas ?? []).find(t => t.id === tareaId)
   const [respuestas, setRespuestas] = useState({})
   const [confirmando, setConfirmando] = useState(false)
 
@@ -51,16 +52,20 @@ export default function RealizarTarea() {
     const resultado = await corregirTarea({ tarea, respuestasAlumno: respuestas })
     console.log('[RealizarTarea] resultado IA:', resultado)
     if (resultado) {
-      const saved = await guardarResultado(tareaId, alumno.id, {
-        respuestas,
-        calificacion: resultado.calificacion,
-        retroalimentacion: resultado.retroalimentacion,
-        areas_de_mejora: resultado.areas_de_mejora ?? [],
-      })
-      console.log('[RealizarTarea] guardarResultado saved:', saved)
-      if (saved) {
+      try {
+        await guardarResultadoMut.mutateAsync({
+          tareaId,
+          alumnoId: alumno.id,
+          resultado: {
+            respuestas,
+            calificacion: resultado.calificacion,
+            retroalimentacion: resultado.retroalimentacion,
+            areas_de_mejora: resultado.areas_de_mejora ?? [],
+          },
+        })
+        console.log('[RealizarTarea] guardarResultado saved')
         router.push(`/alumno/resultado/${tareaId}`)
-      } else {
+      } catch {
         setError('No se pudo guardar tu resultado. Intenta de nuevo.')
       }
     }

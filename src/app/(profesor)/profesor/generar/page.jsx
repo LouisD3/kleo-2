@@ -8,7 +8,7 @@ import Spinner from '@/components/ui/Spinner.jsx'
 import MensajeError from '@/components/ui/MensajeError.jsx'
 import Modal from '@/components/ui/Modal.jsx'
 import { useAnthropicAPI } from '@/hooks/useAnthropicAPI.js'
-import useTareaStore from '@/store/useTareaStore.js'
+import { useAgregarTarea, useActualizarTarea, usePublicarTarea } from '@/hooks/useTareas.js'
 import useAuthStore from '@/store/useAuthStore.js'
 import { getPDAsByMateria } from '@/mock/pdas/index.js'
 
@@ -28,7 +28,9 @@ const TIPOS_EJERCICIO = [
 export default function GenerarTarea() {
   const router = useRouter()
   const { generarTarea, cargando, error, setError } = useAnthropicAPI()
-  const { agregarTarea, actualizarTarea, publicarTarea } = useTareaStore()
+  const agregarTarea = useAgregarTarea()
+  const actualizarTarea = useActualizarTarea()
+  const publicarTarea = usePublicarTarea()
   const { profesor, clases } = useAuthStore()
 
   const [form, setForm] = useState({
@@ -89,7 +91,7 @@ export default function GenerarTarea() {
     })
 
     if (resultado?.preguntas) {
-      const nueva = await agregarTarea({
+      const nueva = await agregarTarea.mutateAsync({
         profesor_id: profesor.id,
         clase_id: clases[0]?.id,
         nombre: form.nombre,
@@ -122,13 +124,13 @@ export default function GenerarTarea() {
 
     // Update existing task to first selected class and publish
     if (tareaGuardada.clase_id !== primera) {
-      await actualizarTarea(tareaGuardada.id, { clase_id: primera })
+      await actualizarTarea.mutateAsync({ id: tareaGuardada.id, cambios: { clase_id: primera } })
     }
-    await publicarTarea(tareaGuardada.id)
+    await publicarTarea.mutateAsync(tareaGuardada.id)
 
     // Create copies for additional classes
     for (const claseId of resto) {
-      const copia = await agregarTarea({
+      const copia = await agregarTarea.mutateAsync({
         profesor_id: profesor.id,
         clase_id: claseId,
         nombre: tareaGuardada.nombre,
@@ -140,7 +142,7 @@ export default function GenerarTarea() {
         fecha_limite: tareaGuardada.fecha_limite || null,
         pda: tareaGuardada.pda || null,
       })
-      if (copia) await publicarTarea(copia.id)
+      if (copia) await publicarTarea.mutateAsync(copia.id)
     }
 
     setPublicando(false)
@@ -167,7 +169,7 @@ export default function GenerarTarea() {
     })
     setTareaGenerada(preguntasEditadas)
     if (tareaGuardada) {
-      await actualizarTarea(tareaGuardada.id, { preguntas: preguntasEditadas })
+      await actualizarTarea.mutateAsync({ id: tareaGuardada.id, cambios: { preguntas: preguntasEditadas } })
     }
     setEditando(false)
   }

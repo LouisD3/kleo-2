@@ -1,29 +1,23 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { useEffect } from 'react'
 import NavBar from '@/components/layout/NavBar.jsx'
 import Badge from '@/components/ui/Badge.jsx'
 import Boton from '@/components/ui/Boton.jsx'
 import Spinner from '@/components/ui/Spinner.jsx'
-import useTareaStore from '@/store/useTareaStore.js'
+import { useTareasAlumno, getTareasParaAlumno } from '@/hooks/useTareas.js'
 import useAuthStore from '@/store/useAuthStore.js'
 
 export default function DashboardAlumno() {
   const router = useRouter()
   const { alumno } = useAuthStore()
-  const { getTareasParaAlumno, cargarTareasAlumno, cargarAlumnos, cargandoDatos } = useTareaStore()
-
-  useEffect(() => {
-    if (alumno?.clase_id) {
-      cargarTareasAlumno(alumno.clase_id)
-      cargarAlumnos(alumno.clase_id)
-    }
-  }, [alumno?.clase_id])
+  const { data, isLoading } = useTareasAlumno(alumno?.clase_id)
 
   if (!alumno) return null
 
-  const tareas = getTareasParaAlumno(alumno.id)
+  const tareasRaw = data?.tareas ?? []
+  const resultados = data?.resultados ?? {}
+  const tareas = getTareasParaAlumno(tareasRaw, resultados, alumno.id)
   const completadas = tareas.filter((t) => t.estadoAlumno === 'completada').length
   const pendientes = tareas.filter((t) => t.estadoAlumno !== 'completada').length
 
@@ -72,7 +66,7 @@ export default function DashboardAlumno() {
           ))}
         </div>
 
-        {cargandoDatos ? (
+        {isLoading ? (
           <div className="card p-16 flex items-center justify-center">
             <Spinner size="lg" />
           </div>

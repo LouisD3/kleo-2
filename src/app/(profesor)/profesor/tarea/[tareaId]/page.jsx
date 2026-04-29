@@ -1,12 +1,13 @@
 'use client'
 
 import { useParams, useRouter } from 'next/navigation'
-import { useEffect, useState, useMemo } from 'react'
+import { useState, useMemo } from 'react'
 import NavBar from '@/components/layout/NavBar.jsx'
 import TablaResultadosAlumnos from '@/components/profesor/TablaResultadosAlumnos.jsx'
 import Badge from '@/components/ui/Badge.jsx'
 import Boton from '@/components/ui/Boton.jsx'
-import useTareaStore from '@/store/useTareaStore.js'
+import Spinner from '@/components/ui/Spinner.jsx'
+import { useTareasProfesor, useAlumnos, usePublicarTarea, useGuardarCalificacionManual, calcularPromedio } from '@/hooks/useTareas.js'
 import useAuthStore from '@/store/useAuthStore.js'
 
 function etiquetaTipo(tipo) {
@@ -23,26 +24,40 @@ function etiquetaTipo(tipo) {
 export default function DetalleTarea() {
   const { tareaId } = useParams()
   const router = useRouter()
-  const { getTareaById, publicarTarea, getPromedioGrupo, getResultadosTarea, alumnos, cargarAlumnos, guardarCalificacionManual } = useTareaStore()
-  const { clases } = useAuthStore()
-  const tarea = getTareaById(tareaId)
+  const { profesor, clases } = useAuthStore()
+
+  const { data, isLoading } = useTareasProfesor(profesor?.id)
+  const tareas = data?.tareas ?? []
+  const resultados = data?.resultados ?? {}
+  const tarea = tareas.find(t => t.id === tareaId)
+
+  const { data: alumnos = [] } = useAlumnos(tarea?.clase_id)
+  const publicarTareaMut = usePublicarTarea()
+  const guardarCalificacionManualMut = useGuardarCalificacionManual()
 
   const claseNombre = useMemo(() => {
     if (!tarea) return ''
     const c = clases.find(c => c.id === tarea.clase_id)
     return c ? `${c.nombre} · ${c.grado}` : ''
   }, [tarea, clases])
-  const promedio = getPromedioGrupo(tareaId)
-  const resultadosPorAlumno = getResultadosTarea(tareaId)
+
+  const resultadosPorAlumno = resultados[tareaId] ?? {}
+  const promedio = calcularPromedio(resultadosPorAlumno)
   const [editandoNota, setEditandoNota] = useState(null)
   const [notaManual, setNotaManual] = useState('')
 
-  useEffect(() => {
-    if (!tarea) router.push('/profesor')
-    else if (tarea.clase_id) cargarAlumnos(tarea.clase_id)
-  }, [tarea, router])
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <Spinner size="lg" />
+      </div>
+    )
+  }
 
-  if (!tarea) return null
+  if (!tarea) {
+    router.push('/profesor')
+    return null
+  }
 
   const fechaLimite = tarea.fecha_limite
     ? new Date(tarea.fecha_limite).toLocaleDateString('es-MX', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })
@@ -78,7 +93,7 @@ export default function DetalleTarea() {
   async function handleGuardarNota(resultadoId) {
     const nota = parseFloat(notaManual)
     if (isNaN(nota) || nota < 0 || nota > 10) return
-    await guardarCalificacionManual(resultadoId, nota)
+    await guardarCalificacionManualMut.mutateAsync({ resultadoId, calificacion: nota })
     setEditandoNota(null)
     setNotaManual('')
   }
@@ -116,7 +131,7 @@ export default function DetalleTarea() {
               )}
               <div className="flex gap-2">
                 {tarea.estado === 'borrador' && (
-                  <Boton variante="primario" onClick={() => publicarTarea(tarea.id)}>
+                  <Boton variante="primario" onClick={() => publicarTareaMut.mutate(tarea.id)}>
                     Publicar tarea
                   </Boton>
                 )}

@@ -4,18 +4,18 @@ import { useParams, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import NavBar from '@/components/layout/NavBar.jsx'
 import Boton from '@/components/ui/Boton.jsx'
-import useTareaStore from '@/store/useTareaStore.js'
+import { useTareasAlumno } from '@/hooks/useTareas.js'
 import useAuthStore from '@/store/useAuthStore.js'
 
 export default function ResultadoTarea() {
   const { tareaId } = useParams()
   const router = useRouter()
   const { alumno } = useAuthStore()
-  const { getTareaById, getResultadosTarea } = useTareaStore()
+  const { data } = useTareasAlumno(alumno?.clase_id)
   const [notaVisible, setNotaVisible] = useState(false)
 
-  const tarea = getTareaById(tareaId)
-  const resultados = getResultadosTarea(tareaId)
+  const tarea = (data?.tareas ?? []).find(t => t.id === tareaId)
+  const resultados = data?.resultados?.[tareaId] ?? {}
   const resultado = resultados?.[alumno?.id]
 
   useEffect(() => {

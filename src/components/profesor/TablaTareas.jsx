@@ -3,11 +3,10 @@
 import { useRouter } from 'next/navigation'
 import Badge from '../ui/Badge.jsx'
 import Boton from '../ui/Boton.jsx'
-import useTareaStore from '../../store/useTareaStore.js'
+import { calcularPromedio } from '@/hooks/useTareas.js'
 
-export default function TablaTareas({ tareas, clasesMap }) {
+export default function TablaTareas({ tareas, clasesMap, resultados }) {
   const router = useRouter()
-  const { getPromedioGrupo } = useTareaStore()
   const mostrarClase = clasesMap && Object.keys(clasesMap).length > 1
 
   if (tareas.length === 0) {
@@ -40,7 +39,7 @@ export default function TablaTareas({ tareas, clasesMap }) {
         </thead>
         <tbody className="divide-y divide-gray-50">
           {tareas.map((tarea) => {
-            const promedio = getPromedioGrupo(tarea.id)
+            const promedio = calcularPromedio(resultados?.[tarea.id])
             const clase = clasesMap?.[tarea.clase_id]
             return (
               <tr
