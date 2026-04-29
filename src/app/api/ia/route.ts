@@ -1,16 +1,36 @@
 import { NextRequest, NextResponse } from 'next/server'
+import {
+  requestBodySchema,
+  generarResponseSchema,
+  corregirResponseSchema,
+  type GenerarPayload,
+  type CorregirPayload,
+} from '@/lib/schemas'
 
 export async function POST(request: NextRequest) {
-  const body = await request.json()
-  const { type, payload } = body
-
-  if (!type || !payload) {
+  // 1. Valider le body avec Zod
+  let body: unknown
+  try {
+    body = await request.json()
+  } catch {
     return NextResponse.json(
-      { error: 'Faltan parámetros requeridos: type y payload.' },
+      { error: 'El cuerpo de la solicitud no es JSON válido.' },
       { status: 400 },
     )
   }
 
+  const parsed = requestBodySchema.safeParse(body)
+  if (!parsed.success) {
+    const firstError = parsed.error.issues[0]
+    return NextResponse.json(
+      { error: `Datos inválidos: ${firstError?.path.join('.')} — ${firstError?.message}` },
+      { status: 400 },
+    )
+  }
+
+  const { type, payload } = parsed.data
+
+  // 2. Vérifier la clé API
   const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY
   if (!ANTHROPIC_API_KEY) {
     return NextResponse.json(
@@ -19,16 +39,12 @@ export async function POST(request: NextRequest) {
     )
   }
 
-  let prompt: string
-  try {
-    prompt = construirPrompt(type, payload)
-  } catch {
-    return NextResponse.json(
-      { error: `Tipo de solicitud inválido: ${type}` },
-      { status: 400 },
-    )
-  }
+  // 3. Construire le prompt
+  const prompt = type === 'generar'
+    ? promptGenerar(payload as GenerarPayload)
+    : promptCorregir(payload as CorregirPayload)
 
+  // 4. Appeler Claude
   let anthropicResponse: Record<string, unknown>
   try {
     const response = await fetch('https://api.anthropic.com/v1/messages', {
@@ -63,6 +79,7 @@ export async function POST(request: NextRequest) {
     )
   }
 
+  // 5. Extraire et valider la réponse JSON de Claude
   const content = anthropicResponse?.content as Array<{ text?: string }> | undefined
   const textoRespuesta = content?.[0]?.text ?? ''
 
@@ -70,7 +87,18 @@ export async function POST(request: NextRequest) {
     const match = textoRespuesta.match(/\{[\s\S]*\}/)
     if (!match) throw new Error('No se encontró JSON en la respuesta')
     const datos = JSON.parse(match[0])
-    return NextResponse.json(datos)
+
+    // Valider la réponse de Claude avec Zod
+    const responseSchema = type === 'generar' ? generarResponseSchema : corregirResponseSchema
+    const validado = responseSchema.safeParse(datos)
+
+    if (!validado.success) {
+      console.error('Respuesta de IA con formato inválido:', validado.error.issues)
+      // Renvoyer quand même les données brutes — Claude ne respecte pas toujours le format exact
+      return NextResponse.json(datos)
+    }
+
+    return NextResponse.json(validado.data)
   } catch {
     console.error('Error al parsear respuesta de IA:', textoRespuesta)
     return NextResponse.json(
@@ -80,43 +108,11 @@ export async function POST(request: NextRequest) {
   }
 }
 
-// --- Prompt builders (preserved from original) ---
+// --- Prompt builders ---
 
 interface PdaItem {
   pda: string
   contenido?: string
-}
-
-interface GenerarPayload {
-  materia: string
-  dificultad: string
-  metodologia: string
-  tipos: string[]
-  numeroPreguntas: number
-  pda?: PdaItem | PdaItem[]
-  instrucciones?: string
-}
-
-interface Pregunta {
-  tipo: string
-  pregunta: string
-  opciones?: string[]
-  respuesta?: string | boolean
-}
-
-interface CorregirPayload {
-  tarea: {
-    materia: string
-    dificultad: string
-    preguntas: Pregunta[]
-  }
-  respuestasAlumno: (string | null)[]
-}
-
-function construirPrompt(type: string, payload: GenerarPayload | CorregirPayload): string {
-  if (type === 'generar') return promptGenerar(payload as GenerarPayload)
-  if (type === 'corregir') return promptCorregir(payload as CorregirPayload)
-  throw new Error(`Tipo desconocido: ${type}`)
 }
 
 function promptGenerar({ materia, dificultad, metodologia, tipos, numeroPreguntas, pda, instrucciones }: GenerarPayload): string {
