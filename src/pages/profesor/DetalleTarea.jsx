@@ -188,6 +188,12 @@ export default function DetalleTarea() {
                         {p.respuesta}
                       </span>
                     )}
+                    {(p.tipo === 'abierta' || p.tipo === 'calculo') && p.respuesta && (
+                      <div className="mt-3 p-3 bg-green-50 border border-green-200 rounded-lg">
+                        <p className="text-xs font-semibold text-green-700 mb-1">Respuesta modelo</p>
+                        <p className="text-sm text-green-900 whitespace-pre-line">{p.respuesta}</p>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
