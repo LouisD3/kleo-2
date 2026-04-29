@@ -81,6 +81,25 @@ const useAuthStore = create((set, get) => ({
     } catch (e) {
       console.error('Error initializing auth:', e)
     }
+    // No teacher session — check for saved student session
+    try {
+      const saved = localStorage.getItem('kleo_alumno')
+      if (saved) {
+        const alumno = JSON.parse(saved)
+        // Verify the student still exists in the database
+        const { data: exists } = await supabase
+          .from('alumnos')
+          .select('id')
+          .eq('id', alumno.id)
+          .single()
+        if (exists) {
+          set({ alumno, rol: 'alumno', cargando: false })
+          return
+        }
+        localStorage.removeItem('kleo_alumno')
+      }
+    } catch {}
+
     set({ cargando: false })
   },
 
@@ -174,17 +193,17 @@ const useAuthStore = create((set, get) => ({
       return false
     }
 
-    set({
-      alumno: {
-        id: data.id,
-        nombre: data.nombre,
-        avatar: data.avatar_iniciales,
-        color: data.avatar_color,
-        clase_id: data.clase_id,
-        grado: data.clases?.grado ?? '',
-      },
-      rol: 'alumno',
-    })
+    const alumno = {
+      id: data.id,
+      nombre: data.nombre,
+      avatar: data.avatar_iniciales,
+      color: data.avatar_color,
+      clase_id: data.clase_id,
+      grado: data.clases?.grado ?? '',
+    }
+
+    localStorage.setItem('kleo_alumno', JSON.stringify(alumno))
+    set({ alumno, rol: 'alumno' })
     return true
   },
 
@@ -221,6 +240,7 @@ const useAuthStore = create((set, get) => ({
     if (rol === 'profesor') {
       await supabase.auth.signOut()
     }
+    localStorage.removeItem('kleo_alumno')
     set({
       usuario: null,
       profesor: null,
