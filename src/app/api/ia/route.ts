@@ -1,10 +1,10 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { type NextRequest, NextResponse } from 'next/server'
 import {
-  requestBodySchema,
-  generarResponseSchema,
+  type CorregirPayload,
   corregirResponseSchema,
   type GenerarPayload,
-  type CorregirPayload,
+  generarResponseSchema,
+  requestBodySchema,
 } from '@/lib/schemas'
 
 export async function POST(request: NextRequest) {
@@ -40,9 +40,10 @@ export async function POST(request: NextRequest) {
   }
 
   // 3. Construire le prompt
-  const prompt = type === 'generar'
-    ? promptGenerar(payload as GenerarPayload)
-    : promptCorregir(payload as CorregirPayload)
+  const prompt =
+    type === 'generar'
+      ? promptGenerar(payload as GenerarPayload)
+      : promptCorregir(payload as CorregirPayload)
 
   // 4. Appeler Claude
   let anthropicResponse: Record<string, unknown>
@@ -74,7 +75,10 @@ export async function POST(request: NextRequest) {
   } catch (err) {
     console.error('Error al conectar con Anthropic:', err)
     return NextResponse.json(
-      { error: 'No se pudo conectar con el servicio de IA. Verifica tu conexión e intenta de nuevo.' },
+      {
+        error:
+          'No se pudo conectar con el servicio de IA. Verifica tu conexión e intenta de nuevo.',
+      },
       { status: 500 },
     )
   }
@@ -115,7 +119,15 @@ interface PdaItem {
   contenido?: string
 }
 
-function promptGenerar({ materia, dificultad, metodologia, tipos, numeroPreguntas, pda, instrucciones }: GenerarPayload): string {
+function promptGenerar({
+  materia,
+  dificultad,
+  metodologia,
+  tipos,
+  numeroPreguntas,
+  pda,
+  instrucciones,
+}: GenerarPayload): string {
   const instruccionMetodologia: Record<string, string> = {
     Feynman:
       'Las preguntas deben pedirle al alumno que explique el concepto con sus propias palabras, como si se lo explicara a alguien que no sabe nada del tema. Fomenta la comprensión profunda, no la memorización.',
@@ -125,12 +137,13 @@ function promptGenerar({ materia, dificultad, metodologia, tipos, numeroPregunta
       'Las preguntas deben plantear situaciones prácticas con contexto real. El alumno debe mostrar sus pasos intermedios y el proceso de razonamiento, no solo el resultado final.',
   }
 
-  const instruccionMet = instruccionMetodologia[metodologia] ?? 'Genera preguntas claras y apropiadas para el nivel indicado.'
+  const instruccionMet =
+    instruccionMetodologia[metodologia] ??
+    'Genera preguntas claras y apropiadas para el nivel indicado.'
 
-  const tiposEfectivos =
-    tipos.includes('Ejercicio mixto')
-      ? ['opcion_multiple', 'verdadero_falso', 'abierta', 'espacios', 'calculo']
-      : tipos.map((t) => mapTipo(t)).filter(Boolean)
+  const tiposEfectivos = tipos.includes('Ejercicio mixto')
+    ? ['opcion_multiple', 'verdadero_falso', 'abierta', 'espacios', 'calculo']
+    : tipos.map((t) => mapTipo(t)).filter(Boolean)
 
   const tiposStr = tiposEfectivos.join(', ')
 
@@ -182,7 +195,9 @@ Responde ÚNICAMENTE con el JSON. Sin texto adicional, sin explicaciones, sin co
 function promptCorregir({ tarea, respuestasAlumno }: CorregirPayload): string {
   const preguntasStr = tarea.preguntas
     .map((p, i) => {
-      const respAlumno = respuestasAlumno[i] ?? '(sin respuesta)'
+      const respAlumno =
+        (Array.isArray(respuestasAlumno) ? respuestasAlumno[i] : respuestasAlumno[String(i)]) ??
+        '(sin respuesta)'
       let base = `Pregunta ${i + 1} (${p.tipo}): ${p.pregunta}\nRespuesta del alumno: ${respAlumno}`
       if (p.tipo === 'opcion_multiple') {
         base += `\nOpciones: ${p.opciones?.join(' | ')}\nRespuesta correcta: ${p.respuesta}`
@@ -207,7 +222,7 @@ ${preguntasStr}
 Instrucciones de corrección:
 - Para "opcion_multiple", "verdadero_falso" y "espacios": compara directamente la respuesta del alumno con la correcta. Sé flexible con mayúsculas/minúsculas y acentos en "espacios".
 - Para "abierta" y "calculo": evalúa semánticamente si el alumno demostró comprensión del concepto o aplicó el procedimiento correcto.
-- La calificación es sobre 10, basada en el porcentaje de respuestas correctas.
+- La calificación DEBE ser estrictamente proporcional al porcentaje de respuestas correctas. Ejemplo: 1 de 3 correctas = 3.3, 2 de 5 correctas = 4, 0 correctas = 0. No seas generoso con la nota.
 - Los comentarios deben ser constructivos, breves y en español mexicano.
 - Las áreas de mejora deben ser conceptos o habilidades específicas (máximo 3).
 

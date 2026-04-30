@@ -1,6 +1,6 @@
 'use client'
 
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { supabase } from '@/lib/supabase'
 
 // --- Helpers ---
@@ -19,10 +19,7 @@ async function fetchTareasConResultados(query) {
   const ids = (tareas ?? []).map((t) => t.id)
   if (ids.length === 0) return { tareas: [], resultados: {} }
 
-  const { data: resultados } = await supabase
-    .from('resultados')
-    .select('*')
-    .in('tarea_id', ids)
+  const { data: resultados } = await supabase.from('resultados').select('*').in('tarea_id', ids)
 
   return { tareas: tareas ?? [], resultados: buildResultadosMap(resultados) }
 }
@@ -147,10 +144,7 @@ export function usePublicarTarea() {
   const queryClient = useQueryClient()
   return useMutation({
     mutationFn: async (id) => {
-      const { error } = await supabase
-        .from('tareas')
-        .update({ estado: 'en_curso' })
-        .eq('id', id)
+      const { error } = await supabase.from('tareas').update({ estado: 'en_curso' }).eq('id', id)
       if (error) throw error
     },
     onSuccess: () => {
@@ -163,15 +157,21 @@ export function useGuardarResultado() {
   const queryClient = useQueryClient()
   return useMutation({
     mutationFn: async ({ tareaId, alumnoId, resultado }) => {
-      const { error } = await supabase.from('resultados').upsert({
-        tarea_id: tareaId,
-        alumno_id: alumnoId,
-        respuestas: resultado.respuestas,
-        calificacion: resultado.calificacion,
-        retroalimentacion: resultado.retroalimentacion,
-        areas_de_mejora: resultado.areas_de_mejora ?? [],
-      })
-      if (error) throw error
+      const { error } = await supabase.from('resultados').upsert(
+        {
+          tarea_id: tareaId,
+          alumno_id: alumnoId,
+          respuestas: resultado.respuestas,
+          calificacion: resultado.calificacion,
+          retroalimentacion: resultado.retroalimentacion,
+          areas_de_mejora: resultado.areas_de_mejora ?? [],
+        },
+        { onConflict: 'tarea_id,alumno_id' },
+      )
+      if (error) {
+        console.error('[useGuardarResultado] error:', error)
+        throw error
+      }
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['tareas'] })

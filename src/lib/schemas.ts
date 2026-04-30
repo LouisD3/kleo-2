@@ -30,7 +30,10 @@ const corregirPayloadSchema = z.object({
     dificultad: z.string().min(1),
     preguntas: z.array(preguntaSchema).min(1),
   }),
-  respuestasAlumno: z.array(z.string().nullable()),
+  respuestasAlumno: z.union([
+    z.array(z.string().nullable()),
+    z.record(z.string(), z.string().nullable().optional()),
+  ]),
 })
 
 export const requestBodySchema = z.discriminatedUnion('type', [
