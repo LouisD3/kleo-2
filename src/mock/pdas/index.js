@@ -1,4 +1,7 @@
 export { PDAS_BIOLOGIA_1 } from './biologia_1.js'
+export { PDAS_INGLES_1 } from './ingles_1.js'
+export { PDAS_INGLES_2 } from './ingles_2.js'
+export { PDAS_INGLES_3 } from './ingles_3.js'
 export { PDAS_FCyE_1 } from './fcye_1.js'
 export { PDAS_FCyE_2 } from './fcye_2.js'
 export { PDAS_FCyE_3 } from './fcye_3.js'
@@ -16,6 +19,9 @@ export { PDAS_MATEMATICAS_3 } from './matematicas_3.js'
 export { PDAS_QUIMICA_3 } from './quimica_3.js'
 
 import { PDAS_BIOLOGIA_1 } from './biologia_1.js'
+import { PDAS_INGLES_1 } from './ingles_1.js'
+import { PDAS_INGLES_2 } from './ingles_2.js'
+import { PDAS_INGLES_3 } from './ingles_3.js'
 import { PDAS_FCyE_1 } from './fcye_1.js'
 import { PDAS_FCyE_2 } from './fcye_2.js'
 import { PDAS_FCyE_3 } from './fcye_3.js'
@@ -34,6 +40,9 @@ import { PDAS_QUIMICA_3 } from './quimica_3.js'
 
 export const TODAS_LAS_PDAS = [
   ...PDAS_BIOLOGIA_1,
+  ...PDAS_INGLES_1,
+  ...PDAS_INGLES_2,
+  ...PDAS_INGLES_3,
   ...PDAS_FISICA_2,
   ...PDAS_QUIMICA_3,
   ...PDAS_FCyE_1,

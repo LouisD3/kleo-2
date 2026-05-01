@@ -132,6 +132,7 @@ function promptGenerar({
   numeroPreguntas,
   pda,
   instrucciones,
+  idioma,
 }: GenerarPayload): string {
   const instruccionMetodologia: Record<string, string> = {
     Feynman:
@@ -182,7 +183,7 @@ Reglas estrictas:
 - Para "espacios": la pregunta debe tener exactamente un ___ donde va la respuesta. Incluye "respuesta" con la palabra o frase correcta.
 - Para "abierta": incluye un campo "respuesta" con una respuesta modelo completa y bien redactada que sirva de referencia al profesor para corregir.
 - Para "calculo": incluye un campo "respuesta" con la resolución paso a paso y el resultado final.
-- Todo en español mexicano, lenguaje claro y apropiado para estudiantes de secundaria o preparatoria.
+- ${idioma === 'English' ? 'All questions, options, and answers MUST be written entirely in English. Use clear, age-appropriate language for secondary/high school students.' : 'Todo en español mexicano, lenguaje claro y apropiado para estudiantes de secundaria o preparatoria.'}
 - El contenido debe ser coherente con la materia y la dificultad indicadas.
 
 Formato de respuesta JSON requerido:
@@ -263,7 +264,7 @@ Reglas:
 - Si es "verdadero_falso", mantén la respuesta como booleano (true/false).
 - Si es "espacios", mantén el formato con ___ en la pregunta.
 - Si es "abierta" o "calculo", actualiza la respuesta modelo si el contenido cambió.
-- Todo en español mexicano.
+- Conserva el idioma original de la pregunta (español o inglés).
 
 Formato de respuesta JSON requerido:
 {

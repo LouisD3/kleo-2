@@ -31,7 +31,9 @@ const MATERIAS = [
   'Historia de México',
   'Historia Mundial',
   'Formación Cívica y Ética',
+  'Inglés',
 ]
+const IDIOMAS = ['Español', 'English']
 const GRADOS = ['1° Secundaria', '2° Secundaria', '3° Secundaria']
 const DIFICULTADES = ['Fácil', 'Media', 'Difícil']
 const METODOLOGIAS = [
@@ -78,6 +80,7 @@ export default function GenerarTarea() {
     pdas: [],
     fecha_limite: '',
     instrucciones: '',
+    idioma: 'Español',
   })
 
   const [tareaGenerada, setTareaGenerada] = useState(null)
@@ -150,6 +153,7 @@ export default function GenerarTarea() {
       numeroPreguntas: form.numeroPreguntas,
       pda: form.pdas.length > 0 ? form.pdas : null,
       instrucciones: form.instrucciones.trim() || null,
+      idioma: form.idioma !== 'Español' ? form.idioma : undefined,
     })
 
     if (resultado?.preguntas) {
@@ -246,6 +250,7 @@ export default function GenerarTarea() {
       numeroPreguntas: 1,
       pda: form.pdas.length > 0 ? form.pdas : null,
       instrucciones: form.instrucciones.trim() || null,
+      idioma: form.idioma !== 'Español' ? form.idioma : undefined,
     })
 
     if (resultado?.preguntas?.[0]) {
@@ -452,6 +457,27 @@ export default function GenerarTarea() {
                       }`}
                     >
                       {d}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Idioma de la tarea */}
+              <div>
+                <label className="label-base">Idioma de la tarea</label>
+                <div className="flex gap-3">
+                  {IDIOMAS.map((id) => (
+                    <button
+                      key={id}
+                      type="button"
+                      onClick={() => setForm((p) => ({ ...p, idioma: id }))}
+                      className={`flex-1 py-2 px-4 rounded-xl border text-sm font-medium transition-all ${
+                        form.idioma === id
+                          ? 'border-gray-900 bg-gray-900 text-white'
+                          : 'border-gray-200 text-gray-600 hover:border-gray-300'
+                      }`}
+                    >
+                      {id}
                     </button>
                   ))}
                 </div>
