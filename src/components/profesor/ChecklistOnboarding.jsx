@@ -15,23 +15,21 @@ function CheckIcon() {
   )
 }
 
-export default function ChecklistOnboarding({ tieneAlumnos, tieneTareas }) {
+export default function ChecklistOnboarding({ tieneClase, tieneAlumnos, tieneTareas }) {
   const [descartado, setDescartado] = useState(false)
-  const [claseConfigurada, setClaseConfigurada] = useState(false)
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
       setDescartado(localStorage.getItem('kleo_onboarding_descartado') === '1')
-      setClaseConfigurada(localStorage.getItem('kleo_clase_configurada') === '1')
     }
   }, [])
 
-  const todoCompleto = claseConfigurada && tieneAlumnos && tieneTareas
+  const todoCompleto = tieneClase && tieneAlumnos && tieneTareas
   if (descartado || todoCompleto) return null
 
   const pasos = [
     {
-      completado: claseConfigurada,
+      completado: tieneClase,
       titulo: 'Configura tu clase',
       descripcion: 'Dale un nombre y grado a tu grupo.',
       href: '/profesor/bienvenida',

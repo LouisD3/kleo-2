@@ -103,7 +103,11 @@ export default function DashboardProfesor() {
           </div>
         )}
 
-        <ChecklistOnboarding tieneAlumnos={alumnos.length > 0} tieneTareas={tareas.length > 0} />
+        <ChecklistOnboarding
+          tieneClase={clases.length > 0}
+          tieneAlumnos={alumnos.length > 0}
+          tieneTareas={tareas.length > 0}
+        />
 
         {/* Stats */}
         <div className="grid grid-cols-3 gap-4 mb-8">

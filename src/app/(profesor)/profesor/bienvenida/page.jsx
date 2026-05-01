@@ -63,7 +63,6 @@ export default function Bienvenida() {
       setClaseCreada(data)
     }
 
-    localStorage.setItem('kleo_clase_configurada', '1')
     setPaso(2)
   }
 
