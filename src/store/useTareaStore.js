@@ -27,10 +27,13 @@ const useTareaStore = create((set, get) => ({
     const { data: resultados } = await supabase
       .from('resultados')
       .select('*')
-      .in('tarea_id', (tareas ?? []).map(t => t.id))
+      .in(
+        'tarea_id',
+        (tareas ?? []).map((t) => t.id),
+      )
 
     const resultadosMap = {}
-    for (const r of (resultados ?? [])) {
+    for (const r of resultados ?? []) {
       if (!resultadosMap[r.tarea_id]) resultadosMap[r.tarea_id] = {}
       resultadosMap[r.tarea_id][r.alumno_id] = r
     }
@@ -51,10 +54,13 @@ const useTareaStore = create((set, get) => ({
     const { data: resultados } = await supabase
       .from('resultados')
       .select('*')
-      .in('tarea_id', (tareas ?? []).map(t => t.id))
+      .in(
+        'tarea_id',
+        (tareas ?? []).map((t) => t.id),
+      )
 
     const resultadosMap = {}
-    for (const r of (resultados ?? [])) {
+    for (const r of resultados ?? []) {
       if (!resultadosMap[r.tarea_id]) resultadosMap[r.tarea_id] = {}
       resultadosMap[r.tarea_id][r.alumno_id] = r
     }
@@ -76,10 +82,13 @@ const useTareaStore = create((set, get) => ({
     const { data: resultados } = await supabase
       .from('resultados')
       .select('*')
-      .in('tarea_id', (tareas ?? []).map(t => t.id))
+      .in(
+        'tarea_id',
+        (tareas ?? []).map((t) => t.id),
+      )
 
     const resultadosMap = {}
-    for (const r of (resultados ?? [])) {
+    for (const r of resultados ?? []) {
       if (!resultadosMap[r.tarea_id]) resultadosMap[r.tarea_id] = {}
       resultadosMap[r.tarea_id][r.alumno_id] = r
     }
@@ -98,13 +107,13 @@ const useTareaStore = create((set, get) => ({
     set({ alumnos: data ?? [] })
   },
 
-  getTareaById: (id) => get().tareas.find(t => t.id === id),
+  getTareaById: (id) => get().tareas.find((t) => t.id === id),
 
   getResultadosTarea: (tareaId) => get().resultados[tareaId] ?? {},
 
   getTareasParaAlumno: (alumnoId) => {
     const { tareas, resultados } = get()
-    return tareas.map(t => {
+    return tareas.map((t) => {
       const resultado = resultados[t.id]?.[alumnoId]
       let estadoAlumno = 'pendiente'
       if (resultado) {
@@ -141,54 +150,46 @@ const useTareaStore = create((set, get) => ({
       return null
     }
 
-    set(state => ({ tareas: [data, ...state.tareas] }))
+    set((state) => ({ tareas: [data, ...state.tareas] }))
     return data
   },
 
   actualizarTarea: async (id, cambios) => {
-    const { error } = await supabase
-      .from('tareas')
-      .update(cambios)
-      .eq('id', id)
+    const { error } = await supabase.from('tareas').update(cambios).eq('id', id)
 
     if (!error) {
-      set(state => ({
-        tareas: state.tareas.map(t => t.id === id ? { ...t, ...cambios } : t),
+      set((state) => ({
+        tareas: state.tareas.map((t) => (t.id === id ? { ...t, ...cambios } : t)),
       }))
     }
   },
 
   publicarTarea: async (id) => {
-    const { error } = await supabase
-      .from('tareas')
-      .update({ estado: 'en_curso' })
-      .eq('id', id)
+    const { error } = await supabase.from('tareas').update({ estado: 'en_curso' }).eq('id', id)
 
     if (!error) {
-      set(state => ({
-        tareas: state.tareas.map(t => t.id === id ? { ...t, estado: 'en_curso' } : t),
+      set((state) => ({
+        tareas: state.tareas.map((t) => (t.id === id ? { ...t, estado: 'en_curso' } : t)),
       }))
     }
   },
 
   guardarResultado: async (tareaId, alumnoId, resultado) => {
-    const { error } = await supabase
-      .from('resultados')
-      .upsert({
-        tarea_id: tareaId,
-        alumno_id: alumnoId,
-        respuestas: resultado.respuestas,
-        calificacion: resultado.calificacion,
-        retroalimentacion: resultado.retroalimentacion,
-        areas_de_mejora: resultado.areas_de_mejora ?? [],
-      })
+    const { error } = await supabase.from('resultados').upsert({
+      tarea_id: tareaId,
+      alumno_id: alumnoId,
+      respuestas: resultado.respuestas,
+      calificacion: resultado.calificacion,
+      retroalimentacion: resultado.retroalimentacion,
+      areas_de_mejora: resultado.areas_de_mejora ?? [],
+    })
 
     if (error) {
       console.error('Error saving result:', error)
       return false
     }
 
-    set(state => {
+    set((state) => {
       const resultados = { ...state.resultados }
       if (!resultados[tareaId]) resultados[tareaId] = {}
       resultados[tareaId][alumnoId] = { ...resultado, calificacion_manual: null }
@@ -199,9 +200,7 @@ const useTareaStore = create((set, get) => ({
 
       return {
         resultados,
-        tareas: state.tareas.map(t =>
-          t.id === tareaId ? { ...t, estado: nuevoEstado } : t
-        ),
+        tareas: state.tareas.map((t) => (t.id === tareaId ? { ...t, estado: nuevoEstado } : t)),
       }
     })
 
@@ -215,7 +214,7 @@ const useTareaStore = create((set, get) => ({
       .eq('id', resultadoId)
 
     if (!error) {
-      set(state => {
+      set((state) => {
         const resultados = { ...state.resultados }
         for (const tareaId in resultados) {
           for (const alumnoId in resultados[tareaId]) {
@@ -241,7 +240,7 @@ const useTareaStore = create((set, get) => ({
   agregarAlumno: async (claseId, nombre) => {
     const iniciales = nombre
       .split(' ')
-      .map(p => p[0])
+      .map((p) => p[0])
       .join('')
       .toUpperCase()
       .slice(0, 2)
@@ -276,18 +275,15 @@ const useTareaStore = create((set, get) => ({
       return null
     }
 
-    set(state => ({ alumnos: [...state.alumnos, data] }))
+    set((state) => ({ alumnos: [...state.alumnos, data] }))
     return data
   },
 
   eliminarAlumno: async (alumnoId) => {
-    const { error } = await supabase
-      .from('alumnos')
-      .delete()
-      .eq('id', alumnoId)
+    const { error } = await supabase.from('alumnos').delete().eq('id', alumnoId)
 
     if (!error) {
-      set(state => ({ alumnos: state.alumnos.filter(a => a.id !== alumnoId) }))
+      set((state) => ({ alumnos: state.alumnos.filter((a) => a.id !== alumnoId) }))
     }
   },
 }))

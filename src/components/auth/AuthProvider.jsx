@@ -1,15 +1,15 @@
 'use client'
 
 import { useEffect } from 'react'
-import useAuthStore from '@/store/useAuthStore.js'
 import Spinner from '@/components/ui/Spinner.jsx'
+import useAuthStore from '@/store/useAuthStore.js'
 
 export default function AuthProvider({ children }) {
   const { cargando, inicializar } = useAuthStore()
 
   useEffect(() => {
     inicializar()
-  }, [])
+  }, [inicializar])
 
   if (cargando) {
     return (

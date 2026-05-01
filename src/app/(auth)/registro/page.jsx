@@ -1,11 +1,11 @@
 'use client'
 
-import { useState } from 'react'
-import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import useAuthStore from '@/store/useAuthStore.js'
+import { useRouter } from 'next/navigation'
+import { useState } from 'react'
 import Boton from '@/components/ui/Boton.jsx'
 import MensajeError from '@/components/ui/MensajeError.jsx'
+import useAuthStore from '@/store/useAuthStore.js'
 
 export default function Registro() {
   const router = useRouter()
@@ -37,13 +37,18 @@ export default function Registro() {
   }
 
   function update(field, value) {
-    setForm(prev => ({ ...prev, [field]: value }))
+    setForm((prev) => ({ ...prev, [field]: value }))
   }
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
       <header className="px-6 py-5 flex items-center">
-        <Link href="/" className="text-2xl font-bold text-gray-900 hover:opacity-80 transition-opacity">Kleo</Link>
+        <Link
+          href="/"
+          className="text-2xl font-bold text-gray-900 hover:opacity-80 transition-opacity"
+        >
+          Kleo
+        </Link>
       </header>
 
       <main className="flex-1 flex items-center justify-center px-4 pb-16">
@@ -64,7 +69,9 @@ export default function Registro() {
               />
             </div>
             <div>
-              <label className="label-base">Escuela <span className="text-gray-400 font-normal">(opcional)</span></label>
+              <label className="label-base">
+                Escuela <span className="text-gray-400 font-normal">(opcional)</span>
+              </label>
               <input
                 type="text"
                 value={form.escuela}
@@ -103,11 +110,19 @@ export default function Registro() {
               />
               <span className="text-xs text-gray-500">
                 Acepto los{' '}
-                <Link href="/legal/terminos" className="underline hover:text-gray-700" target="_blank">
+                <Link
+                  href="/legal/terminos"
+                  className="underline hover:text-gray-700"
+                  target="_blank"
+                >
                   Términos de uso
                 </Link>{' '}
                 y el{' '}
-                <Link href="/legal/privacidad" className="underline hover:text-gray-700" target="_blank">
+                <Link
+                  href="/legal/privacidad"
+                  className="underline hover:text-gray-700"
+                  target="_blank"
+                >
                   Aviso de privacidad
                 </Link>
               </span>

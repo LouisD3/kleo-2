@@ -14,7 +14,7 @@ export default function ResultadoTarea() {
   const { data } = useTareasAlumno(alumno?.clase_id)
   const [notaVisible, setNotaVisible] = useState(false)
 
-  const tarea = (data?.tareas ?? []).find(t => t.id === tareaId)
+  const tarea = (data?.tareas ?? []).find((t) => t.id === tareaId)
   const resultados = data?.resultados?.[tareaId] ?? {}
   const resultado = resultados?.[alumno?.id]
 
@@ -36,28 +36,28 @@ export default function ResultadoTarea() {
     nota: excelente
       ? 'text-green-600'
       : calificacion >= 7
-      ? 'text-blue-600'
-      : aprobado
-      ? 'text-orange-500'
-      : 'text-red-500',
+        ? 'text-blue-600'
+        : aprobado
+          ? 'text-orange-500'
+          : 'text-red-500',
     fondo: excelente
       ? 'from-green-50 to-emerald-50'
       : calificacion >= 7
-      ? 'from-blue-50 to-indigo-50'
-      : aprobado
-      ? 'from-orange-50 to-yellow-50'
-      : 'from-red-50 to-pink-50',
+        ? 'from-blue-50 to-indigo-50'
+        : aprobado
+          ? 'from-orange-50 to-yellow-50'
+          : 'from-red-50 to-pink-50',
   }
 
   const mensajeMotivacion = excelente
     ? 'Desempeño sobresaliente. Dominaste el tema completamente.'
     : calificacion >= 8
-    ? 'Excelente trabajo. Tienes una comprensión muy sólida del tema.'
-    : calificacion >= 7
-    ? 'Buen trabajo. Con un poco más de práctica llegarás al 10.'
-    : aprobado
-    ? 'Pasaste, pero hay áreas donde puedes mejorar.'
-    : 'Esta vez no fue suficiente, pero cada error es una oportunidad de aprender.'
+      ? 'Excelente trabajo. Tienes una comprensión muy sólida del tema.'
+      : calificacion >= 7
+        ? 'Buen trabajo. Con un poco más de práctica llegarás al 10.'
+        : aprobado
+          ? 'Pasaste, pero hay áreas donde puedes mejorar.'
+          : 'Esta vez no fue suficiente, pero cada error es una oportunidad de aprender.'
 
   const correctas = retroalimentacion?.filter((r) => r.correcta).length ?? 0
   const total = retroalimentacion?.length ?? 0
@@ -69,7 +69,9 @@ export default function ResultadoTarea() {
       <main className="max-w-3xl mx-auto px-4 sm:px-6 py-8 animate-fade-in">
         {/* Tarjeta de resultado */}
         <div className={`card bg-gradient-to-br ${colores.fondo} p-8 text-center mb-8`}>
-          <p className="text-sm font-medium text-gray-500 mb-3 uppercase tracking-widest">Tu calificación</p>
+          <p className="text-sm font-medium text-gray-500 mb-3 uppercase tracking-widest">
+            Tu calificación
+          </p>
           <div
             className={`text-8xl font-black mb-1 ${colores.nota} ${notaVisible ? 'nota-animada' : 'opacity-0'}`}
           >
@@ -105,7 +107,11 @@ export default function ResultadoTarea() {
           <div className="card p-6 mb-6">
             <h2 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
               <svg className="w-5 h-5 text-orange-500" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clipRule="evenodd" />
+                <path
+                  fillRule="evenodd"
+                  d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z"
+                  clipRule="evenodd"
+                />
               </svg>
               Áreas de mejora
             </h2>
@@ -132,7 +138,10 @@ export default function ResultadoTarea() {
               const pregunta = tarea.preguntas?.[fb.indice_pregunta]
               const respAlumno = resultado.respuestas?.[fb.indice_pregunta]
               return (
-                <div key={i} className={`px-6 py-4 ${fb.correcta ? 'hover:bg-green-50/50' : 'hover:bg-red-50/50'} transition-colors`}>
+                <div
+                  key={i}
+                  className={`px-6 py-4 ${fb.correcta ? 'hover:bg-green-50/50' : 'hover:bg-red-50/50'} transition-colors`}
+                >
                   <div className="flex items-start gap-4">
                     <div
                       className={`flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold ${
@@ -147,8 +156,7 @@ export default function ResultadoTarea() {
                       </p>
                       {respAlumno && (
                         <p className="text-xs text-gray-500 mb-1">
-                          <span className="font-medium">Tu respuesta:</span>{' '}
-                          {String(respAlumno)}
+                          <span className="font-medium">Tu respuesta:</span> {String(respAlumno)}
                         </p>
                       )}
                       <p className={`text-sm ${fb.correcta ? 'text-green-700' : 'text-red-700'}`}>

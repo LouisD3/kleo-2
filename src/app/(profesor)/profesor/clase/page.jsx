@@ -1,17 +1,17 @@
 'use client'
 
-import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+import { useEffect, useState } from 'react'
 import NavBar from '@/components/layout/NavBar.jsx'
 import Boton from '@/components/ui/Boton.jsx'
-import Modal from '@/components/ui/Modal.jsx'
 import MensajeError from '@/components/ui/MensajeError.jsx'
-import { useAlumnos, useAgregarAlumno, useEliminarAlumno } from '@/hooks/useTareas.js'
-import useAuthStore from '@/store/useAuthStore.js'
+import Modal from '@/components/ui/Modal.jsx'
+import { useAgregarAlumno, useAlumnos, useEliminarAlumno } from '@/hooks/useTareas.js'
 import { supabase } from '@/lib/supabase.js'
+import useAuthStore from '@/store/useAuthStore.js'
 
 export default function GestionClase() {
-  const router = useRouter()
+  const _router = useRouter()
   const { clase, profesor, setClase, agregarClaseLocal } = useAuthStore()
   const { data: alumnos = [] } = useAlumnos(clase?.id)
   const agregarAlumnoMut = useAgregarAlumno()
@@ -29,7 +29,7 @@ export default function GestionClase() {
 
   useEffect(() => {
     cargarClases()
-  }, [profesor])
+  }, [cargarClases])
 
   async function cargarClases() {
     if (!profesor) return
@@ -62,7 +62,7 @@ export default function GestionClase() {
       return
     }
 
-    setClases(prev => [data, ...prev])
+    setClases((prev) => [data, ...prev])
     setClase(data)
     agregarClaseLocal(data)
     setModalNuevaClase(false)
@@ -112,7 +112,7 @@ export default function GestionClase() {
         {/* Tabs de clases */}
         {clases.length > 1 && (
           <div className="flex gap-2 mb-6 overflow-x-auto pb-2">
-            {clases.map(c => (
+            {clases.map((c) => (
               <button
                 key={c.id}
                 onClick={() => setClase(c)}
@@ -135,7 +135,9 @@ export default function GestionClase() {
               <div className="flex items-center justify-between">
                 <div>
                   <h2 className="text-lg font-bold text-gray-900">{clase.nombre}</h2>
-                  <p className="text-sm text-gray-500">{clase.grado} · {alumnos.length} alumno{alumnos.length !== 1 ? 's' : ''}</p>
+                  <p className="text-sm text-gray-500">
+                    {clase.grado} · {alumnos.length} alumno{alumnos.length !== 1 ? 's' : ''}
+                  </p>
                 </div>
               </div>
             </div>
@@ -168,14 +170,21 @@ export default function GestionClase() {
               {alumnos.length === 0 ? (
                 <div className="p-12 text-center text-gray-400">
                   <p className="font-medium">Sin alumnos</p>
-                  <p className="text-sm mt-1">Agrega alumnos para que puedan acceder a las tareas.</p>
+                  <p className="text-sm mt-1">
+                    Agrega alumnos para que puedan acceder a las tareas.
+                  </p>
                 </div>
               ) : (
                 <div className="divide-y divide-gray-50">
-                  {alumnos.map(alumno => (
-                    <div key={alumno.id} className="px-6 py-4 flex items-center justify-between hover:bg-gray-50 transition-colors">
+                  {alumnos.map((alumno) => (
+                    <div
+                      key={alumno.id}
+                      className="px-6 py-4 flex items-center justify-between hover:bg-gray-50 transition-colors"
+                    >
                       <div className="flex items-center gap-3">
-                        <span className={`inline-flex items-center justify-center w-9 h-9 rounded-full text-xs font-bold flex-shrink-0 ${alumno.avatar_color}`}>
+                        <span
+                          className={`inline-flex items-center justify-center w-9 h-9 rounded-full text-xs font-bold flex-shrink-0 ${alumno.avatar_color}`}
+                        >
                           {alumno.avatar_iniciales}
                         </span>
                         <div>
@@ -220,7 +229,7 @@ export default function GestionClase() {
             <input
               type="text"
               value={formClase.nombre}
-              onChange={(e) => setFormClase(p => ({ ...p, nombre: e.target.value }))}
+              onChange={(e) => setFormClase((p) => ({ ...p, nombre: e.target.value }))}
               placeholder="Ej. 3°A Vespertino"
               className="input-base"
               autoFocus
@@ -230,10 +239,12 @@ export default function GestionClase() {
             <label className="label-base">Grado</label>
             <select
               value={formClase.grado}
-              onChange={(e) => setFormClase(p => ({ ...p, grado: e.target.value }))}
+              onChange={(e) => setFormClase((p) => ({ ...p, grado: e.target.value }))}
               className="input-base"
             >
-              {GRADOS.map(g => <option key={g}>{g}</option>)}
+              {GRADOS.map((g) => (
+                <option key={g}>{g}</option>
+              ))}
             </select>
           </div>
           <MensajeError mensaje={error} onCerrar={() => setError(null)} />
@@ -250,11 +261,16 @@ export default function GestionClase() {
         titulo="Eliminar alumno"
       >
         <p className="text-sm text-gray-600 mb-4">
-          ¿Estás seguro? Se eliminarán todos los resultados de este alumno. Esta acción no se puede deshacer.
+          ¿Estás seguro? Se eliminarán todos los resultados de este alumno. Esta acción no se puede
+          deshacer.
         </p>
         <div className="flex gap-3">
-          <Boton variante="peligro" onClick={handleEliminarAlumno}>Sí, eliminar</Boton>
-          <Boton variante="secundario" onClick={() => setConfirmEliminar(null)}>Cancelar</Boton>
+          <Boton variante="peligro" onClick={handleEliminarAlumno}>
+            Sí, eliminar
+          </Boton>
+          <Boton variante="secundario" onClick={() => setConfirmEliminar(null)}>
+            Cancelar
+          </Boton>
         </div>
       </Modal>
     </div>

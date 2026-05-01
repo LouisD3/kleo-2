@@ -1,10 +1,10 @@
 'use client'
 
-import { useState } from 'react'
 import Link from 'next/link'
-import useAuthStore from '@/store/useAuthStore.js'
+import { useState } from 'react'
 import Boton from '@/components/ui/Boton.jsx'
 import MensajeError from '@/components/ui/MensajeError.jsx'
+import useAuthStore from '@/store/useAuthStore.js'
 
 export default function RecuperarContrasena() {
   const { recuperarContrasena, error, setError } = useAuthStore()
@@ -28,14 +28,20 @@ export default function RecuperarContrasena() {
     return (
       <div className="min-h-screen bg-gray-50 flex flex-col">
         <header className="px-6 py-5 flex items-center">
-          <Link href="/" className="text-2xl font-bold text-gray-900 hover:opacity-80 transition-opacity">Kleo</Link>
+          <Link
+            href="/"
+            className="text-2xl font-bold text-gray-900 hover:opacity-80 transition-opacity"
+          >
+            Kleo
+          </Link>
         </header>
         <main className="flex-1 flex items-center justify-center px-4 pb-16">
           <div className="w-full max-w-sm text-center animate-fade-in">
             <div className="text-5xl mb-6">✉️</div>
             <h1 className="text-2xl font-bold text-gray-900 mb-2">Correo enviado</h1>
             <p className="text-sm text-gray-500 mb-6">
-              Si existe una cuenta con <span className="font-medium text-gray-700">{email}</span>, recibirás un enlace para restablecer tu contraseña.
+              Si existe una cuenta con <span className="font-medium text-gray-700">{email}</span>,
+              recibirás un enlace para restablecer tu contraseña.
             </p>
             <p className="text-xs text-gray-400 mb-8">Revisa también tu carpeta de spam.</p>
             <Link href="/login" className="text-sm font-semibold text-gray-900 hover:underline">
@@ -50,12 +56,19 @@ export default function RecuperarContrasena() {
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
       <header className="px-6 py-5 flex items-center">
-        <Link href="/" className="text-2xl font-bold text-gray-900 hover:opacity-80 transition-opacity">Kleo</Link>
+        <Link
+          href="/"
+          className="text-2xl font-bold text-gray-900 hover:opacity-80 transition-opacity"
+        >
+          Kleo
+        </Link>
       </header>
 
       <main className="flex-1 flex items-center justify-center px-4 pb-16">
         <div className="w-full max-w-sm animate-fade-in">
-          <h1 className="text-2xl font-bold text-gray-900 text-center mb-2">Recupera tu contraseña</h1>
+          <h1 className="text-2xl font-bold text-gray-900 text-center mb-2">
+            Recupera tu contraseña
+          </h1>
           <p className="text-sm text-gray-500 text-center mb-8">
             Ingresa tu correo y te enviaremos un enlace para crear una nueva contraseña.
           </p>

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import AuthProvider from '@/components/auth/AuthProvider.jsx'
-import QueryProvider from '@/components/providers/QueryProvider.jsx'
 import PostHogProvider from '@/components/providers/PostHogProvider'
+import QueryProvider from '@/components/providers/QueryProvider.jsx'
 import '../index.css'
 
 export const metadata: Metadata = {

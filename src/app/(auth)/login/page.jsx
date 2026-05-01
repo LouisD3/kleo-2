@@ -1,11 +1,11 @@
 'use client'
 
-import { useState } from 'react'
-import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import useAuthStore from '@/store/useAuthStore.js'
+import { useRouter } from 'next/navigation'
+import { useState } from 'react'
 import Boton from '@/components/ui/Boton.jsx'
 import MensajeError from '@/components/ui/MensajeError.jsx'
+import useAuthStore from '@/store/useAuthStore.js'
 
 export default function Login() {
   const router = useRouter()
@@ -29,7 +29,12 @@ export default function Login() {
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
       <header className="px-6 py-5 flex items-center">
-        <Link href="/" className="text-2xl font-bold text-gray-900 hover:opacity-80 transition-opacity">Kleo</Link>
+        <Link
+          href="/"
+          className="text-2xl font-bold text-gray-900 hover:opacity-80 transition-opacity"
+        >
+          Kleo
+        </Link>
       </header>
 
       <main className="flex-1 flex items-center justify-center px-4 pb-16">

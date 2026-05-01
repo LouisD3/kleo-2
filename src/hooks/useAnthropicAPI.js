@@ -28,7 +28,7 @@ export function useAnthropicAPI() {
       }
 
       return datos
-    } catch (err) {
+    } catch (_err) {
       setError('No se pudo conectar con el servidor. Verifica tu conexión a internet.')
       return null
     } finally {

@@ -5,12 +5,16 @@ import { supabase } from '../lib/supabase.js'
 function traducirError(msg) {
   if (!msg) return 'Ocurrió un error inesperado.'
   if (msg.includes('Invalid login credentials')) return 'Correo o contraseña incorrectos.'
-  if (msg.includes('Email not confirmed')) return 'Debes confirmar tu correo antes de iniciar sesión.'
-  if (msg.includes('User already registered')) return 'Ya existe una cuenta con ese correo electrónico.'
-  if (msg.includes('Password should be at least')) return 'La contraseña debe tener al menos 6 caracteres.'
+  if (msg.includes('Email not confirmed'))
+    return 'Debes confirmar tu correo antes de iniciar sesión.'
+  if (msg.includes('User already registered'))
+    return 'Ya existe una cuenta con ese correo electrónico.'
+  if (msg.includes('Password should be at least'))
+    return 'La contraseña debe tener al menos 6 caracteres.'
   if (msg.includes('Unable to validate email address')) return 'El correo electrónico no es válido.'
   if (msg.includes('Email rate limit exceeded')) return 'Demasiados intentos. Espera unos minutos.'
-  if (msg.includes('For security purposes')) return 'Por seguridad, espera unos segundos antes de intentar de nuevo.'
+  if (msg.includes('For security purposes'))
+    return 'Por seguridad, espera unos segundos antes de intentar de nuevo.'
   if (msg.includes('over_email_send_rate_limit')) return 'Demasiados intentos. Espera unos minutos.'
   return msg
 }
@@ -27,7 +31,9 @@ const useAuthStore = create((set, get) => ({
 
   inicializar: async () => {
     try {
-      const { data: { session } } = await supabase.auth.getSession()
+      const {
+        data: { session },
+      } = await supabase.auth.getSession()
       if (session?.user) {
         let { data: profesor } = await supabase
           .from('profesores')
@@ -231,9 +237,10 @@ const useAuthStore = create((set, get) => ({
 
   setClase: (clase) => set({ clase }),
 
-  agregarClaseLocal: (nuevaClase) => set(state => ({
-    clases: [nuevaClase, ...state.clases],
-  })),
+  agregarClaseLocal: (nuevaClase) =>
+    set((state) => ({
+      clases: [nuevaClase, ...state.clases],
+    })),
 
   cerrarSesion: async () => {
     const { rol } = get()

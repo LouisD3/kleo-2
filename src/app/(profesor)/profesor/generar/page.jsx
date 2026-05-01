@@ -1,18 +1,28 @@
 'use client'
 
-import { useState, useMemo } from 'react'
 import { useRouter } from 'next/navigation'
+import { useMemo, useState } from 'react'
 import NavBar from '@/components/layout/NavBar.jsx'
 import Boton from '@/components/ui/Boton.jsx'
-import Spinner from '@/components/ui/Spinner.jsx'
 import MensajeError from '@/components/ui/MensajeError.jsx'
 import Modal from '@/components/ui/Modal.jsx'
+import Spinner from '@/components/ui/Spinner.jsx'
 import { useAnthropicAPI } from '@/hooks/useAnthropicAPI.js'
-import { useAgregarTarea, useActualizarTarea, usePublicarTarea } from '@/hooks/useTareas.js'
-import useAuthStore from '@/store/useAuthStore.js'
+import { useActualizarTarea, useAgregarTarea, usePublicarTarea } from '@/hooks/useTareas.js'
 import { getPDAsByMateria } from '@/mock/pdas/index.js'
+import useAuthStore from '@/store/useAuthStore.js'
 
-const MATERIAS = ['Lenguajes', 'Matemáticas', 'Biología', 'Física', 'Química', 'Geografía', 'Historia de México', 'Historia Mundial', 'Formación Cívica y Ética']
+const MATERIAS = [
+  'Lenguajes',
+  'Matemáticas',
+  'Biología',
+  'Física',
+  'Química',
+  'Geografía',
+  'Historia de México',
+  'Historia Mundial',
+  'Formación Cívica y Ética',
+]
 const GRADOS = ['1° Secundaria', '2° Secundaria', '3° Secundaria']
 const DIFICULTADES = ['Fácil', 'Media', 'Difícil']
 const METODOLOGIAS = ['Feynman', 'Memorización activa', 'Resolución de problemas']
@@ -109,10 +119,8 @@ export default function GenerarTarea() {
   }
 
   function toggleClasePublicar(claseId) {
-    setClasesPublicar(prev =>
-      prev.includes(claseId)
-        ? prev.filter(id => id !== claseId)
-        : [...prev, claseId]
+    setClasesPublicar((prev) =>
+      prev.includes(claseId) ? prev.filter((id) => id !== claseId) : [...prev, claseId],
     )
   }
 
@@ -150,11 +158,7 @@ export default function GenerarTarea() {
   }
 
   function handleIniciarEdicion() {
-    setTextoEdicion(
-      tareaGenerada
-        .map((p, i) => `${i + 1}. ${p.pregunta}`)
-        .join('\n\n')
-    )
+    setTextoEdicion(tareaGenerada.map((p, i) => `${i + 1}. ${p.pregunta}`).join('\n\n'))
     setEditando(true)
   }
 
@@ -169,7 +173,10 @@ export default function GenerarTarea() {
     })
     setTareaGenerada(preguntasEditadas)
     if (tareaGuardada) {
-      await actualizarTarea.mutateAsync({ id: tareaGuardada.id, cambios: { preguntas: preguntasEditadas } })
+      await actualizarTarea.mutateAsync({
+        id: tareaGuardada.id,
+        cambios: { preguntas: preguntasEditadas },
+      })
     }
     setEditando(false)
   }
@@ -182,14 +189,14 @@ export default function GenerarTarea() {
 
   const pdasDeMateria = useMemo(
     () => getPDAsByMateria(form.materia, form.grado),
-    [form.materia, form.grado]
+    [form.materia, form.grado],
   )
 
   const pdasFiltrados = useMemo(() => {
     const q = busquedaPDA.toLowerCase()
     if (!q) return pdasDeMateria
     return pdasDeMateria.filter(
-      (p) => p.titulo.toLowerCase().includes(q) || p.pda.toLowerCase().includes(q)
+      (p) => p.titulo.toLowerCase().includes(q) || p.pda.toLowerCase().includes(q),
     )
   }, [busquedaPDA, pdasDeMateria])
 
@@ -208,7 +215,9 @@ export default function GenerarTarea() {
 
       <main className="max-w-3xl mx-auto px-4 sm:px-6 py-8 animate-fade-in">
         <h1 className="text-2xl font-bold text-gray-900 mb-1">Nueva tarea con IA</h1>
-        <p className="text-sm text-gray-500 mb-8">Configura los parámetros y la IA generará las preguntas automáticamente.</p>
+        <p className="text-sm text-gray-500 mb-8">
+          Configura los parámetros y la IA generará las preguntas automáticamente.
+        </p>
 
         {!tareaGenerada ? (
           <div className="space-y-6">
@@ -277,7 +286,9 @@ export default function GenerarTarea() {
 
             {/* Fecha límite */}
             <div className="card p-6">
-              <label className="label-base">Fecha límite <span className="text-gray-400 font-normal">(opcional)</span></label>
+              <label className="label-base">
+                Fecha límite <span className="text-gray-400 font-normal">(opcional)</span>
+              </label>
               <input
                 type="datetime-local"
                 value={form.fecha_limite}
@@ -289,26 +300,43 @@ export default function GenerarTarea() {
             {/* PDA */}
             <div className="card p-6">
               <div className="flex items-center justify-between mb-1">
-                <label className="label-base mb-0">PDA <span className="text-gray-400 font-normal">(opcional)</span></label>
+                <label className="label-base mb-0">
+                  PDA <span className="text-gray-400 font-normal">(opcional)</span>
+                </label>
               </div>
-              <p className="text-xs text-gray-400 mb-3">Alinea las preguntas al programa NEM — {form.materia} {form.grado}.</p>
+              <p className="text-xs text-gray-400 mb-3">
+                Alinea las preguntas al programa NEM — {form.materia} {form.grado}.
+              </p>
               {form.pdas.length > 0 && (
                 <div className="space-y-2 mb-3">
                   {form.pdas.map((pda, idx) => (
-                    <div key={pda.secuencia} className="rounded-xl border border-yellow-300 bg-yellow-50 p-3 flex items-start gap-3">
+                    <div
+                      key={pda.secuencia}
+                      className="rounded-xl border border-yellow-300 bg-yellow-50 p-3 flex items-start gap-3"
+                    >
                       <div className="flex-1 min-w-0">
-                        <p className="text-xs font-semibold text-yellow-700 mb-0.5">Secuencia {pda.secuencia} · {pda.titulo}</p>
-                        {pda.contenido && <p className="text-xs text-gray-500 mb-0.5">{pda.contenido}</p>}
+                        <p className="text-xs font-semibold text-yellow-700 mb-0.5">
+                          Secuencia {pda.secuencia} · {pda.titulo}
+                        </p>
+                        {pda.contenido && (
+                          <p className="text-xs text-gray-500 mb-0.5">{pda.contenido}</p>
+                        )}
                         <p className="text-sm text-gray-700 leading-snug">{pda.pda}</p>
                       </div>
                       <button
                         type="button"
-                        onClick={() => setForm((p) => ({ ...p, pdas: p.pdas.filter((_, i) => i !== idx) }))}
+                        onClick={() =>
+                          setForm((p) => ({ ...p, pdas: p.pdas.filter((_, i) => i !== idx) }))
+                        }
                         className="flex-shrink-0 p-1 text-red-400 hover:text-red-600 transition-colors"
                         title="Quitar PDA"
                       >
                         <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
-                          <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+                          <path
+                            fillRule="evenodd"
+                            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                            clipRule="evenodd"
+                          />
                         </svg>
                       </button>
                     </div>
@@ -323,13 +351,18 @@ export default function GenerarTarea() {
                 ) : (
                   <button
                     type="button"
-                    onClick={() => { setBusquedaPDA(''); setModalPDAabierto(true) }}
+                    onClick={() => {
+                      setBusquedaPDA('')
+                      setModalPDAabierto(true)
+                    }}
                     className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl border border-dashed border-gray-300 text-sm font-medium text-gray-500 hover:border-gray-400 hover:text-gray-700 transition-colors"
                   >
                     <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
                       <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z" />
                     </svg>
-                    {form.pdas.length > 0 ? `Agregar PDA (${form.pdas.length}/5)` : 'Seleccionar de la biblioteca'}
+                    {form.pdas.length > 0
+                      ? `Agregar PDA (${form.pdas.length}/5)`
+                      : 'Seleccionar de la biblioteca'}
                   </button>
                 )
               ) : (
@@ -341,8 +374,13 @@ export default function GenerarTarea() {
 
             {/* Instrucciones */}
             <div className="card p-6">
-              <label className="label-base">Instrucciones específicas <span className="text-gray-400 font-normal">(opcional)</span></label>
-              <p className="text-xs text-gray-400 mb-3">Indica el tema, concepto o punto específico que quieres trabajar.</p>
+              <label className="label-base">
+                Instrucciones específicas{' '}
+                <span className="text-gray-400 font-normal">(opcional)</span>
+              </label>
+              <p className="text-xs text-gray-400 mb-3">
+                Indica el tema, concepto o punto específico que quieres trabajar.
+              </p>
               <textarea
                 value={form.instrucciones}
                 onChange={(e) => setForm((p) => ({ ...p, instrucciones: e.target.value }))}
@@ -385,7 +423,9 @@ export default function GenerarTarea() {
             {/* Tipos de ejercicio */}
             <div className="card p-6">
               <label className="label-base">Tipo(s) de ejercicio</label>
-              <p className="text-xs text-gray-400 mb-3">Selecciona uno o más. "Ejercicio mixto" combina todos los tipos.</p>
+              <p className="text-xs text-gray-400 mb-3">
+                Selecciona uno o más. "Ejercicio mixto" combina todos los tipos.
+              </p>
               <div className="flex flex-wrap gap-2">
                 {TIPOS_EJERCICIO.map((tipo) => {
                   const seleccionado = form.tipos.includes(tipo)
@@ -418,7 +458,9 @@ export default function GenerarTarea() {
                 min={3}
                 max={20}
                 value={form.numeroPreguntas}
-                onChange={(e) => setForm((p) => ({ ...p, numeroPreguntas: Number(e.target.value) }))}
+                onChange={(e) =>
+                  setForm((p) => ({ ...p, numeroPreguntas: Number(e.target.value) }))
+                }
                 className="w-full accent-yellow-400 h-2 rounded-full"
               />
               <div className="flex justify-between text-xs text-gray-400 mt-1">
@@ -444,7 +486,11 @@ export default function GenerarTarea() {
               ) : (
                 <>
                   <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clipRule="evenodd" />
+                    <path
+                      fillRule="evenodd"
+                      d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z"
+                      clipRule="evenodd"
+                    />
                   </svg>
                   GENERAR TAREA
                 </>
@@ -460,12 +506,17 @@ export default function GenerarTarea() {
                   <h2 className="text-xl font-bold text-gray-900">{form.nombre}</h2>
                   <p className="text-sm text-gray-500 mt-0.5">
                     {form.materia} · {form.dificultad} · {tareaGenerada.length} preguntas
-                    {form.fecha_limite && ` · Fecha límite: ${new Date(form.fecha_limite).toLocaleDateString('es-MX', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })}`}
+                    {form.fecha_limite &&
+                      ` · Fecha límite: ${new Date(form.fecha_limite).toLocaleDateString('es-MX', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })}`}
                   </p>
                 </div>
                 <span className="flex-shrink-0 inline-flex items-center gap-1 text-xs font-medium text-green-700 bg-green-50 border border-green-200 px-2.5 py-1 rounded-full">
                   <svg className="w-3 h-3" viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    <path
+                      fillRule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clipRule="evenodd"
+                    />
                   </svg>
                   Generada por IA
                 </span>
@@ -475,7 +526,9 @@ export default function GenerarTarea() {
             {editando ? (
               <div className="card p-6">
                 <label className="label-base">Editar preguntas</label>
-                <p className="text-xs text-gray-400 mb-3">Modifica el texto de las preguntas. Los tipos y respuestas se conservan.</p>
+                <p className="text-xs text-gray-400 mb-3">
+                  Modifica el texto de las preguntas. Los tipos y respuestas se conservan.
+                </p>
                 <textarea
                   value={textoEdicion}
                   onChange={(e) => setTextoEdicion(e.target.value)}
@@ -494,10 +547,21 @@ export default function GenerarTarea() {
             ) : (
               <div className="space-y-3">
                 <div className="flex items-start gap-2 p-3 bg-blue-50 border border-blue-200 rounded-lg">
-                  <svg className="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+                  <svg
+                    className="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                      clipRule="evenodd"
+                    />
                   </svg>
-                  <p className="text-xs text-blue-700">Las respuestas modelo son solo para ti. Los alumnos no las verán al realizar la tarea.</p>
+                  <p className="text-xs text-blue-700">
+                    Las respuestas modelo son solo para ti. Los alumnos no las verán al realizar la
+                    tarea.
+                  </p>
                 </div>
                 {tareaGenerada.map((p, i) => (
                   <div key={i} className="card p-5">
@@ -513,7 +577,10 @@ export default function GenerarTarea() {
                         {p.opciones && (
                           <ul className="mt-2 space-y-1">
                             {p.opciones.map((op, j) => (
-                              <li key={j} className={`text-xs px-2 py-1 rounded ${op.startsWith(p.respuesta) ? 'bg-green-50 text-green-700 font-medium' : 'text-gray-500'}`}>
+                              <li
+                                key={j}
+                                className={`text-xs px-2 py-1 rounded ${op.startsWith(p.respuesta) ? 'bg-green-50 text-green-700 font-medium' : 'text-gray-500'}`}
+                              >
                                 {op}
                               </li>
                             ))}
@@ -531,8 +598,12 @@ export default function GenerarTarea() {
                         )}
                         {(p.tipo === 'abierta' || p.tipo === 'calculo') && p.respuesta && (
                           <div className="mt-2 p-2 bg-green-50 border border-green-200 rounded-lg">
-                            <p className="text-xs font-semibold text-green-700 mb-1">Respuesta modelo</p>
-                            <p className="text-xs text-green-900 whitespace-pre-line">{p.respuesta}</p>
+                            <p className="text-xs font-semibold text-green-700 mb-1">
+                              Respuesta modelo
+                            </p>
+                            <p className="text-xs text-green-900 whitespace-pre-line">
+                              {p.respuesta}
+                            </p>
                           </div>
                         )}
                       </div>
@@ -546,18 +617,23 @@ export default function GenerarTarea() {
             {clases.length > 0 && (
               <div className="card p-6">
                 <label className="label-base">
-                  Enviar a {clasesPublicar.length > 1 ? `${clasesPublicar.length} clases` : 'la clase'}
+                  Enviar a{' '}
+                  {clasesPublicar.length > 1 ? `${clasesPublicar.length} clases` : 'la clase'}
                 </label>
                 {clases.length > 1 && (
-                  <p className="text-xs text-gray-400 mb-3">Puedes seleccionar varias clases a la vez.</p>
+                  <p className="text-xs text-gray-400 mb-3">
+                    Puedes seleccionar varias clases a la vez.
+                  </p>
                 )}
                 <div className="flex flex-wrap gap-2">
                   {clases.length > 1 && (
                     <button
                       type="button"
-                      onClick={() => setClasesPublicar(
-                        clasesPublicar.length === clases.length ? [] : clases.map(c => c.id)
-                      )}
+                      onClick={() =>
+                        setClasesPublicar(
+                          clasesPublicar.length === clases.length ? [] : clases.map((c) => c.id),
+                        )
+                      }
                       className={`px-4 py-2 rounded-xl text-sm font-medium border transition-all ${
                         clasesPublicar.length === clases.length
                           ? 'border-gray-900 bg-gray-900 text-white'
@@ -567,11 +643,11 @@ export default function GenerarTarea() {
                       Todas
                     </button>
                   )}
-                  {clases.map(c => (
+                  {clases.map((c) => (
                     <button
                       key={c.id}
                       type="button"
-                      onClick={() => clases.length === 1 ? null : toggleClasePublicar(c.id)}
+                      onClick={() => (clases.length === 1 ? null : toggleClasePublicar(c.id))}
                       className={`px-4 py-2 rounded-xl text-sm font-medium border transition-all ${
                         clasesPublicar.includes(c.id)
                           ? 'border-gray-900 bg-gray-900 text-white'
@@ -597,9 +673,20 @@ export default function GenerarTarea() {
                   Modificar
                 </Boton>
               )}
-              <Boton variante="secundario" size="lg" onClick={() => { setTareaGenerada(null); setTareaGuardada(null) }}>
+              <Boton
+                variante="secundario"
+                size="lg"
+                onClick={() => {
+                  setTareaGenerada(null)
+                  setTareaGuardada(null)
+                }}
+              >
                 <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clipRule="evenodd" />
+                  <path
+                    fillRule="evenodd"
+                    d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z"
+                    clipRule="evenodd"
+                  />
                 </svg>
                 Regenerar
               </Boton>
@@ -609,7 +696,13 @@ export default function GenerarTarea() {
                 </svg>
                 Guardar borrador
               </Boton>
-              <Boton variante="primario" size="lg" onClick={handlePublicar} disabled={clasesPublicar.length === 0 || publicando} className="flex-1">
+              <Boton
+                variante="primario"
+                size="lg"
+                onClick={handlePublicar}
+                disabled={clasesPublicar.length === 0 || publicando}
+                className="flex-1"
+              >
                 {publicando ? (
                   <>
                     <Spinner size="sm" />
@@ -618,7 +711,11 @@ export default function GenerarTarea() {
                 ) : (
                   <>
                     <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clipRule="evenodd" />
+                      <path
+                        fillRule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z"
+                        clipRule="evenodd"
+                      />
                     </svg>
                     {clasesPublicar.length > 1
                       ? `Publicar en ${clasesPublicar.length} clases`
@@ -663,7 +760,9 @@ export default function GenerarTarea() {
             )}
             {Object.entries(pdasPorTema).map(([tema, lista]) => (
               <div key={tema}>
-                <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">{tema}</p>
+                <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">
+                  {tema}
+                </p>
                 <div className="space-y-2">
                   {lista.map((p) => {
                     const seleccionado = form.pdas.some((s) => s.secuencia === p.secuencia)
@@ -676,7 +775,10 @@ export default function GenerarTarea() {
                         onClick={() => {
                           setForm((prev) => {
                             if (seleccionado) {
-                              return { ...prev, pdas: prev.pdas.filter((s) => s.secuencia !== p.secuencia) }
+                              return {
+                                ...prev,
+                                pdas: prev.pdas.filter((s) => s.secuencia !== p.secuencia),
+                              }
                             }
                             return { ...prev, pdas: [...prev.pdas, p] }
                           })
@@ -690,18 +792,32 @@ export default function GenerarTarea() {
                         }`}
                       >
                         <div className="flex items-start gap-2">
-                          <div className={`flex-shrink-0 mt-0.5 w-4 h-4 rounded border flex items-center justify-center ${
-                            seleccionado ? 'bg-yellow-400 border-yellow-400' : 'border-gray-300'
-                          }`}>
+                          <div
+                            className={`flex-shrink-0 mt-0.5 w-4 h-4 rounded border flex items-center justify-center ${
+                              seleccionado ? 'bg-yellow-400 border-yellow-400' : 'border-gray-300'
+                            }`}
+                          >
                             {seleccionado && (
-                              <svg className="w-3 h-3 text-white" viewBox="0 0 20 20" fill="currentColor">
-                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                              <svg
+                                className="w-3 h-3 text-white"
+                                viewBox="0 0 20 20"
+                                fill="currentColor"
+                              >
+                                <path
+                                  fillRule="evenodd"
+                                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                  clipRule="evenodd"
+                                />
                               </svg>
                             )}
                           </div>
                           <div className="flex-1 min-w-0">
-                            <p className="text-xs font-semibold text-gray-500 mb-0.5">Secuencia {p.secuencia} · {p.titulo}</p>
-                            {p.contenido && <p className="text-xs text-gray-400 mb-0.5">{p.contenido}</p>}
+                            <p className="text-xs font-semibold text-gray-500 mb-0.5">
+                              Secuencia {p.secuencia} · {p.titulo}
+                            </p>
+                            {p.contenido && (
+                              <p className="text-xs text-gray-400 mb-0.5">{p.contenido}</p>
+                            )}
                             <p className="text-sm text-gray-700 leading-snug">{p.pda}</p>
                           </div>
                         </div>

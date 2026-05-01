@@ -25,18 +25,32 @@ export default function TablaResultadosAlumnos({
       <table className="w-full text-sm">
         <thead>
           <tr className="bg-gray-50 border-b border-gray-100">
-            <th className="text-left px-4 py-3 font-semibold text-gray-500 text-xs uppercase tracking-wide">Alumno</th>
-            <th className="text-left px-4 py-3 font-semibold text-gray-500 text-xs uppercase tracking-wide">Estado</th>
-            <th className="text-left px-4 py-3 font-semibold text-gray-500 text-xs uppercase tracking-wide">Nota IA</th>
-            <th className="text-left px-4 py-3 font-semibold text-gray-500 text-xs uppercase tracking-wide">Nota final</th>
-            <th className="text-left px-4 py-3 font-semibold text-gray-500 text-xs uppercase tracking-wide hidden sm:table-cell">Áreas de mejora</th>
-            <th className="text-left px-4 py-3 font-semibold text-gray-500 text-xs uppercase tracking-wide hidden md:table-cell">Entrega</th>
+            <th className="text-left px-4 py-3 font-semibold text-gray-500 text-xs uppercase tracking-wide">
+              Alumno
+            </th>
+            <th className="text-left px-4 py-3 font-semibold text-gray-500 text-xs uppercase tracking-wide">
+              Estado
+            </th>
+            <th className="text-left px-4 py-3 font-semibold text-gray-500 text-xs uppercase tracking-wide">
+              Nota IA
+            </th>
+            <th className="text-left px-4 py-3 font-semibold text-gray-500 text-xs uppercase tracking-wide">
+              Nota final
+            </th>
+            <th className="text-left px-4 py-3 font-semibold text-gray-500 text-xs uppercase tracking-wide hidden sm:table-cell">
+              Áreas de mejora
+            </th>
+            <th className="text-left px-4 py-3 font-semibold text-gray-500 text-xs uppercase tracking-wide hidden md:table-cell">
+              Entrega
+            </th>
           </tr>
         </thead>
         <tbody className="divide-y divide-gray-50">
           {alumnos.map((alumno) => {
             const resultado = resultadosPorAlumno?.[alumno.id]
-            const notaFinal = resultado ? (resultado.calificacion_manual ?? resultado.calificacion) : null
+            const notaFinal = resultado
+              ? (resultado.calificacion_manual ?? resultado.calificacion)
+              : null
             const isEditing = editandoNota === alumno.id
 
             return (
@@ -83,8 +97,18 @@ export default function TablaResultadosAlumnos({
                             if (e.key === 'Escape') onCancelarEdicion()
                           }}
                         />
-                        <button onClick={() => onGuardarNota(resultado.id)} className="text-xs text-green-600 hover:text-green-700 font-medium">OK</button>
-                        <button onClick={onCancelarEdicion} className="text-xs text-gray-400 hover:text-gray-600">X</button>
+                        <button
+                          onClick={() => onGuardarNota(resultado.id)}
+                          className="text-xs text-green-600 hover:text-green-700 font-medium"
+                        >
+                          OK
+                        </button>
+                        <button
+                          onClick={onCancelarEdicion}
+                          className="text-xs text-gray-400 hover:text-gray-600"
+                        >
+                          X
+                        </button>
                       </div>
                     ) : (
                       <button
@@ -96,8 +120,8 @@ export default function TablaResultadosAlumnos({
                             notaFinal >= 8
                               ? 'text-green-600'
                               : notaFinal >= 6
-                              ? 'text-orange-500'
-                              : 'text-red-500'
+                                ? 'text-orange-500'
+                                : 'text-red-500'
                           }`}
                         >
                           {notaFinal}/10
@@ -105,7 +129,11 @@ export default function TablaResultadosAlumnos({
                         {resultado.calificacion_manual != null && (
                           <span className="text-xs text-gray-400">(manual)</span>
                         )}
-                        <svg className="w-3 h-3 text-gray-300 group-hover:text-gray-500 transition-colors" viewBox="0 0 20 20" fill="currentColor">
+                        <svg
+                          className="w-3 h-3 text-gray-300 group-hover:text-gray-500 transition-colors"
+                          viewBox="0 0 20 20"
+                          fill="currentColor"
+                        >
                           <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
                         </svg>
                       </button>
@@ -134,7 +162,9 @@ export default function TablaResultadosAlumnos({
                 </td>
                 <td className="px-4 py-3.5 hidden md:table-cell">
                   <span className="text-gray-500 text-xs">
-                    {resultado?.submitted_at ? new Date(resultado.submitted_at).toLocaleDateString('es-MX') : '—'}
+                    {resultado?.submitted_at
+                      ? new Date(resultado.submitted_at).toLocaleDateString('es-MX')
+                      : '—'}
                   </span>
                 </td>
               </tr>

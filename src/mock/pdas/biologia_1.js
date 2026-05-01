@@ -31,7 +31,8 @@ export const PDAS_BIOLOGIA_1 = [
   // 2. Salud sexual y reproductiva (sem. 4–7)
   {
     secuencia: 4,
-    contenido: 'Salud sexual y reproductiva: prevención de infecciones de transmisión sexual y del embarazo en adolescentes.',
+    contenido:
+      'Salud sexual y reproductiva: prevención de infecciones de transmisión sexual y del embarazo en adolescentes.',
     titulo: 'Aparato reproductor',
     tema: 'Salud sexual y reproductiva',
     pda: 'Identifica la estructura y función del aparato reproductor femenino y masculino en relación con la reproducción humana.',
@@ -40,7 +41,8 @@ export const PDAS_BIOLOGIA_1 = [
   },
   {
     secuencia: 5,
-    contenido: 'Salud sexual y reproductiva: prevención de infecciones de transmisión sexual y del embarazo en adolescentes.',
+    contenido:
+      'Salud sexual y reproductiva: prevención de infecciones de transmisión sexual y del embarazo en adolescentes.',
     titulo: 'Ciclo menstrual y fecundación',
     tema: 'Salud sexual y reproductiva',
     pda: 'Explica el ciclo menstrual y el proceso de fecundación como parte de la reproducción humana.',
@@ -49,7 +51,8 @@ export const PDAS_BIOLOGIA_1 = [
   },
   {
     secuencia: 6,
-    contenido: 'Salud sexual y reproductiva: prevención de infecciones de transmisión sexual y del embarazo en adolescentes.',
+    contenido:
+      'Salud sexual y reproductiva: prevención de infecciones de transmisión sexual y del embarazo en adolescentes.',
     titulo: 'Métodos anticonceptivos',
     tema: 'Salud sexual y reproductiva',
     pda: 'Analiza los diferentes métodos anticonceptivos y su relación con el ejercicio responsable de la sexualidad.',
@@ -58,7 +61,8 @@ export const PDAS_BIOLOGIA_1 = [
   },
   {
     secuencia: 7,
-    contenido: 'Salud sexual y reproductiva: prevención de infecciones de transmisión sexual y del embarazo en adolescentes.',
+    contenido:
+      'Salud sexual y reproductiva: prevención de infecciones de transmisión sexual y del embarazo en adolescentes.',
     titulo: 'Infecciones de transmisión sexual',
     tema: 'Salud sexual y reproductiva',
     pda: 'Reconoce las principales infecciones de transmisión sexual (ITS), sus formas de prevención y la importancia de una sexualidad responsable.',
@@ -69,7 +73,8 @@ export const PDAS_BIOLOGIA_1 = [
   // 3. Alimentación y salud (sem. 8–11)
   {
     secuencia: 8,
-    contenido: 'Prevención de enfermedades relacionadas con la alimentación y el consumo de alimentos ultraprocesados',
+    contenido:
+      'Prevención de enfermedades relacionadas con la alimentación y el consumo de alimentos ultraprocesados',
     titulo: 'Nutrientes y alimentación',
     tema: 'Alimentación y salud',
     pda: 'Clasifica los nutrimentos y explica su función en el organismo para mantener una alimentación correcta.',
@@ -78,7 +83,8 @@ export const PDAS_BIOLOGIA_1 = [
   },
   {
     secuencia: 9,
-    contenido: 'Prevención de enfermedades relacionadas con la alimentación y el consumo de alimentos ultraprocesados',
+    contenido:
+      'Prevención de enfermedades relacionadas con la alimentación y el consumo de alimentos ultraprocesados',
     titulo: 'Digestión y absorción',
     tema: 'Alimentación y salud',
     pda: 'Describe el proceso de digestión y absorción de nutrimentos a lo largo del aparato digestivo.',
@@ -87,7 +93,8 @@ export const PDAS_BIOLOGIA_1 = [
   },
   {
     secuencia: 10,
-    contenido: 'Prevención de enfermedades relacionadas con la alimentación y el consumo de alimentos ultraprocesados',
+    contenido:
+      'Prevención de enfermedades relacionadas con la alimentación y el consumo de alimentos ultraprocesados',
     titulo: 'Enfermedades relacionadas con la alimentación',
     tema: 'Alimentación y salud',
     pda: 'Relaciona los hábitos alimentarios inadecuados con el desarrollo de enfermedades como obesidad, diabetes y desnutrición.',
@@ -96,7 +103,8 @@ export const PDAS_BIOLOGIA_1 = [
   },
   {
     secuencia: 11,
-    contenido: 'Prevención de enfermedades relacionadas con la alimentación y el consumo de alimentos ultraprocesados',
+    contenido:
+      'Prevención de enfermedades relacionadas con la alimentación y el consumo de alimentos ultraprocesados',
     titulo: 'Dieta correcta y etiquetado',
     tema: 'Alimentación y salud',
     pda: 'Evalúa la información del etiquetado nutricional para tomar decisiones que favorezcan una dieta correcta.',
@@ -107,7 +115,8 @@ export const PDAS_BIOLOGIA_1 = [
   // 4. Saberes de pueblos originarios (sem. 12–14)
   {
     secuencia: 12,
-    contenido: 'La diversidad de saberes e intercambio de conocimientos acerca de los seres vivos y las relaciones con el medio ambiente.',
+    contenido:
+      'La diversidad de saberes e intercambio de conocimientos acerca de los seres vivos y las relaciones con el medio ambiente.',
     titulo: 'Medicina tradicional',
     tema: 'Saberes de pueblos originarios',
     pda: 'Reconoce los saberes de los pueblos originarios sobre el uso de plantas medicinales como parte del patrimonio cultural y biológico de México.',
@@ -116,7 +125,8 @@ export const PDAS_BIOLOGIA_1 = [
   },
   {
     secuencia: 13,
-    contenido: 'La diversidad de saberes e intercambio de conocimientos acerca de los seres vivos y las relaciones con el medio ambiente.',
+    contenido:
+      'La diversidad de saberes e intercambio de conocimientos acerca de los seres vivos y las relaciones con el medio ambiente.',
     titulo: 'Etnobotánica y biodiversidad',
     tema: 'Saberes de pueblos originarios',
     pda: 'Relaciona los conocimientos etnobotánicos de comunidades indígenas con la conservación de la biodiversidad.',
@@ -125,7 +135,8 @@ export const PDAS_BIOLOGIA_1 = [
   },
   {
     secuencia: 14,
-    contenido: 'La diversidad de saberes e intercambio de conocimientos acerca de los seres vivos y las relaciones con el medio ambiente.',
+    contenido:
+      'La diversidad de saberes e intercambio de conocimientos acerca de los seres vivos y las relaciones con el medio ambiente.',
     titulo: 'Diálogo de saberes',
     tema: 'Saberes de pueblos originarios',
     pda: 'Valora la complementariedad entre los saberes de los pueblos originarios y la ciencia occidental en el cuidado de la salud y el ambiente.',
@@ -136,7 +147,8 @@ export const PDAS_BIOLOGIA_1 = [
   // 5. Procesos vitales de los seres vivos (sem. 15–18)
   {
     secuencia: 15,
-    contenido: 'Los procesos vitales de los seres vivos: nutrición, relación con el medio y reproducción.',
+    contenido:
+      'Los procesos vitales de los seres vivos: nutrición, relación con el medio y reproducción.',
     titulo: 'Características de los seres vivos',
     tema: 'Procesos vitales de los seres vivos',
     pda: 'Identifica las características comunes de los seres vivos: nutrición, respiración, reproducción, relación y excreción.',
@@ -145,7 +157,8 @@ export const PDAS_BIOLOGIA_1 = [
   },
   {
     secuencia: 16,
-    contenido: 'Los procesos vitales de los seres vivos: nutrición, relación con el medio y reproducción.',
+    contenido:
+      'Los procesos vitales de los seres vivos: nutrición, relación con el medio y reproducción.',
     titulo: 'Fotosíntesis',
     tema: 'Procesos vitales de los seres vivos',
     pda: 'Explica el proceso de fotosíntesis y su importancia para la producción de materia orgánica y la liberación de oxígeno.',
@@ -154,7 +167,8 @@ export const PDAS_BIOLOGIA_1 = [
   },
   {
     secuencia: 17,
-    contenido: 'Los procesos vitales de los seres vivos: nutrición, relación con el medio y reproducción.',
+    contenido:
+      'Los procesos vitales de los seres vivos: nutrición, relación con el medio y reproducción.',
     titulo: 'Respiración celular',
     tema: 'Procesos vitales de los seres vivos',
     pda: 'Describe la respiración celular como proceso de obtención de energía a partir de la glucosa en los seres vivos.',
@@ -163,7 +177,8 @@ export const PDAS_BIOLOGIA_1 = [
   },
   {
     secuencia: 18,
-    contenido: 'Los procesos vitales de los seres vivos: nutrición, relación con el medio y reproducción.',
+    contenido:
+      'Los procesos vitales de los seres vivos: nutrición, relación con el medio y reproducción.',
     titulo: 'Reproducción asexual y sexual',
     tema: 'Procesos vitales de los seres vivos',
     pda: 'Compara la reproducción asexual y sexual en distintos grupos de seres vivos, identificando sus ventajas y desventajas.',
@@ -212,7 +227,8 @@ export const PDAS_BIOLOGIA_1 = [
   // 7. Ecosistemas y calentamiento global (sem. 23–28)
   {
     secuencia: 23,
-    contenido: 'El calentamiento global como una consecuencia de la alteración de los ciclos biogeoquímicos en los ecosistemas.',
+    contenido:
+      'El calentamiento global como una consecuencia de la alteración de los ciclos biogeoquímicos en los ecosistemas.',
     titulo: 'Componentes del ecosistema',
     tema: 'Ecosistemas y calentamiento global',
     pda: 'Identifica los componentes bióticos y abióticos de un ecosistema y las interacciones que se establecen entre ellos.',
@@ -221,7 +237,8 @@ export const PDAS_BIOLOGIA_1 = [
   },
   {
     secuencia: 24,
-    contenido: 'El calentamiento global como una consecuencia de la alteración de los ciclos biogeoquímicos en los ecosistemas.',
+    contenido:
+      'El calentamiento global como una consecuencia de la alteración de los ciclos biogeoquímicos en los ecosistemas.',
     titulo: 'Cadenas y redes alimentarias',
     tema: 'Ecosistemas y calentamiento global',
     pda: 'Construye cadenas y redes alimentarias para explicar el flujo de energía y la transferencia de materia en los ecosistemas.',
@@ -230,7 +247,8 @@ export const PDAS_BIOLOGIA_1 = [
   },
   {
     secuencia: 25,
-    contenido: 'El calentamiento global como una consecuencia de la alteración de los ciclos biogeoquímicos en los ecosistemas.',
+    contenido:
+      'El calentamiento global como una consecuencia de la alteración de los ciclos biogeoquímicos en los ecosistemas.',
     titulo: 'Ciclos biogeoquímicos',
     tema: 'Ecosistemas y calentamiento global',
     pda: 'Describe los ciclos del carbono, nitrógeno y agua como procesos que regulan los flujos de materia en la biósfera.',
@@ -239,7 +257,8 @@ export const PDAS_BIOLOGIA_1 = [
   },
   {
     secuencia: 26,
-    contenido: 'El calentamiento global como una consecuencia de la alteración de los ciclos biogeoquímicos en los ecosistemas.',
+    contenido:
+      'El calentamiento global como una consecuencia de la alteración de los ciclos biogeoquímicos en los ecosistemas.',
     titulo: 'Efecto invernadero y cambio climático',
     tema: 'Ecosistemas y calentamiento global',
     pda: 'Relaciona el aumento de gases de efecto invernadero con el calentamiento global y sus consecuencias para los ecosistemas.',
@@ -248,7 +267,8 @@ export const PDAS_BIOLOGIA_1 = [
   },
   {
     secuencia: 27,
-    contenido: 'El calentamiento global como una consecuencia de la alteración de los ciclos biogeoquímicos en los ecosistemas.',
+    contenido:
+      'El calentamiento global como una consecuencia de la alteración de los ciclos biogeoquímicos en los ecosistemas.',
     titulo: 'Impacto humano en los ecosistemas',
     tema: 'Ecosistemas y calentamiento global',
     pda: 'Evalúa el impacto de las actividades humanas en la pérdida de biodiversidad y la degradación de los ecosistemas.',
@@ -257,7 +277,8 @@ export const PDAS_BIOLOGIA_1 = [
   },
   {
     secuencia: 28,
-    contenido: 'El calentamiento global como una consecuencia de la alteración de los ciclos biogeoquímicos en los ecosistemas.',
+    contenido:
+      'El calentamiento global como una consecuencia de la alteración de los ciclos biogeoquímicos en los ecosistemas.',
     titulo: 'Acciones para la sustentabilidad',
     tema: 'Ecosistemas y calentamiento global',
     pda: 'Propone acciones individuales y colectivas orientadas al desarrollo sustentable y la mitigación del cambio climático.',
@@ -268,7 +289,8 @@ export const PDAS_BIOLOGIA_1 = [
   // 8. El microscopio y la célula (sem. 29–34)
   {
     secuencia: 29,
-    contenido: 'Importancia del microscopio para el conocimiento de la unidad y la diversidad de los seres vivos.',
+    contenido:
+      'Importancia del microscopio para el conocimiento de la unidad y la diversidad de los seres vivos.',
     titulo: 'El microscopio',
     tema: 'El microscopio y la célula',
     pda: 'Describe el funcionamiento del microscopio óptico y su importancia para el estudio de las células y microorganismos.',
@@ -277,7 +299,8 @@ export const PDAS_BIOLOGIA_1 = [
   },
   {
     secuencia: 30,
-    contenido: 'Importancia del microscopio para el conocimiento de la unidad y la diversidad de los seres vivos.',
+    contenido:
+      'Importancia del microscopio para el conocimiento de la unidad y la diversidad de los seres vivos.',
     titulo: 'La célula: unidad de vida',
     tema: 'El microscopio y la célula',
     pda: 'Reconoce a la célula como la unidad estructural y funcional de los seres vivos y describe sus principales componentes.',
@@ -286,7 +309,8 @@ export const PDAS_BIOLOGIA_1 = [
   },
   {
     secuencia: 31,
-    contenido: 'Importancia del microscopio para el conocimiento de la unidad y la diversidad de los seres vivos.',
+    contenido:
+      'Importancia del microscopio para el conocimiento de la unidad y la diversidad de los seres vivos.',
     titulo: 'Célula procariota y eucariota',
     tema: 'El microscopio y la célula',
     pda: 'Compara las características de las células procariotas y eucariotas, identificando semejanzas y diferencias.',
@@ -295,7 +319,8 @@ export const PDAS_BIOLOGIA_1 = [
   },
   {
     secuencia: 32,
-    contenido: 'Importancia del microscopio para el conocimiento de la unidad y la diversidad de los seres vivos.',
+    contenido:
+      'Importancia del microscopio para el conocimiento de la unidad y la diversidad de los seres vivos.',
     titulo: 'Organelos celulares',
     tema: 'El microscopio y la célula',
     pda: 'Relaciona la estructura de los organelos celulares con las funciones que realizan dentro de la célula.',
@@ -304,7 +329,8 @@ export const PDAS_BIOLOGIA_1 = [
   },
   {
     secuencia: 33,
-    contenido: 'Importancia del microscopio para el conocimiento de la unidad y la diversidad de los seres vivos.',
+    contenido:
+      'Importancia del microscopio para el conocimiento de la unidad y la diversidad de los seres vivos.',
     titulo: 'División celular: mitosis',
     tema: 'El microscopio y la célula',
     pda: 'Describe las etapas de la mitosis y su importancia en el crecimiento y la regeneración de los tejidos.',
@@ -313,7 +339,8 @@ export const PDAS_BIOLOGIA_1 = [
   },
   {
     secuencia: 34,
-    contenido: 'Importancia del microscopio para el conocimiento de la unidad y la diversidad de los seres vivos.',
+    contenido:
+      'Importancia del microscopio para el conocimiento de la unidad y la diversidad de los seres vivos.',
     titulo: 'División celular: meiosis',
     tema: 'El microscopio y la célula',
     pda: 'Explica la meiosis como proceso de formación de células reproductoras y su relación con la variabilidad genética.',

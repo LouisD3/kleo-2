@@ -1,7 +1,7 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { useState, useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import NavBar from '@/components/layout/NavBar.jsx'
 import TablaTareas from '@/components/profesor/TablaTareas.jsx'
 import Boton from '@/components/ui/Boton.jsx'
@@ -26,14 +26,12 @@ export default function DashboardProfesor() {
 
   const tareasFiltradas = useMemo(() => {
     if (filtroClases.length === 0) return tareas
-    return tareas.filter(t => filtroClases.includes(t.clase_id))
+    return tareas.filter((t) => filtroClases.includes(t.clase_id))
   }, [tareas, filtroClases])
 
   function toggleFiltroClase(claseId) {
-    setFiltroClases(prev =>
-      prev.includes(claseId)
-        ? prev.filter(id => id !== claseId)
-        : [...prev, claseId]
+    setFiltroClases((prev) =>
+      prev.includes(claseId) ? prev.filter((id) => id !== claseId) : [...prev, claseId],
     )
   }
 
@@ -54,23 +52,19 @@ export default function DashboardProfesor() {
             </p>
           </div>
           <div className="flex gap-3">
-            <Boton
-              onClick={() => router.push('/profesor/clase')}
-              variante="secundario"
-              size="md"
-            >
+            <Boton onClick={() => router.push('/profesor/clase')} variante="secundario" size="md">
               <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
                 <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
               </svg>
               Mis clases
             </Boton>
-            <Boton
-              onClick={() => router.push('/profesor/generar')}
-              variante="primario"
-              size="md"
-            >
+            <Boton onClick={() => router.push('/profesor/generar')} variante="primario" size="md">
               <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clipRule="evenodd" />
+                <path
+                  fillRule="evenodd"
+                  d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+                  clipRule="evenodd"
+                />
               </svg>
               Generar nueva tarea
             </Boton>
@@ -90,7 +84,7 @@ export default function DashboardProfesor() {
             >
               Todas
             </button>
-            {clases.map(c => (
+            {clases.map((c) => (
               <button
                 key={c.id}
                 onClick={() => toggleFiltroClase(c.id)}
@@ -109,9 +103,19 @@ export default function DashboardProfesor() {
         {/* Stats */}
         <div className="grid grid-cols-3 gap-4 mb-8">
           {[
-            { label: 'Completadas', valor: completadas, color: 'text-green-600', bg: 'bg-green-50' },
+            {
+              label: 'Completadas',
+              valor: completadas,
+              color: 'text-green-600',
+              bg: 'bg-green-50',
+            },
             { label: 'En curso', valor: enCurso, color: 'text-blue-600', bg: 'bg-blue-50' },
-            { label: 'Borradores', valor: borradores, color: 'text-yellow-600', bg: 'bg-yellow-50' },
+            {
+              label: 'Borradores',
+              valor: borradores,
+              color: 'text-yellow-600',
+              bg: 'bg-yellow-50',
+            },
           ].map((stat) => (
             <div key={stat.label} className={`card p-5 ${stat.bg}`}>
               <p className={`text-3xl font-bold ${stat.color}`}>{stat.valor}</p>

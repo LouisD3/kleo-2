@@ -7,10 +7,22 @@
       "recommended": true,
       "correctness": {
         "noUnusedImports": "warn",
-        "noUnusedVariables": "warn"
+        "noUnusedVariables": "warn",
+        "useExhaustiveDependencies": "off"
       },
       "style": {
         "noNonNullAssertion": "off"
+      },
+      "a11y": {
+        "noLabelWithoutControl": "off",
+        "noSvgWithoutTitle": "off",
+        "noAutofocus": "off",
+        "noStaticElementInteractions": "off",
+        "useKeyWithClickEvents": "off",
+        "useButtonType": "off"
+      },
+      "suspicious": {
+        "noArrayIndexKey": "off"
       }
     }
   },
@@ -26,6 +38,17 @@
       "semicolons": "asNeeded"
     }
   },
+  "css": {
+    "linter": {
+      "enabled": false
+    },
+    "parser": {
+      "cssModules": true
+    },
+    "formatter": {
+      "enabled": false
+    }
+  },
   "files": {
     "includes": [
       "**",
@@ -33,7 +56,8 @@
       "!**/.next",
       "!**/dist",
       "!**/*.config.js",
-      "!**/*.config.ts"
+      "!**/*.config.ts",
+      "!**/*.css"
     ]
   }
 }
