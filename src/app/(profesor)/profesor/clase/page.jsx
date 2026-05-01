@@ -23,6 +23,7 @@ export default function GestionClase() {
   const [formClase, setFormClase] = useState({ nombre: '', grado: '1° Secundaria' })
   const [error, setError] = useState(null)
   const [copiado, setCopiado] = useState(null)
+  const [compartido, setCompartido] = useState(null)
   const [confirmEliminar, setConfirmEliminar] = useState(null)
 
   const GRADOS = ['1° Secundaria', '2° Secundaria', '3° Secundaria']
@@ -87,6 +88,24 @@ export default function GestionClase() {
     setTimeout(() => setCopiado(null), 2000)
   }
 
+  async function compartirCodigo(alumno) {
+    const url = `${window.location.origin}/acceso-alumno`
+    const mensaje = `Hola ${alumno.nombre.split(' ')[0]}, para entrar a Kleo:\n1. Ve a ${url}\n2. Escribe tu código: ${alumno.codigo_acceso}\n3. ¡Listo! Ya puedes hacer tus tareas.`
+
+    if (navigator.share) {
+      try {
+        await navigator.share({ text: mensaje })
+        return
+      } catch {
+        // User cancelled or share failed — fall back to clipboard
+      }
+    }
+
+    navigator.clipboard.writeText(mensaje)
+    setCompartido(alumno.id)
+    setTimeout(() => setCompartido(null), 2000)
+  }
+
   async function handleEliminarAlumno() {
     if (!confirmEliminar) return
     await eliminarAlumnoMut.mutateAsync({ alumnoId: confirmEliminar, claseId: clase.id })
@@ -142,6 +161,29 @@ export default function GestionClase() {
               </div>
             </div>
 
+            {/* Cómo funcionan los códigos */}
+            <div className="card p-5 mb-6 bg-blue-50/50 border-blue-100">
+              <div className="flex gap-3">
+                <div className="w-8 h-8 rounded-lg bg-blue-100 flex items-center justify-center shrink-0">
+                  <svg className="w-4 h-4 text-blue-600" viewBox="0 0 20 20" fill="currentColor">
+                    <path
+                      fillRule="evenodd"
+                      d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </div>
+                <div>
+                  <p className="text-sm font-medium text-gray-900">¿Cómo entran tus alumnos?</p>
+                  <p className="text-xs text-gray-500 mt-1 leading-relaxed">
+                    Cada alumno tiene un código único de 6 caracteres. Solo necesitan ir a la página
+                    de acceso alumno y escribir su código para entrar. Usa el botón
+                    &quot;Compartir&quot; para enviarles las instrucciones.
+                  </p>
+                </div>
+              </div>
+            </div>
+
             {/* Agregar alumno */}
             <div className="card p-6 mb-6">
               <h3 className="font-semibold text-gray-900 mb-3">Agregar alumno</h3>
@@ -190,7 +232,10 @@ export default function GestionClase() {
                         <div>
                           <p className="font-medium text-gray-900">{alumno.nombre}</p>
                           <div className="flex items-center gap-2 mt-0.5">
-                            <span className="text-xs font-mono text-gray-400 bg-gray-100 px-2 py-0.5 rounded">
+                            <span
+                              className="text-xs font-mono text-gray-400 bg-gray-100 px-2 py-0.5 rounded cursor-help"
+                              title="Código que el alumno usa para entrar a Kleo"
+                            >
                               {alumno.codigo_acceso}
                             </span>
                             <button
@@ -198,6 +243,13 @@ export default function GestionClase() {
                               className="text-xs text-gray-400 hover:text-gray-600 transition-colors"
                             >
                               {copiado === alumno.codigo_acceso ? '¡Copiado!' : 'Copiar'}
+                            </button>
+                            <span className="text-gray-200">·</span>
+                            <button
+                              onClick={() => compartirCodigo(alumno)}
+                              className="text-xs text-blue-500 hover:text-blue-700 transition-colors"
+                            >
+                              {compartido === alumno.id ? '¡Mensaje copiado!' : 'Compartir'}
                             </button>
                           </div>
                         </div>

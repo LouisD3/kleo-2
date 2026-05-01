@@ -132,6 +132,10 @@ export default function GenerarTarea() {
       setError('Selecciona al menos un tipo de ejercicio.')
       return
     }
+    if (!clases.length) {
+      setError('Primero debes crear una clase. Ve a "Mis clases" para configurarla.')
+      return
+    }
 
     const resultado = await generarTarea({
       materia: form.materia,

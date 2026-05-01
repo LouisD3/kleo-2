@@ -3,18 +3,20 @@
 import { useRouter } from 'next/navigation'
 import { useMemo, useState } from 'react'
 import NavBar from '@/components/layout/NavBar.jsx'
+import ChecklistOnboarding from '@/components/profesor/ChecklistOnboarding.jsx'
 import TablaTareas from '@/components/profesor/TablaTareas.jsx'
 import Boton from '@/components/ui/Boton.jsx'
 import Spinner from '@/components/ui/Spinner.jsx'
-import { useEliminarTarea, useTareasProfesor } from '@/hooks/useTareas.js'
+import { useAlumnos, useEliminarTarea, useTareasProfesor } from '@/hooks/useTareas.js'
 import useAuthStore from '@/store/useAuthStore.js'
 
 export default function DashboardProfesor() {
   const router = useRouter()
-  const { profesor, clases } = useAuthStore()
+  const { profesor, clase, clases } = useAuthStore()
   const { data, isLoading } = useTareasProfesor(profesor?.id)
   const tareas = data?.tareas ?? []
   const resultados = data?.resultados ?? {}
+  const { data: alumnos = [] } = useAlumnos(clase?.id)
 
   const eliminarTareaMut = useEliminarTarea()
   const [filtroClases, setFiltroClases] = useState([])
@@ -100,6 +102,12 @@ export default function DashboardProfesor() {
             ))}
           </div>
         )}
+
+        <ChecklistOnboarding
+          tieneClase={clases.length > 0}
+          tieneAlumnos={alumnos.length > 0}
+          tieneTareas={tareas.length > 0}
+        />
 
         {/* Stats */}
         <div className="grid grid-cols-3 gap-4 mb-8">

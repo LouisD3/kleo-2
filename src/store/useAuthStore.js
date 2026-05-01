@@ -57,21 +57,11 @@ const useAuthStore = create((set, get) => ({
         }
 
         if (profesor) {
-          let { data: clases } = await supabase
+          const { data: clases } = await supabase
             .from('clases')
             .select('*')
             .eq('profesor_id', profesor.id)
             .order('created_at', { ascending: false })
-
-          // No class exists, create default
-          if (!clases || clases.length === 0) {
-            const { data: newClase } = await supabase
-              .from('clases')
-              .insert({ profesor_id: profesor.id, nombre: 'Mi clase', grado: '1° Secundaria' })
-              .select()
-              .single()
-            clases = newClase ? [newClase] : []
-          }
 
           set({
             usuario: session.user,
@@ -115,7 +105,7 @@ const useAuthStore = create((set, get) => ({
       email,
       password,
       options: {
-        emailRedirectTo: `${window.location.origin}/profesor`,
+        emailRedirectTo: `${window.location.origin}/profesor/bienvenida`,
         data: { nombre, escuela: escuela || null },
       },
     })
@@ -140,18 +130,12 @@ const useAuthStore = create((set, get) => ({
       return false
     }
 
-    const { data: claseData } = await supabase
-      .from('clases')
-      .insert({ profesor_id: userId, nombre: 'Mi clase', grado: '1° Secundaria' })
-      .select()
-      .single()
-
     set({
       usuario: data.user,
       profesor: { id: userId, nombre, escuela },
       rol: 'profesor',
-      clases: claseData ? [claseData] : [],
-      clase: claseData ?? null,
+      clases: [],
+      clase: null,
     })
     return true
   },
