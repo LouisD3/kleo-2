@@ -33,7 +33,7 @@ export default function Registro() {
     const result = await registrarse(form.email, form.password, form.nombre, form.escuela)
     setCargando(false)
     if (result === 'verificar') router.push('/verificar-correo')
-    else if (result === true) router.push('/profesor')
+    else if (result === true) router.push('/profesor/bienvenida')
   }
 
   function update(field, value) {

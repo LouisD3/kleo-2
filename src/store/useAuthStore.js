@@ -115,7 +115,7 @@ const useAuthStore = create((set, get) => ({
       email,
       password,
       options: {
-        emailRedirectTo: `${window.location.origin}/profesor`,
+        emailRedirectTo: `${window.location.origin}/profesor/bienvenida`,
         data: { nombre, escuela: escuela || null },
       },
     })
