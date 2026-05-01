@@ -356,7 +356,8 @@ export default function GestionClase() {
       >
         <p className="text-sm text-gray-600 mb-4">
           ¿Estás seguro de que quieres eliminar <strong>{clase?.nombre}</strong>? Se eliminarán
-          también todos los alumnos, tareas y resultados asociados. Esta acción no se puede deshacer.
+          también todos los alumnos, tareas y resultados asociados. Esta acción no se puede
+          deshacer.
         </p>
         <div className="flex gap-3">
           <Boton

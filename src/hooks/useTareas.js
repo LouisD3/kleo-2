@@ -273,10 +273,7 @@ export function useEliminarClase() {
           .in('tarea_id', tareaIds)
         if (resError) throw resError
 
-        const { error: tarError } = await supabase
-          .from('tareas')
-          .delete()
-          .eq('clase_id', claseId)
+        const { error: tarError } = await supabase.from('tareas').delete().eq('clase_id', claseId)
         if (tarError) throw tarError
       }
 
