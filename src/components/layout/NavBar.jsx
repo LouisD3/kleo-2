@@ -33,7 +33,9 @@ export default function NavBar({ titulo, volver }) {
           )}
           <div className="flex items-center gap-2">
             <button
-              onClick={() => router.push(rol === 'profesor' ? '/profesor' : rol === 'alumno' ? '/alumno' : '/')}
+              onClick={() =>
+                router.push(rol === 'profesor' ? '/profesor' : rol === 'alumno' ? '/alumno' : '/')
+              }
               className="text-xl font-bold text-gray-900 hover:text-amarillo transition-colors"
             >
               Kleo
