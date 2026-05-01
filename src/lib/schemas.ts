@@ -20,6 +20,7 @@ const generarPayloadSchema = z.object({
   numeroPreguntas: z.number().int().min(1).max(20),
   pda: z.union([pdaItemSchema, z.array(pdaItemSchema).max(5)]).optional(),
   instrucciones: z.string().nullable().optional(),
+  idioma: z.enum(['English']).optional(),
 })
 
 const preguntaSchema = z.object({

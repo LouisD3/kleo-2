@@ -7,6 +7,9 @@ export { PDAS_GEOGRAFIA_1 } from './geografia_1.js'
 export { PDAS_HISTORIA_MEXICO_1 } from './historia_mexico_1.js'
 export { PDAS_HISTORIA_MEXICO_2 } from './historia_mexico_2.js'
 export { PDAS_HISTORIA_MUNDIAL_3 } from './historia_mundial_3.js'
+export { PDAS_INGLES_1 } from './ingles_1.js'
+export { PDAS_INGLES_2 } from './ingles_2.js'
+export { PDAS_INGLES_3 } from './ingles_3.js'
 export { PDAS_LENGUAJES_1 } from './lenguajes_1.js'
 export { PDAS_LENGUAJES_2 } from './lenguajes_2.js'
 export { PDAS_LENGUAJES_3 } from './lenguajes_3.js'
@@ -24,6 +27,9 @@ import { PDAS_GEOGRAFIA_1 } from './geografia_1.js'
 import { PDAS_HISTORIA_MEXICO_1 } from './historia_mexico_1.js'
 import { PDAS_HISTORIA_MEXICO_2 } from './historia_mexico_2.js'
 import { PDAS_HISTORIA_MUNDIAL_3 } from './historia_mundial_3.js'
+import { PDAS_INGLES_1 } from './ingles_1.js'
+import { PDAS_INGLES_2 } from './ingles_2.js'
+import { PDAS_INGLES_3 } from './ingles_3.js'
 import { PDAS_LENGUAJES_1 } from './lenguajes_1.js'
 import { PDAS_LENGUAJES_2 } from './lenguajes_2.js'
 import { PDAS_LENGUAJES_3 } from './lenguajes_3.js'
@@ -34,6 +40,9 @@ import { PDAS_QUIMICA_3 } from './quimica_3.js'
 
 export const TODAS_LAS_PDAS = [
   ...PDAS_BIOLOGIA_1,
+  ...PDAS_INGLES_1,
+  ...PDAS_INGLES_2,
+  ...PDAS_INGLES_3,
   ...PDAS_FISICA_2,
   ...PDAS_QUIMICA_3,
   ...PDAS_FCyE_1,
