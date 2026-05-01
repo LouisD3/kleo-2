@@ -22,8 +22,7 @@ export const PDAS_INGLES_1 = [
   },
   {
     secuencia: 3,
-    contenido:
-      'As to describe roles and functions, and like to make simple comparisons.',
+    contenido: 'As to describe roles and functions, and like to make simple comparisons.',
     titulo: 'Roles That Change our World',
     tema: 'Comparisons',
     pda: 'Understand and use as to describe roles and functions, and like to make simple comparisons, applying them accurately in sentences.',
@@ -33,8 +32,7 @@ export const PDAS_INGLES_1 = [
   // Block 2: The Giving Project
   {
     secuencia: 4,
-    contenido:
-      'Present continuous tense to describe planned future arrangements.',
+    contenido: 'Present continuous tense to describe planned future arrangements.',
     titulo: 'Exploring Our Communities',
     tema: 'Tenses',
     pda: 'Recognize and use the present continuous tense to describe planned future arrangements, distinguishing it from ongoing actions.',
@@ -88,7 +86,7 @@ export const PDAS_INGLES_1 = [
       'Direct and indirect objects in sentences to enhance clarity and detail in descriptions.',
     titulo: "Nurse's Office",
     tema: 'Sentence structure',
-    pda: 'Identify and use direct and indirect objects in sentences, understanding their role as the recipient of the verb\'s action.',
+    pda: "Identify and use direct and indirect objects in sentences, understanding their role as the recipient of the verb's action.",
     materia: 'Inglés',
     grado: '1° Secundaria',
   },
@@ -136,8 +134,7 @@ export const PDAS_INGLES_1 = [
   },
   {
     secuencia: 14,
-    contenido:
-      'Present perfect tense to talk about personal experiences without specifying time.',
+    contenido: 'Present perfect tense to talk about personal experiences without specifying time.',
     titulo: 'DIY Maker Movement',
     tema: 'Tenses',
     pda: 'Recognize and use the present perfect tense to talk about personal experiences without mentioning when they happened, using phrases like "ever" and "never".',
@@ -208,8 +205,7 @@ export const PDAS_INGLES_1 = [
   },
   {
     secuencia: 21,
-    contenido:
-      'Comparative and superlative adjectives to compare people, places, and things.',
+    contenido: 'Comparative and superlative adjectives to compare people, places, and things.',
     titulo: 'Global Taste Test',
     tema: 'Adjectives',
     pda: 'Recognize and use comparative and superlative adjectives to describe differences and identify the highest in quality or quantity.',

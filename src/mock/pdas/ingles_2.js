@@ -157,8 +157,7 @@ export const PDAS_INGLES_2 = [
   // Block 6: Ideal Jobs
   {
     secuencia: 16,
-    contenido:
-      'Common verb-preposition combinations to express ideas clearly and accurately.',
+    contenido: 'Common verb-preposition combinations to express ideas clearly and accurately.',
     titulo: 'Preparing for Higher Education',
     tema: 'Verb patterns',
     pda: 'Understand and use common verb-preposition combinations accurately, focusing on selecting the correct preposition to follow specific verbs.',
@@ -167,8 +166,7 @@ export const PDAS_INGLES_2 = [
   },
   {
     secuencia: 17,
-    contenido:
-      'Phrasal verbs with multiple meanings, noting how context affects interpretation.',
+    contenido: 'Phrasal verbs with multiple meanings, noting how context affects interpretation.',
     titulo: 'Stepping into the World of Law',
     tema: 'Phrasal verbs',
     pda: 'Expand knowledge and use of phrasal verbs with multiple meanings, incorporating them naturally into speech and writing to enhance fluency.',
