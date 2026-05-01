@@ -32,7 +32,14 @@ export default function NavBar({ titulo, volver }) {
             </button>
           )}
           <div className="flex items-center gap-2">
-            <span className="text-xl font-bold text-gray-900">Kleo</span>
+            <button
+              onClick={() =>
+                router.push(rol === 'profesor' ? '/profesor' : rol === 'alumno' ? '/alumno' : '/')
+              }
+              className="text-xl font-bold text-gray-900 hover:text-amarillo transition-colors"
+            >
+              Kleo
+            </button>
             {titulo && (
               <>
                 <span className="text-gray-300">/</span>
