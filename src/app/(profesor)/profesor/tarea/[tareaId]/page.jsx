@@ -6,10 +6,12 @@ import NavBar from '@/components/layout/NavBar.jsx'
 import TablaResultadosAlumnos from '@/components/profesor/TablaResultadosAlumnos.jsx'
 import Badge from '@/components/ui/Badge.jsx'
 import Boton from '@/components/ui/Boton.jsx'
+import Modal from '@/components/ui/Modal.jsx'
 import Spinner from '@/components/ui/Spinner.jsx'
 import {
   calcularPromedio,
   useAlumnos,
+  useEliminarTarea,
   useGuardarCalificacionManual,
   usePublicarTarea,
   useTareasProfesor,
@@ -39,7 +41,9 @@ export default function DetalleTarea() {
 
   const { data: alumnos = [] } = useAlumnos(tarea?.clase_id)
   const publicarTareaMut = usePublicarTarea()
+  const eliminarTareaMut = useEliminarTarea()
   const guardarCalificacionManualMut = useGuardarCalificacionManual()
+  const [mostrarModalEliminar, setMostrarModalEliminar] = useState(false)
 
   const claseNombre = useMemo(() => {
     if (!tarea) return ''
@@ -177,6 +181,21 @@ export default function DetalleTarea() {
                     Exportar CSV
                   </Boton>
                 )}
+                <Boton
+                  variante="secundario"
+                  size="sm"
+                  className="!text-red-600 hover:!bg-red-50"
+                  onClick={() => setMostrarModalEliminar(true)}
+                >
+                  <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+                    <path
+                      fillRule="evenodd"
+                      d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  Eliminar
+                </Boton>
               </div>
             </div>
           </div>
@@ -287,6 +306,39 @@ export default function DetalleTarea() {
           </div>
         </div>
       </main>
+
+      <Modal
+        abierto={mostrarModalEliminar}
+        onCerrar={() => setMostrarModalEliminar(false)}
+        titulo="Eliminar tarea"
+      >
+        <p className="text-sm text-gray-600 mb-6">
+          ¿Estás seguro de que deseas eliminar{' '}
+          <span className="font-semibold text-gray-900">{tarea.nombre}</span>? Los resultados de
+          los alumnos asociados también serán eliminados. Esta acción no se puede deshacer.
+        </p>
+        <div className="flex justify-end gap-3">
+          <Boton
+            variante="secundario"
+            size="sm"
+            onClick={() => setMostrarModalEliminar(false)}
+          >
+            Cancelar
+          </Boton>
+          <Boton
+            variante="primario"
+            size="sm"
+            className="!bg-red-600 hover:!bg-red-700"
+            disabled={eliminarTareaMut.isPending}
+            onClick={async () => {
+              await eliminarTareaMut.mutateAsync(tarea.id)
+              router.push('/profesor')
+            }}
+          >
+            {eliminarTareaMut.isPending ? 'Eliminando...' : 'Eliminar'}
+          </Boton>
+        </div>
+      </Modal>
     </div>
   )
 }
