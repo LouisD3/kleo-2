@@ -160,6 +160,7 @@ export default function GenerarTarea() {
       setTareaGenerada(resultado.preguntas)
       setTareaGuardada(nueva)
       setToastVisible(true)
+      window.scrollTo(0, 0)
     }
   }
 
@@ -776,6 +777,7 @@ export default function GenerarTarea() {
                   onClick={() => {
                     setTareaGenerada(null)
                     setTareaGuardada(null)
+                    window.scrollTo(0, 0)
                   }}
                 >
                   Regenerar todo
