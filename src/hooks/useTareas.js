@@ -259,6 +259,37 @@ export function useEliminarTarea() {
   })
 }
 
+export function useEliminarClase() {
+  const queryClient = useQueryClient()
+  return useMutation({
+    mutationFn: async (claseId) => {
+      const { data: tareas } = await supabase.from('tareas').select('id').eq('clase_id', claseId)
+      const tareaIds = (tareas ?? []).map((t) => t.id)
+
+      if (tareaIds.length > 0) {
+        const { error: resError } = await supabase
+          .from('resultados')
+          .delete()
+          .in('tarea_id', tareaIds)
+        if (resError) throw resError
+
+        const { error: tarError } = await supabase.from('tareas').delete().eq('clase_id', claseId)
+        if (tarError) throw tarError
+      }
+
+      const { error: alError } = await supabase.from('alumnos').delete().eq('clase_id', claseId)
+      if (alError) throw alError
+
+      const { error } = await supabase.from('clases').delete().eq('id', claseId)
+      if (error) throw error
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['tareas'] })
+      queryClient.invalidateQueries({ queryKey: ['alumnos'] })
+    },
+  })
+}
+
 export function useEliminarAlumno() {
   const queryClient = useQueryClient()
   return useMutation({

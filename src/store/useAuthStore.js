@@ -226,6 +226,13 @@ const useAuthStore = create((set, get) => ({
       clases: [nuevaClase, ...state.clases],
     })),
 
+  eliminarClaseLocal: (claseId) =>
+    set((state) => {
+      const clases = state.clases.filter((c) => c.id !== claseId)
+      const clase = state.clase?.id === claseId ? (clases[0] ?? null) : state.clase
+      return { clases, clase }
+    }),
+
   cerrarSesion: async () => {
     const { rol } = get()
     if (rol === 'profesor') {

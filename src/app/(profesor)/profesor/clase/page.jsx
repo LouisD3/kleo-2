@@ -6,16 +6,22 @@ import NavBar from '@/components/layout/NavBar.jsx'
 import Boton from '@/components/ui/Boton.jsx'
 import MensajeError from '@/components/ui/MensajeError.jsx'
 import Modal from '@/components/ui/Modal.jsx'
-import { useAgregarAlumno, useAlumnos, useEliminarAlumno } from '@/hooks/useTareas.js'
+import {
+  useAgregarAlumno,
+  useAlumnos,
+  useEliminarAlumno,
+  useEliminarClase,
+} from '@/hooks/useTareas.js'
 import { supabase } from '@/lib/supabase.js'
 import useAuthStore from '@/store/useAuthStore.js'
 
 export default function GestionClase() {
   const _router = useRouter()
-  const { clase, profesor, setClase, agregarClaseLocal } = useAuthStore()
+  const { clase, profesor, setClase, agregarClaseLocal, eliminarClaseLocal } = useAuthStore()
   const { data: alumnos = [] } = useAlumnos(clase?.id)
   const agregarAlumnoMut = useAgregarAlumno()
   const eliminarAlumnoMut = useEliminarAlumno()
+  const eliminarClaseMut = useEliminarClase()
 
   const [clases, setClases] = useState([])
   const [nuevoAlumno, setNuevoAlumno] = useState('')
@@ -25,6 +31,7 @@ export default function GestionClase() {
   const [copiado, setCopiado] = useState(null)
   const [compartido, setCompartido] = useState(null)
   const [confirmEliminar, setConfirmEliminar] = useState(null)
+  const [confirmEliminarClase, setConfirmEliminarClase] = useState(false)
 
   const GRADOS = ['1° Secundaria', '2° Secundaria', '3° Secundaria']
 
@@ -112,6 +119,15 @@ export default function GestionClase() {
     setConfirmEliminar(null)
   }
 
+  async function handleEliminarClase() {
+    if (!clase) return
+    const claseId = clase.id
+    await eliminarClaseMut.mutateAsync(claseId)
+    setClases((prev) => prev.filter((c) => c.id !== claseId))
+    eliminarClaseLocal(claseId)
+    setConfirmEliminarClase(false)
+  }
+
   return (
     <div className="min-h-screen bg-gray-50">
       <NavBar titulo="Gestión de clase" volver="/profesor" />
@@ -158,6 +174,12 @@ export default function GestionClase() {
                     {clase.grado} · {alumnos.length} alumno{alumnos.length !== 1 ? 's' : ''}
                   </p>
                 </div>
+                <button
+                  onClick={() => setConfirmEliminarClase(true)}
+                  className="text-xs text-gray-400 hover:text-red-500 transition-colors px-2 py-1"
+                >
+                  Eliminar clase
+                </button>
               </div>
             </div>
 
@@ -321,6 +343,31 @@ export default function GestionClase() {
             Sí, eliminar
           </Boton>
           <Boton variante="secundario" onClick={() => setConfirmEliminar(null)}>
+            Cancelar
+          </Boton>
+        </div>
+      </Modal>
+
+      {/* Confirm delete class */}
+      <Modal
+        abierto={confirmEliminarClase}
+        onCerrar={() => setConfirmEliminarClase(false)}
+        titulo="Eliminar clase"
+      >
+        <p className="text-sm text-gray-600 mb-4">
+          ¿Estás seguro de que quieres eliminar <strong>{clase?.nombre}</strong>? Se eliminarán
+          también todos los alumnos, tareas y resultados asociados. Esta acción no se puede
+          deshacer.
+        </p>
+        <div className="flex gap-3">
+          <Boton
+            variante="peligro"
+            onClick={handleEliminarClase}
+            disabled={eliminarClaseMut.isPending}
+          >
+            {eliminarClaseMut.isPending ? 'Eliminando...' : 'Sí, eliminar'}
+          </Boton>
+          <Boton variante="secundario" onClick={() => setConfirmEliminarClase(false)}>
             Cancelar
           </Boton>
         </div>
