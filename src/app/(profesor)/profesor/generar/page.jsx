@@ -1,9 +1,11 @@
 'use client'
 
+import { pdf } from '@react-pdf/renderer'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import NavBar from '@/components/layout/NavBar.jsx'
 import EditorPreguntas from '@/components/profesor/EditorPreguntas.jsx'
+import TareaPDF from '@/components/profesor/TareaPDF.jsx'
 import Boton from '@/components/ui/Boton.jsx'
 import MensajeError from '@/components/ui/MensajeError.jsx'
 import Modal from '@/components/ui/Modal.jsx'
@@ -81,6 +83,7 @@ export default function GenerarTarea() {
   const [busquedaPDA, setBusquedaPDA] = useState('')
   const [clasesPublicar, setClasesPublicar] = useState(clases?.length ? [clases[0].id] : [])
   const [publicando, setPublicando] = useState(false)
+  const [descargandoPDF, setDescargandoPDF] = useState(null)
   const [toastVisible, setToastVisible] = useState(false)
   const inicializado = useRef(false)
 
@@ -262,6 +265,35 @@ export default function GenerarTarea() {
       setTareaGenerada(nuevas)
     }
     setModificandoIndice(null)
+  }
+
+  async function handleDescargarPDF(conRespuestas) {
+    if (!tareaGenerada) return
+    const key = conRespuestas ? 'corrige' : 'examen'
+    setDescargandoPDF(key)
+    try {
+      const tareaPDF = {
+        nombre: form.nombre || 'Tarea',
+        materia: form.materia,
+        dificultad: form.dificultad,
+        metodologia: form.metodologia,
+        preguntas: tareaGenerada,
+        created_at: tareaGuardada?.created_at ?? new Date().toISOString(),
+      }
+      const claseNombre = clases?.length > 0 ? `${clases[0].nombre} · ${clases[0].grado}` : ''
+      const blob = await pdf(
+        <TareaPDF tarea={tareaPDF} claseNombre={claseNombre} showAnswers={conRespuestas} />,
+      ).toBlob()
+      const url = URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      a.href = url
+      const suffix = conRespuestas ? 'respuestas' : 'examen'
+      a.download = `${(form.nombre || 'Tarea').replace(/[^a-zA-Z0-9áéíóúñÁÉÍÓÚÑ ]/g, '')}_${suffix}.pdf`
+      a.click()
+      URL.revokeObjectURL(url)
+    } finally {
+      setDescargandoPDF(null)
+    }
   }
 
   const METODO_DESC = {
@@ -657,93 +689,128 @@ export default function GenerarTarea() {
 
             <MensajeError mensaje={error} onCerrar={() => setError(null)} />
 
-            {/* Publish CTA block */}
-            {clases.length > 0 && (
-              <div className="card p-6 border-2 border-gray-200">
-                <h3 className="font-semibold text-gray-900 mb-1">Publicar tarea</h3>
-                <p className="text-xs text-gray-400 mb-4">
-                  Una vez publicada, la tarea será visible para los alumnos de las clases
-                  seleccionadas.
-                </p>
-                {clases.length > 1 && (
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    <button
-                      type="button"
-                      onClick={() =>
-                        setClasesPublicar(
-                          clasesPublicar.length === clases.length ? [] : clases.map((c) => c.id),
-                        )
-                      }
-                      className={`px-4 py-2 rounded-xl text-sm font-medium border transition-all ${
-                        clasesPublicar.length === clases.length
-                          ? 'border-gray-900 bg-gray-900 text-white'
-                          : 'border-gray-200 text-gray-600 hover:border-gray-300'
-                      }`}
+            {/* Actions block */}
+            <div className="card p-6 space-y-4">
+              {clases.length > 0 && (
+                <>
+                  <div>
+                    <h3 className="font-semibold text-gray-900 mb-1">Publicar tarea</h3>
+                    <p className="text-xs text-gray-400 mb-4">
+                      Una vez publicada, la tarea será visible para los alumnos de las clases
+                      seleccionadas.
+                    </p>
+                    {clases.length > 1 && (
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        <button
+                          type="button"
+                          onClick={() =>
+                            setClasesPublicar(
+                              clasesPublicar.length === clases.length
+                                ? []
+                                : clases.map((c) => c.id),
+                            )
+                          }
+                          className={`px-4 py-2 rounded-xl text-sm font-medium border transition-all ${
+                            clasesPublicar.length === clases.length
+                              ? 'border-gray-900 bg-gray-900 text-white'
+                              : 'border-gray-200 text-gray-600 hover:border-gray-300'
+                          }`}
+                        >
+                          Todas
+                        </button>
+                        {clases.map((c) => (
+                          <button
+                            key={c.id}
+                            type="button"
+                            onClick={() => toggleClasePublicar(c.id)}
+                            className={`px-4 py-2 rounded-xl text-sm font-medium border transition-all ${
+                              clasesPublicar.includes(c.id)
+                                ? 'border-gray-900 bg-gray-900 text-white'
+                                : 'border-gray-200 text-gray-600 hover:border-gray-300'
+                            }`}
+                          >
+                            {c.nombre}
+                            <span className="text-xs opacity-60 ml-1">· {c.grado}</span>
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                    <Boton
+                      variante="primario"
+                      size="lg"
+                      onClick={handlePublicar}
+                      disabled={clasesPublicar.length === 0 || publicando}
+                      className="w-full"
                     >
-                      Todas
-                    </button>
-                    {clases.map((c) => (
-                      <button
-                        key={c.id}
-                        type="button"
-                        onClick={() => toggleClasePublicar(c.id)}
-                        className={`px-4 py-2 rounded-xl text-sm font-medium border transition-all ${
-                          clasesPublicar.includes(c.id)
-                            ? 'border-gray-900 bg-gray-900 text-white'
-                            : 'border-gray-200 text-gray-600 hover:border-gray-300'
-                        }`}
-                      >
-                        {c.nombre}
-                        <span className="text-xs opacity-60 ml-1">· {c.grado}</span>
-                      </button>
-                    ))}
+                      {publicando ? (
+                        <>
+                          <Spinner size="sm" />
+                          Publicando...
+                        </>
+                      ) : (
+                        <>
+                          <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+                            <path
+                              fillRule="evenodd"
+                              d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z"
+                              clipRule="evenodd"
+                            />
+                          </svg>
+                          {clasesPublicar.length > 1
+                            ? `Publicar en ${clasesPublicar.length} clases`
+                            : 'Publicar tarea'}
+                        </>
+                      )}
+                    </Boton>
                   </div>
-                )}
+                  <div className="border-t border-gray-100" />
+                </>
+              )}
+              <div className="flex flex-wrap gap-3">
+                <Boton variante="secundario" size="md" onClick={() => router.push('/profesor')}>
+                  Guardar y volver
+                </Boton>
                 <Boton
-                  variante="primario"
-                  size="lg"
-                  onClick={handlePublicar}
-                  disabled={clasesPublicar.length === 0 || publicando}
-                  className="w-full"
+                  variante="secundario"
+                  size="md"
+                  onClick={() => {
+                    setTareaGenerada(null)
+                    setTareaGuardada(null)
+                  }}
                 >
-                  {publicando ? (
-                    <>
-                      <Spinner size="sm" />
-                      Publicando...
-                    </>
-                  ) : (
-                    <>
-                      <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
-                        <path
-                          fillRule="evenodd"
-                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                      {clasesPublicar.length > 1
-                        ? `Publicar en ${clasesPublicar.length} clases`
-                        : 'Publicar tarea'}
-                    </>
-                  )}
+                  Regenerar todo
+                </Boton>
+                <Boton
+                  variante="secundario"
+                  size="md"
+                  disabled={descargandoPDF === 'examen'}
+                  onClick={() => handleDescargarPDF(false)}
+                >
+                  <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+                    <path
+                      fillRule="evenodd"
+                      d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  {descargandoPDF === 'examen' ? 'Generando...' : 'Examen PDF'}
+                </Boton>
+                <Boton
+                  variante="secundario"
+                  size="md"
+                  disabled={descargandoPDF === 'corrige'}
+                  onClick={() => handleDescargarPDF(true)}
+                >
+                  <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+                    <path
+                      fillRule="evenodd"
+                      d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  {descargandoPDF === 'corrige' ? 'Generando...' : 'Respuestas PDF'}
                 </Boton>
               </div>
-            )}
-
-            {/* Secondary actions */}
-            <div className="flex gap-3">
-              <Boton variante="secundario" size="md" onClick={() => router.push('/profesor')}>
-                Guardar y volver
-              </Boton>
-              <Boton
-                variante="secundario"
-                size="md"
-                onClick={() => {
-                  setTareaGenerada(null)
-                  setTareaGuardada(null)
-                }}
-              >
-                Regenerar todo
-              </Boton>
             </div>
           </div>
         )}
