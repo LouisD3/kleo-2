@@ -49,11 +49,24 @@ export const TAREAS_MOCK = [
         },
         calificacion: 9,
         retroalimentacion: [
-          { indice_pregunta: 0, correcta: true, comentario: 'Excelente procedimiento y resultado correcto.' },
-          { indice_pregunta: 1, correcta: true, comentario: 'Correcto, 11/12 es la respuesta exacta.' },
+          {
+            indice_pregunta: 0,
+            correcta: true,
+            comentario: 'Excelente procedimiento y resultado correcto.',
+          },
+          {
+            indice_pregunta: 1,
+            correcta: true,
+            comentario: 'Correcto, 11/12 es la respuesta exacta.',
+          },
           { indice_pregunta: 2, correcta: true, comentario: 'Muy bien planteado.' },
           { indice_pregunta: 3, correcta: true, comentario: 'Correcto.' },
-          { indice_pregunta: 4, correcta: false, comentario: 'El resultado es correcto pero faltó mostrar el paso de convertir 1/3 a 2/6.' },
+          {
+            indice_pregunta: 4,
+            correcta: false,
+            comentario:
+              'El resultado es correcto pero faltó mostrar el paso de convertir 1/3 a 2/6.',
+          },
         ],
         areas_de_mejora: ['Mostrar todos los pasos intermedios en operaciones con fracciones'],
         fechaEntrega: '2026-04-12',
@@ -69,13 +82,25 @@ export const TAREAS_MOCK = [
         },
         calificacion: 7,
         retroalimentacion: [
-          { indice_pregunta: 0, correcta: true, comentario: 'Correcto, aunque podrías simplificar a 1 y 1/2.' },
-          { indice_pregunta: 1, correcta: false, comentario: 'La respuesta es B (11/12). Para sumar fracciones con distinto denominador debes encontrar el mínimo común múltiplo.' },
+          {
+            indice_pregunta: 0,
+            correcta: true,
+            comentario: 'Correcto, aunque podrías simplificar a 1 y 1/2.',
+          },
+          {
+            indice_pregunta: 1,
+            correcta: false,
+            comentario:
+              'La respuesta es B (11/12). Para sumar fracciones con distinto denominador debes encontrar el mínimo común múltiplo.',
+          },
           { indice_pregunta: 2, correcta: true, comentario: 'Correcto.' },
           { indice_pregunta: 3, correcta: true, comentario: 'Bien hecho.' },
           { indice_pregunta: 4, correcta: true, comentario: 'Resultado correcto.' },
         ],
-        areas_de_mejora: ['Suma de fracciones con denominadores distintos', 'Uso del mínimo común múltiplo'],
+        areas_de_mejora: [
+          'Suma de fracciones con denominadores distintos',
+          'Uso del mínimo común múltiplo',
+        ],
         fechaEntrega: '2026-04-12',
       },
       'alumno-3': {
@@ -89,13 +114,25 @@ export const TAREAS_MOCK = [
         },
         calificacion: 8,
         retroalimentacion: [
-          { indice_pregunta: 0, correcta: true, comentario: 'Correcto, pero recuerda mostrar el procedimiento con fracciones.' },
+          {
+            indice_pregunta: 0,
+            correcta: true,
+            comentario: 'Correcto, pero recuerda mostrar el procedimiento con fracciones.',
+          },
           { indice_pregunta: 1, correcta: true, comentario: '¡Muy bien!' },
           { indice_pregunta: 2, correcta: true, comentario: 'Correcto.' },
-          { indice_pregunta: 3, correcta: false, comentario: 'La fracción equivalente a 6/8 es 3/4 (opción B), al simplificar dividiendo ambos entre 2.' },
+          {
+            indice_pregunta: 3,
+            correcta: false,
+            comentario:
+              'La fracción equivalente a 6/8 es 3/4 (opción B), al simplificar dividiendo ambos entre 2.',
+          },
           { indice_pregunta: 4, correcta: true, comentario: 'Correcto.' },
         ],
-        areas_de_mejora: ['Simplificación de fracciones', 'Presentar procedimientos algebraicos completos'],
+        areas_de_mejora: [
+          'Simplificación de fracciones',
+          'Presentar procedimientos algebraicos completos',
+        ],
         fechaEntrega: '2026-04-13',
       },
     },
@@ -118,22 +155,30 @@ export const TAREAS_MOCK = [
       {
         tipo: 'opcion_multiple',
         pregunta: '¿Quién fue el presidente que derrocó Madero mediante un golpe de estado?',
-        opciones: ['A. Venustiano Carranza', 'B. Victoriano Huerta', 'C. Porfirio Díaz', 'D. Álvaro Obregón'],
+        opciones: [
+          'A. Venustiano Carranza',
+          'B. Victoriano Huerta',
+          'C. Porfirio Díaz',
+          'D. Álvaro Obregón',
+        ],
         respuesta: 'B',
       },
       {
         tipo: 'espacios',
-        pregunta: 'El Plan de ___ fue el documento que convocó al pueblo mexicano a levantarse en armas contra Porfirio Díaz.',
+        pregunta:
+          'El Plan de ___ fue el documento que convocó al pueblo mexicano a levantarse en armas contra Porfirio Díaz.',
         respuesta: 'San Luis',
       },
       {
         tipo: 'verdadero_falso',
-        pregunta: 'Emiliano Zapata luchó principalmente por los derechos de los campesinos y la reforma agraria.',
+        pregunta:
+          'Emiliano Zapata luchó principalmente por los derechos de los campesinos y la reforma agraria.',
         respuesta: true,
       },
       {
         tipo: 'opcion_multiple',
-        pregunta: '¿En qué año se promulgó la Constitución Política de los Estados Unidos Mexicanos que surgió de la Revolución?',
+        pregunta:
+          '¿En qué año se promulgó la Constitución Política de los Estados Unidos Mexicanos que surgió de la Revolución?',
         opciones: ['A. 1910', 'B. 1913', 'C. 1917', 'D. 1920'],
         respuesta: 'C',
       },
@@ -150,10 +195,22 @@ export const TAREAS_MOCK = [
         },
         calificacion: 10,
         retroalimentacion: [
-          { indice_pregunta: 0, correcta: true, comentario: '¡Correcto! 1910 es el año de inicio.' },
+          {
+            indice_pregunta: 0,
+            correcta: true,
+            comentario: '¡Correcto! 1910 es el año de inicio.',
+          },
           { indice_pregunta: 1, correcta: true, comentario: 'Exacto, fue Victoriano Huerta.' },
-          { indice_pregunta: 2, correcta: true, comentario: '¡Muy bien! El Plan de San Luis Potosí.' },
-          { indice_pregunta: 3, correcta: true, comentario: 'Correcto, Zapata fue el líder agrario.' },
+          {
+            indice_pregunta: 2,
+            correcta: true,
+            comentario: '¡Muy bien! El Plan de San Luis Potosí.',
+          },
+          {
+            indice_pregunta: 3,
+            correcta: true,
+            comentario: 'Correcto, Zapata fue el líder agrario.',
+          },
           { indice_pregunta: 4, correcta: true, comentario: '¡Perfecto! La Constitución de 1917.' },
         ],
         areas_de_mejora: [],

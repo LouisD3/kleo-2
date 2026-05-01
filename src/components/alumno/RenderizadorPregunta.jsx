@@ -1,3 +1,4 @@
+'use client'
 export default function RenderizadorPregunta({ pregunta, indice, respuesta, onChange }) {
   const { tipo, pregunta: enunciado, opciones } = pregunta
 
@@ -92,9 +93,7 @@ export default function RenderizadorPregunta({ pregunta, indice, respuesta, onCh
         />
       )}
 
-      {tipo === 'espacios' && (
-        <div className="ml-10">{renderEspacios()}</div>
-      )}
+      {tipo === 'espacios' && <div className="ml-10">{renderEspacios()}</div>}
     </div>
   )
 }

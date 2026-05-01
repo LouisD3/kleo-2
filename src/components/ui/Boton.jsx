@@ -1,3 +1,24 @@
+'use client'
+
+import { Button } from '@/components/ui/button'
+import { cn } from '@/lib/utils'
+
+const VARIANTE_MAP = {
+  primario: 'default',
+  secundario: 'outline',
+  peligro: 'destructive',
+  fantasma: 'ghost',
+}
+
+const SIZE_MAP = {
+  sm: 'sm',
+  md: 'default',
+  lg: 'lg',
+}
+
+const PRIMARIO_CLASSES =
+  'bg-amarillo hover:bg-amarillo-hover text-gray-900 border-amarillo focus-visible:ring-amarillo shadow-sm hover:shadow-md active:scale-95'
+
 export default function Boton({
   children,
   onClick,
@@ -7,34 +28,27 @@ export default function Boton({
   className = '',
   size = 'md',
 }) {
-  const base =
-    'inline-flex items-center justify-center gap-2 font-semibold rounded-xl transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed'
-
-  const sizes = {
-    sm: 'px-3 py-1.5 text-sm',
-    md: 'px-5 py-2.5 text-sm',
-    lg: 'px-7 py-3 text-base',
-  }
-
-  const variantes = {
-    primario:
-      'bg-amarillo hover:bg-amarillo-hover text-gray-900 focus:ring-amarillo shadow-sm hover:shadow-md active:scale-95',
-    secundario:
-      'bg-white hover:bg-gray-50 text-gray-700 border border-gray-200 focus:ring-gray-300 shadow-sm hover:shadow active:scale-95',
-    peligro:
-      'bg-red-50 hover:bg-red-100 text-red-700 border border-red-200 focus:ring-red-300 active:scale-95',
-    fantasma:
-      'bg-transparent hover:bg-gray-100 text-gray-600 focus:ring-gray-200 active:scale-95',
-  }
+  const variant = VARIANTE_MAP[variante] ?? 'default'
+  const mappedSize = SIZE_MAP[size] ?? 'default'
 
   return (
-    <button
+    <Button
       type={type}
       onClick={onClick}
       disabled={disabled}
-      className={`${base} ${sizes[size]} ${variantes[variante]} ${className}`}
+      variant={variant}
+      size={mappedSize}
+      className={cn(
+        'rounded-xl gap-2 font-semibold active:scale-95',
+        variante === 'primario' && PRIMARIO_CLASSES,
+        variante === 'peligro' && 'bg-red-50 hover:bg-red-100 text-red-700 border-red-200',
+        size === 'sm' && 'px-3 py-1.5 h-auto text-sm',
+        size === 'md' && 'px-5 py-2.5 h-auto text-sm',
+        size === 'lg' && 'px-7 py-3 h-auto text-base',
+        className,
+      )}
     >
       {children}
-    </button>
+    </Button>
   )
 }

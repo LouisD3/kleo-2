@@ -1,6 +1,8 @@
+'use client'
+
 import { useState } from 'react'
 
-const API_URL = import.meta.env.VITE_API_URL ?? '/api'
+const API_URL = '/api'
 
 export function useAnthropicAPI() {
   const [cargando, setCargando] = useState(false)
@@ -26,7 +28,7 @@ export function useAnthropicAPI() {
       }
 
       return datos
-    } catch (err) {
+    } catch (_err) {
       setError('No se pudo conectar con el servidor. Verifica tu conexión a internet.')
       return null
     } finally {

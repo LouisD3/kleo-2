@@ -1,9 +1,19 @@
-import { Navigate } from 'react-router-dom'
+'use client'
+
+import { useRouter } from 'next/navigation'
+import { useEffect } from 'react'
 import useAuthStore from '../../store/useAuthStore.js'
 import Spinner from '../ui/Spinner.jsx'
 
 export default function ProtectedRoute({ children, requiere }) {
   const { rol, cargando } = useAuthStore()
+  const router = useRouter()
+
+  useEffect(() => {
+    if (!cargando && (!rol || (requiere && rol !== requiere))) {
+      router.replace('/')
+    }
+  }, [cargando, rol, requiere, router])
 
   if (cargando) {
     return (
@@ -13,8 +23,7 @@ export default function ProtectedRoute({ children, requiere }) {
     )
   }
 
-  if (!rol) return <Navigate to="/" replace />
-  if (requiere && rol !== requiere) return <Navigate to="/" replace />
+  if (!rol || (requiere && rol !== requiere)) return null
 
   return children
 }

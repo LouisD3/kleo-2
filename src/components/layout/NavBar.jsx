@@ -1,13 +1,15 @@
-import { useNavigate } from 'react-router-dom'
+'use client'
+
+import { useRouter } from 'next/navigation'
 import useAuthStore from '../../store/useAuthStore.js'
 
 export default function NavBar({ titulo, volver }) {
-  const navigate = useNavigate()
+  const router = useRouter()
   const { rol, profesor, alumno, cerrarSesion } = useAuthStore()
 
   async function handleSalir() {
     await cerrarSesion()
-    navigate('/')
+    router.push('/')
   }
 
   return (
@@ -16,7 +18,7 @@ export default function NavBar({ titulo, volver }) {
         <div className="flex items-center gap-3">
           {volver && (
             <button
-              onClick={() => navigate(volver)}
+              onClick={() => router.push(volver)}
               className="p-1.5 rounded-lg text-gray-400 hover:text-gray-700 hover:bg-gray-100 transition-colors"
               aria-label="Volver"
             >
