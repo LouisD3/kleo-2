@@ -314,15 +314,11 @@ export default function DetalleTarea() {
       >
         <p className="text-sm text-gray-600 mb-6">
           ¿Estás seguro de que deseas eliminar{' '}
-          <span className="font-semibold text-gray-900">{tarea.nombre}</span>? Los resultados de
-          los alumnos asociados también serán eliminados. Esta acción no se puede deshacer.
+          <span className="font-semibold text-gray-900">{tarea.nombre}</span>? Los resultados de los
+          alumnos asociados también serán eliminados. Esta acción no se puede deshacer.
         </p>
         <div className="flex justify-end gap-3">
-          <Boton
-            variante="secundario"
-            size="sm"
-            onClick={() => setMostrarModalEliminar(false)}
-          >
+          <Boton variante="secundario" size="sm" onClick={() => setMostrarModalEliminar(false)}>
             Cancelar
           </Boton>
           <Boton

@@ -247,10 +247,7 @@ export function useEliminarTarea() {
   const queryClient = useQueryClient()
   return useMutation({
     mutationFn: async (tareaId) => {
-      const { error: resError } = await supabase
-        .from('resultados')
-        .delete()
-        .eq('tarea_id', tareaId)
+      const { error: resError } = await supabase.from('resultados').delete().eq('tarea_id', tareaId)
       if (resError) throw resError
 
       const { error } = await supabase.from('tareas').delete().eq('id', tareaId)
