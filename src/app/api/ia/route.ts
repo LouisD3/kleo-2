@@ -140,6 +140,8 @@ function promptGenerar({
       'Las preguntas deben ser de rappel directo: definiciones exactas, fechas, nombres, fórmulas o hechos concretos que el alumno debe restituir de memoria.',
     'Resolución de problemas':
       'Las preguntas deben plantear situaciones prácticas con contexto real. El alumno debe mostrar sus pasos intermedios y el proceso de razonamiento, no solo el resultado final.',
+    'Práctica directa':
+      'Genera ejercicios directos, cortos y sin contexto narrativo. Sin escenarios, sin historias, sin personajes. Solo la operación, el ejercicio o la pregunta puntual que el alumno debe resolver. Ejemplo para matemáticas: "3/4 + 1/2 = ___" en vez de "Don Pepe tiene una panadería y necesita calcular…".',
   }
 
   const instruccionMet =

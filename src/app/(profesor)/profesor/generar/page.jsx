@@ -34,7 +34,7 @@ const MATERIAS = [
 ]
 const GRADOS = ['1° Secundaria', '2° Secundaria', '3° Secundaria']
 const DIFICULTADES = ['Fácil', 'Media', 'Difícil']
-const METODOLOGIAS = ['Feynman', 'Memorización activa', 'Resolución de problemas']
+const METODOLOGIAS = ['Feynman', 'Memorización activa', 'Resolución de problemas', 'Práctica directa']
 const TIPOS_EJERCICIO = [
   'Preguntas abiertas',
   'Opción múltiple',
@@ -304,6 +304,8 @@ export default function GenerarTarea() {
     Feynman: 'Las preguntas pedirán explicar el concepto con palabras propias.',
     'Memorización activa': 'Preguntas de rappel directo: definiciones, fechas y hechos.',
     'Resolución de problemas': 'Situaciones prácticas con contexto real y pasos intermedios.',
+    'Práctica directa':
+      'Ejercicios cortos y directos, sin contexto narrativo. Ej: "2/3 + 1/4 = ___"',
   }
 
   const pdasDeMateria = useMemo(
