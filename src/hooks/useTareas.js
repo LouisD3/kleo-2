@@ -243,6 +243,22 @@ export function useAgregarAlumno() {
   })
 }
 
+export function useEliminarTarea() {
+  const queryClient = useQueryClient()
+  return useMutation({
+    mutationFn: async (tareaId) => {
+      const { error: resError } = await supabase.from('resultados').delete().eq('tarea_id', tareaId)
+      if (resError) throw resError
+
+      const { error } = await supabase.from('tareas').delete().eq('id', tareaId)
+      if (error) throw error
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['tareas'] })
+    },
+  })
+}
+
 export function useEliminarAlumno() {
   const queryClient = useQueryClient()
   return useMutation({

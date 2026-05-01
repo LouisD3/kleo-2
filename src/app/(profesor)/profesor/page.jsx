@@ -6,7 +6,7 @@ import NavBar from '@/components/layout/NavBar.jsx'
 import TablaTareas from '@/components/profesor/TablaTareas.jsx'
 import Boton from '@/components/ui/Boton.jsx'
 import Spinner from '@/components/ui/Spinner.jsx'
-import { useTareasProfesor } from '@/hooks/useTareas.js'
+import { useEliminarTarea, useTareasProfesor } from '@/hooks/useTareas.js'
 import useAuthStore from '@/store/useAuthStore.js'
 
 export default function DashboardProfesor() {
@@ -16,6 +16,7 @@ export default function DashboardProfesor() {
   const tareas = data?.tareas ?? []
   const resultados = data?.resultados ?? {}
 
+  const eliminarTareaMut = useEliminarTarea()
   const [filtroClases, setFiltroClases] = useState([])
 
   const clasesMap = useMemo(() => {
@@ -130,7 +131,13 @@ export default function DashboardProfesor() {
           </div>
         ) : (
           <div className="card p-0 overflow-hidden">
-            <TablaTareas tareas={tareasFiltradas} clasesMap={clasesMap} resultados={resultados} />
+            <TablaTareas
+              tareas={tareasFiltradas}
+              clasesMap={clasesMap}
+              resultados={resultados}
+              onEliminar={(id) => eliminarTareaMut.mutateAsync(id)}
+              eliminando={eliminarTareaMut.isPending}
+            />
           </div>
         )}
       </main>
