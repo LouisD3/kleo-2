@@ -1,8 +1,9 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import NavBar from '@/components/layout/NavBar.jsx'
+import EditorPreguntas from '@/components/profesor/EditorPreguntas.jsx'
 import Boton from '@/components/ui/Boton.jsx'
 import MensajeError from '@/components/ui/MensajeError.jsx'
 import Modal from '@/components/ui/Modal.jsx'
@@ -35,6 +36,13 @@ const TIPOS_EJERCICIO = [
   'Cálculo/Resolución de problemas',
   'Ejercicio mixto',
 ]
+const TIPO_INVERSO = {
+  opcion_multiple: 'Opción múltiple',
+  verdadero_falso: 'Verdadero/Falso',
+  abierta: 'Preguntas abiertas',
+  espacios: 'Completar espacios en blanco',
+  calculo: 'Cálculo/Resolución de problemas',
+}
 
 export default function GenerarTarea() {
   const router = useRouter()
@@ -59,8 +67,7 @@ export default function GenerarTarea() {
 
   const [tareaGenerada, setTareaGenerada] = useState(null)
   const [tareaGuardada, setTareaGuardada] = useState(null)
-  const [editando, setEditando] = useState(false)
-  const [textoEdicion, setTextoEdicion] = useState('')
+  const [regenerandoIndice, setRegenerandoIndice] = useState(null)
   const [modalPDAabierto, setModalPDAabierto] = useState(false)
   const [busquedaPDA, setBusquedaPDA] = useState('')
   const [clasesPublicar, setClasesPublicar] = useState(clases?.length ? [clases[0].id] : [])
@@ -160,28 +167,49 @@ export default function GenerarTarea() {
     router.push('/profesor')
   }
 
-  function handleIniciarEdicion() {
-    setTextoEdicion(tareaGenerada.map((p, i) => `${i + 1}. ${p.pregunta}`).join('\n\n'))
-    setEditando(true)
-  }
+  // Auto-save preguntas when they change
+  const prevPreguntasRef = useRef(null)
+  useEffect(() => {
+    if (!tareaGuardada || !tareaGenerada) return
+    // Skip the initial render
+    if (prevPreguntasRef.current === null) {
+      prevPreguntasRef.current = tareaGenerada
+      return
+    }
+    if (prevPreguntasRef.current === tareaGenerada) return
+    prevPreguntasRef.current = tareaGenerada
 
-  async function handleGuardarEdicion() {
-    const lineas = textoEdicion.split('\n').filter((l) => l.trim())
-    const preguntasEditadas = tareaGenerada.map((p, i) => {
-      const lineaEncontrada = lineas.find((l) => l.startsWith(`${i + 1}.`))
-      const nuevaPregunta = lineaEncontrada
-        ? lineaEncontrada.replace(/^\d+\.\s*/, '').trim()
-        : p.pregunta
-      return { ...p, pregunta: nuevaPregunta }
-    })
-    setTareaGenerada(preguntasEditadas)
-    if (tareaGuardada) {
+    const timer = setTimeout(async () => {
       await actualizarTarea.mutateAsync({
         id: tareaGuardada.id,
-        cambios: { preguntas: preguntasEditadas },
+        cambios: { preguntas: tareaGenerada },
       })
+      setToastVisible(true)
+    }, 1000)
+    return () => clearTimeout(timer)
+  }, [tareaGenerada, tareaGuardada, actualizarTarea, setToastVisible])
+
+  async function handleRegenerarPregunta(indice) {
+    if (regenerandoIndice !== null) return
+    setRegenerandoIndice(indice)
+    const preguntaActual = tareaGenerada[indice]
+
+    const resultado = await generarTarea({
+      materia: form.materia,
+      dificultad: form.dificultad,
+      metodologia: form.metodologia,
+      tipos: [TIPO_INVERSO[preguntaActual.tipo] ?? 'Preguntas abiertas'],
+      numeroPreguntas: 1,
+      pda: form.pdas.length > 0 ? form.pdas : null,
+      instrucciones: form.instrucciones.trim() || null,
+    })
+
+    if (resultado?.preguntas?.[0]) {
+      const nuevas = [...tareaGenerada]
+      nuevas[indice] = resultado.preguntas[0]
+      setTareaGenerada(nuevas)
     }
-    setEditando(false)
+    setRegenerandoIndice(null)
   }
 
   const METODO_DESC = {
@@ -526,95 +554,12 @@ export default function GenerarTarea() {
               </div>
             </div>
 
-            {editando ? (
-              <div className="card p-6">
-                <label className="label-base">Editar preguntas</label>
-                <p className="text-xs text-gray-400 mb-3">
-                  Modifica el texto de las preguntas. Los tipos y respuestas se conservan.
-                </p>
-                <textarea
-                  value={textoEdicion}
-                  onChange={(e) => setTextoEdicion(e.target.value)}
-                  rows={tareaGenerada.length * 3}
-                  className="input-base font-mono text-xs resize-none"
-                />
-                <div className="flex gap-3 mt-4">
-                  <Boton variante="primario" onClick={handleGuardarEdicion} size="sm">
-                    Guardar cambios
-                  </Boton>
-                  <Boton variante="secundario" onClick={() => setEditando(false)} size="sm">
-                    Cancelar
-                  </Boton>
-                </div>
-              </div>
-            ) : (
-              <div className="space-y-3">
-                <div className="flex items-start gap-2 p-3 bg-blue-50 border border-blue-200 rounded-lg">
-                  <svg
-                    className="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  <p className="text-xs text-blue-700">
-                    Las respuestas modelo son solo para ti. Los alumnos no las verán al realizar la
-                    tarea.
-                  </p>
-                </div>
-                {tareaGenerada.map((p, i) => (
-                  <div key={i} className="card p-5">
-                    <div className="flex items-start gap-3">
-                      <span className="flex-shrink-0 inline-flex items-center justify-center w-6 h-6 rounded-full bg-gray-100 text-xs font-bold text-gray-600">
-                        {i + 1}
-                      </span>
-                      <div className="flex-1 min-w-0">
-                        <span className="text-xs font-medium text-gray-400 uppercase tracking-wide block mb-1">
-                          {etiquetaTipo(p.tipo)}
-                        </span>
-                        <p className="text-sm text-gray-800">{p.pregunta}</p>
-                        {p.opciones && (
-                          <ul className="mt-2 space-y-1">
-                            {p.opciones.map((op, j) => (
-                              <li
-                                key={j}
-                                className={`text-xs px-2 py-1 rounded ${op.startsWith(p.respuesta) ? 'bg-green-50 text-green-700 font-medium' : 'text-gray-500'}`}
-                              >
-                                {op}
-                              </li>
-                            ))}
-                          </ul>
-                        )}
-                        {p.tipo === 'verdadero_falso' && (
-                          <span className="mt-2 inline-block text-xs font-medium text-gray-500">
-                            Respuesta: <strong>{p.respuesta ? 'Verdadero' : 'Falso'}</strong>
-                          </span>
-                        )}
-                        {p.tipo === 'espacios' && p.respuesta && (
-                          <span className="mt-2 inline-block text-xs font-medium text-gray-500">
-                            Respuesta: <strong>{p.respuesta}</strong>
-                          </span>
-                        )}
-                        {(p.tipo === 'abierta' || p.tipo === 'calculo') && p.respuesta && (
-                          <div className="mt-2 p-2 bg-green-50 border border-green-200 rounded-lg">
-                            <p className="text-xs font-semibold text-green-700 mb-1">
-                              Respuesta modelo
-                            </p>
-                            <p className="text-xs text-green-900 whitespace-pre-line">
-                              {p.respuesta}
-                            </p>
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
+            <EditorPreguntas
+              preguntas={tareaGenerada}
+              onPreguntasChange={setTareaGenerada}
+              onRegenerarPregunta={handleRegenerarPregunta}
+              regenerandoIndice={regenerandoIndice}
+            />
 
             {/* Selector de clases para publicar */}
             {clases.length > 0 && (
@@ -668,14 +613,6 @@ export default function GenerarTarea() {
             <MensajeError mensaje={error} onCerrar={() => setError(null)} />
 
             <div className="flex flex-col sm:flex-row gap-3">
-              {!editando && (
-                <Boton variante="secundario" size="lg" onClick={handleIniciarEdicion}>
-                  <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
-                    <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
-                  </svg>
-                  Modificar
-                </Boton>
-              )}
               <Boton
                 variante="secundario"
                 size="lg"
@@ -835,15 +772,4 @@ export default function GenerarTarea() {
       </Modal>
     </div>
   )
-}
-
-function etiquetaTipo(tipo) {
-  const mapa = {
-    opcion_multiple: 'Opción múltiple',
-    verdadero_falso: 'Verdadero / Falso',
-    abierta: 'Pregunta abierta',
-    espacios: 'Completar espacios',
-    calculo: 'Cálculo',
-  }
-  return mapa[tipo] ?? tipo
 }
