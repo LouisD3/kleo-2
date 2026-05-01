@@ -12,7 +12,7 @@ const generarPayloadSchema = z.object({
   dificultad: z.enum(['Fácil', 'Media', 'Difícil']),
   metodologia: z.enum(['Feynman', 'Memorización activa', 'Resolución de problemas']),
   tipos: z.array(z.string().min(1)).min(1, 'Selecciona al menos un tipo de ejercicio'),
-  numeroPreguntas: z.number().int().min(3).max(20),
+  numeroPreguntas: z.number().int().min(1).max(20),
   pda: z.union([pdaItemSchema, z.array(pdaItemSchema).max(5)]).optional(),
   instrucciones: z.string().nullable().optional(),
 })
@@ -36,9 +36,17 @@ const corregirPayloadSchema = z.object({
   ]),
 })
 
+const modificarPayloadSchema = z.object({
+  pregunta: preguntaSchema,
+  instruccion: z.string().min(1, 'La instrucción es requerida'),
+  materia: z.string().min(1),
+  dificultad: z.enum(['Fácil', 'Media', 'Difícil']),
+})
+
 export const requestBodySchema = z.discriminatedUnion('type', [
   z.object({ type: z.literal('generar'), payload: generarPayloadSchema }),
   z.object({ type: z.literal('corregir'), payload: corregirPayloadSchema }),
+  z.object({ type: z.literal('modificar'), payload: modificarPayloadSchema }),
 ])
 
 // --- Schémas de sortie (ce que Claude renvoie) ---
@@ -70,6 +78,7 @@ export const corregirResponseSchema = z.object({
 
 export type GenerarPayload = z.infer<typeof generarPayloadSchema>
 export type CorregirPayload = z.infer<typeof corregirPayloadSchema>
+export type ModificarPayload = z.infer<typeof modificarPayloadSchema>
 export type Pregunta = z.infer<typeof preguntaSchema>
 export type RequestBody = z.infer<typeof requestBodySchema>
 export type GenerarResponse = z.infer<typeof generarResponseSchema>

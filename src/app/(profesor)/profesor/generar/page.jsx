@@ -1,15 +1,21 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
-import { useMemo, useState } from 'react'
+import { useRouter, useSearchParams } from 'next/navigation'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import NavBar from '@/components/layout/NavBar.jsx'
+import EditorPreguntas from '@/components/profesor/EditorPreguntas.jsx'
 import Boton from '@/components/ui/Boton.jsx'
 import MensajeError from '@/components/ui/MensajeError.jsx'
 import Modal from '@/components/ui/Modal.jsx'
 import Spinner from '@/components/ui/Spinner.jsx'
 import Toast from '@/components/ui/Toast.jsx'
 import { useAnthropicAPI } from '@/hooks/useAnthropicAPI.js'
-import { useActualizarTarea, useAgregarTarea, usePublicarTarea } from '@/hooks/useTareas.js'
+import {
+  useActualizarTarea,
+  useAgregarTarea,
+  usePublicarTarea,
+  useTareasProfesor,
+} from '@/hooks/useTareas.js'
 import { getPDAsByMateria } from '@/mock/pdas/index.js'
 import useAuthStore from '@/store/useAuthStore.js'
 
@@ -35,14 +41,24 @@ const TIPOS_EJERCICIO = [
   'Cálculo/Resolución de problemas',
   'Ejercicio mixto',
 ]
+const TIPO_INVERSO = {
+  opcion_multiple: 'Opción múltiple',
+  verdadero_falso: 'Verdadero/Falso',
+  abierta: 'Preguntas abiertas',
+  espacios: 'Completar espacios en blanco',
+  calculo: 'Cálculo/Resolución de problemas',
+}
 
 export default function GenerarTarea() {
   const router = useRouter()
-  const { generarTarea, cargando, error, setError } = useAnthropicAPI()
+  const searchParams = useSearchParams()
+  const tareaIdParam = searchParams.get('tarea')
+  const { generarTarea, modificarPregunta, cargando, error, setError } = useAnthropicAPI()
   const agregarTarea = useAgregarTarea()
   const actualizarTarea = useActualizarTarea()
   const publicarTarea = usePublicarTarea()
   const { profesor, clases } = useAuthStore()
+  const { data: tareasData } = useTareasProfesor(profesor?.id)
 
   const [form, setForm] = useState({
     nombre: '',
@@ -59,13 +75,36 @@ export default function GenerarTarea() {
 
   const [tareaGenerada, setTareaGenerada] = useState(null)
   const [tareaGuardada, setTareaGuardada] = useState(null)
-  const [editando, setEditando] = useState(false)
-  const [textoEdicion, setTextoEdicion] = useState('')
+  const [regenerandoIndice, setRegenerandoIndice] = useState(null)
+  const [modificandoIndice, setModificandoIndice] = useState(null)
   const [modalPDAabierto, setModalPDAabierto] = useState(false)
   const [busquedaPDA, setBusquedaPDA] = useState('')
   const [clasesPublicar, setClasesPublicar] = useState(clases?.length ? [clases[0].id] : [])
   const [publicando, setPublicando] = useState(false)
   const [toastVisible, setToastVisible] = useState(false)
+  const inicializado = useRef(false)
+
+  // Load existing draft when ?tarea=<id> is present
+  useEffect(() => {
+    if (!tareaIdParam || inicializado.current || !tareasData?.tareas) return
+    const tarea = tareasData.tareas.find((t) => t.id === tareaIdParam)
+    if (!tarea || tarea.estado !== 'borrador') return
+    inicializado.current = true
+    setTareaGenerada(tarea.preguntas)
+    setTareaGuardada(tarea)
+    setForm((prev) => ({
+      ...prev,
+      nombre: tarea.nombre,
+      materia: tarea.materia,
+      dificultad: tarea.dificultad,
+      metodologia: tarea.metodologia,
+      tipos: tarea.tipos ?? prev.tipos,
+      numeroPreguntas: tarea.preguntas?.length ?? prev.numeroPreguntas,
+      fecha_limite: tarea.fecha_limite ?? '',
+      pdas: tarea.pda ?? [],
+    }))
+    setClasesPublicar([tarea.clase_id])
+  }, [tareaIdParam, tareasData])
 
   function toggleTipo(tipo) {
     setForm((prev) => {
@@ -160,28 +199,69 @@ export default function GenerarTarea() {
     router.push('/profesor')
   }
 
-  function handleIniciarEdicion() {
-    setTextoEdicion(tareaGenerada.map((p, i) => `${i + 1}. ${p.pregunta}`).join('\n\n'))
-    setEditando(true)
-  }
+  // Auto-save preguntas when they change
+  const prevPreguntasRef = useRef(null)
+  useEffect(() => {
+    if (!tareaGuardada || !tareaGenerada) return
+    // Skip the initial render
+    if (prevPreguntasRef.current === null) {
+      prevPreguntasRef.current = tareaGenerada
+      return
+    }
+    if (prevPreguntasRef.current === tareaGenerada) return
+    prevPreguntasRef.current = tareaGenerada
 
-  async function handleGuardarEdicion() {
-    const lineas = textoEdicion.split('\n').filter((l) => l.trim())
-    const preguntasEditadas = tareaGenerada.map((p, i) => {
-      const lineaEncontrada = lineas.find((l) => l.startsWith(`${i + 1}.`))
-      const nuevaPregunta = lineaEncontrada
-        ? lineaEncontrada.replace(/^\d+\.\s*/, '').trim()
-        : p.pregunta
-      return { ...p, pregunta: nuevaPregunta }
-    })
-    setTareaGenerada(preguntasEditadas)
-    if (tareaGuardada) {
+    const timer = setTimeout(async () => {
       await actualizarTarea.mutateAsync({
         id: tareaGuardada.id,
-        cambios: { preguntas: preguntasEditadas },
+        cambios: { preguntas: tareaGenerada },
       })
+      setToastVisible(true)
+    }, 1000)
+    return () => clearTimeout(timer)
+  }, [tareaGenerada, tareaGuardada, actualizarTarea, setToastVisible])
+
+  async function handleRegenerarPregunta(indice) {
+    if (regenerandoIndice !== null) return
+    setRegenerandoIndice(indice)
+    const preguntaActual = tareaGenerada[indice]
+
+    const resultado = await generarTarea({
+      materia: form.materia,
+      dificultad: form.dificultad,
+      metodologia: form.metodologia,
+      tipos: [TIPO_INVERSO[preguntaActual.tipo] ?? 'Preguntas abiertas'],
+      numeroPreguntas: 1,
+      pda: form.pdas.length > 0 ? form.pdas : null,
+      instrucciones: form.instrucciones.trim() || null,
+    })
+
+    if (resultado?.preguntas?.[0]) {
+      const nuevas = [...tareaGenerada]
+      nuevas[indice] = resultado.preguntas[0]
+      setTareaGenerada(nuevas)
     }
-    setEditando(false)
+    setRegenerandoIndice(null)
+  }
+
+  async function handleModificarConIA(indice, instruccion) {
+    if (modificandoIndice !== null) return
+    setModificandoIndice(indice)
+    const preguntaActual = tareaGenerada[indice]
+
+    const resultado = await modificarPregunta({
+      pregunta: preguntaActual,
+      instruccion,
+      materia: form.materia,
+      dificultad: form.dificultad,
+    })
+
+    if (resultado?.preguntas?.[0]) {
+      const nuevas = [...tareaGenerada]
+      nuevas[indice] = resultado.preguntas[0]
+      setTareaGenerada(nuevas)
+    }
+    setModificandoIndice(null)
   }
 
   const METODO_DESC = {
@@ -214,16 +294,64 @@ export default function GenerarTarea() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <NavBar titulo="Generar tarea" volver="/profesor" />
+      <NavBar titulo={tareaGenerada ? 'Revisar borrador' : 'Generar tarea'} volver="/profesor" />
 
       <main className="max-w-3xl mx-auto px-4 sm:px-6 py-8 animate-fade-in">
-        <h1 className="text-2xl font-bold text-gray-900 mb-1">Nueva tarea con IA</h1>
-        <p className="text-sm text-gray-500 mb-8">
-          Configura los parámetros y la IA generará las preguntas automáticamente.
-        </p>
+        {/* Stepper */}
+        <div className="flex items-center gap-2 mb-8">
+          {[
+            { num: 1, label: 'Configurar' },
+            { num: 2, label: 'Revisar y editar' },
+            { num: 3, label: 'Publicar' },
+          ].map((paso, i) => {
+            const activo = tareaGenerada ? paso.num === 2 : paso.num === 1
+            const completado = tareaGenerada && paso.num === 1
+            return (
+              <div key={paso.num} className="flex items-center gap-2 flex-1">
+                <div
+                  className={`flex items-center justify-center w-7 h-7 rounded-full text-xs font-bold flex-shrink-0 transition-colors ${
+                    activo
+                      ? 'bg-amarillo text-gray-900'
+                      : completado
+                        ? 'bg-green-100 text-green-700'
+                        : 'bg-gray-100 text-gray-400'
+                  }`}
+                >
+                  {completado ? (
+                    <svg className="w-3.5 h-3.5" viewBox="0 0 20 20" fill="currentColor">
+                      <path
+                        fillRule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  ) : (
+                    paso.num
+                  )}
+                </div>
+                <span
+                  className={`text-sm font-medium hidden sm:inline ${
+                    activo ? 'text-gray-900' : completado ? 'text-green-700' : 'text-gray-400'
+                  }`}
+                >
+                  {paso.label}
+                </span>
+                {i < 2 && (
+                  <div className={`flex-1 h-px ${completado ? 'bg-green-200' : 'bg-gray-200'}`} />
+                )}
+              </div>
+            )
+          })}
+        </div>
 
         {!tareaGenerada ? (
           <div className="space-y-6">
+            <div>
+              <h1 className="text-2xl font-bold text-gray-900 mb-1">Nueva tarea con IA</h1>
+              <p className="text-sm text-gray-500">
+                Configura los parámetros y la IA generará las preguntas automáticamente.
+              </p>
+            </div>
             {/* Nombre */}
             <div className="card p-6">
               <label className="label-base">Nombre de la tarea</label>
@@ -501,135 +629,44 @@ export default function GenerarTarea() {
             </Boton>
           </div>
         ) : (
-          /* Vista previa */
+          /* Vista previa — Revisar borrador */
           <div className="animate-fade-in space-y-6">
-            <div className="card p-6">
-              <div className="flex items-start justify-between gap-4 mb-2">
-                <div>
-                  <h2 className="text-xl font-bold text-gray-900">{form.nombre}</h2>
-                  <p className="text-sm text-gray-500 mt-0.5">
-                    {form.materia} · {form.dificultad} · {tareaGenerada.length} preguntas
-                    {form.fecha_limite &&
-                      ` · Fecha límite: ${new Date(form.fecha_limite).toLocaleDateString('es-MX', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })}`}
-                  </p>
-                </div>
-                <span className="flex-shrink-0 inline-flex items-center gap-1 text-xs font-medium text-green-700 bg-green-50 border border-green-200 px-2.5 py-1 rounded-full">
-                  <svg className="w-3 h-3" viewBox="0 0 20 20" fill="currentColor">
-                    <path
-                      fillRule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  Generada por IA
+            <div>
+              <div className="flex items-center gap-3 mb-1">
+                <h1 className="text-2xl font-bold text-gray-900">Revisar borrador</h1>
+                <span className="inline-flex items-center gap-1 text-xs font-medium text-yellow-700 bg-yellow-50 border border-yellow-200 px-2.5 py-1 rounded-full">
+                  Borrador
                 </span>
               </div>
+              <p className="text-sm text-gray-500">
+                {form.nombre} · {form.materia} · {form.dificultad} · {tareaGenerada.length}{' '}
+                preguntas
+                {form.fecha_limite &&
+                  ` · Límite: ${new Date(form.fecha_limite).toLocaleDateString('es-MX', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })}`}
+              </p>
             </div>
 
-            {editando ? (
-              <div className="card p-6">
-                <label className="label-base">Editar preguntas</label>
-                <p className="text-xs text-gray-400 mb-3">
-                  Modifica el texto de las preguntas. Los tipos y respuestas se conservan.
-                </p>
-                <textarea
-                  value={textoEdicion}
-                  onChange={(e) => setTextoEdicion(e.target.value)}
-                  rows={tareaGenerada.length * 3}
-                  className="input-base font-mono text-xs resize-none"
-                />
-                <div className="flex gap-3 mt-4">
-                  <Boton variante="primario" onClick={handleGuardarEdicion} size="sm">
-                    Guardar cambios
-                  </Boton>
-                  <Boton variante="secundario" onClick={() => setEditando(false)} size="sm">
-                    Cancelar
-                  </Boton>
-                </div>
-              </div>
-            ) : (
-              <div className="space-y-3">
-                <div className="flex items-start gap-2 p-3 bg-blue-50 border border-blue-200 rounded-lg">
-                  <svg
-                    className="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  <p className="text-xs text-blue-700">
-                    Las respuestas modelo son solo para ti. Los alumnos no las verán al realizar la
-                    tarea.
-                  </p>
-                </div>
-                {tareaGenerada.map((p, i) => (
-                  <div key={i} className="card p-5">
-                    <div className="flex items-start gap-3">
-                      <span className="flex-shrink-0 inline-flex items-center justify-center w-6 h-6 rounded-full bg-gray-100 text-xs font-bold text-gray-600">
-                        {i + 1}
-                      </span>
-                      <div className="flex-1 min-w-0">
-                        <span className="text-xs font-medium text-gray-400 uppercase tracking-wide block mb-1">
-                          {etiquetaTipo(p.tipo)}
-                        </span>
-                        <p className="text-sm text-gray-800">{p.pregunta}</p>
-                        {p.opciones && (
-                          <ul className="mt-2 space-y-1">
-                            {p.opciones.map((op, j) => (
-                              <li
-                                key={j}
-                                className={`text-xs px-2 py-1 rounded ${op.startsWith(p.respuesta) ? 'bg-green-50 text-green-700 font-medium' : 'text-gray-500'}`}
-                              >
-                                {op}
-                              </li>
-                            ))}
-                          </ul>
-                        )}
-                        {p.tipo === 'verdadero_falso' && (
-                          <span className="mt-2 inline-block text-xs font-medium text-gray-500">
-                            Respuesta: <strong>{p.respuesta ? 'Verdadero' : 'Falso'}</strong>
-                          </span>
-                        )}
-                        {p.tipo === 'espacios' && p.respuesta && (
-                          <span className="mt-2 inline-block text-xs font-medium text-gray-500">
-                            Respuesta: <strong>{p.respuesta}</strong>
-                          </span>
-                        )}
-                        {(p.tipo === 'abierta' || p.tipo === 'calculo') && p.respuesta && (
-                          <div className="mt-2 p-2 bg-green-50 border border-green-200 rounded-lg">
-                            <p className="text-xs font-semibold text-green-700 mb-1">
-                              Respuesta modelo
-                            </p>
-                            <p className="text-xs text-green-900 whitespace-pre-line">
-                              {p.respuesta}
-                            </p>
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
+            <EditorPreguntas
+              preguntas={tareaGenerada}
+              onPreguntasChange={setTareaGenerada}
+              onRegenerarPregunta={handleRegenerarPregunta}
+              regenerandoIndice={regenerandoIndice}
+              onModificarConIA={handleModificarConIA}
+              modificandoIndice={modificandoIndice}
+            />
 
-            {/* Selector de clases para publicar */}
+            <MensajeError mensaje={error} onCerrar={() => setError(null)} />
+
+            {/* Publish CTA block */}
             {clases.length > 0 && (
-              <div className="card p-6">
-                <label className="label-base">
-                  Enviar a{' '}
-                  {clasesPublicar.length > 1 ? `${clasesPublicar.length} clases` : 'la clase'}
-                </label>
+              <div className="card p-6 border-2 border-gray-200">
+                <h3 className="font-semibold text-gray-900 mb-1">Publicar tarea</h3>
+                <p className="text-xs text-gray-400 mb-4">
+                  Una vez publicada, la tarea será visible para los alumnos de las clases
+                  seleccionadas.
+                </p>
                 {clases.length > 1 && (
-                  <p className="text-xs text-gray-400 mb-3">
-                    Puedes seleccionar varias clases a la vez.
-                  </p>
-                )}
-                <div className="flex flex-wrap gap-2">
-                  {clases.length > 1 && (
+                  <div className="flex flex-wrap gap-2 mb-4">
                     <button
                       type="button"
                       onClick={() =>
@@ -645,80 +682,67 @@ export default function GenerarTarea() {
                     >
                       Todas
                     </button>
+                    {clases.map((c) => (
+                      <button
+                        key={c.id}
+                        type="button"
+                        onClick={() => toggleClasePublicar(c.id)}
+                        className={`px-4 py-2 rounded-xl text-sm font-medium border transition-all ${
+                          clasesPublicar.includes(c.id)
+                            ? 'border-gray-900 bg-gray-900 text-white'
+                            : 'border-gray-200 text-gray-600 hover:border-gray-300'
+                        }`}
+                      >
+                        {c.nombre}
+                        <span className="text-xs opacity-60 ml-1">· {c.grado}</span>
+                      </button>
+                    ))}
+                  </div>
+                )}
+                <Boton
+                  variante="primario"
+                  size="lg"
+                  onClick={handlePublicar}
+                  disabled={clasesPublicar.length === 0 || publicando}
+                  className="w-full"
+                >
+                  {publicando ? (
+                    <>
+                      <Spinner size="sm" />
+                      Publicando...
+                    </>
+                  ) : (
+                    <>
+                      <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+                        <path
+                          fillRule="evenodd"
+                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                      {clasesPublicar.length > 1
+                        ? `Publicar en ${clasesPublicar.length} clases`
+                        : 'Publicar tarea'}
+                    </>
                   )}
-                  {clases.map((c) => (
-                    <button
-                      key={c.id}
-                      type="button"
-                      onClick={() => (clases.length === 1 ? null : toggleClasePublicar(c.id))}
-                      className={`px-4 py-2 rounded-xl text-sm font-medium border transition-all ${
-                        clasesPublicar.includes(c.id)
-                          ? 'border-gray-900 bg-gray-900 text-white'
-                          : 'border-gray-200 text-gray-600 hover:border-gray-300'
-                      }`}
-                    >
-                      {c.nombre}
-                      <span className="text-xs opacity-60 ml-1">· {c.grado}</span>
-                    </button>
-                  ))}
-                </div>
+                </Boton>
               </div>
             )}
 
-            <MensajeError mensaje={error} onCerrar={() => setError(null)} />
-
-            <div className="flex flex-col sm:flex-row gap-3">
-              {!editando && (
-                <Boton variante="secundario" size="lg" onClick={handleIniciarEdicion}>
-                  <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
-                    <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
-                  </svg>
-                  Modificar
-                </Boton>
-              )}
+            {/* Secondary actions */}
+            <div className="flex gap-3">
+              <Boton variante="secundario" size="md" onClick={() => router.push('/profesor')}>
+                Guardar y volver
+              </Boton>
               <Boton
                 variante="secundario"
-                size="lg"
+                size="md"
                 onClick={() => {
                   setTareaGenerada(null)
                   setTareaGuardada(null)
                 }}
               >
-                <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
-                  <path
-                    fillRule="evenodd"
-                    d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                Regenerar
-              </Boton>
-              <Boton
-                variante="primario"
-                size="lg"
-                onClick={handlePublicar}
-                disabled={clasesPublicar.length === 0 || publicando}
-                className="flex-1"
-              >
-                {publicando ? (
-                  <>
-                    <Spinner size="sm" />
-                    Publicando...
-                  </>
-                ) : (
-                  <>
-                    <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
-                      <path
-                        fillRule="evenodd"
-                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                    {clasesPublicar.length > 1
-                      ? `Publicar en ${clasesPublicar.length} clases`
-                      : 'Publicar tarea'}
-                  </>
-                )}
+                Regenerar todo
               </Boton>
             </div>
           </div>
@@ -835,15 +859,4 @@ export default function GenerarTarea() {
       </Modal>
     </div>
   )
-}
-
-function etiquetaTipo(tipo) {
-  const mapa = {
-    opcion_multiple: 'Opción múltiple',
-    verdadero_falso: 'Verdadero / Falso',
-    abierta: 'Pregunta abierta',
-    espacios: 'Completar espacios',
-    calculo: 'Cálculo',
-  }
-  return mapa[tipo] ?? tipo
 }
