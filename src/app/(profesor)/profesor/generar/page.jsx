@@ -294,16 +294,64 @@ export default function GenerarTarea() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <NavBar titulo="Generar tarea" volver="/profesor" />
+      <NavBar titulo={tareaGenerada ? 'Revisar borrador' : 'Generar tarea'} volver="/profesor" />
 
       <main className="max-w-3xl mx-auto px-4 sm:px-6 py-8 animate-fade-in">
-        <h1 className="text-2xl font-bold text-gray-900 mb-1">Nueva tarea con IA</h1>
-        <p className="text-sm text-gray-500 mb-8">
-          Configura los parámetros y la IA generará las preguntas automáticamente.
-        </p>
+        {/* Stepper */}
+        <div className="flex items-center gap-2 mb-8">
+          {[
+            { num: 1, label: 'Configurar' },
+            { num: 2, label: 'Revisar y editar' },
+            { num: 3, label: 'Publicar' },
+          ].map((paso, i) => {
+            const activo = tareaGenerada ? paso.num === 2 : paso.num === 1
+            const completado = tareaGenerada && paso.num === 1
+            return (
+              <div key={paso.num} className="flex items-center gap-2 flex-1">
+                <div
+                  className={`flex items-center justify-center w-7 h-7 rounded-full text-xs font-bold flex-shrink-0 transition-colors ${
+                    activo
+                      ? 'bg-amarillo text-gray-900'
+                      : completado
+                        ? 'bg-green-100 text-green-700'
+                        : 'bg-gray-100 text-gray-400'
+                  }`}
+                >
+                  {completado ? (
+                    <svg className="w-3.5 h-3.5" viewBox="0 0 20 20" fill="currentColor">
+                      <path
+                        fillRule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  ) : (
+                    paso.num
+                  )}
+                </div>
+                <span
+                  className={`text-sm font-medium hidden sm:inline ${
+                    activo ? 'text-gray-900' : completado ? 'text-green-700' : 'text-gray-400'
+                  }`}
+                >
+                  {paso.label}
+                </span>
+                {i < 2 && (
+                  <div className={`flex-1 h-px ${completado ? 'bg-green-200' : 'bg-gray-200'}`} />
+                )}
+              </div>
+            )
+          })}
+        </div>
 
         {!tareaGenerada ? (
           <div className="space-y-6">
+            <div>
+              <h1 className="text-2xl font-bold text-gray-900 mb-1">Nueva tarea con IA</h1>
+              <p className="text-sm text-gray-500">
+                Configura los parámetros y la IA generará las preguntas automáticamente.
+              </p>
+            </div>
             {/* Nombre */}
             <div className="card p-6">
               <label className="label-base">Nombre de la tarea</label>
@@ -581,29 +629,21 @@ export default function GenerarTarea() {
             </Boton>
           </div>
         ) : (
-          /* Vista previa */
+          /* Vista previa — Revisar borrador */
           <div className="animate-fade-in space-y-6">
-            <div className="card p-6">
-              <div className="flex items-start justify-between gap-4 mb-2">
-                <div>
-                  <h2 className="text-xl font-bold text-gray-900">{form.nombre}</h2>
-                  <p className="text-sm text-gray-500 mt-0.5">
-                    {form.materia} · {form.dificultad} · {tareaGenerada.length} preguntas
-                    {form.fecha_limite &&
-                      ` · Fecha límite: ${new Date(form.fecha_limite).toLocaleDateString('es-MX', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })}`}
-                  </p>
-                </div>
-                <span className="flex-shrink-0 inline-flex items-center gap-1 text-xs font-medium text-green-700 bg-green-50 border border-green-200 px-2.5 py-1 rounded-full">
-                  <svg className="w-3 h-3" viewBox="0 0 20 20" fill="currentColor">
-                    <path
-                      fillRule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  Generada por IA
+            <div>
+              <div className="flex items-center gap-3 mb-1">
+                <h1 className="text-2xl font-bold text-gray-900">Revisar borrador</h1>
+                <span className="inline-flex items-center gap-1 text-xs font-medium text-yellow-700 bg-yellow-50 border border-yellow-200 px-2.5 py-1 rounded-full">
+                  Borrador
                 </span>
               </div>
+              <p className="text-sm text-gray-500">
+                {form.nombre} · {form.materia} · {form.dificultad} · {tareaGenerada.length}{' '}
+                preguntas
+                {form.fecha_limite &&
+                  ` · Límite: ${new Date(form.fecha_limite).toLocaleDateString('es-MX', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })}`}
+              </p>
             </div>
 
             <EditorPreguntas
@@ -615,20 +655,18 @@ export default function GenerarTarea() {
               modificandoIndice={modificandoIndice}
             />
 
-            {/* Selector de clases para publicar */}
+            <MensajeError mensaje={error} onCerrar={() => setError(null)} />
+
+            {/* Publish CTA block */}
             {clases.length > 0 && (
-              <div className="card p-6">
-                <label className="label-base">
-                  Enviar a{' '}
-                  {clasesPublicar.length > 1 ? `${clasesPublicar.length} clases` : 'la clase'}
-                </label>
+              <div className="card p-6 border-2 border-gray-200">
+                <h3 className="font-semibold text-gray-900 mb-1">Publicar tarea</h3>
+                <p className="text-xs text-gray-400 mb-4">
+                  Una vez publicada, la tarea será visible para los alumnos de las clases
+                  seleccionadas.
+                </p>
                 {clases.length > 1 && (
-                  <p className="text-xs text-gray-400 mb-3">
-                    Puedes seleccionar varias clases a la vez.
-                  </p>
-                )}
-                <div className="flex flex-wrap gap-2">
-                  {clases.length > 1 && (
+                  <div className="flex flex-wrap gap-2 mb-4">
                     <button
                       type="button"
                       onClick={() =>
@@ -644,82 +682,67 @@ export default function GenerarTarea() {
                     >
                       Todas
                     </button>
+                    {clases.map((c) => (
+                      <button
+                        key={c.id}
+                        type="button"
+                        onClick={() => toggleClasePublicar(c.id)}
+                        className={`px-4 py-2 rounded-xl text-sm font-medium border transition-all ${
+                          clasesPublicar.includes(c.id)
+                            ? 'border-gray-900 bg-gray-900 text-white'
+                            : 'border-gray-200 text-gray-600 hover:border-gray-300'
+                        }`}
+                      >
+                        {c.nombre}
+                        <span className="text-xs opacity-60 ml-1">· {c.grado}</span>
+                      </button>
+                    ))}
+                  </div>
+                )}
+                <Boton
+                  variante="primario"
+                  size="lg"
+                  onClick={handlePublicar}
+                  disabled={clasesPublicar.length === 0 || publicando}
+                  className="w-full"
+                >
+                  {publicando ? (
+                    <>
+                      <Spinner size="sm" />
+                      Publicando...
+                    </>
+                  ) : (
+                    <>
+                      <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+                        <path
+                          fillRule="evenodd"
+                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                      {clasesPublicar.length > 1
+                        ? `Publicar en ${clasesPublicar.length} clases`
+                        : 'Publicar tarea'}
+                    </>
                   )}
-                  {clases.map((c) => (
-                    <button
-                      key={c.id}
-                      type="button"
-                      onClick={() => (clases.length === 1 ? null : toggleClasePublicar(c.id))}
-                      className={`px-4 py-2 rounded-xl text-sm font-medium border transition-all ${
-                        clasesPublicar.includes(c.id)
-                          ? 'border-gray-900 bg-gray-900 text-white'
-                          : 'border-gray-200 text-gray-600 hover:border-gray-300'
-                      }`}
-                    >
-                      {c.nombre}
-                      <span className="text-xs opacity-60 ml-1">· {c.grado}</span>
-                    </button>
-                  ))}
-                </div>
+                </Boton>
               </div>
             )}
 
-            <MensajeError mensaje={error} onCerrar={() => setError(null)} />
-
-            <div className="flex flex-col sm:flex-row gap-3">
-              <Boton variante="secundario" size="lg" onClick={() => router.push('/profesor')}>
-                <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
-                  <path
-                    fillRule="evenodd"
-                    d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
-                    clipRule="evenodd"
-                  />
-                </svg>
+            {/* Secondary actions */}
+            <div className="flex gap-3">
+              <Boton variante="secundario" size="md" onClick={() => router.push('/profesor')}>
                 Guardar y volver
               </Boton>
               <Boton
                 variante="secundario"
-                size="lg"
+                size="md"
                 onClick={() => {
                   setTareaGenerada(null)
                   setTareaGuardada(null)
                 }}
               >
-                <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
-                  <path
-                    fillRule="evenodd"
-                    d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                Regenerar
-              </Boton>
-              <Boton
-                variante="primario"
-                size="lg"
-                onClick={handlePublicar}
-                disabled={clasesPublicar.length === 0 || publicando}
-                className="flex-1"
-              >
-                {publicando ? (
-                  <>
-                    <Spinner size="sm" />
-                    Publicando...
-                  </>
-                ) : (
-                  <>
-                    <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
-                      <path
-                        fillRule="evenodd"
-                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                    {clasesPublicar.length > 1
-                      ? `Publicar en ${clasesPublicar.length} clases`
-                      : 'Publicar tarea'}
-                  </>
-                )}
+                Regenerar todo
               </Boton>
             </div>
           </div>
