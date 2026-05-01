@@ -34,7 +34,12 @@ const MATERIAS = [
 ]
 const GRADOS = ['1° Secundaria', '2° Secundaria', '3° Secundaria']
 const DIFICULTADES = ['Fácil', 'Media', 'Difícil']
-const METODOLOGIAS = ['Feynman', 'Memorización activa', 'Resolución de problemas', 'Práctica directa']
+const METODOLOGIAS = [
+  'Feynman',
+  'Memorización activa',
+  'Resolución de problemas',
+  'Práctica directa',
+]
 const TIPOS_EJERCICIO = [
   'Preguntas abiertas',
   'Opción múltiple',

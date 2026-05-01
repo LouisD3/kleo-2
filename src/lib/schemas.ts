@@ -10,7 +10,12 @@ const pdaItemSchema = z.object({
 const generarPayloadSchema = z.object({
   materia: z.string().min(1, 'La materia es requerida'),
   dificultad: z.enum(['Fácil', 'Media', 'Difícil']),
-  metodologia: z.enum(['Feynman', 'Memorización activa', 'Resolución de problemas', 'Práctica directa']),
+  metodologia: z.enum([
+    'Feynman',
+    'Memorización activa',
+    'Resolución de problemas',
+    'Práctica directa',
+  ]),
   tipos: z.array(z.string().min(1)).min(1, 'Selecciona al menos un tipo de ejercicio'),
   numeroPreguntas: z.number().int().min(1).max(20),
   pda: z.union([pdaItemSchema, z.array(pdaItemSchema).max(5)]).optional(),
