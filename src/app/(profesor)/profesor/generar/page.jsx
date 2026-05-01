@@ -280,12 +280,9 @@ export default function GenerarTarea() {
         preguntas: tareaGenerada,
         created_at: tareaGuardada?.created_at ?? new Date().toISOString(),
       }
-      const claseNombre =
-        clases?.length > 0
-          ? `${clases[0].nombre} · ${clases[0].grado}`
-          : ''
+      const claseNombre = clases?.length > 0 ? `${clases[0].nombre} · ${clases[0].grado}` : ''
       const blob = await pdf(
-        <TareaPDF tarea={tareaPDF} claseNombre={claseNombre} showAnswers={conRespuestas} />
+        <TareaPDF tarea={tareaPDF} claseNombre={claseNombre} showAnswers={conRespuestas} />,
       ).toBlob()
       const url = URL.createObjectURL(blob)
       const a = document.createElement('a')
@@ -708,7 +705,9 @@ export default function GenerarTarea() {
                           type="button"
                           onClick={() =>
                             setClasesPublicar(
-                              clasesPublicar.length === clases.length ? [] : clases.map((c) => c.id),
+                              clasesPublicar.length === clases.length
+                                ? []
+                                : clases.map((c) => c.id),
                             )
                           }
                           className={`px-4 py-2 rounded-xl text-sm font-medium border transition-all ${

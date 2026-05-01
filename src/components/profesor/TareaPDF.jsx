@@ -359,7 +359,9 @@ function Question({ pregunta, index, showAnswers }) {
       {pregunta.tipo === 'verdadero_falso' && (
         <QuestionTF pregunta={pregunta} showAnswers={showAnswers} />
       )}
-      {pregunta.tipo === 'abierta' && <QuestionOpen pregunta={pregunta} showAnswers={showAnswers} />}
+      {pregunta.tipo === 'abierta' && (
+        <QuestionOpen pregunta={pregunta} showAnswers={showAnswers} />
+      )}
       {pregunta.tipo === 'espacios' && (
         <QuestionEspacios pregunta={pregunta} showAnswers={showAnswers} />
       )}

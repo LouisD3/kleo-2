@@ -121,7 +121,7 @@ export default function DetalleTarea() {
     setDescargandoPDF(key)
     try {
       const blob = await pdf(
-        <TareaPDF tarea={tarea} claseNombre={claseNombre} showAnswers={conRespuestas} />
+        <TareaPDF tarea={tarea} claseNombre={claseNombre} showAnswers={conRespuestas} />,
       ).toBlob()
       const url = URL.createObjectURL(blob)
       const a = document.createElement('a')
@@ -198,7 +198,11 @@ export default function DetalleTarea() {
                   </svg>
                   Editar
                 </Boton>
-                <Boton variante="primario" size="sm" onClick={() => publicarTareaMut.mutate(tarea.id)}>
+                <Boton
+                  variante="primario"
+                  size="sm"
+                  onClick={() => publicarTareaMut.mutate(tarea.id)}
+                >
                   Publicar tarea
                 </Boton>
               </>
