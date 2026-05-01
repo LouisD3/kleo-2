@@ -44,5 +44,9 @@ export function useAnthropicAPI() {
     return llamarAPI('corregir', params)
   }
 
-  return { generarTarea, corregirTarea, cargando, error, setError }
+  function modificarPregunta(params) {
+    return llamarAPI('modificar', params)
+  }
+
+  return { generarTarea, corregirTarea, modificarPregunta, cargando, error, setError }
 }

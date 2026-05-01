@@ -46,7 +46,7 @@ const TIPO_INVERSO = {
 
 export default function GenerarTarea() {
   const router = useRouter()
-  const { generarTarea, cargando, error, setError } = useAnthropicAPI()
+  const { generarTarea, modificarPregunta, cargando, error, setError } = useAnthropicAPI()
   const agregarTarea = useAgregarTarea()
   const actualizarTarea = useActualizarTarea()
   const publicarTarea = usePublicarTarea()
@@ -68,6 +68,7 @@ export default function GenerarTarea() {
   const [tareaGenerada, setTareaGenerada] = useState(null)
   const [tareaGuardada, setTareaGuardada] = useState(null)
   const [regenerandoIndice, setRegenerandoIndice] = useState(null)
+  const [modificandoIndice, setModificandoIndice] = useState(null)
   const [modalPDAabierto, setModalPDAabierto] = useState(false)
   const [busquedaPDA, setBusquedaPDA] = useState('')
   const [clasesPublicar, setClasesPublicar] = useState(clases?.length ? [clases[0].id] : [])
@@ -210,6 +211,26 @@ export default function GenerarTarea() {
       setTareaGenerada(nuevas)
     }
     setRegenerandoIndice(null)
+  }
+
+  async function handleModificarConIA(indice, instruccion) {
+    if (modificandoIndice !== null) return
+    setModificandoIndice(indice)
+    const preguntaActual = tareaGenerada[indice]
+
+    const resultado = await modificarPregunta({
+      pregunta: preguntaActual,
+      instruccion,
+      materia: form.materia,
+      dificultad: form.dificultad,
+    })
+
+    if (resultado?.preguntas?.[0]) {
+      const nuevas = [...tareaGenerada]
+      nuevas[indice] = resultado.preguntas[0]
+      setTareaGenerada(nuevas)
+    }
+    setModificandoIndice(null)
   }
 
   const METODO_DESC = {
@@ -559,6 +580,8 @@ export default function GenerarTarea() {
               onPreguntasChange={setTareaGenerada}
               onRegenerarPregunta={handleRegenerarPregunta}
               regenerandoIndice={regenerandoIndice}
+              onModificarConIA={handleModificarConIA}
+              modificandoIndice={modificandoIndice}
             />
 
             {/* Selector de clases para publicar */}
@@ -613,6 +636,16 @@ export default function GenerarTarea() {
             <MensajeError mensaje={error} onCerrar={() => setError(null)} />
 
             <div className="flex flex-col sm:flex-row gap-3">
+              <Boton variante="secundario" size="lg" onClick={() => router.push('/profesor')}>
+                <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+                  <path
+                    fillRule="evenodd"
+                    d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+                Guardar y volver
+              </Boton>
               <Boton
                 variante="secundario"
                 size="lg"

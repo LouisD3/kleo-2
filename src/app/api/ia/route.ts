@@ -4,6 +4,7 @@ import {
   corregirResponseSchema,
   type GenerarPayload,
   generarResponseSchema,
+  type ModificarPayload,
   requestBodySchema,
 } from '@/lib/schemas'
 
@@ -40,10 +41,14 @@ export async function POST(request: NextRequest) {
   }
 
   // 3. Construire le prompt
-  const prompt =
-    type === 'generar'
-      ? promptGenerar(payload as GenerarPayload)
-      : promptCorregir(payload as CorregirPayload)
+  let prompt: string
+  if (type === 'generar') {
+    prompt = promptGenerar(payload as GenerarPayload)
+  } else if (type === 'modificar') {
+    prompt = promptModificar(payload as ModificarPayload)
+  } else {
+    prompt = promptCorregir(payload as CorregirPayload)
+  }
 
   // 4. Appeler Claude
   let anthropicResponse: Record<string, unknown>
@@ -93,7 +98,7 @@ export async function POST(request: NextRequest) {
     const datos = JSON.parse(match[0])
 
     // Valider la réponse de Claude avec Zod
-    const responseSchema = type === 'generar' ? generarResponseSchema : corregirResponseSchema
+    const responseSchema = type === 'corregir' ? corregirResponseSchema : generarResponseSchema
     const validado = responseSchema.safeParse(datos)
 
     if (!validado.success) {
@@ -234,6 +239,35 @@ Formato de respuesta JSON requerido:
     { "indice_pregunta": 1, "correcta": false, "comentario": "La respuesta correcta era... porque..." }
   ],
   "areas_de_mejora": ["Comprensión de ...", "Aplicación de ..."]
+}
+
+Responde ÚNICAMENTE con el JSON. Sin texto adicional, sin explicaciones, sin comillas de bloque de código.`
+}
+
+function promptModificar({ pregunta, instruccion, materia, dificultad }: ModificarPayload): string {
+  const preguntaJSON = JSON.stringify(pregunta, null, 2)
+
+  return `Eres un experto en pedagogía mexicana. Un profesor quiere modificar la siguiente pregunta de una tarea de ${materia} (dificultad: ${dificultad}).
+
+Pregunta actual:
+${preguntaJSON}
+
+Instrucción del profesor: "${instruccion}"
+
+Reglas:
+- Modifica la pregunta según la instrucción del profesor.
+- Conserva el mismo tipo de pregunta ("${pregunta.tipo}").
+- Si es "opcion_multiple", mantén exactamente 4 opciones (A, B, C, D) y actualiza la respuesta correcta si necesario.
+- Si es "verdadero_falso", mantén la respuesta como booleano (true/false).
+- Si es "espacios", mantén el formato con ___ en la pregunta.
+- Si es "abierta" o "calculo", actualiza la respuesta modelo si el contenido cambió.
+- Todo en español mexicano.
+
+Formato de respuesta JSON requerido:
+{
+  "preguntas": [
+    { "tipo": "${pregunta.tipo}", "pregunta": "...", ... }
+  ]
 }
 
 Responde ÚNICAMENTE con el JSON. Sin texto adicional, sin explicaciones, sin comillas de bloque de código.`

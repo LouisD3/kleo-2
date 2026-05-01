@@ -28,6 +28,8 @@ export default function EditorPreguntas({
   onPreguntasChange,
   onRegenerarPregunta,
   regenerandoIndice,
+  onModificarConIA,
+  modificandoIndice,
 }) {
   const [agregando, setAgregando] = useState(false)
   const [tipoNueva, setTipoNueva] = useState('opcion_multiple')
@@ -92,6 +94,8 @@ export default function EditorPreguntas({
           onMoverAbajo={() => handleMover(i, 1)}
           onRegenerar={() => onRegenerarPregunta(i)}
           regenerando={regenerandoIndice === i}
+          onModificarConIA={(instruccion) => onModificarConIA(i, instruccion)}
+          modificandoConIA={modificandoIndice === i}
         />
       ))}
 

@@ -21,8 +21,12 @@ export default function EditorPreguntaCard({
   onMoverAbajo,
   onRegenerar,
   regenerando,
+  onModificarConIA,
+  modificandoConIA,
 }) {
   const [editando, setEditando] = useState(false)
+  const [mostrarPromptIA, setMostrarPromptIA] = useState(false)
+  const [instruccionIA, setInstruccionIA] = useState('')
 
   function handleCampo(campo, valor) {
     onChange({ ...pregunta, [campo]: valor })
@@ -78,11 +82,20 @@ export default function EditorPreguntaCard({
     return op.replace(/^[A-Z]\)\s*/, '')
   }
 
-  if (regenerando) {
+  async function handleModificarConIA() {
+    if (!instruccionIA.trim() || !onModificarConIA) return
+    await onModificarConIA(instruccionIA.trim())
+    setInstruccionIA('')
+    setMostrarPromptIA(false)
+  }
+
+  if (regenerando || modificandoConIA) {
     return (
       <div className="card p-5 flex items-center justify-center gap-3 min-h-[100px]">
         <Spinner size="sm" />
-        <span className="text-sm text-gray-500">Regenerando pregunta...</span>
+        <span className="text-sm text-gray-500">
+          {modificandoConIA ? 'Modificando con IA...' : 'Regenerando pregunta...'}
+        </span>
       </div>
     )
   }
@@ -152,6 +165,21 @@ export default function EditorPreguntaCard({
                   />
                 </svg>
               </button>
+              {/* Modify with AI */}
+              <button
+                type="button"
+                onClick={() => setMostrarPromptIA(!mostrarPromptIA)}
+                className={`p-1.5 rounded-lg transition-colors ${
+                  mostrarPromptIA
+                    ? 'text-purple-600 bg-purple-50'
+                    : 'text-gray-400 hover:text-purple-600 hover:bg-purple-50'
+                }`}
+                title="Modificar con IA"
+              >
+                <svg className="w-3.5 h-3.5" viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" />
+                </svg>
+              </button>
               {/* Edit toggle */}
               <button
                 type="button"
@@ -198,6 +226,34 @@ export default function EditorPreguntaCard({
             />
           ) : (
             <ViewMode pregunta={pregunta} />
+          )}
+
+          {/* AI modification prompt */}
+          {mostrarPromptIA && (
+            <div className="mt-3 p-3 bg-purple-50 border border-purple-200 rounded-lg">
+              <p className="text-xs font-medium text-purple-700 mb-2">
+                Describe cómo quieres modificar esta pregunta
+              </p>
+              <div className="flex gap-2">
+                <input
+                  type="text"
+                  value={instruccionIA}
+                  onChange={(e) => setInstruccionIA(e.target.value)}
+                  onKeyDown={(e) => e.key === 'Enter' && handleModificarConIA()}
+                  placeholder="Ej. Hazla más difícil, cambia el contexto a deportes..."
+                  className="input-base flex-1 text-sm"
+                  autoFocus
+                />
+                <button
+                  type="button"
+                  onClick={handleModificarConIA}
+                  disabled={!instruccionIA.trim()}
+                  className="px-3 py-2 rounded-xl bg-purple-600 text-white text-sm font-medium hover:bg-purple-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex-shrink-0"
+                >
+                  Aplicar
+                </button>
+              </div>
+            </div>
           )}
         </div>
       </div>
