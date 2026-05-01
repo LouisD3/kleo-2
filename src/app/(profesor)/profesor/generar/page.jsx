@@ -68,7 +68,7 @@ export default function GenerarTarea() {
     grado: clases?.[0]?.grado ?? '1° Secundaria',
     dificultad: 'Media',
     metodologia: 'Feynman',
-    tipos: ['Opción múltiple'],
+    tipos: [],
     numeroPreguntas: 5,
     pdas: [],
     fecha_limite: '',
@@ -117,8 +117,7 @@ export default function GenerarTarea() {
       }
       const tiposSinMixto = prev.tipos.filter((t) => t !== 'Ejercicio mixto')
       if (tiposSinMixto.includes(tipo)) {
-        const nuevos = tiposSinMixto.filter((t) => t !== tipo)
-        return { ...prev, tipos: nuevos.length === 0 ? [tipo] : nuevos }
+        return { ...prev, tipos: tiposSinMixto.filter((t) => t !== tipo) }
       }
       return { ...prev, tipos: [...tiposSinMixto, tipo] }
     })
