@@ -7,6 +7,7 @@ import Boton from '@/components/ui/Boton.jsx'
 import MensajeError from '@/components/ui/MensajeError.jsx'
 import Modal from '@/components/ui/Modal.jsx'
 import Spinner from '@/components/ui/Spinner.jsx'
+import Toast from '@/components/ui/Toast.jsx'
 import { useAnthropicAPI } from '@/hooks/useAnthropicAPI.js'
 import { useActualizarTarea, useAgregarTarea, usePublicarTarea } from '@/hooks/useTareas.js'
 import { getPDAsByMateria } from '@/mock/pdas/index.js'
@@ -64,6 +65,7 @@ export default function GenerarTarea() {
   const [busquedaPDA, setBusquedaPDA] = useState('')
   const [clasesPublicar, setClasesPublicar] = useState(clases?.length ? [clases[0].id] : [])
   const [publicando, setPublicando] = useState(false)
+  const [toastVisible, setToastVisible] = useState(false)
 
   function toggleTipo(tipo) {
     setForm((prev) => {
@@ -115,6 +117,7 @@ export default function GenerarTarea() {
       })
       setTareaGenerada(resultado.preguntas)
       setTareaGuardada(nueva)
+      setToastVisible(true)
     }
   }
 
@@ -690,12 +693,6 @@ export default function GenerarTarea() {
                 </svg>
                 Regenerar
               </Boton>
-              <Boton variante="secundario" size="lg" onClick={() => router.push('/profesor')}>
-                <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
-                  <path d="M7.707 10.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 11.586V6h5a2 2 0 002-2V2a1 1 0 10-2 0v2H4V2a1 1 0 00-2 0v2a2 2 0 002 2h5v5.586l-1.293-1.293z" />
-                </svg>
-                Guardar borrador
-              </Boton>
               <Boton
                 variante="primario"
                 size="lg"
@@ -727,6 +724,12 @@ export default function GenerarTarea() {
           </div>
         )}
       </main>
+
+      <Toast
+        mensaje="Borrador guardado automáticamente"
+        visible={toastVisible}
+        onCerrar={() => setToastVisible(false)}
+      />
 
       <Modal
         abierto={modalPDAabierto}
