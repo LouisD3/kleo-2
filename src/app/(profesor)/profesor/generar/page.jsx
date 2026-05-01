@@ -1,6 +1,6 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import NavBar from '@/components/layout/NavBar.jsx'
 import EditorPreguntas from '@/components/profesor/EditorPreguntas.jsx'
@@ -10,7 +10,12 @@ import Modal from '@/components/ui/Modal.jsx'
 import Spinner from '@/components/ui/Spinner.jsx'
 import Toast from '@/components/ui/Toast.jsx'
 import { useAnthropicAPI } from '@/hooks/useAnthropicAPI.js'
-import { useActualizarTarea, useAgregarTarea, usePublicarTarea } from '@/hooks/useTareas.js'
+import {
+  useActualizarTarea,
+  useAgregarTarea,
+  usePublicarTarea,
+  useTareasProfesor,
+} from '@/hooks/useTareas.js'
 import { getPDAsByMateria } from '@/mock/pdas/index.js'
 import useAuthStore from '@/store/useAuthStore.js'
 
@@ -46,11 +51,14 @@ const TIPO_INVERSO = {
 
 export default function GenerarTarea() {
   const router = useRouter()
+  const searchParams = useSearchParams()
+  const tareaIdParam = searchParams.get('tarea')
   const { generarTarea, modificarPregunta, cargando, error, setError } = useAnthropicAPI()
   const agregarTarea = useAgregarTarea()
   const actualizarTarea = useActualizarTarea()
   const publicarTarea = usePublicarTarea()
   const { profesor, clases } = useAuthStore()
+  const { data: tareasData } = useTareasProfesor(profesor?.id)
 
   const [form, setForm] = useState({
     nombre: '',
@@ -74,6 +82,29 @@ export default function GenerarTarea() {
   const [clasesPublicar, setClasesPublicar] = useState(clases?.length ? [clases[0].id] : [])
   const [publicando, setPublicando] = useState(false)
   const [toastVisible, setToastVisible] = useState(false)
+  const inicializado = useRef(false)
+
+  // Load existing draft when ?tarea=<id> is present
+  useEffect(() => {
+    if (!tareaIdParam || inicializado.current || !tareasData?.tareas) return
+    const tarea = tareasData.tareas.find((t) => t.id === tareaIdParam)
+    if (!tarea || tarea.estado !== 'borrador') return
+    inicializado.current = true
+    setTareaGenerada(tarea.preguntas)
+    setTareaGuardada(tarea)
+    setForm((prev) => ({
+      ...prev,
+      nombre: tarea.nombre,
+      materia: tarea.materia,
+      dificultad: tarea.dificultad,
+      metodologia: tarea.metodologia,
+      tipos: tarea.tipos ?? prev.tipos,
+      numeroPreguntas: tarea.preguntas?.length ?? prev.numeroPreguntas,
+      fecha_limite: tarea.fecha_limite ?? '',
+      pdas: tarea.pda ?? [],
+    }))
+    setClasesPublicar([tarea.clase_id])
+  }, [tareaIdParam, tareasData])
 
   function toggleTipo(tipo) {
     setForm((prev) => {
