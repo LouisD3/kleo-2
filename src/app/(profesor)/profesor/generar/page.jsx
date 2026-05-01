@@ -1,9 +1,11 @@
 'use client'
 
+import { pdf } from '@react-pdf/renderer'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import NavBar from '@/components/layout/NavBar.jsx'
 import EditorPreguntas from '@/components/profesor/EditorPreguntas.jsx'
+import TareaPDF from '@/components/profesor/TareaPDF.jsx'
 import Boton from '@/components/ui/Boton.jsx'
 import MensajeError from '@/components/ui/MensajeError.jsx'
 import Modal from '@/components/ui/Modal.jsx'
@@ -81,6 +83,7 @@ export default function GenerarTarea() {
   const [busquedaPDA, setBusquedaPDA] = useState('')
   const [clasesPublicar, setClasesPublicar] = useState(clases?.length ? [clases[0].id] : [])
   const [publicando, setPublicando] = useState(false)
+  const [descargandoPDF, setDescargandoPDF] = useState(null)
   const [toastVisible, setToastVisible] = useState(false)
   const inicializado = useRef(false)
 
@@ -262,6 +265,38 @@ export default function GenerarTarea() {
       setTareaGenerada(nuevas)
     }
     setModificandoIndice(null)
+  }
+
+  async function handleDescargarPDF(conRespuestas) {
+    if (!tareaGenerada) return
+    const key = conRespuestas ? 'corrige' : 'examen'
+    setDescargandoPDF(key)
+    try {
+      const tareaPDF = {
+        nombre: form.nombre || 'Tarea',
+        materia: form.materia,
+        dificultad: form.dificultad,
+        metodologia: form.metodologia,
+        preguntas: tareaGenerada,
+        created_at: tareaGuardada?.created_at ?? new Date().toISOString(),
+      }
+      const claseNombre =
+        clases?.length > 0
+          ? `${clases[0].nombre} · ${clases[0].grado}`
+          : ''
+      const blob = await pdf(
+        <TareaPDF tarea={tareaPDF} claseNombre={claseNombre} showAnswers={conRespuestas} />
+      ).toBlob()
+      const url = URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      a.href = url
+      const suffix = conRespuestas ? 'respuestas' : 'examen'
+      a.download = `${(form.nombre || 'Tarea').replace(/[^a-zA-Z0-9áéíóúñÁÉÍÓÚÑ ]/g, '')}_${suffix}.pdf`
+      a.click()
+      URL.revokeObjectURL(url)
+    } finally {
+      setDescargandoPDF(null)
+    }
   }
 
   const METODO_DESC = {
@@ -730,7 +765,7 @@ export default function GenerarTarea() {
             )}
 
             {/* Secondary actions */}
-            <div className="flex gap-3">
+            <div className="flex flex-wrap gap-3">
               <Boton variante="secundario" size="md" onClick={() => router.push('/profesor')}>
                 Guardar y volver
               </Boton>
@@ -743,6 +778,36 @@ export default function GenerarTarea() {
                 }}
               >
                 Regenerar todo
+              </Boton>
+              <Boton
+                variante="secundario"
+                size="md"
+                disabled={descargandoPDF === 'examen'}
+                onClick={() => handleDescargarPDF(false)}
+              >
+                <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+                  <path
+                    fillRule="evenodd"
+                    d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+                {descargandoPDF === 'examen' ? 'Generando...' : 'Examen PDF'}
+              </Boton>
+              <Boton
+                variante="secundario"
+                size="md"
+                disabled={descargandoPDF === 'corrige'}
+                onClick={() => handleDescargarPDF(true)}
+              >
+                <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+                  <path
+                    fillRule="evenodd"
+                    d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+                {descargandoPDF === 'corrige' ? 'Generando...' : 'Respuestas PDF'}
               </Boton>
             </div>
           </div>
