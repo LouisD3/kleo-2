@@ -197,6 +197,21 @@ const useAuthStore = create((set, get) => ({
     return true
   },
 
+  iniciarSesionConGoogle: async () => {
+    set({ error: null })
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: 'google',
+      options: {
+        redirectTo: `${window.location.origin}/profesor/bienvenida`,
+      },
+    })
+    if (error) {
+      set({ error: traducirError(error.message) })
+      return false
+    }
+    return true
+  },
+
   recuperarContrasena: async (email) => {
     set({ error: null })
     const { error } = await supabase.auth.resetPasswordForEmail(email, {

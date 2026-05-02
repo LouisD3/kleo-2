@@ -369,8 +369,8 @@ export default function GestionClase() {
 
       {/* Modal nueva clase */}
       <Modal abierto={modalNuevaClase} onCerrar={closeModalNuevaClase} titulo="Nueva clase">
-        {/* Tabs: Manual vs Google Classroom */}
-        {gcConnected && (
+        {/* Tabs: Manual vs Google Classroom — always visible */}
+        {
           <div className="flex gap-1 mb-4 p-1 bg-gray-100 rounded-xl">
             <button
               type="button"
@@ -396,7 +396,7 @@ export default function GestionClase() {
               <GoogleClassroomIcon size={16} />
             </button>
           </div>
-        )}
+        }
 
         {modalTab === 'manual' ? (
           <form onSubmit={handleCrearClase} className="space-y-4">
