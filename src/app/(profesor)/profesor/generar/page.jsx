@@ -93,6 +93,7 @@ export default function GenerarTarea() {
   const [modalPDAabierto, setModalPDAabierto] = useState(false)
   const [busquedaPDA, setBusquedaPDA] = useState('')
   const [clasesPublicar, setClasesPublicar] = useState(clases?.length ? [clases[0].id] : [])
+  const [publicarEnGC, setPublicarEnGC] = useState(true)
   const [publicando, setPublicando] = useState(false)
   const [descargandoPDF, setDescargandoPDF] = useState(null)
   const [toastVisible, setToastVisible] = useState(false)
@@ -197,12 +198,11 @@ export default function GenerarTarea() {
     }
     await publicarTarea.mutateAsync(tareaGuardada.id)
 
-    // Auto-publish to Google Classroom if connected
-    if (gcStatus?.connected) {
+    // Publish to Google Classroom if checkbox is checked
+    if (gcStatus?.connected && publicarEnGC) {
       try {
         await gcPublish.mutateAsync({ tareaId: tareaGuardada.id })
       } catch {
-        // Non-blocking: GC publish failure shouldn't block the flow
         console.warn('Google Classroom publish failed for primary task')
       }
     }
@@ -223,7 +223,7 @@ export default function GenerarTarea() {
       })
       if (copia) {
         await publicarTarea.mutateAsync(copia.id)
-        if (gcStatus?.connected) {
+        if (gcStatus?.connected && publicarEnGC) {
           try {
             await gcPublish.mutateAsync({ tareaId: copia.id })
           } catch {
@@ -793,6 +793,19 @@ export default function GenerarTarea() {
                           </button>
                         ))}
                       </div>
+                    )}
+                    {gcStatus?.connected && (
+                      <label className="flex items-center gap-2 mb-4 cursor-pointer">
+                        <input
+                          type="checkbox"
+                          checked={publicarEnGC}
+                          onChange={(e) => setPublicarEnGC(e.target.checked)}
+                          className="w-4 h-4 rounded border-gray-300 text-green-600 focus:ring-green-500"
+                        />
+                        <span className="text-sm text-gray-700">
+                          Publicar también en Google Classroom
+                        </span>
+                      </label>
                     )}
                     <Boton
                       variante="primario"

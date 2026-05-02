@@ -99,6 +99,29 @@ export function useGCSyncStudents() {
   })
 }
 
+// Import a full class (clase + students) from GC
+export function useGCImportClass() {
+  const queryClient = useQueryClient()
+  return useMutation({
+    mutationFn: async ({ courseId, grado }) => {
+      const headers = await getAuthHeaders()
+      const res = await fetch('/api/gc/import-class', {
+        method: 'POST',
+        headers,
+        body: JSON.stringify({ courseId, grado }),
+      })
+      if (!res.ok) {
+        const data = await res.json()
+        throw new Error(data.error || 'Error al importar clase')
+      }
+      return res.json()
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['alumnos'] })
+    },
+  })
+}
+
 // Publish task to GC
 export function useGCPublish() {
   const queryClient = useQueryClient()
