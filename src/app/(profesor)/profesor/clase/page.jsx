@@ -60,6 +60,8 @@ export default function GestionClase() {
   const [copiado, setCopiado] = useState(null)
   const [compartido, setCompartido] = useState(null)
   const [modalAgregarAlumno, setModalAgregarAlumno] = useState(false)
+  const [agregarTab, setAgregarTab] = useState('manual')
+  const [syncResult, setSyncResult] = useState(null)
   const [menuClaseOpen, setMenuClaseOpen] = useState(false)
   const [confirmEliminar, setConfirmEliminar] = useState(null)
   const [confirmEliminarClase, setConfirmEliminarClase] = useState(false)
@@ -272,36 +274,7 @@ export default function GestionClase() {
                           className="fixed inset-0 z-10"
                           onClick={() => setMenuClaseOpen(false)}
                         />
-                        <div className="absolute right-0 top-full mt-1 z-20 w-56 bg-white rounded-xl border border-gray-200 shadow-lg py-1">
-                          {clase.gc_course_id && (
-                            <button
-                              type="button"
-                              onClick={() => {
-                                syncStudentsMut.mutate({
-                                  courseId: clase.gc_course_id,
-                                  claseId: clase.id,
-                                })
-                                setMenuClaseOpen(false)
-                              }}
-                              disabled={syncStudentsMut.isPending}
-                              className="w-full text-left px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 flex items-center gap-3"
-                            >
-                              <svg
-                                className="w-4 h-4 text-gray-400"
-                                viewBox="0 0 20 20"
-                                fill="currentColor"
-                              >
-                                <path
-                                  fillRule="evenodd"
-                                  d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z"
-                                  clipRule="evenodd"
-                                />
-                              </svg>
-                              {syncStudentsMut.isPending
-                                ? 'Sincronizando...'
-                                : 'Re-sincronizar alumnos'}
-                            </button>
-                          )}
+                        <div className="absolute right-0 top-full mt-1 z-20 w-48 bg-white rounded-xl border border-gray-200 shadow-lg py-1">
                           <button
                             type="button"
                             onClick={() => {
@@ -564,42 +537,129 @@ export default function GestionClase() {
         abierto={modalAgregarAlumno}
         onCerrar={() => {
           setModalAgregarAlumno(false)
+          setAgregarTab('manual')
           setNuevoAlumno('')
+          setSyncResult(null)
           setError(null)
         }}
         titulo="Agregar alumno"
       >
-        <form
-          onSubmit={(e) => {
-            handleAgregarAlumno(e)
-            if (nuevoAlumno.trim()) {
-              setModalAgregarAlumno(false)
-            }
-          }}
-          className="space-y-4"
-        >
-          <div>
-            <label className="label-base">Nombre completo</label>
-            <input
-              type="text"
-              value={nuevoAlumno}
-              onChange={(e) => setNuevoAlumno(e.target.value)}
-              placeholder="Ej. María López García"
-              className="input-base"
-              autoFocus
-            />
+        {/* Tabs si la classe est liée à GC */}
+        {clase?.gc_course_id && (
+          <div className="flex gap-1 mb-4 p-1 bg-gray-100 rounded-xl">
+            <button
+              type="button"
+              onClick={() => setAgregarTab('manual')}
+              className={`flex-1 px-3 py-2 rounded-lg text-sm font-medium transition-all ${
+                agregarTab === 'manual'
+                  ? 'bg-white text-gray-900 shadow-sm'
+                  : 'text-gray-500 hover:text-gray-700'
+              }`}
+            >
+              Manualmente
+            </button>
+            <button
+              type="button"
+              onClick={() => setAgregarTab('classroom')}
+              className={`flex-1 px-3 py-2 rounded-lg text-sm font-medium transition-all flex items-center justify-center gap-1.5 ${
+                agregarTab === 'classroom'
+                  ? 'bg-white text-gray-900 shadow-sm'
+                  : 'text-gray-500 hover:text-gray-700'
+              }`}
+            >
+              Desde Classroom
+              <GoogleClassroomIcon size={16} />
+            </button>
           </div>
-          <MensajeError mensaje={error} onCerrar={() => setError(null)} />
-          <Boton
-            type="submit"
-            variante="primario"
-            size="md"
-            className="w-full"
-            disabled={!nuevoAlumno.trim()}
+        )}
+
+        {agregarTab === 'manual' ? (
+          <form
+            onSubmit={(e) => {
+              handleAgregarAlumno(e)
+              if (nuevoAlumno.trim()) {
+                setModalAgregarAlumno(false)
+              }
+            }}
+            className="space-y-4"
           >
-            Agregar alumno
-          </Boton>
-        </form>
+            <div>
+              <label className="label-base">Nombre completo</label>
+              <input
+                type="text"
+                value={nuevoAlumno}
+                onChange={(e) => setNuevoAlumno(e.target.value)}
+                placeholder="Ej. María López García"
+                className="input-base"
+                autoFocus
+              />
+            </div>
+            <MensajeError mensaje={error} onCerrar={() => setError(null)} />
+            <Boton
+              type="submit"
+              variante="primario"
+              size="md"
+              className="w-full"
+              disabled={!nuevoAlumno.trim()}
+            >
+              Agregar alumno
+            </Boton>
+          </form>
+        ) : (
+          <div className="space-y-4">
+            <p className="text-sm text-gray-600">
+              Sincroniza los alumnos de tu curso de Google Classroom. Los alumnos nuevos se
+              agregarán automáticamente.
+            </p>
+
+            {syncResult && (
+              <div className="p-3 rounded-lg bg-green-50 border border-green-200">
+                <p className="text-sm text-green-800">
+                  {syncResult.imported > 0
+                    ? `${syncResult.imported} alumno${syncResult.imported !== 1 ? 's' : ''} importado${syncResult.imported !== 1 ? 's' : ''}.`
+                    : 'Todos los alumnos ya estaban importados.'}
+                  {syncResult.alreadyExisted > 0 &&
+                    ` ${syncResult.alreadyExisted} ya existía${syncResult.alreadyExisted !== 1 ? 'n' : ''}.`}
+                </p>
+              </div>
+            )}
+
+            <MensajeError mensaje={error} onCerrar={() => setError(null)} />
+
+            {syncResult ? (
+              <Boton
+                variante="primario"
+                className="w-full"
+                onClick={() => {
+                  setModalAgregarAlumno(false)
+                  setSyncResult(null)
+                }}
+              >
+                Cerrar
+              </Boton>
+            ) : (
+              <Boton
+                variante="primario"
+                className="w-full"
+                onClick={async () => {
+                  setError(null)
+                  try {
+                    const result = await syncStudentsMut.mutateAsync({
+                      courseId: clase.gc_course_id,
+                      claseId: clase.id,
+                    })
+                    setSyncResult(result)
+                  } catch (err) {
+                    setError(err.message || 'Error al sincronizar')
+                  }
+                }}
+                disabled={syncStudentsMut.isPending}
+              >
+                {syncStudentsMut.isPending ? 'Sincronizando...' : 'Sincronizar alumnos'}
+              </Boton>
+            )}
+          </div>
+        )}
       </Modal>
 
       {/* Confirm delete */}
