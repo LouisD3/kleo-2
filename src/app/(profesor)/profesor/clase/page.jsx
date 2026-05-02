@@ -59,6 +59,8 @@ export default function GestionClase() {
   const [error, setError] = useState(null)
   const [copiado, setCopiado] = useState(null)
   const [compartido, setCompartido] = useState(null)
+  const [modalAgregarAlumno, setModalAgregarAlumno] = useState(false)
+  const [menuClaseOpen, setMenuClaseOpen] = useState(false)
   const [confirmEliminar, setConfirmEliminar] = useState(null)
   const [confirmEliminarClase, setConfirmEliminarClase] = useState(false)
 
@@ -227,9 +229,9 @@ export default function GestionClase() {
 
         {clase && (
           <>
-            {/* Info de clase + agregar alumno */}
-            <div className="card p-6 mb-6">
-              <div className="flex items-center justify-between mb-4">
+            {/* Info de clase */}
+            <div className="card px-6 py-4 mb-6">
+              <div className="flex items-center justify-between">
                 <div>
                   <h2 className="text-lg font-bold text-gray-900 flex items-center gap-2">
                     {clase.nombre}
@@ -240,57 +242,89 @@ export default function GestionClase() {
                   </p>
                 </div>
                 <div className="flex items-center gap-1">
-                  {clase.gc_course_id && (
-                    <button
-                      type="button"
-                      onClick={() =>
-                        syncStudentsMut.mutate({
-                          courseId: clase.gc_course_id,
-                          claseId: clase.id,
-                        })
-                      }
-                      disabled={syncStudentsMut.isPending}
-                      className="p-2 rounded-lg text-gray-400 hover:text-green-600 hover:bg-green-50 transition-colors"
-                      title="Re-sincronizar con Google Classroom"
-                    >
-                      <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
-                        <path
-                          fillRule="evenodd"
-                          d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                    </button>
-                  )}
+                  {/* Primary action: add student */}
                   <button
-                    onClick={() => setConfirmEliminarClase(true)}
-                    className="p-2 rounded-lg text-gray-400 hover:text-red-500 hover:bg-red-50 transition-colors"
-                    title="Eliminar clase"
+                    type="button"
+                    onClick={() => setModalAgregarAlumno(true)}
+                    className="p-2 rounded-lg text-gray-400 hover:text-gray-700 hover:bg-gray-100 transition-colors"
+                    title="Agregar alumno"
                   >
                     <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
-                      <path
-                        fillRule="evenodd"
-                        d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
-                        clipRule="evenodd"
-                      />
+                      <path d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 00-6 6h12a6 6 0 00-6-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z" />
                     </svg>
                   </button>
+
+                  {/* Kebab menu for secondary actions */}
+                  <div className="relative">
+                    <button
+                      type="button"
+                      onClick={() => setMenuClaseOpen(!menuClaseOpen)}
+                      className="p-2 rounded-lg text-gray-400 hover:text-gray-700 hover:bg-gray-100 transition-colors"
+                    >
+                      <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
+                      </svg>
+                    </button>
+
+                    {menuClaseOpen && (
+                      <>
+                        <div
+                          className="fixed inset-0 z-10"
+                          onClick={() => setMenuClaseOpen(false)}
+                        />
+                        <div className="absolute right-0 top-full mt-1 z-20 w-56 bg-white rounded-xl border border-gray-200 shadow-lg py-1">
+                          {clase.gc_course_id && (
+                            <button
+                              type="button"
+                              onClick={() => {
+                                syncStudentsMut.mutate({
+                                  courseId: clase.gc_course_id,
+                                  claseId: clase.id,
+                                })
+                                setMenuClaseOpen(false)
+                              }}
+                              disabled={syncStudentsMut.isPending}
+                              className="w-full text-left px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 flex items-center gap-3"
+                            >
+                              <svg
+                                className="w-4 h-4 text-gray-400"
+                                viewBox="0 0 20 20"
+                                fill="currentColor"
+                              >
+                                <path
+                                  fillRule="evenodd"
+                                  d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z"
+                                  clipRule="evenodd"
+                                />
+                              </svg>
+                              {syncStudentsMut.isPending
+                                ? 'Sincronizando...'
+                                : 'Re-sincronizar alumnos'}
+                            </button>
+                          )}
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setConfirmEliminarClase(true)
+                              setMenuClaseOpen(false)
+                            }}
+                            className="w-full text-left px-4 py-2.5 text-sm text-red-600 hover:bg-red-50 flex items-center gap-3"
+                          >
+                            <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+                              <path
+                                fillRule="evenodd"
+                                d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                                clipRule="evenodd"
+                              />
+                            </svg>
+                            Eliminar clase
+                          </button>
+                        </div>
+                      </>
+                    )}
+                  </div>
                 </div>
               </div>
-
-              <form onSubmit={handleAgregarAlumno} className="flex gap-3">
-                <input
-                  type="text"
-                  value={nuevoAlumno}
-                  onChange={(e) => setNuevoAlumno(e.target.value)}
-                  placeholder="Agregar alumno..."
-                  className="input-base flex-1"
-                />
-                <Boton type="submit" variante="primario" size="md" disabled={!nuevoAlumno.trim()}>
-                  Agregar
-                </Boton>
-              </form>
-              <MensajeError mensaje={error} onCerrar={() => setError(null)} />
             </div>
 
             {/* Lista de alumnos */}
@@ -523,6 +557,49 @@ export default function GestionClase() {
             </button>
           </div>
         )}
+      </Modal>
+
+      {/* Modal agregar alumno */}
+      <Modal
+        abierto={modalAgregarAlumno}
+        onCerrar={() => {
+          setModalAgregarAlumno(false)
+          setNuevoAlumno('')
+          setError(null)
+        }}
+        titulo="Agregar alumno"
+      >
+        <form
+          onSubmit={(e) => {
+            handleAgregarAlumno(e)
+            if (nuevoAlumno.trim()) {
+              setModalAgregarAlumno(false)
+            }
+          }}
+          className="space-y-4"
+        >
+          <div>
+            <label className="label-base">Nombre completo</label>
+            <input
+              type="text"
+              value={nuevoAlumno}
+              onChange={(e) => setNuevoAlumno(e.target.value)}
+              placeholder="Ej. María López García"
+              className="input-base"
+              autoFocus
+            />
+          </div>
+          <MensajeError mensaje={error} onCerrar={() => setError(null)} />
+          <Boton
+            type="submit"
+            variante="primario"
+            size="md"
+            className="w-full"
+            disabled={!nuevoAlumno.trim()}
+          >
+            Agregar alumno
+          </Boton>
+        </form>
       </Modal>
 
       {/* Confirm delete */}
