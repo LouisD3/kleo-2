@@ -12,6 +12,7 @@ import Modal from '@/components/ui/Modal.jsx'
 import Spinner from '@/components/ui/Spinner.jsx'
 import Toast from '@/components/ui/Toast.jsx'
 import { useAnthropicAPI } from '@/hooks/useAnthropicAPI.js'
+import { useGCPublish, useGCStatus } from '@/hooks/useGoogleClassroom.js'
 import {
   useActualizarTarea,
   useAgregarTarea,
@@ -68,6 +69,8 @@ export default function GenerarTarea() {
   const publicarTarea = usePublicarTarea()
   const { profesor, clases } = useAuthStore()
   const { data: tareasData } = useTareasProfesor(profesor?.id)
+  const { data: gcStatus } = useGCStatus(profesor?.id)
+  const gcPublish = useGCPublish()
 
   const [form, setForm] = useState({
     nombre: '',
@@ -194,6 +197,16 @@ export default function GenerarTarea() {
     }
     await publicarTarea.mutateAsync(tareaGuardada.id)
 
+    // Auto-publish to Google Classroom if connected
+    if (gcStatus?.connected) {
+      try {
+        await gcPublish.mutateAsync({ tareaId: tareaGuardada.id })
+      } catch {
+        // Non-blocking: GC publish failure shouldn't block the flow
+        console.warn('Google Classroom publish failed for primary task')
+      }
+    }
+
     // Create copies for additional classes
     for (const claseId of resto) {
       const copia = await agregarTarea.mutateAsync({
@@ -208,7 +221,16 @@ export default function GenerarTarea() {
         fecha_limite: tareaGuardada.fecha_limite || null,
         pda: tareaGuardada.pda || null,
       })
-      if (copia) await publicarTarea.mutateAsync(copia.id)
+      if (copia) {
+        await publicarTarea.mutateAsync(copia.id)
+        if (gcStatus?.connected) {
+          try {
+            await gcPublish.mutateAsync({ tareaId: copia.id })
+          } catch {
+            console.warn('Google Classroom publish failed for copy')
+          }
+        }
+      }
     }
 
     setPublicando(false)

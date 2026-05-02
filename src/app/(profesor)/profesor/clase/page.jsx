@@ -3,6 +3,7 @@
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import NavBar from '@/components/layout/NavBar.jsx'
+import GoogleClassroomPanel from '@/components/profesor/GoogleClassroomPanel.jsx'
 import Boton from '@/components/ui/Boton.jsx'
 import MensajeError from '@/components/ui/MensajeError.jsx'
 import Modal from '@/components/ui/Modal.jsx'
@@ -205,6 +206,13 @@ export default function GestionClase() {
                 </div>
               </div>
             </div>
+
+            {/* Google Classroom integration */}
+            <GoogleClassroomPanel
+              profesorId={profesor?.id}
+              claseId={clase.id}
+              claseNombre={clase.nombre}
+            />
 
             {/* Agregar alumno */}
             <div className="card p-6 mb-6">
