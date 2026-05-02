@@ -430,7 +430,9 @@ export default function GestionClase() {
           </form>
         ) : !gcConnected ? (
           <div className="space-y-4 text-center py-4">
-            <GoogleClassroomIcon size={40} />
+            <div className="flex justify-center">
+              <GoogleClassroomIcon size={32} />
+            </div>
             <p className="text-sm text-gray-600">
               Conecta tu cuenta de Google Classroom para importar tus clases y alumnos.
             </p>
