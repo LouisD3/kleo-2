@@ -3,7 +3,14 @@
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import Boton from '@/components/ui/Boton.jsx'
+import GoogleClassroomIcon from '@/components/ui/GoogleClassroomIcon.jsx'
 import MensajeError from '@/components/ui/MensajeError.jsx'
+import {
+  useGCConnect,
+  useGCCourses,
+  useGCImportClass,
+  useGCStatus,
+} from '@/hooks/useGoogleClassroom.js'
 import { supabase } from '@/lib/supabase.js'
 import useAuthStore from '@/store/useAuthStore.js'
 
@@ -11,7 +18,7 @@ const GRADOS = ['1° Secundaria', '2° Secundaria', '3° Secundaria']
 
 export default function Bienvenida() {
   const router = useRouter()
-  const { profesor, clase, setClase, agregarClaseLocal } = useAuthStore()
+  const { profesor, usuario, clase, setClase, agregarClaseLocal } = useAuthStore()
   const [paso, setPaso] = useState(1)
   const [formClase, setFormClase] = useState({ nombre: '', grado: '1° Secundaria' })
   const [claseCreada, setClaseCreada] = useState(null)
@@ -19,6 +26,19 @@ export default function Bienvenida() {
   const [agregando, setAgregando] = useState(false)
   const [alumnosAgregados, setAlumnosAgregados] = useState(0)
   const [error, setError] = useState(null)
+  const [setupTab, setSetupTab] = useState('manual')
+  const [selectedCourse, setSelectedCourse] = useState(null)
+  const [gradoImport, setGradoImport] = useState('1° Secundaria')
+
+  // Google Classroom hooks
+  const isGoogleUser = usuario?.app_metadata?.provider === 'google'
+  const { data: gcStatus } = useGCStatus(profesor?.id)
+  const connectMut = useGCConnect()
+  const importClassMut = useGCImportClass()
+  const gcConnected = gcStatus?.connected ?? false
+  const { data: gcCourses = [], isLoading: coursesLoading } = useGCCourses(
+    setupTab === 'classroom' && gcConnected,
+  )
 
   async function handleCrearClase(e) {
     e.preventDefault()
@@ -161,43 +181,164 @@ export default function Bienvenida() {
                 Tus alumnos se conectarán a esta clase para hacer sus tareas.
               </p>
 
-              <form onSubmit={handleCrearClase} className="space-y-4">
-                <div>
-                  <label className="label-base">Nombre de la clase</label>
-                  <input
-                    type="text"
-                    value={formClase.nombre}
-                    onChange={(e) => setFormClase((p) => ({ ...p, nombre: e.target.value }))}
-                    placeholder="Ej. 3°A Vespertino"
-                    className="input-base"
-                    autoFocus
-                  />
-                </div>
-                <div>
-                  <label className="label-base">Grado</label>
-                  <select
-                    value={formClase.grado}
-                    onChange={(e) => setFormClase((p) => ({ ...p, grado: e.target.value }))}
-                    className="input-base"
+              {/* Tabs for Google users */}
+              {isGoogleUser && (
+                <div className="flex gap-1 mb-6 p-1 bg-gray-100 rounded-xl">
+                  <button
+                    type="button"
+                    onClick={() => setSetupTab('manual')}
+                    className={`flex-1 px-3 py-2 rounded-lg text-sm font-medium transition-all ${
+                      setupTab === 'manual'
+                        ? 'bg-white text-gray-900 shadow-sm'
+                        : 'text-gray-500 hover:text-gray-700'
+                    }`}
                   >
-                    {GRADOS.map((g) => (
-                      <option key={g}>{g}</option>
-                    ))}
-                  </select>
+                    Crear manualmente
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setSetupTab('classroom')}
+                    className={`flex-1 px-3 py-2 rounded-lg text-sm font-medium transition-all flex items-center justify-center gap-1.5 ${
+                      setupTab === 'classroom'
+                        ? 'bg-white text-gray-900 shadow-sm'
+                        : 'text-gray-500 hover:text-gray-700'
+                    }`}
+                  >
+                    Importar de Classroom
+                    <GoogleClassroomIcon size={16} />
+                  </button>
                 </div>
+              )}
 
-                <MensajeError mensaje={error} onCerrar={() => setError(null)} />
+              {setupTab === 'manual' ? (
+                <form onSubmit={handleCrearClase} className="space-y-4">
+                  <div>
+                    <label className="label-base">Nombre de la clase</label>
+                    <input
+                      type="text"
+                      value={formClase.nombre}
+                      onChange={(e) => setFormClase((p) => ({ ...p, nombre: e.target.value }))}
+                      placeholder="Ej. 3°A Vespertino"
+                      className="input-base"
+                      autoFocus
+                    />
+                  </div>
+                  <div>
+                    <label className="label-base">Grado</label>
+                    <select
+                      value={formClase.grado}
+                      onChange={(e) => setFormClase((p) => ({ ...p, grado: e.target.value }))}
+                      className="input-base"
+                    >
+                      {GRADOS.map((g) => (
+                        <option key={g}>{g}</option>
+                      ))}
+                    </select>
+                  </div>
 
-                <Boton
-                  type="submit"
-                  variante="primario"
-                  size="lg"
-                  disabled={!formClase.nombre.trim()}
-                  className="w-full"
-                >
-                  Siguiente
-                </Boton>
-              </form>
+                  <MensajeError mensaje={error} onCerrar={() => setError(null)} />
+
+                  <Boton
+                    type="submit"
+                    variante="primario"
+                    size="lg"
+                    disabled={!formClase.nombre.trim()}
+                    className="w-full"
+                  >
+                    Siguiente
+                  </Boton>
+                </form>
+              ) : !gcConnected ? (
+                <div className="space-y-4 text-center py-4">
+                  <GoogleClassroomIcon size={48} />
+                  <p className="text-sm text-gray-600">
+                    Conecta Google Classroom para importar tu clase y tus alumnos en un clic.
+                  </p>
+                  <Boton
+                    variante="primario"
+                    size="lg"
+                    className="w-full"
+                    onClick={() => connectMut.mutate()}
+                    disabled={connectMut.isPending}
+                  >
+                    {connectMut.isPending ? 'Conectando...' : 'Conectar Google Classroom'}
+                  </Boton>
+                </div>
+              ) : (
+                <div className="space-y-4">
+                  <p className="text-sm text-gray-600">
+                    Selecciona un curso. Tu clase y tus alumnos se importarán automáticamente.
+                  </p>
+
+                  {coursesLoading ? (
+                    <div className="py-8 text-center text-sm text-gray-400">Cargando cursos...</div>
+                  ) : gcCourses.length === 0 ? (
+                    <div className="py-8 text-center text-sm text-gray-400">
+                      No se encontraron cursos activos.
+                    </div>
+                  ) : (
+                    <div className="space-y-2 max-h-48 overflow-y-auto">
+                      {gcCourses.map((course) => (
+                        <button
+                          key={course.id}
+                          type="button"
+                          onClick={() => setSelectedCourse(course.id)}
+                          className={`w-full text-left px-4 py-3 rounded-xl border transition-all ${
+                            selectedCourse === course.id
+                              ? 'border-green-500 bg-green-50'
+                              : 'border-gray-200 hover:border-gray-300'
+                          }`}
+                        >
+                          <p className="font-medium text-gray-900 text-sm">{course.name}</p>
+                          {course.section && (
+                            <p className="text-xs text-gray-500 mt-0.5">{course.section}</p>
+                          )}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+
+                  <div>
+                    <label className="label-base">Grado</label>
+                    <select
+                      value={gradoImport}
+                      onChange={(e) => setGradoImport(e.target.value)}
+                      className="input-base"
+                    >
+                      {GRADOS.map((g) => (
+                        <option key={g}>{g}</option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <MensajeError mensaje={error} onCerrar={() => setError(null)} />
+
+                  <Boton
+                    variante="primario"
+                    size="lg"
+                    className="w-full"
+                    disabled={!selectedCourse || importClassMut.isPending}
+                    onClick={async () => {
+                      setError(null)
+                      try {
+                        const result = await importClassMut.mutateAsync({
+                          courseId: selectedCourse,
+                          grado: gradoImport,
+                        })
+                        setClase(result.clase)
+                        agregarClaseLocal(result.clase)
+                        setClaseCreada(result.clase)
+                        setAlumnosAgregados(result.studentsImported)
+                        setPaso(3)
+                      } catch (err) {
+                        setError(err.message || 'Error al importar')
+                      }
+                    }}
+                  >
+                    {importClassMut.isPending ? 'Importando...' : 'Importar clase'}
+                  </Boton>
+                </div>
+              )}
             </div>
           )}
 

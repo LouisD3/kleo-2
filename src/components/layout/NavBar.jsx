@@ -1,5 +1,6 @@
 'use client'
 
+import { LogOut, Settings } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import useAuthStore from '../../store/useAuthStore.js'
 
@@ -72,11 +73,21 @@ export default function NavBar({ titulo, volver }) {
               </span>
             </div>
           )}
+          {rol === 'profesor' && (
+            <button
+              onClick={() => router.push('/profesor/ajustes')}
+              className="p-1.5 rounded-lg text-gray-400 hover:text-gray-700 hover:bg-gray-100 transition-colors"
+              title="Ajustes"
+            >
+              <Settings className="w-[18px] h-[18px]" />
+            </button>
+          )}
           <button
             onClick={handleSalir}
-            className="text-sm text-gray-400 hover:text-gray-700 hover:bg-gray-100 px-3 py-1.5 rounded-lg transition-colors"
+            className="p-1.5 rounded-lg text-gray-400 hover:text-gray-700 hover:bg-gray-100 transition-colors"
+            title="Salir"
           >
-            Salir
+            <LogOut className="w-[18px] h-[18px]" />
           </button>
         </div>
       </div>

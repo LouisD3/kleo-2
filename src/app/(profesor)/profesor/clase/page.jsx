@@ -1,11 +1,21 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
+import { useQueryClient } from '@tanstack/react-query'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import NavBar from '@/components/layout/NavBar.jsx'
 import Boton from '@/components/ui/Boton.jsx'
+import GoogleClassroomIcon from '@/components/ui/GoogleClassroomIcon.jsx'
 import MensajeError from '@/components/ui/MensajeError.jsx'
 import Modal from '@/components/ui/Modal.jsx'
+import {
+  useGCConnect,
+  useGCCourses,
+  useGCDisconnect,
+  useGCImportClass,
+  useGCStatus,
+  useGCSyncStudents,
+} from '@/hooks/useGoogleClassroom.js'
 import {
   useAgregarAlumno,
   useAlumnos,
@@ -23,17 +33,73 @@ export default function GestionClase() {
   const eliminarAlumnoMut = useEliminarAlumno()
   const eliminarClaseMut = useEliminarClase()
 
+  const searchParams = useSearchParams()
+  const queryClient = useQueryClient()
+  const { data: gcStatus } = useGCStatus(profesor?.id)
+  const connectMut = useGCConnect()
+  const disconnectMut = useGCDisconnect()
+  const importClassMut = useGCImportClass()
+  const syncStudentsMut = useGCSyncStudents()
+
+  // Detect OAuth callback and refresh GC status
+  useEffect(() => {
+    if (searchParams.get('gc_connected') === 'true') {
+      queryClient.invalidateQueries({ queryKey: ['gc-status'] })
+    }
+  }, [searchParams, queryClient])
+
   const [clases, setClases] = useState([])
   const [nuevoAlumno, setNuevoAlumno] = useState('')
   const [modalNuevaClase, setModalNuevaClase] = useState(false)
+  const [modalTab, setModalTab] = useState('manual') // 'manual' | 'classroom'
   const [formClase, setFormClase] = useState({ nombre: '', grado: '1° Secundaria' })
+  const [selectedCourse, setSelectedCourse] = useState(null)
+  const [gradoImport, setGradoImport] = useState('1° Secundaria')
+  const [importResult, setImportResult] = useState(null)
   const [error, setError] = useState(null)
   const [copiado, setCopiado] = useState(null)
   const [compartido, setCompartido] = useState(null)
+  const [modalAgregarAlumno, setModalAgregarAlumno] = useState(false)
+  const [agregarTab, setAgregarTab] = useState('manual')
+  const [syncResult, setSyncResult] = useState(null)
+  const [menuClaseOpen, setMenuClaseOpen] = useState(false)
   const [confirmEliminar, setConfirmEliminar] = useState(null)
   const [confirmEliminarClase, setConfirmEliminarClase] = useState(false)
 
   const GRADOS = ['1° Secundaria', '2° Secundaria', '3° Secundaria']
+
+  const gcConnected = gcStatus?.connected ?? false
+  const { data: gcCourses = [], isLoading: coursesLoading } = useGCCourses(
+    modalNuevaClase && modalTab === 'classroom' && gcConnected,
+  )
+
+  async function handleImportClass() {
+    if (!selectedCourse) return
+    setError(null)
+    setImportResult(null)
+    try {
+      const result = await importClassMut.mutateAsync({
+        courseId: selectedCourse,
+        grado: gradoImport,
+      })
+      setImportResult(result)
+      // Add the new class to local state
+      setClases((prev) => [result.clase, ...prev])
+      setClase(result.clase)
+      agregarClaseLocal(result.clase)
+    } catch (err) {
+      setError(err.message || 'Error al importar clase')
+    }
+  }
+
+  function closeModalNuevaClase() {
+    setModalNuevaClase(false)
+    setModalTab('manual')
+    setSelectedCourse(null)
+    setImportResult(null)
+    setFormClase({ nombre: '', grado: '1° Secundaria' })
+    setError(null)
+  }
 
   useEffect(() => {
     cargarClases()
@@ -166,62 +232,72 @@ export default function GestionClase() {
         {clase && (
           <>
             {/* Info de clase */}
-            <div className="card p-6 mb-6">
+            <div className="card px-6 py-4 mb-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <h2 className="text-lg font-bold text-gray-900">{clase.nombre}</h2>
+                  <h2 className="text-lg font-bold text-gray-900 flex items-center gap-2">
+                    {clase.nombre}
+                    {clase.gc_course_id && <GoogleClassroomIcon size={18} />}
+                  </h2>
                   <p className="text-sm text-gray-500">
                     {clase.grado} · {alumnos.length} alumno{alumnos.length !== 1 ? 's' : ''}
                   </p>
                 </div>
-                <button
-                  onClick={() => setConfirmEliminarClase(true)}
-                  className="text-xs text-gray-400 hover:text-red-500 transition-colors px-2 py-1"
-                >
-                  Eliminar clase
-                </button>
-              </div>
-            </div>
+                <div className="flex items-center gap-1">
+                  {/* Primary action: add student */}
+                  <button
+                    type="button"
+                    onClick={() => setModalAgregarAlumno(true)}
+                    className="p-2 rounded-lg text-gray-400 hover:text-gray-700 hover:bg-gray-100 transition-colors"
+                    title="Agregar alumno"
+                  >
+                    <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+                      <path d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 00-6 6h12a6 6 0 00-6-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z" />
+                    </svg>
+                  </button>
 
-            {/* Cómo funcionan los códigos */}
-            <div className="card p-5 mb-6 bg-blue-50/50 border-blue-100">
-              <div className="flex gap-3">
-                <div className="w-8 h-8 rounded-lg bg-blue-100 flex items-center justify-center shrink-0">
-                  <svg className="w-4 h-4 text-blue-600" viewBox="0 0 20 20" fill="currentColor">
-                    <path
-                      fillRule="evenodd"
-                      d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </div>
-                <div>
-                  <p className="text-sm font-medium text-gray-900">¿Cómo entran tus alumnos?</p>
-                  <p className="text-xs text-gray-500 mt-1 leading-relaxed">
-                    Cada alumno tiene un código único de 6 caracteres. Solo necesitan ir a la página
-                    de acceso alumno y escribir su código para entrar. Usa el botón
-                    &quot;Compartir&quot; para enviarles las instrucciones.
-                  </p>
+                  {/* Kebab menu for secondary actions */}
+                  <div className="relative">
+                    <button
+                      type="button"
+                      onClick={() => setMenuClaseOpen(!menuClaseOpen)}
+                      className="p-2 rounded-lg text-gray-400 hover:text-gray-700 hover:bg-gray-100 transition-colors"
+                    >
+                      <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
+                      </svg>
+                    </button>
+
+                    {menuClaseOpen && (
+                      <>
+                        <div
+                          className="fixed inset-0 z-10"
+                          onClick={() => setMenuClaseOpen(false)}
+                        />
+                        <div className="absolute right-0 top-full mt-1 z-20 w-48 bg-white rounded-xl border border-gray-200 shadow-lg py-1">
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setConfirmEliminarClase(true)
+                              setMenuClaseOpen(false)
+                            }}
+                            className="w-full text-left px-4 py-2.5 text-sm text-red-600 hover:bg-red-50 flex items-center gap-3"
+                          >
+                            <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+                              <path
+                                fillRule="evenodd"
+                                d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                                clipRule="evenodd"
+                              />
+                            </svg>
+                            Eliminar clase
+                          </button>
+                        </div>
+                      </>
+                    )}
+                  </div>
                 </div>
               </div>
-            </div>
-
-            {/* Agregar alumno */}
-            <div className="card p-6 mb-6">
-              <h3 className="font-semibold text-gray-900 mb-3">Agregar alumno</h3>
-              <form onSubmit={handleAgregarAlumno} className="flex gap-3">
-                <input
-                  type="text"
-                  value={nuevoAlumno}
-                  onChange={(e) => setNuevoAlumno(e.target.value)}
-                  placeholder="Nombre completo del alumno"
-                  className="input-base flex-1"
-                />
-                <Boton type="submit" variante="primario" size="md" disabled={!nuevoAlumno.trim()}>
-                  Agregar
-                </Boton>
-              </form>
-              <MensajeError mensaje={error} onCerrar={() => setError(null)} />
             </div>
 
             {/* Lista de alumnos */}
@@ -292,40 +368,300 @@ export default function GestionClase() {
       </main>
 
       {/* Modal nueva clase */}
-      <Modal
-        abierto={modalNuevaClase}
-        onCerrar={() => setModalNuevaClase(false)}
-        titulo="Nueva clase"
-      >
-        <form onSubmit={handleCrearClase} className="space-y-4">
-          <div>
-            <label className="label-base">Nombre de la clase</label>
-            <input
-              type="text"
-              value={formClase.nombre}
-              onChange={(e) => setFormClase((p) => ({ ...p, nombre: e.target.value }))}
-              placeholder="Ej. 3°A Vespertino"
-              className="input-base"
-              autoFocus
-            />
-          </div>
-          <div>
-            <label className="label-base">Grado</label>
-            <select
-              value={formClase.grado}
-              onChange={(e) => setFormClase((p) => ({ ...p, grado: e.target.value }))}
-              className="input-base"
+      <Modal abierto={modalNuevaClase} onCerrar={closeModalNuevaClase} titulo="Nueva clase">
+        {/* Tabs: Manual vs Google Classroom — always visible */}
+        {
+          <div className="flex gap-1 mb-4 p-1 bg-gray-100 rounded-xl">
+            <button
+              type="button"
+              onClick={() => setModalTab('manual')}
+              className={`flex-1 px-3 py-2 rounded-lg text-sm font-medium transition-all ${
+                modalTab === 'manual'
+                  ? 'bg-white text-gray-900 shadow-sm'
+                  : 'text-gray-500 hover:text-gray-700'
+              }`}
             >
-              {GRADOS.map((g) => (
-                <option key={g}>{g}</option>
-              ))}
-            </select>
+              Crear manualmente
+            </button>
+            <button
+              type="button"
+              onClick={() => setModalTab('classroom')}
+              className={`flex-1 px-3 py-2 rounded-lg text-sm font-medium transition-all flex items-center justify-center gap-1.5 ${
+                modalTab === 'classroom'
+                  ? 'bg-white text-gray-900 shadow-sm'
+                  : 'text-gray-500 hover:text-gray-700'
+              }`}
+            >
+              Importar de Classroom
+              <GoogleClassroomIcon size={16} />
+            </button>
           </div>
-          <MensajeError mensaje={error} onCerrar={() => setError(null)} />
-          <Boton type="submit" variante="primario" size="md" className="w-full">
-            Crear clase
-          </Boton>
-        </form>
+        }
+
+        {modalTab === 'manual' ? (
+          <form onSubmit={handleCrearClase} className="space-y-4">
+            <div>
+              <label className="label-base">Nombre de la clase</label>
+              <input
+                type="text"
+                value={formClase.nombre}
+                onChange={(e) => setFormClase((p) => ({ ...p, nombre: e.target.value }))}
+                placeholder="Ej. 3°A Vespertino"
+                className="input-base"
+                autoFocus
+              />
+            </div>
+            <div>
+              <label className="label-base">Grado</label>
+              <select
+                value={formClase.grado}
+                onChange={(e) => setFormClase((p) => ({ ...p, grado: e.target.value }))}
+                className="input-base"
+              >
+                {GRADOS.map((g) => (
+                  <option key={g}>{g}</option>
+                ))}
+              </select>
+            </div>
+            <MensajeError mensaje={error} onCerrar={() => setError(null)} />
+            <Boton type="submit" variante="primario" size="md" className="w-full">
+              Crear clase
+            </Boton>
+          </form>
+        ) : !gcConnected ? (
+          <div className="space-y-4 text-center py-4">
+            <div className="flex justify-center">
+              <GoogleClassroomIcon size={32} />
+            </div>
+            <p className="text-sm text-gray-600">
+              Conecta tu cuenta de Google Classroom para importar tus clases y alumnos.
+            </p>
+            <Boton
+              variante="primario"
+              className="w-full"
+              onClick={() => connectMut.mutate()}
+              disabled={connectMut.isPending}
+            >
+              {connectMut.isPending ? 'Conectando...' : 'Conectar Google Classroom'}
+            </Boton>
+          </div>
+        ) : (
+          <div className="space-y-4">
+            <p className="text-sm text-gray-600">
+              Selecciona un curso de Google Classroom. Se creará la clase y se importarán todos los
+              alumnos automáticamente.
+            </p>
+
+            {coursesLoading ? (
+              <div className="py-8 text-center text-sm text-gray-400">Cargando cursos...</div>
+            ) : gcCourses.length === 0 ? (
+              <div className="py-8 text-center text-sm text-gray-400">
+                No se encontraron cursos activos en tu Google Classroom.
+              </div>
+            ) : (
+              <div className="space-y-2 max-h-48 overflow-y-auto">
+                {gcCourses.map((course) => (
+                  <button
+                    key={course.id}
+                    type="button"
+                    onClick={() => setSelectedCourse(course.id)}
+                    className={`w-full text-left px-4 py-3 rounded-xl border transition-all ${
+                      selectedCourse === course.id
+                        ? 'border-green-500 bg-green-50'
+                        : 'border-gray-200 hover:border-gray-300'
+                    }`}
+                  >
+                    <p className="font-medium text-gray-900 text-sm">{course.name}</p>
+                    {course.section && (
+                      <p className="text-xs text-gray-500 mt-0.5">{course.section}</p>
+                    )}
+                  </button>
+                ))}
+              </div>
+            )}
+
+            <div>
+              <label className="label-base">Grado</label>
+              <select
+                value={gradoImport}
+                onChange={(e) => setGradoImport(e.target.value)}
+                className="input-base"
+              >
+                {GRADOS.map((g) => (
+                  <option key={g}>{g}</option>
+                ))}
+              </select>
+            </div>
+
+            {importResult && (
+              <div className="p-3 rounded-lg bg-green-50 border border-green-200">
+                <p className="text-sm text-green-800">
+                  Clase <strong>{importResult.clase.nombre}</strong> creada con{' '}
+                  {importResult.studentsImported} alumno
+                  {importResult.studentsImported !== 1 ? 's' : ''}.
+                </p>
+              </div>
+            )}
+
+            <MensajeError mensaje={error} onCerrar={() => setError(null)} />
+
+            <div className="flex gap-3">
+              {importResult ? (
+                <Boton variante="primario" className="w-full" onClick={closeModalNuevaClase}>
+                  Cerrar
+                </Boton>
+              ) : (
+                <Boton
+                  variante="primario"
+                  className="w-full"
+                  onClick={handleImportClass}
+                  disabled={!selectedCourse || importClassMut.isPending}
+                >
+                  {importClassMut.isPending ? 'Importando...' : 'Importar clase'}
+                </Boton>
+              )}
+            </div>
+
+            <button
+              type="button"
+              onClick={() => disconnectMut.mutate()}
+              disabled={disconnectMut.isPending}
+              className="text-xs text-gray-400 hover:text-red-500 transition-colors w-full text-center pt-2"
+            >
+              {disconnectMut.isPending ? 'Desconectando...' : 'Desconectar Google Classroom'}
+            </button>
+          </div>
+        )}
+      </Modal>
+
+      {/* Modal agregar alumno */}
+      <Modal
+        abierto={modalAgregarAlumno}
+        onCerrar={() => {
+          setModalAgregarAlumno(false)
+          setAgregarTab('manual')
+          setNuevoAlumno('')
+          setSyncResult(null)
+          setError(null)
+        }}
+        titulo="Agregar alumno"
+      >
+        {/* Tabs si la classe est liée à GC */}
+        {clase?.gc_course_id && (
+          <div className="flex gap-1 mb-4 p-1 bg-gray-100 rounded-xl">
+            <button
+              type="button"
+              onClick={() => setAgregarTab('manual')}
+              className={`flex-1 px-3 py-2 rounded-lg text-sm font-medium transition-all ${
+                agregarTab === 'manual'
+                  ? 'bg-white text-gray-900 shadow-sm'
+                  : 'text-gray-500 hover:text-gray-700'
+              }`}
+            >
+              Manualmente
+            </button>
+            <button
+              type="button"
+              onClick={() => setAgregarTab('classroom')}
+              className={`flex-1 px-3 py-2 rounded-lg text-sm font-medium transition-all flex items-center justify-center gap-1.5 ${
+                agregarTab === 'classroom'
+                  ? 'bg-white text-gray-900 shadow-sm'
+                  : 'text-gray-500 hover:text-gray-700'
+              }`}
+            >
+              Desde Classroom
+              <GoogleClassroomIcon size={16} />
+            </button>
+          </div>
+        )}
+
+        {agregarTab === 'manual' ? (
+          <form
+            onSubmit={(e) => {
+              handleAgregarAlumno(e)
+              if (nuevoAlumno.trim()) {
+                setModalAgregarAlumno(false)
+              }
+            }}
+            className="space-y-4"
+          >
+            <div>
+              <label className="label-base">Nombre completo</label>
+              <input
+                type="text"
+                value={nuevoAlumno}
+                onChange={(e) => setNuevoAlumno(e.target.value)}
+                placeholder="Ej. María López García"
+                className="input-base"
+                autoFocus
+              />
+            </div>
+            <MensajeError mensaje={error} onCerrar={() => setError(null)} />
+            <Boton
+              type="submit"
+              variante="primario"
+              size="md"
+              className="w-full"
+              disabled={!nuevoAlumno.trim()}
+            >
+              Agregar alumno
+            </Boton>
+          </form>
+        ) : (
+          <div className="space-y-4">
+            <p className="text-sm text-gray-600">
+              Sincroniza los alumnos de tu curso de Google Classroom. Los alumnos nuevos se
+              agregarán automáticamente.
+            </p>
+
+            {syncResult && (
+              <div className="p-3 rounded-lg bg-green-50 border border-green-200">
+                <p className="text-sm text-green-800">
+                  {syncResult.imported > 0
+                    ? `${syncResult.imported} alumno${syncResult.imported !== 1 ? 's' : ''} importado${syncResult.imported !== 1 ? 's' : ''}.`
+                    : 'Todos los alumnos ya estaban importados.'}
+                  {syncResult.alreadyExisted > 0 &&
+                    ` ${syncResult.alreadyExisted} ya existía${syncResult.alreadyExisted !== 1 ? 'n' : ''}.`}
+                </p>
+              </div>
+            )}
+
+            <MensajeError mensaje={error} onCerrar={() => setError(null)} />
+
+            {syncResult ? (
+              <Boton
+                variante="primario"
+                className="w-full"
+                onClick={() => {
+                  setModalAgregarAlumno(false)
+                  setSyncResult(null)
+                }}
+              >
+                Cerrar
+              </Boton>
+            ) : (
+              <Boton
+                variante="primario"
+                className="w-full"
+                onClick={async () => {
+                  setError(null)
+                  try {
+                    const result = await syncStudentsMut.mutateAsync({
+                      courseId: clase.gc_course_id,
+                      claseId: clase.id,
+                    })
+                    setSyncResult(result)
+                  } catch (err) {
+                    setError(err.message || 'Error al sincronizar')
+                  }
+                }}
+                disabled={syncStudentsMut.isPending}
+              >
+                {syncStudentsMut.isPending ? 'Sincronizando...' : 'Sincronizar alumnos'}
+              </Boton>
+            )}
+          </div>
+        )}
       </Modal>
 
       {/* Confirm delete */}

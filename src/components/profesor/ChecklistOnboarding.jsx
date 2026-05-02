@@ -37,7 +37,7 @@ export default function ChecklistOnboarding({ tieneClase, tieneAlumnos, tieneTar
     {
       completado: tieneAlumnos,
       titulo: 'Agrega alumnos',
-      descripcion: 'Cada alumno recibe un código de 6 caracteres para entrar a Kleo.',
+      descripcion: 'Agrega alumnos manualmente o importa una clase desde Google Classroom.',
       href: '/profesor/clase',
     },
     {

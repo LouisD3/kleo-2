@@ -17,7 +17,12 @@ npm run lint:fix  # Run Biome linter with auto-fix
 - `.env.local`:
   - `NEXT_PUBLIC_SUPABASE_URL` (Supabase project URL)
   - `NEXT_PUBLIC_SUPABASE_ANON_KEY` (Supabase anonymous key)
+  - `SUPABASE_SERVICE_ROLE_KEY` (server-side only, for GC token storage bypassing RLS)
   - `ANTHROPIC_API_KEY` (server-side only, set in Vercel dashboard)
+  - `GOOGLE_CLIENT_ID` (Google Cloud OAuth2 client ID)
+  - `GOOGLE_CLIENT_SECRET` (Google Cloud OAuth2 client secret)
+  - `GOOGLE_REDIRECT_URI` (OAuth2 callback URL, e.g. `https://yourdomain.com/api/gc/callback`)
+  - `NEXT_PUBLIC_APP_URL` (public app URL for GC links, e.g. `https://kleo.education`)
 
 ## Architecture
 
@@ -63,7 +68,16 @@ src/
       terminos/page.tsx        — TerminosUso (Server Component)
     api/
       ia/route.ts              — AI endpoint (task generation + grading)
+      gc/                      — Google Classroom integration
+        auth/route.ts          — Generate OAuth2 URL
+        callback/route.ts      — OAuth2 redirect handler
+        courses/route.ts       — List teacher's GC courses
+        sync/route.ts          — Import students from GC course
+        publish/route.ts       — Publish task as GC coursework
+        grades/route.ts        — Push grades back to GC
+        disconnect/route.ts    — Disconnect GC account
   lib/supabase.js              — Supabase client init
+  lib/google-classroom.ts      — Google Classroom OAuth2 + API helpers
   store/
     useAuthStore.js            — Auth state (teacher Supabase Auth + student code-based)
     useTareaStore.js           — Tasks, students, results state (backed by Supabase)
@@ -77,7 +91,10 @@ src/
     profesor/
       TablaTareas.jsx          — Task list table
       TablaResultadosAlumnos.jsx — Per-task student results table
+      GoogleClassroomPanel.jsx — GC connection + student import UI
+      GoogleClassroomActions.jsx — GC publish + grade sync per task
   hooks/useAnthropicAPI.js     — Client-side hook for /api/ia calls
+  hooks/useGoogleClassroom.js  — Client-side hooks for GC integration
   mock/pdas/                   — PDA library data (NEM curriculum)
 ```
 
@@ -91,10 +108,10 @@ Application state uses Zustand as a cache layer backed by Supabase:
 ### Database Schema (`supabase-schema.sql`)
 
 5 tables with RLS policies:
-- `profesores` — teacher profiles (linked to Supabase auth.users)
-- `clases` — classrooms per teacher
-- `alumnos` — students per class (access via 6-char alphanumeric code)
-- `tareas` — tasks per class (with optional `fecha_limite` deadline, optional `pda` field for NEM curriculum alignment)
+- `profesores` — teacher profiles (linked to Supabase auth.users), optional `gc_refresh_token` + `gc_connected` for Google Classroom
+- `clases` — classrooms per teacher, optional `gc_course_id` linking to GC course
+- `alumnos` — students per class (access via 6-char alphanumeric code), optional `gc_user_id` for GC identity
+- `tareas` — tasks per class (with optional `fecha_limite` deadline, optional `pda` field for NEM curriculum alignment, optional `gc_coursework_id` for GC)
 - `resultados` — student results (supports `calificacion_manual` override)
 
 ### Auth Flow
@@ -113,6 +130,16 @@ Single POST endpoint accepting `{ type, payload }`:
 - `type: 'corregir'` — grades student responses, returns score (0–10) + per-question feedback + areas_de_mejora
 
 Claude returns JSON embedded in text; the backend extracts it with a regex (`/\{[\s\S]*\}/`).
+
+### Google Classroom Integration
+
+Optional integration allowing teachers to connect their Google Classroom account:
+- **OAuth2 flow**: Teacher connects via `/api/gc/auth` → Google consent → `/api/gc/callback` stores refresh token
+- **Student import**: Fetch student roster from a GC course and create `alumnos` rows with `gc_user_id`
+- **Task publishing**: When a task is published (`en_curso`), it's automatically created as coursework in the linked GC course
+- **Grade sync**: Push `calificacion` (or `calificacion_manual` override) back to GC gradebook
+- **DB migration**: Run `supabase-schema-gc.sql` after the base schema to add GC columns
+- **Service role key**: GC token storage requires `SUPABASE_SERVICE_ROLE_KEY` to bypass RLS on the `gc_refresh_token` column
 
 ### Routes
 

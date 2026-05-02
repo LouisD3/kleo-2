@@ -4,6 +4,7 @@ import { pdf } from '@react-pdf/renderer'
 import { useParams, useRouter } from 'next/navigation'
 import { useMemo, useState } from 'react'
 import NavBar from '@/components/layout/NavBar.jsx'
+import GoogleClassroomActions from '@/components/profesor/GoogleClassroomActions.jsx'
 import TablaResultadosAlumnos from '@/components/profesor/TablaResultadosAlumnos.jsx'
 import TareaPDF from '@/components/profesor/TareaPDF.jsx'
 import Badge from '@/components/ui/Badge.jsx'
@@ -148,6 +149,9 @@ export default function DetalleTarea() {
       <NavBar titulo={tarea.nombre} volver="/profesor" />
 
       <main className="max-w-4xl mx-auto px-4 sm:px-6 py-8 animate-fade-in">
+        {/* Google Classroom actions */}
+        <GoogleClassroomActions profesorId={profesor?.id} tarea={tarea} />
+
         {/* Header de la tarea */}
         <div className="card p-6 mb-6">
           <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-4">

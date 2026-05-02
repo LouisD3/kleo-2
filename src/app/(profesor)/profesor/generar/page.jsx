@@ -7,11 +7,13 @@ import NavBar from '@/components/layout/NavBar.jsx'
 import EditorPreguntas from '@/components/profesor/EditorPreguntas.jsx'
 import TareaPDF from '@/components/profesor/TareaPDF.jsx'
 import Boton from '@/components/ui/Boton.jsx'
+import GoogleClassroomIcon from '@/components/ui/GoogleClassroomIcon.jsx'
 import MensajeError from '@/components/ui/MensajeError.jsx'
 import Modal from '@/components/ui/Modal.jsx'
 import Spinner from '@/components/ui/Spinner.jsx'
 import Toast from '@/components/ui/Toast.jsx'
 import { useAnthropicAPI } from '@/hooks/useAnthropicAPI.js'
+import { useGCPublish, useGCStatus } from '@/hooks/useGoogleClassroom.js'
 import {
   useActualizarTarea,
   useAgregarTarea,
@@ -68,6 +70,8 @@ export default function GenerarTarea() {
   const publicarTarea = usePublicarTarea()
   const { profesor, clases } = useAuthStore()
   const { data: tareasData } = useTareasProfesor(profesor?.id)
+  const { data: gcStatus } = useGCStatus(profesor?.id)
+  const gcPublish = useGCPublish()
 
   const [form, setForm] = useState({
     nombre: '',
@@ -90,6 +94,7 @@ export default function GenerarTarea() {
   const [modalPDAabierto, setModalPDAabierto] = useState(false)
   const [busquedaPDA, setBusquedaPDA] = useState('')
   const [clasesPublicar, setClasesPublicar] = useState(clases?.length ? [clases[0].id] : [])
+  const [publicarEnGC, setPublicarEnGC] = useState(true)
   const [publicando, setPublicando] = useState(false)
   const [descargandoPDF, setDescargandoPDF] = useState(null)
   const [toastVisible, setToastVisible] = useState(false)
@@ -194,6 +199,15 @@ export default function GenerarTarea() {
     }
     await publicarTarea.mutateAsync(tareaGuardada.id)
 
+    // Publish to Google Classroom if checkbox is checked
+    if (gcStatus?.connected && publicarEnGC) {
+      try {
+        await gcPublish.mutateAsync({ tareaId: tareaGuardada.id })
+      } catch {
+        console.warn('Google Classroom publish failed for primary task')
+      }
+    }
+
     // Create copies for additional classes
     for (const claseId of resto) {
       const copia = await agregarTarea.mutateAsync({
@@ -208,7 +222,16 @@ export default function GenerarTarea() {
         fecha_limite: tareaGuardada.fecha_limite || null,
         pda: tareaGuardada.pda || null,
       })
-      if (copia) await publicarTarea.mutateAsync(copia.id)
+      if (copia) {
+        await publicarTarea.mutateAsync(copia.id)
+        if (gcStatus?.connected && publicarEnGC) {
+          try {
+            await gcPublish.mutateAsync({ tareaId: copia.id })
+          } catch {
+            console.warn('Google Classroom publish failed for copy')
+          }
+        }
+      }
     }
 
     setPublicando(false)
@@ -771,6 +794,20 @@ export default function GenerarTarea() {
                           </button>
                         ))}
                       </div>
+                    )}
+                    {gcStatus?.connected && (
+                      <label className="flex items-center gap-2.5 mb-4 px-4 py-3 rounded-xl border border-green-200 bg-green-50/40 cursor-pointer transition-colors hover:bg-green-50">
+                        <input
+                          type="checkbox"
+                          checked={publicarEnGC}
+                          onChange={(e) => setPublicarEnGC(e.target.checked)}
+                          className="w-4 h-4 rounded border-gray-300 text-green-600 focus:ring-green-500"
+                        />
+                        <GoogleClassroomIcon size={18} />
+                        <span className="text-sm text-gray-700">
+                          Publicar también en Google Classroom
+                        </span>
+                      </label>
                     )}
                     <Boton
                       variante="primario"
