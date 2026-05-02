@@ -7,6 +7,7 @@ import NavBar from '@/components/layout/NavBar.jsx'
 import EditorPreguntas from '@/components/profesor/EditorPreguntas.jsx'
 import TareaPDF from '@/components/profesor/TareaPDF.jsx'
 import Boton from '@/components/ui/Boton.jsx'
+import GoogleClassroomIcon from '@/components/ui/GoogleClassroomIcon.jsx'
 import MensajeError from '@/components/ui/MensajeError.jsx'
 import Modal from '@/components/ui/Modal.jsx'
 import Spinner from '@/components/ui/Spinner.jsx'
@@ -795,13 +796,14 @@ export default function GenerarTarea() {
                       </div>
                     )}
                     {gcStatus?.connected && (
-                      <label className="flex items-center gap-2 mb-4 cursor-pointer">
+                      <label className="flex items-center gap-2.5 mb-4 px-4 py-3 rounded-xl border border-green-200 bg-green-50/40 cursor-pointer transition-colors hover:bg-green-50">
                         <input
                           type="checkbox"
                           checked={publicarEnGC}
                           onChange={(e) => setPublicarEnGC(e.target.checked)}
                           className="w-4 h-4 rounded border-gray-300 text-green-600 focus:ring-green-500"
                         />
+                        <GoogleClassroomIcon size={18} />
                         <span className="text-sm text-gray-700">
                           Publicar también en Google Classroom
                         </span>

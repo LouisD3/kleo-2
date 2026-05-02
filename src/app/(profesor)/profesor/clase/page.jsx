@@ -1,13 +1,21 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
+import { useQueryClient } from '@tanstack/react-query'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import NavBar from '@/components/layout/NavBar.jsx'
-import GoogleClassroomPanel from '@/components/profesor/GoogleClassroomPanel.jsx'
 import Boton from '@/components/ui/Boton.jsx'
+import GoogleClassroomIcon from '@/components/ui/GoogleClassroomIcon.jsx'
 import MensajeError from '@/components/ui/MensajeError.jsx'
 import Modal from '@/components/ui/Modal.jsx'
-import { useGCCourses, useGCImportClass, useGCStatus } from '@/hooks/useGoogleClassroom.js'
+import {
+  useGCConnect,
+  useGCCourses,
+  useGCDisconnect,
+  useGCImportClass,
+  useGCStatus,
+  useGCSyncStudents,
+} from '@/hooks/useGoogleClassroom.js'
 import {
   useAgregarAlumno,
   useAlumnos,
@@ -25,8 +33,20 @@ export default function GestionClase() {
   const eliminarAlumnoMut = useEliminarAlumno()
   const eliminarClaseMut = useEliminarClase()
 
+  const searchParams = useSearchParams()
+  const queryClient = useQueryClient()
   const { data: gcStatus } = useGCStatus(profesor?.id)
+  const connectMut = useGCConnect()
+  const disconnectMut = useGCDisconnect()
   const importClassMut = useGCImportClass()
+  const syncStudentsMut = useGCSyncStudents()
+
+  // Detect OAuth callback and refresh GC status
+  useEffect(() => {
+    if (searchParams.get('gc_connected') === 'true') {
+      queryClient.invalidateQueries({ queryKey: ['gc-status'] })
+    }
+  }, [searchParams, queryClient])
 
   const [clases, setClases] = useState([])
   const [nuevoAlumno, setNuevoAlumno] = useState('')
@@ -211,17 +231,37 @@ export default function GestionClase() {
             <div className="card p-6 mb-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <h2 className="text-lg font-bold text-gray-900">{clase.nombre}</h2>
+                  <h2 className="text-lg font-bold text-gray-900 flex items-center gap-2">
+                    {clase.nombre}
+                    {clase.gc_course_id && <GoogleClassroomIcon size={18} />}
+                  </h2>
                   <p className="text-sm text-gray-500">
                     {clase.grado} · {alumnos.length} alumno{alumnos.length !== 1 ? 's' : ''}
                   </p>
                 </div>
-                <button
-                  onClick={() => setConfirmEliminarClase(true)}
-                  className="text-xs text-gray-400 hover:text-red-500 transition-colors px-2 py-1"
-                >
-                  Eliminar clase
-                </button>
+                <div className="flex items-center gap-3">
+                  {clase.gc_course_id && (
+                    <button
+                      type="button"
+                      onClick={() =>
+                        syncStudentsMut.mutate({
+                          courseId: clase.gc_course_id,
+                          claseId: clase.id,
+                        })
+                      }
+                      disabled={syncStudentsMut.isPending}
+                      className="text-xs text-gray-400 hover:text-green-600 transition-colors px-2 py-1"
+                    >
+                      {syncStudentsMut.isPending ? 'Sincronizando...' : 'Re-sincronizar'}
+                    </button>
+                  )}
+                  <button
+                    onClick={() => setConfirmEliminarClase(true)}
+                    className="text-xs text-gray-400 hover:text-red-500 transition-colors px-2 py-1"
+                  >
+                    Eliminar clase
+                  </button>
+                </div>
               </div>
             </div>
 
@@ -247,13 +287,6 @@ export default function GestionClase() {
                 </div>
               </div>
             </div>
-
-            {/* Google Classroom integration */}
-            <GoogleClassroomPanel
-              profesorId={profesor?.id}
-              claseId={clase.id}
-              claseNombre={clase.nombre}
-            />
 
             {/* Agregar alumno */}
             <div className="card p-6 mb-6">
@@ -359,13 +392,14 @@ export default function GestionClase() {
             <button
               type="button"
               onClick={() => setModalTab('classroom')}
-              className={`flex-1 px-3 py-2 rounded-lg text-sm font-medium transition-all ${
+              className={`flex-1 px-3 py-2 rounded-lg text-sm font-medium transition-all flex items-center justify-center gap-1.5 ${
                 modalTab === 'classroom'
                   ? 'bg-white text-gray-900 shadow-sm'
                   : 'text-gray-500 hover:text-gray-700'
               }`}
             >
               Importar de Classroom
+              <GoogleClassroomIcon size={16} />
             </button>
           </div>
         )}
@@ -400,6 +434,21 @@ export default function GestionClase() {
               Crear clase
             </Boton>
           </form>
+        ) : !gcConnected ? (
+          <div className="space-y-4 text-center py-4">
+            <GoogleClassroomIcon size={40} />
+            <p className="text-sm text-gray-600">
+              Conecta tu cuenta de Google Classroom para importar tus clases y alumnos.
+            </p>
+            <Boton
+              variante="primario"
+              className="w-full"
+              onClick={() => connectMut.mutate()}
+              disabled={connectMut.isPending}
+            >
+              {connectMut.isPending ? 'Conectando...' : 'Conectar Google Classroom'}
+            </Boton>
+          </div>
         ) : (
           <div className="space-y-4">
             <p className="text-sm text-gray-600">
@@ -422,7 +471,7 @@ export default function GestionClase() {
                     onClick={() => setSelectedCourse(course.id)}
                     className={`w-full text-left px-4 py-3 rounded-xl border transition-all ${
                       selectedCourse === course.id
-                        ? 'border-green-500 bg-green-50 ring-1 ring-green-500'
+                        ? 'border-green-500 bg-green-50'
                         : 'border-gray-200 hover:border-gray-300'
                     }`}
                   >
@@ -476,6 +525,15 @@ export default function GestionClase() {
                 </Boton>
               )}
             </div>
+
+            <button
+              type="button"
+              onClick={() => disconnectMut.mutate()}
+              disabled={disconnectMut.isPending}
+              className="text-xs text-gray-400 hover:text-red-500 transition-colors w-full text-center pt-2"
+            >
+              {disconnectMut.isPending ? 'Desconectando...' : 'Desconectar Google Classroom'}
+            </button>
           </div>
         )}
       </Modal>

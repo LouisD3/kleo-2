@@ -4,6 +4,7 @@ import { useQueryClient } from '@tanstack/react-query'
 import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import Boton from '@/components/ui/Boton.jsx'
+import GoogleClassroomIcon from '@/components/ui/GoogleClassroomIcon.jsx'
 import Modal from '@/components/ui/Modal.jsx'
 import {
   useGCConnect,
@@ -59,13 +60,11 @@ export default function GoogleClassroomPanel({ profesorId, claseId, claseNombre 
   return (
     <div className="card p-5 mb-6 border-green-100 bg-green-50/30">
       <div className="flex items-center gap-3 mb-3">
-        <div className="w-8 h-8 rounded-lg bg-green-100 flex items-center justify-center shrink-0">
-          <svg className="w-5 h-5 text-green-700" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
-          </svg>
-        </div>
         <div className="flex-1">
-          <p className="text-sm font-semibold text-gray-900">Google Classroom</p>
+          <p className="text-sm font-semibold text-gray-900 flex items-center gap-2">
+            Google Classroom
+            <GoogleClassroomIcon size={20} />
+          </p>
           <p className="text-xs text-gray-500">
             {connected
               ? 'Conectado — importa alumnos y sincroniza tareas'
@@ -141,7 +140,7 @@ export default function GoogleClassroomPanel({ profesorId, claseId, claseNombre 
                 onClick={() => setSelectedCourse(course.id)}
                 className={`w-full text-left px-4 py-3 rounded-xl border transition-all ${
                   selectedCourse === course.id
-                    ? 'border-green-500 bg-green-50 ring-1 ring-green-500'
+                    ? 'border-green-500 bg-green-50'
                     : 'border-gray-200 hover:border-gray-300'
                 }`}
               >
