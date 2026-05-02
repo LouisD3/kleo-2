@@ -24,7 +24,6 @@ export default function Ajustes() {
   const [guardadoOk, setGuardadoOk] = useState(false)
   const [error, setError] = useState(null)
 
-  const [passwordActual, setPasswordActual] = useState('')
   const [passwordNuevo, setPasswordNuevo] = useState('')
   const [cambiandoPassword, setCambiandoPassword] = useState(false)
   const [passwordOk, setPasswordOk] = useState(false)
