@@ -19,6 +19,8 @@ function traducirError(msg) {
   return msg
 }
 
+let _initLock = false
+
 const useAuthStore = create((set, get) => ({
   usuario: null,
   profesor: null,
@@ -30,21 +32,27 @@ const useAuthStore = create((set, get) => ({
   error: null,
 
   inicializar: async () => {
+    if (_initLock) return
+    _initLock = true
     try {
       const {
         data: { session },
       } = await supabase.auth.getSession()
       if (session?.user) {
-        let { data: profesor } = await supabase
+        let { data: profesor, error: selErr } = await supabase
           .from('profesores')
           .select('*')
           .eq('id', session.user.id)
           .single()
 
+        if (selErr && selErr.code !== 'PGRST116') {
+          console.error('Error fetching profesor:', selErr)
+        }
+
         // User auth exists but profesores row missing (failed registration or email confirmation)
         if (!profesor) {
           const meta = session.user.user_metadata ?? {}
-          const { data: newProf } = await supabase
+          const { data: newProf, error: upsErr } = await supabase
             .from('profesores')
             .upsert({
               id: session.user.id,
@@ -53,6 +61,9 @@ const useAuthStore = create((set, get) => ({
             })
             .select()
             .single()
+          if (upsErr) {
+            console.error('Error creating profesor:', upsErr)
+          }
           profesor = newProf
         }
 
@@ -73,6 +84,7 @@ const useAuthStore = create((set, get) => ({
             clase: clases?.[0] ?? null,
             cargando: false,
           })
+          _initLock = false
           return
         }
       }
@@ -99,6 +111,7 @@ const useAuthStore = create((set, get) => ({
     } catch {}
 
     set({ cargando: false })
+    _initLock = false
   },
 
   registrarse: async (email, password, nombre, escuela) => {
@@ -206,7 +219,7 @@ const useAuthStore = create((set, get) => ({
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
-        redirectTo: `${window.location.origin}/profesor/bienvenida`,
+        redirectTo: `${window.location.origin}`,
       },
     })
     if (error) {
