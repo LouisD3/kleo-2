@@ -2,11 +2,253 @@ import { type NextRequest, NextResponse } from 'next/server'
 import {
   type CorregirPayload,
   corregirResponseSchema,
+  type DiagnosticarPayload,
+  diagnosticarResponseSchema,
   type GenerarPayload,
   generarResponseSchema,
   type ModificarPayload,
   requestBodySchema,
 } from '@/lib/schemas'
+
+// --- Helper: appeler Claude avec options ---
+
+interface CallClaudeOptions {
+  apiKey: string
+  model: string
+  maxTokens: number
+  messages: Array<{
+    role: string
+    content: string | Array<{ type: string; text: string; cache_control?: { type: string } }>
+  }>
+  signal?: AbortSignal
+}
+
+async function callClaude({
+  apiKey,
+  model,
+  maxTokens,
+  messages,
+  signal,
+}: CallClaudeOptions): Promise<string> {
+  const response = await fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'x-api-key': apiKey,
+      'anthropic-version': '2023-06-01',
+    },
+    body: JSON.stringify({ model, max_tokens: maxTokens, messages }),
+    signal,
+  })
+
+  if (!response.ok) {
+    const errorData = await response.json().catch(() => ({}))
+    throw new Error(`Anthropic ${response.status}: ${JSON.stringify(errorData)}`)
+  }
+
+  const data = await response.json()
+  const content = data?.content as Array<{ text?: string }> | undefined
+  return content?.[0]?.text ?? ''
+}
+
+function extractJSON(text: string): unknown {
+  const match = text.match(/\{[\s\S]*\}/)
+  if (!match) throw new Error('No JSON found in response')
+  return JSON.parse(match[0])
+}
+
+// --- Pipeline multi-passes pour génération ---
+
+interface PipelineScores {
+  factual: number
+  methodologique: number
+  feedback_factual: string
+  feedback_methodo: string
+}
+
+async function pipelineGenerar(payload: GenerarPayload, apiKey: string): Promise<unknown> {
+  const startTime = Date.now()
+  const TIMEOUT_MS = 30000
+
+  // Passe 1 — Génération (Sonnet)
+  const promptGen = promptGenerar(payload)
+  const textoGen = await callClaude({
+    apiKey,
+    model: 'claude-sonnet-4-20250514',
+    maxTokens: 2000,
+    messages: [{ role: 'user', content: promptGen }],
+  })
+  const generado = extractJSON(textoGen)
+
+  // Vérifier timeout — fallback 1 passe si > 30s
+  if (Date.now() - startTime > TIMEOUT_MS) {
+    console.log('[Pipeline] Timeout after pass 1, returning single-pass result')
+    return generado
+  }
+
+  // Passes 2 & 3 — Validation factuelle + Critique méthodologique (en parallèle, Haiku)
+  const exercicesJSON = JSON.stringify(generado, null, 2)
+
+  const promptFactuel = buildPromptValidationFactuelle(exercicesJSON, payload)
+  const promptMethodo = buildPromptCritiqueMethodologique(exercicesJSON, payload)
+
+  const [textoFactuel, textoMethodo] = await Promise.all([
+    callClaude({
+      apiKey,
+      model: 'claude-haiku-4-5-20251001',
+      maxTokens: 500,
+      messages: [{ role: 'user', content: promptFactuel }],
+    }),
+    callClaude({
+      apiKey,
+      model: 'claude-haiku-4-5-20251001',
+      maxTokens: 500,
+      messages: [{ role: 'user', content: promptMethodo }],
+    }),
+  ])
+
+  let scores: PipelineScores
+  try {
+    const factuelData = extractJSON(textoFactuel) as { score: number; feedback: string }
+    const methodoData = extractJSON(textoMethodo) as { score: number; feedback: string }
+    scores = {
+      factual: factuelData.score ?? 10,
+      methodologique: methodoData.score ?? 10,
+      feedback_factual: factuelData.feedback ?? '',
+      feedback_methodo: methodoData.feedback ?? '',
+    }
+  } catch {
+    // Si parsing échoue, on renvoie le résultat de passe 1
+    console.log('[Pipeline] Failed to parse validation scores, returning pass 1')
+    return generado
+  }
+
+  console.log(`[Pipeline] Scores — factual: ${scores.factual}, methodo: ${scores.methodologique}`)
+
+  // Si les deux scores >= 7, on est bon
+  if (scores.factual >= 7 && scores.methodologique >= 7) {
+    return generado
+  }
+
+  // Vérifier timeout avant passe 4
+  if (Date.now() - startTime > TIMEOUT_MS) {
+    console.log('[Pipeline] Timeout before pass 4, returning pass 1')
+    return generado
+  }
+
+  // Passe 4 — Refinement (Sonnet, avec feedback)
+  const promptRefine = buildPromptRefinement(exercicesJSON, scores, payload)
+  const textoRefine = await callClaude({
+    apiKey,
+    model: 'claude-sonnet-4-20250514',
+    maxTokens: 2000,
+    messages: [{ role: 'user', content: promptRefine }],
+  })
+
+  try {
+    return extractJSON(textoRefine)
+  } catch {
+    // Si le refinement échoue, renvoyer la passe 1
+    return generado
+  }
+}
+
+function buildPromptValidationFactuelle(exercicesJSON: string, payload: GenerarPayload): string {
+  return `Tu es un vérificateur factuel expert. Évalue les exercices suivants générés pour un cours de ${payload.materia} (niveau ${payload.dificultad}).
+
+Exercices à vérifier :
+${exercicesJSON}
+
+Critères d'évaluation :
+1. Chaque question est-elle factuellement correcte ?
+2. Chaque réponse fournie est-elle la bonne réponse ?
+3. Les options de QCM sont-elles plausibles sans être ambiguës ?
+4. Les calculs dans les réponses sont-ils exacts ?
+
+Attribue un score global de 0 à 10 et un feedback concis en cas de problème.
+
+Format JSON OBLIGATOIRE :
+{
+  "score": 8,
+  "feedback": "Question 3 : la réponse indiquée (B) est incorrecte, la bonne réponse est C car..."
+}
+
+Si tout est correct :
+{
+  "score": 10,
+  "feedback": ""
+}
+
+Réponds UNIQUEMENT avec le JSON.`
+}
+
+function buildPromptCritiqueMethodologique(exercicesJSON: string, payload: GenerarPayload): string {
+  const instruccionMetodologia: Record<string, string> = {
+    Feynman:
+      "L'élève doit expliquer le concept avec ses propres mots, comme à quelqu'un qui ne connaît rien du sujet.",
+    'Memorización activa':
+      'Rappel direct : définitions, dates, noms, formules ou faits concrets à restituer de mémoire.',
+    'Resolución de problemas':
+      'Situations pratiques avec contexte réel, étapes intermédiaires et processus de raisonnement visibles.',
+    'Práctica directa':
+      'Exercices directs, courts, sans contexte narratif. Pas de scénarios ni personnages.',
+  }
+
+  const descMethodo = instruccionMetodologia[payload.metodologia] ?? payload.metodologia
+
+  return `Tu es un expert en méthodologies pédagogiques. Évalue si les exercices suivants respectent la méthodologie "${payload.metodologia}".
+
+Description de la méthodologie : ${descMethodo}
+
+Exercices à évaluer :
+${exercicesJSON}
+
+Critères :
+1. Chaque question est-elle cohérente avec la méthodologie indiquée ?
+2. Le niveau de difficulté correspond-il à "${payload.dificultad}" ?
+3. Les types de questions sont-ils appropriés pour cette méthodologie ?
+
+Attribue un score global de 0 à 10 et un feedback concis.
+
+Format JSON OBLIGATOIRE :
+{
+  "score": 7,
+  "feedback": "Les questions 2 et 4 sont trop narratives pour une méthodologie Práctica directa..."
+}
+
+Réponds UNIQUEMENT avec le JSON.`
+}
+
+function buildPromptRefinement(
+  exercicesJSON: string,
+  scores: PipelineScores,
+  payload: GenerarPayload,
+): string {
+  let feedbackSection = ''
+  if (scores.factual < 7) {
+    feedbackSection += `\nProblèmes factuels (score ${scores.factual}/10) :\n${scores.feedback_factual}\n`
+  }
+  if (scores.methodologique < 7) {
+    feedbackSection += `\nProblèmes méthodologiques (score ${scores.methodologique}/10) :\n${scores.feedback_methodo}\n`
+  }
+
+  // On reprend le prompt original de génération et on ajoute le contexte de correction
+  const promptOriginal = promptGenerar(payload)
+
+  return `${promptOriginal}
+
+--- CONTEXTE DE CORRECTION ---
+Les exercices précédemment générés ont reçu des retours négatifs. Voici les exercices rejetés :
+
+${exercicesJSON}
+
+Retours des validateurs :
+${feedbackSection}
+
+INSTRUCTION : Régénère les exercices en corrigeant TOUS les problèmes signalés. Le format de sortie reste identique (JSON avec "preguntas"). Ne reproduis PAS les mêmes erreurs.`
+}
+
+// --- Route principale ---
 
 export async function POST(request: NextRequest) {
   // 1. Valider le body avec Zod
@@ -40,76 +282,65 @@ export async function POST(request: NextRequest) {
     )
   }
 
-  // 3. Construire le prompt
-  let prompt: string
-  if (type === 'generar') {
-    prompt = promptGenerar(payload as GenerarPayload)
-  } else if (type === 'modificar') {
-    prompt = promptModificar(payload as ModificarPayload)
-  } else {
-    prompt = promptCorregir(payload as CorregirPayload)
-  }
-
-  // 4. Appeler Claude
-  let anthropicResponse: Record<string, unknown>
+  // 3. Dispatch par type
   try {
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': ANTHROPIC_API_KEY,
-        'anthropic-version': '2023-06-01',
-      },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 2000,
-        messages: [{ role: 'user', content: prompt }],
-      }),
+    if (type === 'generar') {
+      // Pipeline multi-passes
+      const datos = await pipelineGenerar(payload as GenerarPayload, ANTHROPIC_API_KEY)
+      const validado = generarResponseSchema.safeParse(datos)
+      if (!validado.success) {
+        console.error('Respuesta de IA con formato inválido:', validado.error.issues)
+        return NextResponse.json(datos)
+      }
+      return NextResponse.json(validado.data)
+    }
+
+    // Autres types — appel simple
+    let prompt: string
+    let model = 'claude-sonnet-4-20250514'
+    let maxTokens = 2000
+
+    if (type === 'modificar') {
+      prompt = promptModificar(payload as ModificarPayload)
+    } else if (type === 'diagnosticar_y_remediar') {
+      prompt = promptDiagnosticar(payload as DiagnosticarPayload)
+      model = 'claude-haiku-4-5-20251001'
+      maxTokens = 1000
+    } else {
+      prompt = promptCorregir(payload as CorregirPayload)
+    }
+
+    const textoRespuesta = await callClaude({
+      apiKey: ANTHROPIC_API_KEY,
+      model,
+      maxTokens,
+      messages: [{ role: 'user', content: prompt }],
     })
 
-    if (!response.ok) {
-      const errorData = await response.json().catch(() => ({}))
-      console.error('Error de Anthropic:', response.status, errorData)
+    const datos = extractJSON(textoRespuesta)
+    const responseSchema =
+      type === 'corregir'
+        ? corregirResponseSchema
+        : type === 'diagnosticar_y_remediar'
+          ? diagnosticarResponseSchema
+          : generarResponseSchema
+    const validado = responseSchema.safeParse(datos)
+
+    if (!validado.success) {
+      console.error('Respuesta de IA con formato inválido:', validado.error.issues)
+      return NextResponse.json(datos)
+    }
+
+    return NextResponse.json(validado.data)
+  } catch (err) {
+    console.error('Error en llamada IA:', err)
+    const message = err instanceof Error ? err.message : String(err)
+    if (message.includes('Anthropic')) {
       return NextResponse.json(
         { error: 'El servicio de IA no está disponible en este momento. Intenta de nuevo.' },
         { status: 502 },
       )
     }
-
-    anthropicResponse = await response.json()
-  } catch (err) {
-    console.error('Error al conectar con Anthropic:', err)
-    return NextResponse.json(
-      {
-        error:
-          'No se pudo conectar con el servicio de IA. Verifica tu conexión e intenta de nuevo.',
-      },
-      { status: 500 },
-    )
-  }
-
-  // 5. Extraire et valider la réponse JSON de Claude
-  const content = anthropicResponse?.content as Array<{ text?: string }> | undefined
-  const textoRespuesta = content?.[0]?.text ?? ''
-
-  try {
-    const match = textoRespuesta.match(/\{[\s\S]*\}/)
-    if (!match) throw new Error('No se encontró JSON en la respuesta')
-    const datos = JSON.parse(match[0])
-
-    // Valider la réponse de Claude avec Zod
-    const responseSchema = type === 'corregir' ? corregirResponseSchema : generarResponseSchema
-    const validado = responseSchema.safeParse(datos)
-
-    if (!validado.success) {
-      console.error('Respuesta de IA con formato inválido:', validado.error.issues)
-      // Renvoyer quand même les données brutes — Claude ne respecte pas toujours le format exact
-      return NextResponse.json(datos)
-    }
-
-    return NextResponse.json(validado.data)
-  } catch {
-    console.error('Error al parsear respuesta de IA:', textoRespuesta)
     return NextResponse.json(
       { error: 'Hubo un error al procesar la respuesta de la IA. Intenta de nuevo.' },
       { status: 500 },
@@ -274,6 +505,61 @@ Formato de respuesta JSON requerido:
 }
 
 Responde ÚNICAMENTE con el JSON. Sin texto adicional, sin explicaciones, sin comillas de bloque de código.`
+}
+
+function promptDiagnosticar({
+  aprendizaje,
+  pregunta_original,
+  respuesta_alumno,
+  contexto_devoir,
+  intento_remediation_n,
+}: DiagnosticarPayload): string {
+  const preguntaJSON = JSON.stringify(pregunta_original, null, 2)
+
+  return `Tu es un tuteur IA expert en pédagogie. Un élève mexicain (niveau secondaire/preparatoria) vient de répondre à une question. Tu dois :
+1. Déterminer si la réponse est correcte.
+2. Si incorrecte, diagnostiquer précisément la lacune (en 1 phrase).
+3. Si incorrecte ET intento_remediation_n < 2, générer UNE question de remédiation ciblée sur la lacune détectée.
+
+Contexte :
+- Matière : ${contexto_devoir.materia}
+- Difficulté : ${contexto_devoir.dificultad}
+- Apprentissage visé : ${aprendizaje}
+- Tentative de remédiation n° : ${intento_remediation_n}
+
+Question originale :
+${preguntaJSON}
+
+Réponse de l'élève : "${respuesta_alumno}"
+
+Règles pour la question de remédiation :
+- Elle doit cibler EXACTEMENT la lacune détectée, pas le concept général.
+- Elle doit être plus simple que la question originale (scaffolding).
+- Même format de sortie que les questions normales (tipo, pregunta, opciones si applicable, respuesta).
+- Le texte de la question doit être en espagnol mexicain.
+- Si intento_remediation_n >= 2, ne PAS générer de question de remédiation (l'élève passera à la suite).
+
+Pour déterminer si la réponse est correcte :
+- opcion_multiple : comparer la lettre (A/B/C/D) avec la respuesta.
+- verdadero_falso : comparer "Verdadero"→true, "Falso"→false avec la respuesta.
+- espacios : comparaison flexible (ignorer casse, accents).
+- abierta/calculo : évaluer sémantiquement si l'élève démontre la compréhension.
+
+Format JSON de sortie OBLIGATOIRE :
+{
+  "es_correcta": false,
+  "diagnostico": "L'élève confond numérateur et dénominateur lors de l'addition de fractions.",
+  "lacune_detectee": "Addition de fractions avec dénominateurs différents",
+  "pregunta_remediation": { "tipo": "...", "pregunta": "...", "opciones": [...], "respuesta": "..." }
+}
+
+Si la réponse est correcte :
+{
+  "es_correcta": true,
+  "diagnostico": "Réponse correcte."
+}
+
+Réponds UNIQUEMENT avec le JSON. Sans texte additionnel.`
 }
 
 function mapTipo(tipo: string): string | null {

@@ -48,5 +48,17 @@ export function useAnthropicAPI() {
     return llamarAPI('modificar', params)
   }
 
-  return { generarTarea, corregirTarea, modificarPregunta, cargando, error, setError }
+  function diagnosticarYRemediar(params) {
+    return llamarAPI('diagnosticar_y_remediar', params)
+  }
+
+  return {
+    generarTarea,
+    corregirTarea,
+    modificarPregunta,
+    diagnosticarYRemediar,
+    cargando,
+    error,
+    setError,
+  }
 }

@@ -360,6 +360,7 @@ export default function DetalleTarea() {
             <TablaResultadosAlumnos
               resultadosPorAlumno={resultadosPorAlumno}
               alumnos={alumnos}
+              preguntas={tarea.preguntas ?? []}
               editandoNota={editandoNota}
               notaManual={notaManual}
               onEditarNota={(alumnoId, nota) => {

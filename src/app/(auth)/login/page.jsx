@@ -23,7 +23,10 @@ export default function Login() {
     setCargando(true)
     const ok = await iniciarSesion(email, password)
     setCargando(false)
-    if (ok) router.push('/profesor')
+    if (ok) {
+      const rol = useAuthStore.getState().rol
+      router.push(rol === 'director' ? '/director' : '/profesor')
+    }
   }
 
   return (

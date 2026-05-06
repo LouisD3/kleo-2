@@ -11,6 +11,7 @@ export default function SeleccionarPerfil() {
 
   useEffect(() => {
     if (rol === 'profesor') router.push('/profesor')
+    if (rol === 'director') router.push('/director')
     if (rol === 'alumno') router.push('/alumno')
   }, [rol, router])
 

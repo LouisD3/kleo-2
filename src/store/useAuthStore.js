@@ -57,6 +57,8 @@ const useAuthStore = create((set, get) => ({
         }
 
         if (profesor) {
+          const rolDetectado = profesor.rol === 'director' ? 'director' : 'profesor'
+
           const { data: clases } = await supabase
             .from('clases')
             .select('*')
@@ -66,7 +68,7 @@ const useAuthStore = create((set, get) => ({
           set({
             usuario: session.user,
             profesor,
-            rol: 'profesor',
+            rol: rolDetectado,
             clases: clases ?? [],
             clase: clases?.[0] ?? null,
             cargando: false,
@@ -154,6 +156,8 @@ const useAuthStore = create((set, get) => ({
       .eq('id', data.user.id)
       .single()
 
+    const rolDetectado = profesor?.rol === 'director' ? 'director' : 'profesor'
+
     const { data: clases } = await supabase
       .from('clases')
       .select('*')
@@ -163,7 +167,7 @@ const useAuthStore = create((set, get) => ({
     set({
       usuario: data.user,
       profesor,
-      rol: 'profesor',
+      rol: rolDetectado,
       clases: clases ?? [],
       clase: clases?.[0] ?? null,
     })
@@ -250,7 +254,7 @@ const useAuthStore = create((set, get) => ({
 
   cerrarSesion: async () => {
     const { rol } = get()
-    if (rol === 'profesor') {
+    if (rol === 'profesor' || rol === 'director') {
       await supabase.auth.signOut()
     }
     localStorage.removeItem('kleo_alumno')

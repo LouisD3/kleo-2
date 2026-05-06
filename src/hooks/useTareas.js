@@ -165,6 +165,7 @@ export function useGuardarResultado() {
           calificacion: resultado.calificacion,
           retroalimentacion: resultado.retroalimentacion,
           areas_de_mejora: resultado.areas_de_mejora ?? [],
+          parcours: resultado.parcours ?? null,
         },
         { onConflict: 'tarea_id,alumno_id' },
       )
