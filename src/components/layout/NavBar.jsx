@@ -1,6 +1,6 @@
 'use client'
 
-import { LogOut, Settings } from 'lucide-react'
+import { BookOpen, LogOut, Settings } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import useAuthStore from '../../store/useAuthStore.js'
 
@@ -35,7 +35,15 @@ export default function NavBar({ titulo, volver }) {
           <div className="flex items-center gap-2">
             <button
               onClick={() =>
-                router.push(rol === 'profesor' ? '/profesor' : rol === 'alumno' ? '/alumno' : '/')
+                router.push(
+                  rol === 'profesor'
+                    ? '/profesor'
+                    : rol === 'director'
+                      ? '/director'
+                      : rol === 'alumno'
+                        ? '/alumno'
+                        : '/',
+                )
               }
               className="text-xl font-bold text-gray-900 hover:text-amarillo transition-colors"
             >
@@ -74,13 +82,22 @@ export default function NavBar({ titulo, volver }) {
             </div>
           )}
           {rol === 'profesor' && (
-            <button
-              onClick={() => router.push('/profesor/ajustes')}
-              className="p-1.5 rounded-lg text-gray-400 hover:text-gray-700 hover:bg-gray-100 transition-colors"
-              title="Ajustes"
-            >
-              <Settings className="w-[18px] h-[18px]" />
-            </button>
+            <>
+              <button
+                onClick={() => router.push('/profesor/biblioteca')}
+                className="p-1.5 rounded-lg text-gray-400 hover:text-gray-700 hover:bg-gray-100 transition-colors"
+                title="Biblioteca"
+              >
+                <BookOpen className="w-[18px] h-[18px]" />
+              </button>
+              <button
+                onClick={() => router.push('/profesor/ajustes')}
+                className="p-1.5 rounded-lg text-gray-400 hover:text-gray-700 hover:bg-gray-100 transition-colors"
+                title="Ajustes"
+              >
+                <Settings className="w-[18px] h-[18px]" />
+              </button>
+            </>
           )}
           <button
             onClick={handleSalir}
