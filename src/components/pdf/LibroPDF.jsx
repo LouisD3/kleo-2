@@ -104,7 +104,7 @@ function ChapterPage({ semana, libro }) {
       {/* Introduccion */}
       {introduccion && (
         <View style={{ marginBottom: 12 }}>
-          <Text style={{ fontSize: kleo.fontMd, color: kleo.gray700, lineHeight: 1.7, fontWeight: 400 }}>{introduccion}</Text>
+          <Text style={{ fontSize: kleo.fontMd, color: kleo.gray700, lineHeight: 1.7, fontStyle: 'italic' }}>{introduccion}</Text>
         </View>
       )}
 
