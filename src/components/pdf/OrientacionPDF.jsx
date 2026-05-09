@@ -154,7 +154,7 @@ export default function OrientacionPDF({ semana, orientacion }) {
                 <Text style={{ fontSize: kleo.fontSm, fontWeight: 600, color: kleo.gray700, marginBottom: 3 }}>
                   Reflexiona:
                 </Text>
-                <Text style={basePDF.bodyText}>{cierre_individual.reflexiona}</Text>
+                <Text style={{ ...basePDF.bodyText, fontStyle: 'italic' }}>{cierre_individual.reflexiona}</Text>
               </View>
             )}
 

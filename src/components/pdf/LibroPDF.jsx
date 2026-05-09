@@ -104,7 +104,7 @@ function ChapterPage({ semana, libro }) {
       {/* Introduccion */}
       {introduccion && (
         <View style={{ marginBottom: 12 }}>
-          <Text style={{ fontSize: kleo.fontMd, color: kleo.gray700, lineHeight: 1.7 }}>{introduccion}</Text>
+          <Text style={{ fontSize: kleo.fontMd, color: kleo.gray700, lineHeight: 1.7, fontStyle: 'italic' }}>{introduccion}</Text>
         </View>
       )}
 
@@ -132,7 +132,7 @@ function ChapterPage({ semana, libro }) {
       {datos_curiosos && (
         <View style={{ backgroundColor: kleo.tealLight, borderRadius: 6, padding: 12, marginTop: 12, marginBottom: 12, borderWidth: 1, borderColor: '#99F6E4' }} wrap={false}>
           <Text style={{ fontSize: kleo.fontXs, fontWeight: 700, color: kleo.teal, letterSpacing: 0.5, marginBottom: 4 }}>DATO CURIOSO</Text>
-          <Text style={{ fontSize: kleo.fontBase, color: kleo.tealDark, lineHeight: 1.5 }}>{datos_curiosos}</Text>
+          <Text style={{ fontSize: kleo.fontBase, color: kleo.tealDark, lineHeight: 1.5, fontStyle: 'italic' }}>{datos_curiosos}</Text>
         </View>
       )}
 
@@ -140,7 +140,7 @@ function ChapterPage({ semana, libro }) {
       {ejercicios?.length > 0 && (
         <View>
           <SectionBadge label="Practica" color={kleo.gray200} />
-          <Text style={{ fontSize: kleo.fontSm, color: kleo.gray500, marginBottom: 8 }}>Resuelve los siguientes ejercicios en el espacio proporcionado.</Text>
+          <Text style={{ fontSize: kleo.fontSm, color: kleo.gray500, marginBottom: 8, fontStyle: 'italic' }}>Resuelve los siguientes ejercicios en el espacio proporcionado.</Text>
           {ejercicios.map((ej, i) => (
             <EjercicioItem key={i} ejercicio={ej} />
           ))}
