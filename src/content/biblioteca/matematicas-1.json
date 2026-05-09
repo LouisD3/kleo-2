@@ -136,13 +136,7 @@
         {
           "titulo": "Decimales periódicos a fracción (método algebraico)",
           "contenido": "Si el decimal se repite, usa este truco: llama x al decimal. Multiplica por 10 (o 100, según cuántas cifras se repitan). Resta la ecuación original de la nueva. Despeja x. Por ejemplo, si x = 0.333..., entonces 10x = 3.333...; restando: 9x = 3, así que x = 3/9 = 1/3.",
-          "definicion": null,
-          "figura": {
-            "tipo": "imagen",
-            "src": "/content/images/semana-01.jpg",
-            "width": 180,
-            "height": 120
-          }
+          "definicion": null
         }
       ],
       "ejemplos": [
@@ -438,13 +432,7 @@
         {
           "titulo": "La recta numérica extendida",
           "contenido": "Al extender la recta numérica hacia la izquierda del cero aparecen los negativos: ..., −3, −2, −1, 0, 1, 2, 3, ... Los positivos van a la derecha, los negativos a la izquierda. Un número es mayor que otro si está más a la derecha.",
-          "definicion": null,
-          "figura": {
-            "tipo": "imagen",
-            "src": "/content/images/semana-02.jpg",
-            "width": 180,
-            "height": 120
-          }
+          "definicion": null
         },
         {
           "titulo": "Números opuestos y valor absoluto",
@@ -745,13 +733,7 @@
         {
           "titulo": "La regla de inversión con negativos",
           "contenido": "Con positivos, más grande el número, más grande es (1/2 < 3/4). Con negativos se invierte: −1/2 > −3/4 porque −0.5 está más cerca del cero que −0.75. Entre negativos, el más cercano al cero es el mayor.",
-          "definicion": null,
-          "figura": {
-            "tipo": "imagen",
-            "src": "/content/images/semana-03.jpg",
-            "width": 180,
-            "height": 120
-          }
+          "definicion": null
         },
         {
           "titulo": "Uso de los símbolos <, > e =",
@@ -1039,13 +1021,7 @@
         {
           "titulo": "Números racionales vs. enteros",
           "contenido": "Los enteros son ..., −2, −1, 0, 1, 2, ... y en la recta numérica hay \"huecos\" entre ellos. Los racionales (fracciones y decimales) llenan esos huecos. Por eso decimos que los racionales son densos: no importa qué tan juntos estén dos racionales, siempre cabe otro en medio.",
-          "definicion": "Número racional: cualquier número que se puede expresar como fracción a/b, donde a y b son enteros y b ≠ 0.",
-          "figura": {
-            "tipo": "imagen",
-            "src": "/content/images/semana-04.jpg",
-            "width": 180,
-            "height": 120
-          }
+          "definicion": "Número racional: cualquier número que se puede expresar como fracción a/b, donde a y b son enteros y b ≠ 0."
         }
       ],
       "ejemplos": [
@@ -1658,13 +1634,7 @@
         {
           "titulo": "Multiplicación con signo",
           "contenido": "(+) × (+) = (+), (−) × (−) = (+), (+) × (−) = (−), (−) × (+) = (−). Piénsalo así: multiplicar por un negativo es como \"dar la vuelta\" en la recta numérica. Si das la vuelta dos veces, regresas al mismo lado (positivo).",
-          "definicion": "Ley de los signos: signos iguales → resultado positivo; signos diferentes → resultado negativo.",
-          "figura": {
-            "tipo": "imagen",
-            "src": "/content/images/semana-06.jpg",
-            "width": 180,
-            "height": 120
-          }
+          "definicion": "Ley de los signos: signos iguales → resultado positivo; signos diferentes → resultado negativo."
         },
         {
           "titulo": "División con signo",
@@ -2528,13 +2498,7 @@
         {
           "titulo": "Fórmula del término general",
           "contenido": "Si conoces el primer término (a₁) y la diferencia común (d), puedes encontrar cualquier término de la sucesión sin tener que calcular todos los anteriores. La fórmula es: aₙ = a₁ + (n − 1) × d, donde n es la posición del término que buscas.",
-          "definicion": null,
-          "figura": {
-            "tipo": "imagen",
-            "src": "/content/images/semana-09.jpg",
-            "width": 180,
-            "height": 120
-          }
+          "definicion": null
         }
       ],
       "ejemplos": [
@@ -2843,13 +2807,7 @@
         {
           "titulo": "Términos semejantes",
           "contenido": "Dos términos son semejantes cuando tienen la misma variable elevada a la misma potencia. Por ejemplo, 3x y 7x son semejantes (ambos tienen x¹). Pero 3x y 3x² NO son semejantes. Solo puedes sumar o restar términos semejantes.",
-          "definicion": "Términos semejantes: términos con la misma parte literal (mismas variables con los mismos exponentes).",
-          "figura": {
-            "tipo": "imagen",
-            "src": "/content/images/semana-10.jpg",
-            "width": 180,
-            "height": 120
-          }
+          "definicion": "Términos semejantes: términos con la misma parte literal (mismas variables con los mismos exponentes)."
         },
         {
           "titulo": "Evaluar una expresión algebraica",
@@ -3739,13 +3697,7 @@
         {
           "titulo": "Como calcular el porcentaje de una cantidad",
           "contenido": "Usa la formula: Resultado = Cantidad x (Porcentaje / 100). Tambien puedes multiplicar directamente por el decimal equivalente. Por ejemplo, el 20% de 800 es 800 x 0.20 = 160. Este metodo funciona para descuentos, propinas, impuestos y cualquier situacion donde necesites una parte proporcional.",
-          "definicion": null,
-          "figura": {
-            "tipo": "imagen",
-            "src": "/content/images/semana-13.jpg",
-            "width": 180,
-            "height": 120
-          }
+          "definicion": null
         },
         {
           "titulo": "Descuentos, aumentos e IVA",
@@ -4052,13 +4004,7 @@
         {
           "titulo": "Relacion no proporcional",
           "contenido": "Si al dividir y entre x los cocientes cambian, la relacion no es proporcional. Puede ser lineal (y = mx + b con b distinto de 0) u otro tipo. En la grafica, una relacion lineal no proporcional es una recta que no pasa por el origen. El cobro base o valor inicial es lo que rompe la proporcionalidad.",
-          "definicion": null,
-          "figura": {
-            "tipo": "imagen",
-            "src": "/content/images/semana-14.jpg",
-            "width": 180,
-            "height": 120
-          }
+          "definicion": null
         },
         {
           "titulo": "Representaciones: tabla, grafica y diagrama",
@@ -4684,13 +4630,7 @@
         {
           "titulo": "Rectas paralelas, secantes y perpendiculares",
           "contenido": "Rectas paralelas (simbolo ||): nunca se cruzan, mantienen siempre la misma distancia. Rectas secantes: se cruzan en exactamente un punto y forman angulos. Rectas perpendiculares (simbolo _|_): caso especial de secantes donde el angulo es exactamente 90 grados. Toda recta perpendicular es secante, pero no toda secante es perpendicular.",
-          "definicion": "Rectas perpendiculares: dos rectas que se intersecan formando un angulo de 90 grados.",
-          "figura": {
-            "tipo": "imagen",
-            "src": "/content/images/semana-16.jpg",
-            "width": 180,
-            "height": 120
-          }
+          "definicion": "Rectas perpendiculares: dos rectas que se intersecan formando un angulo de 90 grados."
         },
         {
           "titulo": "Notacion geometrica",
@@ -4974,13 +4914,7 @@
         {
           "titulo": "Angulos opuestos por el vertice",
           "contenido": "Cuando dos rectas se intersecan, se forman 4 angulos. Los angulos que estan uno enfrente del otro (opuestos por el vertice) siempre son iguales. Esto sucede porque ambos son suplementarios del mismo angulo adyacente.",
-          "definicion": "Angulos opuestos por el vertice: par de angulos no adyacentes formados por dos rectas que se intersecan; siempre son congruentes.",
-          "figura": {
-            "tipo": "imagen",
-            "src": "/content/images/semana-17.jpg",
-            "width": 180,
-            "height": 120
-          }
+          "definicion": "Angulos opuestos por el vertice: par de angulos no adyacentes formados por dos rectas que se intersecan; siempre son congruentes."
         },
         {
           "titulo": "Angulos suplementarios y complementarios",
@@ -5289,13 +5223,7 @@
         {
           "titulo": "Mediatriz",
           "contenido": "La mediatriz de un segmento AB es una recta perpendicular al segmento que pasa por su punto medio. Tiene una propiedad increible: todo punto que pertenece a la mediatriz esta a la misma distancia de A que de B (equidistancia). Si el punto P esta en la mediatriz, entonces PA = PB.",
-          "definicion": "Mediatriz: recta perpendicular a un segmento que pasa por su punto medio; todos sus puntos equidistan de los extremos del segmento.",
-          "figura": {
-            "tipo": "imagen",
-            "src": "/content/images/semana-18.jpg",
-            "width": 180,
-            "height": 120
-          }
+          "definicion": "Mediatriz: recta perpendicular a un segmento que pasa por su punto medio; todos sus puntos equidistan de los extremos del segmento."
         },
         {
           "titulo": "Construccion con regla y compas",
@@ -5907,13 +5835,7 @@
         {
           "titulo": "Altura y ortocentro",
           "contenido": "La altura es un segmento perpendicular que va de un vertice al lado opuesto (o a su prolongacion). Las tres alturas se cruzan en el ortocentro. Importante: en un triangulo obtusangulo, el ortocentro queda fuera del triangulo, porque alguna altura cae en la prolongacion del lado.",
-          "definicion": "Altura: segmento perpendicular trazado desde un vertice hasta el lado opuesto o su prolongacion.",
-          "figura": {
-            "tipo": "imagen",
-            "src": "/content/images/semana-20.jpg",
-            "width": 180,
-            "height": 120
-          }
+          "definicion": "Altura: segmento perpendicular trazado desde un vertice hasta el lado opuesto o su prolongacion."
         },
         {
           "titulo": "Mediatriz, circuncentro, bisectriz e incentro",
@@ -6217,13 +6139,7 @@
         {
           "titulo": "Clasificacion de cuadrilateros",
           "contenido": "Se clasifican por lados paralelos. Paralelogramos (2 pares de lados paralelos): cuadrado (4 lados iguales + 4 angulos de 90 grados), rectangulo (4 angulos de 90 grados, lados opuestos iguales), rombo (4 lados iguales, angulos no necesariamente de 90 grados), romboide. Trapecio: 1 par de lados paralelos. Trapezoide: ningun par paralelo. La suma de angulos interiores siempre es 360 grados.",
-          "definicion": null,
-          "figura": {
-            "tipo": "imagen",
-            "src": "/content/images/semana-21.jpg",
-            "width": 180,
-            "height": 120
-          }
+          "definicion": null
         },
         {
           "titulo": "Jerarquia de cuadrilateros",
@@ -6566,13 +6482,7 @@
         {
           "titulo": "Propiedades y relaciones",
           "contenido": "El diametro es un caso particular de cuerda (la que pasa por el centro). Desde un punto exterior se pueden trazar exactamente dos tangentes, y los segmentos de tangente miden lo mismo. La perpendicular desde el centro a cualquier cuerda la biseca (la parte a la mitad), formando un triangulo rectangulo util para aplicar Pitagoras.",
-          "definicion": null,
-          "figura": {
-            "tipo": "imagen",
-            "src": "/content/images/semana-22.jpg",
-            "width": 180,
-            "height": 120
-          }
+          "definicion": null
         }
       ],
       "ejemplos": [
@@ -7137,13 +7047,7 @@
         {
           "titulo": "Criterios de existencia y unicidad",
           "contenido": "Un punto: infinitas circunferencias pasan por el (cualquier radio). Dos puntos: infinitas circunferencias (el centro puede estar en cualquier punto de la mediatriz). Tres puntos no alineados: exactamente una circunferencia (las mediatrices se cruzan en un unico punto). Tres puntos alineados: ninguna circunferencia (las mediatrices son paralelas y nunca se cruzan).",
-          "definicion": null,
-          "figura": {
-            "tipo": "imagen",
-            "src": "/content/images/semana-24.jpg",
-            "width": 180,
-            "height": 120
-          }
+          "definicion": null
         },
         {
           "titulo": "Longitud de la circunferencia",
@@ -7477,13 +7381,7 @@
         {
           "titulo": "Triángulo rectángulo auxiliar",
           "contenido": "Para visualizar la distancia, imagina que desde el punto A caminas horizontalmente hasta quedar debajo (o arriba) de B, y luego subes (o bajas) verticalmente hasta llegar a B. Esos dos recorridos forman los catetos de un triángulo rectángulo. El cateto horizontal mide |x₂ − x₁| y el vertical mide |y₂ − y₁|. La hipotenusa, calculada con Pitágoras, es la distancia.",
-          "definicion": null,
-          "figura": {
-            "tipo": "imagen",
-            "src": "/content/images/semana-25.jpg",
-            "width": 180,
-            "height": 120
-          }
+          "definicion": null
         },
         {
           "titulo": "Casos especiales",
@@ -8170,13 +8068,7 @@
         {
           "titulo": "El caso límite (triángulo degenerado)",
           "contenido": "Cuando la suma de los dos lados menores es exactamente igual al mayor (por ejemplo, 3 + 5 = 8), los tres segmentos quedan alineados en una línea recta. No se forma ningún ángulo, así que no hay triángulo. La desigualdad exige que la suma sea estrictamente mayor, no igual.",
-          "definicion": null,
-          "figura": {
-            "tipo": "imagen",
-            "src": "/content/images/semana-27.jpg",
-            "width": 180,
-            "height": 120
-          }
+          "definicion": null
         },
         {
           "titulo": "Rango del tercer lado",
@@ -8465,13 +8357,7 @@
         {
           "titulo": "Área",
           "contenido": "El área mide la superficie interior de una figura, es decir, cuánto espacio ocupa. Se expresa en unidades cuadradas (cm², m²). Para polígonos regulares se usa la apotema, que es la distancia del centro al punto medio de un lado. Para figuras irregulares, la estrategia es descomponer en figuras simples.",
-          "definicion": "Rectángulo: A = b × h. Triángulo: A = (b × h) / 2. Polígono regular: A = (P × apotema) / 2. Círculo: A = πr².",
-          "figura": {
-            "tipo": "imagen",
-            "src": "/content/images/semana-28.jpg",
-            "width": 180,
-            "height": 120
-          }
+          "definicion": "Rectángulo: A = b × h. Triángulo: A = (b × h) / 2. Polígono regular: A = (P × apotema) / 2. Círculo: A = πr²."
         },
         {
           "titulo": "La apotema",
@@ -9117,13 +9003,7 @@
         {
           "titulo": "Frecuencia absoluta",
           "contenido": "La frecuencia absoluta es simplemente el número de veces que un dato aparece en un conjunto. Es un conteo directo. Si en un grupo de 30 alumnos, 12 sacaron 9 en el examen, la frecuencia absoluta de la calificación 9 es 12. La suma de todas las frecuencias absolutas siempre es igual al total de datos.",
-          "definicion": "Frecuencia absoluta (fᵢ): número de veces que aparece el valor xᵢ en el conjunto de datos. Σfᵢ = n (total de datos).",
-          "figura": {
-            "tipo": "imagen",
-            "src": "/content/images/semana-30.jpg",
-            "width": 180,
-            "height": 120
-          }
+          "definicion": "Frecuencia absoluta (fᵢ): número de veces que aparece el valor xᵢ en el conjunto de datos. Σfᵢ = n (total de datos)."
         },
         {
           "titulo": "Frecuencia relativa",
@@ -9795,13 +9675,7 @@
         {
           "titulo": "Comparación cualitativa de probabilidades",
           "contenido": "Antes de calcular números, podemos comparar eventos usando frases como: 'es más probable que...', 'es menos probable que...', 'es igualmente probable que...', 'es imposible que...', 'es seguro que...'. Esta comparación cualitativa nos ayuda a razonar sobre situaciones aleatorias sin necesidad de fórmulas.",
-          "definicion": null,
-          "figura": {
-            "tipo": "imagen",
-            "src": "/content/images/semana-32.jpg",
-            "width": 180,
-            "height": 120
-          }
+          "definicion": null
         },
         {
           "titulo": "Escala de probabilidad",
@@ -10648,13 +10522,7 @@
         {
           "titulo": "Condicional (→) — 'Si... entonces'",
           "contenido": "El condicional p → q se lee 'si p, entonces q'. La proposición p se llama hipótesis (o antecedente) y q se llama conclusión (o consecuente). Un condicional es falso únicamente cuando la hipótesis es verdadera y la conclusión es falsa. En todos los demás casos, es verdadero. Esto puede parecer raro, pero tiene lógica: una promesa solo se rompe cuando se cumple la condición y no se cumple lo prometido.",
-          "definicion": "p → q es falso solo cuando p = V y q = F. En los otros tres casos (V→V, F→V, F→F), es verdadero.",
-          "figura": {
-            "tipo": "imagen",
-            "src": "/content/images/semana-35.jpg",
-            "width": 180,
-            "height": 120
-          }
+          "definicion": "p → q es falso solo cuando p = V y q = F. En los otros tres casos (V→V, F→V, F→F), es verdadero."
         },
         {
           "titulo": "Bicondicional (↔) — 'Si y solo si'",

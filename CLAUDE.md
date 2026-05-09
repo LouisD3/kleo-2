@@ -29,10 +29,14 @@ npm run lint:fix  # Run Biome linter with auto-fix
 **Kleo** is a Mexican educational AI platform for teachers and students (secondary/preparatory level in Mexico). Teachers generate AI-powered assignments; students complete them and receive instant AI grading and feedback. All UI copy is in Spanish (Mexican).
 
 ### Tech Stack
-- **Frontend**: Next.js 16 (App Router) + React 19 + Zustand + Tailwind CSS v3
-- **Backend**: Next.js Route Handler (`src/app/api/ia/route.ts`)
+- **Frontend**: Next.js 16 (App Router) + React 19 + Zustand + React Query + Tailwind CSS v3 + shadcn/ui + Lucide icons
+- **Backend**: Next.js Route Handlers (`src/app/api/`)
 - **Database**: Supabase (PostgreSQL + Auth + Row Level Security)
 - **AI**: Anthropic Claude (`claude-sonnet-4-20250514`) via direct API calls (raw `fetch`, no SDK)
+- **Validation**: Zod
+- **Analytics**: PostHog
+- **Error tracking**: Sentry
+- **PDF**: @react-pdf/renderer (task PDF export)
 - **Build**: Next.js + Turbopack
 - **Linting**: Biome
 
@@ -57,6 +61,8 @@ src/
         generar/page.jsx       — GenerarTarea (AI task generation)
         tarea/[tareaId]/page.jsx — DetalleTarea
         clase/page.jsx         — GestionClase
+        ajustes/page.jsx       — Settings (profile, GC connection, password, danger zone)
+        bienvenida/page.jsx    — Teacher onboarding welcome page
     (alumno)/                  — Protected alumno routes (layout with auth guard)
       layout.tsx               — ProtectedRoute requiere="alumno"
       alumno/
@@ -73,11 +79,15 @@ src/
         callback/route.ts      — OAuth2 redirect handler
         courses/route.ts       — List teacher's GC courses
         sync/route.ts          — Import students from GC course
+        import-class/route.ts  — Import full class from GC course
         publish/route.ts       — Publish task as GC coursework
         grades/route.ts        — Push grades back to GC
         disconnect/route.ts    — Disconnect GC account
   lib/supabase.js              — Supabase client init
   lib/google-classroom.ts      — Google Classroom OAuth2 + API helpers
+  lib/posthog.ts               — PostHog analytics client
+  lib/schemas.ts               — Zod validation schemas
+  lib/utils.ts                 — Utility functions (cn, etc.)
   store/
     useAuthStore.js            — Auth state (teacher Supabase Auth + student code-based)
     useTareaStore.js           — Tasks, students, results state (backed by Supabase)
@@ -86,15 +96,23 @@ src/
       AuthProvider.jsx         — Root auth initializer (wraps app)
       ProtectedRoute.jsx       — Role-based route guard
     layout/NavBar.jsx          — Shared navigation bar
-    ui/                        — Reusable UI: Badge, Boton, MensajeError, Modal, Spinner
+    providers/
+      PostHogProvider.tsx      — PostHog analytics provider
+      QueryProvider.jsx        — React Query provider
+    ui/                        — Reusable UI: Badge, Boton, MensajeError, Modal, Spinner, Toast + shadcn components
     alumno/RenderizadorPregunta.jsx — Question renderer for student task view
     profesor/
       TablaTareas.jsx          — Task list table
       TablaResultadosAlumnos.jsx — Per-task student results table
+      EditorPreguntas.jsx      — Question editor for generated tasks
+      EditorPreguntaCard.jsx   — Individual question card in editor
+      TareaPDF.jsx             — PDF export component for tasks
+      ChecklistOnboarding.jsx  — Onboarding checklist for new teachers
       GoogleClassroomPanel.jsx — GC connection + student import UI
       GoogleClassroomActions.jsx — GC publish + grade sync per task
   hooks/useAnthropicAPI.js     — Client-side hook for /api/ia calls
   hooks/useGoogleClassroom.js  — Client-side hooks for GC integration
+  hooks/useTareas.js           — React Query hooks for task data fetching
   mock/pdas/                   — PDA library data (NEM curriculum)
 ```
 
@@ -126,7 +144,7 @@ Tasks move through three states: `'borrador'` → `'en_curso'` (published) → `
 ### API Route (`src/app/api/ia/route.ts`)
 
 Single POST endpoint accepting `{ type, payload }`:
-- `type: 'generar'` — generates questions for a task from subject/difficulty/methodology/PDA parameters. Supports 3 pedagogical methodologies: Feynman, Memorización activa, Resolución de problemas. Question types: opcion_multiple, verdadero_falso, abierta, espacios, calculo.
+- `type: 'generar'` — generates questions for a task from subject/difficulty/methodology/PDA parameters. Supports 4 pedagogical methodologies: Feynman, Memorización activa, Resolución de problemas, Práctica directa. Question types: opcion_multiple, verdadero_falso, abierta, espacios, calculo.
 - `type: 'corregir'` — grades student responses, returns score (0–10) + per-question feedback + areas_de_mejora
 
 Claude returns JSON embedded in text; the backend extracts it with a regex (`/\{[\s\S]*\}/`).
@@ -155,6 +173,8 @@ Optional integration allowing teachers to connect their Google Classroom account
 /profesor/generar              → GenerarTarea (AI task generation form)
 /profesor/tarea/[tareaId]      → DetalleTarea (task detail + results + CSV export + manual grading)
 /profesor/clase                → GestionClase (class & student management)
+/profesor/ajustes              → Settings (profile, GC, password, danger zone)
+/profesor/bienvenida           → Teacher onboarding welcome
 /alumno                        → DashboardAlumno (protected)
 /alumno/tarea/[tareaId]        → RealizarTarea (answer questions)
 /alumno/resultado/[tareaId]    → ResultadoTarea (grade + feedback display)
@@ -167,7 +187,12 @@ Optional integration allowing teachers to connect their Google Classroom account
 - Deadline (`fecha_limite`) on tasks, shown to students with overdue indicator
 - Manual grade override (`calificacion_manual`) per student per task
 - CSV export of results per task
-- Class management: create classes, add/remove students, view access codes
+- PDF export of tasks
+- Class management: create classes, delete classes, add/remove students, view access codes
+- Question editor: edit AI-generated questions before publishing
+- Settings page: profile editing, GC connection, password change, account deletion
+- Onboarding flow: welcome page + checklist for new teachers
+- Google Classroom: connect account, import classes/students, publish tasks, sync grades
 
 ### Custom Tailwind Theme
 
