@@ -4,6 +4,7 @@ import { X, FileText, BookOpen, Presentation, Play, ClipboardCheck, ChevronLeft,
 import { useState, lazy, Suspense } from 'react'
 
 const OrientacionPDF = lazy(() => import('@/components/pdf/OrientacionPDF.jsx'))
+const LibroPDF = lazy(() => import('@/components/pdf/LibroPDF.jsx'))
 const PDFDownloadLinkLazy = lazy(() =>
   import('@react-pdf/renderer').then((mod) => ({ default: mod.PDFDownloadLink })),
 )
@@ -419,11 +420,22 @@ function VisorLibroEstructurado({ libro }) {
   )
 }
 
+function getPDFDocument(tipo, semana, contenido) {
+  if (tipo === 'orientacion' && typeof contenido === 'object' && contenido !== null) {
+    return <OrientacionPDF semana={semana} orientacion={contenido} />
+  }
+  if (tipo === 'libro' && typeof contenido === 'object' && contenido !== null) {
+    return <LibroPDF semanas={[{ ...semana, libro: contenido }]} />
+  }
+  return null
+}
+
 export default function VisorContenido({ semana, tipo, contenido, onCerrar }) {
   const config = TIPO_CONFIG[tipo]
   const Icon = config?.icon ?? FileText
   const [verPDF, setVerPDF] = useState(true)
-  const esOrientacionObj = tipo === 'orientacion' && typeof contenido === 'object' && contenido !== null
+  const pdfDoc = getPDFDocument(tipo, semana, contenido)
+  const tienePDF = pdfDoc !== null
 
   return (
     <div className="fixed inset-0 z-50 flex items-start justify-center bg-black/40 backdrop-blur-sm overflow-y-auto py-8">
@@ -442,7 +454,7 @@ export default function VisorContenido({ semana, tipo, contenido, onCerrar }) {
             </div>
           </div>
           <div className="flex items-center gap-2">
-            {esOrientacionObj && (
+            {tienePDF && (
               <>
                 <button
                   type="button"
@@ -458,8 +470,8 @@ export default function VisorContenido({ semana, tipo, contenido, onCerrar }) {
                 </button>
                 <Suspense fallback={null}>
                   <PDFDownloadLinkLazy
-                    document={<OrientacionPDF semana={semana} orientacion={contenido} />}
-                    fileName={`orientacion-semana-${semana.secuencia}.pdf`}
+                    document={pdfDoc}
+                    fileName={`${tipo}-semana-${semana.secuencia}.pdf`}
                   >
                     {({ loading }) => (
                       <button
@@ -486,10 +498,10 @@ export default function VisorContenido({ semana, tipo, contenido, onCerrar }) {
         </div>
 
         {/* Content */}
-        {esOrientacionObj && verPDF ? (
+        {tienePDF && verPDF ? (
           <div className="h-[75vh]">
             <Suspense fallback={<div className="flex items-center justify-center h-full text-sm text-gray-400">Cargando PDF...</div>}>
-              <BlobProviderLazy document={<OrientacionPDF semana={semana} orientacion={contenido} />}>
+              <BlobProviderLazy document={pdfDoc}>
                 {({ url, loading }) =>
                   loading ? (
                     <div className="flex items-center justify-center h-full text-sm text-gray-400">Generando PDF...</div>
@@ -504,7 +516,9 @@ export default function VisorContenido({ semana, tipo, contenido, onCerrar }) {
           <div className="px-6 py-5 max-h-[70vh] overflow-y-auto">
             {tipo === 'evaluacion' && <VisorEvaluacion preguntas={contenido?.preguntas ?? contenido} />}
             {tipo === 'diapositiva' && <VisorDiapositivas slides={contenido} />}
-            {esOrientacionObj && <VisorOrientacionEstructurada orientacion={contenido} />}
+            {tipo === 'orientacion' && typeof contenido === 'object' && (
+              <VisorOrientacionEstructurada orientacion={contenido} />
+            )}
             {tipo === 'orientacion' && typeof contenido === 'string' && (
               <VisorMarkdown contenido={contenido} />
             )}

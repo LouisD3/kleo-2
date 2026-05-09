@@ -1,16 +1,11 @@
 'use client'
 
-import { useState, lazy, Suspense } from 'react'
-import { FileText, BookOpen, Presentation, Play, ClipboardCheck, ChevronDown, Download } from 'lucide-react'
+import { useState } from 'react'
+import { FileText, BookOpen, Presentation, Play, ClipboardCheck, ChevronDown } from 'lucide-react'
 import NavBar from '@/components/layout/NavBar.jsx'
 import VisorContenido from '@/components/profesor/biblioteca/VisorContenido.jsx'
 import { PDAS_MATEMATICAS_1 } from '@/mock/pdas/matematicas_1.js'
 import contenidoGenerado from '@/content/biblioteca/matematicas-1.json'
-
-const PDFDownloadLinkLazy = lazy(() =>
-  import('@react-pdf/renderer').then((mod) => ({ default: mod.PDFDownloadLink })),
-)
-const LibroPDF = lazy(() => import('@/components/pdf/LibroPDF.jsx'))
 
 const TIPOS_RECURSO = [
   { key: 'orientacion', label: 'Orientacion didactica', icon: FileText },
@@ -43,30 +38,11 @@ export default function Biblioteca() {
       <NavBar titulo="Biblioteca" volver="/profesor" />
 
       <main className="max-w-4xl mx-auto px-4 sm:px-6 py-8 animate-fade-in">
-        <div className="mb-6 flex items-start justify-between">
-          <div>
-            <h1 className="text-xl font-bold text-gray-900">Matematicas</h1>
-            <p className="text-sm text-gray-500 mt-1">
-              1° Secundaria &middot; 36 semanas &middot; Programa NEM
-            </p>
-          </div>
-          <Suspense fallback={null}>
-            <PDFDownloadLinkLazy
-              document={<LibroPDF semanas={contenidoGenerado} />}
-              fileName="kleo-libro-matematicas-1.pdf"
-            >
-              {({ loading }) => (
-                <button
-                  type="button"
-                  disabled={loading}
-                  className="flex items-center gap-1.5 text-xs font-medium px-3 py-2 rounded-lg bg-gray-900 text-white hover:bg-gray-800 disabled:opacity-50 transition-colors"
-                >
-                  <Download className="w-3.5 h-3.5" />
-                  {loading ? 'Generando libro...' : 'Descargar libro completo'}
-                </button>
-              )}
-            </PDFDownloadLinkLazy>
-          </Suspense>
+        <div className="mb-6">
+          <h1 className="text-xl font-bold text-gray-900">Matematicas</h1>
+          <p className="text-sm text-gray-500 mt-1">
+            1° Secundaria &middot; 36 semanas &middot; Programa NEM
+          </p>
         </div>
 
         <div className="space-y-2">
