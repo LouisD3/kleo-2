@@ -995,7 +995,28 @@
         {
           "titulo": "La propiedad de densidad de los racionales",
           "contenido": "Entre cualquier par de números racionales siempre puedes encontrar otro racional. ¡Y entre esos dos, otro más! Esto significa que entre 0.1 y 0.2 hay infinitos números: 0.11, 0.12, 0.15, 0.111, 0.1234... Esto no pasa con los enteros: entre 5 y 6 no hay ningún otro entero.",
-          "definicion": "Propiedad de densidad: entre cualquier par de números racionales siempre existe al menos otro número racional."
+          "definicion": "Propiedad de densidad: entre cualquier par de números racionales siempre existe al menos otro número racional.",
+          "figura": {
+            "tipo": "recta_numerica",
+            "min": -3,
+            "max": 3,
+            "puntos": [
+              {
+                "valor": -1.5,
+                "label": "-1.5"
+              },
+              {
+                "valor": 0.5,
+                "label": "0.5"
+              },
+              {
+                "valor": 2,
+                "label": "2"
+              }
+            ],
+            "width": 400,
+            "height": 55
+          }
         },
         {
           "titulo": "Números racionales vs. enteros",
@@ -1011,7 +1032,24 @@
             "Paso 1: Calcula el promedio: (3 + 4) / 2 = 7/2 = 3.5.",
             "Paso 2: Verifica: 3 < 3.5 < 4. ¡Listo!"
           ],
-          "resultado": "3.5 (o 7/2) está entre 3 y 4."
+          "resultado": "3.5 (o 7/2) está entre 3 y 4.",
+          "figura": {
+            "tipo": "recta_numerica",
+            "min": -2,
+            "max": 2,
+            "puntos": [
+              {
+                "valor": -0.5,
+                "label": "-1/2"
+              },
+              {
+                "valor": 0.75,
+                "label": "3/4"
+              }
+            ],
+            "width": 400,
+            "height": 55
+          }
         },
         {
           "titulo": "Encontrar un racional entre dos fracciones",
@@ -1092,7 +1130,32 @@
           "¡Y no solo uno, sino infinitos!",
           "Nunca llegas a un 'hueco'"
         ],
-        "ejemplo": "Entre 0.1 y 0.2 están: 0.11, 0.15, 0.19, 0.123456..."
+        "ejemplo": "Entre 0.1 y 0.2 están: 0.11, 0.15, 0.19, 0.123456...",
+        "figura": {
+          "tipo": "recta_numerica",
+          "min": -3,
+          "max": 3,
+          "puntos": [
+            {
+              "valor": -2,
+              "label": "-2"
+            },
+            {
+              "valor": -1.5,
+              "label": ""
+            },
+            {
+              "valor": -1,
+              "label": "-1"
+            },
+            {
+              "valor": 0,
+              "label": "0"
+            }
+          ],
+          "width": 500,
+          "height": 60
+        }
       },
       {
         "titulo": "El método del promedio",
@@ -1549,7 +1612,24 @@
         {
           "titulo": "Ley de los signos para multiplicación y división",
           "contenido": "La regla es elegante y simple: si los dos números tienen el mismo signo, el resultado es positivo. Si tienen signos diferentes, el resultado es negativo. Funciona igual para multiplicar y para dividir.",
-          "definicion": null
+          "definicion": null,
+          "figura": {
+            "tipo": "recta_numerica",
+            "min": -6,
+            "max": 6,
+            "puntos": [
+              {
+                "valor": -4,
+                "label": "(-2)×2"
+              },
+              {
+                "valor": 6,
+                "label": "(2)×3"
+              }
+            ],
+            "width": 400,
+            "height": 55
+          }
         },
         {
           "titulo": "Multiplicación con signo",
@@ -1836,7 +1916,38 @@
             "Paso 2: 17 + 83 = 100 (par que suma un número redondo).",
             "Paso 3: 100 + 45 = 145."
           ],
-          "resultado": "17 + 45 + 83 = 145"
+          "resultado": "17 + 45 + 83 = 145",
+          "figura": {
+            "tipo": "recta_numerica",
+            "min": -5,
+            "max": 8,
+            "puntos": [
+              {
+                "valor": 3,
+                "label": "3+5"
+              },
+              {
+                "valor": 3,
+                "label": ""
+              },
+              {
+                "valor": 8,
+                "label": "=8"
+              }
+            ],
+            "intervalos": [
+              {
+                "desde": 0,
+                "hasta": 3
+              },
+              {
+                "desde": 3,
+                "hasta": 8
+              }
+            ],
+            "width": 400,
+            "height": 55
+          }
         },
         {
           "titulo": "Asociatividad para facilitar la multiplicación",
@@ -2084,7 +2195,14 @@
         {
           "titulo": "Propiedad distributiva",
           "contenido": "La multiplicación se distribuye sobre la suma y la resta: a × (b + c) = a × b + a × c. Funciona en ambas direcciones: puedes \"expandir\" para quitar paréntesis o \"factorizar\" para simplificar. Ejemplo: 5 × (20 + 3) = 5 × 20 + 5 × 3 = 100 + 15 = 115.",
-          "definicion": "Propiedad distributiva: a × (b + c) = a × b + a × c."
+          "definicion": "Propiedad distributiva: a × (b + c) = a × b + a × c.",
+          "figura": {
+            "tipo": "fraccion",
+            "numerador": 3,
+            "denominador": 5,
+            "width": 200,
+            "height": 35
+          }
         },
         {
           "titulo": "Jerarquía de operaciones (PEMDAS)",
@@ -2346,7 +2464,36 @@
         {
           "titulo": "Sucesión y progresión aritmética",
           "contenido": "Una sucesión es una lista ordenada de números que sigue una regla. Una progresión aritmética es una sucesión donde la diferencia entre un término y el anterior siempre es la misma. Esa diferencia constante se llama diferencia común (d).",
-          "definicion": "Progresión aritmética: sucesión donde cada término se obtiene sumando una cantidad fija (diferencia común d) al término anterior."
+          "definicion": "Progresión aritmética: sucesión donde cada término se obtiene sumando una cantidad fija (diferencia común d) al término anterior.",
+          "figura": {
+            "tipo": "recta_numerica",
+            "min": 0,
+            "max": 15,
+            "puntos": [
+              {
+                "valor": 2,
+                "label": "a₁"
+              },
+              {
+                "valor": 5,
+                "label": "a₂"
+              },
+              {
+                "valor": 8,
+                "label": "a₃"
+              },
+              {
+                "valor": 11,
+                "label": "a₄"
+              },
+              {
+                "valor": 14,
+                "label": "a₅"
+              }
+            ],
+            "width": 400,
+            "height": 55
+          }
         },
         {
           "titulo": "Fórmula del término general",
@@ -2446,7 +2593,36 @@
           "Si todas las restas dan lo mismo, es progresión aritmética",
           "Si no, NO es progresión aritmética"
         ],
-        "ejemplo": "Sucesión: 10, 16, 22, 28 → d = 16 − 10 = 6 ✓"
+        "ejemplo": "Sucesión: 10, 16, 22, 28 → d = 16 − 10 = 6 ✓",
+        "figura": {
+          "tipo": "recta_numerica",
+          "min": 0,
+          "max": 20,
+          "puntos": [
+            {
+              "valor": 3,
+              "label": "3"
+            },
+            {
+              "valor": 7,
+              "label": "7"
+            },
+            {
+              "valor": 11,
+              "label": "11"
+            },
+            {
+              "valor": 15,
+              "label": "15"
+            },
+            {
+              "valor": 19,
+              "label": "19"
+            }
+          ],
+          "width": 500,
+          "height": 60
+        }
       },
       {
         "titulo": "Fórmula del término general",
@@ -2609,7 +2785,24 @@
         {
           "titulo": "Variables y expresiones algebraicas",
           "contenido": "Una variable es una letra (como x, y, n) que representa un número desconocido o que puede cambiar. Una expresión algebraica combina números, variables y operaciones. Por ejemplo, 3x + 5 significa \"tres veces un número desconocido, más cinco\".",
-          "definicion": "Variable: letra que representa un valor numérico desconocido o que puede variar. Expresión algebraica: combinación de números, variables y operaciones."
+          "definicion": "Variable: letra que representa un valor numérico desconocido o que puede variar. Expresión algebraica: combinación de números, variables y operaciones.",
+          "figura": {
+            "tipo": "recta_numerica",
+            "min": 0,
+            "max": 10,
+            "puntos": [
+              {
+                "valor": 3,
+                "label": "x=3"
+              },
+              {
+                "valor": 7,
+                "label": "x=7"
+              }
+            ],
+            "width": 400,
+            "height": 55
+          }
         },
         {
           "titulo": "Términos semejantes",
@@ -2899,7 +3092,64 @@
             "Paso 3: Distribuye: 6x + 4 + 2x + 10.",
             "Paso 4: Combina semejantes: 8x + 14."
           ],
-          "resultado": "P = 8x + 14"
+          "resultado": "P = 8x + 14",
+          "figura": {
+            "tipo": "plano_cartesiano",
+            "xMin": 0,
+            "xMax": 6,
+            "yMin": 0,
+            "yMax": 4,
+            "puntos": [
+              {
+                "x": 0,
+                "y": 0,
+                "label": ""
+              },
+              {
+                "x": 5,
+                "y": 0,
+                "label": ""
+              },
+              {
+                "x": 5,
+                "y": 3,
+                "label": ""
+              },
+              {
+                "x": 0,
+                "y": 3,
+                "label": ""
+              }
+            ],
+            "lineas": [
+              {
+                "x1": 0,
+                "y1": 0,
+                "x2": 5,
+                "y2": 0
+              },
+              {
+                "x1": 5,
+                "y1": 0,
+                "x2": 5,
+                "y2": 3
+              },
+              {
+                "x1": 5,
+                "y1": 3,
+                "x2": 0,
+                "y2": 3
+              },
+              {
+                "x1": 0,
+                "y1": 3,
+                "x2": 0,
+                "y2": 0
+              }
+            ],
+            "width": 180,
+            "height": 140
+          }
         },
         {
           "titulo": "Perímetro de un triángulo y evaluación",
@@ -3169,7 +3419,20 @@
             "Paso 3: x = 5.",
             "Verificación: 5 + 7 = 12. ✓"
           ],
-          "resultado": "x = 5"
+          "resultado": "x = 5",
+          "figura": {
+            "tipo": "recta_numerica",
+            "min": -3,
+            "max": 7,
+            "puntos": [
+              {
+                "valor": 4,
+                "label": "x=4"
+              }
+            ],
+            "width": 400,
+            "height": 55
+          }
         },
         {
           "titulo": "Ecuación de dos pasos",
@@ -3422,7 +3685,14 @@
         {
           "titulo": "Que es un porcentaje",
           "contenido": "La palabra porcentaje viene del latin per centum, que significa \"por cada cien\". Cuando dices 25%, estas diciendo \"25 de cada 100\". Puedes escribir cualquier porcentaje como fraccion o como decimal: 25% = 25/100 = 0.25, 50% = 50/100 = 0.50, 10% = 10/100 = 0.10. Para pasar de porcentaje a decimal, divide entre 100 (o recorre el punto dos lugares a la izquierda).",
-          "definicion": "Porcentaje: cantidad que expresa una proporcion de cada 100 unidades."
+          "definicion": "Porcentaje: cantidad que expresa una proporcion de cada 100 unidades.",
+          "figura": {
+            "tipo": "fraccion",
+            "numerador": 1,
+            "denominador": 4,
+            "width": 200,
+            "height": 35
+          }
         },
         {
           "titulo": "Como calcular el porcentaje de una cantidad",
@@ -3444,7 +3714,14 @@
             "Paso 2: Calcular el descuento: 800 x 0.20 = $160",
             "Paso 3: Restar al precio original: 800 - 160 = $640"
           ],
-          "resultado": "Te ahorras $160 y pagas $640. Atajo: 800 x 0.80 = $640."
+          "resultado": "Te ahorras $160 y pagas $640. Atajo: 800 x 0.80 = $640.",
+          "figura": {
+            "tipo": "fraccion",
+            "numerador": 3,
+            "denominador": 10,
+            "width": 200,
+            "height": 35
+          }
         },
         {
           "titulo": "Propina en un restaurante",
@@ -3980,7 +4257,41 @@
         {
           "titulo": "La ecuacion y = kx",
           "contenido": "Toda relacion proporcional se puede escribir como y = kx, donde y es la variable dependiente (lo que calculas), x es la variable independiente (lo que conoces) y k es la constante de proporcionalidad. Para encontrar k, divides y entre x con cualquier par de datos: k = y/x.",
-          "definicion": "Ecuacion de proporcionalidad: y = kx, donde k es la constante de proporcionalidad que relaciona las dos variables."
+          "definicion": "Ecuacion de proporcionalidad: y = kx, donde k es la constante de proporcionalidad que relaciona las dos variables.",
+          "figura": {
+            "tipo": "plano_cartesiano",
+            "xMin": -3,
+            "xMax": 5,
+            "yMin": -6,
+            "yMax": 10,
+            "puntos": [
+              {
+                "x": 1,
+                "y": 3,
+                "label": ""
+              },
+              {
+                "x": 2,
+                "y": 6,
+                "label": ""
+              },
+              {
+                "x": 3,
+                "y": 9,
+                "label": ""
+              }
+            ],
+            "lineas": [
+              {
+                "x1": -1,
+                "y1": -3,
+                "x2": 3,
+                "y2": 9
+              }
+            ],
+            "width": 180,
+            "height": 180
+          }
         },
         {
           "titulo": "Constante positiva y negativa",
@@ -4089,7 +4400,43 @@
           "Gráfica: recta que baja, pasa por (0,0)",
           "Ejemplos: pérdida de agua, desgaste, consumo"
         ],
-        "ejemplo": "y = −5x → Un tanque pierde 5 litros por hora"
+        "ejemplo": "y = −5x → Un tanque pierde 5 litros por hora",
+        "figura": {
+          "tipo": "plano_cartesiano",
+          "xMin": -4,
+          "xMax": 4,
+          "yMin": -8,
+          "yMax": 8,
+          "puntos": [
+            {
+              "x": 1,
+              "y": 2,
+              "label": "k=2"
+            },
+            {
+              "x": 1,
+              "y": -3,
+              "label": "k=-3"
+            }
+          ],
+          "lineas": [
+            {
+              "x1": -3,
+              "y1": -6,
+              "x2": 3,
+              "y2": 6
+            },
+            {
+              "x1": -2,
+              "y1": 6,
+              "x2": 2,
+              "y2": -6,
+              "color": "#E11D48"
+            }
+          ],
+          "width": 220,
+          "height": 220
+        }
       },
       {
         "titulo": "Encontrar k a partir de datos",
@@ -4243,7 +4590,42 @@
         {
           "titulo": "Punto, recta, semirrecta y segmento",
           "contenido": "El punto no tiene tamano, solo posicion (se nombra con letra mayuscula: A, B). La recta se extiende infinitamente en ambas direcciones (flechas en ambos extremos, se nombra con letra minuscula o con dos puntos). La semirrecta (rayo) tiene un punto de inicio pero se extiende infinitamente en una direccion. El segmento tiene dos puntos extremos y una longitud que puedes medir.",
-          "definicion": "Segmento: parte de una recta delimitada por dos puntos extremos, con longitud finita y medible."
+          "definicion": "Segmento: parte de una recta delimitada por dos puntos extremos, con longitud finita y medible.",
+          "figura": {
+            "tipo": "plano_cartesiano",
+            "xMin": -4,
+            "xMax": 4,
+            "yMin": -4,
+            "yMax": 4,
+            "puntos": [
+              {
+                "x": -2,
+                "y": 1,
+                "label": "A"
+              },
+              {
+                "x": 3,
+                "y": 1,
+                "label": "B"
+              }
+            ],
+            "lineas": [
+              {
+                "x1": -4,
+                "y1": 1,
+                "x2": 4,
+                "y2": 1
+              },
+              {
+                "x1": -4,
+                "y1": -2,
+                "x2": 4,
+                "y2": -2
+              }
+            ],
+            "width": 180,
+            "height": 180
+          }
         },
         {
           "titulo": "Rectas paralelas, secantes y perpendiculares",
@@ -4496,7 +4878,38 @@
         {
           "titulo": "Que es un angulo y como se clasifica",
           "contenido": "Un angulo se forma cuando dos semirrectas comparten el mismo punto de origen (vertice). La abertura entre ellas se mide en grados con el transportador. Clasificacion: agudo (entre 0 y 90 grados), recto (exactamente 90 grados), obtuso (entre 90 y 180 grados), llano (180 grados) y completo (360 grados).",
-          "definicion": "Angulo: region del plano comprendida entre dos semirrectas que parten de un mismo punto llamado vertice, medida en grados."
+          "definicion": "Angulo: region del plano comprendida entre dos semirrectas que parten de un mismo punto llamado vertice, medida en grados.",
+          "figura": {
+            "tipo": "plano_cartesiano",
+            "xMin": -1,
+            "xMax": 5,
+            "yMin": -1,
+            "yMax": 5,
+            "puntos": [
+              {
+                "x": 0,
+                "y": 0,
+                "label": "O"
+              }
+            ],
+            "lineas": [
+              {
+                "x1": 0,
+                "y1": 0,
+                "x2": 4,
+                "y2": 0
+              },
+              {
+                "x1": 0,
+                "y1": 0,
+                "x2": 3,
+                "y2": 3,
+                "color": "#E11D48"
+              }
+            ],
+            "width": 160,
+            "height": 160
+          }
         },
         {
           "titulo": "Angulos opuestos por el vertice",
@@ -4764,7 +5177,48 @@
         {
           "titulo": "Punto medio",
           "contenido": "El punto medio M de un segmento AB es el punto que esta exactamente a la mitad entre A y B. Divide al segmento en dos partes iguales: AM = MB = AB/2. Si AB mide 10 cm, entonces M esta a 5 cm de cada extremo.",
-          "definicion": "Punto medio: punto que divide un segmento en dos partes de igual longitud."
+          "definicion": "Punto medio: punto que divide un segmento en dos partes de igual longitud.",
+          "figura": {
+            "tipo": "plano_cartesiano",
+            "xMin": -1,
+            "xMax": 7,
+            "yMin": -2,
+            "yMax": 4,
+            "puntos": [
+              {
+                "x": 1,
+                "y": 1,
+                "label": "A"
+              },
+              {
+                "x": 5,
+                "y": 1,
+                "label": "B"
+              },
+              {
+                "x": 3,
+                "y": 1,
+                "label": "M"
+              }
+            ],
+            "lineas": [
+              {
+                "x1": 1,
+                "y1": 1,
+                "x2": 5,
+                "y2": 1
+              },
+              {
+                "x1": 3,
+                "y1": -1,
+                "x2": 3,
+                "y2": 3,
+                "color": "#E11D48"
+              }
+            ],
+            "width": 180,
+            "height": 140
+          }
         },
         {
           "titulo": "Mediatriz",
@@ -5020,7 +5474,45 @@
         {
           "titulo": "Bisectriz de un angulo",
           "contenido": "La bisectriz es un rayo que parte del vertice y divide el angulo en dos angulos iguales (congruentes). Si tienes un angulo de 80 grados, su bisectriz lo parte en dos angulos de 40 grados cada uno. La palabra viene del latin: bi (dos) y secare (cortar). Todo punto sobre la bisectriz esta a la misma distancia de ambos lados del angulo.",
-          "definicion": "Bisectriz: semirrecta que parte del vertice de un angulo y lo divide en dos angulos congruentes."
+          "definicion": "Bisectriz: semirrecta que parte del vertice de un angulo y lo divide en dos angulos congruentes.",
+          "figura": {
+            "tipo": "plano_cartesiano",
+            "xMin": -1,
+            "xMax": 6,
+            "yMin": -1,
+            "yMax": 5,
+            "puntos": [
+              {
+                "x": 0,
+                "y": 0,
+                "label": "V"
+              }
+            ],
+            "lineas": [
+              {
+                "x1": 0,
+                "y1": 0,
+                "x2": 5,
+                "y2": 0
+              },
+              {
+                "x1": 0,
+                "y1": 0,
+                "x2": 3,
+                "y2": 4,
+                "color": "#E11D48"
+              },
+              {
+                "x1": 0,
+                "y1": 0,
+                "x2": 4,
+                "y2": 2,
+                "color": "#059669"
+              }
+            ],
+            "width": 160,
+            "height": 160
+          }
         },
         {
           "titulo": "Angulos congruentes",
@@ -5285,7 +5777,60 @@
         {
           "titulo": "Mediana y centroide",
           "contenido": "La mediana es un segmento que va desde un vertice hasta el punto medio del lado opuesto. Todo triangulo tiene tres medianas. Las tres siempre se cruzan en un mismo punto llamado centroide (o baricentro), que es el centro de gravedad del triangulo. El centroide divide cada mediana en razon 2:1 desde el vertice.",
-          "definicion": "Mediana: segmento que une un vertice de un triangulo con el punto medio del lado opuesto."
+          "definicion": "Mediana: segmento que une un vertice de un triangulo con el punto medio del lado opuesto.",
+          "figura": {
+            "tipo": "plano_cartesiano",
+            "xMin": -1,
+            "xMax": 7,
+            "yMin": -1,
+            "yMax": 6,
+            "puntos": [
+              {
+                "x": 0,
+                "y": 0,
+                "label": "A"
+              },
+              {
+                "x": 6,
+                "y": 0,
+                "label": "B"
+              },
+              {
+                "x": 3,
+                "y": 5,
+                "label": "C"
+              }
+            ],
+            "lineas": [
+              {
+                "x1": 0,
+                "y1": 0,
+                "x2": 6,
+                "y2": 0
+              },
+              {
+                "x1": 6,
+                "y1": 0,
+                "x2": 3,
+                "y2": 5
+              },
+              {
+                "x1": 3,
+                "y1": 5,
+                "x2": 0,
+                "y2": 0
+              },
+              {
+                "x1": 3,
+                "y1": 0,
+                "x2": 3,
+                "y2": 5,
+                "color": "#E11D48"
+              }
+            ],
+            "width": 180,
+            "height": 160
+          }
         },
         {
           "titulo": "Altura y ortocentro",
@@ -5543,7 +6088,53 @@
         {
           "titulo": "Clasificacion de triangulos",
           "contenido": "Los triangulos se clasifican de dos formas simultaneas. Por sus lados: equilatero (3 lados iguales, 3 angulos de 60 grados), isosceles (al menos 2 lados iguales) y escaleno (3 lados diferentes). Por sus angulos: acutangulo (todos menores a 90 grados), rectangulo (un angulo de 90 grados) y obtusangulo (un angulo mayor a 90 grados). La suma de los angulos interiores siempre es 180 grados.",
-          "definicion": "Triangulo isosceles: triangulo que tiene al menos dos lados de igual longitud y los angulos opuestos a esos lados son congruentes."
+          "definicion": "Triangulo isosceles: triangulo que tiene al menos dos lados de igual longitud y los angulos opuestos a esos lados son congruentes.",
+          "figura": {
+            "tipo": "plano_cartesiano",
+            "xMin": -1,
+            "xMax": 5,
+            "yMin": -1,
+            "yMax": 5,
+            "puntos": [
+              {
+                "x": 0,
+                "y": 0,
+                "label": ""
+              },
+              {
+                "x": 4,
+                "y": 0,
+                "label": ""
+              },
+              {
+                "x": 2,
+                "y": 4,
+                "label": ""
+              }
+            ],
+            "lineas": [
+              {
+                "x1": 0,
+                "y1": 0,
+                "x2": 4,
+                "y2": 0
+              },
+              {
+                "x1": 4,
+                "y1": 0,
+                "x2": 2,
+                "y2": 4
+              },
+              {
+                "x1": 2,
+                "y1": 4,
+                "x2": 0,
+                "y2": 0
+              }
+            ],
+            "width": 160,
+            "height": 160
+          }
         },
         {
           "titulo": "Clasificacion de cuadrilateros",
@@ -5639,7 +6230,53 @@
           "Isósceles: al menos 2 lados iguales",
           "Escaleno: 3 lados diferentes"
         ],
-        "ejemplo": "Un triángulo de 5 cm, 5 cm y 5 cm es equilátero. Uno de 5, 5 y 8 es isósceles."
+        "ejemplo": "Un triángulo de 5 cm, 5 cm y 5 cm es equilátero. Uno de 5, 5 y 8 es isósceles.",
+        "figura": {
+          "tipo": "plano_cartesiano",
+          "xMin": -1,
+          "xMax": 5,
+          "yMin": -1,
+          "yMax": 5,
+          "puntos": [
+            {
+              "x": 0,
+              "y": 0,
+              "label": ""
+            },
+            {
+              "x": 4,
+              "y": 0,
+              "label": ""
+            },
+            {
+              "x": 2,
+              "y": 4,
+              "label": ""
+            }
+          ],
+          "lineas": [
+            {
+              "x1": 0,
+              "y1": 0,
+              "x2": 4,
+              "y2": 0
+            },
+            {
+              "x1": 4,
+              "y1": 0,
+              "x2": 2,
+              "y2": 4
+            },
+            {
+              "x1": 2,
+              "y1": 4,
+              "x2": 0,
+              "y2": 0
+            }
+          ],
+          "width": 200,
+          "height": 200
+        }
       },
       {
         "titulo": "Triángulos por sus ángulos",
@@ -6103,7 +6740,17 @@
         {
           "titulo": "Sector circular y segmento circular",
           "contenido": "El sector circular es la region entre dos radios y el arco que los une (forma de rebanada de pizza). El angulo entre los radios se llama angulo central. La fraccion de area que ocupa es angulo/360. El segmento circular es la region entre una cuerda y el arco que delimita (forma de media luna o gajo). No confundas sector (dos radios + arco) con segmento (una cuerda + arco).",
-          "definicion": "Sector circular: region del circulo delimitada por dos radios y el arco que los une."
+          "definicion": "Sector circular: region del circulo delimitada por dos radios y el arco que los une.",
+          "figura": {
+            "tipo": "circulo",
+            "radio": 50,
+            "elementos": [
+              "radio",
+              "cuerda"
+            ],
+            "width": 180,
+            "height": 180
+          }
         },
         {
           "titulo": "Corona circular",
@@ -6194,7 +6841,18 @@
           "El ángulo entre los radios se llama ángulo central",
           "Fracción del área = ángulo central / 360°"
         ],
-        "ejemplo": "Pizza de 8 rebanadas → cada sector tiene ángulo de 45° → ocupa 1/8 del círculo"
+        "ejemplo": "Pizza de 8 rebanadas → cada sector tiene ángulo de 45° → ocupa 1/8 del círculo",
+        "figura": {
+          "tipo": "circulo",
+          "radio": 60,
+          "elementos": [
+            "radio",
+            "diametro",
+            "cuerda"
+          ],
+          "width": 200,
+          "height": 200
+        }
       },
       {
         "titulo": "Segmento circular",
@@ -6373,7 +7031,18 @@
         {
           "titulo": "Circunferencia por tres puntos",
           "contenido": "Si tienes tres puntos que no esten en linea recta (no alineados), siempre puedes encontrar una y solo una circunferencia que pase por los tres. El metodo: 1) Traza la mediatriz del segmento AB. 2) Traza la mediatriz del segmento BC. 3) Las mediatrices se cruzan en O: ese es el centro. 4) La distancia OA es el radio. Funciona porque todo punto de la mediatriz de AB equidista de A y B, y todo punto de la mediatriz de BC equidista de B y C. El cruce equidista de los tres.",
-          "definicion": "Circunscripcion: propiedad por la cual tres puntos no alineados determinan una unica circunferencia que pasa por ellos."
+          "definicion": "Circunscripcion: propiedad por la cual tres puntos no alineados determinan una unica circunferencia que pasa por ellos.",
+          "figura": {
+            "tipo": "circulo",
+            "radio": 50,
+            "elementos": [
+              "radio",
+              "diametro",
+              "tangente"
+            ],
+            "width": 180,
+            "height": 180
+          }
         },
         {
           "titulo": "Criterios de existencia y unicidad",
@@ -6482,7 +7151,19 @@
           "Las mediatrices se cruzan en el centro O",
           "Mide OA = radio. Traza la circunferencia"
         ],
-        "ejemplo": "Las mediatrices siempre se cruzan si los puntos no están en línea recta"
+        "ejemplo": "Las mediatrices siempre se cruzan si los puntos no están en línea recta",
+        "figura": {
+          "tipo": "circulo",
+          "radio": 60,
+          "elementos": [
+            "radio",
+            "diametro",
+            "cuerda",
+            "tangente"
+          ],
+          "width": 200,
+          "height": 200
+        }
       },
       {
         "titulo": "¿Por qué funciona?",
@@ -6652,7 +7333,50 @@
         {
           "titulo": "Distancia entre dos puntos",
           "contenido": "La distancia entre dos puntos es la longitud del segmento recto que los une. Es el camino más corto posible entre ellos. Cuando colocas dos puntos en el plano cartesiano, puedes formar un triángulo rectángulo cuyos catetos son las diferencias en las coordenadas x e y, y la hipotenusa es la distancia que buscas.",
-          "definicion": "Dados dos puntos A(x₁, y₁) y B(x₂, y₂), la distancia entre ellos es d = √[(x₂ − x₁)² + (y₂ − y₁)²]."
+          "definicion": "Dados dos puntos A(x₁, y₁) y B(x₂, y₂), la distancia entre ellos es d = √[(x₂ − x₁)² + (y₂ − y₁)²].",
+          "figura": {
+            "tipo": "plano_cartesiano",
+            "xMin": -1,
+            "xMax": 7,
+            "yMin": -1,
+            "yMax": 6,
+            "puntos": [
+              {
+                "x": 1,
+                "y": 1,
+                "label": "A(1,1)"
+              },
+              {
+                "x": 5,
+                "y": 4,
+                "label": "B(5,4)"
+              }
+            ],
+            "lineas": [
+              {
+                "x1": 1,
+                "y1": 1,
+                "x2": 5,
+                "y2": 4
+              },
+              {
+                "x1": 1,
+                "y1": 1,
+                "x2": 5,
+                "y2": 1,
+                "color": "#E11D48"
+              },
+              {
+                "x1": 5,
+                "y1": 1,
+                "x2": 5,
+                "y2": 4,
+                "color": "#E11D48"
+              }
+            ],
+            "width": 180,
+            "height": 180
+          }
         },
         {
           "titulo": "Triángulo rectángulo auxiliar",
@@ -6761,7 +7485,50 @@
           "Cateto vertical = |y₂ − y₁|",
           "La hipotenusa es la distancia que buscamos"
         ],
-        "ejemplo": "A(1,1) y B(4,5): cateto horizontal = 3, cateto vertical = 4, hipotenusa = 5."
+        "ejemplo": "A(1,1) y B(4,5): cateto horizontal = 3, cateto vertical = 4, hipotenusa = 5.",
+        "figura": {
+          "tipo": "plano_cartesiano",
+          "xMin": -1,
+          "xMax": 8,
+          "yMin": -1,
+          "yMax": 6,
+          "puntos": [
+            {
+              "x": 2,
+              "y": 1,
+              "label": "P"
+            },
+            {
+              "x": 6,
+              "y": 4,
+              "label": "Q"
+            }
+          ],
+          "lineas": [
+            {
+              "x1": 2,
+              "y1": 1,
+              "x2": 6,
+              "y2": 4
+            },
+            {
+              "x1": 2,
+              "y1": 1,
+              "x2": 6,
+              "y2": 1,
+              "color": "#E11D48"
+            },
+            {
+              "x1": 6,
+              "y1": 1,
+              "x2": 6,
+              "y2": 4,
+              "color": "#E11D48"
+            }
+          ],
+          "width": 220,
+          "height": 200
+        }
       },
       {
         "titulo": "La fórmula de distancia",
@@ -6933,7 +7700,43 @@
         {
           "titulo": "Distancia de un punto a una recta",
           "contenido": "La distancia de un punto a una recta es la longitud del segmento perpendicular que va desde el punto hasta la recta. De todos los segmentos que puedes trazar desde el punto hacia la recta, el perpendicular siempre es el más corto. Ese ángulo de 90° es la clave.",
-          "definicion": "Para una recta horizontal y = k, la distancia desde P(a, b) es |b − k|. Para una recta vertical x = k, la distancia desde P(a, b) es |a − k|."
+          "definicion": "Para una recta horizontal y = k, la distancia desde P(a, b) es |b − k|. Para una recta vertical x = k, la distancia desde P(a, b) es |a − k|.",
+          "figura": {
+            "tipo": "plano_cartesiano",
+            "xMin": -1,
+            "xMax": 7,
+            "yMin": -1,
+            "yMax": 6,
+            "puntos": [
+              {
+                "x": 3,
+                "y": 4,
+                "label": "P"
+              },
+              {
+                "x": 3,
+                "y": 1,
+                "label": "H"
+              }
+            ],
+            "lineas": [
+              {
+                "x1": 0,
+                "y1": 1,
+                "x2": 6,
+                "y2": 1
+              },
+              {
+                "x1": 3,
+                "y1": 4,
+                "x2": 3,
+                "y2": 1,
+                "color": "#E11D48"
+              }
+            ],
+            "width": 180,
+            "height": 180
+          }
         },
         {
           "titulo": "Perpendicularidad y distancia mínima",
@@ -7212,7 +8015,55 @@
         {
           "titulo": "La desigualdad triangular",
           "contenido": "Para que tres segmentos formen un triángulo, la suma de las longitudes de cualquier par de lados debe ser mayor que la longitud del tercer lado. Si esto no se cumple, los segmentos no pueden cerrarse para formar la figura.",
-          "definicion": "Si un triángulo tiene lados a, b y c, entonces: a + b > c, a + c > b, y b + c > a. En la práctica, basta verificar que la suma de los dos lados menores sea estrictamente mayor que el lado mayor."
+          "definicion": "Si un triángulo tiene lados a, b y c, entonces: a + b > c, a + c > b, y b + c > a. En la práctica, basta verificar que la suma de los dos lados menores sea estrictamente mayor que el lado mayor.",
+          "figura": {
+            "tipo": "plano_cartesiano",
+            "xMin": -1,
+            "xMax": 8,
+            "yMin": -1,
+            "yMax": 5,
+            "puntos": [
+              {
+                "x": 0,
+                "y": 0,
+                "label": "A"
+              },
+              {
+                "x": 7,
+                "y": 0,
+                "label": "B"
+              },
+              {
+                "x": 3,
+                "y": 4,
+                "label": "C"
+              }
+            ],
+            "lineas": [
+              {
+                "x1": 0,
+                "y1": 0,
+                "x2": 7,
+                "y2": 0
+              },
+              {
+                "x1": 7,
+                "y1": 0,
+                "x2": 3,
+                "y2": 4,
+                "color": "#E11D48"
+              },
+              {
+                "x1": 3,
+                "y1": 4,
+                "x2": 0,
+                "y2": 0,
+                "color": "#059669"
+              }
+            ],
+            "width": 180,
+            "height": 150
+          }
         },
         {
           "titulo": "El caso límite (triángulo degenerado)",
@@ -7492,7 +8343,16 @@
         {
           "titulo": "Perímetro",
           "contenido": "El perímetro es la medida del contorno de una figura. Es como caminar por su borde y medir cuánto recorriste. Para cualquier polígono, se obtiene sumando las longitudes de todos sus lados. Para un polígono regular, como todos los lados son iguales, se multiplica el número de lados por la longitud de uno.",
-          "definicion": "Perímetro de un polígono = suma de todos sus lados. Polígono regular: P = n × l (n = número de lados, l = longitud de un lado). Círculo: C = 2πr."
+          "definicion": "Perímetro de un polígono = suma de todos sus lados. Polígono regular: P = n × l (n = número de lados, l = longitud de un lado). Círculo: C = 2πr.",
+          "figura": {
+            "tipo": "circulo",
+            "radio": 45,
+            "elementos": [
+              "radio"
+            ],
+            "width": 160,
+            "height": 160
+          }
         },
         {
           "titulo": "Área",
@@ -7513,7 +8373,64 @@
             "Paso 1: Perímetro = 2(b + h) = 2(12 + 8) = 2(20) = 40 m.",
             "Paso 2: Área = b × h = 12 × 8 = 96 m²."
           ],
-          "resultado": "Necesitas 40 m de cerca y 96 m² de pasto."
+          "resultado": "Necesitas 40 m de cerca y 96 m² de pasto.",
+          "figura": {
+            "tipo": "plano_cartesiano",
+            "xMin": -1,
+            "xMax": 7,
+            "yMin": -1,
+            "yMax": 5,
+            "puntos": [
+              {
+                "x": 0,
+                "y": 0,
+                "label": ""
+              },
+              {
+                "x": 6,
+                "y": 0,
+                "label": ""
+              },
+              {
+                "x": 6,
+                "y": 4,
+                "label": ""
+              },
+              {
+                "x": 0,
+                "y": 4,
+                "label": ""
+              }
+            ],
+            "lineas": [
+              {
+                "x1": 0,
+                "y1": 0,
+                "x2": 6,
+                "y2": 0
+              },
+              {
+                "x1": 6,
+                "y1": 0,
+                "x2": 6,
+                "y2": 4
+              },
+              {
+                "x1": 6,
+                "y1": 4,
+                "x2": 0,
+                "y2": 4
+              },
+              {
+                "x1": 0,
+                "y1": 4,
+                "x2": 0,
+                "y2": 0
+              }
+            ],
+            "width": 180,
+            "height": 140
+          }
         },
         {
           "titulo": "Hexágono regular",
@@ -8108,7 +9025,30 @@
             "Paso 2: Frecuencias relativas: 7 → 5/25 = 0.20 (20%), 8 → 10/25 = 0.40 (40%), 9 → 7/25 = 0.28 (28%), 10 → 3/25 = 0.12 (12%).",
             "Paso 3: Verificación: 0.20 + 0.40 + 0.28 + 0.12 = 1.00 (100%)."
           ],
-          "resultado": "La calificación más frecuente es 8 (40% del grupo). Las frecuencias relativas suman exactamente 1."
+          "resultado": "La calificación más frecuente es 8 (40% del grupo). Las frecuencias relativas suman exactamente 1.",
+          "figura": {
+            "tipo": "grafica_barras",
+            "datos": [
+              {
+                "label": "Rojo",
+                "valor": 12
+              },
+              {
+                "label": "Azul",
+                "valor": 8
+              },
+              {
+                "label": "Verde",
+                "valor": 15
+              },
+              {
+                "label": "Amarillo",
+                "valor": 5
+              }
+            ],
+            "width": 280,
+            "height": 150
+          }
         },
         {
           "titulo": "Interpretación de frecuencia relativa",
@@ -8188,7 +9128,34 @@
           "Se afecta por valores extremos (outliers)",
           "Todos los datos contribuyen al cálculo"
         ],
-        "ejemplo": "Datos: 4, 6, 8, 10, 7. Media = 35/5 = 7."
+        "ejemplo": "Datos: 4, 6, 8, 10, 7. Media = 35/5 = 7.",
+        "figura": {
+          "tipo": "grafica_barras",
+          "datos": [
+            {
+              "label": "A",
+              "valor": 10
+            },
+            {
+              "label": "B",
+              "valor": 6
+            },
+            {
+              "label": "C",
+              "valor": 14
+            },
+            {
+              "label": "D",
+              "valor": 8
+            },
+            {
+              "label": "E",
+              "valor": 12
+            }
+          ],
+          "width": 350,
+          "height": 180
+        }
       },
       {
         "titulo": "La mediana",
@@ -8371,7 +9338,38 @@
             "Paso 3: Moda = 8 (aparece 3 veces, más que cualquier otro).",
             "Paso 4: Rango = 10 − 6 = 4."
           ],
-          "resultado": "Media ≈ 7.71, Mediana = 8, Moda = 8, Rango = 4."
+          "resultado": "Media ≈ 7.71, Mediana = 8, Moda = 8, Rango = 4.",
+          "figura": {
+            "tipo": "grafica_barras",
+            "datos": [
+              {
+                "label": "5",
+                "valor": 2
+              },
+              {
+                "label": "6",
+                "valor": 4
+              },
+              {
+                "label": "7",
+                "valor": 7
+              },
+              {
+                "label": "8",
+                "valor": 5
+              },
+              {
+                "label": "9",
+                "valor": 3
+              },
+              {
+                "label": "10",
+                "valor": 1
+              }
+            ],
+            "width": 280,
+            "height": 150
+          }
         },
         {
           "titulo": "Mediana con número par de datos",
@@ -8455,7 +9453,38 @@
           "También llamada promedio",
           "Sensible a valores extremos (outliers)"
         ],
-        "ejemplo": "{1, 3, 2, 1, 3} → Suma = 10, hay 5 datos → Media = 10÷5 = 2"
+        "ejemplo": "{1, 3, 2, 1, 3} → Suma = 10, hay 5 datos → Media = 10÷5 = 2",
+        "figura": {
+          "tipo": "grafica_barras",
+          "datos": [
+            {
+              "label": "4",
+              "valor": 1
+            },
+            {
+              "label": "5",
+              "valor": 3
+            },
+            {
+              "label": "6",
+              "valor": 5
+            },
+            {
+              "label": "7",
+              "valor": 8
+            },
+            {
+              "label": "8",
+              "valor": 4
+            },
+            {
+              "label": "9",
+              "valor": 2
+            }
+          ],
+          "width": 350,
+          "height": 180
+        }
       },
       {
         "titulo": "La mediana",
@@ -8620,7 +9649,28 @@
         {
           "titulo": "Evento y resultado",
           "contenido": "Un evento es algo que puede suceder en un experimento. Por ejemplo, al lanzar un dado, un evento puede ser 'obtener un número par'. Un resultado es cada posibilidad individual: 1, 2, 3, 4, 5 o 6. Los eventos se pueden comparar según qué tan probables son.",
-          "definicion": "Un evento es un subconjunto del espacio muestral. Un resultado es cada elemento individual del espacio muestral."
+          "definicion": "Un evento es un subconjunto del espacio muestral. Un resultado es cada elemento individual del espacio muestral.",
+          "figura": {
+            "tipo": "recta_numerica",
+            "min": 0,
+            "max": 1,
+            "puntos": [
+              {
+                "valor": 0,
+                "label": "Imposible"
+              },
+              {
+                "valor": 0.5,
+                "label": "Igual"
+              },
+              {
+                "valor": 1,
+                "label": "Seguro"
+              }
+            ],
+            "width": 400,
+            "height": 55
+          }
         },
         {
           "titulo": "Comparación cualitativa de probabilidades",
@@ -8908,7 +9958,38 @@
             "Paso 3: Por el principio multiplicativo: 2 × 2 = 4 resultados.",
             "Paso 4: S = {CC, CX, XC, XX}."
           ],
-          "resultado": "Hay 4 resultados posibles. El diagrama de árbol muestra las 4 ramas completas."
+          "resultado": "Hay 4 resultados posibles. El diagrama de árbol muestra las 4 ramas completas.",
+          "figura": {
+            "tipo": "grafica_barras",
+            "datos": [
+              {
+                "label": "1",
+                "valor": 1
+              },
+              {
+                "label": "2",
+                "valor": 1
+              },
+              {
+                "label": "3",
+                "valor": 1
+              },
+              {
+                "label": "4",
+                "valor": 1
+              },
+              {
+                "label": "5",
+                "valor": 1
+              },
+              {
+                "label": "6",
+                "valor": 1
+              }
+            ],
+            "width": 250,
+            "height": 120
+          }
         },
         {
           "titulo": "Principio multiplicativo con ropa",
@@ -9157,7 +10238,24 @@
         {
           "titulo": "Proposiciones lógicas",
           "contenido": "Una proposición es un enunciado que puede ser verdadero (V) o falso (F), pero no ambos. Por ejemplo: '5 es un número primo' es una proposición verdadera. '3 + 2 = 8' es una proposición falsa. Las preguntas, exclamaciones y opiniones no son proposiciones porque no tienen un valor de verdad definido.",
-          "definicion": "Una proposición es un enunciado declarativo que tiene exactamente un valor de verdad: verdadero (V) o falso (F)."
+          "definicion": "Una proposición es un enunciado declarativo que tiene exactamente un valor de verdad: verdadero (V) o falso (F).",
+          "figura": {
+            "tipo": "recta_numerica",
+            "min": 0,
+            "max": 1,
+            "puntos": [
+              {
+                "valor": 0,
+                "label": "F"
+              },
+              {
+                "valor": 1,
+                "label": "V"
+              }
+            ],
+            "width": 200,
+            "height": 50
+          }
         },
         {
           "titulo": "Conjunción (∧) — 'Y'",
@@ -9699,7 +10797,36 @@
         {
           "titulo": "Sistema binario",
           "contenido": "El sistema binario es un sistema de numeración que usa solo dos dígitos: 0 y 1, llamados bits. Es un sistema posicional, igual que el decimal, pero en vez de usar potencias de 10, usa potencias de 2. Cada posición de derecha a izquierda vale 2⁰ = 1, 2¹ = 2, 2² = 4, 2³ = 8, 2⁴ = 16, y así sucesivamente.",
-          "definicion": "El sistema binario (base 2) usa los dígitos 0 y 1. El valor de cada posición es una potencia de 2: ...2⁴, 2³, 2², 2¹, 2⁰ = ...16, 8, 4, 2, 1."
+          "definicion": "El sistema binario (base 2) usa los dígitos 0 y 1. El valor de cada posición es una potencia de 2: ...2⁴, 2³, 2², 2¹, 2⁰ = ...16, 8, 4, 2, 1.",
+          "figura": {
+            "tipo": "recta_numerica",
+            "min": 0,
+            "max": 16,
+            "puntos": [
+              {
+                "valor": 1,
+                "label": "1"
+              },
+              {
+                "valor": 2,
+                "label": "10"
+              },
+              {
+                "valor": 4,
+                "label": "100"
+              },
+              {
+                "valor": 8,
+                "label": "1000"
+              },
+              {
+                "valor": 16,
+                "label": "10000"
+              }
+            ],
+            "width": 400,
+            "height": 55
+          }
         },
         {
           "titulo": "Conversión de decimal a binario",
