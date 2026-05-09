@@ -4,7 +4,9 @@ import { X, FileText, BookOpen, Presentation, Play, ClipboardCheck, ChevronLeft,
 import { useState, lazy, Suspense } from 'react'
 
 const OrientacionPDF = lazy(() => import('@/components/pdf/OrientacionPDF.jsx'))
-const LibroPDF = lazy(() => import('@/components/pdf/LibroPDF.jsx'))
+const LibroChapterPDF = lazy(() =>
+  import('@/components/pdf/LibroPDF.jsx').then((mod) => ({ default: mod.LibroChapterPDF })),
+)
 const PDFDownloadLinkLazy = lazy(() =>
   import('@react-pdf/renderer').then((mod) => ({ default: mod.PDFDownloadLink })),
 )
@@ -425,7 +427,7 @@ function getPDFDocument(tipo, semana, contenido) {
     return <OrientacionPDF semana={semana} orientacion={contenido} />
   }
   if (tipo === 'libro' && typeof contenido === 'object' && contenido !== null) {
-    return <LibroPDF semanas={[{ ...semana, libro: contenido }]} />
+    return <LibroChapterPDF semana={semana} libro={contenido} />
   }
   return null
 }

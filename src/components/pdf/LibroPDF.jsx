@@ -158,6 +158,20 @@ function ChapterPage({ semana, libro }) {
   )
 }
 
+export function LibroChapterPDF({ semana, libro }) {
+  return (
+    <Document>
+      <Page size="A4" style={{ ...basePDF.page, paddingHorizontal: 44, paddingTop: 20 }} wrap>
+        <ChapterPage semana={semana} libro={libro} />
+        <View style={basePDF.footer} fixed>
+          <Text style={basePDF.footerLeft}>Semana {semana.secuencia} · {semana.titulo}</Text>
+          <Text style={basePDF.footerRight} render={({ pageNumber, totalPages }) => `pag ${pageNumber}/${totalPages}`} />
+        </View>
+      </Page>
+    </Document>
+  )
+}
+
 export default function LibroPDF({ semanas }) {
   return (
     <Document>
