@@ -1,18 +1,26 @@
 'use client'
 
 import { X, FileText, BookOpen, Presentation, Play, ClipboardCheck, ChevronLeft, ChevronRight, Download, Eye } from 'lucide-react'
-import { useState, lazy, Suspense } from 'react'
+import { useState, useEffect, Suspense } from 'react'
 
-const OrientacionPDF = lazy(() => import('@/components/pdf/OrientacionPDF.jsx'))
-const LibroChapterPDF = lazy(() =>
-  import('@/components/pdf/LibroPDF.jsx').then((mod) => ({ default: mod.LibroChapterPDF })),
-)
-const PDFDownloadLinkLazy = lazy(() =>
-  import('@react-pdf/renderer').then((mod) => ({ default: mod.PDFDownloadLink })),
-)
-const BlobProviderLazy = lazy(() =>
-  import('@react-pdf/renderer').then((mod) => ({ default: mod.BlobProvider })),
-)
+function usePDFModules() {
+  const [mods, setMods] = useState(null)
+  useEffect(() => {
+    Promise.all([
+      import('@react-pdf/renderer'),
+      import('@/components/pdf/OrientacionPDF.jsx'),
+      import('@/components/pdf/LibroPDF.jsx'),
+    ]).then(([renderer, orientacion, libro]) => {
+      setMods({
+        PDFDownloadLink: renderer.PDFDownloadLink,
+        BlobProvider: renderer.BlobProvider,
+        OrientacionPDF: orientacion.default,
+        LibroChapterPDF: libro.LibroChapterPDF,
+      })
+    })
+  }, [])
+  return mods
+}
 
 const TIPO_CONFIG = {
   orientacion: { label: 'Orientacion didactica', icon: FileText },
@@ -422,22 +430,21 @@ function VisorLibroEstructurado({ libro }) {
   )
 }
 
-function getPDFDocument(tipo, semana, contenido) {
-  if (tipo === 'orientacion' && typeof contenido === 'object' && contenido !== null) {
-    return <OrientacionPDF semana={semana} orientacion={contenido} />
-  }
-  if (tipo === 'libro' && typeof contenido === 'object' && contenido !== null) {
-    return <LibroChapterPDF semana={semana} libro={contenido} />
-  }
-  return null
-}
-
 export default function VisorContenido({ semana, tipo, contenido, onCerrar }) {
   const config = TIPO_CONFIG[tipo]
   const Icon = config?.icon ?? FileText
   const [verPDF, setVerPDF] = useState(true)
-  const pdfDoc = getPDFDocument(tipo, semana, contenido)
-  const tienePDF = pdfDoc !== null
+  const pdfMods = usePDFModules()
+
+  const esOrientacionObj = tipo === 'orientacion' && typeof contenido === 'object' && contenido !== null
+  const esLibroObj = tipo === 'libro' && typeof contenido === 'object' && contenido !== null
+  const tienePDF = (esOrientacionObj || esLibroObj) && pdfMods !== null
+
+  let pdfDoc = null
+  if (tienePDF) {
+    if (esOrientacionObj) pdfDoc = <pdfMods.OrientacionPDF semana={semana} orientacion={contenido} />
+    if (esLibroObj) pdfDoc = <pdfMods.LibroChapterPDF semana={semana} libro={contenido} />
+  }
 
   return (
     <div className="fixed inset-0 z-50 flex items-start justify-center bg-black/40 backdrop-blur-sm overflow-y-auto py-8">
@@ -470,23 +477,21 @@ export default function VisorContenido({ semana, tipo, contenido, onCerrar }) {
                   <Eye className="w-3.5 h-3.5" />
                   {verPDF ? 'Ver contenido' : 'Ver PDF'}
                 </button>
-                <Suspense fallback={null}>
-                  <PDFDownloadLinkLazy
-                    document={pdfDoc}
-                    fileName={`${tipo}-semana-${semana.secuencia}.pdf`}
-                  >
-                    {({ loading }) => (
-                      <button
-                        type="button"
-                        disabled={loading}
-                        className="flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-lg bg-gray-900 text-white hover:bg-gray-800 disabled:opacity-50 transition-colors"
-                      >
-                        <Download className="w-3.5 h-3.5" />
-                        {loading ? 'Generando...' : 'Descargar PDF'}
-                      </button>
-                    )}
-                  </PDFDownloadLinkLazy>
-                </Suspense>
+                <pdfMods.PDFDownloadLink
+                  document={pdfDoc}
+                  fileName={`${tipo}-semana-${semana.secuencia}.pdf`}
+                >
+                  {({ loading }) => (
+                    <button
+                      type="button"
+                      disabled={loading}
+                      className="flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-lg bg-gray-900 text-white hover:bg-gray-800 disabled:opacity-50 transition-colors"
+                    >
+                      <Download className="w-3.5 h-3.5" />
+                      {loading ? 'Generando...' : 'Descargar PDF'}
+                    </button>
+                  )}
+                </pdfMods.PDFDownloadLink>
               </>
             )}
             <button
@@ -502,17 +507,15 @@ export default function VisorContenido({ semana, tipo, contenido, onCerrar }) {
         {/* Content */}
         {tienePDF && verPDF ? (
           <div className="h-[75vh]">
-            <Suspense fallback={<div className="flex items-center justify-center h-full text-sm text-gray-400">Cargando PDF...</div>}>
-              <BlobProviderLazy document={pdfDoc}>
-                {({ url, loading }) =>
-                  loading ? (
-                    <div className="flex items-center justify-center h-full text-sm text-gray-400">Generando PDF...</div>
-                  ) : (
-                    <iframe src={url} title="Vista previa PDF" className="w-full h-full rounded-b-2xl" />
-                  )
-                }
-              </BlobProviderLazy>
-            </Suspense>
+            <pdfMods.BlobProvider document={pdfDoc}>
+              {({ url, loading }) =>
+                loading ? (
+                  <div className="flex items-center justify-center h-full text-sm text-gray-400">Generando PDF...</div>
+                ) : (
+                  <iframe src={url} title="Vista previa PDF" className="w-full h-full rounded-b-2xl" />
+                )
+              }
+            </pdfMods.BlobProvider>
           </div>
         ) : (
           <div className="px-6 py-5 max-h-[70vh] overflow-y-auto">
