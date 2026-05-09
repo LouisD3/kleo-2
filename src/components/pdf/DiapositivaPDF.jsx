@@ -2,6 +2,7 @@
 
 import { Document, Page, Text, View } from '@react-pdf/renderer'
 import { basePDF, kleo } from './KleoPDFStyles.jsx'
+import { Figura } from './figuras/index.jsx'
 
 function SlideContent({ slide, index, total }) {
   return (
@@ -29,6 +30,13 @@ function SlideContent({ slide, index, total }) {
               <Text style={{ flex: 1, fontSize: 13, color: kleo.gray700, lineHeight: 1.6 }}>{punto}</Text>
             </View>
           ))}
+        </View>
+      )}
+
+      {/* Figure */}
+      {slide.figura && (
+        <View style={{ alignItems: 'center', marginVertical: 10 }}>
+          <Figura descriptor={slide.figura} />
         </View>
       )}
 

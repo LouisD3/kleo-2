@@ -2,6 +2,7 @@
 
 import { Document, Page, Text, View } from '@react-pdf/renderer'
 import { basePDF, kleo } from './KleoPDFStyles.jsx'
+import { Figura } from './figuras/index.jsx'
 
 function BulletList({ items, color = kleo.amarillo }) {
   return (
@@ -24,11 +25,16 @@ function SectionBadge({ label, color = kleo.amarillo }) {
   )
 }
 
-function DefinitionBox({ titulo, contenido, definicion }) {
+function DefinitionBox({ titulo, contenido, definicion, figura }) {
   return (
     <View style={{ marginBottom: 12 }} wrap={false}>
       {titulo && <Text style={{ fontSize: kleo.fontMd, fontWeight: 700, color: kleo.gray900, marginBottom: 4 }}>{titulo}</Text>}
-      <Text style={{ fontSize: kleo.fontBase, color: kleo.gray700, lineHeight: 1.6, marginBottom: definicion ? 6 : 0 }}>{contenido}</Text>
+      <Text style={{ fontSize: kleo.fontBase, color: kleo.gray700, lineHeight: 1.6, marginBottom: definicion || figura ? 6 : 0 }}>{contenido}</Text>
+      {figura && (
+        <View style={{ alignItems: 'center', marginVertical: 8 }}>
+          <Figura descriptor={figura} />
+        </View>
+      )}
       {definicion && (
         <View style={{ backgroundColor: kleo.amarilloLight, borderLeftWidth: 3, borderLeftColor: kleo.amarillo, borderRadius: 4, padding: 10, marginTop: 4 }}>
           <Text style={{ fontSize: kleo.fontXs, fontWeight: 700, color: kleo.amarilloDark, letterSpacing: 0.5, marginBottom: 3 }}>DEFINICION</Text>
@@ -39,7 +45,7 @@ function DefinitionBox({ titulo, contenido, definicion }) {
   )
 }
 
-function EjemploBox({ titulo, enunciado, pasos, resultado, index }) {
+function EjemploBox({ titulo, enunciado, pasos, resultado, figura, index }) {
   return (
     <View style={{ backgroundColor: kleo.blueLight, borderRadius: 6, padding: 12, marginBottom: 10, borderWidth: 1, borderColor: '#DBEAFE' }} wrap={false}>
       <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 6 }}>
@@ -49,6 +55,11 @@ function EjemploBox({ titulo, enunciado, pasos, resultado, index }) {
         <Text style={{ fontSize: kleo.fontBase, fontWeight: 700, color: kleo.blue }}>{titulo || `Ejemplo ${index + 1}`}</Text>
       </View>
       {enunciado && <Text style={{ fontSize: kleo.fontBase, color: kleo.gray700, lineHeight: 1.5, marginBottom: 6 }}>{enunciado}</Text>}
+      {figura && (
+        <View style={{ alignItems: 'center', marginVertical: 6 }}>
+          <Figura descriptor={figura} />
+        </View>
+      )}
       {pasos?.length > 0 && (
         <View style={{ marginBottom: 6 }}>
           {pasos.map((paso, i) => (
@@ -76,6 +87,11 @@ function EjercicioItem({ ejercicio }) {
         <Text style={{ fontSize: kleo.fontBase, fontWeight: 700, color: kleo.gray900, marginRight: 4 }}>{ejercicio.numero}.</Text>
         <Text style={{ flex: 1, fontSize: kleo.fontBase, color: kleo.gray700, lineHeight: 1.5 }}>{ejercicio.enunciado}</Text>
       </View>
+      {ejercicio.figura && (
+        <View style={{ alignItems: 'center', marginVertical: 6 }}>
+          <Figura descriptor={ejercicio.figura} />
+        </View>
+      )}
       {ejercicio.espacio && (
         <View style={{ marginTop: 4, marginLeft: 16 }}>
           {Array.from({ length: ejercicio.lineas || 3 }).map((_, i) => (
@@ -113,7 +129,7 @@ function ChapterPage({ semana, libro }) {
         <View>
           <SectionBadge label="Conceptos" />
           {conceptos.map((c, i) => (
-            <DefinitionBox key={i} titulo={c.titulo} contenido={c.contenido} definicion={c.definicion} />
+            <DefinitionBox key={i} titulo={c.titulo} contenido={c.contenido} definicion={c.definicion} figura={c.figura} />
           ))}
         </View>
       )}
@@ -123,7 +139,7 @@ function ChapterPage({ semana, libro }) {
         <View>
           <SectionBadge label="Ejemplos resueltos" color="#DBEAFE" />
           {ejemplos.map((ej, i) => (
-            <EjemploBox key={i} index={i} titulo={ej.titulo} enunciado={ej.enunciado} pasos={ej.pasos} resultado={ej.resultado} />
+            <EjemploBox key={i} index={i} titulo={ej.titulo} enunciado={ej.enunciado} pasos={ej.pasos} resultado={ej.resultado} figura={ej.figura} />
           ))}
         </View>
       )}

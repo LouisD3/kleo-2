@@ -112,12 +112,26 @@
         {
           "titulo": "Conversión de fracción a decimal",
           "contenido": "Para convertir cualquier fracción a decimal, solo tienes que dividir el numerador (el de arriba) entre el denominador (el de abajo). Por ejemplo, 3/4 se convierte dividiendo 3 ÷ 4 = 0.75. Cuando la división termina, tienes un decimal exacto o finito. Cuando el residuo se repite sin parar, tienes un decimal periódico, como 1/3 = 0.333...",
-          "definicion": "Decimal finito: decimal cuya división termina. Decimal periódico: decimal donde un bloque de cifras se repite infinitamente."
+          "definicion": "Decimal finito: decimal cuya división termina. Decimal periódico: decimal donde un bloque de cifras se repite infinitamente.",
+          "figura": {
+            "tipo": "fraccion",
+            "numerador": 3,
+            "denominador": 4,
+            "width": 200,
+            "height": 35
+          }
         },
         {
           "titulo": "Conversión de decimal a fracción",
           "contenido": "Para ir al revés, cuenta cuántas cifras hay después del punto y coloca el número sin punto sobre una potencia de 10 (10, 100, 1000...). Después simplifica dividiendo numerador y denominador entre su Máximo Común Divisor (MCD). Por ejemplo, 0.625 = 625/1000; dividiendo ambos entre 125 obtienes 5/8.",
-          "definicion": "MCD (Máximo Común Divisor): el número más grande que divide exactamente tanto al numerador como al denominador."
+          "definicion": "MCD (Máximo Común Divisor): el número más grande que divide exactamente tanto al numerador como al denominador.",
+          "figura": {
+            "tipo": "fraccion",
+            "numerador": 1,
+            "denominador": 3,
+            "width": 200,
+            "height": 35
+          }
         },
         {
           "titulo": "Decimales periódicos a fracción (método algebraico)",
@@ -134,7 +148,14 @@
             "Paso 2: 50 ÷ 8 = 6 (residuo 2). Bajamos un cero: 20 ÷ 8 = 2 (residuo 4). Bajamos un cero: 40 ÷ 8 = 5 (residuo 0).",
             "Paso 3: La división terminó. Juntamos: 0.625."
           ],
-          "resultado": "5/8 = 0.625"
+          "resultado": "5/8 = 0.625",
+          "figura": {
+            "tipo": "fraccion",
+            "numerador": 3,
+            "denominador": 8,
+            "width": 200,
+            "height": 35
+          }
         },
         {
           "titulo": "Decimal a fracción",
@@ -208,7 +229,14 @@
           "Denominador: las partes en que dividimos el entero",
           "Ejemplo: 3/4 significa 3 de 4 partes iguales"
         ],
-        "ejemplo": "Si una pizza tiene 8 rebanadas y comes 3, comiste 3/8 de la pizza."
+        "ejemplo": "Si una pizza tiene 8 rebanadas y comes 3, comiste 3/8 de la pizza.",
+        "figura": {
+          "tipo": "fraccion",
+          "numerador": 2,
+          "denominador": 5,
+          "width": 250,
+          "height": 40
+        }
       },
       {
         "titulo": "De fracción a decimal",
@@ -382,7 +410,24 @@
         {
           "titulo": "Los números negativos y el cero como referencia",
           "contenido": "Los números negativos nacen de la necesidad de representar cantidades por debajo de un punto de referencia, que es el cero. En temperatura, 0 °C es donde se congela el agua; en dinero, $0 significa que no tienes ni debes; en altitud, 0 m es el nivel del mar. Todo lo que está \"por debajo\" de esa referencia se expresa con signo negativo.",
-          "definicion": "Número negativo: número menor que cero, se escribe con el signo − delante (por ejemplo, −5)."
+          "definicion": "Número negativo: número menor que cero, se escribe con el signo − delante (por ejemplo, −5).",
+          "figura": {
+            "tipo": "recta_numerica",
+            "min": -5,
+            "max": 5,
+            "puntos": [
+              {
+                "valor": -3,
+                "label": "-3"
+              },
+              {
+                "valor": 2,
+                "label": "2"
+              }
+            ],
+            "width": 400,
+            "height": 55
+          }
         },
         {
           "titulo": "La recta numérica extendida",
@@ -469,7 +514,28 @@
           "Profundidad bajo el nivel del mar",
           "Pisos de sótano en un edificio"
         ],
-        "ejemplo": "Si tienes $0 y gastas $50, tu saldo es -$50."
+        "ejemplo": "Si tienes $0 y gastas $50, tu saldo es -$50.",
+        "figura": {
+          "tipo": "recta_numerica",
+          "min": -5,
+          "max": 5,
+          "puntos": [
+            {
+              "valor": -3,
+              "label": "-3"
+            },
+            {
+              "valor": 0,
+              "label": "0"
+            },
+            {
+              "valor": 4,
+              "label": "4"
+            }
+          ],
+          "width": 500,
+          "height": 60
+        }
       },
       {
         "titulo": "La recta numérica extendida",
@@ -641,7 +707,28 @@
         {
           "titulo": "Convertir todo a decimales para comparar",
           "contenido": "Cuando tienes números de distinto tipo (fracciones, decimales, enteros) con signo, la forma más segura de compararlos es convertirlos todos a decimal. Así puedes ubicarlos en la recta numérica sin confusiones.",
-          "definicion": null
+          "definicion": null,
+          "figura": {
+            "tipo": "recta_numerica",
+            "min": -4,
+            "max": 4,
+            "puntos": [
+              {
+                "valor": -3,
+                "label": "A"
+              },
+              {
+                "valor": -1,
+                "label": "B"
+              },
+              {
+                "valor": 2,
+                "label": "C"
+              }
+            ],
+            "width": 400,
+            "height": 55
+          }
         },
         {
           "titulo": "La regla de inversión con negativos",
@@ -682,7 +769,15 @@
           "numero": 1,
           "enunciado": "Coloca <, > o =: −1/4 ___ −1/2.",
           "espacio": true,
-          "lineas": 2
+          "lineas": 2,
+          "figura": {
+            "tipo": "recta_numerica",
+            "min": -6,
+            "max": 6,
+            "puntos": [],
+            "width": 400,
+            "height": 55
+          }
         },
         {
           "numero": 2,
@@ -1183,7 +1278,30 @@
             "Paso 2: Suma valores absolutos: 7 + 5 = 12.",
             "Paso 3: El signo es negativo."
           ],
-          "resultado": "(−7) + (−5) = −12"
+          "resultado": "(−7) + (−5) = −12",
+          "figura": {
+            "tipo": "recta_numerica",
+            "min": -6,
+            "max": 6,
+            "puntos": [
+              {
+                "valor": 3,
+                "label": "inicio"
+              },
+              {
+                "valor": -2,
+                "label": "resultado"
+              }
+            ],
+            "intervalos": [
+              {
+                "desde": -2,
+                "hasta": 3
+              }
+            ],
+            "width": 400,
+            "height": 55
+          }
         },
         {
           "titulo": "Suma con distinto signo",
@@ -3570,7 +3688,41 @@
         {
           "titulo": "Relacion proporcional",
           "contenido": "Dos cantidades tienen una relacion proporcional cuando al dividir una entre la otra, siempre obtienes el mismo numero. A ese numero le llamamos constante de proporcionalidad (k). La ecuacion que la describe es y = kx. Si graficas una relacion proporcional, obtienes una linea recta que pasa por el origen (0, 0).",
-          "definicion": "Relacion proporcional: relacion entre dos variables donde el cociente y/x es constante para todos los pares de valores."
+          "definicion": "Relacion proporcional: relacion entre dos variables donde el cociente y/x es constante para todos los pares de valores.",
+          "figura": {
+            "tipo": "plano_cartesiano",
+            "xMin": 0,
+            "xMax": 5,
+            "yMin": 0,
+            "yMax": 10,
+            "puntos": [
+              {
+                "x": 1,
+                "y": 2,
+                "label": "(1,2)"
+              },
+              {
+                "x": 2,
+                "y": 4,
+                "label": "(2,4)"
+              },
+              {
+                "x": 3,
+                "y": 6,
+                "label": "(3,6)"
+              }
+            ],
+            "lineas": [
+              {
+                "x1": 0,
+                "y1": 0,
+                "x2": 5,
+                "y2": 10
+              }
+            ],
+            "width": 180,
+            "height": 180
+          }
         },
         {
           "titulo": "Relacion no proporcional",
@@ -5663,12 +5815,32 @@
         {
           "titulo": "Radio, diametro y cuerda",
           "contenido": "El radio (r) es el segmento que va del centro a cualquier punto de la circunferencia; todos los radios miden lo mismo. El diametro (d) es la cuerda que pasa por el centro; siempre mide el doble del radio: d = 2r. Una cuerda es cualquier segmento que une dos puntos de la circunferencia. El diametro es la cuerda de mayor longitud posible. La perpendicular desde el centro a una cuerda la divide exactamente a la mitad.",
-          "definicion": "Cuerda: segmento que une dos puntos cualesquiera de la circunferencia. Cuando pasa por el centro, se llama diametro."
+          "definicion": "Cuerda: segmento que une dos puntos cualesquiera de la circunferencia. Cuando pasa por el centro, se llama diametro.",
+          "figura": {
+            "tipo": "circulo",
+            "radio": 50,
+            "elementos": [
+              "radio",
+              "diametro"
+            ],
+            "width": 180,
+            "height": 180
+          }
         },
         {
           "titulo": "Recta secante y recta tangente",
           "contenido": "La secante es una recta que corta la circunferencia en dos puntos, extendiendose infinitamente. La tangente toca la circunferencia en un solo punto (punto de tangencia) y es perpendicular al radio en ese punto. La tangente es el caso limite de la secante: cuando los dos puntos de corte se fusionan en uno, la secante se convierte en tangente.",
-          "definicion": "Tangente: recta que toca la circunferencia en exactamente un punto, formando un angulo de 90 grados con el radio en el punto de tangencia."
+          "definicion": "Tangente: recta que toca la circunferencia en exactamente un punto, formando un angulo de 90 grados con el radio en el punto de tangencia.",
+          "figura": {
+            "tipo": "circulo",
+            "radio": 50,
+            "elementos": [
+              "cuerda",
+              "tangente"
+            ],
+            "width": 180,
+            "height": 180
+          }
         },
         {
           "titulo": "Propiedades y relaciones",
@@ -5744,7 +5916,18 @@
           "Diámetro (d): segmento que pasa por el centro y toca la circunferencia en dos puntos",
           "Relación fundamental: d = 2r"
         ],
-        "ejemplo": "Si el radio mide 7 cm, el diámetro mide 14 cm. Todos los radios de una misma circunferencia son iguales."
+        "ejemplo": "Si el radio mide 7 cm, el diámetro mide 14 cm. Todos los radios de una misma circunferencia son iguales.",
+        "figura": {
+          "tipo": "circulo",
+          "radio": 60,
+          "elementos": [
+            "radio",
+            "diametro",
+            "cuerda"
+          ],
+          "width": 200,
+          "height": 200
+        }
       },
       {
         "titulo": "La cuerda",
@@ -7610,7 +7793,34 @@
             "Paso 3: Dibuja barras con la altura correspondiente a cada frecuencia.",
             "Paso 4: Agrega título: 'Medio de transporte al colegio'."
           ],
-          "resultado": "La barra más alta es Caminar (12) y la más baja Metro (2). Se ve claramente que caminar es el más popular."
+          "resultado": "La barra más alta es Caminar (12) y la más baja Metro (2). Se ve claramente que caminar es el más popular.",
+          "figura": {
+            "tipo": "grafica_barras",
+            "datos": [
+              {
+                "label": "Lun",
+                "valor": 8
+              },
+              {
+                "label": "Mar",
+                "valor": 5
+              },
+              {
+                "label": "Mie",
+                "valor": 12
+              },
+              {
+                "label": "Jue",
+                "valor": 7
+              },
+              {
+                "label": "Vie",
+                "valor": 10
+              }
+            ],
+            "width": 280,
+            "height": 150
+          }
         },
         {
           "titulo": "Gráfica circular con porcentajes y grados",
@@ -7681,7 +7891,30 @@
           "Todas las barras del mismo ancho, separadas por espacios iguales",
           "Ideal para comparar cantidades"
         ],
-        "ejemplo": "La barra más alta = categoría más frecuente. La más baja = la menos frecuente."
+        "ejemplo": "La barra más alta = categoría más frecuente. La más baja = la menos frecuente.",
+        "figura": {
+          "tipo": "grafica_barras",
+          "datos": [
+            {
+              "label": "A",
+              "valor": 15
+            },
+            {
+              "label": "B",
+              "valor": 8
+            },
+            {
+              "label": "C",
+              "valor": 22
+            },
+            {
+              "label": "D",
+              "valor": 11
+            }
+          ],
+          "width": 350,
+          "height": 180
+        }
       },
       {
         "titulo": "Construcción de gráfica de barras",
