@@ -10,12 +10,14 @@ function usePDFModules() {
       import('@react-pdf/renderer'),
       import('@/components/pdf/OrientacionPDF.jsx'),
       import('@/components/pdf/LibroPDF.jsx'),
-    ]).then(([renderer, orientacion, libro]) => {
+      import('@/components/pdf/DiapositivaPDF.jsx'),
+    ]).then(([renderer, orientacion, libro, diapositiva]) => {
       setMods({
         PDFDownloadLink: renderer.PDFDownloadLink,
         BlobProvider: renderer.BlobProvider,
         OrientacionPDF: orientacion.default,
         LibroChapterPDF: libro.LibroChapterPDF,
+        DiapositivaPDF: diapositiva.default,
       })
     })
   }, [])
@@ -438,12 +440,14 @@ export default function VisorContenido({ semana, tipo, contenido, onCerrar }) {
 
   const esOrientacionObj = tipo === 'orientacion' && typeof contenido === 'object' && contenido !== null
   const esLibroObj = tipo === 'libro' && typeof contenido === 'object' && contenido !== null
-  const tienePDF = (esOrientacionObj || esLibroObj) && pdfMods !== null
+  const esDiapositivaArr = tipo === 'diapositiva' && Array.isArray(contenido) && contenido.length > 0
+  const tienePDF = (esOrientacionObj || esLibroObj || esDiapositivaArr) && pdfMods !== null
 
   let pdfDoc = null
   if (tienePDF) {
     if (esOrientacionObj) pdfDoc = <pdfMods.OrientacionPDF semana={semana} orientacion={contenido} />
     if (esLibroObj) pdfDoc = <pdfMods.LibroChapterPDF semana={semana} libro={contenido} />
+    if (esDiapositivaArr) pdfDoc = <pdfMods.DiapositivaPDF semana={semana} slides={contenido} />
   }
 
   return (
