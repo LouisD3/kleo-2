@@ -151,7 +151,7 @@
           "resultado": "5/8 = 0.625",
           "figura": {
             "tipo": "fraccion",
-            "numerador": 3,
+            "numerador": 5,
             "denominador": 8,
             "width": 200,
             "height": 35
@@ -2195,14 +2195,7 @@
         {
           "titulo": "Propiedad distributiva",
           "contenido": "La multiplicación se distribuye sobre la suma y la resta: a × (b + c) = a × b + a × c. Funciona en ambas direcciones: puedes \"expandir\" para quitar paréntesis o \"factorizar\" para simplificar. Ejemplo: 5 × (20 + 3) = 5 × 20 + 5 × 3 = 100 + 15 = 115.",
-          "definicion": "Propiedad distributiva: a × (b + c) = a × b + a × c.",
-          "figura": {
-            "tipo": "fraccion",
-            "numerador": 3,
-            "denominador": 5,
-            "width": 200,
-            "height": 35
-          }
+          "definicion": "Propiedad distributiva: a × (b + c) = a × b + a × c."
         },
         {
           "titulo": "Jerarquía de operaciones (PEMDAS)",
@@ -3426,8 +3419,8 @@
             "max": 7,
             "puntos": [
               {
-                "valor": 4,
-                "label": "x=4"
+                "valor": 5,
+                "label": "x=5"
               }
             ],
             "width": 400,
@@ -5094,8 +5087,8 @@
         },
         {
           "tipo": "calculo",
-          "pregunta": "Un segmento AB mide 10 cm. M es su punto medio. Si un punto P está sobre la mediatriz a 8 cm de M, ¿cuánto mide la distancia de P a A?",
-          "respuesta": "Paso 1: M es el punto medio, entonces AM = 10/2 = 5 cm.\nPaso 2: P está en la mediatriz, a 8 cm de M. El triángulo AMP es rectángulo (la mediatriz es perpendicular a AB).\nPaso 3: AM = 5 cm, PM = 8 cm.\nPaso 4: Por el teorema de Pitágoras: PA² = AM² + PM² = 5² + 8² = 25 + 64 = 89.\nPaso 5: PA = √89 ≈ 9.43 cm.\nRespuesta: La distancia de P a A es √89 ≈ 9.43 cm."
+          "pregunta": "Un segmento AB mide 12 cm. Encuentra la longitud de AM si M es el punto medio de AB.",
+          "respuesta": "AM = AB ÷ 2 = 12 ÷ 2 = 6 cm"
         },
         {
           "tipo": "abierta",
@@ -6150,13 +6143,13 @@
       "ejemplos": [
         {
           "titulo": "Clasificar un triangulo",
-          "enunciado": "Un triangulo tiene lados de 5 cm, 5 cm y 7 cm, con angulos de 45, 45 y 90 grados. Como se clasifica?",
+          "enunciado": "Un triángulo tiene lados de 5 cm, 5 cm y 3 cm, con ángulos de 73°, 73° y 34°. ¿Cómo se clasifica?",
           "pasos": [
-            "Paso 1: Por sus lados: tiene 2 lados iguales (5 y 5) -> isosceles",
-            "Paso 2: Por sus angulos: tiene un angulo de 90 grados -> rectangulo",
-            "Paso 3: Doble clasificacion: isosceles rectangulo"
+            "Paso 1: Por sus lados: tiene 2 lados iguales (5 y 5) → isósceles",
+            "Paso 2: Por sus ángulos: todos son menores a 90° → acutángulo",
+            "Paso 3: Doble clasificación: isósceles acutángulo"
           ],
-          "resultado": "Es un triangulo isosceles rectangulo."
+          "resultado": "Es un triángulo isósceles acutángulo."
         },
         {
           "titulo": "Tercer angulo de un isosceles",
@@ -10531,7 +10524,7 @@
         },
         {
           "titulo": "Contrarrecíproco e inverso",
-          "contenido": "De un condicional p → q se pueden formar proposiciones relacionadas. El contrarrecíproco (¬q → ¬p) siempre tiene el mismo valor de verdad que el original, es decir, son lógicamente equivalentes. El inverso (q → p) y el contrario (¬p → ¬q) no necesariamente son equivalentes al original.",
+          "contenido": "De un condicional p → q se pueden formar proposiciones relacionadas. El contrarrecíproco (¬q → ¬p) siempre tiene el mismo valor de verdad que el original, es decir, son lógicamente equivalentes. El recíproco (q → p) y el inverso (¬p → ¬q) no necesariamente son equivalentes al original.",
           "definicion": null
         }
       ],
