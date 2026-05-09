@@ -315,6 +315,110 @@ function VisorOrientacionEstructurada({ orientacion }) {
   )
 }
 
+function VisorLibroEstructurado({ libro }) {
+  const { introduccion, conceptos, ejemplos, datos_curiosos, ejercicios, puntos_clave } = libro
+
+  return (
+    <div className="space-y-6">
+      {/* Introduccion */}
+      {introduccion && (
+        <p className="text-sm text-gray-600 italic leading-relaxed">{introduccion}</p>
+      )}
+
+      {/* Conceptos */}
+      {conceptos?.length > 0 && (
+        <div>
+          <span className="inline-block bg-amarillo text-gray-900 text-xs font-bold uppercase tracking-wider px-3 py-1 rounded mb-3">
+            Conceptos
+          </span>
+          {conceptos.map((c, i) => (
+            <div key={i} className="mb-4">
+              {c.titulo && <h4 className="text-sm font-semibold text-gray-900 mb-1">{c.titulo}</h4>}
+              <p className="text-sm text-gray-700 leading-relaxed">{c.contenido}</p>
+              {c.definicion && (
+                <div className="mt-2 bg-amber-50 border-l-2 border-amarillo px-3 py-2 rounded-r">
+                  <p className="text-[10px] font-bold text-amber-700 uppercase mb-0.5">Definicion</p>
+                  <p className="text-sm font-medium text-gray-900">{c.definicion}</p>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* Ejemplos */}
+      {ejemplos?.length > 0 && (
+        <div>
+          <span className="inline-block bg-blue-100 text-blue-800 text-xs font-bold uppercase tracking-wider px-3 py-1 rounded mb-3">
+            Ejemplos resueltos
+          </span>
+          {ejemplos.map((ej, i) => (
+            <div key={i} className="mb-4 bg-blue-50 rounded-lg p-4 border border-blue-100">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="w-5 h-5 rounded-full bg-blue-600 text-white text-[10px] font-bold flex items-center justify-center">{i + 1}</span>
+                <h5 className="text-sm font-semibold text-blue-800">{ej.titulo || `Ejemplo ${i + 1}`}</h5>
+              </div>
+              {ej.enunciado && <p className="text-sm text-gray-700 mb-2">{ej.enunciado}</p>}
+              {ej.pasos?.map((paso, j) => (
+                <div key={j} className="flex gap-2 mb-1 ml-2">
+                  <span className="text-xs font-bold text-blue-500 w-4">{j + 1}.</span>
+                  <p className="text-sm text-gray-700">{paso}</p>
+                </div>
+              ))}
+              {ej.resultado && (
+                <div className="mt-2 bg-white rounded px-3 py-2 border border-blue-200">
+                  <p className="text-[10px] font-bold text-blue-600 mb-0.5">RESULTADO</p>
+                  <p className="text-sm font-semibold text-gray-900">{ej.resultado}</p>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* Datos curiosos */}
+      {datos_curiosos && (
+        <div className="bg-teal-50 rounded-lg p-4 border border-teal-100">
+          <p className="text-[10px] font-bold text-teal-700 uppercase mb-1">Dato curioso</p>
+          <p className="text-sm text-teal-800">{datos_curiosos}</p>
+        </div>
+      )}
+
+      {/* Ejercicios */}
+      {ejercicios?.length > 0 && (
+        <div>
+          <span className="inline-block bg-gray-200 text-gray-800 text-xs font-bold uppercase tracking-wider px-3 py-1 rounded mb-3">
+            Practica
+          </span>
+          {ejercicios.map((ej, i) => (
+            <div key={i} className="mb-3">
+              <p className="text-sm text-gray-700">
+                <span className="font-bold text-gray-900 mr-1">{ej.numero}.</span>
+                {ej.enunciado}
+              </p>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* Puntos clave */}
+      {puntos_clave?.length > 0 && (
+        <div className="bg-amber-50 rounded-lg p-4 border border-amber-200">
+          <p className="text-[10px] font-bold text-amber-700 uppercase mb-2">Puntos clave</p>
+          <ul className="space-y-1">
+            {puntos_clave.map((p, i) => (
+              <li key={i} className="flex items-start gap-2 text-sm text-gray-700">
+                <span className="w-1.5 h-1.5 rounded-full bg-amber-500 mt-1.5 flex-shrink-0" />
+                {p}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
+  )
+}
+
 export default function VisorContenido({ semana, tipo, contenido, onCerrar }) {
   const config = TIPO_CONFIG[tipo]
   const Icon = config?.icon ?? FileText
@@ -404,7 +508,13 @@ export default function VisorContenido({ semana, tipo, contenido, onCerrar }) {
             {tipo === 'orientacion' && typeof contenido === 'string' && (
               <VisorMarkdown contenido={contenido} />
             )}
-            {(tipo === 'libro' || tipo === 'video_script') && (
+            {tipo === 'libro' && typeof contenido === 'object' && contenido !== null && (
+              <VisorLibroEstructurado libro={contenido} />
+            )}
+            {tipo === 'libro' && typeof contenido === 'string' && (
+              <VisorMarkdown contenido={contenido} />
+            )}
+            {tipo === 'video_script' && (
               <VisorMarkdown contenido={contenido} />
             )}
           </div>
