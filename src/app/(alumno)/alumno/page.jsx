@@ -6,6 +6,7 @@ import Badge from '@/components/ui/Badge.jsx'
 import Boton from '@/components/ui/Boton.jsx'
 import Spinner from '@/components/ui/Spinner.jsx'
 import { getTareasParaAlumno, usePuntosAlumno, useTareasAlumno } from '@/hooks/useTareas.js'
+import { getSiguienteRecompensa, RECOMPENSAS } from '@/lib/recompensas.js'
 import useAuthStore from '@/store/useAuthStore.js'
 
 export default function DashboardAlumno() {
@@ -235,64 +236,45 @@ function estadoTexto(estado) {
   return mapa[estado] ?? estado
 }
 
-const RECOMPENSAS = [
-  {
-    puntos: 5,
-    emoji: '\u{1F31F}',
-    nombre: 'Primera estrella',
-    color: 'from-yellow-100 to-yellow-50 border-yellow-200',
-  },
-  {
-    puntos: 15,
-    emoji: '\u{1F525}',
-    nombre: 'En racha',
-    color: 'from-orange-100 to-orange-50 border-orange-200',
-  },
-  {
-    puntos: 30,
-    emoji: '\u{1F3C6}',
-    nombre: 'Campeón',
-    color: 'from-amber-100 to-amber-50 border-amber-200',
-  },
-  {
-    puntos: 50,
-    emoji: '\u{1F48E}',
-    nombre: 'Diamante',
-    color: 'from-blue-100 to-blue-50 border-blue-200',
-  },
-  {
-    puntos: 100,
-    emoji: '\u{1F680}',
-    nombre: 'Leyenda',
-    color: 'from-purple-100 to-purple-50 border-purple-200',
-  },
-]
-
 function RecompensasCard({ puntos, puntosLog }) {
+  const router = useRouter()
   if (puntos === 0 && puntosLog.length === 0) return null
 
-  const siguiente =
-    RECOMPENSAS.find((r) => r.puntos > puntos) ?? RECOMPENSAS[RECOMPENSAS.length - 1]
+  const siguiente = getSiguienteRecompensa(puntos)
   const progreso = siguiente ? Math.min(100, Math.round((puntos / siguiente.puntos) * 100)) : 100
 
   return (
-    <div className="card p-5 mb-8 bg-gradient-to-r from-yellow-50 to-amber-50 border-yellow-200">
+    <button
+      type="button"
+      onClick={() => router.push('/alumno/recompensas')}
+      className="card p-5 mb-8 bg-gradient-to-r from-yellow-50 to-amber-50 border-yellow-200 w-full text-left hover:shadow-md transition-shadow cursor-pointer"
+    >
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-3">
           <span className="text-3xl font-bold text-yellow-600">{puntos}</span>
           <div>
             <p className="text-sm font-semibold text-gray-900">Puntos</p>
             <p className="text-xs text-gray-500">
-              {siguiente && puntos < siguiente.puntos
+              {siguiente
                 ? `${siguiente.puntos - puntos} más para "${siguiente.nombre}"`
                 : 'Todas las recompensas desbloqueadas'}
             </p>
           </div>
         </div>
+        <svg
+          className="w-5 h-5 text-gray-300 flex-shrink-0"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+        >
+          <path
+            fillRule="evenodd"
+            d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+            clipRule="evenodd"
+          />
+        </svg>
       </div>
 
-      {/* Progress bar */}
-      {siguiente && puntos < siguiente.puntos && (
+      {siguiente && (
         <div className="h-2 bg-yellow-100 rounded-full overflow-hidden mb-4">
           <div
             className="h-full bg-yellow-400 rounded-full transition-all duration-500"
@@ -301,7 +283,6 @@ function RecompensasCard({ puntos, puntosLog }) {
         </div>
       )}
 
-      {/* Rewards badges */}
       <div className="flex gap-2 flex-wrap">
         {RECOMPENSAS.map((r) => {
           const desbloqueada = puntos >= r.puntos
@@ -313,9 +294,6 @@ function RecompensasCard({ puntos, puntosLog }) {
                   ? `bg-gradient-to-r ${r.color} text-gray-800`
                   : 'bg-gray-100 border-gray-200 text-gray-400 opacity-50'
               }`}
-              title={
-                desbloqueada ? `Desbloqueada: ${r.nombre}` : `${r.puntos} puntos para desbloquear`
-              }
             >
               <span className={desbloqueada ? '' : 'grayscale'}>{r.emoji}</span>
               {r.nombre}
@@ -323,6 +301,6 @@ function RecompensasCard({ puntos, puntosLog }) {
           )
         })}
       </div>
-    </div>
+    </button>
   )
 }

@@ -1,6 +1,6 @@
 'use client'
 
-import { BookOpen, LogOut, Settings } from 'lucide-react'
+import { BookOpen, LogOut, Settings, Trophy } from 'lucide-react'
 import { usePathname, useRouter } from 'next/navigation'
 import useAuthStore from '../../store/useAuthStore.js'
 
@@ -84,6 +84,14 @@ export default function NavBar({ titulo, volver }) {
           )}
           {rol === 'profesor' && (
             <>
+              <button
+                onClick={() => router.push('/profesor/gamificacion')}
+                className={`p-1.5 rounded-lg transition-colors ${pathname === '/profesor/gamificacion' ? 'text-yellow-600 bg-yellow-50' : 'text-gray-400 hover:text-yellow-600 hover:bg-yellow-50'}`}
+                title="Gamificación"
+                aria-label="Gamificación"
+              >
+                <Trophy className="w-[18px] h-[18px]" />
+              </button>
               <button
                 onClick={() => router.push('/profesor/biblioteca')}
                 className={`p-1.5 rounded-lg transition-colors ${pathname === '/profesor/biblioteca' ? 'text-gray-900 bg-gray-100' : 'text-gray-400 hover:text-gray-700 hover:bg-gray-100'}`}
