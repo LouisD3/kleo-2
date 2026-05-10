@@ -1,7 +1,7 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { calcularPromedio } from '@/hooks/useTareas.js'
 import Badge from '../ui/Badge.jsx'
 import Boton from '../ui/Boton.jsx'
@@ -20,6 +20,8 @@ export default function TablaTareas({
   const mostrarClase = clasesMap && Object.keys(clasesMap).length > 1
   const [tareaAEliminar, setTareaAEliminar] = useState(null)
   const [menuAbierto, setMenuAbierto] = useState(null)
+  const [menuPos, setMenuPos] = useState({ top: 0, right: 0 })
+  const btnRefs = useRef({})
 
   if (tareas.length === 0) {
     return (
@@ -110,7 +112,18 @@ export default function TablaTareas({
                     <div className="relative">
                       <button
                         type="button"
-                        onClick={() => setMenuAbierto(menuAbierto === tarea.id ? null : tarea.id)}
+                        ref={(el) => { btnRefs.current[tarea.id] = el }}
+                        onClick={() => {
+                          if (menuAbierto === tarea.id) {
+                            setMenuAbierto(null)
+                          } else {
+                            const rect = btnRefs.current[tarea.id]?.getBoundingClientRect()
+                            if (rect) {
+                              setMenuPos({ top: rect.bottom + 4, right: window.innerWidth - rect.right })
+                            }
+                            setMenuAbierto(tarea.id)
+                          }
+                        }}
                         className="p-2 rounded-lg border border-gray-200 text-gray-500 hover:text-gray-700 hover:bg-gray-50 hover:border-gray-300 transition-colors"
                       >
                         <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
@@ -124,7 +137,7 @@ export default function TablaTareas({
                             className="fixed inset-0 z-10"
                             onClick={() => setMenuAbierto(null)}
                           />
-                          <div className="absolute right-0 top-full mt-1 z-20 w-48 bg-white rounded-xl border border-gray-200 shadow-lg py-1">
+                          <div className="fixed z-50 w-48 bg-white rounded-xl border border-gray-200 shadow-lg py-1" style={{ top: menuPos.top, right: menuPos.right }}>
                             <button
                               type="button"
                               onClick={() => {
@@ -151,7 +164,7 @@ export default function TablaTareas({
                               <button
                                 type="button"
                                 onClick={() => {
-                                  router.push(`/profesor/generar?tarea=${tarea.id}`)
+                                  router.push(`/profesor/generar/tarea?tarea=${tarea.id}`)
                                   setMenuAbierto(null)
                                 }}
                                 className="w-full text-left px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 flex items-center gap-3"

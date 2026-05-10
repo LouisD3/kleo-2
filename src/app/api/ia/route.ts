@@ -5,7 +5,11 @@ import {
   type DiagnosticarPayload,
   diagnosticarResponseSchema,
   type GenerarPayload,
+  type GenerarPlanPayload,
+  type GenerarProyectoPayload,
   generarResponseSchema,
+  planResponseSchema,
+  proyectoResponseSchema,
   type ModificarPayload,
   requestBodySchema,
 } from '@/lib/schemas'
@@ -295,6 +299,30 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(validado.data)
     }
 
+    // Proyecto / Plan — appel simple avec schéma dédié
+    if (type === 'generar_proyecto' || type === 'generar_plan') {
+      const prompt =
+        type === 'generar_proyecto'
+          ? promptProyecto(payload as GenerarProyectoPayload)
+          : promptPlan(payload as GenerarPlanPayload)
+      const schema = type === 'generar_proyecto' ? proyectoResponseSchema : planResponseSchema
+
+      const textoRespuesta = await callClaude({
+        apiKey: ANTHROPIC_API_KEY,
+        model: 'claude-sonnet-4-20250514',
+        maxTokens: 3000,
+        messages: [{ role: 'user', content: prompt }],
+      })
+
+      const datos = extractJSON(textoRespuesta)
+      const validado = schema.safeParse(datos)
+      if (!validado.success) {
+        console.error('Respuesta de IA con formato inválido:', validado.error.issues)
+        return NextResponse.json(datos)
+      }
+      return NextResponse.json(validado.data)
+    }
+
     // Autres types — appel simple
     let prompt: string
     let model = 'claude-sonnet-4-20250514'
@@ -557,6 +585,106 @@ Si la respuesta es correcta:
 {
   "es_correcta": true,
   "diagnostico": "Respuesta correcta."
+}
+
+Responde ÚNICAMENTE con el JSON. Sin texto adicional.`
+}
+
+function promptProyecto({
+  materia,
+  grado,
+  dificultad,
+  duracion,
+  pda,
+  instrucciones,
+  idioma,
+}: GenerarProyectoPayload): string {
+  const pdas: PdaItem[] = Array.isArray(pda) ? pda : pda ? [pda] : []
+  const pdaLinea =
+    pdas.length > 0
+      ? '\nPDAs del programa NEM:\n' +
+        pdas.map((p, i) => `- PDA ${i + 1}: ${p.pda}${p.contenido ? ` | Contenido: ${p.contenido}` : ''}`).join('\n') +
+        '\nEl proyecto debe estar directamente alineado con estos PDAs.'
+      : ''
+
+  return `Eres un experto en pedagogía mexicana y en la Nueva Escuela Mexicana (NEM). Genera un proyecto interdisciplinario para estudiantes.
+
+Materia principal: ${materia}
+Grado: ${grado}
+Dificultad: ${dificultad}
+Duración del proyecto: ${duracion}${pdaLinea}${instrucciones ? `\nInstrucciones del profesor: ${instrucciones}` : ''}
+
+El proyecto debe seguir el enfoque de la NEM: aprendizaje situado, trabajo colaborativo y vinculación con la comunidad.
+
+${idioma === 'English' ? 'Write everything in English.' : 'Todo en español mexicano.'}
+
+Genera el proyecto con las siguientes secciones. Cada sección debe tener contenido rico y detallado en formato Markdown (usa listas, negritas, subtítulos donde sea apropiado).
+
+Formato JSON OBLIGATORIO:
+{
+  "titulo": "Nombre del proyecto",
+  "secciones": [
+    { "titulo": "Objetivo general", "contenido": "..." },
+    { "titulo": "Aprendizajes esperados", "contenido": "- Aprendizaje 1\\n- Aprendizaje 2\\n..." },
+    { "titulo": "Descripción del proyecto", "contenido": "..." },
+    { "titulo": "Etapas del proyecto", "contenido": "### Etapa 1: ...\\n...\\n### Etapa 2: ...\\n..." },
+    { "titulo": "Materiales y recursos", "contenido": "- Material 1\\n- Material 2\\n..." },
+    { "titulo": "Producto final", "contenido": "..." },
+    { "titulo": "Rúbrica de evaluación", "contenido": "| Criterio | Excelente | Bueno | Suficiente |\\n|---|---|---|---|\\n..." },
+    { "titulo": "Adecuaciones curriculares", "contenido": "..." }
+  ]
+}
+
+Responde ÚNICAMENTE con el JSON. Sin texto adicional.`
+}
+
+function promptPlan({
+  materia,
+  grado,
+  dificultad,
+  duracion_clase,
+  numero_sesiones,
+  pda,
+  instrucciones,
+  idioma,
+}: GenerarPlanPayload): string {
+  const pdas: PdaItem[] = Array.isArray(pda) ? pda : pda ? [pda] : []
+  const pdaLinea =
+    pdas.length > 0
+      ? '\nPDAs del programa NEM:\n' +
+        pdas.map((p, i) => `- PDA ${i + 1}: ${p.pda}${p.contenido ? ` | Contenido: ${p.contenido}` : ''}`).join('\n') +
+        '\nEl plan debe estar directamente alineado con estos PDAs.'
+      : ''
+
+  const sesionesStr = numero_sesiones > 1
+    ? `Genera un plan para ${numero_sesiones} sesiones de ${duracion_clase} cada una.`
+    : `Genera un plan para 1 sesión de ${duracion_clase}.`
+
+  return `Eres un experto en pedagogía mexicana. Genera un plan de clase (secuencia didáctica) detallado.
+
+Materia: ${materia}
+Grado: ${grado}
+Dificultad: ${dificultad}
+${sesionesStr}${pdaLinea}${instrucciones ? `\nInstrucciones del profesor: ${instrucciones}` : ''}
+
+${idioma === 'English' ? 'Write everything in English.' : 'Todo en español mexicano.'}
+
+El plan debe seguir la estructura de secuencia didáctica (inicio, desarrollo, cierre) con tiempos estimados. Usa formato Markdown rico con listas, negritas y subtítulos.
+
+Formato JSON OBLIGATORIO:
+{
+  "titulo": "Nombre del plan de clase",
+  "secciones": [
+    { "titulo": "Datos generales", "contenido": "**Materia:** ...\\n**Grado:** ...\\n**Duración:** ...\\n**Número de sesiones:** ..." },
+    { "titulo": "Propósito de la sesión", "contenido": "..." },
+    { "titulo": "Aprendizajes esperados", "contenido": "- Aprendizaje 1\\n- Aprendizaje 2\\n..." },
+    { "titulo": "Inicio (${numero_sesiones > 1 ? 'por sesión' : 'tiempo estimado'})", "contenido": "### Activación de conocimientos previos\\n...\\n### Presentación del tema\\n..." },
+    { "titulo": "Desarrollo", "contenido": "### Actividad 1\\n...\\n### Actividad 2\\n..." },
+    { "titulo": "Cierre", "contenido": "### Síntesis\\n...\\n### Evaluación formativa\\n..." },
+    { "titulo": "Materiales y recursos", "contenido": "- Material 1\\n- Material 2\\n..." },
+    { "titulo": "Evaluación", "contenido": "..." },
+    { "titulo": "Adecuaciones curriculares", "contenido": "..." }
+  ]
 }
 
 Responde ÚNICAMENTE con el JSON. Sin texto adicional.`

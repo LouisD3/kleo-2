@@ -153,39 +153,123 @@ function VisorDiapositivas({ slides }) {
   )
 }
 
-function VisorEvaluacion({ preguntas }) {
+function VisorEvaluacion({ preguntas, onEnviar }) {
+  const [tab, setTab] = useState('sin_respuestas')
+
   if (!Array.isArray(preguntas) || preguntas.length === 0) return <p className="text-sm text-gray-400">Sin preguntas</p>
 
   return (
-    <div className="divide-y divide-gray-100">
-      {preguntas.map((p, i) => (
-        <div key={i} className="py-3">
-          <div className="flex items-center gap-2 mb-1">
-            <span className="text-xs font-bold text-gray-400">{i + 1}</span>
-            <span className="text-xs text-gray-400 uppercase">{p.tipo?.replace('_', ' ')}</span>
+    <div>
+      {/* Tabs */}
+      <div className="flex rounded-xl bg-gray-100 p-1 mb-4">
+        <button
+          type="button"
+          onClick={() => setTab('sin_respuestas')}
+          className={`flex-1 py-2 px-3 rounded-lg text-xs font-medium transition-all ${
+            tab === 'sin_respuestas'
+              ? 'bg-white text-gray-900 shadow-sm'
+              : 'text-gray-500 hover:text-gray-700'
+          }`}
+        >
+          Sin respuestas
+        </button>
+        <button
+          type="button"
+          onClick={() => setTab('con_respuestas')}
+          className={`flex-1 py-2 px-3 rounded-lg text-xs font-medium transition-all ${
+            tab === 'con_respuestas'
+              ? 'bg-white text-gray-900 shadow-sm'
+              : 'text-gray-500 hover:text-gray-700'
+          }`}
+        >
+          Con respuestas
+        </button>
+      </div>
+
+      <div className="divide-y divide-gray-100">
+        {preguntas.map((p, i) => (
+          <div key={i} className="py-3">
+            <div className="flex items-center gap-2 mb-1">
+              <span className="text-xs font-bold text-gray-400">{i + 1}</span>
+              <span className="text-xs text-gray-400 uppercase">{p.tipo?.replace('_', ' ')}</span>
+            </div>
+            <p className="text-sm text-gray-800">{p.pregunta}</p>
+
+            {tab === 'con_respuestas' ? (
+              <>
+                {p.opciones && (
+                  <ul className="mt-1.5 space-y-0.5">
+                    {p.opciones.map((op, j) => (
+                      <li
+                        key={j}
+                        className={`text-xs px-2 py-1 rounded ${
+                          String(op).startsWith(String(p.respuesta))
+                            ? 'bg-green-50 text-green-700 font-medium'
+                            : 'text-gray-500'
+                        }`}
+                      >
+                        {op}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+                {p.respuesta && !p.opciones && (
+                  <p className="text-xs text-green-600 mt-1">Respuesta: {String(p.respuesta)}</p>
+                )}
+              </>
+            ) : (
+              <>
+                {p.opciones && (
+                  <ul className="mt-1.5 space-y-0.5">
+                    {p.opciones.map((op, j) => (
+                      <li key={j} className="flex items-center gap-2 text-xs text-gray-500 px-2 py-1">
+                        <span className="w-3 h-3 rounded-full border-2 border-gray-300 flex-shrink-0" />
+                        {op}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+                {p.tipo === 'verdadero_falso' && (
+                  <div className="flex gap-4 mt-2">
+                    {['Verdadero', 'Falso'].map((val) => (
+                      <span key={val} className="flex items-center gap-1.5 text-xs text-gray-500">
+                        <span className="w-3 h-3 rounded-full border-2 border-gray-300 flex-shrink-0" />
+                        {val}
+                      </span>
+                    ))}
+                  </div>
+                )}
+                {p.tipo === 'espacios' && (
+                  <div className="mt-2 border-b-2 border-dotted border-gray-300 w-40 h-5" />
+                )}
+                {(p.tipo === 'abierta' || p.tipo === 'calculo') && (
+                  <div className="mt-2 space-y-1.5">
+                    {[1, 2].map((n) => (
+                      <div key={n} className="border-b border-gray-200 h-5" />
+                    ))}
+                  </div>
+                )}
+              </>
+            )}
           </div>
-          <p className="text-sm text-gray-800">{p.pregunta}</p>
-          {p.opciones && (
-            <ul className="mt-1.5 space-y-0.5">
-              {p.opciones.map((op, j) => (
-                <li
-                  key={j}
-                  className={`text-xs px-2 py-1 rounded ${
-                    String(op).startsWith(String(p.respuesta))
-                      ? 'bg-green-50 text-green-700 font-medium'
-                      : 'text-gray-500'
-                  }`}
-                >
-                  {op}
-                </li>
-              ))}
-            </ul>
-          )}
-          {p.respuesta && !p.opciones && (
-            <p className="text-xs text-green-600 mt-1">Respuesta: {String(p.respuesta)}</p>
-          )}
+        ))}
+      </div>
+
+      {/* Enviar a alumnos */}
+      {onEnviar && (
+        <div className="mt-4 pt-4 border-t border-gray-100">
+          <button
+            type="button"
+            onClick={() => onEnviar(preguntas)}
+            className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-amarillo text-gray-900 text-sm font-semibold hover:bg-amarillo-hover transition-colors"
+          >
+            <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
+            </svg>
+            Enviar a alumnos
+          </button>
         </div>
-      ))}
+      )}
     </div>
   )
 }
@@ -432,7 +516,7 @@ function VisorLibroEstructurado({ libro }) {
   )
 }
 
-export default function VisorContenido({ semana, tipo, contenido, onCerrar }) {
+export default function VisorContenido({ semana, tipo, contenido, onCerrar, onEnviar }) {
   const config = TIPO_CONFIG[tipo]
   const Icon = config?.icon ?? FileText
   const [verPDF, setVerPDF] = useState(true)
@@ -523,7 +607,7 @@ export default function VisorContenido({ semana, tipo, contenido, onCerrar }) {
           </div>
         ) : (
           <div className="px-6 py-5 max-h-[70vh] overflow-y-auto">
-            {tipo === 'evaluacion' && <VisorEvaluacion preguntas={contenido?.preguntas ?? contenido} />}
+            {tipo === 'evaluacion' && <VisorEvaluacion preguntas={contenido?.preguntas ?? contenido} onEnviar={onEnviar} />}
             {tipo === 'diapositiva' && <VisorDiapositivas slides={contenido} />}
             {tipo === 'orientacion' && typeof contenido === 'object' && (
               <VisorOrientacionEstructurada orientacion={contenido} />

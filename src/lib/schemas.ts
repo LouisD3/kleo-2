@@ -49,6 +49,27 @@ const modificarPayloadSchema = z.object({
   dificultad: z.enum(['Fácil', 'Media', 'Difícil']),
 })
 
+const generarProyectoPayloadSchema = z.object({
+  materia: z.string().min(1, 'La materia es requerida'),
+  grado: z.string().min(1, 'El grado es requerido'),
+  dificultad: z.enum(['Fácil', 'Media', 'Difícil']),
+  duracion: z.string().min(1, 'La duración es requerida'),
+  pda: z.union([pdaItemSchema, z.array(pdaItemSchema).max(5)]).optional(),
+  instrucciones: z.string().nullable().optional(),
+  idioma: z.enum(['English']).optional(),
+})
+
+const generarPlanPayloadSchema = z.object({
+  materia: z.string().min(1, 'La materia es requerida'),
+  grado: z.string().min(1, 'El grado es requerido'),
+  dificultad: z.enum(['Fácil', 'Media', 'Difícil']),
+  duracion_clase: z.string().min(1, 'La duración de clase es requerida'),
+  numero_sesiones: z.number().int().min(1).max(10),
+  pda: z.union([pdaItemSchema, z.array(pdaItemSchema).max(5)]).optional(),
+  instrucciones: z.string().nullable().optional(),
+  idioma: z.enum(['English']).optional(),
+})
+
 const diagnosticarPayloadSchema = z.object({
   aprendizaje: z.string().min(1),
   pregunta_original: preguntaSchema,
@@ -66,6 +87,8 @@ export const requestBodySchema = z.discriminatedUnion('type', [
   z.object({ type: z.literal('corregir'), payload: corregirPayloadSchema }),
   z.object({ type: z.literal('modificar'), payload: modificarPayloadSchema }),
   z.object({ type: z.literal('diagnosticar_y_remediar'), payload: diagnosticarPayloadSchema }),
+  z.object({ type: z.literal('generar_proyecto'), payload: generarProyectoPayloadSchema }),
+  z.object({ type: z.literal('generar_plan'), payload: generarPlanPayloadSchema }),
 ])
 
 // --- Schémas de sortie (ce que Claude renvoie) ---
@@ -93,6 +116,21 @@ export const corregirResponseSchema = z.object({
   areas_de_mejora: z.array(z.string()).max(3),
 })
 
+const seccionSchema = z.object({
+  titulo: z.string(),
+  contenido: z.string(),
+})
+
+export const proyectoResponseSchema = z.object({
+  titulo: z.string(),
+  secciones: z.array(seccionSchema).min(1),
+})
+
+export const planResponseSchema = z.object({
+  titulo: z.string(),
+  secciones: z.array(seccionSchema).min(1),
+})
+
 export const diagnosticarResponseSchema = z.object({
   es_correcta: z.boolean(),
   diagnostico: z.string(),
@@ -105,9 +143,13 @@ export const diagnosticarResponseSchema = z.object({
 export type GenerarPayload = z.infer<typeof generarPayloadSchema>
 export type CorregirPayload = z.infer<typeof corregirPayloadSchema>
 export type ModificarPayload = z.infer<typeof modificarPayloadSchema>
+export type GenerarProyectoPayload = z.infer<typeof generarProyectoPayloadSchema>
+export type GenerarPlanPayload = z.infer<typeof generarPlanPayloadSchema>
 export type DiagnosticarPayload = z.infer<typeof diagnosticarPayloadSchema>
 export type Pregunta = z.infer<typeof preguntaSchema>
 export type RequestBody = z.infer<typeof requestBodySchema>
 export type GenerarResponse = z.infer<typeof generarResponseSchema>
 export type CorregirResponse = z.infer<typeof corregirResponseSchema>
+export type ProyectoResponse = z.infer<typeof proyectoResponseSchema>
+export type PlanResponse = z.infer<typeof planResponseSchema>
 export type DiagnosticarResponse = z.infer<typeof diagnosticarResponseSchema>

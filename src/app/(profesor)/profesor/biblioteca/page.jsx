@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { FileText, BookOpen, Presentation, Play, ClipboardCheck, ChevronDown } from 'lucide-react'
 import NavBar from '@/components/layout/NavBar.jsx'
 import VisorContenido from '@/components/profesor/biblioteca/VisorContenido.jsx'
@@ -20,6 +21,7 @@ function getContenidoSemana(secuencia) {
 }
 
 export default function Biblioteca() {
+  const router = useRouter()
   const [semanaAbierta, setSemanaAbierta] = useState(null)
   const [visor, setVisor] = useState(null) // { semana, tipo, contenido }
 
@@ -31,6 +33,19 @@ export default function Biblioteca() {
     const contenido = getContenidoSemana(pda.secuencia)
     if (!contenido || !contenido[tipo]) return
     setVisor({ semana: pda, tipo, contenido: contenido[tipo] })
+  }
+
+  function handleEnviarAlumnos(preguntas) {
+    if (!visor) return
+    sessionStorage.setItem(
+      'kleo_evaluacion_enviar',
+      JSON.stringify({
+        nombre: `Evaluacion — ${visor.semana.titulo}`,
+        materia: 'Matemáticas',
+        preguntas,
+      }),
+    )
+    router.push('/profesor/generar/examen?desde=biblioteca')
   }
 
   return (
@@ -128,6 +143,7 @@ export default function Biblioteca() {
           tipo={visor.tipo}
           contenido={visor.contenido}
           onCerrar={() => setVisor(null)}
+          onEnviar={visor.tipo === 'evaluacion' ? handleEnviarAlumnos : undefined}
         />
       )}
     </div>

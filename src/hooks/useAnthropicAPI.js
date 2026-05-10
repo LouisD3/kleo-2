@@ -52,11 +52,21 @@ export function useAnthropicAPI() {
     return llamarAPI('diagnosticar_y_remediar', params)
   }
 
+  function generarProyecto(params) {
+    return llamarAPI('generar_proyecto', params)
+  }
+
+  function generarPlan(params) {
+    return llamarAPI('generar_plan', params)
+  }
+
   return {
     generarTarea,
     corregirTarea,
     modificarPregunta,
     diagnosticarYRemediar,
+    generarProyecto,
+    generarPlan,
     cargando,
     error,
     setError,

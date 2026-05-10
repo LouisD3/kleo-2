@@ -55,7 +55,7 @@ export default function DashboardProfesor() {
       <main className="max-w-6xl mx-auto px-4 sm:px-6 py-8 animate-fade-in">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">Mis tareas</h1>
+            <h1 className="text-2xl font-bold text-gray-900">Mis actividades</h1>
             <p className="text-sm text-gray-500 mt-1">
               Gestiona y revisa el progreso de tus grupos
             </p>
@@ -75,7 +75,7 @@ export default function DashboardProfesor() {
                   clipRule="evenodd"
                 />
               </svg>
-              Generar nueva tarea
+              Generar con IA
             </Boton>
           </div>
         </div>
@@ -153,7 +153,7 @@ export default function DashboardProfesor() {
               eliminando={eliminarTareaMut.isPending}
               onDuplicar={async (tarea) => {
                 const copia = await duplicarTareaMut.mutateAsync(tarea)
-                router.push(`/profesor/generar?tarea=${copia.id}`)
+                router.push(`/profesor/generar/tarea?tarea=${copia.id}`)
               }}
               duplicando={duplicarTareaMut.isPending}
             />
