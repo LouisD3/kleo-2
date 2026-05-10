@@ -90,8 +90,9 @@ export default function Registro() {
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="label-base">Nombre completo</label>
+              <label htmlFor="reg-nombre" className="label-base">Nombre completo</label>
               <input
+                id="reg-nombre"
                 type="text"
                 value={form.nombre}
                 onChange={(e) => update('nombre', e.target.value)}
@@ -101,10 +102,11 @@ export default function Registro() {
               />
             </div>
             <div>
-              <label className="label-base">
+              <label htmlFor="reg-escuela" className="label-base">
                 Escuela <span className="text-gray-400 font-normal">(opcional)</span>
               </label>
               <input
+                id="reg-escuela"
                 type="text"
                 value={form.escuela}
                 onChange={(e) => update('escuela', e.target.value)}
@@ -113,8 +115,9 @@ export default function Registro() {
               />
             </div>
             <div>
-              <label className="label-base">Correo electrónico</label>
+              <label htmlFor="reg-email" className="label-base">Correo electrónico</label>
               <input
+                id="reg-email"
                 type="email"
                 value={form.email}
                 onChange={(e) => update('email', e.target.value)}
@@ -123,8 +126,9 @@ export default function Registro() {
               />
             </div>
             <div>
-              <label className="label-base">Contraseña</label>
+              <label htmlFor="reg-password" className="label-base">Contraseña</label>
               <input
+                id="reg-password"
                 type="password"
                 value={form.password}
                 onChange={(e) => update('password', e.target.value)}

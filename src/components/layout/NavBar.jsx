@@ -87,6 +87,7 @@ export default function NavBar({ titulo, volver }) {
                 onClick={() => router.push('/profesor/biblioteca')}
                 className="p-1.5 rounded-lg text-gray-400 hover:text-gray-700 hover:bg-gray-100 transition-colors"
                 title="Biblioteca"
+                aria-label="Biblioteca"
               >
                 <BookOpen className="w-[18px] h-[18px]" />
               </button>
@@ -94,6 +95,7 @@ export default function NavBar({ titulo, volver }) {
                 onClick={() => router.push('/profesor/ajustes')}
                 className="p-1.5 rounded-lg text-gray-400 hover:text-gray-700 hover:bg-gray-100 transition-colors"
                 title="Ajustes"
+                aria-label="Ajustes"
               >
                 <Settings className="w-[18px] h-[18px]" />
               </button>
@@ -103,6 +105,7 @@ export default function NavBar({ titulo, volver }) {
             onClick={handleSalir}
             className="p-1.5 rounded-lg text-gray-400 hover:text-gray-700 hover:bg-gray-100 transition-colors"
             title="Salir"
+            aria-label="Cerrar sesión"
           >
             <LogOut className="w-[18px] h-[18px]" />
           </button>

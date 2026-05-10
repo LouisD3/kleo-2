@@ -164,7 +164,7 @@ export default function GenerarTarea() {
     if (resultado?.preguntas) {
       const nueva = await agregarTarea.mutateAsync({
         profesor_id: profesor.id,
-        clase_id: clases[0]?.id,
+        clase_id: clase?.id ?? clases[0]?.id,
         nombre: form.nombre,
         materia: form.materia,
         dificultad: form.dificultad,

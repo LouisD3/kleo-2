@@ -4,6 +4,25 @@ export default function RenderizadorPregunta({ pregunta, indice, respuesta, onCh
 
   function renderEspacios() {
     const partes = enunciado.split('___')
+    const blanks = partes.length - 1
+
+    // Single blank: respuesta is a string
+    // Multiple blanks: respuesta is an array of strings
+    function getBlankValue(i) {
+      if (blanks <= 1) return respuesta ?? ''
+      return (Array.isArray(respuesta) ? respuesta[i] : '') ?? ''
+    }
+
+    function handleBlankChange(i, value) {
+      if (blanks <= 1) {
+        onChange(value)
+      } else {
+        const arr = Array.isArray(respuesta) ? [...respuesta] : Array(blanks).fill('')
+        arr[i] = value
+        onChange(arr)
+      }
+    }
+
     return (
       <div className="flex flex-wrap items-center gap-1 text-gray-800 text-sm leading-relaxed">
         {partes.map((parte, i) => (
@@ -12,8 +31,8 @@ export default function RenderizadorPregunta({ pregunta, indice, respuesta, onCh
             {i < partes.length - 1 && (
               <input
                 type="text"
-                value={respuesta ?? ''}
-                onChange={(e) => onChange(e.target.value)}
+                value={getBlankValue(i)}
+                onChange={(e) => handleBlankChange(i, e.target.value)}
                 placeholder="tu respuesta"
                 className="border-b-2 border-amarillo bg-transparent focus:outline-none text-center text-gray-900 font-medium w-36 pb-0.5 placeholder:text-gray-300 placeholder:text-sm"
               />

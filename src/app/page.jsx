@@ -31,7 +31,7 @@ export default function SeleccionarPerfil() {
           <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4 leading-tight">
             Aprende más.
             <br />
-            <span className="text-amarillo">Enseña mejor.</span>
+            <span className="text-amber-500">Enseña mejor.</span>
           </h1>
           <p className="text-lg text-gray-500 max-w-md mx-auto">
             Plataforma educativa con inteligencia artificial para generar, entregar y corregir

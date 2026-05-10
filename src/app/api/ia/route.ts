@@ -516,50 +516,50 @@ function promptDiagnosticar({
 }: DiagnosticarPayload): string {
   const preguntaJSON = JSON.stringify(pregunta_original, null, 2)
 
-  return `Tu es un tuteur IA expert en pédagogie. Un élève mexicain (niveau secondaire/preparatoria) vient de répondre à une question. Tu dois :
-1. Déterminer si la réponse est correcte.
-2. Si incorrecte, diagnostiquer précisément la lacune (en 1 phrase).
-3. Si incorrecte ET intento_remediation_n < 2, générer UNE question de remédiation ciblée sur la lacune détectée.
+  return `Eres un tutor IA experto en pedagogía. Un alumno mexicano (nivel secundaria) acaba de responder una pregunta. Debes:
+1. Determinar si la respuesta es correcta.
+2. Si es incorrecta, diagnosticar con precisión la laguna (en 1 frase).
+3. Si es incorrecta Y intento_remediation_n < 2, generar UNA pregunta de remediación enfocada en la laguna detectada.
 
-Contexte :
-- Matière : ${contexto_devoir.materia}
-- Difficulté : ${contexto_devoir.dificultad}
-- Apprentissage visé : ${aprendizaje}
-- Tentative de remédiation n° : ${intento_remediation_n}
+Contexto:
+- Materia: ${contexto_devoir.materia}
+- Dificultad: ${contexto_devoir.dificultad}
+- Aprendizaje esperado: ${aprendizaje}
+- Intento de remediación n°: ${intento_remediation_n}
 
-Question originale :
+Pregunta original:
 ${preguntaJSON}
 
-Réponse de l'élève : "${respuesta_alumno}"
+Respuesta del alumno: "${respuesta_alumno}"
 
-Règles pour la question de remédiation :
-- Elle doit cibler EXACTEMENT la lacune détectée, pas le concept général.
-- Elle doit être plus simple que la question originale (scaffolding).
-- Même format de sortie que les questions normales (tipo, pregunta, opciones si applicable, respuesta).
-- Le texte de la question doit être en espagnol mexicain.
-- Si intento_remediation_n >= 2, ne PAS générer de question de remédiation (l'élève passera à la suite).
+Reglas para la pregunta de remediación:
+- Debe enfocarse EXACTAMENTE en la laguna detectada, no en el concepto general.
+- Debe ser más sencilla que la pregunta original (scaffolding).
+- Mismo formato de salida que las preguntas normales (tipo, pregunta, opciones si aplica, respuesta).
+- El texto de la pregunta debe estar en español mexicano.
+- Si intento_remediation_n >= 2, NO generar pregunta de remediación (el alumno pasará a la siguiente).
 
-Pour déterminer si la réponse est correcte :
-- opcion_multiple : comparer la lettre (A/B/C/D) avec la respuesta.
-- verdadero_falso : comparer "Verdadero"→true, "Falso"→false avec la respuesta.
-- espacios : comparaison flexible (ignorer casse, accents).
-- abierta/calculo : évaluer sémantiquement si l'élève démontre la compréhension.
+Para determinar si la respuesta es correcta:
+- opcion_multiple: comparar la letra (A/B/C/D) con la respuesta.
+- verdadero_falso: comparar "Verdadero"→true, "Falso"→false con la respuesta.
+- espacios: comparación flexible (ignorar mayúsculas, acentos).
+- abierta/calculo: evaluar semánticamente si el alumno demuestra comprensión.
 
-Format JSON de sortie OBLIGATOIRE :
+Formato JSON de salida OBLIGATORIO:
 {
   "es_correcta": false,
-  "diagnostico": "L'élève confond numérateur et dénominateur lors de l'addition de fractions.",
-  "lacune_detectee": "Addition de fractions avec dénominateurs différents",
+  "diagnostico": "El alumno confunde numerador y denominador al sumar fracciones.",
+  "lacune_detectee": "Suma de fracciones con denominadores diferentes",
   "pregunta_remediation": { "tipo": "...", "pregunta": "...", "opciones": [...], "respuesta": "..." }
 }
 
-Si la réponse est correcte :
+Si la respuesta es correcta:
 {
   "es_correcta": true,
-  "diagnostico": "Réponse correcte."
+  "diagnostico": "Respuesta correcta."
 }
 
-Réponds UNIQUEMENT avec le JSON. Sans texte additionnel.`
+Responde ÚNICAMENTE con el JSON. Sin texto adicional.`
 }
 
 function mapTipo(tipo: string): string | null {
