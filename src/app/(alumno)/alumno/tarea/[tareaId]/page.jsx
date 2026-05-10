@@ -110,24 +110,35 @@ export default function RealizarTarea() {
 
     setDiagnosticando(false)
 
+    // If diagnosis failed, skip remediation and move on
+    if (!resultado) {
+      setError('No se pudo verificar tu respuesta. Pasando a la siguiente pregunta.')
+      setParcours((prev) => [...prev, {
+        pregunta_index: indicePreguntaActual, tipo: 'original',
+        respuesta_alumno: String(respuesta), es_correcta: false,
+        diagnostico: 'Error de diagnóstico', timestamp: new Date().toISOString(),
+      }])
+      avanzarSiguientePregunta()
+      return
+    }
+
     // Record step in parcours
     const step = {
       pregunta_index: indicePreguntaActual,
       tipo: 'original',
       respuesta_alumno: String(respuesta),
-      es_correcta: resultado?.es_correcta ?? false,
-      diagnostico: resultado?.diagnostico ?? '',
+      es_correcta: resultado.es_correcta ?? false,
+      diagnostico: resultado.diagnostico ?? '',
       timestamp: new Date().toISOString(),
     }
     setParcours((prev) => [...prev, step])
 
-    if (resultado?.es_correcta) {
+    if (resultado.es_correcta) {
       avanzarSiguientePregunta()
-    } else if (resultado?.pregunta_remediation) {
+    } else if (resultado.pregunta_remediation) {
       setRemediacionActual(resultado)
       setIntentoRemediacion(1)
     } else {
-      // No remediation available (intento >= 2 or no question generated)
       avanzarSiguientePregunta()
     }
   }

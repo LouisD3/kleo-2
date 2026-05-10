@@ -11,9 +11,24 @@ import useAuthStore from '@/store/useAuthStore.js'
 export default function DashboardAlumno() {
   const router = useRouter()
   const { alumno } = useAuthStore()
-  const { data, isLoading } = useTareasAlumno(alumno?.clase_id)
+  const { data, isLoading, isError, refetch } = useTareasAlumno(alumno?.clase_id)
 
   if (!alumno) return null
+  if (isLoading) return (
+    <div className="min-h-screen bg-gray-50">
+      <NavBar titulo="Mis tareas" />
+      <div className="flex items-center justify-center py-20"><Spinner size="lg" /></div>
+    </div>
+  )
+  if (isError) return (
+    <div className="min-h-screen bg-gray-50">
+      <NavBar titulo="Mis tareas" />
+      <div className="flex flex-col items-center justify-center py-20 gap-4">
+        <p className="text-sm text-gray-500">No se pudieron cargar las tareas. Revisa tu conexión.</p>
+        <Boton variante="secundario" size="sm" onClick={() => refetch()}>Reintentar</Boton>
+      </div>
+    </div>
+  )
 
   const tareasRaw = data?.tareas ?? []
   const resultados = data?.resultados ?? {}
@@ -116,8 +131,8 @@ export default function DashboardAlumno() {
                         <h3 className="font-semibold text-gray-900 truncate">{tarea.nombre}</h3>
                         <Badge valor={tarea.estadoAlumno} texto={estadoTexto(tarea.estadoAlumno)} />
                         {vencida && (
-                          <span className="text-xs font-medium text-red-600 bg-red-50 px-2 py-0.5 rounded-full">
-                            Vencida
+                          <span className="text-xs font-medium text-red-600 bg-red-50 px-2 py-0.5 rounded-full" title="La fecha límite ya pasó. No puedes realizar esta tarea.">
+                            Vencida — fuera de plazo
                           </span>
                         )}
                       </div>

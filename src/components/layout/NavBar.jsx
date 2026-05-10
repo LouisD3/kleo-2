@@ -1,11 +1,12 @@
 'use client'
 
 import { BookOpen, LogOut, Settings } from 'lucide-react'
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import useAuthStore from '../../store/useAuthStore.js'
 
 export default function NavBar({ titulo, volver }) {
   const router = useRouter()
+  const pathname = usePathname()
   const { rol, profesor, alumno, cerrarSesion } = useAuthStore()
 
   async function handleSalir() {
@@ -85,7 +86,7 @@ export default function NavBar({ titulo, volver }) {
             <>
               <button
                 onClick={() => router.push('/profesor/biblioteca')}
-                className="p-1.5 rounded-lg text-gray-400 hover:text-gray-700 hover:bg-gray-100 transition-colors"
+                className={`p-1.5 rounded-lg transition-colors ${pathname === '/profesor/biblioteca' ? 'text-gray-900 bg-gray-100' : 'text-gray-400 hover:text-gray-700 hover:bg-gray-100'}`}
                 title="Biblioteca"
                 aria-label="Biblioteca"
               >
@@ -93,7 +94,7 @@ export default function NavBar({ titulo, volver }) {
               </button>
               <button
                 onClick={() => router.push('/profesor/ajustes')}
-                className="p-1.5 rounded-lg text-gray-400 hover:text-gray-700 hover:bg-gray-100 transition-colors"
+                className={`p-1.5 rounded-lg transition-colors ${pathname === '/profesor/ajustes' ? 'text-gray-900 bg-gray-100' : 'text-gray-400 hover:text-gray-700 hover:bg-gray-100'}`}
                 title="Ajustes"
                 aria-label="Ajustes"
               >

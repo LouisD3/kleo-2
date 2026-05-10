@@ -166,6 +166,27 @@ export default function ResultadoTarea() {
                       <p className={`text-sm ${fb.correcta ? 'text-green-700' : 'text-red-700'}`}>
                         {fb.comentario}
                       </p>
+                      {/* Parcours de remédiation pour cette question */}
+                      {resultado.parcours?.filter((p) => p.pregunta_index === fb.indice_pregunta && p.tipo === 'remediacion').length > 0 && (
+                        <div className="mt-2 pl-3 border-l-2 border-amber-200 space-y-1.5">
+                          <p className="text-xs font-semibold text-amber-600">Remediación:</p>
+                          {resultado.parcours
+                            .filter((p) => p.pregunta_index === fb.indice_pregunta && p.tipo === 'remediacion')
+                            .map((p, ri) => (
+                              <div key={ri} className="text-xs text-gray-500">
+                                <span className={p.es_correcta ? 'text-green-600' : 'text-red-500'}>
+                                  {p.es_correcta ? '✓' : '✗'}
+                                </span>{' '}
+                                {p.pregunta_remediation?.pregunta && (
+                                  <span className="text-gray-600">{p.pregunta_remediation.pregunta}</span>
+                                )}
+                                {p.diagnostico && !p.es_correcta && (
+                                  <span className="block text-gray-400 mt-0.5">{p.diagnostico}</span>
+                                )}
+                              </div>
+                            ))}
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
