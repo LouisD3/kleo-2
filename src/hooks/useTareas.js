@@ -219,24 +219,31 @@ export function useAgregarAlumno() {
       ]
       const color = colores[Math.floor(Math.random() * colores.length)]
       const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'
-      let codigo = ''
-      for (let i = 0; i < 6; i++) {
-        codigo += chars[Math.floor(Math.random() * chars.length)]
+      function generarCodigo() {
+        let c = ''
+        for (let i = 0; i < 6; i++) c += chars[Math.floor(Math.random() * chars.length)]
+        return c
       }
 
-      const { data, error } = await supabase
-        .from('alumnos')
-        .insert({
-          clase_id: claseId,
-          nombre,
-          codigo_acceso: codigo,
-          avatar_iniciales: iniciales,
-          avatar_color: color,
-        })
-        .select()
-        .single()
-      if (error) throw error
-      return data
+      // Retry with new code if collision (unique constraint)
+      for (let attempt = 0; attempt < 5; attempt++) {
+        const codigo = generarCodigo()
+        const { data, error } = await supabase
+          .from('alumnos')
+          .insert({
+            clase_id: claseId,
+            nombre,
+            codigo_acceso: codigo,
+            avatar_iniciales: iniciales,
+            avatar_color: color,
+          })
+          .select()
+          .single()
+        if (!error) return data
+        if (error.code === '23505') continue // unique violation, retry
+        throw error
+      }
+      throw new Error('No se pudo generar un código único. Intenta de nuevo.')
     },
     onSuccess: (_data, variables) => {
       queryClient.invalidateQueries({ queryKey: ['alumnos', variables.claseId] })

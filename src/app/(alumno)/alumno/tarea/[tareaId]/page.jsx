@@ -31,11 +31,46 @@ export default function RealizarTarea() {
   const [diagnosticandoRemediacion, setDiagnosticandoRemediacion] = useState(false)
   const [terminado, setTerminado] = useState(false)
   const [calificando, setCalificando] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
 
+  const { isLoading } = useTareasAlumno(alumno?.clase_id)
+
+  // Save progress to sessionStorage on every change
   useEffect(() => {
-    if (!tarea) router.push('/alumno')
-  }, [tarea, router])
+    if (!tareaId || Object.keys(respuestas).length === 0) return
+    sessionStorage.setItem(`kleo_progress_${tareaId}`, JSON.stringify({
+      respuestas, parcours, indicePreguntaActual, terminado,
+    }))
+  }, [respuestas, parcours, indicePreguntaActual, terminado, tareaId])
 
+  // Restore progress on mount
+  useEffect(() => {
+    const saved = sessionStorage.getItem(`kleo_progress_${tareaId}`)
+    if (saved) {
+      try {
+        const { respuestas: r, parcours: p, indicePreguntaActual: i, terminado: t } = JSON.parse(saved)
+        if (r) setRespuestas(r)
+        if (p) setParcours(p)
+        if (typeof i === 'number') setIndicePreguntaActual(i)
+        if (t) setTerminado(t)
+      } catch {}
+    }
+  }, [tareaId])
+
+  // Warn before leaving with unsaved work
+  useEffect(() => {
+    if (Object.keys(respuestas).length === 0) return
+    const handler = (e) => { e.preventDefault() }
+    window.addEventListener('beforeunload', handler)
+    return () => window.removeEventListener('beforeunload', handler)
+  }, [respuestas])
+
+  // Redirect only after loading is done and tarea not found
+  useEffect(() => {
+    if (!isLoading && !tarea) router.push('/alumno')
+  }, [isLoading, tarea, router])
+
+  if (isLoading) return <div className="min-h-screen bg-gray-50 flex items-center justify-center"><Spinner size="lg" /></div>
   if (!tarea || !alumno) return null
 
   const totalPreguntas = tarea.preguntas?.length ?? 0
@@ -146,6 +181,8 @@ export default function RealizarTarea() {
   }
 
   async function handleTerminar() {
+    if (submitting) return
+    setSubmitting(true)
     setCalificando(true)
     const resultado = await corregirTarea({ tarea, respuestasAlumno: respuestas })
     if (resultado) {
@@ -161,13 +198,16 @@ export default function RealizarTarea() {
             parcours,
           },
         })
+        sessionStorage.removeItem(`kleo_progress_${tareaId}`)
         router.push(`/alumno/resultado/${tareaId}`)
       } catch {
         setError('No se pudo guardar tu resultado. Intenta de nuevo.')
         setCalificando(false)
+        setSubmitting(false)
       }
     } else {
       setCalificando(false)
+      setSubmitting(false)
     }
   }
 

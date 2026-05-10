@@ -102,8 +102,8 @@ export default function GestionClase() {
   }
 
   useEffect(() => {
-    cargarClases()
-  }, [cargarClases])
+    if (profesor) cargarClases()
+  }, [profesor?.id]) // eslint-disable-line react-hooks/exhaustive-deps
 
   async function cargarClases() {
     if (!profesor) return

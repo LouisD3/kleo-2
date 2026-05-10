@@ -14,16 +14,20 @@ export default function ResultadoTarea() {
   const { data } = useTareasAlumno(alumno?.clase_id)
   const [notaVisible, setNotaVisible] = useState(false)
 
+  const { isLoading } = useTareasAlumno(alumno?.clase_id)
   const tarea = (data?.tareas ?? []).find((t) => t.id === tareaId)
   const resultados = data?.resultados?.[tareaId] ?? {}
   const resultado = resultados?.[alumno?.id]
 
   useEffect(() => {
-    if (!tarea || !resultado) router.push('/alumno')
-    const t = setTimeout(() => setNotaVisible(true), 200)
-    return () => clearTimeout(t)
-  }, [tarea, resultado, router])
+    if (!isLoading && (!tarea || !resultado)) router.push('/alumno')
+    if (tarea && resultado) {
+      const t = setTimeout(() => setNotaVisible(true), 200)
+      return () => clearTimeout(t)
+    }
+  }, [isLoading, tarea, resultado, router])
 
+  if (isLoading) return <div className="min-h-screen bg-gray-50 flex items-center justify-center"><div className="h-10 w-10 border-[3px] rounded-full border-gray-200 border-t-gray-700 animate-spin" role="status" aria-label="Cargando..." /></div>
   if (!tarea || !resultado) return null
 
   const calificacion = resultado.calificacion_manual ?? resultado.calificacion

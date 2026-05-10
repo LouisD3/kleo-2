@@ -35,6 +35,7 @@ const useAuthStore = create((set, get) => ({
     if (_initLock) return
     _initLock = true
     try {
+    try {
       const {
         data: { session },
       } = await supabase.auth.getSession()
@@ -49,7 +50,6 @@ const useAuthStore = create((set, get) => ({
           console.error('Error fetching profesor:', selErr)
         }
 
-        // User auth exists but profesores row missing (failed registration or email confirmation)
         if (!profesor) {
           const meta = session.user.user_metadata ?? {}
           const { data: newProf, error: upsErr } = await supabase
@@ -84,7 +84,6 @@ const useAuthStore = create((set, get) => ({
             clase: clases?.[0] ?? null,
             cargando: false,
           })
-          _initLock = false
           return
         }
       }
@@ -96,7 +95,6 @@ const useAuthStore = create((set, get) => ({
       const saved = localStorage.getItem('kleo_alumno')
       if (saved) {
         const alumno = JSON.parse(saved)
-        // Verify the student still exists in the database
         const { data: exists } = await supabase
           .from('alumnos')
           .select('id')
@@ -111,7 +109,9 @@ const useAuthStore = create((set, get) => ({
     } catch {}
 
     set({ cargando: false })
-    _initLock = false
+    } finally {
+      _initLock = false
+    }
   },
 
   registrarse: async (email, password, nombre, escuela) => {
