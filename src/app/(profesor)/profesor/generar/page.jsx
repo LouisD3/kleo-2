@@ -98,6 +98,7 @@ export default function GenerarTarea() {
   const [publicando, setPublicando] = useState(false)
   const [descargandoPDF, setDescargandoPDF] = useState(null)
   const [toastVisible, setToastVisible] = useState(false)
+  const [toastError, setToastError] = useState(false)
   const inicializado = useRef(false)
 
   // Load existing draft when ?tarea=<id> is present
@@ -164,7 +165,7 @@ export default function GenerarTarea() {
     if (resultado?.preguntas) {
       const nueva = await agregarTarea.mutateAsync({
         profesor_id: profesor.id,
-        clase_id: clase?.id ?? clases[0]?.id,
+        clase_id: clases[0]?.id,
         nombre: form.nombre,
         materia: form.materia,
         dificultad: form.dificultad,
@@ -251,11 +252,17 @@ export default function GenerarTarea() {
     prevPreguntasRef.current = tareaGenerada
 
     const timer = setTimeout(async () => {
-      await actualizarTarea.mutateAsync({
-        id: tareaGuardada.id,
-        cambios: { preguntas: tareaGenerada },
-      })
-      setToastVisible(true)
+      try {
+        await actualizarTarea.mutateAsync({
+          id: tareaGuardada.id,
+          cambios: { preguntas: tareaGenerada },
+        })
+        setToastError(false)
+        setToastVisible(true)
+      } catch {
+        setToastError(true)
+        setToastVisible(true)
+      }
     }, 1000)
     return () => clearTimeout(timer)
   }, [tareaGenerada, tareaGuardada, actualizarTarea, setToastVisible])
@@ -892,7 +899,10 @@ export default function GenerarTarea() {
       </main>
 
       <Toast
-        mensaje="Borrador guardado automáticamente"
+        mensaje={
+          toastError ? 'Error al guardar. Revisa tu conexión.' : 'Borrador guardado automáticamente'
+        }
+        variante={toastError ? 'error' : 'exito'}
         visible={toastVisible}
         onCerrar={() => setToastVisible(false)}
       />

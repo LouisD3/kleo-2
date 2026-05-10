@@ -13,6 +13,7 @@ export default function TablaResultadosAlumnos({
   onCambiarNota,
   onGuardarNota,
   onCancelarEdicion,
+  onDarPuntos,
 }) {
   const [expandido, setExpandido] = useState(null)
   if (alumnos.length === 0) {
@@ -50,6 +51,11 @@ export default function TablaResultadosAlumnos({
             <th className="text-left px-4 py-3 font-semibold text-gray-500 text-xs uppercase tracking-wide">
               Recorrido
             </th>
+            {onDarPuntos && (
+              <th className="text-left px-4 py-3 font-semibold text-gray-500 text-xs uppercase tracking-wide">
+                Puntos
+              </th>
+            )}
           </tr>
         </thead>
         <tbody className="divide-y divide-gray-50">
@@ -187,10 +193,29 @@ export default function TablaResultadosAlumnos({
                       </button>
                     )}
                   </td>
+                  {onDarPuntos && (
+                    <td className="px-4 py-3.5">
+                      <div className="flex items-center gap-1.5">
+                        <span className="text-sm font-medium text-yellow-600 min-w-[2ch] text-right">
+                          {alumno.puntos ?? 0}
+                        </span>
+                        {[1, 2, 5].map((n) => (
+                          <button
+                            key={n}
+                            onClick={() => onDarPuntos(alumno.id, n)}
+                            className="px-1.5 py-0.5 rounded text-xs font-medium text-yellow-700 bg-yellow-50 border border-yellow-200 hover:bg-yellow-100 transition-colors"
+                            title={`Dar ${n} punto${n > 1 ? 's' : ''}`}
+                          >
+                            +{n}
+                          </button>
+                        ))}
+                      </div>
+                    </td>
+                  )}
                 </tr>
                 {expandido === alumno.id && resultado?.parcours && (
                   <tr>
-                    <td colSpan={7} className="px-6 py-4 bg-gray-50">
+                    <td colSpan={onDarPuntos ? 8 : 7} className="px-6 py-4 bg-gray-50">
                       <TimelineParcours parcours={resultado.parcours} preguntas={preguntas} />
                     </td>
                   </tr>

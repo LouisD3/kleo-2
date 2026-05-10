@@ -251,6 +251,37 @@ export function useAgregarAlumno() {
   })
 }
 
+export function useDuplicarTarea() {
+  const queryClient = useQueryClient()
+  return useMutation({
+    mutationFn: async (tarea) => {
+      const { data, error } = await supabase
+        .from('tareas')
+        .insert({
+          profesor_id: tarea.profesor_id,
+          clase_id: tarea.clase_id,
+          nombre: `${tarea.nombre} (copia)`,
+          materia: tarea.materia,
+          dificultad: tarea.dificultad,
+          metodologia: tarea.metodologia,
+          tipos: tarea.tipos,
+          preguntas: tarea.preguntas,
+          estado: 'borrador',
+          fecha_limite: null,
+          pda: tarea.pda || null,
+          numero_preguntas: tarea.preguntas?.length ?? 0,
+        })
+        .select()
+        .single()
+      if (error) throw error
+      return data
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['tareas'] })
+    },
+  })
+}
+
 export function useEliminarTarea() {
   const queryClient = useQueryClient()
   return useMutation({
@@ -295,6 +326,97 @@ export function useEliminarClase() {
       queryClient.invalidateQueries({ queryKey: ['tareas'] })
       queryClient.invalidateQueries({ queryKey: ['alumnos'] })
     },
+  })
+}
+
+export function useAutoPoints() {
+  const queryClient = useQueryClient()
+  return useMutation({
+    mutationFn: async ({ alumnoId, tareaId, cantidad }) => {
+      // Get the task's profesor_id for the log
+      const { data: tarea } = await supabase
+        .from('tareas')
+        .select('profesor_id')
+        .eq('id', tareaId)
+        .single()
+      if (!tarea) return
+
+      const { error: logError } = await supabase.from('puntos_log').insert({
+        alumno_id: alumnoId,
+        profesor_id: tarea.profesor_id,
+        tarea_id: tareaId,
+        cantidad,
+        motivo:
+          cantidad >= 3
+            ? 'Excelente calificación'
+            : cantidad >= 2
+              ? 'Buena calificación'
+              : 'Tarea completada',
+      })
+      if (logError) throw logError
+
+      const { data: alumno } = await supabase
+        .from('alumnos')
+        .select('puntos')
+        .eq('id', alumnoId)
+        .single()
+      const nuevoTotal = (alumno?.puntos ?? 0) + cantidad
+      await supabase.from('alumnos').update({ puntos: nuevoTotal }).eq('id', alumnoId)
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['alumnos'] })
+    },
+  })
+}
+
+export function useDarPuntos() {
+  const queryClient = useQueryClient()
+  return useMutation({
+    mutationFn: async ({ alumnoId, profesorId, tareaId, cantidad, motivo }) => {
+      // Insert log
+      const { error: logError } = await supabase.from('puntos_log').insert({
+        alumno_id: alumnoId,
+        profesor_id: profesorId,
+        tarea_id: tareaId || null,
+        cantidad,
+        motivo,
+      })
+      if (logError) throw logError
+
+      // Update total points on alumno
+      const { data: alumno } = await supabase
+        .from('alumnos')
+        .select('puntos')
+        .eq('id', alumnoId)
+        .single()
+      const nuevoTotal = (alumno?.puntos ?? 0) + cantidad
+      const { error: updateError } = await supabase
+        .from('alumnos')
+        .update({ puntos: nuevoTotal })
+        .eq('id', alumnoId)
+      if (updateError) throw updateError
+
+      return { nuevoTotal }
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['alumnos'] })
+    },
+  })
+}
+
+export function usePuntosAlumno(alumnoId) {
+  return useQuery({
+    queryKey: ['puntos', alumnoId],
+    queryFn: async () => {
+      const { data } = await supabase
+        .from('puntos_log')
+        .select('*')
+        .eq('alumno_id', alumnoId)
+        .order('created_at', { ascending: false })
+        .limit(20)
+      return data ?? []
+    },
+    enabled: !!alumnoId,
   })
 }
 

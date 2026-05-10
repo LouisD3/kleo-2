@@ -145,6 +145,25 @@ export function useGCPublish() {
   })
 }
 
+// Export task as Google Doc
+export function useGCExportDoc() {
+  return useMutation({
+    mutationFn: async ({ tareaId, conRespuestas }) => {
+      const headers = await getAuthHeaders()
+      const res = await fetch('/api/gc/export-doc', {
+        method: 'POST',
+        headers,
+        body: JSON.stringify({ tareaId, conRespuestas }),
+      })
+      if (!res.ok) {
+        const data = await res.json()
+        throw new Error(data.error || 'Error al exportar')
+      }
+      return res.json()
+    },
+  })
+}
+
 // Sync grades to GC
 export function useGCSyncGrades() {
   return useMutation({

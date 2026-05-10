@@ -7,7 +7,12 @@ import ChecklistOnboarding from '@/components/profesor/ChecklistOnboarding.jsx'
 import TablaTareas from '@/components/profesor/TablaTareas.jsx'
 import Boton from '@/components/ui/Boton.jsx'
 import Spinner from '@/components/ui/Spinner.jsx'
-import { useAlumnos, useEliminarTarea, useTareasProfesor } from '@/hooks/useTareas.js'
+import {
+  useAlumnos,
+  useDuplicarTarea,
+  useEliminarTarea,
+  useTareasProfesor,
+} from '@/hooks/useTareas.js'
 import useAuthStore from '@/store/useAuthStore.js'
 
 export default function DashboardProfesor() {
@@ -19,6 +24,7 @@ export default function DashboardProfesor() {
   const { data: alumnos = [] } = useAlumnos(clase?.id)
 
   const eliminarTareaMut = useEliminarTarea()
+  const duplicarTareaMut = useDuplicarTarea()
   const [filtroClases, setFiltroClases] = useState([])
 
   const clasesMap = useMemo(() => {
@@ -145,6 +151,11 @@ export default function DashboardProfesor() {
               resultados={resultados}
               onEliminar={(id) => eliminarTareaMut.mutateAsync(id)}
               eliminando={eliminarTareaMut.isPending}
+              onDuplicar={async (tarea) => {
+                const copia = await duplicarTareaMut.mutateAsync(tarea)
+                router.push(`/profesor/generar?tarea=${copia.id}`)
+              }}
+              duplicando={duplicarTareaMut.isPending}
             />
           </div>
         )}

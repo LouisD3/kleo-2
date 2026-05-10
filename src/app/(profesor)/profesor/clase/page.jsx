@@ -19,6 +19,7 @@ import {
 import {
   useAgregarAlumno,
   useAlumnos,
+  useDarPuntos,
   useEliminarAlumno,
   useEliminarClase,
 } from '@/hooks/useTareas.js'
@@ -32,6 +33,7 @@ export default function GestionClase() {
   const agregarAlumnoMut = useAgregarAlumno()
   const eliminarAlumnoMut = useEliminarAlumno()
   const eliminarClaseMut = useEliminarClase()
+  const darPuntosMut = useDarPuntos()
 
   const searchParams = useSearchParams()
   const queryClient = useQueryClient()
@@ -352,12 +354,36 @@ export default function GestionClase() {
                           </div>
                         </div>
                       </div>
-                      <button
-                        onClick={() => setConfirmEliminar(alumno.id)}
-                        className="text-xs text-gray-400 hover:text-red-500 transition-colors px-2 py-1"
-                      >
-                        Eliminar
-                      </button>
+                      <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-1">
+                          <span className="text-sm font-medium text-yellow-600 min-w-[2ch] text-right">
+                            {alumno.puntos ?? 0}
+                          </span>
+                          {[1, 2, 5].map((n) => (
+                            <button
+                              key={n}
+                              onClick={() =>
+                                darPuntosMut.mutate({
+                                  alumnoId: alumno.id,
+                                  profesorId: profesor.id,
+                                  cantidad: n,
+                                  motivo: 'Buen trabajo',
+                                })
+                              }
+                              className="px-1.5 py-0.5 rounded text-xs font-medium text-yellow-700 bg-yellow-50 border border-yellow-200 hover:bg-yellow-100 transition-colors"
+                              title={`Dar ${n} punto${n > 1 ? 's' : ''}`}
+                            >
+                              +{n}
+                            </button>
+                          ))}
+                        </div>
+                        <button
+                          onClick={() => setConfirmEliminar(alumno.id)}
+                          className="text-xs text-gray-400 hover:text-red-500 transition-colors px-2 py-1"
+                        >
+                          Eliminar
+                        </button>
+                      </div>
                     </div>
                   ))}
                 </div>

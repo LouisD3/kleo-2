@@ -5,30 +5,40 @@ import NavBar from '@/components/layout/NavBar.jsx'
 import Badge from '@/components/ui/Badge.jsx'
 import Boton from '@/components/ui/Boton.jsx'
 import Spinner from '@/components/ui/Spinner.jsx'
-import { getTareasParaAlumno, useTareasAlumno } from '@/hooks/useTareas.js'
+import { getTareasParaAlumno, usePuntosAlumno, useTareasAlumno } from '@/hooks/useTareas.js'
 import useAuthStore from '@/store/useAuthStore.js'
 
 export default function DashboardAlumno() {
   const router = useRouter()
   const { alumno } = useAuthStore()
   const { data, isLoading, isError, refetch } = useTareasAlumno(alumno?.clase_id)
+  const { data: puntosLog = [] } = usePuntosAlumno(alumno?.id)
+  const puntos = alumno?.puntos ?? 0
 
   if (!alumno) return null
-  if (isLoading) return (
-    <div className="min-h-screen bg-gray-50">
-      <NavBar titulo="Mis tareas" />
-      <div className="flex items-center justify-center py-20"><Spinner size="lg" /></div>
-    </div>
-  )
-  if (isError) return (
-    <div className="min-h-screen bg-gray-50">
-      <NavBar titulo="Mis tareas" />
-      <div className="flex flex-col items-center justify-center py-20 gap-4">
-        <p className="text-sm text-gray-500">No se pudieron cargar las tareas. Revisa tu conexión.</p>
-        <Boton variante="secundario" size="sm" onClick={() => refetch()}>Reintentar</Boton>
+  if (isLoading)
+    return (
+      <div className="min-h-screen bg-gray-50">
+        <NavBar titulo="Mis tareas" />
+        <div className="flex items-center justify-center py-20">
+          <Spinner size="lg" />
+        </div>
       </div>
-    </div>
-  )
+    )
+  if (isError)
+    return (
+      <div className="min-h-screen bg-gray-50">
+        <NavBar titulo="Mis tareas" />
+        <div className="flex flex-col items-center justify-center py-20 gap-4">
+          <p className="text-sm text-gray-500">
+            No se pudieron cargar las tareas. Revisa tu conexión.
+          </p>
+          <Boton variante="secundario" size="sm" onClick={() => refetch()}>
+            Reintentar
+          </Boton>
+        </div>
+      </div>
+    )
 
   const tareasRaw = data?.tareas ?? []
   const resultados = data?.resultados ?? {}
@@ -87,6 +97,9 @@ export default function DashboardAlumno() {
           ))}
         </div>
 
+        {/* Gamification — Points & Rewards */}
+        <RecompensasCard puntos={puntos} puntosLog={puntosLog} />
+
         {isLoading ? (
           <div className="card p-16 flex items-center justify-center">
             <Spinner size="lg" />
@@ -131,7 +144,10 @@ export default function DashboardAlumno() {
                         <h3 className="font-semibold text-gray-900 truncate">{tarea.nombre}</h3>
                         <Badge valor={tarea.estadoAlumno} texto={estadoTexto(tarea.estadoAlumno)} />
                         {vencida && (
-                          <span className="text-xs font-medium text-red-600 bg-red-50 px-2 py-0.5 rounded-full" title="La fecha límite ya pasó. No puedes realizar esta tarea.">
+                          <span
+                            className="text-xs font-medium text-red-600 bg-red-50 px-2 py-0.5 rounded-full"
+                            title="La fecha límite ya pasó. No puedes realizar esta tarea."
+                          >
                             Vencida — fuera de plazo
                           </span>
                         )}
@@ -217,4 +233,96 @@ function estadoTexto(estado) {
     pendiente: 'Pendiente',
   }
   return mapa[estado] ?? estado
+}
+
+const RECOMPENSAS = [
+  {
+    puntos: 5,
+    emoji: '\u{1F31F}',
+    nombre: 'Primera estrella',
+    color: 'from-yellow-100 to-yellow-50 border-yellow-200',
+  },
+  {
+    puntos: 15,
+    emoji: '\u{1F525}',
+    nombre: 'En racha',
+    color: 'from-orange-100 to-orange-50 border-orange-200',
+  },
+  {
+    puntos: 30,
+    emoji: '\u{1F3C6}',
+    nombre: 'Campeón',
+    color: 'from-amber-100 to-amber-50 border-amber-200',
+  },
+  {
+    puntos: 50,
+    emoji: '\u{1F48E}',
+    nombre: 'Diamante',
+    color: 'from-blue-100 to-blue-50 border-blue-200',
+  },
+  {
+    puntos: 100,
+    emoji: '\u{1F680}',
+    nombre: 'Leyenda',
+    color: 'from-purple-100 to-purple-50 border-purple-200',
+  },
+]
+
+function RecompensasCard({ puntos, puntosLog }) {
+  if (puntos === 0 && puntosLog.length === 0) return null
+
+  const siguiente =
+    RECOMPENSAS.find((r) => r.puntos > puntos) ?? RECOMPENSAS[RECOMPENSAS.length - 1]
+  const progreso = siguiente ? Math.min(100, Math.round((puntos / siguiente.puntos) * 100)) : 100
+
+  return (
+    <div className="card p-5 mb-8 bg-gradient-to-r from-yellow-50 to-amber-50 border-yellow-200">
+      <div className="flex items-center justify-between mb-3">
+        <div className="flex items-center gap-3">
+          <span className="text-3xl font-bold text-yellow-600">{puntos}</span>
+          <div>
+            <p className="text-sm font-semibold text-gray-900">Puntos</p>
+            <p className="text-xs text-gray-500">
+              {siguiente && puntos < siguiente.puntos
+                ? `${siguiente.puntos - puntos} más para "${siguiente.nombre}"`
+                : 'Todas las recompensas desbloqueadas'}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Progress bar */}
+      {siguiente && puntos < siguiente.puntos && (
+        <div className="h-2 bg-yellow-100 rounded-full overflow-hidden mb-4">
+          <div
+            className="h-full bg-yellow-400 rounded-full transition-all duration-500"
+            style={{ width: `${progreso}%` }}
+          />
+        </div>
+      )}
+
+      {/* Rewards badges */}
+      <div className="flex gap-2 flex-wrap">
+        {RECOMPENSAS.map((r) => {
+          const desbloqueada = puntos >= r.puntos
+          return (
+            <div
+              key={r.puntos}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-xs font-medium transition-all ${
+                desbloqueada
+                  ? `bg-gradient-to-r ${r.color} text-gray-800`
+                  : 'bg-gray-100 border-gray-200 text-gray-400 opacity-50'
+              }`}
+              title={
+                desbloqueada ? `Desbloqueada: ${r.nombre}` : `${r.puntos} puntos para desbloquear`
+              }
+            >
+              <span className={desbloqueada ? '' : 'grayscale'}>{r.emoji}</span>
+              {r.nombre}
+            </div>
+          )
+        })}
+      </div>
+    </div>
+  )
 }

@@ -8,7 +8,7 @@ import Boton from '@/components/ui/Boton.jsx'
 import MensajeError from '@/components/ui/MensajeError.jsx'
 import Spinner from '@/components/ui/Spinner.jsx'
 import { useAnthropicAPI } from '@/hooks/useAnthropicAPI.js'
-import { useGuardarResultado, useTareasAlumno } from '@/hooks/useTareas.js'
+import { useAutoPoints, useGuardarResultado, useTareasAlumno } from '@/hooks/useTareas.js'
 import useAuthStore from '@/store/useAuthStore.js'
 
 export default function RealizarTarea() {
@@ -17,6 +17,7 @@ export default function RealizarTarea() {
   const { alumno } = useAuthStore()
   const { data } = useTareasAlumno(alumno?.clase_id)
   const guardarResultadoMut = useGuardarResultado()
+  const autoPointsMut = useAutoPoints()
   const { corregirTarea, diagnosticarYRemediar, error, setError } = useAnthropicAPI()
 
   const tarea = (data?.tareas ?? []).find((t) => t.id === tareaId)
@@ -38,17 +39,28 @@ export default function RealizarTarea() {
   // Save progress to sessionStorage on every change
   useEffect(() => {
     if (!tareaId || Object.keys(respuestas).length === 0) return
-    sessionStorage.setItem(`kleo_progress_${tareaId}`, JSON.stringify({
-      respuestas, parcours, indicePreguntaActual, terminado,
-    }))
+    localStorage.setItem(
+      `kleo_progress_${tareaId}`,
+      JSON.stringify({
+        respuestas,
+        parcours,
+        indicePreguntaActual,
+        terminado,
+      }),
+    )
   }, [respuestas, parcours, indicePreguntaActual, terminado, tareaId])
 
   // Restore progress on mount
   useEffect(() => {
-    const saved = sessionStorage.getItem(`kleo_progress_${tareaId}`)
+    const saved = localStorage.getItem(`kleo_progress_${tareaId}`)
     if (saved) {
       try {
-        const { respuestas: r, parcours: p, indicePreguntaActual: i, terminado: t } = JSON.parse(saved)
+        const {
+          respuestas: r,
+          parcours: p,
+          indicePreguntaActual: i,
+          terminado: t,
+        } = JSON.parse(saved)
         if (r) setRespuestas(r)
         if (p) setParcours(p)
         if (typeof i === 'number') setIndicePreguntaActual(i)
@@ -60,7 +72,9 @@ export default function RealizarTarea() {
   // Warn before leaving with unsaved work
   useEffect(() => {
     if (Object.keys(respuestas).length === 0) return
-    const handler = (e) => { e.preventDefault() }
+    const handler = (e) => {
+      e.preventDefault()
+    }
     window.addEventListener('beforeunload', handler)
     return () => window.removeEventListener('beforeunload', handler)
   }, [respuestas])
@@ -70,7 +84,12 @@ export default function RealizarTarea() {
     if (!isLoading && !tarea) router.push('/alumno')
   }, [isLoading, tarea, router])
 
-  if (isLoading) return <div className="min-h-screen bg-gray-50 flex items-center justify-center"><Spinner size="lg" /></div>
+  if (isLoading)
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <Spinner size="lg" />
+      </div>
+    )
   if (!tarea || !alumno) return null
 
   const totalPreguntas = tarea.preguntas?.length ?? 0
@@ -113,11 +132,17 @@ export default function RealizarTarea() {
     // If diagnosis failed, skip remediation and move on
     if (!resultado) {
       setError('No se pudo verificar tu respuesta. Pasando a la siguiente pregunta.')
-      setParcours((prev) => [...prev, {
-        pregunta_index: indicePreguntaActual, tipo: 'original',
-        respuesta_alumno: String(respuesta), es_correcta: false,
-        diagnostico: 'Error de diagnóstico', timestamp: new Date().toISOString(),
-      }])
+      setParcours((prev) => [
+        ...prev,
+        {
+          pregunta_index: indicePreguntaActual,
+          tipo: 'original',
+          respuesta_alumno: String(respuesta),
+          es_correcta: false,
+          diagnostico: 'Error de diagnóstico',
+          timestamp: new Date().toISOString(),
+        },
+      ])
       avanzarSiguientePregunta()
       return
     }
@@ -209,7 +234,20 @@ export default function RealizarTarea() {
             parcours,
           },
         })
-        sessionStorage.removeItem(`kleo_progress_${tareaId}`)
+        // Auto-award points based on grade
+        try {
+          let pts = 1 // 1 point for completing
+          if (resultado.calificacion >= 9) pts = 3
+          else if (resultado.calificacion >= 7) pts = 2
+          await autoPointsMut.mutateAsync({
+            alumnoId: alumno.id,
+            tareaId,
+            cantidad: pts,
+          })
+        } catch {
+          // Points are non-critical, don't block
+        }
+        localStorage.removeItem(`kleo_progress_${tareaId}`)
         router.push(`/alumno/resultado/${tareaId}`)
       } catch {
         setError('No se pudo guardar tu resultado. Intenta de nuevo.')
@@ -288,8 +326,69 @@ export default function RealizarTarea() {
                 ¡Terminaste todas las preguntas!
               </h2>
               <p className="text-sm text-gray-500">
-                Respondiste {totalPreguntas} preguntas. Ahora la IA calificará tu tarea.
+                Revisa tus respuestas antes de entregar. Puedes volver a cualquier pregunta para
+                modificarla.
               </p>
+            </div>
+
+            {/* Review: summary of answers */}
+            <div className="card p-0 overflow-hidden">
+              <div className="px-5 py-3 border-b border-gray-100">
+                <h3 className="font-semibold text-gray-900 text-sm">Resumen de respuestas</h3>
+              </div>
+              <div className="divide-y divide-gray-50">
+                {tarea.preguntas?.map((p, i) => {
+                  const resp = respuestas[i]
+                  const tieneRespuesta =
+                    resp !== undefined && resp !== null && String(resp).trim() !== ''
+                  let resumenRespuesta = ''
+                  if (tieneRespuesta) {
+                    if (p.tipo === 'opcion_multiple') {
+                      resumenRespuesta = p.opciones?.find((op) => op.startsWith(resp)) ?? resp
+                    } else if (p.tipo === 'verdadero_falso') {
+                      resumenRespuesta = resp
+                    } else if (p.tipo === 'espacios') {
+                      resumenRespuesta = Array.isArray(resp) ? resp.join(', ') : resp
+                    } else {
+                      resumenRespuesta =
+                        String(resp).length > 80 ? `${String(resp).slice(0, 80)}...` : String(resp)
+                    }
+                  }
+                  return (
+                    <button
+                      key={i}
+                      onClick={() => {
+                        setTerminado(false)
+                        setIndicePreguntaActual(i)
+                      }}
+                      className="w-full flex items-start gap-3 px-5 py-3 text-left hover:bg-gray-50 transition-colors"
+                    >
+                      <span className="flex-shrink-0 inline-flex items-center justify-center w-6 h-6 rounded-full bg-gray-100 text-xs font-bold text-gray-600 mt-0.5">
+                        {i + 1}
+                      </span>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm text-gray-700 line-clamp-1">{p.pregunta}</p>
+                        <p
+                          className={`text-xs mt-0.5 ${tieneRespuesta ? 'text-green-600' : 'text-red-500'}`}
+                        >
+                          {tieneRespuesta ? resumenRespuesta : 'Sin respuesta'}
+                        </p>
+                      </div>
+                      <svg
+                        className="w-4 h-4 text-gray-300 flex-shrink-0 mt-1"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    </button>
+                  )
+                })}
+              </div>
             </div>
 
             <Boton

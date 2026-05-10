@@ -7,10 +7,19 @@ import Badge from '../ui/Badge.jsx'
 import Boton from '../ui/Boton.jsx'
 import Modal from '../ui/Modal.jsx'
 
-export default function TablaTareas({ tareas, clasesMap, resultados, onEliminar, eliminando }) {
+export default function TablaTareas({
+  tareas,
+  clasesMap,
+  resultados,
+  onEliminar,
+  eliminando,
+  onDuplicar,
+  duplicando,
+}) {
   const router = useRouter()
   const mostrarClase = clasesMap && Object.keys(clasesMap).length > 1
   const [tareaAEliminar, setTareaAEliminar] = useState(null)
+  const [menuAbierto, setMenuAbierto] = useState(null)
 
   if (tareas.length === 0) {
     return (
@@ -60,9 +69,7 @@ export default function TablaTareas({ tareas, clasesMap, resultados, onEliminar,
               <th className="text-left px-4 py-3 font-semibold text-gray-500 text-xs uppercase tracking-wide hidden md:table-cell">
                 Promedio
               </th>
-              <th className="text-right px-4 py-3 font-semibold text-gray-500 text-xs uppercase tracking-wide">
-                Acciones
-              </th>
+              <th className="text-right px-4 py-3 font-semibold text-gray-500 text-xs uppercase tracking-wide w-12" />
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-50">
@@ -100,27 +107,107 @@ export default function TablaTareas({ tareas, clasesMap, resultados, onEliminar,
                     </span>
                   </td>
                   <td className="px-4 py-3.5 text-right" onClick={(e) => e.stopPropagation()}>
-                    <div className="flex items-center justify-end gap-1">
-                      <Boton
-                        variante="fantasma"
-                        size="sm"
-                        onClick={() => router.push(`/profesor/tarea/${tarea.id}`)}
-                      >
-                        Ver detalle
-                      </Boton>
+                    <div className="relative">
                       <button
-                        onClick={() => setTareaAEliminar(tarea)}
-                        className="p-1.5 rounded-lg text-gray-400 hover:text-red-600 hover:bg-red-50 transition-colors"
-                        title="Eliminar tarea"
+                        type="button"
+                        onClick={() => setMenuAbierto(menuAbierto === tarea.id ? null : tarea.id)}
+                        className="p-2 rounded-lg border border-gray-200 text-gray-500 hover:text-gray-700 hover:bg-gray-50 hover:border-gray-300 transition-colors"
                       >
                         <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
-                          <path
-                            fillRule="evenodd"
-                            d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
-                            clipRule="evenodd"
-                          />
+                          <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
                         </svg>
                       </button>
+
+                      {menuAbierto === tarea.id && (
+                        <>
+                          <div
+                            className="fixed inset-0 z-10"
+                            onClick={() => setMenuAbierto(null)}
+                          />
+                          <div className="absolute right-0 top-full mt-1 z-20 w-48 bg-white rounded-xl border border-gray-200 shadow-lg py-1">
+                            <button
+                              type="button"
+                              onClick={() => {
+                                router.push(`/profesor/tarea/${tarea.id}`)
+                                setMenuAbierto(null)
+                              }}
+                              className="w-full text-left px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 flex items-center gap-3"
+                            >
+                              <svg
+                                className="w-4 h-4 text-gray-400"
+                                viewBox="0 0 20 20"
+                                fill="currentColor"
+                              >
+                                <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
+                                <path
+                                  fillRule="evenodd"
+                                  d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z"
+                                  clipRule="evenodd"
+                                />
+                              </svg>
+                              Ver detalle
+                            </button>
+                            {tarea.estado === 'borrador' && (
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  router.push(`/profesor/generar?tarea=${tarea.id}`)
+                                  setMenuAbierto(null)
+                                }}
+                                className="w-full text-left px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 flex items-center gap-3"
+                              >
+                                <svg
+                                  className="w-4 h-4 text-gray-400"
+                                  viewBox="0 0 20 20"
+                                  fill="currentColor"
+                                >
+                                  <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
+                                </svg>
+                                Editar
+                              </button>
+                            )}
+                            {onDuplicar && (
+                              <button
+                                type="button"
+                                disabled={duplicando}
+                                onClick={() => {
+                                  setMenuAbierto(null)
+                                  onDuplicar(tarea)
+                                }}
+                                className="w-full text-left px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 flex items-center gap-3 disabled:opacity-50"
+                              >
+                                <svg
+                                  className="w-4 h-4 text-gray-400"
+                                  viewBox="0 0 20 20"
+                                  fill="currentColor"
+                                >
+                                  <path d="M7 9a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2H9a2 2 0 01-2-2V9z" />
+                                  <path d="M5 3a2 2 0 00-2 2v6a2 2 0 002 2V5h8a2 2 0 00-2-2H5z" />
+                                </svg>
+                                Duplicar
+                              </button>
+                            )}
+                            <div className="border-t border-gray-100 my-1" />
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setTareaAEliminar(tarea)
+                                setMenuAbierto(null)
+                              }}
+                              className="w-full text-left px-4 py-2.5 text-sm text-red-600 hover:bg-red-50 flex items-center gap-3"
+                            >
+                              <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+                                <path
+                                  fillRule="evenodd"
+                                  d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                                  clipRule="evenodd"
+                                />
+                              </svg>
+                              Eliminar
+                            </button>
+                          </div>
+                        </>
+                      )}
                     </div>
                   </td>
                 </tr>

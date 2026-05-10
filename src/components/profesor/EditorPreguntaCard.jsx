@@ -117,7 +117,7 @@ export default function EditorPreguntaCard({
             </span>
 
             {/* Action buttons */}
-            <div className="flex items-center gap-0.5 opacity-0 group-hover:opacity-100 transition-opacity">
+            <div className="flex items-center gap-0.5 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
               {/* Move up */}
               <button
                 type="button"
