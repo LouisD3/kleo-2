@@ -1071,7 +1071,7 @@
           "resultado": "−0.55 está entre −0.6 y −0.5."
         }
       ],
-      "datos_curiosos": "Si tomas dos números racionales que parezcan increíblemente cercanos, como 0.0000001 y 0.0000002, entre ellos todavía hay infinitos racionales. ¡Nunca se acaban! Esta propiedad fue estudiada por el matemático alemán Richard Dedekind en el siglo XIX.",
+      "datos_curiosos": "¿Sabías que entre dos números racionales siempre hay otro? Por ejemplo, entre 10 y 11 pesos están 10.50, 10.25, 10.10... ¡Hay infinitos precios posibles! Por eso las etiquetas en las tiendas pueden mostrar precios como $10.99. Esta propiedad se llama densidad y es exclusiva de los racionales: entre dos enteros consecutivos como 3 y 4, no hay otro entero.",
       "ejercicios": [
         {
           "numero": 1,
@@ -1409,6 +1409,12 @@
         {
           "numero": 4,
           "enunciado": "La temperatura a las 6 a.m. era −4 °C. A mediodía subió 12 grados. ¿Cuál es la temperatura a mediodía?",
+          "espacio": true,
+          "lineas": 3
+        },
+        {
+          "numero": 5,
+          "enunciado": "A las 6:00 a.m. la temperatura en la Ciudad de México era de -2 °C. A mediodía subió 9 °C y por la noche bajó 5 °C. ¿Cuál fue la temperatura final?",
           "espacio": true,
           "lineas": 3
         }
@@ -1843,7 +1849,7 @@
         {
           "titulo": "Propiedad conmutativa",
           "diapositiva": "1-3",
-          "libro": "pp. 48-50",
+          "libro": "Sección correspondiente",
           "video": null,
           "descripcion": "Define la propiedad conmutativa: a + b = b + a y a × b = b × a. Presenta al menos 4 ejemplos numéricos variados (enteros positivos, negativos y fracciones). Pide a los alumnos que propongan sus propios ejemplos y los verifiquen con calculadora.",
           "tip": "Usa arreglos rectangulares (3 filas × 5 columnas vs. 5 filas × 3 columnas) para visualizar la conmutatividad de la multiplicación."
@@ -1851,7 +1857,7 @@
         {
           "titulo": "Propiedad asociativa",
           "diapositiva": "4-6",
-          "libro": "pp. 50-52",
+          "libro": "Sección correspondiente",
           "video": "min 0:00-3:30",
           "descripcion": "Explica que agrupar de distinta forma no cambia el resultado: (a + b) + c = a + (b + c). Resuelve (2 + 8) + 5 y 2 + (8 + 5) paso a paso. Repite con multiplicación: (3 × 4) × 5 y 3 × (4 × 5). Muestra que la asociativa facilita el cálculo mental eligiendo agrupaciones convenientes.",
           "tip": null
@@ -1859,7 +1865,7 @@
         {
           "titulo": "Contraejemplos con resta y división",
           "diapositiva": "7-9",
-          "libro": "pp. 52-53",
+          "libro": "Sección correspondiente",
           "video": null,
           "descripcion": "Organiza una actividad en parejas: cada pareja debe encontrar un contraejemplo que demuestre que la resta no es conmutativa y otro para la división. Después, repiten el ejercicio con la propiedad asociativa. Socialicen resultados y redacten una conclusión grupal.",
           "tip": "Enfatiza que un solo contraejemplo basta para demostrar que una propiedad no se cumple; esto introduce el razonamiento lógico-matemático."
@@ -1970,7 +1976,7 @@
           "resultado": "La resta no cumple la propiedad conmutativa."
         }
       ],
-      "datos_curiosos": "La palabra \"conmutativa\" viene del latín commutare, que significa \"intercambiar\". El matemático francés François Servois fue quien usó estos términos por primera vez en 1814, aunque la idea ya la conocían los babilonios hace más de 4,000 años.",
+      "datos_curiosos": "Imagina que vas a la tienda: comprar 3 bolsas de 4 naranjas te da las mismas naranjas que comprar 4 bolsas de 3 naranjas (3 × 4 = 4 × 3 = 12). ¡Esa es la propiedad conmutativa de la multiplicación! Pero cuidado: si comes 3 tacos y luego 2, no es lo mismo que comer 2 tacos y luego 3... bueno, en ese caso sí es lo mismo porque la suma también es conmutativa.",
       "ejercicios": [
         {
           "numero": 1,
@@ -1995,6 +2001,12 @@
           "enunciado": "Calcula (−4) + 9 + 4 + (−9) usando las propiedades para hacerlo rápido.",
           "espacio": true,
           "lineas": 3
+        },
+        {
+          "numero": 5,
+          "enunciado": "En una tienda, 5 paquetes de 8 galletas cuestan lo mismo que 8 paquetes de 5 galletas. ¿Qué propiedad explica esto? ¿Funciona igual con la resta? Da un contraejemplo.",
+          "espacio": true,
+          "lineas": 4
         }
       ],
       "puntos_clave": [
@@ -2139,7 +2151,7 @@
         {
           "titulo": "Propiedad distributiva",
           "diapositiva": "1-3",
-          "libro": "pp. 54-56",
+          "libro": "Sección correspondiente",
           "video": null,
           "descripcion": "Formaliza: a × (b + c) = a × b + a × c. También funciona con la resta: a × (b − c) = a × b − a × c. Resuelve 3 ejemplos numéricos variados. Muestra el modelo de área: un rectángulo de 4 × (5 + 3) equivale a dos rectángulos de 4 × 5 y 4 × 3 juntos.",
           "tip": "El modelo de área es muy poderoso; dibuja los rectángulos con colores distintos para que los alumnos visualicen la descomposición."
@@ -2147,7 +2159,7 @@
         {
           "titulo": "Jerarquía de operaciones",
           "diapositiva": "4-6",
-          "libro": "pp. 56-58",
+          "libro": "Sección correspondiente",
           "video": "min 1:00-4:00",
           "descripcion": "Presenta la jerarquía: 1° paréntesis (de dentro hacia fuera), 2° potencias y raíces, 3° multiplicación y división (de izquierda a derecha), 4° suma y resta (de izquierda a derecha). Resuelve paso a paso: 3 + 4 × 2 = 3 + 8 = 11 (no 14). Presenta 2 ejercicios donde el error típico es ignorar la jerarquía.",
           "tip": null
@@ -2155,7 +2167,7 @@
         {
           "titulo": "Símbolos de agrupación y ejercicios combinados",
           "diapositiva": "7-9",
-          "libro": "pp. 58-60",
+          "libro": "Sección correspondiente",
           "video": null,
           "descripcion": "Explica el orden de los símbolos de agrupación: primero paréntesis (), luego corchetes [], luego llaves {}. Resuelve en el pizarrón: {2 × [3 + (4 − 1)] + 5} paso a paso. Forma equipos de 3 y entrega 4 expresiones para que las resuelvan aplicando jerarquía y agrupación. Socialicen resultados.",
           "tip": "Pide a los equipos que escriban cada paso intermedio; esto ayuda a detectar exactamente dónde ocurre un error."
@@ -2401,7 +2413,7 @@
         {
           "titulo": "Sucesiones y diferencia común",
           "diapositiva": "1-3",
-          "libro": "pp. 62-64",
+          "libro": "Sección correspondiente",
           "video": null,
           "descripcion": "Define sucesión como una lista ordenada de números que sigue un patrón. Introduce progresión aritmética: sucesión donde la diferencia entre términos consecutivos es constante (d). Presenta 3 sucesiones y pide que identifiquen cuáles son progresiones aritméticas y calculen d. Incluye una con d negativa (ejemplo: 20, 17, 14, 11, …).",
           "tip": "Usa la notación a₁, a₂, a₃, … desde el inicio para que se familiaricen con los subíndices antes de llegar a la fórmula general."
@@ -2409,7 +2421,7 @@
         {
           "titulo": "Fórmula del término general",
           "diapositiva": "4-6",
-          "libro": "pp. 64-66",
+          "libro": "Sección correspondiente",
           "video": "min 0:30-3:00",
           "descripcion": "Construye la fórmula inductivamente: a₁ = a₁, a₂ = a₁ + d, a₃ = a₁ + 2d, a₄ = a₁ + 3d. Pregunta: ¿Ven el patrón? Concluye que aₙ = a₁ + (n − 1)d. Aplica la fórmula para encontrar el término 50 de la sucesión 3, 6, 9, … (a₅₀ = 3 + 49 × 3 = 150). Resuelve otro ejemplo con d negativa.",
           "tip": null
@@ -2417,7 +2429,7 @@
         {
           "titulo": "Sucesiones de figuras",
           "diapositiva": "7-9",
-          "libro": "pp. 66-68",
+          "libro": "Sección correspondiente",
           "video": null,
           "descripcion": "Presenta 3 sucesiones figurales (cuadrados que crecen en L, hexágonos en fila, puntos en triángulo). En cada caso, los alumnos deben: 1) Contar los elementos en las primeras 4 figuras, 2) Escribir la sucesión numérica, 3) Encontrar d, 4) Escribir la expresión algebraica del término general, 5) Verificar calculando el término 10.",
           "tip": "Anima a los alumnos a dibujar la Figura 5 antes de buscar la fórmula; la transición de lo concreto a lo abstracto es clave."
@@ -2722,7 +2734,7 @@
         {
           "titulo": "Variables, constantes y expresiones algebraicas",
           "diapositiva": "1-3",
-          "libro": "pp. 70-72",
+          "libro": "Sección correspondiente",
           "video": null,
           "descripcion": "Define variable (letra que representa un valor desconocido o que puede cambiar) y constante (valor fijo). Presenta ejemplos: en 3x + 7, la variable es x y las constantes son 3 y 7. Muestra expresiones con más de una variable: 2a + 3b. Pide a los alumnos que identifiquen variables y constantes en 5 expresiones dadas.",
           "tip": "Relaciona con la fórmula de sucesiones (aₙ = a₁ + (n−1)d) que ya conocen: n es la variable y a₁, d son constantes para cada sucesión particular."
@@ -2730,7 +2742,7 @@
         {
           "titulo": "Del lenguaje común al algebraico",
           "diapositiva": "4-6",
-          "libro": "pp. 72-74",
+          "libro": "Sección correspondiente",
           "video": "min 1:00-3:30",
           "descripcion": "Presenta una tabla de traducción con frases clave: 'el doble de un número' → 2x, 'un número aumentado en 5' → x + 5, 'el cuadrado de un número' → x², 'la mitad de un número menos 3' → x/2 − 3. Trabaja 6 frases en grupo, discutiendo posibles confusiones. Enfatiza que 'un número' se reemplaza por una variable.",
           "tip": null
@@ -2738,7 +2750,7 @@
         {
           "titulo": "Del lenguaje algebraico al común",
           "diapositiva": "7-9",
-          "libro": "pp. 74-76",
+          "libro": "Sección correspondiente",
           "video": null,
           "descripcion": "Ahora el proceso inverso: dada la expresión 4x − 10, redactar en español qué representa. Forma parejas y entrega 8 tarjetas: 4 con frases en español y 4 con expresiones algebraicas; deben emparejarlas. Después, cada pareja inventa 2 expresiones propias y las intercambia con otra pareja para traducir.",
           "tip": "Acepta diferentes redacciones válidas: '3x + 1' puede ser 'el triple de un número más uno' o 'tres veces un número, aumentado en uno'. Esto refuerza la flexibilidad del lenguaje."
@@ -2840,7 +2852,7 @@
           "resultado": "2x − 8"
         }
       ],
-      "datos_curiosos": "La palabra \"álgebra\" viene del árabe al-jabr, del título del libro del matemático persa Al-Juarismi (siglo IX). Su libro se llamaba \"Al-Kitab al-mukhtasar fi hisab al-jabr wal-muqabala\", que significa \"Compendio de cálculo por restauración y balanceo\". ¡De ahí también viene la palabra \"algoritmo\"!",
+      "datos_curiosos": "El álgebra está en todas partes. Si tienes x amigos y cada uno trae 3 refrescos a tu fiesta, tendrás 3x refrescos. Si x = 5, tienes 15 refrescos. Si x = 10, tienes 30. ¡La variable x te permite calcular para cualquier cantidad de amigos sin hacer una cuenta nueva cada vez! Los programadores usan variables todo el tiempo para hacer que las apps funcionen.",
       "ejercicios": [
         {
           "numero": 1,
@@ -3011,7 +3023,7 @@
         {
           "titulo": "Perímetro algebraico de figuras regulares",
           "diapositiva": "1-3",
-          "libro": "pp. 78-80",
+          "libro": "Sección correspondiente",
           "video": null,
           "descripcion": "Repasa: el perímetro de un polígono regular de n lados es P = n × lado. Aplica con expresiones algebraicas: triángulo equilátero de lado (2x + 3): P = 3(2x + 3) = 6x + 9. Cuadrado de lado (x − 1): P = 4(x − 1) = 4x − 4. Pentágono regular de lado (3x): P = 15x. Pide a los alumnos que apliquen la distributiva para desarrollar cada expresión.",
           "tip": "Conecta con la propiedad distributiva de la semana 8 para que vean la utilidad del álgebra en geometría."
@@ -3019,7 +3031,7 @@
         {
           "titulo": "Perímetro de figuras irregulares y términos semejantes",
           "diapositiva": "4-6",
-          "libro": "pp. 80-82",
+          "libro": "Sección correspondiente",
           "video": "min 2:00-4:30",
           "descripcion": "Presenta un triángulo con lados (2x + 1), (x + 5) y (3x − 2). El perímetro es la suma: (2x + 1) + (x + 5) + (3x − 2). Enseña a agrupar términos semejantes: 2x + x + 3x = 6x y 1 + 5 − 2 = 4, por lo que P = 6x + 4. Repite con un trapecio y un pentágono irregular. Enfatiza que solo se suman términos con la misma variable.",
           "tip": null
@@ -3027,7 +3039,7 @@
         {
           "titulo": "Problemas inversos y verificación",
           "diapositiva": "7-9",
-          "libro": "pp. 82-84",
+          "libro": "Sección correspondiente",
           "video": null,
           "descripcion": "Plantea problemas inversos: 'El perímetro de un rectángulo es 10x + 6. Si el largo es (3x + 2), ¿cuánto mide el ancho?' Guía el razonamiento: P = 2(largo + ancho), entonces 10x + 6 = 2[(3x + 2) + ancho]. Forma equipos y entrega 3 problemas similares. Al final, cada equipo verifica sustituyendo un valor de x.",
           "tip": "La verificación numérica es fundamental: si x = 1, el perímetro algebraico y el numérico deben coincidir. Esto da confianza al alumno en su resultado."
@@ -3091,7 +3103,7 @@
             "xMin": 0,
             "xMax": 6,
             "yMin": 0,
-            "yMax": 4,
+            "yMax": 7,
             "puntos": [
               {
                 "x": 0,
@@ -3101,17 +3113,17 @@
               {
                 "x": 5,
                 "y": 0,
-                "label": ""
+                "label": "3x+2"
               },
               {
                 "x": 5,
-                "y": 3,
+                "y": 6,
                 "label": ""
               },
               {
                 "x": 0,
-                "y": 3,
-                "label": ""
+                "y": 6,
+                "label": "x+5"
               }
             ],
             "lineas": [
@@ -3125,17 +3137,17 @@
                 "x1": 5,
                 "y1": 0,
                 "x2": 5,
-                "y2": 3
+                "y2": 6
               },
               {
                 "x1": 5,
-                "y1": 3,
+                "y1": 6,
                 "x2": 0,
-                "y2": 3
+                "y2": 6
               },
               {
                 "x1": 0,
-                "y1": 3,
+                "y1": 6,
                 "x2": 0,
                 "y2": 0
               }
@@ -3333,7 +3345,7 @@
         {
           "titulo": "Ecuaciones y propiedades de la igualdad",
           "diapositiva": "1-3",
-          "libro": "pp. 86-88",
+          "libro": "Sección correspondiente",
           "video": null,
           "descripcion": "Define ecuación como una igualdad con una incógnita. Usa la metáfora de la balanza: lo que hagas de un lado, debes hacerlo del otro para mantener el equilibrio. Demuestra las 4 propiedades: si a = b, entonces a + c = b + c, a − c = b − c, a × c = b × c, a ÷ c = b ÷ c (c ≠ 0). Resuelve una ecuación sencilla: 2x + 3 = 11, paso a paso justificando cada propiedad usada.",
           "tip": "La metáfora de la balanza es muy efectiva. Si tienes una balanza física o virtual, úsala para demostrar los primeros ejemplos."
@@ -3341,7 +3353,7 @@
         {
           "titulo": "Ecuaciones de la forma Ax + B = Cx + D",
           "diapositiva": "4-7",
-          "libro": "pp. 88-91",
+          "libro": "Sección correspondiente",
           "video": "min 0:00-4:00",
           "descripcion": "Resuelve paso a paso 3x + 4 = 5x − 6 (del inicio): resta 3x a ambos lados → 4 = 2x − 6; suma 6 → 10 = 2x; divide entre 2 → x = 5. Verifica sustituyendo: 3(5) + 4 = 19 y 5(5) − 6 = 19. Resuelve 2 ecuaciones más con diferentes niveles: 7x − 2 = 3x + 10 y 4(x + 1) = 2x + 14 (requiere distributiva primero). Enfatiza la verificación.",
           "tip": null
@@ -3349,7 +3361,7 @@
         {
           "titulo": "Práctica guiada y errores comunes",
           "diapositiva": "8-10",
-          "libro": "pp. 91-93",
+          "libro": "Sección correspondiente",
           "video": null,
           "descripcion": "Presenta 4 ecuaciones para resolver en parejas: a) 5x + 3 = 2x + 18, b) 6x − 7 = 4x + 5, c) 3(x − 2) = x + 8, d) 2(3x + 1) = 4(x + 3). Mientras trabajan, circula por el salón y detecta errores comunes. Después, muestra en el pizarrón 2 resoluciones con errores intencionales y pide que los identifiquen y corrijan.",
           "tip": "Los errores más frecuentes son: olvidar cambiar el signo al pasar un término al otro lado, y no aplicar la distributiva correctamente. Abórdalos explícitamente."
@@ -3568,7 +3580,7 @@
   {
     "secuencia": 13,
     "titulo": "Porcentajes",
-    "contenido": "Ecuaciones lineales y cuadráticas.",
+    "contenido": "Porcentajes en diversas situaciones.",
     "pda": "Resuelve problemas de porcentajes en diversas situaciones.",
     "evaluacion": {
       "preguntas": [
@@ -3848,7 +3860,7 @@
   {
     "secuencia": 14,
     "titulo": "Relaciones proporcionales",
-    "contenido": "Funciones.",
+    "contenido": "Relaciones proporcionales y no proporcionales.",
     "pda": "Relaciona e interpreta relaciones proporcional y no proporcional a partir de su representación tabular, gráfica y con diagramas.",
     "evaluacion": {
       "preguntas": [
@@ -4140,7 +4152,7 @@
   {
     "secuencia": 15,
     "titulo": "Fórmula de proporcionalidad",
-    "contenido": "Funciones.",
+    "contenido": "Ecuaciones proporcionales con constante positiva y negativa.",
     "pda": "Modela y resuelve diversas situaciones a través de ecuaciones proporcionales con constante positiva y negativa.",
     "evaluacion": {
       "preguntas": [
@@ -4505,8 +4517,8 @@
         },
         {
           "tipo": "calculo",
-          "pregunta": "En un plano cartesiano, la recta l pasa por los puntos (0, 0) y (4, 4), y la recta m pasa por los puntos (0, 4) y (4, 0). ¿Las rectas son paralelas, secantes o perpendiculares? Justifica.",
-          "respuesta": "Paso 1: Calcular la pendiente de la recta l: m₁ = (4−0)/(4−0) = 4/4 = 1.\nPaso 2: Calcular la pendiente de la recta m: m₂ = (0−4)/(4−0) = −4/4 = −1.\nPaso 3: Las pendientes no son iguales, entonces no son paralelas. Son secantes.\nPaso 4: Verificar perpendicularidad: m₁ × m₂ = 1 × (−1) = −1. Como el producto es −1, son perpendiculares.\nRespuesta: Las rectas son perpendiculares."
+          "pregunta": "Dibuja dos rectas que se crucen en un punto. ¿Cómo se llaman? Dibuja dos rectas que nunca se crucen. ¿Cómo se llaman?",
+          "respuesta": "Las rectas que se cruzan son secantes (perpendiculares si forman 90°). Las que nunca se cruzan son paralelas."
         }
       ]
     },
@@ -4967,6 +4979,12 @@
         {
           "numero": 3,
           "enunciado": "Un angulo mide (2x + 10) grados y su adyacente mide (3x + 20) grados. Encuentra x y la medida de ambos angulos. (Pista: los adyacentes suman 180 grados.)",
+          "espacio": true,
+          "lineas": 4
+        },
+        {
+          "numero": 4,
+          "enunciado": "Las manecillas del reloj marcan las 3:00. ¿Qué ángulo forman? ¿Y a las 5:00?",
           "espacio": true,
           "lineas": 4
         }
@@ -6444,7 +6462,7 @@
       "conceptos": [
         {
           "titulo": "Radio, diametro y cuerda",
-          "contenido": "El radio (r) es el segmento que va del centro a cualquier punto de la circunferencia; todos los radios miden lo mismo. El diametro (d) es la cuerda que pasa por el centro; siempre mide el doble del radio: d = 2r. Una cuerda es cualquier segmento que une dos puntos de la circunferencia. El diametro es la cuerda de mayor longitud posible. La perpendicular desde el centro a una cuerda la divide exactamente a la mitad.",
+          "contenido": "Recuerda: el teorema de Pitágoras dice que en un triángulo rectángulo, a² + b² = c², donde c es la hipotenusa. El radio (r) es el segmento que va del centro a cualquier punto de la circunferencia; todos los radios miden lo mismo. El diametro (d) es la cuerda que pasa por el centro; siempre mide el doble del radio: d = 2r. Una cuerda es cualquier segmento que une dos puntos de la circunferencia. El diametro es la cuerda de mayor longitud posible. La perpendicular desde el centro a una cuerda la divide exactamente a la mitad.",
           "definicion": "Cuerda: segmento que une dos puntos cualesquiera de la circunferencia. Cuando pasa por el centro, se llama diametro.",
           "figura": {
             "tipo": "circulo",
@@ -6707,8 +6725,8 @@
             "respuesta_modelo": "R.M. Si duplicas el ángulo, el área se duplica (relación directa con θ). Si duplicas el radio, el área se cuadruplica porque el área depende de r² (el doble de radio al cuadrado es cuatro veces más). Esto muestra que el radio tiene un efecto mucho mayor que el ángulo en el área del sector."
           },
           {
-            "pregunta": "¿Cuántos lados tendría que tener un polígono regular inscrito para que su perímetro difiera del perímetro de la circunferencia en menos del 1%?",
-            "respuesta_modelo": "R.M. El perímetro del polígono regular inscrito de n lados es P = 2nr·sen(π/n), y el de la circunferencia es C = 2πr. Se necesita que P/C > 0.99. Probando valores: con 26 lados ya se obtiene una aproximación mejor al 99%. Arquímedes usó polígonos de 96 lados para obtener su famosa aproximación de π."
+            "pregunta": "¿Por qué crees que Arquímedes usó polígonos de muchos lados para aproximar el valor de π? Explica con tus palabras.",
+            "respuesta_modelo": "Un polígono regular inscrito en un círculo se parece cada vez más al círculo conforme se le agregan lados. Arquímedes calculó el perímetro de polígonos con muchos lados para obtener un valor muy cercano al perímetro de la circunferencia, y así aproximar π."
           }
         ]
       },
@@ -7692,7 +7710,7 @@
       "conceptos": [
         {
           "titulo": "Distancia de un punto a una recta",
-          "contenido": "La distancia de un punto a una recta es la longitud del segmento perpendicular que va desde el punto hasta la recta. De todos los segmentos que puedes trazar desde el punto hacia la recta, el perpendicular siempre es el más corto. Ese ángulo de 90° es la clave.",
+          "contenido": "La distancia de un punto a una recta es la longitud del segmento perpendicular que va desde el punto hasta la recta. De todos los segmentos que puedes trazar desde el punto hacia la recta, el perpendicular siempre es el más corto. Ese ángulo de 90° es la clave. Este principio funciona para cualquier recta, incluyendo las oblicuas (con pendiente), aunque en este curso nos concentramos en los casos más sencillos: rectas horizontales y verticales.",
           "definicion": "Para una recta horizontal y = k, la distancia desde P(a, b) es |b − k|. Para una recta vertical x = k, la distancia desde P(a, b) es |a − k|.",
           "figura": {
             "tipo": "plano_cartesiano",
@@ -8744,7 +8762,7 @@
           "resultado": "El sector más grande es fútbol (135°, más de un tercio del círculo) y el más pequeño es voleibol (45°)."
         }
       ],
-      "datos_curiosos": "Florence Nightingale, la famosa enfermera británica, fue pionera en el uso de gráficas estadísticas. En 1858 creó un tipo especial de gráfica circular para demostrar que más soldados morían por enfermedades que por heridas de guerra. Sus gráficas convencieron al gobierno de mejorar las condiciones sanitarias en los hospitales.",
+      "datos_curiosos": "El INEGI (Instituto Nacional de Estadística y Geografía) realiza el censo de población en México cada 10 años. En 2020, el censo registró que México tenía 126 millones de habitantes. Los estadísticos del INEGI usan gráficas de barras y circulares —como las que aprendiste— para presentar datos sobre educación, empleo y vivienda. Incluso la Liga MX publica gráficas de goles, asistencias y posesión de balón para analizar el rendimiento de los equipos cada jornada.",
       "ejercicios": [
         {
           "numero": 1,
@@ -8763,6 +8781,12 @@
           "enunciado": "En una gráfica circular, un sector mide 72°. ¿Qué porcentaje del total representa? Si el total es 250 datos, ¿cuántos corresponden a ese sector?",
           "espacio": true,
           "lineas": 3
+        },
+        {
+          "numero": 4,
+          "enunciado": "Un comerciante muestra una gráfica de barras donde parece que sus ventas se duplicaron de un mes a otro. Sin embargo, el eje Y empieza en 950 en lugar de 0. ¿La gráfica es engañosa? ¿Por qué? Redibuja la gráfica con el eje Y empezando en 0 y compara.",
+          "espacio": true,
+          "lineas": 5
         }
       ],
       "puntos_clave": [
@@ -9323,46 +9347,15 @@
       ],
       "ejemplos": [
         {
-          "titulo": "Cálculo de las tres medidas",
-          "enunciado": "Las calificaciones de 7 alumnos son: 6, 7, 7, 8, 8, 8, 10. Calcula la media, mediana, moda y rango.",
+          "titulo": "Medidas de tendencia central con datos de la Liga MX",
+          "enunciado": "En los últimos 7 partidos de la Liga MX, un equipo anotó: 1, 2, 2, 3, 0, 2, 4 goles. Calcula la media, mediana, moda y rango.",
           "pasos": [
-            "Paso 1: Media = (6 + 7 + 7 + 8 + 8 + 8 + 10) / 7 = 54 / 7 ≈ 7.71.",
-            "Paso 2: Mediana = dato central (posición 4 de 7 datos ordenados) = 8.",
-            "Paso 3: Moda = 8 (aparece 3 veces, más que cualquier otro).",
-            "Paso 4: Rango = 10 − 6 = 4."
+            "Paso 1: Media = (1+2+2+3+0+2+4) / 7 = 14/7 = 2",
+            "Paso 2: Datos ordenados: {0, 1, 2, 2, 2, 3, 4}. Mediana = dato central (posición 4) = 2",
+            "Paso 3: Moda = 2 (aparece 3 veces, más que cualquier otro)",
+            "Paso 4: Rango = 4 − 0 = 4"
           ],
-          "resultado": "Media ≈ 7.71, Mediana = 8, Moda = 8, Rango = 4.",
-          "figura": {
-            "tipo": "grafica_barras",
-            "datos": [
-              {
-                "label": "5",
-                "valor": 2
-              },
-              {
-                "label": "6",
-                "valor": 4
-              },
-              {
-                "label": "7",
-                "valor": 7
-              },
-              {
-                "label": "8",
-                "valor": 5
-              },
-              {
-                "label": "9",
-                "valor": 3
-              },
-              {
-                "label": "10",
-                "valor": 1
-              }
-            ],
-            "width": 280,
-            "height": 150
-          }
+          "resultado": "Media = 2, Mediana = 2, Moda = 2, Rango = 4. Rendimiento bastante regular."
         },
         {
           "titulo": "Mediana con número par de datos",
@@ -10215,7 +10208,8 @@
         "La negación (¬) invierte el valor de verdad de una proposición",
         "La conjunción (∧, Y) es verdadera solo cuando ambas proposiciones son verdaderas",
         "La disyunción (∨, O) es falsa solo cuando ambas proposiciones son falsas",
-        "Las tablas de verdad nos permiten analizar todas las combinaciones posibles de valores"
+        "Las tablas de verdad nos permiten analizar todas las combinaciones posibles de valores",
+        "Nota: Si el tiempo es limitado, prioriza la negación y la conjunción. La disyunción puede reforzarse la siguiente semana."
       ],
       "preguntas_comprension": [
         "¿Por qué '¡Siéntate!' no es una proposición lógica?",
@@ -10586,6 +10580,12 @@
           "enunciado": "Escribe un ejemplo de bicondicional verdadero y uno falso usando situaciones cotidianas.",
           "espacio": true,
           "lineas": 3
+        },
+        {
+          "numero": 5,
+          "enunciado": "Encuentra el error: Un compañero dice: 'Si llueve, llevo paraguas. No llueve, entonces no llevo paraguas.' ¿Es correcto su razonamiento? Explica qué falla lógica comete.",
+          "espacio": true,
+          "lineas": 5
         }
       ],
       "puntos_clave": [
