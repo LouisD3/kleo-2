@@ -118,7 +118,7 @@
             "numerador": 3,
             "denominador": 4,
             "width": 200,
-            "height": 35
+            "height": 50
           }
         },
         {
@@ -130,7 +130,7 @@
             "numerador": 1,
             "denominador": 3,
             "width": 200,
-            "height": 35
+            "height": 50
           }
         },
         {
@@ -154,7 +154,7 @@
             "numerador": 5,
             "denominador": 8,
             "width": 200,
-            "height": 35
+            "height": 50
           }
         },
         {
@@ -235,7 +235,7 @@
           "numerador": 2,
           "denominador": 5,
           "width": 250,
-          "height": 40
+          "height": 55
         }
       },
       {
@@ -3696,7 +3696,7 @@
             "numerador": 1,
             "denominador": 4,
             "width": 200,
-            "height": 35
+            "height": 50
           }
         },
         {
@@ -3725,7 +3725,7 @@
             "numerador": 3,
             "denominador": 10,
             "width": 200,
-            "height": 35
+            "height": 50
           }
         },
         {
