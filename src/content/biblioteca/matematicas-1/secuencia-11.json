@@ -1,0 +1,313 @@
+{
+  "secuencia": 11,
+  "titulo": "Perímetros",
+  "contenido": "Introducción al álgebra.",
+  "pda": "Representa algebraicamente perímetros de figuras.",
+  "evaluacion": {
+    "preguntas": [
+      {
+        "tipo": "opcion_multiple",
+        "pregunta": "Si un rectángulo tiene lados de longitud x y (x + 3), ¿cuál es su perímetro?",
+        "opciones": ["A) 2x + 3", "B) 4x + 3", "C) 4x + 6", "D) x² + 3x"],
+        "respuesta": "C"
+      },
+      {
+        "tipo": "verdadero_falso",
+        "pregunta": "El perímetro de un triángulo equilátero de lado x es 3x.",
+        "respuesta": true
+      },
+      {
+        "tipo": "espacios",
+        "pregunta": "El perímetro de un cuadrado de lado x se expresa algebraicamente como ___.",
+        "respuesta": "4x"
+      },
+      {
+        "tipo": "calculo",
+        "pregunta": "Un triángulo tiene lados de 2x + 1, 3x − 2 y x + 5. Encuentra su perímetro simplificado y calcula su valor cuando x = 4.",
+        "respuesta": "Perímetro = (2x + 1) + (3x − 2) + (x + 5) = 6x + 4. Para x = 4: P = 6(4) + 4 = 24 + 4 = 28 unidades."
+      },
+      {
+        "tipo": "abierta",
+        "pregunta": "Un terreno rectangular tiene un perímetro de 54 metros. Si el largo mide el doble del ancho, ¿cuáles son las medidas del terreno? Plantea la ecuación y resuélvela.",
+        "respuesta": "Sea x el ancho. El largo es 2x. Perímetro = 2(x + 2x) = 2(3x) = 6x. Entonces 6x = 54, x = 9. El ancho mide 9 m y el largo mide 18 m. Comprobación: 2(9 + 18) = 2(27) = 54 m ✓"
+      }
+    ]
+  },
+  "orientacion": {
+    "contenidos_especificos": [
+      "Perímetro como suma de todos los lados de una figura",
+      "Expresión algebraica del perímetro de figuras regulares e irregulares",
+      "Simplificación de expresiones algebraicas con términos semejantes al calcular perímetros"
+    ],
+    "actividad_inicio": [
+      "Muestra un rectángulo con largo (3x + 1) cm y ancho (x + 4) cm dibujado en el pizarrón.",
+      "Pregunta: ¿Cómo calcularían el perímetro de este rectángulo?",
+      "Un alumno pasa al pizarrón y suma los cuatro lados.",
+      "Observen que el resultado contiene la variable x: el perímetro depende del valor que tenga x.",
+      "Pregunta: Si x = 2, ¿cuánto mide el perímetro? Verifiquen sustituyendo."
+    ],
+    "desarrollo": [
+      {
+        "titulo": "Perímetro algebraico de figuras regulares",
+        "diapositiva": "1-3",
+        "libro": "Sección correspondiente",
+        "video": null,
+        "descripcion": "Repasa: el perímetro de un polígono regular de n lados es P = n × lado. Aplica con expresiones algebraicas: triángulo equilátero de lado (2x + 3): P = 3(2x + 3) = 6x + 9. Cuadrado de lado (x − 1): P = 4(x − 1) = 4x − 4. Pentágono regular de lado (3x): P = 15x. Pide a los alumnos que apliquen la distributiva para desarrollar cada expresión.",
+        "tip": "Conecta con la propiedad distributiva de la semana 8 para que vean la utilidad del álgebra en geometría."
+      },
+      {
+        "titulo": "Perímetro de figuras irregulares y términos semejantes",
+        "diapositiva": "4-6",
+        "libro": "Sección correspondiente",
+        "video": "min 2:00-4:30",
+        "descripcion": "Presenta un triángulo con lados (2x + 1), (x + 5) y (3x − 2). El perímetro es la suma: (2x + 1) + (x + 5) + (3x − 2). Enseña a agrupar términos semejantes: 2x + x + 3x = 6x y 1 + 5 − 2 = 4, por lo que P = 6x + 4. Repite con un trapecio y un pentágono irregular. Enfatiza que solo se suman términos con la misma variable.",
+        "tip": null
+      },
+      {
+        "titulo": "Problemas inversos y verificación",
+        "diapositiva": "7-9",
+        "libro": "Sección correspondiente",
+        "video": null,
+        "descripcion": "Plantea problemas inversos: 'El perímetro de un rectángulo es 10x + 6. Si el largo es (3x + 2), ¿cuánto mide el ancho?' Guía el razonamiento: P = 2(largo + ancho), entonces 10x + 6 = 2[(3x + 2) + ancho]. Forma equipos y entrega 3 problemas similares. Al final, cada equipo verifica sustituyendo un valor de x.",
+        "tip": "La verificación numérica es fundamental: si x = 1, el perímetro algebraico y el numérico deben coincidir. Esto da confianza al alumno en su resultado."
+      }
+    ],
+    "cierre_individual": {
+      "reflexiona": "¿Qué ventaja tiene expresar un perímetro con una variable en lugar de un número fijo? Piensa en un arquitecto que diseña una habitación cuyas medidas aún no están decididas.",
+      "profundiza": [
+        {
+          "pregunta": "Un hexágono tiene lados que miden (x + 2), (2x), (x + 2), (3x − 1), (2x) y (x + 3) cm. Expresa su perímetro simplificado.",
+          "respuesta_modelo": "R.M. Sumo todos los lados: (x + 2) + (2x) + (x + 2) + (3x − 1) + (2x) + (x + 3). Agrupo términos con x: x + 2x + x + 3x + 2x + x = 10x. Agrupo constantes: 2 + 2 − 1 + 3 = 6. El perímetro simplificado es 10x + 6 cm."
+        },
+        {
+          "pregunta": "El perímetro de un triángulo equilátero es 12x − 9. ¿Cuánto mide cada lado?",
+          "respuesta_modelo": "R.M. Como un triángulo equilátero tiene 3 lados iguales, divido el perímetro entre 3: (12x − 9) ÷ 3 = 4x − 3. Cada lado mide (4x − 3) unidades. Verificación: 3(4x − 3) = 12x − 9."
+        }
+      ]
+    },
+    "cierre_grupal": [
+      "Cada equipo presenta uno de sus problemas inversos resueltos y explica el procedimiento.",
+      "Pregunta: ¿Qué operación algebraica usamos más al calcular perímetros? (Suma de términos semejantes).",
+      "Propón un reto: dibuja una figura cuyo perímetro sea exactamente 8x + 2. ¿Cuántas soluciones hay?",
+      "Discutan: ¿el perímetro algebraico puede dar un valor negativo? ¿Qué restricciones tendría x?",
+      "Anticipa: la semana que viene resolveremos ecuaciones lineales, donde encontraremos el valor exacto de x."
+    ],
+    "preguntas_comprension": [
+      "¿Cuál es el perímetro algebraico de un cuadrado de lado (5x − 2)?",
+      "Simplifica: (3x + 4) + (2x − 1) + (x + 7).",
+      "Si el perímetro de un rectángulo es 14x + 8 y el largo es (4x + 3), ¿cuánto mide el ancho?",
+      "¿Qué son los términos semejantes? Da un ejemplo.",
+      "Un triángulo tiene lados x, 2x y 3x. Si x = 5 cm, ¿cuánto mide el perímetro?"
+    ]
+  },
+  "libro": {
+    "introduccion": "¿Recuerdas cómo calcular el perímetro sumando los lados de una figura? Ahora imagina que los lados están expresados con letras. Eso es lo que haremos hoy: usar el álgebra para trabajar con perímetros de figuras cuyos lados son expresiones algebraicas.",
+    "conceptos": [
+      {
+        "titulo": "Perímetro con expresiones algebraicas",
+        "contenido": "El perímetro de una figura es la suma de todos sus lados. Si los lados están dados con variables, sumas las expresiones algebraicas combinando términos semejantes. Por ejemplo, un triángulo con lados 2x, 3x + 1 y x − 4 tiene perímetro = 2x + (3x + 1) + (x − 4) = 6x − 3.",
+        "definicion": "Perímetro: suma de las longitudes de todos los lados de una figura geométrica."
+      },
+      {
+        "titulo": "Figuras regulares",
+        "contenido": "En un cuadrado, los 4 lados son iguales. Si el lado mide (2x + 3), el perímetro es 4 × (2x + 3) = 8x + 12. En un rectángulo, hay dos pares de lados iguales: P = 2 × largo + 2 × ancho.",
+        "definicion": null
+      }
+    ],
+    "ejemplos": [
+      {
+        "titulo": "Perímetro de un rectángulo algebraico",
+        "enunciado": "Un rectángulo tiene largo (3x + 2) y ancho (x + 5). Calcula su perímetro.",
+        "pasos": [
+          "Paso 1: P = 2 × largo + 2 × ancho.",
+          "Paso 2: P = 2(3x + 2) + 2(x + 5).",
+          "Paso 3: Distribuye: 6x + 4 + 2x + 10.",
+          "Paso 4: Combina semejantes: 8x + 14."
+        ],
+        "resultado": "P = 8x + 14",
+        "figura": {
+          "tipo": "plano_cartesiano",
+          "xMin": 0,
+          "xMax": 6,
+          "yMin": 0,
+          "yMax": 7,
+          "puntos": [
+            {
+              "x": 0,
+              "y": 0,
+              "label": ""
+            },
+            {
+              "x": 5,
+              "y": 0,
+              "label": "3x+2"
+            },
+            {
+              "x": 5,
+              "y": 6,
+              "label": ""
+            },
+            {
+              "x": 0,
+              "y": 6,
+              "label": "x+5"
+            }
+          ],
+          "lineas": [
+            {
+              "x1": 0,
+              "y1": 0,
+              "x2": 5,
+              "y2": 0
+            },
+            {
+              "x1": 5,
+              "y1": 0,
+              "x2": 5,
+              "y2": 6
+            },
+            {
+              "x1": 5,
+              "y1": 6,
+              "x2": 0,
+              "y2": 6
+            },
+            {
+              "x1": 0,
+              "y1": 6,
+              "x2": 0,
+              "y2": 0
+            }
+          ],
+          "width": 180,
+          "height": 140
+        }
+      },
+      {
+        "titulo": "Perímetro de un triángulo y evaluación",
+        "enunciado": "Un triángulo tiene lados (x + 3), (2x − 1) y (x + 6). Encuentra el perímetro y evalúalo si x = 4.",
+        "pasos": [
+          "Paso 1: P = (x + 3) + (2x − 1) + (x + 6) = 4x + 8.",
+          "Paso 2: Si x = 4: P = 4(4) + 8 = 16 + 8 = 24."
+        ],
+        "resultado": "P = 4x + 8. Cuando x = 4, P = 24 unidades."
+      },
+      {
+        "titulo": "Encontrar el lado que falta",
+        "enunciado": "Un cuadrilátero tiene perímetro 10x + 2. Tres de sus lados miden 2x + 1, 3x − 2 y x + 5. ¿Cuánto mide el cuarto lado?",
+        "pasos": [
+          "Paso 1: Suma los tres lados conocidos: (2x + 1) + (3x − 2) + (x + 5) = 6x + 4.",
+          "Paso 2: El cuarto lado = Perímetro − suma de los otros tres.",
+          "Paso 3: (10x + 2) − (6x + 4) = 4x − 2."
+        ],
+        "resultado": "El cuarto lado mide 4x − 2."
+      }
+    ],
+    "datos_curiosos": "Los antiguos egipcios ya usaban fórmulas de perímetro para medir terrenos después de las inundaciones del río Nilo. La palabra \"geometría\" significa literalmente \"medida de la tierra\" en griego. ¡Ellos hacían álgebra sin saberlo!",
+    "ejercicios": [
+      {
+        "numero": 1,
+        "enunciado": "Un pentágono regular tiene lados de longitud (3x − 1). Escribe y simplifica la expresión de su perímetro.",
+        "espacio": true,
+        "lineas": 3
+      },
+      {
+        "numero": 2,
+        "enunciado": "Un rectángulo tiene largo (5x + 1) y ancho (2x − 3). Calcula el perímetro y evalúalo para x = 2.",
+        "espacio": true,
+        "lineas": 4
+      },
+      {
+        "numero": 3,
+        "enunciado": "Un triángulo isósceles tiene dos lados iguales de (4x + 1) y una base de (2x + 6). Si el perímetro es 48, encuentra el valor de x.",
+        "espacio": true,
+        "lineas": 4
+      },
+      {
+        "numero": 4,
+        "enunciado": "¿Es posible que un rectángulo con lados algebraicos tenga un perímetro constante (sin x)? Da un ejemplo o explica por qué no.",
+        "espacio": true,
+        "lineas": 3
+      }
+    ],
+    "puntos_clave": [
+      "El perímetro es la suma de todos los lados de la figura.",
+      "Para sumar lados algebraicos, combina términos semejantes.",
+      "En figuras regulares, multiplica el lado por el número de lados.",
+      "Puedes evaluar el perímetro sustituyendo el valor de la variable.",
+      "Si conoces el perímetro y algunos lados, puedes encontrar el lado faltante restando."
+    ]
+  },
+  "diapositiva": [
+    {
+      "titulo": "¿Qué es el perímetro?",
+      "puntos": [
+        "La suma de las longitudes de todos los lados de una figura",
+        "Es la distancia total si caminas por todo el contorno",
+        "Se mide en unidades de longitud (cm, m, km...)"
+      ],
+      "ejemplo": "Cuadrado de 5 cm: P = 5 + 5 + 5 + 5 = 20 cm"
+    },
+    {
+      "titulo": "Perímetro algebraico: cuadrado",
+      "puntos": ["4 lados iguales de longitud x", "P = x + x + x + x = 4x", "Si x = 7: P = 28"],
+      "ejemplo": "Lado = x → Perímetro = 4x"
+    },
+    {
+      "titulo": "Perímetro algebraico: rectángulo",
+      "puntos": [
+        "2 lados de longitud x (ancho) y 2 de longitud y (largo)",
+        "P = 2x + 2y = 2(x + y)",
+        "Si los lados dependen de una sola variable: simplifica"
+      ],
+      "ejemplo": "Ancho = x, largo = x + 5 → P = 2x + 2(x+5) = 4x + 10"
+    },
+    {
+      "titulo": "Perímetro algebraico: triángulo",
+      "puntos": [
+        "Tres lados: a + b + c",
+        "Cada lado puede ser una expresión algebraica diferente",
+        "Suma y agrupa términos semejantes"
+      ],
+      "ejemplo": "(2x+1) + (3x−4) + (x+6) = 6x + 3"
+    },
+    {
+      "titulo": "¿Qué son los términos semejantes?",
+      "puntos": [
+        "Términos que tienen la misma variable con el mismo exponente",
+        "3x y 5x son semejantes → se suman: 8x",
+        "3x y 3x² NO son semejantes",
+        "Los números sin variable se suman entre sí"
+      ],
+      "ejemplo": "2x + 5 + 3x + 1 = (2x + 3x) + (5 + 1) = 5x + 6"
+    },
+    {
+      "titulo": "Problema inverso: encontrar las medidas",
+      "puntos": [
+        "Si te dan el perímetro, iguala tu expresión a ese valor",
+        "Resuelve para la variable",
+        "Sustituye para encontrar cada lado"
+      ],
+      "ejemplo": "Cuadrado: 4x = 36 → x = 9 cm por lado"
+    },
+    {
+      "titulo": "Problema en contexto",
+      "puntos": [
+        "Un terreno rectangular tiene perímetro de 48 m",
+        "El largo es el triple del ancho",
+        "Ancho = x, largo = 3x → 2(x + 3x) = 48"
+      ],
+      "ejemplo": "8x = 48 → x = 6 → Ancho: 6 m, largo: 18 m"
+    },
+    {
+      "titulo": "Practica: calcula los perímetros",
+      "puntos": [
+        "Pentágono regular de lado (2x − 1): P = ?",
+        "Rectángulo de lados (x + 3) y (2x): P = ? y evalúa con x = 5",
+        "Un triángulo equilátero tiene P = 9x + 12. ¿Cuánto mide cada lado?"
+      ],
+      "ejemplo": "Respuestas: 10x − 5; 6x + 6 = 36; 3x + 4"
+    }
+  ],
+  "video_script": "## Perímetros con álgebra — Script de video\n\n[VISUAL: Título \"Perímetros\" con un dron sobrevolando un terreno y marcando el contorno con una línea brillante]\n\n¡Hola! Imagina que tienes un terreno y quieres ponerle cerca. La primera pregunta es: ¿cuántos metros de cerca necesitas? Para eso, necesitas el **perímetro**. Y hoy no solo vas a calcularlo con números, sino con álgebra. ¡Vamos!\n\n[VISUAL: Cuadrado con un personaje caminando por el borde, un contador de metros aumenta]\n\nEl perímetro es simplemente la distancia total alrededor de una figura. Si caminas por todo el borde y cuentas cuánto recorriste, eso es el perímetro. Matemáticamente, es la **suma de todos los lados**.\n\n[VISUAL: Cuadrado con lado etiquetado \"x\", se suman los 4 lados visualmente]\n\nEmpecemos con lo más sencillo: un cuadrado. Tiene 4 lados iguales. Si cada lado mide x, el perímetro es x + x + x + x = 4x. Así de directo. Si x vale 5 centímetros, el perímetro es 4 por 5 = 20 centímetros.\n\n[VISUAL: Rectángulo con ancho \"x\" y largo \"x + 3\", los lados se iluminan uno por uno]\n\nAhora un rectángulo. Tiene 2 lados del ancho y 2 del largo. Si el ancho es x y el largo es x + 3, el perímetro es: 2 por x, más 2 por x + 3. Distribuimos: 2x + 2x + 6, que simplificado es 4x + 6. ¿Ves? Aquí usamos la propiedad distributiva que aprendimos hace unas semanas.\n\n[VISUAL: Triángulo con tres lados etiquetados (2x+1), (3x−2), (x+5), se agrupan por colores]\n\nVamos con un triángulo cuyos lados son 2x + 1, 3x − 2 y x + 5. Para el perímetro, sumamos todo: 2x + 3x + x da 6x. Y los números: 1 − 2 + 5 da 4. Perímetro = 6x + 4. Eso de agrupar los términos con x por un lado y los números por otro se llama **sumar términos semejantes**.\n\n[VISUAL: Aparece el resultado 6x + 4 y luego x = 3 se sustituye con animación]\n\nSi te dicen que x = 3, sustituyes: 6 por 3 más 4 = 18 + 4 = 22 unidades. Siempre puedes evaluar tu expresión con cualquier valor de x.\n\n[VISUAL: Problema inverso — terreno rectangular con barda y texto \"Perímetro = 60 m\"]\n\nAhora la parte más interesante: problemas inversos. Imagina que sabes que el perímetro de un terreno rectangular es 60 metros, y que el largo es el doble del ancho. ¿Cuánto mide cada lado?\n\nSea x el ancho. El largo es 2x. Perímetro: 2x + 2 por 2x = 2x + 4x = 6x. Igualamos: 6x = 60. Dividimos: x = 10. El ancho es 10 metros y el largo es 20 metros. Comprobamos: 2(10) + 2(20) = 20 + 40 = 60. ¡Perfecto!\n\n[VISUAL: Polígono regular (hexágono) con lados etiquetados \"x\" y fórmula P = 6x]\n\nUn dato extra: para cualquier polígono regular de n lados, donde cada lado mide x, el perímetro es simplemente n por x. Un pentágono regular: 5x. Un hexágono: 6x. Muy limpio y elegante.\n\n[VISUAL: Resumen con tres figuras (cuadrado, rectángulo, triángulo) y sus fórmulas de perímetro]\n\nPara cerrar: el perímetro es sumar todos los lados. Si los lados tienen expresiones algebraicas, sumamos y simplificamos agrupando términos semejantes. Y si te dan el perímetro, planteas la ecuación y resuelves. ¡Practica con diferentes figuras y nos vemos en el próximo video!"
+}

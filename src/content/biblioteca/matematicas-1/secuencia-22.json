@@ -1,0 +1,277 @@
+{
+  "secuencia": 22,
+  "titulo": "Las rectas notables en el círculo",
+  "contenido": "Identificación y trazo de las rectas notables en la circunferencia: radio, diámetro, cuerda, secante y tangente, y las relaciones entre ellas.",
+  "pda": "Identifica y traza las rectas notables en la circunferencia y las relaciones entre ellas.",
+  "evaluacion": {
+    "preguntas": [
+      {
+        "tipo": "opcion_multiple",
+        "pregunta": "¿Cuál es la relación entre el radio y el diámetro de una circunferencia?",
+        "opciones": [
+          "A) El diámetro es la mitad del radio",
+          "B) El diámetro es el doble del radio",
+          "C) El diámetro es igual al radio",
+          "D) No tienen relación fija"
+        ],
+        "respuesta": "B"
+      },
+      {
+        "tipo": "verdadero_falso",
+        "pregunta": "Una recta tangente a una circunferencia forma un ángulo de 90° con el radio que llega al punto de tangencia.",
+        "respuesta": true
+      },
+      {
+        "tipo": "espacios",
+        "pregunta": "Una ___ es un segmento que une dos puntos de la circunferencia. Si pasa por el centro, se llama ___.",
+        "respuesta": "cuerda, diámetro"
+      },
+      {
+        "tipo": "calculo",
+        "pregunta": "Una circunferencia tiene un radio de 5 cm. Una cuerda está a 3 cm del centro. ¿Cuánto mide la mitad de la cuerda? (Usa el teorema de Pitágoras).",
+        "respuesta": "Paso 1: El segmento del centro a la cuerda (3 cm) es perpendicular a la cuerda y la divide en dos partes iguales. Paso 2: Se forma un triángulo rectángulo con hipotenusa = radio = 5 cm y un cateto = 3 cm. Paso 3: Otro cateto = √(5² - 3²) = √(25 - 9) = √16 = 4 cm. Resultado: La mitad de la cuerda mide 4 cm; la cuerda completa mide 8 cm."
+      },
+      {
+        "tipo": "abierta",
+        "pregunta": "Explica la diferencia entre una recta secante y una recta tangente a una circunferencia. ¿Qué pasa con la secante cuando se acerca al punto de tangencia?",
+        "respuesta": "Una recta secante corta la circunferencia en dos puntos, mientras que una tangente la toca en exactamente un punto. Si imaginamos una secante que se va desplazando de manera que sus dos puntos de intersección se acercan cada vez más, en el límite los dos puntos se fusionan en uno y la secante se convierte en tangente. La tangente es perpendicular al radio en el punto de contacto."
+      }
+    ]
+  },
+  "orientacion": {
+    "contenidos_especificos": [
+      "Definición y trazo de radio, diámetro y cuerda",
+      "Concepto de recta secante y recta tangente a la circunferencia",
+      "Relación de perpendicularidad entre tangente y radio en el punto de tangencia",
+      "Propiedad de la perpendicular desde el centro a una cuerda (la biseca)",
+      "Relaciones entre las rectas notables: diámetro como cuerda máxima, tangente como caso límite de secante"
+    ],
+    "actividad_inicio": [
+      "Mostrar una imagen de una rueda de bicicleta y preguntar: ¿qué líneas pueden identificar? (los rayos son radios, el aro es la circunferencia, el eje es el centro)",
+      "Pedir que dibujen un círculo con compás y que tracen todas las líneas rectas que se les ocurran relacionadas con él",
+      "Clasificar colectivamente lo que dibujaron: ¿cuáles cruzan el círculo, cuáles lo tocan, cuáles quedan dentro?",
+      "Presentar el objetivo: conocer y nombrar todas las rectas notables de la circunferencia y descubrir sus propiedades"
+    ],
+    "desarrollo": [
+      {
+        "titulo": "Radio, diámetro y cuerda",
+        "diapositiva": "1-3",
+        "libro": "Sección 'Elementos de la circunferencia'",
+        "video": "min 0:30-2:30",
+        "descripcion": "Defina cada elemento con precisión: el radio es el segmento del centro a cualquier punto de la circunferencia; el diámetro es la cuerda que pasa por el centro (y mide el doble del radio); una cuerda es cualquier segmento que une dos puntos de la circunferencia. Dibuje una circunferencia grande en el pizarrón y trace varias cuerdas de diferente longitud, identificando cuál es el diámetro. Pregunte: ¿puede haber una cuerda más larga que el diámetro? Guíe a la conclusión de que el diámetro es la cuerda de longitud máxima. Los alumnos trazan en su cuaderno una circunferencia y marcan tres cuerdas, un radio y un diámetro con colores distintos.",
+        "tip": "Enfatice que todos los radios de una misma circunferencia tienen la misma longitud; esto es fundamental para las demostraciones posteriores."
+      },
+      {
+        "titulo": "Recta secante y recta tangente",
+        "diapositiva": "4-6",
+        "libro": "Sección 'Secante y tangente'",
+        "video": "min 2:30-4:30",
+        "descripcion": "Presente la recta secante como aquella que corta la circunferencia en dos puntos, y la tangente como la que toca la circunferencia en exactamente un punto. Demuestre con una regla y un círculo dibujado en el pizarrón cómo una secante puede moverse hasta convertirse en tangente. Trace el radio al punto de tangencia y use una escuadra para mostrar que forman 90°. Enuncie la propiedad: la tangente es perpendicular al radio en el punto de tangencia. Los alumnos practican: dado un punto sobre la circunferencia, trazan el radio a ese punto y luego la tangente usando la escuadra.",
+        "tip": "Anime la idea con un lápiz apoyado sobre una moneda: cuando el lápiz toca la moneda en un solo punto, eso es una tangente. Es una imagen concreta que los alumnos recuerdan."
+      },
+      {
+        "titulo": "Propiedades y relaciones entre las rectas notables",
+        "diapositiva": "7-8",
+        "libro": "Sección 'Propiedades'",
+        "video": "min 4:30-6:00",
+        "descripcion": "Demuestre la propiedad: la perpendicular desde el centro a una cuerda biseca a la cuerda. Trace una cuerda, la perpendicular desde el centro y mida ambas mitades. Resuelva un problema numérico: si el radio mide 10 cm y la distancia del centro a una cuerda es 6 cm, ¿cuánto mide la cuerda? (Pitágoras: mitad de cuerda = √(100-36) = 8, cuerda = 16 cm). En equipos, los alumnos resuelven tres problemas similares variando los datos conocidos. Al finalizar, elaboran un esquema-resumen con todos los elementos y propiedades.",
+        "tip": "Conecte esta propiedad con la mediatriz vista en semanas anteriores: la recta del centro perpendicular a la cuerda es exactamente la mediatriz de la cuerda."
+      }
+    ],
+    "cierre_individual": {
+      "reflexiona": "¿Qué relación entre las rectas notables del círculo te pareció más interesante? ¿Se te ocurre alguna aplicación práctica de la propiedad de la tangente? Escribe tus ideas en el cuaderno.",
+      "profundiza": [
+        {
+          "pregunta": "¿Cuántas tangentes se pueden trazar a una circunferencia desde un punto exterior? ¿Qué relación tienen entre sí?",
+          "respuesta_modelo": "R.M. Desde un punto exterior se pueden trazar exactamente dos tangentes. Los segmentos de tangente (desde el punto exterior hasta cada punto de tangencia) tienen la misma longitud. Esto se puede demostrar formando dos triángulos rectángulos que comparten la hipotenusa (el segmento del punto exterior al centro) y tienen un cateto igual (el radio)."
+        },
+        {
+          "pregunta": "¿Qué sucede con la longitud de una cuerda a medida que se acerca al centro de la circunferencia? ¿Y cuando se aleja?",
+          "respuesta_modelo": "R.M. Mientras más cerca está la cuerda del centro, más larga es. La cuerda de longitud máxima es el diámetro, que pasa exactamente por el centro (distancia = 0). A medida que la cuerda se aleja del centro, se hace más corta, hasta que en el límite (distancia = radio) la cuerda se reduce a un punto y la recta se convierte en tangente."
+        }
+      ]
+    },
+    "cierre_grupal": [
+      "El radio va del centro a la circunferencia; el diámetro es una cuerda que pasa por el centro y mide el doble del radio",
+      "Toda cuerda que no pasa por el centro es más corta que el diámetro",
+      "La secante corta la circunferencia en dos puntos; la tangente la toca en exactamente uno",
+      "La tangente es perpendicular al radio en el punto de tangencia",
+      "La perpendicular desde el centro a una cuerda la divide en dos partes iguales"
+    ],
+    "preguntas_comprension": [
+      "¿Por qué el diámetro es la cuerda de mayor longitud en cualquier circunferencia?",
+      "Si el radio de una circunferencia mide 13 cm y una cuerda mide 24 cm, ¿a qué distancia del centro está la cuerda?",
+      "¿Cuántas tangentes se pueden trazar a una circunferencia desde un punto que está sobre la circunferencia?",
+      "¿Cuál es la diferencia entre un radio y una cuerda?",
+      "¿Puede una cuerda ser también un diámetro? ¿Bajo qué condición?"
+    ]
+  },
+  "libro": {
+    "introduccion": "Cuando ves una llanta de bicicleta, un reloj o una moneda, estas viendo circunferencias por todos lados. Dentro y alrededor de cada circunferencia existen lineas especiales que los matematicos han estudiado durante miles de anos. Hoy vas a conocerlas todas y a descubrir sus propiedades.",
+    "conceptos": [
+      {
+        "titulo": "Radio, diametro y cuerda",
+        "contenido": "Recuerda: el teorema de Pitágoras dice que en un triángulo rectángulo, a² + b² = c², donde c es la hipotenusa. El radio (r) es el segmento que va del centro a cualquier punto de la circunferencia; todos los radios miden lo mismo. El diametro (d) es la cuerda que pasa por el centro; siempre mide el doble del radio: d = 2r. Una cuerda es cualquier segmento que une dos puntos de la circunferencia. El diametro es la cuerda de mayor longitud posible. La perpendicular desde el centro a una cuerda la divide exactamente a la mitad.",
+        "definicion": "Cuerda: segmento que une dos puntos cualesquiera de la circunferencia. Cuando pasa por el centro, se llama diametro.",
+        "figura": {
+          "tipo": "circulo",
+          "radio": 50,
+          "elementos": ["radio", "diametro"],
+          "width": 180,
+          "height": 180
+        }
+      },
+      {
+        "titulo": "Recta secante y recta tangente",
+        "contenido": "La secante es una recta que corta la circunferencia en dos puntos, extendiendose infinitamente. La tangente toca la circunferencia en un solo punto (punto de tangencia) y es perpendicular al radio en ese punto. La tangente es el caso limite de la secante: cuando los dos puntos de corte se fusionan en uno, la secante se convierte en tangente.",
+        "definicion": "Tangente: recta que toca la circunferencia en exactamente un punto, formando un angulo de 90 grados con el radio en el punto de tangencia.",
+        "figura": {
+          "tipo": "circulo",
+          "radio": 50,
+          "elementos": ["cuerda", "tangente"],
+          "width": 180,
+          "height": 180
+        }
+      },
+      {
+        "titulo": "Propiedades y relaciones",
+        "contenido": "El diametro es un caso particular de cuerda (la que pasa por el centro). Desde un punto exterior se pueden trazar exactamente dos tangentes, y los segmentos de tangente miden lo mismo. La perpendicular desde el centro a cualquier cuerda la biseca (la parte a la mitad), formando un triangulo rectangulo util para aplicar Pitagoras.",
+        "definicion": null
+      }
+    ],
+    "ejemplos": [
+      {
+        "titulo": "Calcular la longitud de una cuerda",
+        "enunciado": "Una circunferencia tiene radio de 5 cm. Una cuerda esta a 3 cm del centro. Cuanto mide la cuerda?",
+        "pasos": [
+          "Paso 1: La perpendicular del centro a la cuerda la divide a la mitad",
+          "Paso 2: Se forma un triangulo rectangulo: hipotenusa = radio = 5, cateto = distancia = 3",
+          "Paso 3: Mitad de cuerda = raiz(5^2 - 3^2) = raiz(25 - 9) = raiz(16) = 4 cm",
+          "Paso 4: Cuerda completa = 4 x 2 = 8 cm"
+        ],
+        "resultado": "La cuerda mide 8 cm."
+      },
+      {
+        "titulo": "Radio a partir de cuerda y distancia",
+        "enunciado": "Una cuerda mide 24 cm y esta a 5 cm del centro. Cual es el radio?",
+        "pasos": [
+          "Paso 1: Mitad de cuerda = 24/2 = 12 cm",
+          "Paso 2: Triangulo rectangulo: cateto 1 = 12, cateto 2 = 5",
+          "Paso 3: Radio = hipotenusa = raiz(12^2 + 5^2) = raiz(144 + 25) = raiz(169) = 13 cm"
+        ],
+        "resultado": "El radio de la circunferencia es 13 cm."
+      }
+    ],
+    "datos_curiosos": "Si apoyas un lapiz sobre una moneda de manera que solo toque el borde en un punto, el lapiz es la tangente y el rayo imaginario del centro de la moneda a ese punto es el radio. Siempre forman 90 grados. Esta propiedad la usan los ingenieros para disenar engranajes y ruedas.",
+    "ejercicios": [
+      {
+        "numero": 1,
+        "enunciado": "Si el radio de una circunferencia mide 10 cm y una cuerda mide 16 cm, a que distancia del centro esta la cuerda?",
+        "espacio": true,
+        "lineas": 4
+      },
+      {
+        "numero": 2,
+        "enunciado": "El diametro de una circunferencia mide 20 cm. Cual es el radio? Puede existir una cuerda de 22 cm en esta circunferencia? Justifica.",
+        "espacio": true,
+        "lineas": 3
+      },
+      {
+        "numero": 3,
+        "enunciado": "Explica la diferencia entre una recta secante y una recta tangente. Que pasa cuando una secante se desplaza hacia el borde de la circunferencia?",
+        "espacio": true,
+        "lineas": 4
+      }
+    ],
+    "puntos_clave": [
+      "Radio: del centro a la circunferencia. Diametro: cuerda que pasa por el centro; mide 2r.",
+      "Toda cuerda que no pasa por el centro es mas corta que el diametro.",
+      "La secante corta en dos puntos; la tangente toca en uno y es perpendicular al radio.",
+      "La perpendicular desde el centro a una cuerda la divide en dos partes iguales.",
+      "Desde un punto exterior se trazan exactamente dos tangentes de igual longitud."
+    ]
+  },
+  "diapositiva": [
+    {
+      "titulo": "Las rectas notables en el círculo",
+      "puntos": [
+        "Toda circunferencia tiene líneas especiales con propiedades importantes",
+        "Objetivo: identificar, trazar y relacionar las rectas notables de la circunferencia"
+      ],
+      "ejemplo": "Piensa en una llanta de bicicleta: los rayos son radios, el aro es la circunferencia, el eje es el centro."
+    },
+    {
+      "titulo": "Radio y diámetro",
+      "puntos": [
+        "Radio (r): segmento del centro a cualquier punto de la circunferencia",
+        "Diámetro (d): segmento que pasa por el centro y toca la circunferencia en dos puntos",
+        "Relación fundamental: d = 2r"
+      ],
+      "ejemplo": "Si el radio mide 7 cm, el diámetro mide 14 cm. Todos los radios de una misma circunferencia son iguales.",
+      "figura": {
+        "tipo": "circulo",
+        "radio": 60,
+        "elementos": ["radio", "diametro", "cuerda"],
+        "width": 200,
+        "height": 200
+      }
+    },
+    {
+      "titulo": "La cuerda",
+      "puntos": [
+        "Segmento que une dos puntos cualesquiera de la circunferencia",
+        "El diámetro es la cuerda más larga posible",
+        "La perpendicular desde el centro a una cuerda la divide a la mitad"
+      ],
+      "ejemplo": "Una cuerda de 8 cm a 3 cm del centro → triángulo rectángulo con radio = √(4² + 3²) = 5 cm."
+    },
+    {
+      "titulo": "La recta secante",
+      "puntos": [
+        "Recta que corta la circunferencia en dos puntos",
+        "Se extiende infinitamente en ambas direcciones",
+        "Contiene una cuerda como segmento interior"
+      ],
+      "ejemplo": "Imagina un cuchillo cortando una naranja: entra por un lado y sale por otro. Esos dos puntos definen la secante."
+    },
+    {
+      "titulo": "La recta tangente",
+      "puntos": [
+        "Recta que toca la circunferencia en exactamente un punto (punto de tangencia)",
+        "Propiedad clave: la tangente es perpendicular al radio en el punto de tangencia (ángulo de 90°)",
+        "Desde un punto exterior se pueden trazar exactamente dos tangentes"
+      ],
+      "ejemplo": "Un lápiz apoyado sobre una moneda: si toca en un solo punto, es tangente."
+    },
+    {
+      "titulo": "Propiedad de la perpendicular a la cuerda",
+      "puntos": [
+        "La recta perpendicular desde el centro a una cuerda biseca la cuerda",
+        "Se forma un triángulo rectángulo: hipotenusa = radio, catetos = distancia al centro y mitad de cuerda",
+        "Se resuelve con el teorema de Pitágoras"
+      ],
+      "ejemplo": "Radio = 10 cm, distancia del centro a la cuerda = 6 cm → mitad de cuerda = √(100 − 36) = 8 cm → cuerda = 16 cm."
+    },
+    {
+      "titulo": "De secante a tangente",
+      "puntos": [
+        "Si una secante se desplaza, sus dos puntos de corte se acercan",
+        "Cuando los dos puntos se fusionan en uno solo, la secante se convierte en tangente",
+        "La tangente es el caso límite de la secante"
+      ],
+      "ejemplo": "Desliza una regla sobre un círculo dibujado: pasa de cruzarlo en dos puntos a rozarlo en uno."
+    },
+    {
+      "titulo": "Resumen y puntos clave",
+      "puntos": [
+        "Radio → del centro a la circunferencia",
+        "Diámetro → cuerda por el centro, mide 2r",
+        "Cuerda → une dos puntos de la circunferencia",
+        "Secante → corta en dos puntos, tangente → toca en uno",
+        "Tangente ⊥ radio en el punto de tangencia"
+      ],
+      "ejemplo": "Tarea: dibuja una circunferencia y traza un radio, un diámetro, una cuerda, una secante y una tangente. Etiqueta cada una."
+    }
+  ],
+  "video_script": "# Las rectas notables en el círculo — Script de video\n\n[VISUAL: Título animado con una circunferencia brillante y líneas de colores apareciendo una por una]\n\n¡Hola! Hoy vamos a explorar las líneas más importantes que puedes trazar en una circunferencia. Se llaman rectas notables, y cuando las domines, vas a ver círculos con otros ojos.\n\n[VISUAL: Una moneda, un reloj y una llanta de bicicleta aparecen en pantalla]\n\nMira a tu alrededor: monedas, relojes, llantas, platos. Todos son circunferencias. Y dentro de cada una se esconden líneas con propiedades increíbles. Vamos a conocerlas una por una.\n\n[VISUAL: Una circunferencia con su centro marcado como punto O]\n\nEmpezamos con lo básico. El **centro** es el punto que está exactamente en medio. Todos los puntos de la circunferencia están a la misma distancia del centro.\n\n[VISUAL: Un segmento rojo aparece del centro a la circunferencia, etiquetado \"radio\"]\n\nEl **radio** es el segmento que va del centro a cualquier punto de la circunferencia. Todos los radios de una misma circunferencia miden lo mismo. Si el radio mide 5 centímetros, cualquier radio que traces va a medir 5 centímetros.\n\n[VISUAL: El radio se extiende al otro lado, formando un segmento azul que pasa por el centro]\n\nAhora, si extiendes el radio hasta cruzar el centro y llegar al otro lado, obtienes el **diámetro**. El diámetro siempre mide el doble del radio. Fórmula clave: d = 2r. Si el radio es 5, el diámetro es 10. Así de simple.\n\n[VISUAL: Un segmento verde une dos puntos de la circunferencia sin pasar por el centro]\n\nAhora te presento a la **cuerda**. Es cualquier segmento que une dos puntos de la circunferencia. Puede pasar por el centro o no. Si pasa por el centro, es el diámetro. Y aquí viene un dato importante: el diámetro es la cuerda más larga posible. Ninguna otra cuerda puede ser más larga.\n\n[VISUAL: Varias cuerdas de diferente longitud aparecen, la más larga es el diámetro resaltado]\n\nFíjate: mientras más cerca del centro pasa la cuerda, más larga es. Y mientras más se aleja del centro, más corta. El diámetro pasa justo por el centro, y por eso es la más grande.\n\n[VISUAL: Una línea recta amarilla cruza la circunferencia en dos puntos con flechas en ambos extremos]\n\nAhora vamos con la **recta secante**. Es una línea recta que corta la circunferencia en dos puntos. A diferencia de la cuerda, la secante se extiende hasta el infinito en ambas direcciones. Piensa en un cuchillo cortando una naranja: entra por un lado, sale por el otro.\n\n[VISUAL: La secante se desplaza lentamente, sus dos puntos de intersección se acercan]\n\nY aquí viene algo fascinante. Observa qué pasa cuando muevo la secante poco a poco. Los dos puntos donde corta la circunferencia se van acercando... acercando... hasta que se juntan en uno solo.\n\n[VISUAL: Los dos puntos se fusionan, la línea ahora toca en un solo punto. Cambia de color a morado]\n\nCuando eso pasa, la secante se convierte en **tangente**. La tangente es una recta que toca la circunferencia en **un solo punto**, llamado punto de tangencia. No la atraviesa, solo la roza.\n\n[VISUAL: El radio se traza hacia el punto de tangencia, un ángulo recto aparece marcado con un cuadrito]\n\nY aquí está la propiedad más importante de toda la lección: la tangente siempre es **perpendicular al radio** en el punto de tangencia. Forman un ángulo perfecto de 90 grados. Siempre. No importa dónde esté el punto de tangencia, el radio y la tangente forman un ángulo recto.\n\n¿Quieres verlo en la vida real? Agarra un lápiz y ponlo sobre una moneda de manera que solo toque el borde en un punto. El lápiz es la tangente y el rayo imaginario del centro de la moneda a ese punto es el radio. ¿Ves que forman 90 grados?\n\n[VISUAL: Triángulo rectángulo formado por el radio, la distancia del centro a una cuerda, y la mitad de la cuerda]\n\nAhora te enseño una propiedad que te va a servir para resolver problemas. Si trazas una perpendicular desde el centro hasta una cuerda, esa perpendicular divide la cuerda exactamente a la mitad. Y se forma un triángulo rectángulo donde puedes usar Pitágoras.\n\n**Ejemplo:** radio = 13 cm, distancia del centro a la cuerda = 5 cm. ¿Cuánto mide la cuerda?\n\nMitad de cuerda = √(13² − 5²) = √(169 − 25) = √144 = 12 cm. Cuerda completa = 24 cm.\n\n[VISUAL: Los cálculos aparecen paso a paso con animación]\n\n[VISUAL: Desde un punto exterior se trazan dos tangentes a la circunferencia]\n\nUn dato extra: desde cualquier punto exterior puedes trazar exactamente dos tangentes a la circunferencia, y los dos segmentos de tangente miden lo mismo. Esto es útilísimo en geometría avanzada.\n\n[VISUAL: Resumen final con todas las rectas notables etiquetadas en una sola circunferencia]\n\nRepasemos:\n- **Radio:** del centro a la circunferencia.\n- **Diámetro:** cuerda que pasa por el centro, mide 2r.\n- **Cuerda:** une dos puntos de la circunferencia.\n- **Secante:** recta que corta en dos puntos.\n- **Tangente:** recta que toca en un punto, perpendicular al radio.\n\nTu reto: dibuja una circunferencia y traza las cinco rectas notables. Mide el ángulo entre la tangente y el radio. ¿Sale 90 grados? ¡Compruébalo!\n\n[VISUAL: Reto en pantalla con un compás animado girando]\n\n¡Nos vemos la próxima semana!"
+}

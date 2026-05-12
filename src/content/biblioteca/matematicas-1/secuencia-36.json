@@ -1,0 +1,298 @@
+{
+  "secuencia": 36,
+  "titulo": "Números binarios",
+  "contenido": "Sistema de numeración binario, conversión entre decimal y binario.",
+  "pda": "Conoce los números binarios, aprende a convertir números decimales a binarios y viceversa.",
+  "evaluacion": {
+    "preguntas": [
+      {
+        "tipo": "opcion_multiple",
+        "pregunta": "¿Cuál es la representación binaria del número decimal 13?",
+        "opciones": ["A) 1011", "B) 1101", "C) 1110", "D) 1001"],
+        "respuesta": "B"
+      },
+      {
+        "tipo": "verdadero_falso",
+        "pregunta": "En el sistema binario solo se utilizan los dígitos 0 y 1.",
+        "respuesta": true
+      },
+      {
+        "tipo": "espacios",
+        "pregunta": "El sistema binario tiene base ___, mientras que el sistema decimal tiene base ___.",
+        "respuesta": "2, 10"
+      },
+      {
+        "tipo": "calculo",
+        "pregunta": "Convierte el número binario 101110 a decimal. Muestra el procedimiento completo.",
+        "respuesta": "Paso 1: Identificar las posiciones de derecha a izquierda: 0, 1, 2, 3, 4, 5. Paso 2: Multiplicar cada dígito por su potencia de 2: 1×2⁵ + 0×2⁴ + 1×2³ + 1×2² + 1×2¹ + 0×2⁰. Paso 3: Calcular: 32 + 0 + 8 + 4 + 2 + 0 = 46. Resultado: 101110₂ = 46₁₀."
+      },
+      {
+        "tipo": "abierta",
+        "pregunta": "¿Por qué las computadoras usan el sistema binario en lugar del decimal? Explica la razón tecnológica y da un ejemplo de cómo una computadora podría representar el número 7.",
+        "respuesta": "Las computadoras usan binario porque sus componentes electrónicos (transistores) solo tienen dos estados: encendido (1) y apagado (0). Es mucho más sencillo y confiable construir circuitos que distingan entre dos estados que entre diez. El número 7 en binario es 111, porque 1×2² + 1×2¹ + 1×2⁰ = 4 + 2 + 1 = 7. Así que la computadora lo almacena como tres señales encendidas."
+      }
+    ]
+  },
+  "orientacion": {
+    "contenidos_especificos": [
+      "Comprender que el sistema binario es un sistema posicional de base 2 con los dígitos 0 y 1",
+      "Convertir números binarios a decimales usando potencias de 2",
+      "Convertir números decimales a binarios mediante divisiones sucesivas entre 2",
+      "Reconocer la importancia del sistema binario en la tecnología y la computación",
+      "Comparar el sistema binario con el sistema decimal en términos de base y dígitos"
+    ],
+    "actividad_inicio": [
+      "Preguntar: ¿cómo creen que una computadora guarda el número 42? ¿Tiene dentro los dígitos 4 y 2 escritos en algún lado?",
+      "Mostrar una imagen de un interruptor de luz: solo tiene dos posiciones, encendido y apagado. Las computadoras funcionan con millones de estos interruptores",
+      "Escribir en el pizarrón: con un interruptor puedo representar 0 o 1. Con dos: 00, 01, 10, 11 (cuatro combinaciones). ¿Cuántas combinaciones hay con tres?",
+      "Presentar el objetivo: aprender el sistema binario, cómo convertir entre binario y decimal, y por qué es fundamental en la era digital"
+    ],
+    "desarrollo": [
+      {
+        "titulo": "¿Qué es el sistema binario?",
+        "diapositiva": "1-3",
+        "libro": "Sección 'Sistema binario'",
+        "video": "min 0:30-2:00",
+        "descripcion": "Explique que nuestro sistema decimal usa base 10 (dígitos 0-9) porque tenemos 10 dedos. El binario usa base 2 (dígitos 0 y 1). Compare las posiciones: en decimal son unidades, decenas, centenas (10⁰, 10¹, 10²); en binario son 2⁰=1, 2¹=2, 2²=4, 2³=8, 2⁴=16, 2⁵=32. Escriba en el pizarrón las primeras potencias de 2 y pida que las memoricen. Muestre los primeros números en binario: 0=0, 1=1, 2=10, 3=11, 4=100, 5=101, 6=110, 7=111, 8=1000.",
+        "tip": "Pida a los alumnos que cuenten del 0 al 15 en binario usando los dedos de una mano (cada dedo es un bit). Pueden representar hasta 31 con 5 dedos."
+      },
+      {
+        "titulo": "De binario a decimal",
+        "diapositiva": "4-5",
+        "libro": "Sección 'Binario a decimal'",
+        "video": "min 2:00-3:15",
+        "descripcion": "Método: multiplicar cada dígito por su potencia de 2 y sumar. Ejemplo en el pizarrón: 10110₂ → 1×16 + 0×8 + 1×4 + 1×2 + 0×1 = 16 + 0 + 4 + 2 + 0 = 22. Trabaje paso a paso con el grupo. Los alumnos practican individualmente convirtiendo: 1001, 11010, 110011. Circule verificando que ubiquen correctamente las potencias de 2 de derecha a izquierda.",
+        "tip": "Escriba las potencias de 2 arriba de cada dígito antes de multiplicar. Esto reduce errores de posición."
+      },
+      {
+        "titulo": "De decimal a binario",
+        "diapositiva": "6-8",
+        "libro": "Sección 'Decimal a binario'",
+        "video": "min 3:15-4:45",
+        "descripcion": "Método de divisiones sucesivas: dividir entre 2 repetidamente, anotar los residuos y leerlos de abajo hacia arriba. Ejemplo: 25 → 25÷2=12 r1, 12÷2=6 r0, 6÷2=3 r0, 3÷2=1 r1, 1÷2=0 r1. Leyendo de abajo: 11001₂. Verifiquen: 16+8+0+0+1=25. Los alumnos practican con 18, 33, 50 y 100. También presente el método alternativo de restar potencias de 2: para 25, la mayor potencia que cabe es 16, sobran 9; cabe 8, sobra 1; cabe 1. Posiciones: 16, 8, 1 → 11001.",
+        "tip": "El método de restar potencias de 2 es más intuitivo para muchos alumnos. Ofrezca ambos y que cada quien elija el que prefiera."
+      }
+    ],
+    "cierre_individual": {
+      "reflexiona": "Hoy aprendiste un sistema numérico completamente diferente al que usas todos los días. ¿Qué fue lo que más te costó trabajo: convertir de binario a decimal o de decimal a binario? ¿Por qué crees que fue más difícil? Escribe los pasos que seguirías para explicarle el método a un compañero que faltó.",
+      "profundiza": [
+        {
+          "pregunta": "¿Cuál es el número decimal más grande que se puede representar con 8 dígitos binarios (8 bits)? ¿Y con 10 bits?",
+          "respuesta_modelo": "R.M. Con 8 bits el mayor es 11111111₂ = 128+64+32+16+8+4+2+1 = 255. En general, con n bits el mayor número es 2ⁿ - 1. Con 10 bits: 2¹⁰ - 1 = 1024 - 1 = 1023."
+        },
+        {
+          "pregunta": "Investiga: si cada letra del alfabeto se representara con un número binario, ¿cuántos bits necesitarías como mínimo para las 27 letras del español?",
+          "respuesta_modelo": "R.M. Con 4 bits solo se representan 2⁴ = 16 valores, no alcanza. Con 5 bits se representan 2⁵ = 32 valores, que sí cubre las 27 letras. Se necesitan mínimo 5 bits. De hecho, el código ASCII usa 7 bits (128 valores) para incluir letras, números y símbolos."
+        }
+      ]
+    },
+    "cierre_grupal": [
+      "El sistema binario usa base 2 y solo tiene dos dígitos: 0 y 1",
+      "Cada posición en un número binario representa una potencia de 2 (1, 2, 4, 8, 16, 32...)",
+      "Para convertir de binario a decimal se multiplica cada dígito por su potencia de 2 y se suman",
+      "Para convertir de decimal a binario se divide sucesivamente entre 2 y se leen los residuos de abajo hacia arriba",
+      "Las computadoras usan binario porque los circuitos electrónicos distinguen fácilmente entre dos estados: encendido y apagado"
+    ],
+    "preguntas_comprension": [
+      "¿Por qué el sistema binario se llama 'de base 2'?",
+      "Convierte 1010101₂ a decimal.",
+      "Convierte 47₁₀ a binario.",
+      "¿Cuántos números distintos se pueden representar con 4 bits?",
+      "Si una computadora tiene un byte (8 bits) para almacenar un número, ¿cuál es el rango de valores que puede guardar?"
+    ]
+  },
+  "libro": {
+    "introduccion": "Todo lo que hace tu celular, tu computadora o tu consola de videojuegos se reduce a dos dígitos: 0 y 1. Así es, el mundo digital funciona con números binarios. Hoy vas a aprender qué son, cómo convertir números del sistema decimal al binario y viceversa. Prepárate para hablar el idioma de las máquinas.",
+    "conceptos": [
+      {
+        "titulo": "Sistema binario",
+        "contenido": "El sistema binario es un sistema de numeración que usa solo dos dígitos: 0 y 1, llamados bits. Es un sistema posicional, igual que el decimal, pero en vez de usar potencias de 10, usa potencias de 2. Cada posición de derecha a izquierda vale 2⁰ = 1, 2¹ = 2, 2² = 4, 2³ = 8, 2⁴ = 16, y así sucesivamente.",
+        "definicion": "El sistema binario (base 2) usa los dígitos 0 y 1. El valor de cada posición es una potencia de 2: ...2⁴, 2³, 2², 2¹, 2⁰ = ...16, 8, 4, 2, 1.",
+        "figura": {
+          "tipo": "recta_numerica",
+          "min": 0,
+          "max": 16,
+          "puntos": [
+            {
+              "valor": 1,
+              "label": "1"
+            },
+            {
+              "valor": 2,
+              "label": "10"
+            },
+            {
+              "valor": 4,
+              "label": "100"
+            },
+            {
+              "valor": 8,
+              "label": "1000"
+            },
+            {
+              "valor": 16,
+              "label": "10000"
+            }
+          ],
+          "width": 400,
+          "height": 55
+        }
+      },
+      {
+        "titulo": "Conversión de decimal a binario",
+        "contenido": "Para convertir un número decimal a binario, divides sucesivamente entre 2 y anotas los residuos. Cuando el cociente llegue a 0, lees los residuos de abajo hacia arriba. Ese es tu número binario. Es un proceso mecánico que funciona siempre.",
+        "definicion": null
+      },
+      {
+        "titulo": "Conversión de binario a decimal",
+        "contenido": "Para convertir de binario a decimal, multiplicas cada dígito por la potencia de 2 correspondiente a su posición (empezando por 2⁰ desde la derecha) y sumas todos los resultados. Donde hay un 1, sumas esa potencia; donde hay un 0, no sumas nada.",
+        "definicion": null
+      }
+    ],
+    "ejemplos": [
+      {
+        "titulo": "Decimal a binario: el número 13",
+        "enunciado": "Convierte el número 13 a binario.",
+        "pasos": [
+          "Paso 1: 13 ÷ 2 = 6, residuo 1.",
+          "Paso 2: 6 ÷ 2 = 3, residuo 0.",
+          "Paso 3: 3 ÷ 2 = 1, residuo 1.",
+          "Paso 4: 1 ÷ 2 = 0, residuo 1.",
+          "Paso 5: Lee los residuos de abajo hacia arriba: 1101."
+        ],
+        "resultado": "13 en decimal = 1101 en binario."
+      },
+      {
+        "titulo": "Binario a decimal: 10110",
+        "enunciado": "Convierte el número binario 10110 a decimal.",
+        "pasos": [
+          "Paso 1: Asigna potencias de derecha a izquierda: 1×2⁴ + 0×2³ + 1×2² + 1×2¹ + 0×2⁰.",
+          "Paso 2: Calcula cada término: 16 + 0 + 4 + 2 + 0.",
+          "Paso 3: Suma: 22."
+        ],
+        "resultado": "10110 en binario = 22 en decimal."
+      },
+      {
+        "titulo": "Contar en binario",
+        "enunciado": "Escribe los números del 0 al 8 en binario.",
+        "pasos": [
+          "Paso 1: 0 = 0, 1 = 1, 2 = 10, 3 = 11.",
+          "Paso 2: 4 = 100, 5 = 101, 6 = 110, 7 = 111.",
+          "Paso 3: 8 = 1000."
+        ],
+        "resultado": "Observa el patrón: cada vez que todas las posiciones llegan a 1, se agrega un nuevo dígito a la izquierda (como pasar de 9 a 10 en decimal)."
+      }
+    ],
+    "datos_curiosos": "Un byte son 8 bits, y puede representar 2⁸ = 256 valores diferentes (del 0 al 255). Con un byte se codifica cada letra del teclado usando el código ASCII. La letra 'A' es 01000001 (65 en decimal). Cuando envías un mensaje de texto, cada carácter se convierte a una secuencia de 0s y 1s, viaja por el aire como ondas electromagnéticas y se reconstruye en el celular del destinatario.",
+    "ejercicios": [
+      {
+        "numero": 1,
+        "enunciado": "Convierte el número 25 a binario usando el método de divisiones sucesivas.",
+        "espacio": true,
+        "lineas": 5
+      },
+      {
+        "numero": 2,
+        "enunciado": "Convierte el número binario 11001 a decimal.",
+        "espacio": true,
+        "lineas": 4
+      },
+      {
+        "numero": 3,
+        "enunciado": "Convierte el número 100 a binario. ¿Cuántos bits necesitas?",
+        "espacio": true,
+        "lineas": 5
+      },
+      {
+        "numero": 4,
+        "enunciado": "Si un número binario tiene exactamente 5 dígitos y empieza con 1, ¿cuál es el menor y el mayor número decimal que puede representar?",
+        "espacio": true,
+        "lineas": 3
+      }
+    ],
+    "puntos_clave": [
+      "El sistema binario usa solo dos dígitos (0 y 1) y es la base del funcionamiento de todas las computadoras.",
+      "Cada posición en binario vale una potencia de 2: 1, 2, 4, 8, 16, 32...",
+      "Decimal a binario: divide entre 2 sucesivamente y lee los residuos de abajo hacia arriba.",
+      "Binario a decimal: multiplica cada dígito por su potencia de 2 y suma todo.",
+      "Un byte (8 bits) puede representar 256 valores diferentes."
+    ]
+  },
+  "diapositiva": [
+    {
+      "titulo": "Números binarios",
+      "puntos": [
+        "Las computadoras solo entienden dos dígitos: 0 y 1",
+        "Objetivo: aprender a convertir entre el sistema decimal y el binario"
+      ],
+      "ejemplo": "Un interruptor de luz: encendido = 1, apagado = 0. Las computadoras tienen millones de estos interruptores."
+    },
+    {
+      "titulo": "Sistema decimal vs. sistema binario",
+      "puntos": [
+        "Decimal: base 10, dígitos 0-9, posiciones valen potencias de 10",
+        "Binario: base 2, dígitos 0 y 1, posiciones valen potencias de 2",
+        "Potencias de 2: 1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024"
+      ],
+      "ejemplo": "En decimal, 352 = 3×100 + 5×10 + 2×1. En binario, 101 = 1×4 + 0×2 + 1×1 = 5."
+    },
+    {
+      "titulo": "Contar en binario",
+      "puntos": [
+        "0, 1, 10, 11, 100, 101, 110, 111, 1000...",
+        "Cuando se acaban los dígitos (0 y 1), se agrega una posición a la izquierda",
+        "¡Con 5 dedos puedes contar hasta 31 en binario!"
+      ],
+      "ejemplo": "Decimal 6 = binario 110, porque 1×4 + 1×2 + 0×1 = 6."
+    },
+    {
+      "titulo": "De binario a decimal",
+      "puntos": [
+        "Multiplica cada dígito por su potencia de 2",
+        "Suma todos los resultados",
+        "Escribe las potencias arriba de cada dígito para no perder la posición"
+      ],
+      "ejemplo": "10110₂ → 1×16 + 0×8 + 1×4 + 1×2 + 0×1 = 22₁₀"
+    },
+    {
+      "titulo": "De decimal a binario — Método de divisiones",
+      "puntos": [
+        "Divide el número entre 2 y anota el residuo",
+        "Repite con el cociente hasta llegar a 0",
+        "Lee los residuos de abajo hacia arriba"
+      ],
+      "ejemplo": "25 → 25÷2=12 r1, 12÷2=6 r0, 6÷2=3 r0, 3÷2=1 r1, 1÷2=0 r1 → 11001₂"
+    },
+    {
+      "titulo": "De decimal a binario — Método de potencias",
+      "puntos": [
+        "Encuentra la mayor potencia de 2 que quepa en el número",
+        "Réstala y repite con el sobrante",
+        "Las posiciones usadas son 1, las demás son 0"
+      ],
+      "ejemplo": "25: cabe 16 (sobran 9), cabe 8 (sobra 1), cabe 1 (sobra 0) → 11001₂"
+    },
+    {
+      "titulo": "¿Cuántos números caben en n bits?",
+      "puntos": [
+        "Con n bits se representan 2ⁿ números distintos (del 0 al 2ⁿ − 1)",
+        "4 bits → 16 valores (0-15)",
+        "8 bits (1 byte) → 256 valores (0-255)",
+        "10 bits → 1024 valores (0-1023)"
+      ],
+      "ejemplo": "Tu celular usa 64 bits: puede manejar 2⁶⁴ = más de 18 trillones de valores."
+    },
+    {
+      "titulo": "Resumen y puntos clave",
+      "puntos": [
+        "Binario = base 2, solo usa 0 y 1",
+        "Cada posición vale una potencia de 2",
+        "Binario → decimal: multiplicar y sumar",
+        "Decimal → binario: dividir entre 2, leer residuos al revés",
+        "Las computadoras usan binario por sus transistores (encendido/apagado)"
+      ],
+      "ejemplo": "Reto: convierte tu edad a binario y verifica convirtiéndola de vuelta a decimal."
+    }
+  ],
+  "video_script": "# Números binarios — Script de video\n\n[VISUAL: Título animado con ceros y unos cayendo como lluvia verde estilo Matrix]\n\n¡Hola! ¿Alguna vez has visto esas escenas de películas donde en la pantalla de la computadora caen puros ceros y unos? Eso no es ciencia ficción. Las computadoras de verdad trabajan así, y hoy tú vas a aprender a hablar su idioma: el sistema binario.\n\n[VISUAL: Una mano con 10 dedos extendidos, luego se transforma en un circuito con 2 estados]\n\nNosotros usamos el sistema decimal porque tenemos 10 dedos. Usamos diez dígitos: 0, 1, 2, 3, 4, 5, 6, 7, 8 y 9. Pero una computadora no tiene dedos. Tiene transistores, que son como interruptores microscópicos que solo pueden estar en dos estados: encendido o apagado, uno o cero.\n\n[VISUAL: Un interruptor de luz que alterna entre ON (1) y OFF (0)]\n\nPor eso las computadoras usan el sistema binario, que tiene base 2 y solo usa dos dígitos: **0** y **1**. A cada dígito binario le decimos **bit**.\n\n[VISUAL: Tabla comparativa entre decimal y binario apareciendo fila por fila]\n\nVamos a contar en binario. En decimal, cuando llegas a 9 y quieres seguir, pones 10. En binario es igual, pero como solo tienes 0 y 1, se te acaban más rápido.\n\n0 es 0. 1 es 1. ¿Qué sigue después del 1? No existe el 2, así que ponemos 10. No se lee \"diez\", se lee \"uno-cero en binario\" y vale 2 en decimal.\n\nSeguimos: 11 vale 3. 100 vale 4. 101 vale 5. 110 vale 6. 111 vale 7. 1000 vale 8.\n\n[VISUAL: Los números del 0 al 8 en decimal con su equivalente binario al lado]\n\n¿Ves el patrón? Cada vez que se acaban las combinaciones, agregas un dígito a la izquierda. Igualito que en decimal.\n\n[VISUAL: Las potencias de 2 aparecen en una fila brillante: 1, 2, 4, 8, 16, 32, 64, 128]\n\nAhora, el secreto para entender el binario son las **potencias de 2**. En decimal, las posiciones valen 1, 10, 100, 1000... En binario valen 1, 2, 4, 8, 16, 32, 64, 128... Memoriza esta secuencia, te va a salvar la vida.\n\n[VISUAL: Aparece el número 10110 con flechas hacia cada potencia de 2]\n\nVamos a convertir de binario a decimal. Toma el número 10110₂. Escribimos las potencias de 2 arriba de cada dígito, de derecha a izquierda:\n\nPosición: 16, 8, 4, 2, 1.\nDígitos: 1, 0, 1, 1, 0.\n\nMultiplicamos cada dígito por su potencia y sumamos: 1×16 + 0×8 + 1×4 + 1×2 + 0×1 = 16 + 0 + 4 + 2 + 0 = 22.\n\n[VISUAL: La operación se resuelve paso a paso con animación, resultado 22 aparece grande]\n\n¡10110 en binario vale 22 en decimal! El truco es escribir las potencias arriba para no equivocarte de posición.\n\n[VISUAL: Transición con engranajes girando]\n\nAhora vamos al revés: de decimal a binario. Hay dos métodos.\n\n**Método 1: Divisiones sucesivas.** Divide tu número entre 2. Anota el residuo. Repite con el cociente. Cuando llegues a cero, lee los residuos de abajo hacia arriba.\n\n[VISUAL: Animación del proceso con el número 25]\n\n25 ÷ 2 = 12, residuo 1.\n12 ÷ 2 = 6, residuo 0.\n6 ÷ 2 = 3, residuo 0.\n3 ÷ 2 = 1, residuo 1.\n1 ÷ 2 = 0, residuo 1.\n\nLeo de abajo hacia arriba: 11001. Verifiquemos: 16 + 8 + 0 + 0 + 1 = 25. ¡Perfecto!\n\n[VISUAL: Flecha subiendo por los residuos, resultado 11001 aparece resaltado]\n\n**Método 2: Restar potencias de 2.** Busca la mayor potencia de 2 que quepa en tu número, réstala, y repite.\n\n[VISUAL: El número 25 con las potencias restándose una a una]\n\nPara 25: la mayor potencia que cabe es 16, sobran 9. Cabe 8, sobra 1. No cabe 4 ni 2. Cabe 1, sobra 0. Posiciones encendidas: 16, 8, 1 → 11001₂. ¡Mismo resultado!\n\nUsa el método que te guste más. Ambos son correctos.\n\n[VISUAL: Un byte representado como 8 casillas con 0s y 1s]\n\nDato curioso: con un grupo de 8 bits, llamado **byte**, puedes representar 256 números distintos (del 0 al 255). La fórmula es 2ⁿ, donde n es el número de bits. Con 8 bits: 2⁸ = 256.\n\n¿Y con 10 bits? 2¹⁰ = 1024 valores posibles. Por eso los informáticos usan el número 1024 tanto.\n\n[VISUAL: Mano abierta con cada dedo representando un bit: pulgar=1, índice=2, medio=4, anular=8, meñique=16]\n\nReto final: ¿sabías que puedes contar hasta 31 con una sola mano usando binario? Cada dedo es un bit. Pulgar = 1, índice = 2, medio = 4, anular = 8, meñique = 16. Si levantas pulgar e índice: 1 + 2 = 3. Si levantas todos: 1 + 2 + 4 + 8 + 16 = 31. ¡Inténtalo!\n\n[VISUAL: Resumen final con los puntos clave apareciendo]\n\nRepasemos:\n- El binario usa base 2: solo 0 y 1.\n- Cada posición vale una potencia de 2.\n- De binario a decimal: multiplica y suma.\n- De decimal a binario: divide entre 2 y lee residuos al revés.\n- Con n bits representas 2ⁿ valores.\n\nTu tarea: convierte tu edad, tu número de casa y tu número favorito a binario. Después conviértelos de vuelta para verificar.\n\n[VISUAL: Ceros y unos formando la palabra \"¡Hasta la próxima!\"]\n\n¡Nos vemos!"
+}

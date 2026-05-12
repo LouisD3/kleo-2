@@ -1,0 +1,324 @@
+{
+  "secuencia": 4,
+  "titulo": "Densidad del orden: racionales vs. enteros",
+  "contenido": "Extensión de los números a positivos y negativos y su orden.",
+  "pda": "Compara y ordena números con signo (enteros, fracciones y decimales) en la recta numérica y analiza en qué casos se cumple la propiedad de densidad.",
+  "evaluacion": {
+    "preguntas": [
+      {
+        "tipo": "opcion_multiple",
+        "pregunta": "¿Cuál de los siguientes conjuntos cumple la propiedad de densidad?",
+        "opciones": [
+          "A) Los números enteros",
+          "B) Los números naturales",
+          "C) Los números racionales",
+          "D) Los números pares"
+        ],
+        "respuesta": "C"
+      },
+      {
+        "tipo": "verdadero_falso",
+        "pregunta": "Entre los enteros consecutivos 3 y 4, no existe ningún otro número entero.",
+        "respuesta": true
+      },
+      {
+        "tipo": "espacios",
+        "pregunta": "La propiedad de ___ establece que entre cualesquiera dos números racionales siempre existe otro número ___.",
+        "respuesta": "densidad, racional"
+      },
+      {
+        "tipo": "calculo",
+        "pregunta": "Encuentra tres números racionales entre -1/2 y -1/4.",
+        "respuesta": "Paso 1: Convertir a decimales: -1/2 = -0.5, -1/4 = -0.25. Paso 2: Buscar números entre -0.5 y -0.25. Por ejemplo: -0.4 = -2/5, -0.35 = -7/20, -0.3 = -3/10. Resultado: -2/5, -7/20 y -3/10 están entre -1/2 y -1/4."
+      },
+      {
+        "tipo": "abierta",
+        "pregunta": "Explica con tus propias palabras la diferencia entre el orden de los enteros y el orden de los racionales respecto a la propiedad de densidad.",
+        "respuesta": "Los números enteros no cumplen la propiedad de densidad porque entre dos enteros consecutivos (como 5 y 6) no hay otro entero. En cambio, los números racionales sí la cumplen: entre cualesquiera dos racionales, por cercanos que estén, siempre podemos encontrar otro racional (por ejemplo, su promedio). Esto significa que los racionales están 'empaquetados' sin huecos en la recta numérica."
+      }
+    ]
+  },
+  "orientacion": {
+    "contenidos_especificos": [
+      "Comprender la propiedad de densidad en los números racionales",
+      "Encontrar números racionales entre dos números dados",
+      "Contrastar la densidad de los racionales con la discretitud de los enteros"
+    ],
+    "actividad_inicio": [
+      "Pregunta: '¿Existe algún número entero entre 3 y 4? ¿Y entre -1 y 0?' Escucha las respuestas y luego pregunta: '¿Y si no nos limitamos a enteros?'",
+      "Dibuja una recta numérica mostrando solo enteros del -5 al 5 y pregunta: '¿La recta está completa o faltan números entre los puntos marcados?'",
+      "Reta al grupo: 'Les voy a demostrar que entre 0 y 1 hay infinitos números. ¿Me creen?' Genera expectativa.",
+      "Pide que encuentren un número entre 0.1 y 0.2. Luego entre 0.11 y 0.12. Luego entre 0.111 y 0.112. Pregunta si podrían seguir para siempre.",
+      "Presenta dos fracciones: 1/4 y 1/3. Pregunta si hay alguna fracción entre ellas y cómo la encontrarían."
+    ],
+    "desarrollo": [
+      {
+        "titulo": "Densidad de los números racionales",
+        "diapositiva": "1-3",
+        "libro": "Sección Conceptos: Propiedad de densidad",
+        "video": null,
+        "descripcion": "Define la propiedad de densidad: entre dos números racionales cualesquiera siempre existe otro número racional. Demuéstralo con el método del promedio: dados a y b, el número (a+b)/2 siempre está entre ellos. Ejemplo: entre 1/3 y 1/2, calcula (1/3 + 1/2)/2 = (2/6 + 3/6)/2 = 5/12. Verifica que 1/3 < 5/12 < 1/2 convirtiéndolos a decimales. Repite con -3 y -2: el promedio es -2.5. Pide a los alumnos que encuentren un racional entre -1/4 y 1/4 usando el promedio.",
+        "tip": "Haz énfasis en que el procedimiento se puede repetir infinitamente: entre a y (a+b)/2 también hay otro número, y así sucesivamente."
+      },
+      {
+        "titulo": "Los enteros NO son densos",
+        "diapositiva": "4-5",
+        "libro": "Sección Ejemplos: Enteros vs. racionales",
+        "video": "min 1:00-3:00",
+        "descripcion": "Contrasta: entre los enteros 4 y 5, no hay ningún otro entero. Pero entre 4 y 5 hay infinitos racionales (4.1, 4.01, 4.5, 4.99, 9/2, etc.). Dibuja dos rectas numéricas: una mostrando solo enteros (puntos aislados) y otra mostrando racionales (línea más llena). Pide que en parejas completen una tabla: para cada par de enteros consecutivos, escriban al menos 5 racionales entre ellos. Incluye pares negativos como (-3, -2).",
+        "tip": null
+      },
+      {
+        "titulo": "Práctica: encontrar racionales entre racionales",
+        "diapositiva": "6-8",
+        "libro": "Sección Práctica: Densidad",
+        "video": null,
+        "descripcion": "Plantea el reto escalonado: (1) Encuentra 3 racionales entre -1 y 0. (2) Encuentra 3 racionales entre -0.5 y -0.4. (3) Encuentra 3 fracciones entre 2/7 y 3/7. (4) Dado que encontraste un racional entre 2/7 y 3/7, encuentra otro entre ese nuevo número y 3/7. Trabajan individualmente 10 minutos. Luego, discusión grupal: '¿Podríamos seguir encontrando números para siempre?' Guía hacia la conclusión de que los racionales son densos pero los enteros no.",
+        "tip": "Para encontrar fracciones entre a/n y b/n, una estrategia es amplificar: a/n = 2a/2n y b/n = 2b/2n, y luego buscar numeradores intermedios."
+      }
+    ],
+    "cierre_individual": {
+      "reflexiona": "Explica con tus palabras qué significa que los números racionales sean densos. ¿Los enteros también lo son? ¿Por qué sí o por qué no?",
+      "profundiza": [
+        {
+          "pregunta": "¿Es posible encontrar un número racional entre 0.999… y 1? Justifica.",
+          "respuesta_modelo": "No, porque 0.999… (con infinitos nueves) es exactamente igual a 1. Se puede demostrar así: si x = 0.999…, entonces 10x = 9.999…, restando: 9x = 9, así que x = 1. Al ser el mismo número, no hay ningún número entre ellos."
+        },
+        {
+          "pregunta": "Si entre cualquier par de racionales siempre hay otro racional, ¿significa que no hay 'huecos' en la recta numérica?",
+          "respuesta_modelo": "Aunque los racionales son densos (entre cualesquiera dos siempre hay otro), sí existen huecos en la recta. Hay números como √2 o π que no son racionales (son irracionales) y ocupan posiciones en la recta que ningún racional ocupa. Los racionales solos no llenan completamente la recta numérica."
+        }
+      ]
+    },
+    "cierre_grupal": [
+      "La propiedad de densidad dice que entre dos racionales cualesquiera siempre existe al menos otro racional.",
+      "El promedio de dos números siempre cae exactamente entre ellos; es un método confiable para encontrar racionales intermedios.",
+      "Los números enteros NO son densos: entre dos enteros consecutivos no hay otro entero.",
+      "Entre dos racionales no solo hay un número intermedio, sino infinitos.",
+      "La densidad de los racionales no significa que llenen toda la recta; existen los números irracionales."
+    ],
+    "preguntas_comprension": [
+      "Encuentra dos números racionales entre -3/5 y -2/5.",
+      "¿Existe un número entero entre 7 y 8? ¿Y un racional? Explica la diferencia.",
+      "Usa el método del promedio para encontrar un racional entre 1/3 y 2/5.",
+      "¿Por qué decimos que los enteros son 'discretos' pero los racionales son 'densos'?",
+      "Si encuentras un racional entre 0.01 y 0.02, ¿puedes encontrar otro entre tu nuevo número y 0.02? ¿Y otro más?"
+    ]
+  },
+  "libro": {
+    "introduccion": "¿Te has preguntado si entre dos números siempre cabe otro? Con los enteros no siempre se puede (entre 3 y 4 no hay otro entero), pero con los racionales la cosa cambia completamente. Prepárate para descubrir la propiedad de densidad.",
+    "conceptos": [
+      {
+        "titulo": "La propiedad de densidad de los racionales",
+        "contenido": "Entre cualquier par de números racionales siempre puedes encontrar otro racional. ¡Y entre esos dos, otro más! Esto significa que entre 0.1 y 0.2 hay infinitos números: 0.11, 0.12, 0.15, 0.111, 0.1234... Esto no pasa con los enteros: entre 5 y 6 no hay ningún otro entero.",
+        "definicion": "Propiedad de densidad: entre cualquier par de números racionales siempre existe al menos otro número racional.",
+        "figura": {
+          "tipo": "recta_numerica",
+          "min": -3,
+          "max": 3,
+          "puntos": [
+            {
+              "valor": -1.5,
+              "label": "-1.5"
+            },
+            {
+              "valor": 0.5,
+              "label": "0.5"
+            },
+            {
+              "valor": 2,
+              "label": "2"
+            }
+          ],
+          "width": 400,
+          "height": 55
+        }
+      },
+      {
+        "titulo": "Números racionales vs. enteros",
+        "contenido": "Los enteros son ..., −2, −1, 0, 1, 2, ... y en la recta numérica hay \"huecos\" entre ellos. Los racionales (fracciones y decimales) llenan esos huecos. Por eso decimos que los racionales son densos: no importa qué tan juntos estén dos racionales, siempre cabe otro en medio.",
+        "definicion": "Número racional: cualquier número que se puede expresar como fracción a/b, donde a y b son enteros y b ≠ 0."
+      }
+    ],
+    "ejemplos": [
+      {
+        "titulo": "Encontrar un racional entre dos enteros",
+        "enunciado": "Encuentra un número racional entre 3 y 4.",
+        "pasos": [
+          "Paso 1: Calcula el promedio: (3 + 4) / 2 = 7/2 = 3.5.",
+          "Paso 2: Verifica: 3 < 3.5 < 4. ¡Listo!"
+        ],
+        "resultado": "3.5 (o 7/2) está entre 3 y 4.",
+        "figura": {
+          "tipo": "recta_numerica",
+          "min": -2,
+          "max": 2,
+          "puntos": [
+            {
+              "valor": -0.5,
+              "label": "-1/2"
+            },
+            {
+              "valor": 0.75,
+              "label": "3/4"
+            }
+          ],
+          "width": 400,
+          "height": 55
+        }
+      },
+      {
+        "titulo": "Encontrar un racional entre dos fracciones",
+        "enunciado": "Encuentra un número racional entre 1/4 y 1/3.",
+        "pasos": [
+          "Paso 1: Convierte a decimal: 1/4 = 0.25, 1/3 ≈ 0.333.",
+          "Paso 2: Promedio: (0.25 + 0.333) / 2 ≈ 0.291.",
+          "Paso 3: O bien, usa fracciones equivalentes con denominador común: 1/4 = 3/12, 1/3 = 4/12. Necesitamos algo entre 3/12 y 4/12, así que usamos 7/24 (promedio: (3/12 + 4/12)/2 = 7/24)."
+        ],
+        "resultado": "7/24 está entre 1/4 y 1/3."
+      },
+      {
+        "titulo": "Encontrar un racional entre dos negativos",
+        "enunciado": "Encuentra un racional entre −0.6 y −0.5.",
+        "pasos": [
+          "Paso 1: Calcula el promedio: (−0.6 + (−0.5)) / 2 = −1.1 / 2 = −0.55.",
+          "Paso 2: Verifica: −0.6 < −0.55 < −0.5."
+        ],
+        "resultado": "−0.55 está entre −0.6 y −0.5."
+      }
+    ],
+    "datos_curiosos": "¿Sabías que entre dos números racionales siempre hay otro? Por ejemplo, entre 10 y 11 pesos están 10.50, 10.25, 10.10... ¡Hay infinitos precios posibles! Por eso las etiquetas en las tiendas pueden mostrar precios como $10.99. Esta propiedad se llama densidad y es exclusiva de los racionales: entre dos enteros consecutivos como 3 y 4, no hay otro entero.",
+    "ejercicios": [
+      {
+        "numero": 1,
+        "enunciado": "Encuentra tres números racionales entre 2 y 3.",
+        "espacio": true,
+        "lineas": 3
+      },
+      {
+        "numero": 2,
+        "enunciado": "¿Existe un entero entre 7 y 8? ¿Y un racional? Justifica.",
+        "espacio": true,
+        "lineas": 3
+      },
+      {
+        "numero": 3,
+        "enunciado": "Encuentra un número racional entre −1/3 y −1/4.",
+        "espacio": true,
+        "lineas": 4
+      },
+      {
+        "numero": 4,
+        "enunciado": "Escribe cinco números racionales entre 0 y 1 que tengan denominador distinto cada uno.",
+        "espacio": true,
+        "lineas": 3
+      }
+    ],
+    "puntos_clave": [
+      "Entre cualquier par de racionales siempre hay otro racional (propiedad de densidad).",
+      "Los enteros NO son densos: entre dos enteros consecutivos no hay otro entero.",
+      "El método del promedio siempre te da un racional que está justo a la mitad.",
+      "Los racionales \"llenan\" los huecos que dejan los enteros en la recta numérica."
+    ]
+  },
+  "diapositiva": [
+    {
+      "titulo": "Densidad del orden: racionales vs. enteros",
+      "puntos": [
+        "¿Cuántos números caben entre dos números?",
+        "Objetivo: comprender la propiedad de densidad"
+      ],
+      "ejemplo": "¿Hay algo entre 2 y 3? Depende de qué tipo de números hablemos."
+    },
+    {
+      "titulo": "Los enteros: un conjunto discreto",
+      "puntos": [
+        "Entre dos enteros consecutivos no hay otro entero",
+        "Son como escalones: saltas de uno al otro",
+        "Ejemplos: nada entre 5 y 6, ni entre -3 y -2"
+      ],
+      "ejemplo": "Entre 7 y 8 no existe ningún entero."
+    },
+    {
+      "titulo": "Los racionales: un conjunto denso",
+      "puntos": [
+        "Entre dos racionales siempre hay otro racional",
+        "¡Y no solo uno, sino infinitos!",
+        "Nunca llegas a un 'hueco'"
+      ],
+      "ejemplo": "Entre 0.1 y 0.2 están: 0.11, 0.15, 0.19, 0.123456...",
+      "figura": {
+        "tipo": "recta_numerica",
+        "min": -3,
+        "max": 3,
+        "puntos": [
+          {
+            "valor": -2,
+            "label": "-2"
+          },
+          {
+            "valor": -1.5,
+            "label": ""
+          },
+          {
+            "valor": -1,
+            "label": "-1"
+          },
+          {
+            "valor": 0,
+            "label": "0"
+          }
+        ],
+        "width": 500,
+        "height": 60
+      }
+    },
+    {
+      "titulo": "El método del promedio",
+      "puntos": [
+        "Fórmula: (a + b) / 2",
+        "El resultado siempre está entre a y b",
+        "Puedes repetirlo infinitamente"
+      ],
+      "ejemplo": "Entre 1/4 y 1/2: (1/4 + 1/2) / 2 = 3/8"
+    },
+    {
+      "titulo": "Ejemplo con negativos",
+      "puntos": [
+        "Entre -0.7 y -0.6:",
+        "Promedio: (-0.7 + (-0.6)) / 2 = -0.65",
+        "Otros: -0.69, -0.61, -0.655..."
+      ],
+      "ejemplo": "-0.7 < -0.65 < -0.6"
+    },
+    {
+      "titulo": "Zoom infinito",
+      "puntos": [
+        "Imagina que haces zoom entre 0.5 y 0.6",
+        "Aparecen 0.51, 0.52, ..., 0.59",
+        "Haz zoom entre 0.55 y 0.56: aparecen 0.551, 0.552...",
+        "Esto nunca termina"
+      ],
+      "ejemplo": "Es como Google Maps: entre más zoom, más detalle."
+    },
+    {
+      "titulo": "Comparación: enteros vs. racionales",
+      "puntos": [
+        "Enteros: discretos (con huecos)",
+        "Racionales: densos (sin huecos entre ellos)",
+        "¿Los racionales llenan toda la recta? No: faltan los irracionales"
+      ],
+      "ejemplo": "√2 ≈ 1.41421356... es un 'hueco' entre los racionales"
+    },
+    {
+      "titulo": "Resumen y práctica",
+      "puntos": [
+        "Propiedad de densidad = siempre hay otro racional en medio",
+        "Los enteros NO son densos",
+        "Método del promedio para encontrar racionales intermedios"
+      ],
+      "ejemplo": "Tarea: encuentra 3 racionales entre -3/4 y -1/2"
+    }
+  ],
+  "video_script": "## Densidad del orden: racionales vs. enteros\n\n[VISUAL: Título animado con una lupa haciendo zoom en la recta numérica]\n\n¡Hola! Hoy te voy a volar la mente con una propiedad matemática increíble. Se llama propiedad de densidad, y cuando la entiendas, vas a ver los números de una forma completamente diferente.\n\n[VISUAL: Recta numérica con enteros marcados, pregunta: \"¿Hay algo entre 2 y 3?\"]\n\nEmpecemos con una pregunta sencilla: ¿hay algún número entero entre 2 y 3? Piénsalo... No, ¿verdad? El siguiente entero después del 2 es el 3 y ya. No hay nada en medio. Lo mismo pasa entre -1 y 0, o entre 100 y 101.\n\nLos enteros son como los escalones de una escalera. Saltas de uno al siguiente y entre escalón y escalón no hay nada. En matemáticas decimos que los enteros son un conjunto **discreto**.\n\n### Ahora con fracciones y decimales\n\n[VISUAL: La recta numérica entre 2 y 3 se amplía, aparecen 2.1, 2.2, ..., 2.9]\n\nPero si ahora pregunto: ¿hay algún número fraccionario o decimal entre 2 y 3? ¡Claro que sí! Está el 2.1, el 2.5, el 2.99, el 2.001... montones de números.\n\nY aquí viene lo alucinante. Vamos a hacer zoom entre 2.5 y 2.6.\n\n[VISUAL: Zoom animado entre 2.5 y 2.6, aparecen 2.51, 2.52, ..., 2.59]\n\n¡Aparecen más números! 2.51, 2.55, 2.59... ¿Y entre 2.55 y 2.56?\n\n[VISUAL: Otro zoom, aparecen 2.551, 2.552, ...]\n\n¡Más números! Y podemos seguir haciendo zoom para siempre, y siempre van a aparecer más. Los números racionales — o sea, fracciones y decimales — nunca se acaban entre dos cualesquiera. A esto le llamamos la **propiedad de densidad**.\n\n### El truco del promedio\n\n[VISUAL: Fórmula (a + b) / 2 con ejemplo animado]\n\n¿Cómo encuentras un número entre dos racionales? Fácil: calcula su promedio. La fórmula es (a + b) entre 2. El promedio siempre cae exactamente a la mitad.\n\nPor ejemplo, entre 1/4 y 1/2. Sumamos: 1/4 + 2/4 = 3/4. Dividimos entre 2: 3/4 ÷ 2 = 3/8. ¿Y 3/8 está entre 1/4 y 1/2? Verificamos: 0.25 < 0.375 < 0.5. ¡Sí!\n\n[VISUAL: Cadena de promedios, encontrando números intermedios sucesivos]\n\nY lo mejor: puedes tomar ese 3/8 y encontrar otro número entre 1/4 y 3/8. Y luego otro. Y otro. El proceso nunca termina. Esa es la belleza de la densidad.\n\n### Con números negativos también funciona\n\n[VISUAL: Recta numérica con negativos, zoom entre -0.7 y -0.6]\n\nEntre -0.7 y -0.6 también hay infinitos racionales. El promedio es (-0.7 + (-0.6)) / 2 = -0.65. Pero también están -0.69, -0.61, -0.632 y todos los que quieras.\n\n### ¿Y los racionales llenan toda la recta?\n\n[VISUAL: Punto marcado como √2 en la recta con signo de interrogación]\n\nUna pregunta interesante para dejarte pensando: si los racionales son tan densos, ¿llenan toda la recta numérica? La respuesta es no. Existen números como la raíz cuadrada de 2, que vale 1.41421356... y nunca se repite ni termina. Ese número no se puede escribir como fracción. Es lo que llamamos un número irracional. Pero eso lo veremos más adelante.\n\n[VISUAL: Resumen con íconos de escalera (enteros) vs. arena (racionales)]\n\nPara resumir: los enteros son discretos, como escalones con huecos. Los racionales son densos, como arena: entre dos granos siempre puedes meter otro. Y el promedio es tu herramienta para encontrar números intermedios. Practica encontrando racionales entre números negativos y nos vemos en la siguiente lección. ¡Hasta la próxima!\n\n[VISUAL: Pantalla de cierre con ejercicios de práctica]"
+}

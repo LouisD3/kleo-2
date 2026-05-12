@@ -1,7 +1,5 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
-
 ## Commands
 
 ```bash
@@ -15,161 +13,165 @@ npm run lint:fix  # Run Biome linter with auto-fix
 ## Environment
 
 - `.env.local`:
-  - `NEXT_PUBLIC_SUPABASE_URL` (Supabase project URL)
-  - `NEXT_PUBLIC_SUPABASE_ANON_KEY` (Supabase anonymous key)
-  - `SUPABASE_SERVICE_ROLE_KEY` (server-side only, for GC token storage bypassing RLS)
-  - `ANTHROPIC_API_KEY` (server-side only, set in Vercel dashboard)
-  - `GOOGLE_CLIENT_ID` (Google Cloud OAuth2 client ID)
-  - `GOOGLE_CLIENT_SECRET` (Google Cloud OAuth2 client secret)
-  - `GOOGLE_REDIRECT_URI` (OAuth2 callback URL, e.g. `https://yourdomain.com/api/gc/callback`)
-  - `NEXT_PUBLIC_APP_URL` (public app URL for GC links, e.g. `https://kleo.education`)
+  - `NEXT_PUBLIC_SUPABASE_URL` / `NEXT_PUBLIC_SUPABASE_ANON_KEY` (Supabase)
+  - `ANTHROPIC_API_KEY` (server-side only)
+  - `NEXT_PUBLIC_APP_URL` (public app URL, e.g. `https://kleo.education`)
 
-## Architecture
+## Product vision
 
-**Kleo** is a Mexican educational AI platform for teachers and students (secondary/preparatory level in Mexico). Teachers generate AI-powered assignments; students complete them and receive instant AI grading and feedback. All UI copy is in Spanish (Mexican).
+**Kleo** is a Mexican educational platform for **math, 1o Secundaria, 100% Singapore method**.
+Every lesson in the NEM curriculum has a Singapore-style tarea that guides the student through
+the CPA path (Concreto -> Pictorico -> Abstracto) with a mastery gate between each step.
+All UI copy is in Spanish (Mexican). Mobile-first, must work on low-end phones.
 
-### Tech Stack
-- **Frontend**: Next.js 16 (App Router) + React 19 + Zustand + Tailwind CSS v3
-- **Backend**: Next.js Route Handler (`src/app/api/ia/route.ts`)
+## Tech stack
+
+- **Frontend**: Next.js 16 (App Router) + React 19 + Zustand + Tailwind CSS v3 + shadcn/ui + Lucide icons
+- **Backend**: Next.js Route Handlers (`src/app/api/`)
 - **Database**: Supabase (PostgreSQL + Auth + Row Level Security)
-- **AI**: Anthropic Claude (`claude-sonnet-4-20250514`) via direct API calls (raw `fetch`, no SDK)
-- **Build**: Next.js + Turbopack
-- **Linting**: Biome
+- **AI**: Anthropic Claude (`claude-sonnet-4-20250514`) via raw `fetch` (no SDK)
+- **Validation**: Zod (`src/lib/schemas.ts`)
+- **Data fetching**: TanStack React Query
+- **Manipulables 2D**: `@dnd-kit/core` + `@dnd-kit/sortable` + `framer-motion`
+- **Manipulables 3D**: `@react-three/fiber` + `@react-three/drei` (lazy-loaded, WebGL fallback to SVG)
+- **Analytics**: PostHog | **Error tracking**: Sentry | **PDF**: `@react-pdf/renderer`
+- **Build**: Turbopack | **Lint**: Biome
 
-### Project Structure
+## Project structure
 
 ```
 src/
-  app/                         — Next.js App Router
-    layout.tsx                 — Root layout (AuthProvider wrapper)
-    page.jsx                   — Landing page (role selection)
-    (auth)/                    — Public auth routes (route group, no layout)
-      login/page.jsx
-      registro/page.jsx
-      acceso-alumno/page.jsx
-      verificar-correo/page.tsx
-      recuperar-contrasena/page.jsx
-      restablecer-contrasena/page.jsx
-    (profesor)/                — Protected profesor routes (layout with auth guard)
-      layout.tsx               — ProtectedRoute requiere="profesor"
-      profesor/
-        page.jsx               — DashboardProfesor
-        generar/page.jsx       — GenerarTarea (AI task generation)
-        tarea/[tareaId]/page.jsx — DetalleTarea
-        clase/page.jsx         — GestionClase
-    (alumno)/                  — Protected alumno routes (layout with auth guard)
-      layout.tsx               — ProtectedRoute requiere="alumno"
-      alumno/
-        page.jsx               — DashboardAlumno
-        tarea/[tareaId]/page.jsx — RealizarTarea
-        resultado/[tareaId]/page.jsx — ResultadoTarea
-    legal/
-      privacidad/page.tsx      — AvisoPrivacidad (Server Component)
-      terminos/page.tsx        — TerminosUso (Server Component)
-    api/
-      ia/route.ts              — AI endpoint (task generation + grading)
-      gc/                      — Google Classroom integration
-        auth/route.ts          — Generate OAuth2 URL
-        callback/route.ts      — OAuth2 redirect handler
-        courses/route.ts       — List teacher's GC courses
-        sync/route.ts          — Import students from GC course
-        publish/route.ts       — Publish task as GC coursework
-        grades/route.ts        — Push grades back to GC
-        disconnect/route.ts    — Disconnect GC account
-  lib/supabase.js              — Supabase client init
-  lib/google-classroom.ts      — Google Classroom OAuth2 + API helpers
-  store/
-    useAuthStore.js            — Auth state (teacher Supabase Auth + student code-based)
-    useTareaStore.js           — Tasks, students, results state (backed by Supabase)
+  app/
+    layout.tsx                     Root layout (AuthProvider)
+    page.jsx                       Landing (role selection)
+    (auth)/                        login, registro, acceso-alumno, verificar-correo, recuperar/restablecer-contrasena
+    (profesor)/profesor/
+      page.jsx                     DashboardProfesor (+ heatmap CPA)
+      biblioteca/page.jsx          Browse & assign reference tareas
+      generar/page.jsx             AI-generate custom tareas
+      tarea/[tareaId]/page.jsx     DetalleTarea (results + CPA breakdown)
+      clase/page.jsx               GestionClase
+      ajustes/page.jsx             Settings (profile, password, danger zone)
+    (alumno)/alumno/
+      page.jsx                     DashboardAlumno
+      tarea/[tareaId]/page.jsx     StepperCPA (Concreto->Pictorico->Abstracto)
+      resultado/[tareaId]/page.jsx ResultadoCPA (score breakdown by step)
+    api/ia/route.ts                AI endpoint (generar CPA + corregir CPA)
+    legal/                         privacidad, terminos
+  types/
+    tarea-cpa.ts                   CPA tarea, scoring, attempt, progress types
+    biblioteca.ts                  Biblioteca content types
+  content/biblioteca/matematicas-1/
+    secuencia-01.json ... secuencia-36.json   Per-lesson pedagogical content
+    index.ts                       Helpers: getAllSecuencias, getSecuenciaById, loadSecuencia
+  data/tareas-referencia/          Reference Singapore tareas (immutable, versioned in Git)
   components/
-    auth/
-      AuthProvider.jsx         — Root auth initializer (wraps app)
-      ProtectedRoute.jsx       — Role-based route guard
-    layout/NavBar.jsx          — Shared navigation bar
-    ui/                        — Reusable UI: Badge, Boton, MensajeError, Modal, Spinner
-    alumno/RenderizadorPregunta.jsx — Question renderer for student task view
-    profesor/
-      TablaTareas.jsx          — Task list table
-      TablaResultadosAlumnos.jsx — Per-task student results table
-      GoogleClassroomPanel.jsx — GC connection + student import UI
-      GoogleClassroomActions.jsx — GC publish + grade sync per task
-  hooks/useAnthropicAPI.js     — Client-side hook for /api/ia calls
-  hooks/useGoogleClassroom.js  — Client-side hooks for GC integration
-  mock/pdas/                   — PDA library data (NEM curriculum)
+    manipulables/                  DulcesAgrupables, ManipulableDispatcher, (future: Chocolate, Bloques, Balanza)
+    pictorico/                     ModeloBarras (SVG)
+    alumno/StepperCPA.tsx          3-step mastery-gated student view
+    alumno/RenderizadorPregunta.jsx  Question renderer (5 types)
+    profesor/HeatmapCPA.tsx        Students x tareas heatmap by CPA step
+    profesor/TablaTareas.jsx       Task list table
+    profesor/TablaResultadosAlumnos.jsx  Per-task results with CPA scores
+    profesor/TareaPDF.jsx          PDF export
+    auth/                          AuthProvider, ProtectedRoute
+    layout/NavBar.jsx              Navigation bar
+    ui/                            Badge, Boton, MensajeError, Modal, Spinner, Toast + shadcn
+    providers/                     QueryProvider, PostHogProvider
+  store/
+    useAuthStore.js                Teacher Supabase Auth + student code-based access
+    useTareaStore.js               Tareas, students, results (Zustand + Supabase)
+  hooks/
+    useAnthropicAPI.js             Client-side /api/ia wrapper
+    useTareas.js                   React Query hooks for tarea CRUD
+  lib/                             supabase.js, schemas.ts, posthog.ts, utils.ts
+  mock/pdas/matematicas_1.js       36 NEM PDAs (secuencia/titulo/pda/materia/grado)
 ```
 
-### Data Flow
+## Database schema
 
-Application state uses Zustand as a cache layer backed by Supabase:
+6 tables with RLS:
+- `profesores` — teacher profiles (linked to auth.users)
+- `clases` — classrooms per teacher
+- `alumnos` — students per class (6-char access code, no Supabase auth)
+- `tareas` — tasks per class. Key fields: `contenido_cpa` JSONB (CPA structure), `secuencia_ref` INT (link to reference tarea), `estado` ('borrador'|'en_curso'|'completada'), `fecha_limite`
+- `resultados` — aggregated best result per student per task. Key fields: `calificacion` (best global score), `scores_cpa` JSONB, `calificacion_manual`, `numero_intentos`, `ultima_tentativa_at`
+- `intentos` — every attempt by a student on a task. Key fields: `numero`, `inicio_at`, `fin_at`, `tiempo_concreto_ms`/`pictorico`/`abstracto`, `concreto` JSONB, `pictorico` JSONB, `abstracto` JSONB, `scores_cpa` JSONB
 
-- **`useAuthStore`** (`src/store/useAuthStore.js`): Supabase auth for teachers (email/password), code-based access for students, active role/session. On init, auto-creates missing `profesores` row and default class if needed.
-- **`useTareaStore`** (`src/store/useTareaStore.js`): tasks, students, results — all persisted to Supabase, loaded into Zustand on mount. Student access codes generated with `Math.random()` (6-char alphanumeric, excludes ambiguous chars).
+## CPA architecture
 
-### Database Schema (`supabase-schema.sql`)
-
-5 tables with RLS policies:
-- `profesores` — teacher profiles (linked to Supabase auth.users), optional `gc_refresh_token` + `gc_connected` for Google Classroom
-- `clases` — classrooms per teacher, optional `gc_course_id` linking to GC course
-- `alumnos` — students per class (access via 6-char alphanumeric code), optional `gc_user_id` for GC identity
-- `tareas` — tasks per class (with optional `fecha_limite` deadline, optional `pda` field for NEM curriculum alignment, optional `gc_coursework_id` for GC)
-- `resultados` — student results (supports `calificacion_manual` override)
-
-### Auth Flow
-
-- **Teachers**: email/password registration via Supabase Auth → creates `profesores` row + default class
-- **Students**: enter 6-character access code → looked up in `alumnos` table, no Supabase auth account needed. Student sessions are stored in Zustand only (not persisted across page reloads).
-
-### Task Lifecycle
-
-Tasks move through three states: `'borrador'` → `'en_curso'` (published) → `'completada'` (all students submitted).
-
-### API Route (`src/app/api/ia/route.ts`)
-
-Single POST endpoint accepting `{ type, payload }`:
-- `type: 'generar'` — generates questions for a task from subject/difficulty/methodology/PDA parameters. Supports 3 pedagogical methodologies: Feynman, Memorización activa, Resolución de problemas. Question types: opcion_multiple, verdadero_falso, abierta, espacios, calculo.
-- `type: 'corregir'` — grades student responses, returns score (0–10) + per-question feedback + areas_de_mejora
-
-Claude returns JSON embedded in text; the backend extracts it with a regex (`/\{[\s\S]*\}/`).
-
-### Google Classroom Integration
-
-Optional integration allowing teachers to connect their Google Classroom account:
-- **OAuth2 flow**: Teacher connects via `/api/gc/auth` → Google consent → `/api/gc/callback` stores refresh token
-- **Student import**: Fetch student roster from a GC course and create `alumnos` rows with `gc_user_id`
-- **Task publishing**: When a task is published (`en_curso`), it's automatically created as coursework in the linked GC course
-- **Grade sync**: Push `calificacion` (or `calificacion_manual` override) back to GC gradebook
-- **DB migration**: Run `supabase-schema-gc.sql` after the base schema to add GC columns
-- **Service role key**: GC token storage requires `SUPABASE_SERVICE_ROLE_KEY` to bypass RLS on the `gc_refresh_token` column
-
-### Routes
-
+### Tarea structure (contenido_cpa JSONB)
 ```
-/                              → Landing (role selection)
-/login                         → Login (teacher email/password)
-/registro                      → Registro (teacher registration)
-/acceso-alumno                 → AccesoAlumno (student code entry)
-/verificar-correo              → VerificarCorreo
-/recuperar-contrasena          → RecuperarContrasena
-/restablecer-contrasena        → RestablecerContrasena
-/profesor                      → DashboardProfesor (protected)
-/profesor/generar              → GenerarTarea (AI task generation form)
-/profesor/tarea/[tareaId]      → DetalleTarea (task detail + results + CSV export + manual grading)
-/profesor/clase                → GestionClase (class & student management)
-/alumno                        → DashboardAlumno (protected)
-/alumno/tarea/[tareaId]        → RealizarTarea (answer questions)
-/alumno/resultado/[tareaId]    → ResultadoTarea (grade + feedback display)
-/legal/privacidad              → AvisoPrivacidad
-/legal/terminos                → TerminosUso
+{ concreto: { manipulable: ManipulableSpec, intentos_para_pista: 3 },
+  pictorico: { modelo_barras: ModeloBarrasSpec, preguntas: [...] },
+  abstracto: { preguntas: [...] } }
 ```
 
-### Teacher Features
-- PDA (Proceso de Desarrollo del Aprendizaje) alignment with NEM curriculum for task generation
-- Deadline (`fecha_limite`) on tasks, shown to students with overdue indicator
-- Manual grade override (`calificacion_manual`) per student per task
-- CSV export of results per task
-- Class management: create classes, add/remove students, view access codes
+### Mastery gate
+Student must validate step N to access N+1. Unlimited retries. Hint after N failed attempts (default 3). Teacher can force-unlock a student ("Marcar como completado").
 
-### Custom Tailwind Theme
+### Scoring
+- Concreto: `max(10 - (attempts-1)*2, 2)` (auto-check client-side)
+- Pictorico/Abstracto: `(correct/total) * 10` (AI grading for open questions)
+- Global: `concreto*0.20 + pictorico*0.30 + abstracto*0.50`
+
+### Reference tareas vs custom
+- **Reference tareas** live in `src/data/tareas-referencia/` (TS/JSON, immutable, Git-versioned). When a teacher assigns one, a copy is inserted in `tareas` with `secuencia_ref` pointing to the source.
+- **Custom tareas** are AI-generated via `/api/ia` (type: 'generar') for needs outside the standard curriculum. Same CPA structure.
+
+### Student progress persistence
+CPA progress is stored in `localStorage` (`kleo_progreso_{tareaId}_{alumnoId}`) so students can resume after closing the browser. Cleared on attempt submission.
+
+### Heatmap CPA (MVP Phase 8)
+Teacher dashboard includes a heatmap: students x tareas grid, color-coded green/yellow/red per CPA step (Concreto/Pictorico/Abstracto). Component: `HeatmapCPA.tsx`.
+
+## Auth flow
+
+- **Teachers**: Supabase Auth (email/password) -> auto-creates `profesores` row + default class
+- **Students**: 6-char alphanumeric access code -> lookup in `alumnos`, no Supabase auth. Session stored in Zustand + localStorage.
+
+## API route (`/api/ia`)
+
+POST `{ type, payload }`:
+- `type: 'generar'` — generates a CPA tarea (concreto + pictorico + abstracto) from PDA/difficulty
+- `type: 'corregir'` — grades pictorico + abstracto responses, returns per-step scores + feedback
+- `type: 'modificar'` — modifies a single question
+
+## Routes
+
+```
+/                              Landing (role selection)
+/login, /registro              Teacher auth
+/acceso-alumno                 Student code entry
+/verificar-correo, /recuperar-contrasena, /restablecer-contrasena
+/profesor                      Dashboard (+ CPA heatmap)
+/profesor/biblioteca           Browse & assign reference tareas
+/profesor/generar              AI-generate custom CPA tareas
+/profesor/tarea/[tareaId]      Task detail + results + CSV + manual grading
+/profesor/clase                Class & student management
+/profesor/ajustes              Settings (profile, password, danger zone)
+/alumno                        Student dashboard
+/alumno/tarea/[tareaId]        CPA stepper (Concreto->Pictorico->Abstracto)
+/alumno/resultado/[tareaId]    Score breakdown by CPA step
+/legal/privacidad, /legal/terminos
+```
+
+## Biblioteca content
+
+`src/content/biblioteca/matematicas-1/` contains 36 JSON files (one per NEM secuencia) with:
+- `evaluacion` — 5 pre-made questions (base for Bloque Abstracto)
+- `orientacion` — teacher guide (actividad_inicio, desarrollo, cierre)
+- `libro` — student reading material (conceptos, ejemplos, ejercicios)
+- `diapositiva` — 8 slides per lesson
+- `video_script` — video lesson script
+
+This content is for teacher/student consultation, NOT part of the CPA tarea flow.
+
+## Pedagogical reference
+
+See `docs/pedagogia-singapur.md` for full CPA specs: manipulable JSON formats, bar model specs, auto-check criteria, AI prompt directives, scoring details, secuencia-to-manipulable mapping.
+
+## Custom Tailwind theme
 
 - Colors: `amarillo` (#FFD700), `amarillo-hover` (#F0C800)
-- Animations: `fade-in`, `slide-up`, `nota-pop` (grade reveal animation)
+- Animations: `fade-in`, `slide-up`, `nota-pop`

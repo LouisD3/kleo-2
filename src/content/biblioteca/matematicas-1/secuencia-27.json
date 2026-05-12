@@ -1,0 +1,323 @@
+{
+  "secuencia": 27,
+  "titulo": "Desigualdad triangular",
+  "contenido": "Medición y cálculo en diferentes contextos.",
+  "pda": "Explora la desigualdad del triángulo.",
+  "evaluacion": {
+    "preguntas": [
+      {
+        "tipo": "opcion_multiple",
+        "pregunta": "¿Cuál de los siguientes conjuntos de longitudes NO puede formar un triángulo?",
+        "opciones": ["A) 3, 4, 5", "B) 2, 3, 6", "C) 5, 5, 8", "D) 7, 8, 10"],
+        "respuesta": "B"
+      },
+      {
+        "tipo": "verdadero_falso",
+        "pregunta": "Si un lado mide 10 cm, y los otros dos miden 4 cm y 5 cm, se puede formar un triángulo.",
+        "opciones": [],
+        "respuesta": false
+      },
+      {
+        "tipo": "calculo",
+        "pregunta": "Determina si se puede formar un triángulo con lados de 7 cm, 10 cm y 15 cm. Justifica tu respuesta con la desigualdad triangular.",
+        "opciones": [],
+        "respuesta": "Paso 1: Verificar las tres desigualdades:\n  7 + 10 = 17 > 15 ✓\n  7 + 15 = 22 > 10 ✓\n  10 + 15 = 25 > 7 ✓\nPaso 2: Como se cumplen las tres desigualdades, SÍ se puede formar un triángulo con esos lados."
+      },
+      {
+        "tipo": "espacios",
+        "pregunta": "La desigualdad triangular establece que la suma de dos lados de un triángulo siempre debe ser ___ que el tercer lado.",
+        "opciones": [],
+        "respuesta": "mayor"
+      },
+      {
+        "tipo": "abierta",
+        "pregunta": "Explica con un ejemplo cotidiano por qué no puedes formar un triángulo con lados de 1 cm, 2 cm y 10 cm.",
+        "opciones": [],
+        "respuesta": "Imagina que tienes tres palitos: uno de 1 cm, uno de 2 cm y uno de 10 cm. Si intentas unir los dos más cortos (1 + 2 = 3 cm), no alcanzan a llegar de un extremo al otro del palito de 10 cm. Es como si intentaras cerrar una puerta de 10 metros de ancho con dos brazos que juntos miden solo 3 metros: simplemente no llegas. Por eso no se puede formar un triángulo."
+      }
+    ]
+  },
+  "orientacion": {
+    "contenidos_especificos": [
+      "Enunciar la desigualdad triangular: la suma de dos lados cualesquiera es mayor que el tercer lado",
+      "Determinar si tres medidas dadas pueden formar un triángulo aplicando la desigualdad triangular",
+      "Encontrar el rango de valores posibles para un tercer lado dados los otros dos"
+    ],
+    "actividad_inicio": [
+      "Entregar a cada equipo tres tiras de papel o popotes de distintas longitudes (por ejemplo: 5 cm, 3 cm y 10 cm) y pedirles que intenten formar un triángulo",
+      "Preguntar: ¿por qué con algunas combinaciones sí se puede y con otras no?",
+      "Anotar en el pizarrón las combinaciones que funcionaron y las que no; buscar un patrón",
+      "Guiar al grupo a descubrir que los dos lados cortos deben sumar más que el largo",
+      "Presentar el objetivo: formalizar la desigualdad del triángulo"
+    ],
+    "desarrollo": [
+      {
+        "titulo": "Descubrimiento de la desigualdad triangular",
+        "diapositiva": "1-3",
+        "libro": "Sección 'Desigualdad triangular'",
+        "video": "min 0:30-2:30",
+        "descripcion": "Retome los resultados de la actividad de inicio. Formalice: en todo triángulo de lados a, b y c se cumplen las tres desigualdades a + b > c, a + c > b, b + c > a. Explique que en la práctica basta verificar que la suma de los dos lados menores sea mayor que el lado mayor. Trabaje ejemplos: ¿se puede con 3, 4, 5? Sí, porque 3 + 4 = 7 > 5. ¿Con 2, 3, 8? No, porque 2 + 3 = 5 < 8. Los alumnos verifican individualmente 4 tríos de medidas.",
+        "tip": "Si tiene popotes o palillos, permita que los alumnos sigan manipulando material concreto mientras formalizan la regla."
+      },
+      {
+        "titulo": "Rango del tercer lado",
+        "diapositiva": "4-6",
+        "libro": "Sección 'Determinación del tercer lado'",
+        "video": "min 2:30-4:30",
+        "descripcion": "Plantee el problema inverso: si dos lados miden 6 cm y 10 cm, ¿cuánto puede medir el tercero? Guíe al grupo a deducir que c > |10 − 6| = 4 y c < 10 + 6 = 16, es decir 4 < c < 16. Resuelva dos ejemplos más en el pizarrón con participación del grupo. Luego pida que cada alumno invente dos lados y determine el rango del tercero. Tres voluntarios comparten sus resultados.",
+        "tip": "Utilice una recta numérica en el pizarrón para visualizar el rango de valores posibles; esto ayuda a los alumnos más visuales."
+      },
+      {
+        "titulo": "Reto en equipos: el constructor de triángulos",
+        "diapositiva": "7-8",
+        "libro": "Sección 'Problemas de aplicación'",
+        "video": null,
+        "descripcion": "Cada equipo recibe una lista de 8 tríos de medidas. Deben clasificar cada trío en \"sí forma triángulo\" o \"no forma triángulo\", justificando con la desigualdad. Incluya casos límite como 3, 4, 7 (no, porque 3 + 4 = 7, no es estrictamente mayor). El primer equipo en terminar correctamente explica sus respuestas al grupo. Discuta por qué el caso de igualdad (segmentos colineales) no forma triángulo.",
+        "tip": null
+      }
+    ],
+    "cierre_individual": {
+      "reflexiona": "¿Qué fue lo que más te sorprendió de la desigualdad triangular? ¿Antes de esta clase pensabas que con cualquier tres medidas se podía armar un triángulo? Escribe en tu cuaderno tu reflexión.",
+      "profundiza": [
+        {
+          "pregunta": "¿Puede existir un triángulo cuyos tres lados midan 1 cm, 1 cm y 2 cm? Justifica tu respuesta con la desigualdad triangular.",
+          "respuesta_modelo": "R.M. No, porque 1 + 1 = 2, que no es estrictamente mayor que 2. La desigualdad exige que la suma sea mayor (no igual). Con esas medidas los tres segmentos quedarían sobre una misma línea recta, sin formar ningún ángulo."
+        },
+        {
+          "pregunta": "Si los tres lados de un triángulo son iguales (triángulo equilátero de lado a), demuestra que la desigualdad triangular siempre se cumple.",
+          "respuesta_modelo": "R.M. Si los tres lados miden a, la desigualdad pide a + a > a, es decir 2a > a. Como a es positivo, 2a siempre es mayor que a. Se cumple para las tres combinaciones de lados. Por lo tanto, todo triángulo equilátero satisface la desigualdad triangular."
+        }
+      ]
+    },
+    "cierre_grupal": [
+      "La desigualdad triangular establece que la suma de dos lados cualesquiera debe ser mayor que el tercer lado",
+      "En la práctica, basta verificar que la suma de los dos lados menores sea mayor que el mayor",
+      "Si la suma es igual al tercer lado, los segmentos quedan alineados y no se forma triángulo",
+      "Dados dos lados a y b, el tercero c debe cumplir |a − b| < c < a + b",
+      "La desigualdad triangular es una condición necesaria y suficiente para la existencia de un triángulo"
+    ],
+    "preguntas_comprension": [
+      "¿Se puede formar un triángulo con lados de 6 cm, 8 cm y 15 cm? Justifica.",
+      "Si dos lados miden 9 cm y 4 cm, ¿cuál es el rango de valores del tercer lado?",
+      "¿Por qué el caso a + b = c no permite formar un triángulo?",
+      "Inventa tres medidas que sí formen un triángulo y tres que no. Verifica con la desigualdad.",
+      "¿Todo triángulo isósceles cumple la desigualdad triangular? Argumenta."
+    ]
+  },
+  "libro": {
+    "introduccion": "¿Crees que puedes armar un triángulo con cualquier tres varitas? ¡Pues no siempre! Hoy vas a descubrir una regla fundamental de la geometría que te dice cuándo tres longitudes pueden formar un triángulo y cuándo no. Se llama la desigualdad triangular, y es más sencilla de lo que suena.",
+    "conceptos": [
+      {
+        "titulo": "La desigualdad triangular",
+        "contenido": "Para que tres segmentos formen un triángulo, la suma de las longitudes de cualquier par de lados debe ser mayor que la longitud del tercer lado. Si esto no se cumple, los segmentos no pueden cerrarse para formar la figura.",
+        "definicion": "Si un triángulo tiene lados a, b y c, entonces: a + b > c, a + c > b, y b + c > a. En la práctica, basta verificar que la suma de los dos lados menores sea estrictamente mayor que el lado mayor.",
+        "figura": {
+          "tipo": "plano_cartesiano",
+          "xMin": -1,
+          "xMax": 8,
+          "yMin": -1,
+          "yMax": 5,
+          "puntos": [
+            {
+              "x": 0,
+              "y": 0,
+              "label": "A"
+            },
+            {
+              "x": 7,
+              "y": 0,
+              "label": "B"
+            },
+            {
+              "x": 3,
+              "y": 4,
+              "label": "C"
+            }
+          ],
+          "lineas": [
+            {
+              "x1": 0,
+              "y1": 0,
+              "x2": 7,
+              "y2": 0
+            },
+            {
+              "x1": 7,
+              "y1": 0,
+              "x2": 3,
+              "y2": 4,
+              "color": "#E11D48"
+            },
+            {
+              "x1": 3,
+              "y1": 4,
+              "x2": 0,
+              "y2": 0,
+              "color": "#059669"
+            }
+          ],
+          "width": 180,
+          "height": 150
+        }
+      },
+      {
+        "titulo": "El caso límite (triángulo degenerado)",
+        "contenido": "Cuando la suma de los dos lados menores es exactamente igual al mayor (por ejemplo, 3 + 5 = 8), los tres segmentos quedan alineados en una línea recta. No se forma ningún ángulo, así que no hay triángulo. La desigualdad exige que la suma sea estrictamente mayor, no igual.",
+        "definicion": null
+      },
+      {
+        "titulo": "Rango del tercer lado",
+        "contenido": "Si conoces dos lados de un triángulo (a y b), el tercer lado c puede tomar cualquier valor entre la diferencia y la suma de los otros dos, sin incluir los extremos: |a − b| < c < a + b. Esto te da un rango claro de posibilidades.",
+        "definicion": null
+      }
+    ],
+    "ejemplos": [
+      {
+        "titulo": "Triángulo que sí se forma",
+        "enunciado": "¿Se puede formar un triángulo con lados de 5, 7 y 10 cm?",
+        "pasos": [
+          "Paso 1: Identifica los dos lados menores: 5 y 7.",
+          "Paso 2: Suma: 5 + 7 = 12.",
+          "Paso 3: Compara con el lado mayor: ¿12 > 10? Sí."
+        ],
+        "resultado": "Sí se puede formar el triángulo porque 5 + 7 = 12 > 10."
+      },
+      {
+        "titulo": "Triángulo que no se forma",
+        "enunciado": "¿Se puede formar un triángulo con lados de 2, 3 y 9 cm?",
+        "pasos": [
+          "Paso 1: Los dos lados menores son 2 y 3.",
+          "Paso 2: Suma: 2 + 3 = 5.",
+          "Paso 3: ¿5 > 9? No."
+        ],
+        "resultado": "No se puede formar el triángulo. Los dos lados cortos no alcanzan a cerrar la figura."
+      },
+      {
+        "titulo": "Encontrar el rango del tercer lado",
+        "enunciado": "Si dos lados miden 6 cm y 10 cm, ¿qué valores puede tener el tercero?",
+        "pasos": [
+          "Paso 1: Calcula la diferencia: |10 − 6| = 4.",
+          "Paso 2: Calcula la suma: 10 + 6 = 16.",
+          "Paso 3: El tercer lado debe cumplir: 4 < c < 16."
+        ],
+        "resultado": "El tercer lado puede medir cualquier valor entre 4 y 16 (sin incluirlos), por ejemplo 5, 8, 12 o 15.9."
+      }
+    ],
+    "datos_curiosos": "La desigualdad triangular no solo aplica en geometría plana. También funciona en espacios curvos y en matemáticas abstractas. De hecho, es uno de los axiomas fundamentales para definir lo que los matemáticos llaman un 'espacio métrico'. Sin ella, el concepto mismo de distancia no tendría sentido.",
+    "ejercicios": [
+      {
+        "numero": 1,
+        "enunciado": "Determina si se puede formar un triángulo con lados de 4 cm, 6 cm y 11 cm. Justifica tu respuesta.",
+        "espacio": true,
+        "lineas": 3
+      },
+      {
+        "numero": 2,
+        "enunciado": "¿Se puede formar un triángulo con lados de 8 cm, 8 cm y 15 cm? Explica.",
+        "espacio": true,
+        "lineas": 3
+      },
+      {
+        "numero": 3,
+        "enunciado": "Si dos lados de un triángulo miden 7 cm y 12 cm, ¿cuáles son los valores posibles del tercer lado?",
+        "espacio": true,
+        "lineas": 3
+      },
+      {
+        "numero": 4,
+        "enunciado": "¿Se puede formar un triángulo con lados de 5 cm, 5 cm y 10 cm? Justifica usando la desigualdad triangular.",
+        "espacio": true,
+        "lineas": 3
+      }
+    ],
+    "puntos_clave": [
+      "La desigualdad triangular dice que la suma de dos lados cualesquiera debe ser mayor que el tercer lado.",
+      "En la práctica, basta verificar que la suma de los dos lados menores sea mayor que el lado mayor.",
+      "Si la suma es igual al tercer lado, los segmentos quedan alineados y no se forma triángulo.",
+      "Dados dos lados a y b, el tercer lado c debe cumplir: |a − b| < c < a + b.",
+      "Esta condición es necesaria y suficiente para la existencia de cualquier triángulo."
+    ]
+  },
+  "diapositiva": [
+    {
+      "titulo": "Desigualdad triangular",
+      "puntos": [
+        "Tema: Medición y cálculo en diferentes contextos",
+        "Objetivo: Explorar cuándo tres longitudes pueden formar un triángulo",
+        "PDA: Explora la desigualdad del triángulo"
+      ],
+      "ejemplo": "¿Puedes formar un triángulo con tres popotes de cualquier tamaño?"
+    },
+    {
+      "titulo": "¿Siempre se puede armar un triángulo?",
+      "puntos": [
+        "No todas las combinaciones de tres longitudes forman un triángulo",
+        "Necesitamos una condición: la desigualdad triangular",
+        "Actividad: intenta formar triángulos con tiras de papel de distintas medidas",
+        "Observa: ¿cuándo funciona y cuándo no?"
+      ],
+      "ejemplo": "Intenta con 3, 4, 5 (sí funciona) y con 1, 2, 10 (no funciona)."
+    },
+    {
+      "titulo": "La regla: desigualdad triangular",
+      "puntos": [
+        "La suma de dos lados cualesquiera debe ser MAYOR que el tercero",
+        "a + b > c, a + c > b, b + c > a",
+        "Atajo: verificar solo que la suma de los dos menores > el mayor",
+        "La igualdad (=) NO cuenta, debe ser estrictamente mayor (>)"
+      ],
+      "ejemplo": "Lados 3, 4, 5: el menor + el mediano = 3 + 4 = 7 > 5 ✓"
+    },
+    {
+      "titulo": "Ejemplo: SÍ forma triángulo",
+      "puntos": [
+        "Lados: 6, 8, 11",
+        "Suma de los dos menores: 6 + 8 = 14",
+        "¿14 > 11? Sí ✓",
+        "Conclusión: SÍ se puede formar el triángulo"
+      ],
+      "ejemplo": "Los dos lados cortos 'alcanzan' a cerrar la figura."
+    },
+    {
+      "titulo": "Ejemplo: NO forma triángulo",
+      "puntos": [
+        "Lados: 2, 4, 9",
+        "Suma de los dos menores: 2 + 4 = 6",
+        "¿6 > 9? No ✗",
+        "Conclusión: NO se puede formar el triángulo"
+      ],
+      "ejemplo": "Imagina dos brazos cortos que no alcanzan a tocarse: eso pasa cuando la suma es menor."
+    },
+    {
+      "titulo": "El caso límite (triángulo degenerado)",
+      "puntos": [
+        "Lados: 3, 5, 8",
+        "Suma: 3 + 5 = 8 = tercer lado",
+        "Cuando la suma es IGUAL, los segmentos quedan alineados",
+        "Se forma una línea recta, no un triángulo"
+      ],
+      "ejemplo": "Es como poner tres palitos en fila: no forman una figura cerrada."
+    },
+    {
+      "titulo": "Encontrar el rango del tercer lado",
+      "puntos": [
+        "Si dos lados miden a y b, el tercero c cumple: |a − b| < c < a + b",
+        "Ejemplo: lados 5 y 9",
+        "|9 − 5| = 4 y 9 + 5 = 14",
+        "El tercer lado: 4 < c < 14"
+      ],
+      "ejemplo": "El tercer lado podría medir 5, 7, 10 o 13.5, pero NO 4 ni 14."
+    },
+    {
+      "titulo": "Resumen",
+      "puntos": [
+        "La suma de los dos lados menores debe ser mayor que el lado mayor",
+        "Si es igual o menor, NO se forma triángulo",
+        "Rango del tercer lado: |a − b| < c < a + b",
+        "Esta regla aplica para TODOS los triángulos"
+      ],
+      "ejemplo": "Antes de construir un triángulo, ¡siempre verifica la desigualdad!"
+    }
+  ],
+  "video_script": "## Script de video: Desigualdad triangular\n\n[VISUAL: Tres palitos de colores sobre una mesa, intentando formar un triángulo]\n\n¡Hola! Hoy te tengo un reto: toma tres palitos y arma un triángulo. Parece fácil, ¿verdad? Pero, ¿qué pasa si un palito es muuucho más largo que los otros dos? ¡Pruébalo! Verás que no siempre se puede. Hoy vamos a descubrir la regla que determina cuándo tres longitudes pueden formar un triángulo.\n\n[VISUAL: Animación de tres segmentos intentando cerrarse. Primero funciona (3, 4, 5), luego falla (1, 2, 10)]\n\nMira este ejemplo: tengo segmentos de 3, 4 y 5 centímetros. Si los uno por sus extremos... ¡perfecto! Se forma un triángulo hermoso. Ahora veamos qué pasa con 1, 2 y 10. Coloco el segmento de 10 y trato de conectar los de 1 y 2... ¡no alcanzan! La suma de los dos cortos es apenas 3, y el largo mide 10. No hay forma de cerrar la figura.\n\n[VISUAL: Texto apareciendo: \"Desigualdad triangular\"]\n\nEsto se llama la desigualdad triangular, y dice lo siguiente: para que tres longitudes formen un triángulo, la suma de cualesquiera dos lados debe ser mayor que el tercer lado. En fórmula: a + b > c, a + c > b, y b + c > a.\n\n[VISUAL: Atajo resaltado con animación]\n\nPero aquí va un truco para hacerlo más rápido: solo necesitas verificar que la suma de los dos lados más cortos sea mayor que el lado más largo. Si eso se cumple, ¡las otras desigualdades se cumplen solitas!\n\n[VISUAL: Ejemplo con lados 6, 8, 11 en el pizarrón]\n\nVamos a practicar. Lados de 6, 8 y 11 centímetros. Los dos menores son 6 y 8. Su suma es 14. ¿14 es mayor que 11? ¡Sí! Entonces sí se forma un triángulo.\n\n[VISUAL: Ejemplo con lados 2, 4, 9 mostrando que falla]\n\nAhora: lados de 2, 4 y 9. Los dos menores son 2 y 4. Su suma es 6. ¿6 es mayor que 9? ¡No! Entonces no se puede formar un triángulo. Los dos lados cortos no alcanzan a llegar de un extremo al otro del lado largo.\n\n[VISUAL: Caso límite con 3, 5, 8 mostrando segmentos alineados]\n\nAtención con los casos límite. Lados de 3, 5 y 8. La suma de los menores es 3 + 5 = 8, que es exactamente igual al tercer lado. ¿Se forma triángulo? ¡No! Cuando la suma es igual, los tres segmentos quedan en línea recta, como tres palitos alineados. Para que sea triángulo, la suma debe ser estrictamente mayor.\n\n[VISUAL: Diagrama mostrando el rango posible del tercer lado como una línea numérica]\n\nY aquí va algo muy útil. Si ya sabes que dos lados miden, digamos, 5 y 9, ¿cuánto puede medir el tercero? Tiene que ser mayor que la diferencia: 9 menos 5 = 4. Y menor que la suma: 9 más 5 = 14. O sea, el tercer lado puede medir cualquier valor entre 4 y 14, sin incluir esos extremos.\n\n[VISUAL: Resumen con tres puntos clave en pantalla]\n\nRecapitulemos. Primero: la desigualdad triangular dice que la suma de los dos lados menores debe ser mayor que el mayor. Segundo: si la suma es igual o menor, no se forma triángulo. Y tercero: si conoces dos lados, el tercero está en el rango entre su diferencia y su suma.\n\n[VISUAL: Cierre con reto para el alumno]\n\nTe dejo una pregunta: si dos lados de un triángulo miden 7 y 12, ¿cuál es el valor mínimo que puede tener el tercer lado? Piénsalo y nos vemos en la siguiente lección. ¡Hasta pronto!"
+}

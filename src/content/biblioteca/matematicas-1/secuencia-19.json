@@ -1,0 +1,302 @@
+{
+  "secuencia": 19,
+  "titulo": "Bisectriz y ángulos congruentes",
+  "contenido": "Construcción y propiedades de las figuras planas y cuerpos.",
+  "pda": "Utiliza la regla y el compás para trazar: punto medio, mediatriz de un segmento, segmentos y ángulos congruentes, bisectriz de un ángulo, rectas perpendiculares y rectas paralelas.",
+  "evaluacion": {
+    "preguntas": [
+      {
+        "tipo": "opcion_multiple",
+        "pregunta": "¿Qué es la bisectriz de un ángulo?",
+        "opciones": [
+          "A) Una recta que divide un segmento en dos partes iguales",
+          "B) Un rayo que divide un ángulo en dos ángulos congruentes",
+          "C) Una recta perpendicular a uno de los lados del ángulo",
+          "D) Un segmento que une el vértice con el lado opuesto"
+        ],
+        "respuesta": "B"
+      },
+      {
+        "tipo": "verdadero_falso",
+        "pregunta": "Dos ángulos son congruentes cuando tienen la misma medida.",
+        "respuesta": true
+      },
+      {
+        "tipo": "espacios",
+        "pregunta": "Para trazar la bisectriz de un ángulo con compás, primero se traza un arco desde el ___ que corte ambos lados del ángulo.",
+        "respuesta": "vértice"
+      },
+      {
+        "tipo": "calculo",
+        "pregunta": "Un ángulo mide 74°. Si trazas su bisectriz, ¿cuánto mide cada uno de los ángulos resultantes?",
+        "respuesta": "Cada ángulo mide 74° ÷ 2 = 37°. La bisectriz divide el ángulo original en dos ángulos congruentes de 37° cada uno."
+      },
+      {
+        "tipo": "abierta",
+        "pregunta": "Describe paso a paso cómo trazarías con regla y compás un ángulo congruente a uno dado.",
+        "respuesta": "1) Trazar un rayo que será un lado del nuevo ángulo. 2) Con centro en el vértice del ángulo original, trazar un arco que corte ambos lados. 3) Sin cambiar la abertura del compás, trazar un arco igual desde el extremo del rayo nuevo. 4) Medir con el compás la distancia entre los puntos donde el arco corta los lados del ángulo original. 5) Con esa medida, hacer centro en el punto donde el arco corta al rayo nuevo y marcar un punto en el arco. 6) Trazar el segundo rayo desde el extremo hasta ese punto."
+      }
+    ]
+  },
+  "orientacion": {
+    "contenidos_especificos": [
+      "Concepto de bisectriz como semirrecta que divide un ángulo en dos ángulos congruentes",
+      "Procedimiento de trazo de la bisectriz con regla y compás",
+      "Concepto de ángulos congruentes y su verificación mediante superposición o medición",
+      "Trazo de ángulos congruentes a un ángulo dado usando compás"
+    ],
+    "actividad_inicio": [
+      "Preguntar a los alumnos si alguna vez han necesitado partir algo exactamente a la mitad sin regla graduada (un pastel, una hoja de papel) y cómo lo hicieron",
+      "Dibujar un ángulo cualquiera en el pizarrón y preguntar: ¿cómo podrían dividirlo en dos partes iguales sin usar transportador?",
+      "Mostrar un compás y una regla sin graduación y plantear el reto: estos dos instrumentos son suficientes para hacerlo",
+      "Presentar el objetivo: aprender a trazar la bisectriz y construir ángulos congruentes con regla y compás"
+    ],
+    "desarrollo": [
+      {
+        "titulo": "Concepto de bisectriz y ángulos congruentes",
+        "diapositiva": "1-3",
+        "libro": "Sección 'Bisectriz de un ángulo'",
+        "video": "min 0:30-2:00",
+        "descripcion": "Defina bisectriz como la semirrecta que parte del vértice y divide el ángulo en dos ángulos de igual medida. Aclare que dos ángulos son congruentes cuando tienen la misma medida, sin importar la longitud de sus lados ni su posición. Dibuje en el pizarrón un ángulo de aproximadamente 80° y marque su bisectriz a ojo; luego pregunte cómo verificar que realmente es la mitad. Introduzca la idea de que el compás permite garantizar igualdad de distancias sin medir.",
+        "tip": "Use un ángulo grande (que ocupe buena parte del pizarrón) para que todos los alumnos vean claramente los arcos del compás."
+      },
+      {
+        "titulo": "Trazo de la bisectriz paso a paso con compás",
+        "diapositiva": "4-6",
+        "libro": "Sección 'Construcción con regla y compás'",
+        "video": "min 2:00-4:00",
+        "descripcion": "Demuestre el procedimiento completo en el pizarrón: 1) Colocar la punta del compás en el vértice y trazar un arco que corte ambos lados del ángulo (puntos A y B). 2) Sin cambiar la abertura, colocar la punta en A y trazar un arco en el interior del ángulo; repetir desde B con la misma abertura para obtener el punto P de intersección. 3) Trazar la semirrecta del vértice a P: esa es la bisectriz. Los alumnos replican el procedimiento en su cuaderno con un ángulo que ellos mismos dibujen. Circule verificando que no cambien la abertura del compás entre los pasos.",
+        "tip": "Si algún alumno no logra que los arcos se crucen, pida que abra más el compás en el paso 2. Los arcos deben ser lo suficientemente largos para intersectarse."
+      },
+      {
+        "titulo": "Construcción de ángulos congruentes y práctica guiada",
+        "diapositiva": "7-8",
+        "libro": "Sección 'Ángulos congruentes'",
+        "video": "min 4:00-5:30",
+        "descripcion": "Explique el procedimiento para copiar un ángulo: 1) Trazar una semirrecta base. 2) Con centro en el vértice del ángulo original, trazar un arco que corte ambos lados. 3) Con la misma abertura, trazar un arco desde el extremo de la semirrecta base. 4) Medir con el compás la distancia entre las intersecciones del arco con los lados del ángulo original. 5) Trasladar esa distancia al nuevo arco y trazar el segundo lado. En equipos de 3, cada alumno dibuja un ángulo distinto y su compañero lo copia con compás. Verifican con transportador que las medidas coincidan.",
+        "tip": "Pida que usen lápiz bien afilado y que no presionen demasiado el compás para evitar que la punta resbale."
+      }
+    ],
+    "cierre_individual": {
+      "reflexiona": "¿Qué ventaja tiene usar compás en lugar de transportador para dividir un ángulo? ¿En qué paso del procedimiento tuviste más dificultad? Escribe en tu cuaderno una observación sobre lo que aprendiste hoy.",
+      "profundiza": [
+        {
+          "pregunta": "Si aplicas la bisectriz dos veces seguidas al mismo ángulo, ¿en cuántas partes iguales queda dividido y qué fracción del ángulo original representa cada parte?",
+          "respuesta_modelo": "R.M. Al trazar la bisectriz una vez, el ángulo se divide en 2 partes iguales. Si luego trazo la bisectriz de cada mitad, obtengo 4 partes iguales. Cada parte mide 1/4 del ángulo original."
+        },
+        {
+          "pregunta": "¿Por qué es importante no cambiar la abertura del compás entre los arcos del paso 2 del procedimiento?",
+          "respuesta_modelo": "R.M. Porque mantener la misma abertura garantiza que los puntos A y B están a la misma distancia del vértice, y que los arcos desde A y B recorren la misma distancia. Eso hace que el punto P esté equidistante de ambos lados del ángulo, lo cual es la condición para que la semirrecta sea la bisectriz."
+        }
+      ]
+    },
+    "cierre_grupal": [
+      "La bisectriz es la semirrecta que parte del vértice y divide un ángulo en dos ángulos congruentes",
+      "Dos ángulos son congruentes si tienen la misma medida, sin importar la longitud de sus lados",
+      "El compás permite garantizar igualdad de distancias sin necesidad de medir con regla graduada",
+      "Para copiar un ángulo con compás se trasladan las distancias entre los puntos de intersección del arco",
+      "La precisión en la abertura del compás es clave para que las construcciones sean correctas"
+    ],
+    "preguntas_comprension": [
+      "¿Cuántos ángulos congruentes se forman al trazar la bisectriz de un ángulo y cuánto mide cada uno si el ángulo original mide 110°?",
+      "Si al trazar la bisectriz de un ángulo obtienes dos ángulos de 32° cada uno, ¿cuánto medía el ángulo original?",
+      "Describe qué pasaría si en el paso 2 usaras una abertura de compás diferente para cada arco.",
+      "¿Cómo verificarías que tu construcción de un ángulo congruente es correcta sin usar transportador?",
+      "¿Es posible trazar la bisectriz de un ángulo de 180° (ángulo llano)? ¿Qué obtendrías?"
+    ]
+  },
+  "libro": {
+    "introduccion": "Imagina que tienes una rebanada de pizza enorme y quieres compartirla con tu mejor amigo de forma perfectamente justa. Necesitas un corte exacto por la mitad. En geometria, cuando hacemos eso con un angulo, el corte que lo divide en dos partes identicas se llama bisectriz. Hoy la vas a trazar como un experto.",
+    "conceptos": [
+      {
+        "titulo": "Bisectriz de un angulo",
+        "contenido": "La bisectriz es un rayo que parte del vertice y divide el angulo en dos angulos iguales (congruentes). Si tienes un angulo de 80 grados, su bisectriz lo parte en dos angulos de 40 grados cada uno. La palabra viene del latin: bi (dos) y secare (cortar). Todo punto sobre la bisectriz esta a la misma distancia de ambos lados del angulo.",
+        "definicion": "Bisectriz: semirrecta que parte del vertice de un angulo y lo divide en dos angulos congruentes.",
+        "figura": {
+          "tipo": "plano_cartesiano",
+          "xMin": -1,
+          "xMax": 6,
+          "yMin": -1,
+          "yMax": 5,
+          "puntos": [
+            {
+              "x": 0,
+              "y": 0,
+              "label": "V"
+            }
+          ],
+          "lineas": [
+            {
+              "x1": 0,
+              "y1": 0,
+              "x2": 5,
+              "y2": 0
+            },
+            {
+              "x1": 0,
+              "y1": 0,
+              "x2": 3,
+              "y2": 4,
+              "color": "#E11D48"
+            },
+            {
+              "x1": 0,
+              "y1": 0,
+              "x2": 4,
+              "y2": 2,
+              "color": "#059669"
+            }
+          ],
+          "width": 160,
+          "height": 160
+        }
+      },
+      {
+        "titulo": "Angulos congruentes",
+        "contenido": "Dos angulos son congruentes cuando tienen exactamente la misma medida. No importa si estan en diferente posicion, si estan volteados o si sus lados son mas largos o cortos. Lo unico que importa es que midan lo mismo. Se escribe con el simbolo de congruencia: angulo A es congruente con angulo B.",
+        "definicion": "Angulos congruentes: angulos que tienen exactamente la misma medida, independientemente de su posicion o la longitud de sus lados."
+      },
+      {
+        "titulo": "Construccion con regla y compas",
+        "contenido": "Para trazar la bisectriz: 1) Con centro en el vertice V, traza un arco que corte ambos lados del angulo (puntos A y B). 2) Sin cambiar la abertura, coloca la punta en A y traza un arco interior. 3) Con la misma abertura, haz lo mismo desde B. Los arcos se cruzan en P. 4) Traza el rayo de V a P: esa es la bisectriz. Para copiar un angulo, usas un proceso similar trasladando distancias con el compas.",
+        "definicion": null
+      }
+    ],
+    "ejemplos": [
+      {
+        "titulo": "Bisectriz de un angulo de 90 grados",
+        "enunciado": "Traza la bisectriz de un angulo recto. Cuanto mide cada angulo resultante?",
+        "pasos": [
+          "Paso 1: Dibuja un angulo de 90 grados",
+          "Paso 2: Aplica el procedimiento de bisectriz con compas",
+          "Paso 3: Cada angulo resultante mide 90/2 = 45 grados"
+        ],
+        "resultado": "Se obtienen dos angulos de 45 grados cada uno."
+      },
+      {
+        "titulo": "Encontrar el angulo original",
+        "enunciado": "Si la bisectriz de un angulo crea dos angulos de 32 grados, cuanto media el angulo original?",
+        "pasos": [
+          "Paso 1: La bisectriz divide en dos partes iguales",
+          "Paso 2: Angulo original = 32 + 32 = 64 grados"
+        ],
+        "resultado": "El angulo original media 64 grados."
+      },
+      {
+        "titulo": "Doble bisectriz",
+        "enunciado": "Si aplicas la bisectriz dos veces seguidas a un angulo de 120 grados, en cuantas partes queda dividido y cuanto mide cada una?",
+        "pasos": [
+          "Paso 1: Primera bisectriz: 120/2 = 60 grados cada parte (2 partes)",
+          "Paso 2: Segunda bisectriz sobre cada mitad: 60/2 = 30 grados (4 partes)",
+          "Paso 3: Cada parte es 1/4 del angulo original"
+        ],
+        "resultado": "Queda dividido en 4 partes iguales de 30 grados cada una."
+      }
+    ],
+    "datos_curiosos": "La bisectriz se usa en carpinteria para hacer cortes a inglete: cuando quieres unir dos molduras en una esquina, cortas cada pieza al angulo exacto de la mitad para que encajen perfectamente. Si la esquina es de 90 grados, cada corte debe ser de 45 grados.",
+    "ejercicios": [
+      {
+        "numero": 1,
+        "enunciado": "Un angulo mide 74 grados. Si trazas su bisectriz, cuanto mide cada angulo resultante?",
+        "espacio": true,
+        "lineas": 2
+      },
+      {
+        "numero": 2,
+        "enunciado": "Traza un angulo obtuso en tu cuaderno y construye su bisectriz con compas. Verifica con transportador que ambos angulos sean iguales.",
+        "espacio": true,
+        "lineas": 4
+      },
+      {
+        "numero": 3,
+        "enunciado": "Explica por que es importante no cambiar la abertura del compas entre los arcos del procedimiento de la bisectriz.",
+        "espacio": true,
+        "lineas": 4
+      }
+    ],
+    "puntos_clave": [
+      "La bisectriz siempre pasa por el vertice del angulo y lo divide en dos partes iguales.",
+      "Todo punto sobre la bisectriz esta a la misma distancia de ambos lados del angulo.",
+      "Angulos congruentes tienen la misma medida, sin importar su posicion ni el tamano de sus lados.",
+      "El compas permite hacer trazos exactos sin necesidad de medir grados con transportador.",
+      "La precision en la abertura del compas es clave para que la construccion sea correcta."
+    ]
+  },
+  "diapositiva": [
+    {
+      "titulo": "¿Qué vamos a aprender hoy?",
+      "puntos": [
+        "Trazar la bisectriz de un ángulo con regla y compás",
+        "Identificar y construir ángulos congruentes",
+        "Usar el compás como herramienta de precisión geométrica"
+      ],
+      "ejemplo": "Piensa: ¿cómo dividirías un ángulo exactamente a la mitad sin transportador?"
+    },
+    {
+      "titulo": "¿Qué es la bisectriz?",
+      "puntos": [
+        "Rayo que parte del vértice y divide un ángulo en dos ángulos iguales",
+        "Del latín bi (dos) + secare (cortar)",
+        "Si un ángulo mide α, cada mitad mide α/2"
+      ],
+      "ejemplo": "Bisectriz de un ángulo de 120° → dos ángulos de 60°"
+    },
+    {
+      "titulo": "¿Qué son los ángulos congruentes?",
+      "puntos": [
+        "Dos ángulos que tienen exactamente la misma medida",
+        "Se escribe ∠A ≅ ∠B",
+        "No importa la posición ni la longitud de los lados"
+      ],
+      "ejemplo": "Un ángulo de 45° en cualquier parte del mundo es congruente con otro de 45°"
+    },
+    {
+      "titulo": "Construcción de la bisectriz — Paso 1 y 2",
+      "puntos": [
+        "Paso 1: Traza un ángulo con vértice V",
+        "Paso 2: Con centro en V, traza un arco que corte ambos lados → puntos A y B",
+        "Usa cualquier abertura de compás, pero no la cambies después"
+      ],
+      "ejemplo": "Observa cómo el arco cruza ambos lados del ángulo"
+    },
+    {
+      "titulo": "Construcción de la bisectriz — Paso 3 y 4",
+      "puntos": [
+        "Paso 3: Con centro en A, traza un arco interior",
+        "Paso 4: Con la misma abertura, centro en B, traza otro arco",
+        "Los arcos se cruzan en el punto P"
+      ],
+      "ejemplo": "El punto P queda exactamente en medio porque las distancias desde A y B son iguales"
+    },
+    {
+      "titulo": "Construcción de la bisectriz — Paso 5",
+      "puntos": [
+        "Traza el rayo VP → ¡es la bisectriz!",
+        "Verifica con transportador: ambos ángulos deben medir lo mismo",
+        "Funciona con cualquier tipo de ángulo: agudo, recto u obtuso"
+      ],
+      "ejemplo": "Ángulo de 74° → bisectriz genera dos ángulos de 37°"
+    },
+    {
+      "titulo": "Cómo copiar un ángulo (sin transportador)",
+      "puntos": [
+        "Traza un rayo base",
+        "Reproduce los arcos del ángulo original en el rayo nuevo",
+        "Traslada la distancia entre intersecciones con el compás",
+        "Une para obtener un ángulo congruente al original"
+      ],
+      "ejemplo": "Copia un ángulo de 60° usando solo regla y compás"
+    },
+    {
+      "titulo": "Resumen y puntos clave",
+      "puntos": [
+        "La bisectriz divide un ángulo en dos partes iguales",
+        "Todo punto en la bisectriz equidista de los dos lados",
+        "Ángulos congruentes = misma medida",
+        "Regla y compás permiten trazos exactos sin medir grados"
+      ],
+      "ejemplo": "Tarea: traza tres ángulos distintos y construye la bisectriz de cada uno"
+    }
+  ],
+  "video_script": "# Bisectriz y ángulos congruentes — Script de video\n\n[VISUAL: Animación del título \"Bisectriz y ángulos congruentes\" con un compás girando]\n\n¡Hola! ¿Qué onda? Bienvenido a esta clase donde vas a aprender a usar tu compás como un verdadero profesional de la geometría. Hoy hablamos de la bisectriz y de los ángulos congruentes. Suena complicado, pero ya verás que está bien fácil.\n\n[VISUAL: Una rebanada de pizza partiéndose exactamente a la mitad con una línea brillante]\n\nImagínate que tienes una mega rebanada de pizza y la quieres partir exactamente a la mitad para compartir. Ese corte perfecto que divide la rebanada en dos partes idénticas es como la bisectriz de un ángulo. La **bisectriz** es un rayo que sale del vértice y divide el ángulo en dos ángulos iguales.\n\n[VISUAL: Un ángulo de 80° con su bisectriz animada, mostrando 40° + 40°]\n\nMira este ángulo de 80 grados. Cuando trazamos su bisectriz, obtenemos dos ángulos de 40 grados cada uno. Ochenta entre dos, cuarenta. Así de simple.\n\nAhora, ¿qué significa que dos ángulos sean **congruentes**? Pues simplemente que miden lo mismo. Un ángulo de 55 grados aquí y otro de 55 grados allá son congruentes. No importa dónde estén ni qué tan largos sean sus lados. Lo que cuenta es la abertura.\n\n[VISUAL: Dos ángulos de 55° en diferentes posiciones y tamaños, con el símbolo ≅ entre ellos]\n\nSe escribe con este símbolo: ≅. Ángulo A es congruente con ángulo B.\n\nBueno, ahora viene lo mejor: vamos a construir la bisectriz usando solo regla y compás. Nada de transportador. Agarra tus instrumentos y sígueme.\n\n[VISUAL: Manos trazando en papel, vista cenital. Se dibuja un ángulo con vértice V]\n\n**Paso 1:** Traza un ángulo. Le ponemos V al vértice.\n\n**Paso 2:** Abre tu compás con la medida que quieras. Pon la punta en V y traza un arco que cruce los dos lados del ángulo. A esos puntos les decimos A y B.\n\n[VISUAL: Arco desde V cortando ambos lados, puntos A y B aparecen con etiquetas]\n\n**Paso 3:** Ahora, sin moverle a la abertura del compás, pon la punta en A y traza un arco por dentro del ángulo.\n\n**Paso 4:** Haz lo mismo desde B, con la misma abertura. Los dos arcos se van a cruzar en un punto. Ese punto es P.\n\n[VISUAL: Los dos arcos interiores se cruzan, el punto P se ilumina]\n\n**Paso 5:** Traza una línea recta de V a P. ¡Boom! Esa es tu bisectriz.\n\n[VISUAL: Rayo VP trazándose con un destello. Transportador aparece verificando que ambos ángulos son iguales]\n\n¿Por qué funciona? Porque al usar la misma abertura de compás, garantizas que las distancias son iguales. Es geometría pura, sin necesidad de medir.\n\nAhora te enseño a copiar un ángulo, o sea, a construir un ángulo congruente.\n\n[VISUAL: Ángulo original a la izquierda, espacio vacío a la derecha]\n\n**Paso 1:** Traza un rayo que será la base de tu nuevo ángulo.\n\n**Paso 2:** En el ángulo original, traza un arco desde el vértice que corte ambos lados.\n\n**Paso 3:** Traza el mismo arco desde el inicio de tu rayo nuevo.\n\n[VISUAL: Arcos trazándose en paralelo en ambas figuras]\n\n**Paso 4:** Mide con el compás la distancia entre los dos puntos donde el arco cortó los lados del ángulo original.\n\n**Paso 5:** Lleva esa distancia al arco nuevo y marca el punto. Une con una recta y listo: tienes un ángulo idéntico.\n\n[VISUAL: Ambos ángulos terminados, transportador mostrando que miden lo mismo. Palomita verde]\n\n¿Viste? Sin transportador y quedó exacto. Eso es lo poderoso de la regla y el compás.\n\n[VISUAL: Resumen animado con los puntos clave apareciendo uno por uno]\n\nRecapitulemos:\n- La bisectriz divide un ángulo en dos partes iguales.\n- Ángulos congruentes son los que tienen la misma medida.\n- Con regla y compás puedes trazar bisectrices y copiar ángulos de forma exacta.\n- El secreto es no cambiar la abertura del compás cuando no debes.\n\n[VISUAL: Reto en pantalla con un ángulo obtuso]\n\nTu reto: traza un ángulo obtuso, constrúyele su bisectriz y verifica con transportador. Tómale foto y compártela con tu maestro.\n\n¡Nos vemos en la siguiente clase! Ahí vamos a hablar de las rectas notables en triángulos. No te la pierdas."
+}

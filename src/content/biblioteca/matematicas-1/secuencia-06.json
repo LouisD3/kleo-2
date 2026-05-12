@@ -1,0 +1,282 @@
+{
+  "secuencia": 6,
+  "titulo": "Multiplicación y división",
+  "contenido": "Extensión del significado de las operaciones y sus relaciones inversas.",
+  "pda": "Reconoce el significado de las cuatro operaciones básicas y sus relaciones inversas al resolver problemas que impliquen el uso de números con signo.",
+  "evaluacion": {
+    "preguntas": [
+      {
+        "tipo": "opcion_multiple",
+        "pregunta": "¿Cuál es el resultado de (-6) × (-4)?",
+        "opciones": ["A) -24", "B) +24", "C) -10", "D) +10"],
+        "respuesta": "B"
+      },
+      {
+        "tipo": "verdadero_falso",
+        "pregunta": "El producto de tres números negativos siempre es negativo.",
+        "respuesta": true
+      },
+      {
+        "tipo": "espacios",
+        "pregunta": "Cuando se multiplican o dividen dos números con el mismo signo, el resultado es ___. Cuando tienen diferente signo, el resultado es ___.",
+        "respuesta": "positivo, negativo"
+      },
+      {
+        "tipo": "calculo",
+        "pregunta": "Calcula: (-3) × (+5) ÷ (-15) × (-2).",
+        "respuesta": "Paso 1: (-3) × (+5) = -15 (diferente signo = negativo). Paso 2: (-15) ÷ (-15) = +1 (mismo signo = positivo). Paso 3: (+1) × (-2) = -2 (diferente signo = negativo). Resultado: -2."
+      },
+      {
+        "tipo": "abierta",
+        "pregunta": "Explica por qué negativo por negativo da positivo. Usa un ejemplo con deudas o con la recta numérica.",
+        "respuesta": "Si tienes una deuda de $5 (-5) y alguien te quita esa deuda 3 veces (-3), te están quitando 3 deudas de $5, lo cual es como ganarte $15. Matemáticamente: (-3) × (-5) = +15. Otra forma de verlo: en la recta numérica, multiplicar por -1 invierte la dirección. Si inviertes dos veces, vuelves a la dirección original (positiva)."
+      }
+    ]
+  },
+  "orientacion": {
+    "contenidos_especificos": [
+      "Multiplicar números con signo aplicando la regla de signos",
+      "Dividir números con signo aplicando la regla de signos",
+      "Comprender la relación inversa entre multiplicación y división con números con signo"
+    ],
+    "actividad_inicio": [
+      "Pregunta: 'Si pierdes $3 cada día durante 5 días, ¿cuánto perdiste en total? ¿Cómo escribirías eso como multiplicación?'",
+      "Escribe en el pizarrón: (+2)(+3), (+2)(-3), (-2)(+3), (-2)(-3) y pide que predigan los resultados antes de calcular.",
+      "Muestra un patrón: 3×3=9, 3×2=6, 3×1=3, 3×0=0, 3×(-1)=?, 3×(-2)=?. Pregunta si ven la regularidad.",
+      "Plantea: 'Si retroceder es negativo y hacerlo 4 veces es multiplicar por 4, ¿qué significa (-5) × 4?'",
+      "Presenta la analogía del video: reproducir hacia adelante (+) o hacia atrás (-), a velocidad normal (+) o invertida (-). ¿Qué combinaciones dan avance o retroceso?"
+    ],
+    "desarrollo": [
+      {
+        "titulo": "Multiplicación de números con signo: la regla de signos",
+        "diapositiva": "1-3",
+        "libro": "Sección Conceptos: Multiplicación con signo",
+        "video": null,
+        "descripcion": "Presenta la regla de signos a través del patrón numérico: 3×2=6, 3×1=3, 3×0=0, 3×(-1)=-3, 3×(-2)=-6. Observa que al multiplicar positivo por negativo el resultado es negativo. Luego analiza (-3)×2=-6, (-3)×1=-3, (-3)×0=0, (-3)×(-1)=?, (-3)×(-2)=?. El patrón muestra que el resultado aumenta de 3 en 3, así (-3)×(-1)=3 y (-3)×(-2)=6. Concluye: positivo×positivo=positivo, positivo×negativo=negativo, negativo×negativo=positivo. Pide que resuelvan 10 multiplicaciones aplicando la regla.",
+        "tip": "Dedicar tiempo al patrón numérico es fundamental. No impongas la regla como dogma; deja que los alumnos la descubran a partir de la regularidad. Esto genera comprensión profunda."
+      },
+      {
+        "titulo": "División de números con signo y relación con la multiplicación",
+        "diapositiva": "4-6",
+        "libro": "Sección Ejemplos: División con signo",
+        "video": "min 2:00-4:30",
+        "descripcion": "Explica que la división sigue la misma regla de signos que la multiplicación. Ejemplos: (+12)÷(+3)=+4, (+12)÷(-3)=-4, (-12)÷(+3)=-4, (-12)÷(-3)=+4. Muestra la relación inversa: si (-4)×(-3)=12, entonces 12÷(-3)=-4 y 12÷(-4)=-3. Pide que para cada multiplicación de la actividad anterior escriban las dos divisiones correspondientes. Incluye un ejemplo con fracciones: (-3/4)÷(1/2)=(-3/4)×(2/1)=-3/2.",
+        "tip": null
+      },
+      {
+        "titulo": "Práctica integradora: las cuatro operaciones con signo",
+        "diapositiva": "7-8",
+        "libro": "Sección Práctica: Operaciones combinadas",
+        "video": null,
+        "descripcion": "Presenta 6 problemas que combinan las cuatro operaciones: (1) (-6)×(+3)+(-2), (2) (+15)÷(-3)-(-4), (3) Un negocio pierde $200 diarios por 5 días y luego gana $150 diarios por 3 días, ¿cuál es el balance?, (4) La temperatura baja 2 °C cada hora por 6 horas y luego sube 3 °C cada hora por 2 horas, ¿cuál es el cambio total?, (5) Expresión con paréntesis: [(-8)÷(+2)]×[(-3)+(-1)], (6) Verificar si (-4)×(-5)÷(-2)=10 es verdadero o falso. Trabajan individualmente 15 minutos y revisan en grupo.",
+        "tip": "Recuérdales el orden de operaciones (multiplicación y división antes que suma y resta) y que los paréntesis se resuelven primero."
+      }
+    ],
+    "cierre_individual": {
+      "reflexiona": "¿Por qué 'negativo por negativo da positivo'? Escribe una explicación usando el patrón numérico o una analogía que te convenza.",
+      "profundiza": [
+        {
+          "pregunta": "Si multiplicas tres números negativos, ¿el resultado es positivo o negativo? ¿Y si multiplicas cuatro? Explica el patrón.",
+          "respuesta_modelo": "Con tres negativos el resultado es negativo y con cuatro es positivo. El patrón es: una cantidad par de signos negativos da resultado positivo (porque se cancelan en pares), y una cantidad impar da resultado negativo (queda un negativo sin cancelar). Por ejemplo: (-2)×(-3)×(-1) = (+6)×(-1) = -6, pero (-2)×(-3)×(-1)×(-1) = (-6)×(-1) = +6."
+        },
+        {
+          "pregunta": "¿Por qué no se puede dividir entre cero, ni siquiera con números negativos?",
+          "respuesta_modelo": "Porque dividir a÷b significa encontrar un número c tal que c×b = a. Si b = 0, entonces c×0 = 0 para cualquier valor de c, así que nunca podríamos obtener un resultado distinto de cero. Y si a también es 0, entonces cualquier número sería respuesta, lo cual tampoco tiene sentido. Por eso la división entre cero queda indefinida, sin importar los signos."
+        }
+      ]
+    },
+    "cierre_grupal": [
+      "La regla de signos para multiplicación y división es: signos iguales dan positivo, signos diferentes dan negativo.",
+      "La regla se descubre a partir del patrón numérico, no es una convención arbitraria.",
+      "La división es la operación inversa de la multiplicación; verificamos una división comprobando con la multiplicación correspondiente.",
+      "Al multiplicar varios números con signo, contamos los signos negativos: si son pares, el resultado es positivo; si son impares, es negativo.",
+      "En expresiones con varias operaciones, se respeta la jerarquía: paréntesis, multiplicación/división, suma/resta."
+    ],
+    "preguntas_comprension": [
+      "Resuelve: (-7) × (-4) = ?",
+      "Resuelve: (+24) ÷ (-6) = ?",
+      "Si (-5) × ? = 35, ¿cuánto vale el número faltante?",
+      "Un buzo desciende 3 metros por minuto durante 8 minutos. Expresa la profundidad como multiplicación con signo y calcula.",
+      "¿Es verdadero o falso que (-2) × (-2) × (-2) = -8? Justifica."
+    ]
+  },
+  "libro": {
+    "introduccion": "Ya sabes sumar y restar con signo. Ahora toca multiplicar y dividir, y aquí hay una regla muy famosa que probablemente ya escuchaste: \"menos por menos da más\". Hoy vas a entender por qué funciona y a dominar la ley de los signos.",
+    "conceptos": [
+      {
+        "titulo": "Ley de los signos para multiplicación y división",
+        "contenido": "La regla es elegante y simple: si los dos números tienen el mismo signo, el resultado es positivo. Si tienen signos diferentes, el resultado es negativo. Funciona igual para multiplicar y para dividir.",
+        "definicion": null,
+        "figura": {
+          "tipo": "recta_numerica",
+          "min": -6,
+          "max": 6,
+          "puntos": [
+            {
+              "valor": -4,
+              "label": "(-2)×2"
+            },
+            {
+              "valor": 6,
+              "label": "(2)×3"
+            }
+          ],
+          "width": 400,
+          "height": 55
+        }
+      },
+      {
+        "titulo": "Multiplicación con signo",
+        "contenido": "(+) × (+) = (+), (−) × (−) = (+), (+) × (−) = (−), (−) × (+) = (−). Piénsalo así: multiplicar por un negativo es como \"dar la vuelta\" en la recta numérica. Si das la vuelta dos veces, regresas al mismo lado (positivo).",
+        "definicion": "Ley de los signos: signos iguales → resultado positivo; signos diferentes → resultado negativo."
+      },
+      {
+        "titulo": "División con signo",
+        "contenido": "La misma ley aplica para la división: (−12) ÷ (−3) = +4 (signos iguales, resultado positivo). (−20) ÷ (+5) = −4 (signos diferentes, resultado negativo).",
+        "definicion": null
+      }
+    ],
+    "ejemplos": [
+      {
+        "titulo": "Multiplicación de dos negativos",
+        "enunciado": "Calcula (−4) × (−6).",
+        "pasos": [
+          "Paso 1: Multiplica los valores absolutos: 4 × 6 = 24.",
+          "Paso 2: Determina el signo: negativo × negativo = positivo."
+        ],
+        "resultado": "(−4) × (−6) = +24"
+      },
+      {
+        "titulo": "División con signos diferentes",
+        "enunciado": "Calcula (−36) ÷ (+9).",
+        "pasos": [
+          "Paso 1: Divide los valores absolutos: 36 ÷ 9 = 4.",
+          "Paso 2: Signos diferentes → resultado negativo."
+        ],
+        "resultado": "(−36) ÷ (+9) = −4"
+      },
+      {
+        "titulo": "Cadena de multiplicaciones",
+        "enunciado": "Calcula (−2) × (−3) × (−1).",
+        "pasos": [
+          "Paso 1: (−2) × (−3) = +6 (signos iguales).",
+          "Paso 2: (+6) × (−1) = −6 (signos diferentes).",
+          "Paso 3: Truco: cuenta los signos negativos. Hay 3 (impar) → resultado negativo."
+        ],
+        "resultado": "(−2) × (−3) × (−1) = −6"
+      }
+    ],
+    "datos_curiosos": "Si multiplicas un número negativo por sí mismo un número par de veces, el resultado siempre es positivo. (−1)² = 1, (−1)⁴ = 1. Pero si el exponente es impar: (−1)³ = −1. Esto es la base del comportamiento de las funciones polinomiales que verás en preparatoria.",
+    "ejercicios": [
+      {
+        "numero": 1,
+        "enunciado": "Calcula: (−7) × (+5).",
+        "espacio": true,
+        "lineas": 2
+      },
+      {
+        "numero": 2,
+        "enunciado": "Calcula: (−48) ÷ (−8).",
+        "espacio": true,
+        "lineas": 2
+      },
+      {
+        "numero": 3,
+        "enunciado": "Calcula: (−3) × (−2) × (+4) × (−1).",
+        "espacio": true,
+        "lineas": 3
+      },
+      {
+        "numero": 4,
+        "enunciado": "Un buzo desciende 5 metros por minuto durante 8 minutos. Expresa su posición final respecto al nivel del mar usando multiplicación con signo.",
+        "espacio": true,
+        "lineas": 3
+      }
+    ],
+    "puntos_clave": [
+      "Signos iguales → resultado positivo; signos diferentes → resultado negativo.",
+      "La ley de los signos aplica igual para multiplicación y división.",
+      "Si hay varios factores negativos, cuenta cuántos: par de negativos = positivo, impar = negativo.",
+      "Multiplicar por −1 solo cambia el signo del número.",
+      "Nunca se puede dividir entre cero."
+    ]
+  },
+  "diapositiva": [
+    {
+      "titulo": "Multiplicación y división con signo",
+      "puntos": [
+        "La última pieza del rompecabezas: operaciones con signo",
+        "Objetivo: dominar la ley de signos para multiplicar y dividir"
+      ],
+      "ejemplo": "(-6) × (-4) = ?"
+    },
+    {
+      "titulo": "La ley de signos",
+      "puntos": [
+        "(+) × (+) = +",
+        "(+) × (-) = -",
+        "(-) × (+) = -",
+        "(-) × (-) = +",
+        "Signos iguales = +, signos diferentes = -"
+      ],
+      "ejemplo": "(-5) × (-8) = +40 (iguales → positivo)"
+    },
+    {
+      "titulo": "¿Por qué (-) × (-) = (+)?",
+      "puntos": [
+        "Observa el patrón: 3×(-4)=-12, 2×(-4)=-8, 1×(-4)=-4, 0×(-4)=0",
+        "El resultado sube de 4 en 4",
+        "Entonces: (-1)×(-4)=+4, (-2)×(-4)=+8",
+        "El patrón lo exige para mantener la consistencia"
+      ],
+      "ejemplo": "Quitar una deuda = ganar dinero. (-3) × (-5) = +15."
+    },
+    {
+      "titulo": "Ejemplos de multiplicación",
+      "puntos": [
+        "(-7) × (+3) = -21 (signos diferentes)",
+        "(-5) × (-8) = +40 (signos iguales)",
+        "(+4) × (-9) = -36 (signos diferentes)"
+      ],
+      "ejemplo": "Primero determina el signo, luego multiplica los valores absolutos."
+    },
+    {
+      "titulo": "División: misma ley de signos",
+      "puntos": [
+        "(-20) ÷ (+4) = -5 (diferentes → negativo)",
+        "(-36) ÷ (-9) = +4 (iguales → positivo)",
+        "(+24) ÷ (-6) = -4 (diferentes → negativo)"
+      ],
+      "ejemplo": "La ley de signos es idéntica para multiplicar y dividir."
+    },
+    {
+      "titulo": "Multiplicación y división son inversas",
+      "puntos": [
+        "Si a × b = c, entonces c ÷ b = a",
+        "Usa la operación inversa para verificar",
+        "Ejemplo: (-36) ÷ (-9) = 4, verifico: 4 × (-9) = -36"
+      ],
+      "ejemplo": "a × b ÷ b = a (siempre vuelves al inicio)"
+    },
+    {
+      "titulo": "Truco: contar negativos",
+      "puntos": [
+        "Número par de factores negativos → resultado positivo",
+        "Número impar → resultado negativo",
+        "Los negativos se cancelan de dos en dos"
+      ],
+      "ejemplo": "(-2)×(-3)×(-1)×(-4): 4 negativos (par) → +24"
+    },
+    {
+      "titulo": "Resumen: las 4 operaciones con signo",
+      "puntos": [
+        "Suma: reglas de valores absolutos y signos",
+        "Resta: sumar el opuesto",
+        "Multiplicación y división: ley de signos",
+        "No mezcles las reglas de suma con las de multiplicación"
+      ],
+      "ejemplo": "Tarea: (-8) × 3 ÷ (-4) × (-2) ÷ (-6)"
+    }
+  ],
+  "video_script": "## Multiplicación y división con números con signo\n\n[VISUAL: Título animado con signos de multiplicación y división girando]\n\n¡Hola! Llegamos a la última operación básica con números con signo: multiplicación y división. Y te tengo una excelente noticia: la regla es mucho más fácil que la de la suma. Se llama ley de signos y es cortísima.\n\n### La ley de signos\n\n[VISUAL: Tabla 2×2 apareciendo con animación: (+)(+)=+, (+)(-)=-, (-)(+)=-, (-)(-)=+]\n\nLa ley de signos dice: si los dos números tienen el **mismo** signo, el resultado es **positivo**. Si tienen **diferente** signo, el resultado es **negativo**. Punto. Esa es toda la regla.\n\nPositivo por positivo: positivo. Negativo por negativo: positivo. Positivo por negativo: negativo. Negativo por positivo: negativo.\n\n[VISUAL: Resumen visual con colores: iguales = azul (positivo), diferentes = rojo (negativo)]\n\nY lo mejor: la misma regla funciona para la división. No tienes que aprender nada nuevo.\n\n### ¿Por qué negativo por negativo da positivo?\n\n[VISUAL: Secuencia de multiplicaciones apareciendo una por una con flechas mostrando el patrón]\n\nEsta es la pregunta del millón. Mira este patrón:\n3 × (-4) = -12\n2 × (-4) = -8\n1 × (-4) = -4\n0 × (-4) = 0\n\n¿Ves cómo cada resultado sube 4? Si seguimos el patrón:\n(-1) × (-4) = +4\n(-2) × (-4) = +8\n(-3) × (-4) = +12\n\n¡El patrón nos obliga a que negativo por negativo sea positivo! Si no fuera así, las matemáticas se romperían.\n\n[VISUAL: Animación de una persona con deudas que se cancelan]\n\nOtra forma de verlo: imagina que debes 5 pesos. Eso es -5. Si alguien te cancela esa deuda 3 veces, te está haciendo un favor. Quitar deudas es positivo: (-3) × (-5) = +15.\n\n### Ejemplos paso a paso\n\n[VISUAL: Cada ejemplo con el signo determinándose primero, luego el cálculo]\n\nVamos con ejemplos. (-7) × (+3). Primer paso: ¿los signos son iguales o diferentes? Diferentes. Entonces el resultado es negativo. Segundo paso: multiplica los valores absolutos: 7 × 3 = 21. Resultado: -21.\n\nOtro: (-5) × (-8). Signos iguales, resultado positivo. 5 × 8 = 40. Resultado: +40.\n\nAhora división: (-36) ÷ (-9). Signos iguales, positivo. 36 ÷ 9 = 4. Resultado: +4.\n\n[VISUAL: Verificación con la operación inversa]\n\nY puedes verificar: si (-36) ÷ (-9) = 4, entonces 4 × (-9) debería dar -36. Signos diferentes, negativo. 4 × 9 = 36. Resultado: -36. ¡Perfecto, coincide!\n\n### Operaciones inversas\n\n[VISUAL: Diagrama circular mostrando multiplicación → división → regreso al número original]\n\nMultiplicación y división son operaciones inversas. Una deshace a la otra, igual que la suma y la resta. Si multiplicas un número por 5 y luego lo divides entre 5, regresas al número original. Siempre.\n\n### Truco para cadenas largas\n\n[VISUAL: Cadena de multiplicaciones con los signos negativos resaltados y contados]\n\nCuando tienes muchos factores, cuenta los negativos. Si hay un número par de factores negativos, el resultado es positivo porque se cancelan en pares. Si hay un número impar, el resultado es negativo.\n\n(-2) × (-3) × (-1) × (-4). Cuatro negativos, número par. Resultado positivo. 2 × 3 × 1 × 4 = 24. Resultado: +24.\n\n(-2) × (-3) × (-1). Tres negativos, número impar. Resultado negativo. 2 × 3 × 1 = 6. Resultado: -6.\n\n### Precaución importante\n\n[VISUAL: Signo de advertencia con las dos reglas lado a lado]\n\nNo confundas la ley de signos de la multiplicación con las reglas de la suma. (-3) + (-5) = -8 (no +8). La ley de \"negativo con negativo da positivo\" solo aplica para multiplicar y dividir, no para sumar.\n\n[VISUAL: Resumen final con las 4 operaciones y sus reglas]\n\nY con esto ya tienes las cuatro operaciones básicas con números con signo: suma, resta, multiplicación y división. Practica mucho, sobre todo las cadenas de operaciones combinadas, y vas a ver cómo todo se vuelve automático. ¡Hasta la próxima!\n\n[VISUAL: Pantalla de cierre con ejercicios de práctica]"
+}

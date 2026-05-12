@@ -1,0 +1,317 @@
+{
+  "secuencia": 29,
+  "titulo": "Análisis estadístico",
+  "contenido": "Obtención y representación de información.",
+  "pda": "Usa tablas, gráficas de barras y circulares para el análisis de información.",
+  "evaluacion": {
+    "preguntas": [
+      {
+        "tipo": "opcion_multiple",
+        "pregunta": "En una gráfica circular, si una categoría representa el 25% del total, ¿cuántos grados del círculo le corresponden?",
+        "opciones": ["A) 25°", "B) 45°", "C) 90°", "D) 180°"],
+        "respuesta": "C"
+      },
+      {
+        "tipo": "verdadero_falso",
+        "pregunta": "Una gráfica de barras es útil para comparar cantidades entre diferentes categorías.",
+        "opciones": [],
+        "respuesta": true
+      },
+      {
+        "tipo": "espacios",
+        "pregunta": "En una gráfica circular, la suma de todos los porcentajes siempre debe ser igual a ___.",
+        "opciones": [],
+        "respuesta": "100%"
+      },
+      {
+        "tipo": "calculo",
+        "pregunta": "En una encuesta, 15 alumnos prefieren fútbol, 10 básquetbol, 5 voleibol y 10 natación. Calcula el porcentaje de cada deporte y los grados que le corresponden en una gráfica circular.",
+        "opciones": [],
+        "respuesta": "Paso 1: Total = 15 + 10 + 5 + 10 = 40 alumnos.\nPaso 2: Porcentajes:\n  Fútbol: (15/40) × 100 = 37.5%\n  Básquetbol: (10/40) × 100 = 25%\n  Voleibol: (5/40) × 100 = 12.5%\n  Natación: (10/40) × 100 = 25%\nPaso 3: Grados (porcentaje × 3.6):\n  Fútbol: 37.5 × 3.6 = 135°\n  Básquetbol: 25 × 3.6 = 90°\n  Voleibol: 12.5 × 3.6 = 45°\n  Natación: 25 × 3.6 = 90°\nVerificación: 135 + 90 + 45 + 90 = 360° ✓"
+      },
+      {
+        "tipo": "abierta",
+        "pregunta": "¿En qué situaciones es más conveniente usar una gráfica de barras que una gráfica circular? Da un ejemplo.",
+        "opciones": [],
+        "respuesta": "Una gráfica de barras es más conveniente cuando queremos comparar cantidades entre varias categorías, especialmente si hay muchas categorías o si los valores son muy parecidos. Por ejemplo, para comparar las ventas mensuales de una tienda durante un año (12 categorías), una gráfica de barras permite ver fácilmente qué mes vendió más. Una gráfica circular con 12 rebanadas sería difícil de leer. También es mejor la gráfica de barras cuando no necesitamos mostrar la proporción respecto al total."
+      }
+    ]
+  },
+  "orientacion": {
+    "contenidos_especificos": [
+      "Organizar datos en tablas de frecuencia con categorías y conteos",
+      "Construir e interpretar gráficas de barras a partir de datos tabulados",
+      "Construir e interpretar gráficas circulares calculando porcentajes y ángulos centrales"
+    ],
+    "actividad_inicio": [
+      "Hacer una encuesta rápida al grupo: ¿cuál es tu deporte favorito? Anotar las respuestas en el pizarrón usando marcas de conteo",
+      "Preguntar: ¿cómo podríamos presentar estos datos de manera visual para que cualquiera los entienda rápido?",
+      "Mostrar dos representaciones del mismo dato: una tabla y una gráfica de barras; preguntar cuál comunica mejor la información",
+      "Mostrar una gráfica circular de un periódico o sitio web y preguntar qué información transmite",
+      "Presentar el objetivo: aprender a organizar datos en tablas y representarlos con gráficas de barras y circulares"
+    ],
+    "desarrollo": [
+      {
+        "titulo": "Tablas de frecuencia y gráficas de barras",
+        "diapositiva": "1-3",
+        "libro": "Sección 'Tablas y gráficas de barras'",
+        "video": "min 0:30-2:30",
+        "descripcion": "Tome los datos de la encuesta de inicio y organícelos en una tabla de frecuencia con columnas: categoría, conteo (marcas), frecuencia. Luego construya paso a paso una gráfica de barras en el pizarrón: eje horizontal con categorías, eje vertical con frecuencias, título, escala. Enfatice que las barras deben tener el mismo ancho y estar separadas. Los alumnos copian la tabla y la gráfica en su cuaderno. Luego, en parejas, inventan datos de una encuesta ficticia (comida favorita, 20 encuestados) y construyen su propia gráfica de barras.",
+        "tip": "Insista en que los alumnos pongan título a la gráfica y etiqueten ambos ejes. La falta de etiquetas es el error más común."
+      },
+      {
+        "titulo": "Gráficas circulares: porcentajes y ángulos",
+        "diapositiva": "4-6",
+        "libro": "Sección 'Gráficas circulares'",
+        "video": "min 2:30-4:30",
+        "descripcion": "Explique que una gráfica circular muestra cómo se reparte un total. Cada categoría se representa con un sector cuyo ángulo es proporcional a su frecuencia. Fórmula: ángulo = (frecuencia / total) × 360°. Trabaje el ejemplo de la encuesta de deportes calculando cada ángulo. Luego dibuje la gráfica con transportador. Verifique que la suma de ángulos sea 360°. Los alumnos calculan ángulos para sus datos inventados y trazan la gráfica circular con transportador.",
+        "tip": "Si no todos tienen transportador, pueden usar la técnica de estimar: 1/4 del círculo = 90°, 1/2 = 180°, y ajustar visualmente."
+      },
+      {
+        "titulo": "Comparación y análisis: ¿qué gráfica elijo?",
+        "diapositiva": "7-8",
+        "libro": "Sección 'Análisis e interpretación'",
+        "video": "min 4:30-6:00",
+        "descripcion": "Presente los mismos datos representados con gráfica de barras y circular. Pregunte: ¿qué información se lee más fácil en cada una? Guíe a concluir que las barras son mejores para comparar cantidades y las circulares para ver proporciones del total. Entregue a cada equipo un conjunto de datos (calificaciones de un grupo, ventas de una tienda, preferencias de música) y pidan que decidan qué tipo de gráfica es más apropiada, la construyan y redacten tres conclusiones a partir de ella.",
+        "tip": null
+      }
+    ],
+    "cierre_individual": {
+      "reflexiona": "¿Qué tipo de gráfica te resulta más fácil de construir? ¿Y cuál te parece más útil para comunicar información? Escribe tu opinión y justifícala.",
+      "profundiza": [
+        {
+          "pregunta": "En una gráfica circular, un sector mide 72°. ¿Qué porcentaje del total representa? Si el total son 250 datos, ¿cuántos corresponden a ese sector?",
+          "respuesta_modelo": "R.M. Porcentaje = (72/360) × 100 = 20%. Cantidad = 0.20 × 250 = 50 datos. Un ángulo de 72° representa exactamente la quinta parte del total."
+        },
+        {
+          "pregunta": "¿Por qué no es recomendable usar una gráfica circular cuando hay más de 7 u 8 categorías?",
+          "respuesta_modelo": "R.M. Porque los sectores se vuelven muy pequeños y es difícil distinguirlos visualmente. Los colores se confunden, las etiquetas se amontonan y la gráfica pierde claridad. En esos casos es mejor usar una gráfica de barras donde cada categoría se separa con facilidad."
+        }
+      ]
+    },
+    "cierre_grupal": [
+      "Una tabla de frecuencia organiza los datos en categorías con su conteo",
+      "La gráfica de barras usa barras del mismo ancho; la altura representa la frecuencia",
+      "La gráfica circular divide un círculo en sectores proporcionales al dato",
+      "Ángulo del sector = (frecuencia / total) × 360°",
+      "Las barras son mejores para comparar; las circulares para mostrar proporciones"
+    ],
+    "preguntas_comprension": [
+      "¿Cuáles son los elementos indispensables de una gráfica de barras bien construida?",
+      "Si en una gráfica circular un sector mide 180°, ¿qué porcentaje del total representa?",
+      "¿Puede una gráfica de barras tener barras horizontales en vez de verticales? ¿Cambia la información?",
+      "Tienes datos de 5 sabores de helado y sus ventas. ¿Qué gráfica usarías para mostrar cuál se vende más?",
+      "¿La suma de los porcentajes en una gráfica circular puede dar más de 100%? ¿Por qué?"
+    ]
+  },
+  "libro": {
+    "introduccion": "¿Te imaginas leer una lista de 200 respuestas de una encuesta para entender qué opina la mayoría? Sería un caos. Pero si organizas esos datos en tablas y los representas con gráficas, todo se vuelve claro en un instante. Hoy vas a aprender a crear e interpretar tablas de frecuencias, gráficas de barras y gráficas circulares.",
+    "conceptos": [
+      {
+        "titulo": "Tabla de frecuencias",
+        "contenido": "Una tabla de frecuencias organiza los datos indicando cuántas veces aparece cada valor o categoría. Tiene dos columnas básicas: la categoría y la frecuencia (conteo). Es el primer paso obligatorio antes de construir cualquier gráfica. Siempre incluye el total al final para verificar que no falten datos.",
+        "definicion": "La frecuencia de un dato es el número de veces que aparece en el conjunto. La suma de todas las frecuencias debe ser igual al total de datos."
+      },
+      {
+        "titulo": "Gráfica de barras",
+        "contenido": "Usa rectángulos (barras) cuya altura representa la frecuencia de cada categoría. Es ideal para comparar cantidades. Las barras deben tener el mismo ancho y estar separadas por espacios iguales. Siempre necesita título, ejes etiquetados y una escala clara.",
+        "definicion": null
+      },
+      {
+        "titulo": "Gráfica circular",
+        "contenido": "Divide un círculo en sectores proporcionales a cada categoría. Muestra qué proporción del total representa cada dato. Para calcular el ángulo de cada sector, usa la fórmula: ángulo = (frecuencia / total) × 360°. La suma de todos los sectores siempre es 360°.",
+        "definicion": "Porcentaje = (frecuencia / total) × 100. Ángulo = porcentaje × 3.6° (porque 360° ÷ 100 = 3.6)."
+      }
+    ],
+    "ejemplos": [
+      {
+        "titulo": "Construcción de tabla y gráfica de barras",
+        "enunciado": "En una encuesta, 12 alumnos prefieren caminar, 8 el camión, 5 la bicicleta, 3 el auto y 2 el metro. Organiza los datos y construye una gráfica de barras.",
+        "pasos": [
+          "Paso 1: Arma la tabla: Caminar (12), Camión (8), Bici (5), Auto (3), Metro (2). Total: 30.",
+          "Paso 2: Traza el eje horizontal con las categorías y el vertical con escala de 0 a 14.",
+          "Paso 3: Dibuja barras con la altura correspondiente a cada frecuencia.",
+          "Paso 4: Agrega título: 'Medio de transporte al colegio'."
+        ],
+        "resultado": "La barra más alta es Caminar (12) y la más baja Metro (2). Se ve claramente que caminar es el más popular.",
+        "figura": {
+          "tipo": "grafica_barras",
+          "datos": [
+            {
+              "label": "Lun",
+              "valor": 8
+            },
+            {
+              "label": "Mar",
+              "valor": 5
+            },
+            {
+              "label": "Mie",
+              "valor": 12
+            },
+            {
+              "label": "Jue",
+              "valor": 7
+            },
+            {
+              "label": "Vie",
+              "valor": 10
+            }
+          ],
+          "width": 280,
+          "height": 150
+        }
+      },
+      {
+        "titulo": "Gráfica circular con porcentajes y grados",
+        "enunciado": "En una encuesta, 15 alumnos prefieren fútbol, 10 básquetbol, 5 voleibol y 10 natación. Calcula los ángulos para la gráfica circular.",
+        "pasos": [
+          "Paso 1: Total = 15 + 10 + 5 + 10 = 40.",
+          "Paso 2: Porcentajes: Fútbol = 37.5%, Básquet = 25%, Voli = 12.5%, Natación = 25%.",
+          "Paso 3: Grados: Fútbol = 135°, Básquet = 90°, Voli = 45°, Natación = 90°.",
+          "Paso 4: Verificación: 135 + 90 + 45 + 90 = 360°."
+        ],
+        "resultado": "El sector más grande es fútbol (135°, más de un tercio del círculo) y el más pequeño es voleibol (45°)."
+      }
+    ],
+    "datos_curiosos": "El INEGI (Instituto Nacional de Estadística y Geografía) realiza el censo de población en México cada 10 años. En 2020, el censo registró que México tenía 126 millones de habitantes. Los estadísticos del INEGI usan gráficas de barras y circulares —como las que aprendiste— para presentar datos sobre educación, empleo y vivienda. Incluso la Liga MX publica gráficas de goles, asistencias y posesión de balón para analizar el rendimiento de los equipos cada jornada.",
+    "ejercicios": [
+      {
+        "numero": 1,
+        "enunciado": "En un salón de 30 alumnos, 10 prefieren pizza, 8 tacos, 7 hamburguesas y 5 sushi. Organiza los datos en una tabla de frecuencias.",
+        "espacio": true,
+        "lineas": 4
+      },
+      {
+        "numero": 2,
+        "enunciado": "Con los datos del ejercicio anterior, calcula el porcentaje y los grados para cada categoría en una gráfica circular.",
+        "espacio": true,
+        "lineas": 5
+      },
+      {
+        "numero": 3,
+        "enunciado": "En una gráfica circular, un sector mide 72°. ¿Qué porcentaje del total representa? Si el total es 250 datos, ¿cuántos corresponden a ese sector?",
+        "espacio": true,
+        "lineas": 3
+      },
+      {
+        "numero": 4,
+        "enunciado": "Un comerciante muestra una gráfica de barras donde parece que sus ventas se duplicaron de un mes a otro. Sin embargo, el eje Y empieza en 950 en lugar de 0. ¿La gráfica es engañosa? ¿Por qué? Redibuja la gráfica con el eje Y empezando en 0 y compara.",
+        "espacio": true,
+        "lineas": 5
+      }
+    ],
+    "puntos_clave": [
+      "Siempre organiza los datos en una tabla de frecuencias antes de graficar.",
+      "La gráfica de barras es ideal para comparar cantidades entre categorías.",
+      "La gráfica circular muestra proporciones del total; funciona mejor con pocas categorías (máximo 6-7).",
+      "En la gráfica circular: los porcentajes suman 100% y los grados suman 360°.",
+      "Toda gráfica bien hecha necesita título, etiquetas y escala clara."
+    ]
+  },
+  "diapositiva": [
+    {
+      "titulo": "Análisis estadístico",
+      "puntos": [
+        "Tema: Obtención y representación de información",
+        "Objetivo: Usar tablas y gráficas para analizar datos",
+        "Herramientas: tablas de frecuencias, gráficas de barras y circulares"
+      ],
+      "ejemplo": "¿Cómo saber rápidamente cuál es la comida favorita de tu grupo?"
+    },
+    {
+      "titulo": "Tablas de frecuencias",
+      "puntos": [
+        "Organizan los datos indicando cuántas veces aparece cada categoría",
+        "Columnas: categoría y frecuencia (conteo)",
+        "Siempre incluir el total al final",
+        "Son el primer paso antes de cualquier gráfica"
+      ],
+      "ejemplo": "Encuesta de frutas: Manzana (8), Plátano (6), Naranja (10), Total: 24."
+    },
+    {
+      "titulo": "Gráfica de barras",
+      "puntos": [
+        "Rectángulos cuya altura representa la frecuencia",
+        "Eje horizontal: categorías, Eje vertical: frecuencia",
+        "Todas las barras del mismo ancho, separadas por espacios iguales",
+        "Ideal para comparar cantidades"
+      ],
+      "ejemplo": "La barra más alta = categoría más frecuente. La más baja = la menos frecuente.",
+      "figura": {
+        "tipo": "grafica_barras",
+        "datos": [
+          {
+            "label": "A",
+            "valor": 15
+          },
+          {
+            "label": "B",
+            "valor": 8
+          },
+          {
+            "label": "C",
+            "valor": 22
+          },
+          {
+            "label": "D",
+            "valor": 11
+          }
+        ],
+        "width": 350,
+        "height": 180
+      }
+    },
+    {
+      "titulo": "Construcción de gráfica de barras",
+      "puntos": [
+        "1. Trazar ejes y definir escala",
+        "2. Etiquetar categorías en el eje horizontal",
+        "3. Dibujar barras con la altura correcta",
+        "4. Agregar título y etiquetas de valores"
+      ],
+      "ejemplo": "Escala de 0 a 12 de 2 en 2 para datos que van de 2 a 10."
+    },
+    {
+      "titulo": "Gráfica circular",
+      "puntos": [
+        "Cada sector representa una proporción del total",
+        "Porcentaje = (frecuencia / total) × 100",
+        "Grados = porcentaje × 3.6",
+        "La suma de todos los sectores = 360°"
+      ],
+      "ejemplo": "Si una categoría es 25% del total: 25 × 3.6 = 90° (un cuarto del círculo)."
+    },
+    {
+      "titulo": "Ejemplo completo: construcción de gráfica circular",
+      "puntos": [
+        "Datos: Fútbol 15, Básquet 10, Voli 5, Natación 10 (Total: 40)",
+        "Fútbol: 37.5% → 135°",
+        "Básquet: 25% → 90°, Natación: 25% → 90°",
+        "Voli: 12.5% → 45°. Verificación: 135+90+45+90 = 360° ✓"
+      ],
+      "ejemplo": "Usa transportador para marcar los grados con precisión."
+    },
+    {
+      "titulo": "¿Cuándo usar cada gráfica?",
+      "puntos": [
+        "Barras: comparar cantidades, muchas categorías, valores exactos",
+        "Circular: mostrar proporciones, pocas categorías (≤7), porcentajes",
+        "Barras dobles: comparar dos conjuntos de datos",
+        "Ambas necesitan título, etiquetas y datos claros"
+      ],
+      "ejemplo": "Ventas de 12 meses → barras. Distribución de 4 sabores → circular."
+    },
+    {
+      "titulo": "Resumen",
+      "puntos": [
+        "Tablas de frecuencias: organiza datos antes de graficar",
+        "Gráfica de barras: compara cantidades con rectángulos",
+        "Gráfica circular: muestra proporciones del total",
+        "Siempre verifica: porcentajes suman 100%, grados suman 360°"
+      ],
+      "ejemplo": "Las gráficas convierten números aburridos en información visual poderosa."
+    }
+  ],
+  "video_script": "## Script de video: Análisis estadístico\n\n[VISUAL: Pantalla con muchos números desordenados que se transforman en una gráfica colorida]\n\n¡Hola! Mira todos estos números... ¿Entiendes algo? Probablemente no. Pero ahora mira esta gráfica. ¡Ahora sí! De un vistazo sabes qué categoría es la más grande y cuál la más pequeña. Eso es el poder de la estadística visual, y hoy vas a aprender a dominarla.\n\n[VISUAL: Tabla de frecuencias construyéndose paso a paso]\n\nTodo empieza con una tabla de frecuencias. Supongamos que hicimos una encuesta en tu salón preguntando: \"¿Cómo llegas a la escuela?\" Las respuestas fueron: caminando, bicicleta, camión, auto y metro. Lo primero es contar cuántas personas eligieron cada opción. Eso es la frecuencia.\n\nCaminando: 12. Bicicleta: 5. Camión: 8. Auto: 3. Metro: 2. Total: 30. ¡Listo! Ya tenemos nuestra tabla organizada.\n\n[VISUAL: Ejes cartesianos apareciendo, luego barras creciendo una por una]\n\nAhora vamos a convertir esta tabla en una gráfica de barras. Primero trazamos dos ejes. En el horizontal van las categorías: caminando, bici, camión, auto, metro. En el vertical va la frecuencia, con una escala de 0 a 14, de 2 en 2.\n\nAhora dibujamos las barras. Caminando llega hasta 12, es la más alta. Camión llega a 8. Bicicleta a 5. Auto a 3. Metro a 2. Y le ponemos título: \"Medio de transporte al colegio\". ¡Ya puedes ver de inmediato que la mayoría llega caminando!\n\n[VISUAL: Transición a un círculo que se va dividiendo en sectores de colores]\n\nPero, ¿y si queremos saber qué porcentaje del total representa cada medio de transporte? Para eso usamos la gráfica circular, también llamada gráfica de pastel.\n\nPrimero calculamos porcentajes. Caminando: 12 de 30 es el 40%. Camión: 8 de 30, 26.7%. Bicicleta: 5 de 30, 16.7%. Auto: 10%. Metro: 6.7%. Verificamos: 40 + 26.7 + 16.7 + 10 + 6.7 ≈ 100%. ¡Perfecto!\n\n[VISUAL: Transportador midiendo ángulos en el círculo]\n\nAhora convertimos a grados multiplicando cada porcentaje por 3.6. ¿Por qué 3.6? Porque el círculo tiene 360 grados y 360 entre 100 es 3.6.\n\nCaminando: 40 × 3.6 = 144°. Camión: 96°. Bicicleta: 60°. Auto: 36°. Metro: 24°. Sumamos: 144 + 96 + 60 + 36 + 24 = 360°. ¡Exacto!\n\nCon el transportador marcamos cada sector, coloreamos y etiquetamos. El sector más grande corresponde a \"caminando\" y el más pequeño a \"metro\".\n\n[VISUAL: Lado a lado: gráfica de barras vs. gráfica circular con los mismos datos]\n\n¿Cuándo usamos cada una? La gráfica de barras es mejor para comparar cantidades exactas: puedes ver que caminando tiene 12 y camión 8. La gráfica circular es mejor para ver proporciones: caminando representa casi la mitad del total.\n\nCada tipo tiene su fuerza. Si tienes muchas categorías, las barras funcionan mejor. Si quieres mostrar cómo se reparte un total, usa el pastel.\n\n[VISUAL: Resumen con tres íconos: tabla, barras, pastel]\n\nRecapitulemos. Paso uno: organiza tus datos en una tabla de frecuencias. Paso dos: decide qué quieres mostrar. ¿Comparar cantidades? Gráfica de barras. ¿Mostrar proporciones? Gráfica circular. Paso tres: construye la gráfica con ejes claros, escalas correctas y siempre con título.\n\n[VISUAL: Pantalla de cierre]\n\nTe dejo un reto: haz una encuesta a 20 personas sobre su película favorita. Organiza los datos en tabla y haz ambas gráficas. ¡Nos vemos en la siguiente lección sobre frecuencias!"
+}

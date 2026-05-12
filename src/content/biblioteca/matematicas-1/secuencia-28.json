@@ -1,0 +1,337 @@
+{
+  "secuencia": 28,
+  "titulo": "Perímetro y área",
+  "contenido": "Medición y cálculo en diferentes contextos.",
+  "pda": "Obtiene y aplica fórmulas o usa otras estrategias para calcular el perímetro y el área de polígonos regulares e irregulares y del círculo.",
+  "evaluacion": {
+    "preguntas": [
+      {
+        "tipo": "opcion_multiple",
+        "pregunta": "¿Cuál es el área de un círculo con radio de 5 cm? (Usa π ≈ 3.14)",
+        "opciones": ["A) 15.70 cm²", "B) 31.40 cm²", "C) 78.50 cm²", "D) 157.00 cm²"],
+        "respuesta": "C"
+      },
+      {
+        "tipo": "verdadero_falso",
+        "pregunta": "El perímetro de un polígono regular se calcula multiplicando la medida de un lado por el número de lados.",
+        "opciones": [],
+        "respuesta": true
+      },
+      {
+        "tipo": "calculo",
+        "pregunta": "Calcula el perímetro y el área de un hexágono regular cuyo lado mide 6 cm y su apotema mide 5.2 cm.",
+        "opciones": [],
+        "respuesta": "Paso 1: Perímetro = número de lados × longitud de un lado = 6 × 6 = 36 cm.\nPaso 2: Área de polígono regular = (Perímetro × apotema) / 2.\nPaso 3: Área = (36 × 5.2) / 2 = 187.2 / 2 = 93.6 cm².\nPerímetro = 36 cm, Área = 93.6 cm²."
+      },
+      {
+        "tipo": "espacios",
+        "pregunta": "La fórmula del área del círculo es A = π × ___².",
+        "opciones": [],
+        "respuesta": "radio"
+      },
+      {
+        "tipo": "abierta",
+        "pregunta": "Explica la diferencia entre perímetro y área, y da un ejemplo de la vida cotidiana donde necesites calcular cada uno.",
+        "opciones": [],
+        "respuesta": "El perímetro es la medida del contorno de una figura, es decir, la suma de todas sus longitudes exteriores. Se mide en unidades lineales (cm, m). El área es la medida de la superficie interior de una figura, es decir, cuánto espacio ocupa por dentro. Se mide en unidades cuadradas (cm², m²). Ejemplo de perímetro: calcular cuánta cerca necesitas para rodear un jardín. Ejemplo de área: calcular cuánto pasto necesitas para cubrir ese mismo jardín."
+      }
+    ]
+  },
+  "orientacion": {
+    "contenidos_especificos": [
+      "Calcular el perímetro de polígonos regulares e irregulares sumando la longitud de todos sus lados",
+      "Aplicar fórmulas de área para triángulos, cuadriláteros, polígonos regulares y el círculo",
+      "Distinguir entre perímetro (medida lineal) y área (medida de superficie) y sus unidades"
+    ],
+    "actividad_inicio": [
+      "Mostrar fotografías de un terreno y una cerca: preguntar ¿qué necesitamos calcular para comprar la cerca? ¿Y para comprar el pasto?",
+      "Pedir a los alumnos que mencionen situaciones donde se necesita el perímetro y otras donde se necesita el área",
+      "Recordar brevemente las fórmulas de área del triángulo y el rectángulo, que ya conocen de primaria",
+      "Lanzar el reto: ¿cómo calcularían el área de un hexágono o de un círculo?",
+      "Presentar el objetivo: dominar las fórmulas de perímetro y área para todo tipo de figuras"
+    ],
+    "desarrollo": [
+      {
+        "titulo": "Perímetro y área de polígonos irregulares y cuadriláteros",
+        "diapositiva": "1-3",
+        "libro": "Sección 'Perímetro y cuadriláteros'",
+        "video": "min 0:30-2:30",
+        "descripcion": "Recuerde que el perímetro de cualquier polígono es la suma de todos sus lados. Para polígonos irregulares, se mide cada lado y se suman. Repase las fórmulas de área: rectángulo (b × h), triángulo (b × h / 2), paralelogramo (b × h), trapecio ((B + b) × h / 2). Trabaje un ejemplo de cada uno en el pizarrón. Los alumnos resuelven individualmente un trapecio con B = 12, b = 8, h = 5 y un paralelogramo con b = 9, h = 4.",
+        "tip": "Subraye que la altura siempre es perpendicular a la base, no el lado inclinado. Este es el error más frecuente en paralelogramos y trapecios."
+      },
+      {
+        "titulo": "Polígonos regulares: perímetro y área con apotema",
+        "diapositiva": "4-6",
+        "libro": "Sección 'Polígonos regulares'",
+        "video": "min 2:30-4:30",
+        "descripcion": "Explique que un polígono regular tiene todos sus lados y ángulos iguales. Perímetro = n × lado. Para el área, introduzca la apotema como la distancia del centro al punto medio de un lado. Fórmula: A = (P × apotema) / 2. Deduzca visualmente: el polígono se puede dividir en triángulos iguales, cada uno con base = lado y altura = apotema. Trabaje el ejemplo de un hexágono regular con lado 8 cm y apotema 6.93 cm. Los alumnos calculan el área de un pentágono y un octágono con datos dados.",
+        "tip": "Dibuje la descomposición en triángulos en el pizarrón para que los alumnos entiendan de dónde viene la fórmula, no solo la memoricen."
+      },
+      {
+        "titulo": "El círculo: circunferencia y área",
+        "diapositiva": "7-8",
+        "libro": "Sección 'El círculo'",
+        "video": "min 4:30-6:00",
+        "descripcion": "Presente las fórmulas: circunferencia C = 2πr (equivalente al perímetro) y área A = πr². Recuerde que π ≈ 3.1416. Trabaje el ejemplo con r = 7 cm: C = 2(3.14)(7) = 43.96 cm, A = 3.14(49) = 153.86 cm². Luego plantee un problema inverso: si el área de un círculo es 200.96 cm², ¿cuál es el radio? (r = √(200.96/3.14) = √64 = 8 cm). Los alumnos practican en parejas con tres ejercicios mixtos.",
+        "tip": "Lleve un cordón y haga el experimento clásico: medir la circunferencia y el diámetro de objetos redondos para comprobar que el cociente siempre es cercano a 3.14."
+      }
+    ],
+    "cierre_individual": {
+      "reflexiona": "¿Cuál fórmula de área te parece más difícil de recordar? Escribe en tu cuaderno esa fórmula, dibuja la figura correspondiente y resuelve un ejemplo. Eso te ayudará a fijarla.",
+      "profundiza": [
+        {
+          "pregunta": "Un jardín tiene forma de semicírculo con diámetro de 10 m. Calcula su perímetro completo (parte recta + curva) y su área.",
+          "respuesta_modelo": "R.M. Radio = 5 m. Parte curva = πr = 3.14 × 5 = 15.7 m. Parte recta = 10 m (el diámetro). Perímetro total = 15.7 + 10 = 25.7 m. Área = πr²/2 = 3.14 × 25 / 2 = 39.25 m²."
+        },
+        {
+          "pregunta": "¿Es posible que dos rectángulos tengan el mismo perímetro pero diferente área? Da un ejemplo numérico.",
+          "respuesta_modelo": "R.M. Sí. Un rectángulo de 6 × 4 tiene P = 20 y A = 24. Un rectángulo de 9 × 1 tiene P = 20 y A = 9. Mismo perímetro, áreas diferentes. El cuadrado de 5 × 5 (P = 20, A = 25) es el que maximiza el área para ese perímetro."
+        }
+      ]
+    },
+    "cierre_grupal": [
+      "El perímetro es la suma de todos los lados de un polígono; para un círculo se llama circunferencia",
+      "El área mide la superficie interior de una figura y se expresa en unidades cuadradas",
+      "Polígonos regulares: A = (Perímetro × apotema) / 2",
+      "Círculo: C = 2πr, A = πr²",
+      "La altura siempre es perpendicular a la base en las fórmulas de área"
+    ],
+    "preguntas_comprension": [
+      "¿Cuál es el perímetro de un hexágono regular de lado 5 cm?",
+      "Calcula el área de un triángulo con base 12 cm y altura 8 cm.",
+      "¿Cuál es la diferencia entre el perímetro y el área? ¿Pueden tener las mismas unidades?",
+      "Si el radio de un círculo se duplica, ¿qué le pasa al área? Justifica.",
+      "Un terreno rectangular mide 30 m × 20 m. ¿Cuántos metros de cerca necesitas y cuántos m² de pasto?"
+    ]
+  },
+  "libro": {
+    "introduccion": "¿Cuánta cerca necesitas para rodear tu jardín? ¿Cuánto pasto para cubrirlo? Estas dos preguntas representan las dos medidas más importantes de cualquier figura geométrica: el perímetro y el área. Hoy vas a dominar las fórmulas para calcularlas en polígonos regulares, irregulares y hasta en el círculo.",
+    "conceptos": [
+      {
+        "titulo": "Perímetro",
+        "contenido": "El perímetro es la medida del contorno de una figura. Es como caminar por su borde y medir cuánto recorriste. Para cualquier polígono, se obtiene sumando las longitudes de todos sus lados. Para un polígono regular, como todos los lados son iguales, se multiplica el número de lados por la longitud de uno.",
+        "definicion": "Perímetro de un polígono = suma de todos sus lados. Polígono regular: P = n × l (n = número de lados, l = longitud de un lado). Círculo: C = 2πr.",
+        "figura": {
+          "tipo": "circulo",
+          "radio": 45,
+          "elementos": ["radio"],
+          "width": 160,
+          "height": 160
+        }
+      },
+      {
+        "titulo": "Área",
+        "contenido": "El área mide la superficie interior de una figura, es decir, cuánto espacio ocupa. Se expresa en unidades cuadradas (cm², m²). Para polígonos regulares se usa la apotema, que es la distancia del centro al punto medio de un lado. Para figuras irregulares, la estrategia es descomponer en figuras simples.",
+        "definicion": "Rectángulo: A = b × h. Triángulo: A = (b × h) / 2. Polígono regular: A = (P × apotema) / 2. Círculo: A = πr²."
+      },
+      {
+        "titulo": "La apotema",
+        "contenido": "La apotema es un segmento que va del centro del polígono regular al punto medio de uno de sus lados, formando un ángulo recto. Es como el 'radio interior' del polígono. Al dividir un polígono regular en triángulos desde su centro, la apotema es la altura de cada triángulo, y de ahí sale la fórmula A = (P × apotema) / 2.",
+        "definicion": null
+      }
+    ],
+    "ejemplos": [
+      {
+        "titulo": "Terreno rectangular",
+        "enunciado": "Un terreno rectangular mide 12 m de largo y 8 m de ancho. Calcula su perímetro y su área.",
+        "pasos": [
+          "Paso 1: Perímetro = 2(b + h) = 2(12 + 8) = 2(20) = 40 m.",
+          "Paso 2: Área = b × h = 12 × 8 = 96 m²."
+        ],
+        "resultado": "Necesitas 40 m de cerca y 96 m² de pasto.",
+        "figura": {
+          "tipo": "plano_cartesiano",
+          "xMin": -1,
+          "xMax": 7,
+          "yMin": -1,
+          "yMax": 5,
+          "puntos": [
+            {
+              "x": 0,
+              "y": 0,
+              "label": ""
+            },
+            {
+              "x": 6,
+              "y": 0,
+              "label": ""
+            },
+            {
+              "x": 6,
+              "y": 4,
+              "label": ""
+            },
+            {
+              "x": 0,
+              "y": 4,
+              "label": ""
+            }
+          ],
+          "lineas": [
+            {
+              "x1": 0,
+              "y1": 0,
+              "x2": 6,
+              "y2": 0
+            },
+            {
+              "x1": 6,
+              "y1": 0,
+              "x2": 6,
+              "y2": 4
+            },
+            {
+              "x1": 6,
+              "y1": 4,
+              "x2": 0,
+              "y2": 4
+            },
+            {
+              "x1": 0,
+              "y1": 4,
+              "x2": 0,
+              "y2": 0
+            }
+          ],
+          "width": 180,
+          "height": 140
+        }
+      },
+      {
+        "titulo": "Hexágono regular",
+        "enunciado": "Un hexágono regular tiene lados de 6 cm y apotema de 5.2 cm. Calcula su perímetro y área.",
+        "pasos": [
+          "Paso 1: Perímetro = n × l = 6 × 6 = 36 cm.",
+          "Paso 2: Área = (P × apotema) / 2 = (36 × 5.2) / 2 = 187.2 / 2 = 93.6 cm²."
+        ],
+        "resultado": "Perímetro = 36 cm, Área = 93.6 cm²."
+      },
+      {
+        "titulo": "Círculo (pizza)",
+        "enunciado": "Una pizza tiene un radio de 15 cm. Calcula la circunferencia y el área.",
+        "pasos": [
+          "Paso 1: Circunferencia = 2πr = 2 × 3.14 × 15 = 94.2 cm.",
+          "Paso 2: Área = πr² = 3.14 × 15² = 3.14 × 225 = 706.5 cm²."
+        ],
+        "resultado": "La orilla de la pizza mide 94.2 cm y su superficie es de 706.5 cm²."
+      }
+    ],
+    "datos_curiosos": "De todas las figuras con el mismo perímetro, el círculo es la que tiene mayor área. Por eso las burbujas de jabón son redondas: la naturaleza busca encerrar el máximo volumen con la mínima superficie. Los ingenieros aprovechan esto al diseñar tanques de agua cilíndricos en vez de cuadrados.",
+    "ejercicios": [
+      {
+        "numero": 1,
+        "enunciado": "Calcula el perímetro y el área de un pentágono regular con lado de 5 cm y apotema de 3.44 cm.",
+        "espacio": true,
+        "lineas": 4
+      },
+      {
+        "numero": 2,
+        "enunciado": "Un círculo tiene un diámetro de 20 cm. Calcula su circunferencia y su área (usa π ≈ 3.14).",
+        "espacio": true,
+        "lineas": 4
+      },
+      {
+        "numero": 3,
+        "enunciado": "Un triángulo tiene base de 10 cm y altura de 7 cm. ¿Cuál es su área?",
+        "espacio": true,
+        "lineas": 3
+      },
+      {
+        "numero": 4,
+        "enunciado": "Un terreno tiene forma de L: un rectángulo de 8 m × 5 m unido a otro de 4 m × 3 m. Calcula el área total del terreno.",
+        "espacio": true,
+        "lineas": 4
+      }
+    ],
+    "puntos_clave": [
+      "El perímetro mide el contorno (unidades lineales) y el área mide la superficie interior (unidades cuadradas).",
+      "Polígono regular: P = n × l y A = (P × apotema) / 2.",
+      "Círculo: C = 2πr y A = πr². No confundas radio con diámetro (d = 2r).",
+      "Para figuras irregulares, descompón en figuras simples y suma las áreas.",
+      "La altura siempre es perpendicular a la base en cualquier fórmula de área."
+    ]
+  },
+  "diapositiva": [
+    {
+      "titulo": "Perímetro y área",
+      "puntos": [
+        "Tema: Medición y cálculo en diferentes contextos",
+        "Objetivo: Calcular perímetro y área de polígonos y del círculo",
+        "Aplicaciones en la vida cotidiana"
+      ],
+      "ejemplo": "¿Cuánta cerca necesitas para tu jardín? ¿Cuánto pasto para cubrirlo?"
+    },
+    {
+      "titulo": "Perímetro vs. Área",
+      "puntos": [
+        "Perímetro: medida del contorno (unidades lineales: cm, m)",
+        "Área: medida de la superficie interior (unidades cuadradas: cm², m²)",
+        "Analogía: perímetro = la cerca, área = el pasto",
+        "Misma forma ≠ mismo valor de P y A"
+      ],
+      "ejemplo": "Un cuadrado de 4 cm: P = 16 cm, A = 16 cm². ¡Coinciden numéricamente, pero miden cosas distintas!"
+    },
+    {
+      "titulo": "Fórmulas de rectángulo y triángulo",
+      "puntos": [
+        "Rectángulo: P = 2(b + h), A = b × h",
+        "Triángulo: P = a + b + c, A = (b × h) / 2",
+        "La altura h siempre es perpendicular a la base",
+        "¡No olvides dividir entre 2 en el triángulo!"
+      ],
+      "ejemplo": "Rectángulo 10×6: P=32 cm, A=60 cm². Triángulo base 10, h 6: A=30 cm²."
+    },
+    {
+      "titulo": "Polígonos regulares",
+      "puntos": [
+        "P = número de lados × longitud de un lado",
+        "A = (Perímetro × apotema) / 2",
+        "La apotema va del centro al punto medio de un lado",
+        "Funciona para triángulos equiláteros, cuadrados, pentágonos, hexágonos..."
+      ],
+      "ejemplo": "Hexágono, lado 6 cm, apotema 5.2 cm: P = 36 cm, A = (36 × 5.2)/2 = 93.6 cm²."
+    },
+    {
+      "titulo": "El círculo",
+      "puntos": [
+        "Circunferencia (perímetro) = 2πr o πd",
+        "Área = πr²",
+        "π ≈ 3.14 o 3.1416",
+        "¡Cuidado! Usa el radio, no el diámetro, en πr²"
+      ],
+      "ejemplo": "Radio = 7 cm: C = 2(3.14)(7) = 43.96 cm, A = (3.14)(49) = 153.86 cm²."
+    },
+    {
+      "titulo": "Figuras irregulares",
+      "puntos": [
+        "Descomponer en figuras simples (triángulos, rectángulos)",
+        "Calcular el área de cada parte y sumar",
+        "Para el perímetro: medir todos los lados y sumar",
+        "En papel cuadriculado: contar cuadros para estimar"
+      ],
+      "ejemplo": "Una L se divide en dos rectángulos: A_total = A₁ + A₂."
+    },
+    {
+      "titulo": "Errores comunes",
+      "puntos": [
+        "Confundir radio con diámetro (d = 2r)",
+        "Olvidar dividir entre 2 en triángulos y polígonos regulares",
+        "Escribir unidades lineales para el área (debe ser cm², no cm)",
+        "No verificar que la altura sea perpendicular a la base"
+      ],
+      "ejemplo": "Error: A_triángulo = 8 × 5 = 40. Correcto: A = (8 × 5)/2 = 20 cm²."
+    },
+    {
+      "titulo": "Resumen",
+      "puntos": [
+        "Perímetro = suma de lados (contorno)",
+        "Área = superficie interior",
+        "Polígono regular: A = (P × apotema) / 2",
+        "Círculo: C = 2πr, A = πr²",
+        "Irregulares: descomponer y sumar"
+      ],
+      "ejemplo": "Dos figuras con P = 20 cm: cuadrado (A = 25 cm²) vs. rectángulo 1×9 (A = 9 cm²). ¡Mismo perímetro, diferente área!"
+    }
+  ],
+  "video_script": "## Script de video: Perímetro y área\n\n[VISUAL: Vista aérea de un parque con diferentes áreas: canchas rectangulares, jardín circular, zona de juegos irregular]\n\n¡Hola! Mira este parque desde arriba. Tiene una cancha rectangular, un jardín circular y una zona de juegos con forma irregular. Si quisieras cercar cada área o cubrirla con pasto, necesitarías calcular dos cosas: el perímetro y el área. Hoy vas a aprender a calcular ambos para todo tipo de figuras.\n\n[VISUAL: Animación dividiendo la pantalla: un lado muestra una cerca (perímetro), el otro muestra pasto cubriendo el suelo (área)]\n\nPrimero, aclaremos la diferencia. El perímetro es el contorno de una figura, como si caminaras por su borde. Se mide en centímetros, metros o kilómetros. El área es la superficie interior, como si la cubrieras con mosaicos. Se mide en centímetros cuadrados, metros cuadrados, etcétera.\n\nPiénsalo así: si quieres poner una cerca alrededor de tu jardín, necesitas el perímetro. Si quieres sembrar pasto dentro, necesitas el área. Son preguntas diferentes y fórmulas diferentes.\n\n[VISUAL: Rectángulo con medidas b = 12 m y h = 8 m, mostrando el cálculo]\n\nEmpecemos con lo básico. Un terreno rectangular de 12 metros de largo y 8 de ancho. El perímetro es 2 veces la suma de largo más ancho: 2 por (12 + 8) = 2 por 20 = 40 metros de cerca. El área es largo por ancho: 12 por 8 = 96 metros cuadrados de pasto.\n\n[VISUAL: Triángulo con base 10 y altura 6, resaltando la altura perpendicular]\n\nPara un triángulo, el perímetro es la suma de sus tres lados. Y el área es base por altura entre 2. ¡Ojo! La altura siempre va perpendicular a la base, no a lo largo de un lado. Si la base es 10 y la altura es 6: A = (10 × 6) / 2 = 30 cm².\n\n[VISUAL: Hexágono regular con flechas señalando lado y apotema]\n\nAhora, los polígonos regulares. Un hexágono regular con lados de 6 cm y apotema de 5.2 cm. El perímetro es fácil: 6 lados por 6 cm = 36 cm. Para el área usamos: perímetro por apotema entre 2. Entonces: (36 × 5.2) / 2 = 93.6 cm². La apotema, recuerda, es la distancia del centro al punto medio de un lado.\n\n[VISUAL: Círculo con radio señalado, animación de π girando]\n\nY el círculo, ¡el favorito de muchos! La circunferencia, que es su perímetro, se calcula con C = 2πr. Y el área con A = πr². Ojo: usamos el radio, no el diámetro. Si una pizza tiene radio de 15 cm: la circunferencia es 2 × 3.14 × 15 = 94.2 cm, y el área es 3.14 × 225 = 706.5 cm². ¡Esa es mucha pizza!\n\n[VISUAL: Figura en forma de L descompuesta en dos rectángulos con línea punteada]\n\nPero, ¿qué pasa con figuras irregulares? Aquí viene el truco: descompón la figura en partes más simples. Esta L se puede dividir en dos rectángulos. Calcula el área de cada uno y súmalas. Para el perímetro, mide todos los lados exteriores y suma. Así de sencillo.\n\n[VISUAL: Dato curioso - cuadrado vs rectángulo muy delgado, mismo perímetro]\n\nDato curioso: ¿sabías que de todas las figuras con el mismo perímetro, el círculo es la que tiene mayor área? Y entre los rectángulos, el cuadrado es el que da más área para un perímetro dado. ¡Las matemáticas están llenas de sorpresas!\n\n[VISUAL: Resumen con las cuatro fórmulas principales en tarjetas]\n\nRecapitulando: el perímetro es el contorno y el área es la superficie. Para polígonos regulares: P = n × l y A = (P × apotema) / 2. Para el círculo: C = 2πr y A = πr². Y para figuras irregulares: divide, calcula y suma.\n\n[VISUAL: Pantalla de cierre con ejercicio]\n\n¡Ahora tú! Calcula el perímetro y el área de un pentágono regular con lado de 5 cm y apotema de 3.44 cm. ¡Nos vemos!"
+}

@@ -1,0 +1,359 @@
+{
+  "secuencia": 21,
+  "titulo": "Tipos de triángulos y cuadriláteros",
+  "contenido": "Construcción y propiedades de las figuras planas y cuerpos.",
+  "pda": "Identifica y traza las rectas notables en triángulos y cuadriláteros a partir del análisis de distinta información.",
+  "evaluacion": {
+    "preguntas": [
+      {
+        "tipo": "opcion_multiple",
+        "pregunta": "¿Cómo se clasifica un triángulo que tiene un ángulo mayor a 90°?",
+        "opciones": ["A) Acutángulo", "B) Rectángulo", "C) Obtusángulo", "D) Equilátero"],
+        "respuesta": "C"
+      },
+      {
+        "tipo": "verdadero_falso",
+        "pregunta": "Un rombo es un cuadrilátero que tiene los cuatro lados iguales pero sus ángulos no necesariamente son de 90°.",
+        "respuesta": true
+      },
+      {
+        "tipo": "calculo",
+        "pregunta": "En un triángulo isósceles, los dos ángulos de la base miden 65° cada uno. ¿Cuánto mide el tercer ángulo?",
+        "respuesta": "La suma de los ángulos interiores de un triángulo es 180°. Tercer ángulo = 180° - 65° - 65° = 50°."
+      },
+      {
+        "tipo": "espacios",
+        "pregunta": "Un cuadrilátero que tiene exactamente un par de lados paralelos se llama ___.",
+        "respuesta": "trapecio"
+      },
+      {
+        "tipo": "abierta",
+        "pregunta": "Explica por qué todo cuadrado es un rectángulo, pero no todo rectángulo es un cuadrado.",
+        "respuesta": "Un rectángulo es un cuadrilátero con cuatro ángulos rectos. Un cuadrado tiene cuatro ángulos rectos Y además cuatro lados iguales. Como el cuadrado cumple la definición de rectángulo (cuatro ángulos de 90°), todo cuadrado es rectángulo. Pero un rectángulo puede tener lados de diferente longitud, por lo que no todos los rectángulos son cuadrados."
+      }
+    ]
+  },
+  "orientacion": {
+    "contenidos_especificos": [
+      "Clasificación de triángulos por sus lados: equilátero, isósceles y escaleno",
+      "Clasificación de triángulos por sus ángulos: acutángulo, rectángulo y obtusángulo",
+      "Clasificación de cuadriláteros: paralelogramo, rectángulo, rombo, cuadrado, trapecio y trapezoide",
+      "Relaciones jerárquicas entre los tipos de cuadriláteros",
+      "Propiedades de lados, ángulos y diagonales en cada tipo"
+    ],
+    "actividad_inicio": [
+      "Repartir a cada equipo un sobre con 8-10 figuras recortadas (triángulos y cuadriláteros de distintos tipos) y pedirles que las clasifiquen en grupos según el criterio que ellos quieran",
+      "Cada equipo expone brevemente su criterio de clasificación: ¿agruparon por número de lados, por forma, por tamaño?",
+      "Introducir la pregunta: ¿existe una forma matemática única de clasificar estas figuras? ¿Qué propiedades son las más importantes?",
+      "Presentar el objetivo: aprender la clasificación formal de triángulos y cuadriláteros por sus propiedades geométricas"
+    ],
+    "desarrollo": [
+      {
+        "titulo": "Clasificación de triángulos",
+        "diapositiva": "1-3",
+        "libro": "Sección 'Tipos de triángulos'",
+        "video": "min 0:30-2:30",
+        "descripcion": "Presente las dos clasificaciones simultáneas: por lados (equilátero, isósceles, escaleno) y por ángulos (acutángulo, rectángulo, obtusángulo). Dibuje en el pizarrón un ejemplo de cada tipo y pregunte al grupo: ¿un triángulo puede ser isósceles y rectángulo al mismo tiempo? Construya con el grupo una tabla de doble entrada (3×3) donde las filas sean por lados y las columnas por ángulos. Analicen juntos qué combinaciones son posibles y cuáles no (por ejemplo, equilátero solo puede ser acutángulo). Los alumnos copian la tabla y dibujan un ejemplo en cada celda posible.",
+        "tip": "Tenga preparados triángulos de cartulina de cada tipo para que los alumnos los manipulen y midan con transportador antes de clasificarlos."
+      },
+      {
+        "titulo": "Clasificación de cuadriláteros y su jerarquía",
+        "diapositiva": "4-6",
+        "libro": "Sección 'Tipos de cuadriláteros'",
+        "video": "min 2:30-4:30",
+        "descripcion": "Presente la familia de cuadriláteros como un diagrama jerárquico: cuadrilátero general → trapecio (al menos un par de lados paralelos) → paralelogramo (dos pares de lados paralelos) → rectángulo (ángulos rectos) / rombo (lados iguales) → cuadrado (ángulos rectos + lados iguales). Dibuje cada tipo en el pizarrón señalando las propiedades que se agregan en cada nivel. Trabaje las propiedades de las diagonales: en el paralelogramo se bisecan, en el rectángulo son congruentes, en el rombo son perpendiculares, en el cuadrado cumplen todo. Los alumnos construyen el diagrama jerárquico en su cuaderno.",
+        "tip": "Use flechas que vayan de lo general a lo particular para que los alumnos entiendan que cada tipo hereda las propiedades del nivel anterior."
+      },
+      {
+        "titulo": "Actividad práctica: identificación y construcción",
+        "diapositiva": "7-8",
+        "libro": "Sección 'Propiedades y construcción'",
+        "video": null,
+        "descripcion": "En equipos de 4, los alumnos reciben una hoja con 12 figuras sin nombre. Deben clasificar cada una usando la nomenclatura correcta (por ejemplo: triángulo isósceles rectángulo, rombo, trapecio isósceles). Luego, cada equipo debe construir con regla y compás: un triángulo equilátero de 5 cm de lado y un rombo cuyas diagonales midan 6 cm y 8 cm. Al finalizar, intercambian sus construcciones con otro equipo para verificar las medidas.",
+        "tip": "Para el rombo, recuerde a los alumnos que las diagonales se bisecan perpendicularmente: deben trazar las diagonales primero y luego unir los extremos."
+      }
+    ],
+    "cierre_individual": {
+      "reflexiona": "¿Qué relación entre cuadriláteros te sorprendió más? ¿Por qué crees que es útil entender que un cuadrado es también un rombo y un rectángulo? Escríbelo en tu cuaderno.",
+      "profundiza": [
+        {
+          "pregunta": "¿Puede existir un triángulo equilátero obtusángulo? Justifica tu respuesta.",
+          "respuesta_modelo": "R.M. No. En un triángulo equilátero los tres ángulos son iguales y deben sumar 180°, por lo que cada ángulo mide exactamente 60°. Como 60° < 90°, los tres ángulos son agudos y el triángulo es acutángulo. Es imposible que un triángulo equilátero tenga un ángulo obtuso."
+        },
+        {
+          "pregunta": "¿Un trapecio puede tener las cuatro ángulos iguales? Si es así, ¿qué figura sería?",
+          "respuesta_modelo": "R.M. Si un trapecio tiene los cuatro ángulos iguales, cada uno mide 360° ÷ 4 = 90°. Pero un cuadrilátero con cuatro ángulos rectos es un rectángulo, que tiene dos pares de lados paralelos. Entonces sería un paralelogramo (y rectángulo), que es un caso especial de trapecio."
+        }
+      ]
+    },
+    "cierre_grupal": [
+      "Los triángulos se clasifican por lados (equilátero, isósceles, escaleno) y por ángulos (acutángulo, rectángulo, obtusángulo)",
+      "Un triángulo equilátero siempre es acutángulo porque todos sus ángulos miden 60°",
+      "Los cuadriláteros forman una jerarquía: cuadrado → rombo/rectángulo → paralelogramo → trapecio",
+      "Cada tipo de cuadrilátero hereda las propiedades del tipo más general que lo contiene",
+      "Las propiedades de las diagonales permiten distinguir entre los diferentes tipos de cuadriláteros"
+    ],
+    "preguntas_comprension": [
+      "¿Cuántas clasificaciones posibles tiene un triángulo con dos lados iguales y un ángulo de 90°? Nómbralas.",
+      "Da un ejemplo de un cuadrilátero que sea trapecio pero no paralelogramo.",
+      "¿Por qué todo cuadrado es un rombo pero no todo rombo es un cuadrado?",
+      "Si un triángulo tiene ángulos de 50°, 60° y 70°, ¿cómo se clasifica por lados y por ángulos?",
+      "¿Cuál es la diferencia entre las diagonales de un rectángulo y las de un rombo?"
+    ]
+  },
+  "libro": {
+    "introduccion": "No todos los triangulos son iguales, y no todos los cuadrilateros tampoco. Asi como tu tienes nombre y apellido, las figuras geometricas se clasifican segun sus caracteristicas. Hoy vas a aprender a identificar cada tipo y a entender la jerarquia que los relaciona.",
+    "conceptos": [
+      {
+        "titulo": "Clasificacion de triangulos",
+        "contenido": "Los triangulos se clasifican de dos formas simultaneas. Por sus lados: equilatero (3 lados iguales, 3 angulos de 60 grados), isosceles (al menos 2 lados iguales) y escaleno (3 lados diferentes). Por sus angulos: acutangulo (todos menores a 90 grados), rectangulo (un angulo de 90 grados) y obtusangulo (un angulo mayor a 90 grados). La suma de los angulos interiores siempre es 180 grados.",
+        "definicion": "Triangulo isosceles: triangulo que tiene al menos dos lados de igual longitud y los angulos opuestos a esos lados son congruentes.",
+        "figura": {
+          "tipo": "plano_cartesiano",
+          "xMin": -1,
+          "xMax": 5,
+          "yMin": -1,
+          "yMax": 5,
+          "puntos": [
+            {
+              "x": 0,
+              "y": 0,
+              "label": ""
+            },
+            {
+              "x": 4,
+              "y": 0,
+              "label": ""
+            },
+            {
+              "x": 2,
+              "y": 4,
+              "label": ""
+            }
+          ],
+          "lineas": [
+            {
+              "x1": 0,
+              "y1": 0,
+              "x2": 4,
+              "y2": 0
+            },
+            {
+              "x1": 4,
+              "y1": 0,
+              "x2": 2,
+              "y2": 4
+            },
+            {
+              "x1": 2,
+              "y1": 4,
+              "x2": 0,
+              "y2": 0
+            }
+          ],
+          "width": 160,
+          "height": 160
+        }
+      },
+      {
+        "titulo": "Clasificacion de cuadrilateros",
+        "contenido": "Se clasifican por lados paralelos. Paralelogramos (2 pares de lados paralelos): cuadrado (4 lados iguales + 4 angulos de 90 grados), rectangulo (4 angulos de 90 grados, lados opuestos iguales), rombo (4 lados iguales, angulos no necesariamente de 90 grados), romboide. Trapecio: 1 par de lados paralelos. Trapezoide: ningun par paralelo. La suma de angulos interiores siempre es 360 grados.",
+        "definicion": null
+      },
+      {
+        "titulo": "Jerarquia de cuadrilateros",
+        "contenido": "Todo cuadrado es un rectangulo (porque tiene 4 angulos de 90 grados) y todo cuadrado es un rombo (porque tiene 4 lados iguales). Pero no todo rectangulo es cuadrado, ni todo rombo es cuadrado. Cada tipo hereda las propiedades del tipo mas general. Es como decir: todo chihuahuense es mexicano, pero no todo mexicano es chihuahuense.",
+        "definicion": null
+      }
+    ],
+    "ejemplos": [
+      {
+        "titulo": "Clasificar un triangulo",
+        "enunciado": "Un triángulo tiene lados de 5 cm, 5 cm y 3 cm, con ángulos de 73°, 73° y 34°. ¿Cómo se clasifica?",
+        "pasos": [
+          "Paso 1: Por sus lados: tiene 2 lados iguales (5 y 5) → isósceles",
+          "Paso 2: Por sus ángulos: todos son menores a 90° → acutángulo",
+          "Paso 3: Doble clasificación: isósceles acutángulo"
+        ],
+        "resultado": "Es un triángulo isósceles acutángulo."
+      },
+      {
+        "titulo": "Tercer angulo de un isosceles",
+        "enunciado": "En un triangulo isosceles, los dos angulos de la base miden 65 grados cada uno. Cuanto mide el tercer angulo?",
+        "pasos": [
+          "Paso 1: La suma de angulos interiores es 180 grados",
+          "Paso 2: Tercer angulo = 180 - 65 - 65 = 50 grados"
+        ],
+        "resultado": "El tercer angulo mide 50 grados."
+      },
+      {
+        "titulo": "Es posible un equilatero obtusangulo?",
+        "enunciado": "Puede existir un triangulo equilatero obtusangulo?",
+        "pasos": [
+          "Paso 1: En un equilatero, los tres angulos son iguales",
+          "Paso 2: Deben sumar 180: cada uno mide 180/3 = 60 grados",
+          "Paso 3: 60 grados es menor que 90, asi que es acutangulo"
+        ],
+        "resultado": "No, un equilatero siempre es acutangulo. Es imposible que sea obtusangulo."
+      }
+    ],
+    "datos_curiosos": "El cuadrado es el cuadrilatero mas especial que existe: es simultaneamente un rectangulo, un rombo y un paralelogramo. Sus diagonales son congruentes (como el rectangulo), perpendiculares (como el rombo) y se bisecan mutuamente (como todo paralelogramo). Cumple todas las propiedades a la vez.",
+    "ejercicios": [
+      {
+        "numero": 1,
+        "enunciado": "Clasifica un triangulo con angulos de 50, 60 y 70 grados por sus angulos. Es equilatero, isosceles o escaleno?",
+        "espacio": true,
+        "lineas": 3
+      },
+      {
+        "numero": 2,
+        "enunciado": "Explica por que todo cuadrado es un rectángulo pero no todo rectangulo es un cuadrado.",
+        "espacio": true,
+        "lineas": 3
+      },
+      {
+        "numero": 3,
+        "enunciado": "Un cuadrilatero tiene exactamente un par de lados paralelos. Como se llama? Da un ejemplo de la vida real.",
+        "espacio": true,
+        "lineas": 3
+      },
+      {
+        "numero": 4,
+        "enunciado": "Dibuja un rombo que no sea cuadrado. Cuales son las medidas de sus angulos? Que propiedad tienen sus diagonales?",
+        "espacio": true,
+        "lineas": 4
+      }
+    ],
+    "puntos_clave": [
+      "Los triangulos se clasifican por lados (equilatero, isosceles, escaleno) y por angulos (acutangulo, rectangulo, obtusangulo).",
+      "Un triangulo equilatero siempre es acutangulo porque todos sus angulos miden 60 grados.",
+      "Los cuadrilateros forman una jerarquia: cuadrado -> rombo/rectangulo -> paralelogramo -> trapecio.",
+      "Suma de angulos internos: triangulo = 180 grados, cuadrilatero = 360 grados.",
+      "Las propiedades de las diagonales permiten distinguir entre los diferentes tipos de cuadrilateros."
+    ]
+  },
+  "diapositiva": [
+    {
+      "titulo": "¿Cómo clasificamos las figuras?",
+      "puntos": [
+        "Los triángulos se clasifican por lados y por ángulos",
+        "Los cuadriláteros se clasifican por sus lados paralelos",
+        "Hoy aprenderemos todos los tipos"
+      ],
+      "ejemplo": "¿Cuántos tipos de triángulos conoces?"
+    },
+    {
+      "titulo": "Triángulos por sus lados",
+      "puntos": [
+        "Equilátero: 3 lados iguales",
+        "Isósceles: al menos 2 lados iguales",
+        "Escaleno: 3 lados diferentes"
+      ],
+      "ejemplo": "Un triángulo de 5 cm, 5 cm y 5 cm es equilátero. Uno de 5, 5 y 8 es isósceles.",
+      "figura": {
+        "tipo": "plano_cartesiano",
+        "xMin": -1,
+        "xMax": 5,
+        "yMin": -1,
+        "yMax": 5,
+        "puntos": [
+          {
+            "x": 0,
+            "y": 0,
+            "label": ""
+          },
+          {
+            "x": 4,
+            "y": 0,
+            "label": ""
+          },
+          {
+            "x": 2,
+            "y": 4,
+            "label": ""
+          }
+        ],
+        "lineas": [
+          {
+            "x1": 0,
+            "y1": 0,
+            "x2": 4,
+            "y2": 0
+          },
+          {
+            "x1": 4,
+            "y1": 0,
+            "x2": 2,
+            "y2": 4
+          },
+          {
+            "x1": 2,
+            "y1": 4,
+            "x2": 0,
+            "y2": 0
+          }
+        ],
+        "width": 200,
+        "height": 200
+      }
+    },
+    {
+      "titulo": "Triángulos por sus ángulos",
+      "puntos": [
+        "Acutángulo: todos los ángulos < 90°",
+        "Rectángulo: un ángulo = 90°",
+        "Obtusángulo: un ángulo > 90°"
+      ],
+      "ejemplo": "Triángulo con ángulos 60°, 70°, 50° → acutángulo. Con 30°, 60°, 90° → rectángulo."
+    },
+    {
+      "titulo": "Doble clasificación de triángulos",
+      "puntos": [
+        "Todo triángulo tiene dos clasificaciones simultáneas",
+        "Ejemplo: isósceles-rectángulo (dos lados iguales + un ángulo de 90°)",
+        "La suma de ángulos siempre es 180°"
+      ],
+      "ejemplo": "Clasifica: triángulo con lados 3, 4, 5 y un ángulo de 90° → escaleno-rectángulo"
+    },
+    {
+      "titulo": "Cuadriláteros: paralelogramos",
+      "puntos": [
+        "Tienen 2 pares de lados paralelos",
+        "Cuadrado: 4 lados iguales + 4 ángulos de 90°",
+        "Rectángulo: 4 ángulos de 90°, lados opuestos iguales",
+        "Rombo: 4 lados iguales, ángulos opuestos iguales"
+      ],
+      "ejemplo": "Un rombo con ángulos de 60°, 120°, 60°, 120° NO es cuadrado"
+    },
+    {
+      "titulo": "Cuadriláteros: trapecio y trapezoide",
+      "puntos": [
+        "Trapecio: exactamente 1 par de lados paralelos",
+        "Trapezoide: ningún par de lados paralelos",
+        "La suma de ángulos interiores siempre es 360°"
+      ],
+      "ejemplo": "La base de una pirámide azteca tiene forma de trapecio si vista de perfil"
+    },
+    {
+      "titulo": "Jerarquía de cuadriláteros",
+      "puntos": [
+        "Todo cuadrado es rectángulo y rombo",
+        "Todo rectángulo es paralelogramo",
+        "Todo rombo es paralelogramo",
+        "No todo paralelogramo es rectángulo ni rombo"
+      ],
+      "ejemplo": "Es como las categorías: todo perro es mamífero, pero no todo mamífero es perro"
+    },
+    {
+      "titulo": "Resumen",
+      "puntos": [
+        "Triángulos: 3 por lados × 3 por ángulos = varias combinaciones",
+        "Cuadriláteros: paralelogramos > trapecios > trapezoides",
+        "El cuadrado es el más especial de todos los cuadriláteros",
+        "Recuerda: 180° en triángulos, 360° en cuadriláteros"
+      ],
+      "ejemplo": "Tarea: dibuja un ejemplo de cada tipo de triángulo y cuadrilátero con sus medidas"
+    }
+  ],
+  "video_script": "# Tipos de triángulos y cuadriláteros — Script de video\n\n[VISUAL: Título animado con figuras geométricas de colores rotando]\n\n¡Hola! Hoy vamos a clasificar figuras como si fueran cartas coleccionables. Cada triángulo y cada cuadrilátero tiene su tipo, y tú vas a aprender a identificarlos todos.\n\n[VISUAL: Un triángulo aparece en pantalla]\n\nEmpecemos con los triángulos. Se clasifican de dos formas diferentes al mismo tiempo.\n\nPrimero, **por sus lados**:\n\n[VISUAL: Tres triángulos aparecen uno por uno con sus medidas]\n\n**Equilátero:** sus tres lados miden igual. Si un lado mide 5 centímetros, los otros dos también. Además, sus tres ángulos miden 60 grados. Es el triángulo más simétrico que existe.\n\n**Isósceles:** tiene al menos dos lados iguales. Los ángulos de la base (los que están frente a los lados iguales) también son iguales.\n\n**Escaleno:** sus tres lados son diferentes. Ningún ángulo es igual a otro.\n\nAhora, **por sus ángulos**:\n\n[VISUAL: Tres triángulos con sus ángulos marcados y resaltados]\n\n**Acutángulo:** todos sus ángulos son menores a 90 grados. Es como un triángulo \"puntiagudo\" pero no tan abierto.\n\n**Rectángulo:** tiene un ángulo de exactamente 90 grados. El clásico triángulo de tu escuadra.\n\n**Obtusángulo:** tiene un ángulo mayor a 90 grados. Se ve como un triángulo bien abierto de un lado.\n\n[VISUAL: Tabla cruzada mostrando combinaciones posibles]\n\nCada triángulo tiene las dos clasificaciones al mismo tiempo. Por ejemplo, un triángulo isósceles-rectángulo tiene dos lados iguales y un ángulo de 90°. ¿Ya viste que el triángulo de tu escuadra de 45° es exactamente eso?\n\nRecuerda siempre: los tres ángulos de cualquier triángulo suman 180 grados. Siempre. Sin excepción.\n\n[VISUAL: 180° aparece grande y brillante]\n\nAhora vamos con los cuadriláteros. Aquí se pone más interesante.\n\n[VISUAL: Diagrama jerárquico que se va construyendo]\n\nUn cuadrilátero es cualquier figura de cuatro lados. Los clasificamos según cuántos pares de lados paralelos tienen:\n\n**Paralelogramos** — tienen DOS pares de lados paralelos. Aquí entran:\n\n[VISUAL: Cuatro figuras aparecen: cuadrado, rectángulo, rombo, romboide]\n\nEl **cuadrado**: cuatro lados iguales y cuatro ángulos de 90°. Es el rey de los cuadriláteros.\n\nEl **rectángulo**: cuatro ángulos de 90°, pero los lados no son todos iguales (los opuestos sí).\n\nEl **rombo**: cuatro lados iguales, pero los ángulos no son de 90°. Piensa en la figura de un diamante de baraja.\n\nEl **romboide**: lados opuestos iguales, ángulos opuestos iguales, pero ni todos los lados iguales ni ángulos de 90°.\n\n**Trapecio** — tiene UN solo par de lados paralelos.\n\n[VISUAL: Un trapecio con flechas indicando los lados paralelos]\n\n**Trapezoide** — no tiene ningún par de lados paralelos. Es el cuadrilátero más irregular.\n\n[VISUAL: Un trapezoide irregular]\n\nAhora, algo importante: la jerarquía.\n\n[VISUAL: Diagrama de Venn animado]\n\nTodo cuadrado es un rectángulo, porque cumple con tener 4 ángulos de 90°. Y todo cuadrado es un rombo, porque tiene 4 lados iguales. Pero no todo rectángulo es cuadrado. Es como decir que toda naranja es fruta, pero no toda fruta es naranja.\n\n[VISUAL: Analogía visual con frutas transformándose en figuras geométricas]\n\nY para los cuadriláteros, la suma de ángulos interiores siempre es 360 grados.\n\n[VISUAL: Resumen final con todas las figuras organizadas y etiquetadas]\n\nRepasemos:\n- Triángulos por lados: equilátero, isósceles, escaleno.\n- Triángulos por ángulos: acutángulo, rectángulo, obtusángulo.\n- Cuadriláteros: paralelogramos, trapecios y trapezoides.\n- El cuadrado es rectángulo y rombo al mismo tiempo.\n\nTu reto: dibuja la mayor cantidad de combinaciones de triángulos que puedas. Por ejemplo, ¿existe un triángulo equilátero-obtusángulo? Piénsalo...\n\n[VISUAL: Signo de interrogación animado]\n\nPista: si los tres ángulos del equilátero miden 60°, ninguno es mayor a 90°. Así que no, ¡no existe! Nos vemos la próxima semana."
+}

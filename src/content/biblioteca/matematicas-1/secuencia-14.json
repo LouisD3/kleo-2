@@ -1,0 +1,289 @@
+{
+  "secuencia": 14,
+  "titulo": "Relaciones proporcionales",
+  "contenido": "Relaciones proporcionales y no proporcionales.",
+  "pda": "Relaciona e interpreta relaciones proporcional y no proporcional a partir de su representación tabular, gráfica y con diagramas.",
+  "evaluacion": {
+    "preguntas": [
+      {
+        "tipo": "opcion_multiple",
+        "pregunta": "¿Cuál de las siguientes tablas representa una relación proporcional?",
+        "opciones": [
+          "A) x: 1,2,3 → y: 3,6,9",
+          "B) x: 1,2,3 → y: 2,5,8",
+          "C) x: 1,2,3 → y: 1,4,9",
+          "D) x: 1,2,3 → y: 5,7,11"
+        ],
+        "respuesta": "A"
+      },
+      {
+        "tipo": "verdadero_falso",
+        "pregunta": "En una relación proporcional, la gráfica siempre es una línea recta que pasa por el origen (0,0).",
+        "respuesta": true
+      },
+      {
+        "tipo": "calculo",
+        "pregunta": "Si 3 kg de manzanas cuestan $45, ¿cuánto cuestan 7 kg? Demuestra que es una relación proporcional.",
+        "respuesta": "Paso 1: Encontrar la constante de proporcionalidad: k = 45/3 = 15 pesos por kg.\nPaso 2: Verificar proporcionalidad: 45/3 = 15, y cada kg cuesta lo mismo.\nPaso 3: Calcular para 7 kg: 7 × 15 = $105.\nRespuesta: 7 kg cuestan $105."
+      },
+      {
+        "tipo": "espacios",
+        "pregunta": "En una relación proporcional, el cociente y/x siempre es ___, y se llama constante de proporcionalidad.",
+        "respuesta": "constante"
+      },
+      {
+        "tipo": "abierta",
+        "pregunta": "Explica con un ejemplo de la vida real la diferencia entre una relación proporcional y una no proporcional.",
+        "respuesta": "Ejemplo proporcional: El costo de la gasolina. Si 1 litro cuesta $22, entonces 2 litros cuestan $44, 3 litros $66, etc. El cociente precio/litros siempre es 22. Ejemplo no proporcional: La tarifa de un taxi. Hay un cobro inicial de $15 más $8 por kilómetro. 1 km = $23, 2 km = $31, 3 km = $39. El cociente costo/km cambia (23, 15.5, 13), por lo tanto no es proporcional."
+      }
+    ]
+  },
+  "orientacion": {
+    "contenidos_especificos": [
+      "Identificar si una relación entre dos magnitudes es proporcional o no proporcional a partir de tablas y gráficas",
+      "Representar relaciones proporcionales en tablas, gráficas cartesianas y diagramas de flechas",
+      "Reconocer que una relación proporcional se manifiesta como una recta que pasa por el origen en el plano cartesiano"
+    ],
+    "actividad_inicio": [
+      "Presentar dos tablas: una donde el precio de los tacos es proporcional a la cantidad (3 tacos = $30, 6 tacos = $60) y otra donde el costo del taxi tiene cuota fija más tarifa por km. Preguntar: ¿en cuál se cumple que 'al doble de cantidad, el doble de precio'?",
+      "Pedir a los alumnos que completen ambas tablas con más valores y que observen qué pasa con el cociente cantidad/precio en cada caso",
+      "Discutir brevemente qué significa que dos cantidades 'crezcan proporcionalmente': que su razón se mantenga constante",
+      "Preguntar: ¿el peso de una persona es proporcional a su edad? Generar debate para distinguir relación de proporcionalidad",
+      "Presentar el objetivo: aprender a distinguir relaciones proporcionales de las que no lo son, usando tablas, gráficas y diagramas"
+    ],
+    "desarrollo": [
+      {
+        "titulo": "Tablas de proporcionalidad y constante de proporcionalidad",
+        "diapositiva": "1-3",
+        "libro": "Sección 'Relaciones proporcionales en tablas'",
+        "video": "min 1:00-3:00",
+        "descripcion": "Explique que en una tabla de proporcionalidad directa, el cociente y/x es siempre el mismo valor, llamado constante de proporcionalidad (k). Muestre el ejemplo: si 2 kg de manzanas cuestan $50 y 4 kg cuestan $100, entonces k = 50/2 = 25. Presente una tabla proporcional y una no proporcional lado a lado; pida a los alumnos que calculen el cociente en cada fila y determinen cuál es proporcional. Practiquen individualmente con dos tablas más.",
+        "tip": "Use el término 'razón constante' como sinónimo de constante de proporcionalidad para que los alumnos conecten con el tema de razones visto previamente."
+      },
+      {
+        "titulo": "Gráficas de relaciones proporcionales vs. no proporcionales",
+        "diapositiva": "4-6",
+        "libro": "Sección 'Gráficas en el plano cartesiano'",
+        "video": "min 3:00-5:30",
+        "descripcion": "Pida a los alumnos que grafiquen en su cuaderno (con ejes bien escalados) los puntos de la tabla proporcional y los de la no proporcional del ejercicio anterior. Guíe la observación: la relación proporcional forma una recta que pasa por el origen (0,0); la no proporcional puede ser recta pero no pasa por el origen, o puede ser curva. Proyecte las gráficas en la diapositiva para confirmar. Practique con un tercer ejemplo donde los alumnos decidan si la relación es proporcional solo viendo la gráfica.",
+        "tip": "Si no hay cuadrícula en los cuadernos, reparta hojas de papel cuadriculado o pida que tracen la cuadrícula con regla antes de graficar."
+      },
+      {
+        "titulo": "Diagramas de flechas y síntesis comparativa",
+        "diapositiva": "7-8",
+        "libro": "Sección 'Diagramas y representaciones'",
+        "video": null,
+        "descripcion": "Introduzca el diagrama de flechas (diagrama sagital): en un lado se colocan los valores de x, en el otro los de y, y las flechas muestran la correspondencia. En una relación proporcional, cada valor de x se multiplica por la misma k para obtener y. Forme parejas: cada pareja recibe una situación (velocidad constante, crecimiento de una planta, costo con envío fijo, conversión de moneda) y debe representarla con tabla, gráfica y diagrama, y decidir si es proporcional o no. Socialicen resultados.",
+        "tip": "Pida que escriban la operación '× k' sobre la flecha en el diagrama sagital para que sea visualmente claro que la constante es la misma en todos los casos."
+      }
+    ],
+    "cierre_individual": {
+      "reflexiona": "¿Qué criterio usarías para saber rápidamente si una relación es proporcional viendo solo la tabla? ¿Y viendo solo la gráfica? Escribe ambos criterios en tu cuaderno con tus propias palabras.",
+      "profundiza": [
+        {
+          "pregunta": "Un coche viaja a velocidad constante y recorre 90 km en 1 hora, 180 km en 2 horas y 270 km en 3 horas. ¿Es proporcional? ¿Cuál es la constante? ¿Qué representa esa constante en la realidad?",
+          "respuesta_modelo": "R.M. Sí es proporcional porque el cociente km/hora es siempre 90. La constante de proporcionalidad k = 90 y representa la velocidad del coche: 90 km/h."
+        },
+        {
+          "pregunta": "Una recta en el plano cartesiano pasa por los puntos (0, 5) y (2, 15). ¿Representa una relación proporcional? Justifica.",
+          "respuesta_modelo": "R.M. No es proporcional porque la recta no pasa por el origen (0, 0); pasa por (0, 5). Aunque es una relación lineal, tiene una ordenada al origen de 5, lo que significa que hay un valor inicial fijo. Para que fuera proporcional, el punto (0, 0) debería estar sobre la recta."
+        }
+      ]
+    },
+    "cierre_grupal": [
+      "Una relación es proporcional cuando el cociente y/x es constante para todos los pares de valores",
+      "La constante de proporcionalidad k indica cuántas unidades de y corresponden a cada unidad de x",
+      "En una gráfica, la proporcionalidad se reconoce porque los puntos forman una recta que pasa por el origen",
+      "Un diagrama de flechas muestra la proporcionalidad cuando todas las flechas representan la misma operación '× k'",
+      "No toda relación lineal es proporcional: si la recta no pasa por el origen, hay un valor fijo que rompe la proporcionalidad"
+    ],
+    "preguntas_comprension": [
+      "¿Cómo verificas con una tabla si la relación entre dos variables es proporcional?",
+      "¿Por qué la gráfica de una relación proporcional siempre pasa por el origen (0, 0)?",
+      "Si la constante de proporcionalidad es k = 4.5, ¿qué valor de y corresponde a x = 8?",
+      "Da un ejemplo de relación proporcional y uno de relación no proporcional de la vida cotidiana. Justifica cada uno.",
+      "¿Una relación donde y = 3x + 2 es proporcional? ¿Por qué sí o por qué no?"
+    ]
+  },
+  "libro": {
+    "introduccion": "Imagina que vas al mercado y los mangos cuestan $10 cada uno. Si compras 2, pagas $20; si compras 5, pagas $50. Todo crece parejo. Pero con un plan de celular de $99 fijos mas $2 por GB, la cosa cambia. Hoy vas a aprender a distinguir estas dos situaciones.",
+    "conceptos": [
+      {
+        "titulo": "Relacion proporcional",
+        "contenido": "Dos cantidades tienen una relacion proporcional cuando al dividir una entre la otra, siempre obtienes el mismo numero. A ese numero le llamamos constante de proporcionalidad (k). La ecuacion que la describe es y = kx. Si graficas una relacion proporcional, obtienes una linea recta que pasa por el origen (0, 0).",
+        "definicion": "Relacion proporcional: relacion entre dos variables donde el cociente y/x es constante para todos los pares de valores.",
+        "figura": {
+          "tipo": "plano_cartesiano",
+          "xMin": 0,
+          "xMax": 5,
+          "yMin": 0,
+          "yMax": 10,
+          "puntos": [
+            {
+              "x": 1,
+              "y": 2,
+              "label": "(1,2)"
+            },
+            {
+              "x": 2,
+              "y": 4,
+              "label": "(2,4)"
+            },
+            {
+              "x": 3,
+              "y": 6,
+              "label": "(3,6)"
+            }
+          ],
+          "lineas": [
+            {
+              "x1": 0,
+              "y1": 0,
+              "x2": 5,
+              "y2": 10
+            }
+          ],
+          "width": 180,
+          "height": 180
+        }
+      },
+      {
+        "titulo": "Relacion no proporcional",
+        "contenido": "Si al dividir y entre x los cocientes cambian, la relacion no es proporcional. Puede ser lineal (y = mx + b con b distinto de 0) u otro tipo. En la grafica, una relacion lineal no proporcional es una recta que no pasa por el origen. El cobro base o valor inicial es lo que rompe la proporcionalidad.",
+        "definicion": null
+      },
+      {
+        "titulo": "Representaciones: tabla, grafica y diagrama",
+        "contenido": "Una relacion proporcional se puede representar con una tabla (y/x constante en cada fila), con una grafica (recta por el origen) o con un diagrama de flechas (sagital) donde cada valor de x se multiplica por la misma k para obtener y. Usar las tres representaciones te ayuda a verificar y comunicar la relacion.",
+        "definicion": null
+      }
+    ],
+    "ejemplos": [
+      {
+        "titulo": "Es proporcional? Velocidad constante",
+        "enunciado": "Un coche recorre 80 km en 1 hora, 160 km en 2 horas y 240 km en 3 horas. Es proporcional?",
+        "pasos": [
+          "Paso 1: Calcular y/x para cada par: 80/1 = 80, 160/2 = 80, 240/3 = 80",
+          "Paso 2: Todos los cocientes son iguales (80)",
+          "Paso 3: Si es proporcional, con k = 80 km/h"
+        ],
+        "resultado": "Si es proporcional. La constante k = 80 representa la velocidad del coche."
+      },
+      {
+        "titulo": "No es proporcional: tarifa de taxi",
+        "enunciado": "Un taxi cobra: 1 km = $23, 2 km = $31, 3 km = $39. Es proporcional?",
+        "pasos": [
+          "Paso 1: Calcular y/x: 23/1 = 23, 31/2 = 15.5, 39/3 = 13",
+          "Paso 2: Los cocientes son diferentes",
+          "Paso 3: Hay un cobro base de $15 que rompe la proporcionalidad"
+        ],
+        "resultado": "No es proporcional. La tarifa tiene un cobro fijo de $15 mas $8 por km."
+      },
+      {
+        "titulo": "Encontrar un valor faltante",
+        "enunciado": "Si 4 libretas cuestan $60 y la relacion es proporcional, cuanto cuestan 7?",
+        "pasos": [
+          "Paso 1: Encontrar k = 60/4 = 15 pesos por libreta",
+          "Paso 2: Calcular el costo de 7: y = 15 x 7 = $105"
+        ],
+        "resultado": "7 libretas cuestan $105."
+      }
+    ],
+    "datos_curiosos": "La relacion entre la edad de una persona y su estatura no es proporcional. Un bebe de 1 ano no mide la mitad que uno de 2 anos. Muchas relaciones que parecen proporcionales en la vida real no lo son cuando las analizas con cuidado.",
+    "ejercicios": [
+      {
+        "numero": 1,
+        "enunciado": "Determina si la relacion es proporcional: x = 2, 4, 6 y y = 10, 20, 30. Calcula y/x para cada par.",
+        "espacio": true,
+        "lineas": 3
+      },
+      {
+        "numero": 2,
+        "enunciado": "Si 3 kg de manzanas cuestan $45, cuanto cuestan 8 kg? Demuestra que es proporcional.",
+        "espacio": true,
+        "lineas": 3
+      },
+      {
+        "numero": 3,
+        "enunciado": "Un plan de internet cobra $150 fijos mas $30 por cada GB adicional. Es proporcional? Justifica con una tabla de al menos 3 valores.",
+        "espacio": true,
+        "lineas": 4
+      }
+    ],
+    "puntos_clave": [
+      "Proporcional: y/x = k constante. Ecuacion: y = kx. Grafica: recta por el origen.",
+      "No proporcional: y/x cambia. Puede ser lineal (y = mx + b con b distinto de 0) u otra forma.",
+      "Para verificar, calcula el cociente y/x para cada par de datos.",
+      "La constante k tiene significado real: precio por unidad, velocidad, tasa, etc."
+    ]
+  },
+  "diapositiva": [
+    {
+      "titulo": "¿Qué vamos a aprender hoy?",
+      "puntos": [
+        "Distinguir relaciones proporcionales de no proporcionales",
+        "Usar tablas, gráficas y ecuaciones",
+        "Encontrar la constante de proporcionalidad"
+      ],
+      "ejemplo": "Pregunta inicial: ¿todo lo que crece de forma constante es proporcional?"
+    },
+    {
+      "titulo": "Relación proporcional",
+      "puntos": [
+        "El cociente y/x es siempre el mismo",
+        "Ese valor constante se llama k (constante de proporcionalidad)",
+        "Ecuación: y = kx"
+      ],
+      "ejemplo": "Mango: $10 c/u → 1→$10, 2→$20, 5→$50. k = 10"
+    },
+    {
+      "titulo": "Relación NO proporcional",
+      "puntos": [
+        "El cociente y/x cambia para distintos valores",
+        "Puede ser lineal (y = mx + b, con b ≠ 0) u otra forma",
+        "Hay un valor inicial o 'cobro base'"
+      ],
+      "ejemplo": "Taxi: $15 base + $8/km → 1km=$23, 2km=$31. Cocientes: 23, 15.5..."
+    },
+    {
+      "titulo": "Verificar con la tabla",
+      "puntos": [
+        "Calcula y/x para cada fila",
+        "Si todos los cocientes son iguales → proporcional",
+        "Si al menos uno es diferente → no proporcional"
+      ],
+      "ejemplo": "x: 2,4,6 → y: 6,12,18 → y/x: 3,3,3 ✓ Proporcional"
+    },
+    {
+      "titulo": "Verificar con la gráfica",
+      "puntos": [
+        "Proporcional: línea recta que pasa por (0,0)",
+        "No proporcional: recta que NO pasa por el origen, o curva"
+      ],
+      "ejemplo": "Graficar y = 3x vs y = 3x + 2 en el pizarrón"
+    },
+    {
+      "titulo": "Constante de proporcionalidad en contexto",
+      "puntos": ["k tiene unidades y significado real", "k = precio/unidad, velocidad, tasa, etc."],
+      "ejemplo": "Si 5 kg cuestan $75, k = 75/5 = $15 por kg"
+    },
+    {
+      "titulo": "Resolver problemas",
+      "puntos": [
+        "Paso 1: Calcula k con los datos conocidos",
+        "Paso 2: Usa y = kx para encontrar el valor desconocido"
+      ],
+      "ejemplo": "3 horas → 210 km. k=70. ¿En 5 horas? y = 70×5 = 350 km"
+    },
+    {
+      "titulo": "Resumen",
+      "puntos": [
+        "Proporcional: y/x = k constante, recta por el origen, y = kx",
+        "No proporcional: cocientes diferentes o gráfica no pasa por (0,0)",
+        "Siempre verifica calculando y/x"
+      ],
+      "ejemplo": "Reto: ¿La relación entre la edad de una persona y su estatura es proporcional? ¡Discútelo!"
+    }
+  ],
+  "video_script": "# Relaciones proporcionales — Script de video (5-7 min)\n\n[VISUAL: Dos balanzas, una equilibrada y otra desequilibrada]\n\n¡Hola! Hoy vamos a descubrir cuándo dos cantidades crecen de forma proporcional y cuándo no. Esto te va a servir un montón, desde ir a la tienda hasta entender gráficas de ciencias.\n\n[VISUAL: Escena animada de un puesto de frutas con mangos]\n\nImagina que vas al mercado y los mangos cuestan $10 cada uno. Si compras 1, pagas $10. Si compras 2, pagas $20. Si compras 5, pagas $50. Hagamos una tabla.\n\n[VISUAL: Tabla animada que se llena: 1→10, 2→20, 3→30, 5→50]\n\nAhora fíjate en algo clave: si divido el costo entre los mangos, **siempre me da 10**. 10÷1=10, 20÷2=10, 50÷5=10. Ese número que no cambia se llama **constante de proporcionalidad** y lo representamos con la letra **k**.\n\n[VISUAL: Se resalta y/x = 10 en cada fila de la tabla]\n\nCuando el cociente y/x siempre es el mismo, decimos que la relación es **proporcional** y la podemos escribir como **y = kx**. En este caso: costo = 10 × mangos.\n\nPero ahora veamos otro caso.\n\n[VISUAL: Escena de un taxi arrancando con taxímetro]\n\nUn taxi cobra $15 de banderazo (solo por subirte) más $8 por kilómetro. Entonces: 1 km = $23, 2 km = $31, 3 km = $39.\n\n[VISUAL: Tabla animada con cocientes: 23/1=23, 31/2=15.5, 39/3=13]\n\nLos cocientes son **diferentes**: 23, 15.5, 13... Esto NO es proporcional. ¿Por qué? Porque hay un cobro base que arruina la proporción.\n\n[VISUAL: Dos gráficas lado a lado: una recta por el origen y otra que arranca en y=15]\n\nAhora viene lo bonito. Si graficamos ambas relaciones, la proporcional (mangos) es una **recta que pasa por el punto (0, 0)**, el origen. Tiene todo el sentido: si compras 0 mangos, pagas $0.\n\nLa del taxi también es una recta, pero **arranca en $15**, no en cero. Esa es la diferencia visual: proporcional pasa por el origen, no proporcional no.\n\n[VISUAL: Animación que resalta el punto (0,0) con un círculo verde vs el punto (0,15) con un círculo rojo]\n\n¿Cómo resuelves problemas con relaciones proporcionales? Super fácil, son dos pasos:\n\n**Paso 1:** Encuentra k dividiendo y entre x con cualquier par de datos.\n**Paso 2:** Usa y = kx para encontrar lo que te piden.\n\n[VISUAL: Problema animado apareciendo en pantalla]\n\nEjemplo: Si 4 libretas cuestan $60, ¿cuánto cuestan 7?\n\nk = 60 ÷ 4 = 15 pesos por libreta.\nCosto de 7 = 15 × 7 = **$105**.\n\n[VISUAL: Cálculo paso a paso con los números apareciendo]\n\nOtro ejemplo: Un coche viaja a velocidad constante. En 3 horas recorre 240 km. ¿Cuánto recorrerá en 5 horas?\n\nk = 240 ÷ 3 = 80 km/h.\nEn 5 horas: 80 × 5 = **400 km**.\n\n[VISUAL: Coche moviéndose en una carretera con marcador de kilómetros]\n\nPara cerrar, recuerda estas tres formas de verificar:\n\n1. **Tabla:** calcula y/x para cada par. Si todos son iguales, es proporcional.\n2. **Gráfica:** si es una recta por el origen, es proporcional.\n3. **Ecuación:** si se puede escribir como y = kx (sin sumar ni restar nada), es proporcional.\n\n[VISUAL: Los tres métodos aparecen como tres tarjetas de colores]\n\nTe dejo con una pregunta para pensar: ¿la relación entre tu edad y tu estatura es proporcional? Piénsalo... un bebé de 1 año no mide la mitad que uno de 2 años, ¿verdad?\n\n[VISUAL: Siluetas de personas de diferentes edades con estaturas no proporcionales]\n\n¡Nos vemos en el siguiente video donde veremos la fórmula de proporcionalidad a fondo!"
+}

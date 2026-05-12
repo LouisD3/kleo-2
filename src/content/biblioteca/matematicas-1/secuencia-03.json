@@ -1,0 +1,283 @@
+{
+  "secuencia": 3,
+  "titulo": "Comparación de números negativos y positivos",
+  "contenido": "Extensión de los números a positivos y negativos y su orden.",
+  "pda": "Compara y ordena números con signo (enteros, fracciones y decimales) en la recta numérica y analiza en qué casos se cumple la propiedad de densidad.",
+  "evaluacion": {
+    "preguntas": [
+      {
+        "tipo": "opcion_multiple",
+        "pregunta": "¿Cuál de los siguientes números es el mayor? -2.5, -0.3, -3/4, -1",
+        "opciones": ["A) -2.5", "B) -0.3", "C) -3/4", "D) -1"],
+        "respuesta": "B"
+      },
+      {
+        "tipo": "verdadero_falso",
+        "pregunta": "La fracción -1/2 es menor que el decimal -0.75.",
+        "respuesta": false
+      },
+      {
+        "tipo": "calculo",
+        "pregunta": "Ordena de menor a mayor: -3/4, -0.5, 1/3, -1, 0.25, -0.8.",
+        "respuesta": "Paso 1: Convertir todo a decimales. -3/4 = -0.75, -0.5 = -0.5, 1/3 ≈ 0.333, -1 = -1, 0.25 = 0.25, -0.8 = -0.8. Paso 2: Ordenar: -1 < -0.8 < -0.75 < -0.5 < 0.25 < 0.333. Resultado: -1, -0.8, -3/4, -0.5, 0.25, 1/3."
+      },
+      {
+        "tipo": "espacios",
+        "pregunta": "Para comparar fracciones y decimales con signo, conviene convertirlos todos a ___ y luego ubicarlos en la recta numérica.",
+        "respuesta": "decimales"
+      },
+      {
+        "tipo": "abierta",
+        "pregunta": "Explica por qué -1/4 es mayor que -1/2, aunque 1/4 sea menor que 1/2.",
+        "respuesta": "-1/4 = -0.25 y -1/2 = -0.5. En la recta numérica, -0.25 está más a la derecha que -0.5, por lo tanto es mayor. Aunque 1/4 < 1/2, al ponerles signo negativo el orden se invierte porque el número más cercano a cero es el mayor entre los negativos."
+      }
+    ]
+  },
+  "orientacion": {
+    "contenidos_especificos": [
+      "Comparar números positivos y negativos usando la recta numérica",
+      "Ordenar conjuntos de números con signo de menor a mayor y viceversa",
+      "Usar los símbolos <, > e = para relacionar números con signo"
+    ],
+    "actividad_inicio": [
+      "Escribe en el pizarrón: -3 ___ 2 y pregunta qué símbolo va en el espacio. Luego escribe -7 ___ -1 y observa si genera más duda.",
+      "Presenta temperaturas de 5 ciudades (México: 18°, Moscú: -12°, Toronto: -5°, Lima: 22°, Ushuaia: -1°) y pide que las ordenen de la más fría a la más cálida.",
+      "Pregunta: '¿Quién tiene más dinero: alguien que debe $500 (-500) o alguien que debe $100 (-100)?' Promueve la discusión.",
+      "Muestra una recta numérica vacía y pide a los alumnos que ubiquen -4, 0, 3, -1, 5 y luego los lean en orden de izquierda a derecha.",
+      "Plantea: 'En un videojuego, un jugador tiene -30 puntos y otro -5 puntos. ¿Quién va ganando?' Escucha las justificaciones."
+    ],
+    "desarrollo": [
+      {
+        "titulo": "Comparación de enteros con signo en la recta numérica",
+        "diapositiva": "1-3",
+        "libro": "Sección Conceptos: Orden de los enteros",
+        "video": null,
+        "descripcion": "Repasa que en la recta numérica, un número es mayor que otro si está más a la derecha. Trabaja ejemplos comparando: positivo vs. positivo (3 vs. 7), positivo vs. negativo (-2 vs. 4), negativo vs. negativo (-8 vs. -3). Enfatiza que entre negativos, el que tiene mayor valor absoluto es el menor. Pide que resuelvan 8 comparaciones usando <, > o =, primero ubicando los números en la recta.",
+        "tip": "El error más frecuente es que los alumnos piensen que -8 > -3 porque 8 > 3. Usa el termómetro como analogía: -8° es más frío (menor) que -3°."
+      },
+      {
+        "titulo": "Ordenamiento de conjuntos de números con signo",
+        "diapositiva": "4-6",
+        "libro": "Sección Ejemplos: Ordenar números",
+        "video": "min 2:00-4:00",
+        "descripcion": "Presenta un conjunto de 7 números: {-9, 4, 0, -2, 7, -5, 1}. Modela cómo ordenarlos: primero ubica cada uno en la recta numérica, luego los lee de izquierda a derecha para obtener el orden ascendente. Pide que en equipos de 3 ordenen tres conjuntos diferentes de 8 números (incluyendo fracciones como -1/2 y decimales como -2.5). Cada equipo expone un conjunto y explica su estrategia.",
+        "tip": null
+      },
+      {
+        "titulo": "Práctica con contextos reales",
+        "diapositiva": "7-8",
+        "libro": "Sección Práctica: Comparación y orden",
+        "video": null,
+        "descripcion": "Presenta 5 problemas contextualizados: altitudes de ciudades (La Paz: 3,640 m, Mar Muerto: -430 m, etc.), saldos bancarios, temperaturas históricas. En cada problema, los alumnos deben ordenar los datos y responder preguntas como '¿Cuál es la ciudad de mayor altitud?' o '¿Qué día fue más frío?' Trabajan individualmente y luego comparan respuestas con un compañero.",
+        "tip": "Pide que siempre dibujen la recta numérica como herramienta de apoyo; evita que comparen solo mentalmente hasta que dominen la lógica."
+      }
+    ],
+    "cierre_individual": {
+      "reflexiona": "¿Qué estrategia te funciona mejor para comparar dos números negativos? Descríbela con tus propias palabras y da un ejemplo.",
+      "profundiza": [
+        {
+          "pregunta": "¿Por qué -100 es menor que -1, aunque 100 sea mayor que 1?",
+          "respuesta_modelo": "Porque el signo negativo invierte la relación de orden. En la recta numérica, -100 está mucho más a la izquierda que -1, lo que significa que es menor. Podemos pensarlo como deudas: deber $100 es peor (menos dinero tienes) que deber $1."
+        },
+        {
+          "pregunta": "¿Puede un número negativo ser mayor que otro número negativo? Da un ejemplo y explícalo.",
+          "respuesta_modelo": "Sí. Por ejemplo, -2 es mayor que -7. En la recta numérica, -2 está a la derecha de -7, más cerca del cero. En contexto: tener una temperatura de -2 °C es más cálido que -7 °C. Entre dos negativos, es mayor el que está más cerca del cero."
+        }
+      ]
+    },
+    "cierre_grupal": [
+      "En la recta numérica, un número es mayor si está más a la derecha.",
+      "Entre dos números negativos, es mayor el que tiene menor valor absoluto (el más cercano al cero).",
+      "Cualquier número positivo es mayor que cualquier número negativo.",
+      "El cero es mayor que todo número negativo y menor que todo número positivo.",
+      "Ordenar números con signo siempre puede verificarse ubicándolos en la recta numérica."
+    ],
+    "preguntas_comprension": [
+      "Ordena de menor a mayor: 5, -3, 0, -8, 2, -1.",
+      "¿Cuál es mayor: -15 o -4? Justifica con la recta numérica.",
+      "Si hoy la temperatura es -2 °C y mañana será -6 °C, ¿hará más frío o más calor mañana?",
+      "Coloca el símbolo correcto (<, > o =): -3/4 ___ -1/2.",
+      "¿Entre qué dos enteros consecutivos se encuentra -3.7?"
+    ]
+  },
+  "libro": {
+    "introduccion": "Ya conoces los positivos, los negativos y la recta numérica. Ahora viene el reto real: comparar y ordenar mezclas de enteros, fracciones y decimales, ¡todos con signo! No te preocupes, hay un método infalible que hoy vas a dominar.",
+    "conceptos": [
+      {
+        "titulo": "Convertir todo a decimales para comparar",
+        "contenido": "Cuando tienes números de distinto tipo (fracciones, decimales, enteros) con signo, la forma más segura de compararlos es convertirlos todos a decimal. Así puedes ubicarlos en la recta numérica sin confusiones.",
+        "definicion": null,
+        "figura": {
+          "tipo": "recta_numerica",
+          "min": -4,
+          "max": 4,
+          "puntos": [
+            {
+              "valor": -3,
+              "label": "A"
+            },
+            {
+              "valor": -1,
+              "label": "B"
+            },
+            {
+              "valor": 2,
+              "label": "C"
+            }
+          ],
+          "width": 400,
+          "height": 55
+        }
+      },
+      {
+        "titulo": "La regla de inversión con negativos",
+        "contenido": "Con positivos, más grande el número, más grande es (1/2 < 3/4). Con negativos se invierte: −1/2 > −3/4 porque −0.5 está más cerca del cero que −0.75. Entre negativos, el más cercano al cero es el mayor.",
+        "definicion": null
+      },
+      {
+        "titulo": "Uso de los símbolos <, > e =",
+        "contenido": "El símbolo < significa \"menor que\" (la punta apunta al menor). El símbolo > significa \"mayor que\". Puedes verificar siempre con la recta numérica: el de la izquierda es menor.",
+        "definicion": null
+      }
+    ],
+    "ejemplos": [
+      {
+        "titulo": "Comparar una fracción negativa con un decimal negativo",
+        "enunciado": "¿Cuál es mayor, −2/5 o −0.3?",
+        "pasos": [
+          "Paso 1: Convierte −2/5 a decimal: 2 ÷ 5 = 0.4, así que −2/5 = −0.4.",
+          "Paso 2: Compara −0.4 y −0.3 en la recta numérica.",
+          "Paso 3: −0.3 está más a la derecha (más cerca de cero)."
+        ],
+        "resultado": "−0.3 > −2/5"
+      },
+      {
+        "titulo": "Ordenar un conjunto mixto",
+        "enunciado": "Ordena de menor a mayor: 1/3, −0.8, −3/4, 0.25, −1, −0.5.",
+        "pasos": [
+          "Paso 1: Convierte todo a decimal: 1/3 ≈ 0.333, −0.8, −3/4 = −0.75, 0.25, −1.0, −0.5.",
+          "Paso 2: Ubica en la recta: −1.0 está más a la izquierda, luego −0.8, −0.75, −0.5, luego los positivos 0.25 y 0.333.",
+          "Paso 3: Lee de izquierda a derecha."
+        ],
+        "resultado": "−1, −0.8, −3/4, −0.5, 0.25, 1/3"
+      }
+    ],
+    "datos_curiosos": "La temperatura más baja registrada en México fue de −29 °C en Madero, Chihuahua, en 1962. Para comparar: el polo norte llega a −50 °C y el récord mundial es −89.2 °C en la Antártida.",
+    "ejercicios": [
+      {
+        "numero": 1,
+        "enunciado": "Coloca <, > o =: −1/4 ___ −1/2.",
+        "espacio": true,
+        "lineas": 2,
+        "figura": {
+          "tipo": "recta_numerica",
+          "min": -6,
+          "max": 6,
+          "puntos": [],
+          "width": 400,
+          "height": 55
+        }
+      },
+      {
+        "numero": 2,
+        "enunciado": "Ordena de menor a mayor: 0.5, −3/4, −0.2, 2/3, −1, 0.",
+        "espacio": true,
+        "lineas": 4
+      },
+      {
+        "numero": 3,
+        "enunciado": "Ubica en una recta numérica: −5/4, −0.5, 0.75, −1.",
+        "espacio": true,
+        "lineas": 3
+      },
+      {
+        "numero": 4,
+        "enunciado": "¿Cuál es mayor: −99 o −1? Explica por qué con tus propias palabras.",
+        "espacio": true,
+        "lineas": 3
+      }
+    ],
+    "puntos_clave": [
+      "Para comparar números de distinto tipo, convierte todos a decimales.",
+      "Con negativos, el que tiene menor valor absoluto es el mayor (más cerca de cero).",
+      "La recta numérica es tu mejor herramienta: derecha = mayor.",
+      "Cualquier positivo siempre es mayor que cualquier negativo.",
+      "El cero es mayor que todo negativo y menor que todo positivo."
+    ]
+  },
+  "diapositiva": [
+    {
+      "titulo": "Comparación de números con signo",
+      "puntos": [
+        "Enteros, fracciones y decimales: todos con signo",
+        "Objetivo: aprender a compararlos y ordenarlos con un método confiable"
+      ],
+      "ejemplo": "¿Qué es mayor: -2/5 o -0.3?"
+    },
+    {
+      "titulo": "El método infalible",
+      "puntos": [
+        "Paso 1: Convierte todo a decimales",
+        "Paso 2: Ubica en la recta numérica",
+        "Paso 3: Lee de izquierda a derecha (menor a mayor)"
+      ],
+      "ejemplo": "-2/5 = -0.4, así que -0.3 > -2/5"
+    },
+    {
+      "titulo": "Con negativos, el orden se invierte",
+      "puntos": [
+        "Positivos: mayor valor absoluto = mayor número",
+        "Negativos: mayor valor absoluto = MENOR número",
+        "Más cerca del cero = mayor (entre negativos)"
+      ],
+      "ejemplo": "1/2 < 3/4 PERO -1/2 > -3/4"
+    },
+    {
+      "titulo": "Ejemplo completo de ordenamiento",
+      "puntos": [
+        "Números: 1/3, -0.8, -3/4, 0.25, -1, -0.5",
+        "Convertidos: 0.333, -0.8, -0.75, 0.25, -1.0, -0.5",
+        "Orden: -1 < -0.8 < -0.75 < -0.5 < 0.25 < 0.333"
+      ],
+      "ejemplo": "-1, -0.8, -3/4, -0.5, 0.25, 1/3"
+    },
+    {
+      "titulo": "La recta numérica detallada",
+      "puntos": [
+        "Traza enteros como guías",
+        "Subdivide en cuartos, décimos, etc.",
+        "Convierte fracciones antes de ubicar"
+      ],
+      "ejemplo": "-5/4 = -1.25 → entre -1 y -2, a un cuarto de -1"
+    },
+    {
+      "titulo": "Comparar fracciones negativas sin calculadora",
+      "puntos": [
+        "Mismo denominador: compara numeradores (invirtiendo por el negativo)",
+        "Distinto denominador: busca denominador común",
+        "O simplemente convierte a decimal"
+      ],
+      "ejemplo": "-3/8 vs. -5/8: como |-5| > |-3|, entonces -5/8 < -3/8"
+    },
+    {
+      "titulo": "Reglas de oro",
+      "puntos": [
+        "Cualquier positivo > cualquier negativo",
+        "0 > todo negativo",
+        "Entre negativos, el más cercano a 0 es el mayor",
+        "La recta numérica nunca miente"
+      ],
+      "ejemplo": "-100 < -1 < 0 < 0.001 < 1 < 100"
+    },
+    {
+      "titulo": "Resumen y práctica",
+      "puntos": [
+        "Convierte a decimal para comparar",
+        "Usa la recta numérica como verificación",
+        "Recuerda: con negativos el orden se invierte"
+      ],
+      "ejemplo": "Tarea: ordena -7/10, 0.4, -0.6, 3/5, -1/3, -0.9"
+    }
+  ],
+  "video_script": "## Comparación de números negativos y positivos\n\n[VISUAL: Título animado con números positivos y negativos flotando y acomodándose]\n\n¡Hola! ¿Listos para el reto de hoy? Vamos a aprender a comparar y ordenar números con signo cuando vienen de todo tipo: enteros, fracciones y decimales. Puede sonar complicado, pero con un solo truco vas a poder hacerlo sin problema.\n\n[VISUAL: Tres números aparecen en pantalla: -2/5, -0.3, y -3/4]\n\nMira estos tres números: menos dos quintos, menos cero punto tres, y menos tres cuartos. ¿Cuál es el mayor? ¿Y el menor? A simple vista no es obvio porque están en formatos diferentes. Necesitamos un plan.\n\n### El método: todo a decimales\n\n[VISUAL: Animación de cada número transformándose a decimal]\n\nEl truco es convertir todo a decimales. Así podemos comparar manzanas con manzanas.\n\n-2/5: dividimos 2 entre 5 y le ponemos el negativo. 2 ÷ 5 = 0.4, así que -2/5 = -0.4.\n-0.3 ya está en decimal.\n-3/4: 3 ÷ 4 = 0.75, así que -3/4 = -0.75.\n\n[VISUAL: Recta numérica del -1 al 0 con los tres puntos marcados]\n\nAhora los ubicamos en la recta numérica. -0.75 está más a la izquierda, luego -0.4, y luego -0.3 que es la más cercana al cero. Entonces el orden de menor a mayor es: -3/4, -2/5, -0.3.\n\n### Cuidado con los negativos\n\n[VISUAL: Balanza comparando -1/2 y -3/4 con pesas]\n\nAquí viene lo que más confunde. Con positivos, si un número es más grande en valor absoluto, pues es mayor. Pero con negativos es al revés.\n\nMira: 1/2 es menor que 3/4, ¿verdad? Porque 0.5 < 0.75. Pero cuando les ponemos signo negativo: -1/2 es MAYOR que -3/4. ¿Por qué? Porque -0.5 está más cerca del cero que -0.75. Y más cerca del cero significa mayor.\n\n[VISUAL: Regla escrita en pantalla con animación de subrayado]\n\nLa regla es: entre dos números negativos, el que tiene el valor absoluto más chico es el mayor. Repítelo hasta que se te quede grabado.\n\n### Ejemplo completo\n\n[VISUAL: Lista de números transformándose paso a paso]\n\nVamos con un ejemplo completo. Ordena de menor a mayor: 1/3, -0.8, -3/4, 0.25, -1, -0.5.\n\nPaso 1: Todo a decimales.\n1/3 es aproximadamente 0.333. -0.8 ya está. -3/4 = -0.75. 0.25 ya está. -1 ya está. -0.5 ya está.\n\nPaso 2: Los acomodo en la recta numérica, de izquierda a derecha.\n-1 es el más a la izquierda. Luego -0.8. Luego -0.75. Luego -0.5. Luego 0.25. Y al final 0.333.\n\n[VISUAL: Recta numérica con todos los puntos marcados y etiquetados]\n\nResultado: -1, -0.8, -3/4, -0.5, 0.25, 1/3. ¡Listo!\n\n### Un atajo para fracciones con mismo denominador\n\n[VISUAL: -3/8 y -5/8 con flechas en la recta numérica]\n\nSi dos fracciones negativas tienen el mismo denominador, no necesitas convertir a decimal. Solo compara los numeradores, pero recuerda invertir: -5/8 < -3/8 porque 5 > 3 y al ser negativos se voltea.\n\n[VISUAL: Resumen con los tres pasos y las reglas de oro]\n\nPara cerrar: convierte todo a decimal, ubica en la recta numérica, y recuerda que con negativos el orden se invierte. Con estos pasos puedes ordenar cualquier combinación de números. Practica con las series que te dejamos y nos vemos la próxima vez para hablar de la propiedad de densidad. ¡Hasta luego!\n\n[VISUAL: Pantalla de cierre con ejercicios de práctica]"
+}

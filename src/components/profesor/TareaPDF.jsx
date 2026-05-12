@@ -405,7 +405,7 @@ export default function TareaPDF({ tarea, claseNombre, showAnswers = false }) {
           )}
           <Text style={styles.metaItem}>
             <Text style={styles.metaLabel}>Materia: </Text>
-            {tarea.materia}
+            Matematicas 1° Secundaria
           </Text>
           <Text style={styles.metaItem}>
             <Text style={styles.metaLabel}>Dificultad: </Text>
@@ -426,14 +426,14 @@ export default function TareaPDF({ tarea, claseNombre, showAnswers = false }) {
         )}
 
         {/* Questions */}
-        {tarea.preguntas?.map((p, i) => (
+        {tarea.contenido_cpa?.map((p, i) => (
           <Question key={i} pregunta={p} index={i} showAnswers={showAnswers} />
         ))}
 
         {/* Footer */}
         <View style={styles.footer} fixed>
           <Text style={styles.footerText}>
-            {tarea.nombre} · {tarea.materia}
+            {tarea.nombre} · Matematicas
           </Text>
           <Text
             style={styles.pageNumber}

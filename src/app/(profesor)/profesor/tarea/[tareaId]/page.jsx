@@ -4,7 +4,6 @@ import { pdf } from '@react-pdf/renderer'
 import { useParams, useRouter } from 'next/navigation'
 import { useMemo, useState } from 'react'
 import NavBar from '@/components/layout/NavBar.jsx'
-import GoogleClassroomActions from '@/components/profesor/GoogleClassroomActions.jsx'
 import TablaResultadosAlumnos from '@/components/profesor/TablaResultadosAlumnos.jsx'
 import TareaPDF from '@/components/profesor/TareaPDF.jsx'
 import Badge from '@/components/ui/Badge.jsx'
@@ -149,9 +148,6 @@ export default function DetalleTarea() {
       <NavBar titulo={tarea.nombre} volver="/profesor" />
 
       <main className="max-w-4xl mx-auto px-4 sm:px-6 py-8 animate-fade-in">
-        {/* Google Classroom actions */}
-        <GoogleClassroomActions profesorId={profesor?.id} tarea={tarea} />
-
         {/* Header de la tarea */}
         <div className="card p-6 mb-6">
           <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-4">
@@ -167,10 +163,10 @@ export default function DetalleTarea() {
               </div>
               <div className="flex flex-wrap gap-4 text-sm text-gray-500">
                 {claseNombre && <span className="font-medium text-gray-700">{claseNombre}</span>}
-                <span>{tarea.materia}</span>
+                <span>Matematicas 1° Sec</span>
                 <span>{tarea.dificultad}</span>
-                <span>{tarea.metodologia}</span>
-                <span>{tarea.preguntas?.length ?? 0} preguntas</span>
+                <span>Singapur</span>
+                <span>{tarea.contenido_cpa?.length ?? 0} preguntas</span>
                 <span>{new Date(tarea.created_at).toLocaleDateString('es-MX')}</span>
                 {fechaLimite && (
                   <span className={vencida ? 'text-red-500 font-medium' : ''}>
@@ -272,9 +268,9 @@ export default function DetalleTarea() {
         </div>
 
         {/* Tipos de ejercicio */}
-        {tarea.tipos?.length > 0 && (
+        {tarea.contenido_cpa?.tipos?.length > 0 && (
           <div className="flex flex-wrap gap-2 mb-6">
-            {tarea.tipos.map((tipo) => (
+            {tarea.contenido_cpa.tipos.map((tipo) => (
               <span
                 key={tipo}
                 className="text-xs font-medium text-gray-600 bg-white border border-gray-200 px-3 py-1 rounded-full shadow-sm"
@@ -289,10 +285,10 @@ export default function DetalleTarea() {
         <div className="card p-0 overflow-hidden mb-6">
           <div className="px-6 py-4 border-b border-gray-100 flex items-center justify-between">
             <h2 className="font-semibold text-gray-900">Preguntas</h2>
-            <span className="text-sm text-gray-400">{tarea.preguntas?.length ?? 0} en total</span>
+            <span className="text-sm text-gray-400">{tarea.contenido_cpa?.length ?? 0} en total</span>
           </div>
           <div className="divide-y divide-gray-50">
-            {tarea.preguntas?.map((p, i) => (
+            {tarea.contenido_cpa?.map((p, i) => (
               <div key={i} className="px-6 py-4 hover:bg-gray-50 transition-colors">
                 <div className="flex items-start gap-4">
                   <span className="flex-shrink-0 inline-flex items-center justify-center w-7 h-7 rounded-full bg-gray-100 text-xs font-bold text-gray-600">

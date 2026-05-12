@@ -1,0 +1,298 @@
+{
+  "secuencia": 31,
+  "titulo": "Medidas de tendencia central y rango",
+  "contenido": "Interpretación de la información a través de medidas de tendencia central y de dispersión.",
+  "pda": "Usa e interpreta las medidas de tendencia central (moda, media aritmética y mediana) y el rango de un conjunto de datos, y justifica con base en ellas sus decisiones.",
+  "evaluacion": {
+    "preguntas": [
+      {
+        "tipo": "opcion_multiple",
+        "pregunta": "En el conjunto de datos {3, 5, 7, 5, 10, 5, 8}, ¿cuál es la moda?",
+        "opciones": ["A) 3", "B) 5", "C) 7", "D) 10"],
+        "respuesta": "B"
+      },
+      {
+        "tipo": "verdadero_falso",
+        "pregunta": "La mediana de un conjunto de datos siempre coincide con la media aritmética.",
+        "respuesta": false
+      },
+      {
+        "tipo": "calculo",
+        "pregunta": "Calcula la media aritmética del siguiente conjunto de datos: {12, 15, 18, 21, 24}.",
+        "respuesta": "Paso 1: Sumar todos los valores: 12 + 15 + 18 + 21 + 24 = 90. Paso 2: Dividir entre el número de datos: 90 ÷ 5 = 18. La media aritmética es 18."
+      },
+      {
+        "tipo": "espacios",
+        "pregunta": "El ___ es la diferencia entre el valor máximo y el valor mínimo de un conjunto de datos.",
+        "respuesta": "rango"
+      },
+      {
+        "tipo": "abierta",
+        "pregunta": "Un maestro tiene las calificaciones de 7 alumnos: {6, 8, 9, 7, 10, 8, 8}. ¿Qué medida de tendencia central es más representativa para describir el desempeño del grupo? Justifica tu respuesta.",
+        "respuesta": "La moda (8) es la más representativa porque es la calificación que más se repite (3 veces), lo que indica que la mayoría de los alumnos obtuvieron esa calificación. La media (8) coincide en este caso, pero la moda refleja directamente el valor más frecuente."
+      }
+    ]
+  },
+  "orientacion": {
+    "contenidos_especificos": [
+      "Calcular la moda como el valor que más se repite en un conjunto de datos",
+      "Calcular la media aritmética sumando todos los valores y dividiendo entre la cantidad de datos",
+      "Obtener la mediana ordenando los datos y encontrando el valor central",
+      "Calcular el rango como la diferencia entre el valor máximo y el mínimo",
+      "Interpretar cuándo cada medida es más representativa según el contexto"
+    ],
+    "actividad_inicio": [
+      "Preguntar al grupo: si les digo que el promedio de calificación del salón es 8.5, ¿eso significa que todos sacaron 8 o 9? Escuchar respuestas",
+      "Mostrar un ejemplo rápido: las edades de 5 personas son 12, 12, 13, 14, 50. La media es 20.2 pero nadie tiene 20 años. ¿Qué pasó?",
+      "Introducir la idea de que existen diferentes formas de resumir un conjunto de datos y cada una tiene ventajas",
+      "Presentar el objetivo: aprender a calcular la moda, la media, la mediana y el rango, y saber cuándo usar cada una"
+    ],
+    "desarrollo": [
+      {
+        "titulo": "La moda: el valor más popular",
+        "diapositiva": "1-2",
+        "libro": "Sección 'Moda'",
+        "video": "min 0:30-1:30",
+        "descripcion": "Defina la moda como el dato que más se repite. Trabaje con ejemplos sencillos: tallas de zapatos del grupo, sabores de helado favoritos. Pida que levanten la mano por su color favorito y registre los datos en el pizarrón. Identifiquen la moda juntos. Mencione que un conjunto puede ser bimodal (dos modas) o no tener moda si todos los valores son distintos.",
+        "tip": "Use datos reales del grupo (estaturas, número de hermanos) para que el concepto sea significativo."
+      },
+      {
+        "titulo": "La media aritmética: el promedio",
+        "diapositiva": "3-5",
+        "libro": "Sección 'Media aritmética'",
+        "video": "min 1:30-3:00",
+        "descripcion": "Explique el procedimiento: sumar todos los datos y dividir entre cuántos son. Resuelva paso a paso con las calificaciones de un alumno ficticio: 7, 8, 6, 9, 10. Media = 40/5 = 8. Los alumnos calculan su propia media de calificaciones del bimestre. Muestre que la media es sensible a valores extremos con el ejemplo de edades (12, 12, 13, 14, 50).",
+        "tip": "Enfatice que la media puede dar un número que no está en los datos originales, y eso está bien."
+      },
+      {
+        "titulo": "La mediana y el rango",
+        "diapositiva": "6-8",
+        "libro": "Sección 'Mediana y rango'",
+        "video": "min 3:00-4:30",
+        "descripcion": "Explique que para la mediana hay que ordenar los datos de menor a mayor y encontrar el valor central. Si hay un número par de datos, se promedian los dos centrales. Practique con el grupo: ordenen {15, 8, 22, 3, 10} → {3, 8, 10, 15, 22} → mediana = 10. Para el rango: reste el menor del mayor. Con los mismos datos: 22 - 3 = 19. Compare moda, media y mediana del mismo conjunto para ver cuándo difieren.",
+        "tip": "Pida a los alumnos que siempre subrayen el paso de ordenar los datos; es el error más común olvidarlo."
+      }
+    ],
+    "cierre_individual": {
+      "reflexiona": "Piensa en las tres medidas de tendencia central que aprendiste hoy. ¿En qué situación de tu vida sería más útil usar la moda? ¿Y la media? ¿Y la mediana? Escribe un ejemplo para cada una en tu cuaderno.",
+      "profundiza": [
+        {
+          "pregunta": "En una empresa, 9 empleados ganan $8,000 al mes y el director gana $80,000. ¿Cuál es la media salarial? ¿Es representativa? ¿Qué medida usarías tú?",
+          "respuesta_modelo": "R.M. La media es (9×8000 + 80000)/10 = 152000/10 = $15,200. No es representativa porque ningún empleado gana eso. La mediana ($8,000) o la moda ($8,000) representan mejor la realidad del grupo."
+        },
+        {
+          "pregunta": "Si agregas el valor 100 al conjunto {2, 4, 6, 8, 10}, ¿cuál medida cambia más: la moda, la media o la mediana?",
+          "respuesta_modelo": "R.M. La media cambia drásticamente: pasa de 6 a (2+4+6+8+10+100)/6 = 130/6 ≈ 21.7. La mediana pasa de 6 a (6+8)/2 = 7, un cambio pequeño. La moda no existe en ningún caso. Esto muestra que la media es la más sensible a valores extremos."
+        }
+      ]
+    },
+    "cierre_grupal": [
+      "La moda es el valor que más se repite en un conjunto de datos",
+      "La media aritmética se calcula sumando todos los datos y dividiendo entre la cantidad total",
+      "La mediana es el valor central de los datos ordenados de menor a mayor",
+      "El rango mide la dispersión: es la diferencia entre el máximo y el mínimo",
+      "La media es sensible a valores extremos; en esos casos la mediana puede ser más representativa"
+    ],
+    "preguntas_comprension": [
+      "¿Cuál es la moda, la media y la mediana de {4, 7, 7, 9, 13}?",
+      "¿Puede un conjunto de datos no tener moda? Da un ejemplo.",
+      "Si la mediana de 7 datos ordenados es 15, ¿en qué posición está ese valor?",
+      "¿Por qué es importante el rango al analizar un conjunto de datos?",
+      "Un alumno sacó 10, 10, 10, 10 y 0. ¿Cuál es su media? ¿La consideras justa? ¿Qué medida alternativa propondrías?"
+    ]
+  },
+  "libro": {
+    "introduccion": "Si te dicen que el promedio de calificaciones de tu grupo es 8.5, ¿eso significa que todos sacaron 8.5? ¡Claro que no! Las medidas de tendencia central resumen un conjunto de datos con un solo número representativo. Hoy vas a aprender a calcular e interpretar la media, la mediana, la moda y el rango para tomar mejores decisiones con datos.",
+    "conceptos": [
+      {
+        "titulo": "Media aritmética (promedio)",
+        "contenido": "La media es el valor que obtienes al sumar todos los datos y dividir entre el número total de datos. Es la medida más conocida, pero puede verse afectada por valores extremos (muy altos o muy bajos). Por eso no siempre es la mejor representante de un conjunto de datos.",
+        "definicion": "Media = (suma de todos los datos) / (número de datos) = Σxᵢ / n."
+      },
+      {
+        "titulo": "Mediana",
+        "contenido": "La mediana es el valor que queda exactamente en el centro cuando ordenas todos los datos de menor a mayor. Si hay un número impar de datos, es el dato central. Si hay un número par, es el promedio de los dos datos centrales. La mediana no se ve afectada por valores extremos, lo que la hace muy útil.",
+        "definicion": "Para n datos ordenados: si n es impar, mediana = dato en posición (n + 1) / 2. Si n es par, mediana = promedio de los datos en posiciones n/2 y n/2 + 1."
+      },
+      {
+        "titulo": "Moda y rango",
+        "contenido": "La moda es el dato que más se repite. Un conjunto puede tener una moda, varias (bimodal, trimodal) o ninguna (si todos los datos aparecen la misma cantidad de veces). El rango mide la dispersión: es la diferencia entre el dato mayor y el menor. Un rango grande indica datos muy dispersos.",
+        "definicion": "Moda = dato con mayor frecuencia. Rango = valor máximo − valor mínimo."
+      }
+    ],
+    "ejemplos": [
+      {
+        "titulo": "Medidas de tendencia central con datos de la Liga MX",
+        "enunciado": "En los últimos 7 partidos de la Liga MX, un equipo anotó: 1, 2, 2, 3, 0, 2, 4 goles. Calcula la media, mediana, moda y rango.",
+        "pasos": [
+          "Paso 1: Media = (1+2+2+3+0+2+4) / 7 = 14/7 = 2",
+          "Paso 2: Datos ordenados: {0, 1, 2, 2, 2, 3, 4}. Mediana = dato central (posición 4) = 2",
+          "Paso 3: Moda = 2 (aparece 3 veces, más que cualquier otro)",
+          "Paso 4: Rango = 4 − 0 = 4"
+        ],
+        "resultado": "Media = 2, Mediana = 2, Moda = 2, Rango = 4. Rendimiento bastante regular."
+      },
+      {
+        "titulo": "Mediana con número par de datos",
+        "enunciado": "Los datos son: 3, 5, 7, 9, 11, 15. Calcula la mediana.",
+        "pasos": [
+          "Paso 1: Hay 6 datos (número par), los datos ya están ordenados.",
+          "Paso 2: Los datos centrales son el 3° (7) y el 4° (9).",
+          "Paso 3: Mediana = (7 + 9) / 2 = 8."
+        ],
+        "resultado": "La mediana es 8, que no es ninguno de los datos originales, pero representa el centro del conjunto."
+      },
+      {
+        "titulo": "Efecto de un valor extremo",
+        "enunciado": "Sueldos de 5 empleados: $5,000, $5,500, $6,000, $6,500, $50,000. ¿Qué medida representa mejor los datos?",
+        "pasos": [
+          "Paso 1: Media = (5000 + 5500 + 6000 + 6500 + 50000) / 5 = 73000 / 5 = $14,600.",
+          "Paso 2: Mediana = $6,000 (dato central).",
+          "Paso 3: La media ($14,600) está inflada por el sueldo de $50,000."
+        ],
+        "resultado": "La mediana ($6,000) representa mejor los sueldos típicos. La media se distorsiona por el valor extremo."
+      }
+    ],
+    "datos_curiosos": "Cuando escuchas que el ingreso promedio de un país es alto, puede ser engañoso. Si pocas personas ganan muchísimo dinero, la media sube aunque la mayoría gane poco. Por eso los economistas prefieren usar la mediana del ingreso para medir el bienestar real de una población.",
+    "ejercicios": [
+      {
+        "numero": 1,
+        "enunciado": "Calcula la media, mediana, moda y rango de: 4, 5, 5, 6, 7, 7, 7, 9, 10.",
+        "espacio": true,
+        "lineas": 5
+      },
+      {
+        "numero": 2,
+        "enunciado": "Las edades de 8 personas son: 12, 14, 14, 15, 16, 18, 20, 23. Calcula la mediana.",
+        "espacio": true,
+        "lineas": 3
+      },
+      {
+        "numero": 3,
+        "enunciado": "Un conjunto de datos tiene moda = 5, media = 6.2 y rango = 8. Si el dato menor es 3, ¿cuál es el dato mayor?",
+        "espacio": true,
+        "lineas": 3
+      },
+      {
+        "numero": 4,
+        "enunciado": "¿Puede un conjunto de datos tener dos modas? Da un ejemplo con 10 datos que sea bimodal.",
+        "espacio": true,
+        "lineas": 3
+      }
+    ],
+    "puntos_clave": [
+      "La media es la suma de datos entre el número de datos; es sensible a valores extremos.",
+      "La mediana es el valor central de los datos ordenados; no se afecta por valores extremos.",
+      "La moda es el dato que más se repite; puede haber más de una o ninguna.",
+      "El rango = máximo − mínimo; mide qué tan dispersos están los datos.",
+      "Elige la medida adecuada según el contexto: la mediana es mejor cuando hay valores atípicos."
+    ]
+  },
+  "diapositiva": [
+    {
+      "titulo": "¿Qué son las medidas de tendencia central?",
+      "puntos": [
+        "Resumen un conjunto de datos en un solo valor representativo",
+        "Las tres principales: moda, media y mediana",
+        "Nos ayudan a tomar decisiones basadas en datos"
+      ],
+      "ejemplo": "Goles en 5 partidos: {1, 3, 2, 1, 3}. ¿Cómo resumimos?"
+    },
+    {
+      "titulo": "La moda",
+      "puntos": [
+        "Valor que más se repite en un conjunto de datos",
+        "Puede haber más de una moda (bimodal) o ninguna",
+        "Útil para datos categóricos (colores, sabores)"
+      ],
+      "ejemplo": "{1, 3, 2, 1, 3} → Hay dos modas: 1 y 3 (cada una aparece 2 veces)"
+    },
+    {
+      "titulo": "La media aritmética",
+      "puntos": [
+        "Suma de todos los datos ÷ cantidad de datos",
+        "También llamada promedio",
+        "Sensible a valores extremos (outliers)"
+      ],
+      "ejemplo": "{1, 3, 2, 1, 3} → Suma = 10, hay 5 datos → Media = 10÷5 = 2",
+      "figura": {
+        "tipo": "grafica_barras",
+        "datos": [
+          {
+            "label": "4",
+            "valor": 1
+          },
+          {
+            "label": "5",
+            "valor": 3
+          },
+          {
+            "label": "6",
+            "valor": 5
+          },
+          {
+            "label": "7",
+            "valor": 8
+          },
+          {
+            "label": "8",
+            "valor": 4
+          },
+          {
+            "label": "9",
+            "valor": 2
+          }
+        ],
+        "width": 350,
+        "height": 180
+      }
+    },
+    {
+      "titulo": "La mediana",
+      "puntos": [
+        "Valor central cuando los datos están ordenados",
+        "Si hay cantidad par de datos, se promedian los dos centrales",
+        "No le afectan los valores extremos"
+      ],
+      "ejemplo": "{1, 1, 2, 3, 3} (ordenados) → Mediana = 2 (el dato de en medio)"
+    },
+    {
+      "titulo": "El rango",
+      "puntos": [
+        "Mide la dispersión de los datos",
+        "Rango = valor máximo − valor mínimo",
+        "Un rango grande indica datos más dispersos"
+      ],
+      "ejemplo": "{1, 1, 2, 3, 3} → Rango = 3 − 1 = 2"
+    },
+    {
+      "titulo": "¿Cuándo usar cada medida?",
+      "puntos": [
+        "Moda: datos categóricos o el valor más popular",
+        "Media: datos numéricos sin valores atípicos",
+        "Mediana: cuando hay datos extremos que distorsionan el promedio"
+      ],
+      "ejemplo": "Sueldos: {8000, 9000, 8500, 9000, 50000}. Media = 16900 (engañosa). Mediana = 9000 (más real)."
+    },
+    {
+      "titulo": "Ejemplo integrador",
+      "puntos": [
+        "Calificaciones de 7 alumnos: {6, 8, 9, 7, 10, 8, 8}",
+        "Moda = 8, Media = 56÷7 = 8, Mediana = 8, Rango = 10−6 = 4",
+        "Las tres medidas coinciden: grupo bastante homogéneo"
+      ],
+      "ejemplo": "Ordenados: {6, 7, 8, 8, 8, 9, 10}. El 8 se repite más, está en medio y es el promedio."
+    },
+    {
+      "titulo": "Resumen y puntos clave",
+      "puntos": [
+        "Moda = dato más frecuente",
+        "Media = promedio aritmético",
+        "Mediana = dato central (ordenar primero)",
+        "Rango = máximo − mínimo = dispersión"
+      ],
+      "ejemplo": "Siempre ordena tus datos antes de calcular. Elige la medida según el contexto del problema."
+    }
+  ],
+  "video_script": "# Medidas de tendencia central y rango\n\n[VISUAL: Animación de entrada con el título \"Medidas de tendencia central y rango\" sobre un fondo de pizarrón verde]\n\n¡Qué onda! Hoy vas a aprender algo que usas todos los días sin darte cuenta: cómo resumir un montón de datos en un solo número. ¿Te ha pasado que te preguntan \"¿cómo te fue en los exámenes?\" y no sabes si decir tu mejor nota o tu peor nota? Bueno, para eso existen las medidas de tendencia central.\n\n[VISUAL: Aparece un balón de futbol y un marcador mostrando goles: 0, 1, 2, 1, 3, 1, 0, 2, 1, 4]\n\nImagina que eres el director técnico de un equipo de futbol y tu delantero estrella anotó estos goles en 10 partidos: 0, 1, 2, 1, 3, 1, 0, 2, 1, 4. Un periodista te pregunta: \"¿Cuántos goles mete por partido?\" No le vas a leer los 10 números, ¿verdad? Necesitas UN número que resuma todo. Y aquí es donde entran nuestras tres herramientas.\n\n[VISUAL: Pantalla dividida en tres columnas con los títulos: MODA, MEDIA, MEDIANA]\n\n**Primera herramienta: la moda.** Es simplemente el dato que más se repite. Vamos a ordenar los goles: 0, 0, 1, 1, 1, 1, 2, 2, 3, 4. ¿Cuál se repite más? ¡El 1! Aparece cuatro veces. Así que la moda es 1. Le dirías al periodista: \"Lo más común es que meta 1 gol.\"\n\n[VISUAL: Los números se animan, los cuatro \"1\" se iluminan y se resaltan]\n\n**Segunda herramienta: la media aritmética**, o como le decimos normalmente, el promedio. Esta es facilísima: sumas todos los datos y divides entre cuántos son. Suma: 0+0+1+1+1+1+2+2+3+4 = 15. Son 10 partidos. Media = 15 ÷ 10 = 1.5.\n\n[VISUAL: Animación paso a paso de la suma y la división, resultado 1.5 aparece en grande]\n\nO sea, en promedio mete 1.5 goles por partido. Ojo: nadie mete \"medio gol\", pero el promedio es un valor teórico que representa al grupo.\n\n**Tercera herramienta: la mediana.** Es el valor que queda justo a la mitad cuando ordenas los datos. Ya los tenemos ordenados: 0, 0, 1, 1, 1, 1, 2, 2, 3, 4. Son 10 datos, un número par, así que la mediana es el promedio de los dos del centro: el 5to dato es 1 y el 6to dato es 1. Mediana = (1+1) ÷ 2 = 1.\n\n[VISUAL: Los 10 números en fila, los dos centrales se resaltan con una flecha, se calcula el promedio]\n\nY ahora la pregunta del millón: ¿cuál de las tres le dices al periodista? Depende. Si quieres el dato más frecuente, usa la moda. Si quieres un promedio general, usa la media. Y si hay datos raros que alteran el promedio, usa la mediana.\n\n[VISUAL: Aparece un nuevo ejemplo con sueldos: $8,000 / $9,000 / $8,500 / $9,000 / $50,000]\n\nMira este ejemplo: cinco empleados ganan $8,000, $9,000, $8,500, $9,000 y $50,000. La media sería $16,900, pero eso no representa a la mayoría, ¿verdad? El de $50,000 distorsiona todo. La mediana es $9,000, un número mucho más real.\n\n[VISUAL: Gráfica comparativa mostrando la media \"inflada\" vs la mediana \"centrada\"]\n\nPor último, el **rango**. Este mide qué tan dispersos están tus datos. Se calcula restando el menor al mayor. En los goles: Rango = 4 − 0 = 4. Significa que hay una diferencia de 4 goles entre el mejor y el peor partido.\n\n[VISUAL: Línea numérica del 0 al 4 con los datos distribuidos y una flecha indicando el rango]\n\nVamos a repasar rapidísimo. Moda: el dato que más se repite. Media: la suma de todos entre cuántos son. Mediana: el dato del centro cuando están ordenados. Rango: máximo menos mínimo.\n\n[VISUAL: Resumen visual con íconos para cada medida y sus fórmulas]\n\nAhora ya puedes responderle al periodista con datos precisos. Practícalo con tus propias calificaciones o con datos que encuentres en noticias. ¡Nos vemos en la próxima!"
+}

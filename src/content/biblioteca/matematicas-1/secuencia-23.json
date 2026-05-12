@@ -1,0 +1,282 @@
+{
+  "secuencia": 23,
+  "titulo": "Figuras relacionadas con el círculo",
+  "contenido": "Circunferencia, círculo y esfera.",
+  "pda": "Investiga figuras relacionadas con círculos y propiedades de los círculos.",
+  "evaluacion": {
+    "preguntas": [
+      {
+        "tipo": "opcion_multiple",
+        "pregunta": "¿Cómo se llama la región del círculo limitada por dos radios y el arco que los une?",
+        "opciones": [
+          "A) Segmento circular",
+          "B) Sector circular",
+          "C) Corona circular",
+          "D) Semicírculo"
+        ],
+        "respuesta": "B"
+      },
+      {
+        "tipo": "verdadero_falso",
+        "pregunta": "Un segmento circular es la región comprendida entre una cuerda y el arco que delimita.",
+        "respuesta": true
+      },
+      {
+        "tipo": "espacios",
+        "pregunta": "La región comprendida entre dos circunferencias concéntricas se llama ___ circular.",
+        "respuesta": "corona"
+      },
+      {
+        "tipo": "calculo",
+        "pregunta": "Un sector circular tiene un ángulo central de 90° en un círculo de radio 6 cm. ¿Qué fracción del área total del círculo representa ese sector?",
+        "respuesta": "El círculo completo tiene 360°. La fracción del sector es 90°/360° = 1/4. El sector representa un cuarto (1/4) del área total del círculo."
+      },
+      {
+        "tipo": "abierta",
+        "pregunta": "Explica la diferencia entre un sector circular y un segmento circular. Incluye un ejemplo de cada uno en la vida real.",
+        "respuesta": "El sector circular tiene forma de rebanada de pastel: está limitado por dos radios y el arco entre ellos (como una rebanada de pizza). El segmento circular tiene forma de media luna: está limitado por una cuerda y el arco que la une (como la forma que queda cuando cortas un pedazo recto de un pan redondo). Ejemplo sector: rebanada de pizza. Ejemplo segmento: la parte de un lente de contacto cortada por una línea recta."
+      }
+    ]
+  },
+  "orientacion": {
+    "contenidos_especificos": [
+      "Definición y cálculo de área del sector circular",
+      "Definición de segmento circular y diferencia con el sector",
+      "Corona circular: definición y cálculo de área",
+      "Polígonos inscritos en la circunferencia: propiedades",
+      "Polígonos circunscritos a la circunferencia: propiedades",
+      "Relación entre el número de lados de un polígono regular inscrito y la aproximación al círculo"
+    ],
+    "actividad_inicio": [
+      "Mostrar imágenes de objetos cotidianos que contienen figuras circulares: una rebanada de pizza (sector), un vitral con formas circulares (segmentos y sectores), un disco compacto (corona circular)",
+      "Preguntar: ¿cuántas figuras diferentes pueden crear usando partes de un círculo?",
+      "Repartir hojas con un círculo impreso y pedir que recorten al menos tres figuras diferentes que contengan partes del círculo",
+      "Presentar el objetivo: nombrar y estudiar las principales figuras relacionadas con el círculo y calcular sus áreas"
+    ],
+    "desarrollo": [
+      {
+        "titulo": "Sector circular y segmento circular",
+        "diapositiva": "1-3",
+        "libro": "Sección 'Figuras en el círculo'",
+        "video": "min 0:30-3:00",
+        "descripcion": "Defina el sector circular como la región encerrada por dos radios y su arco. Dibuje varios sectores con distintos ángulos centrales. Desarrolle la fórmula del área: A = (θ/360) × π × r². Resuelva un ejemplo: sector con r = 10 cm y θ = 72°. Luego defina el segmento circular como la región entre una cuerda y su arco. Muestre que el segmento se obtiene restando el triángulo al sector: área del segmento = área del sector - área del triángulo. Los alumnos calculan el área de un sector de 120° con radio 6 cm y dibujan la diferencia entre sector y segmento.",
+        "tip": "Use la analogía de la pizza: si cortas desde el centro, obtienes un sector; si cortas con un cuchillo recto sin pasar por el centro, lo que queda entre el corte y la orilla es un segmento."
+      },
+      {
+        "titulo": "Corona circular y sus aplicaciones",
+        "diapositiva": "4-5",
+        "libro": "Sección 'Corona circular'",
+        "video": "min 3:00-4:30",
+        "descripcion": "Defina la corona circular como la región entre dos circunferencias concéntricas (mismo centro, diferente radio). Desarrolle la fórmula: A = π(R² - r²) donde R es el radio mayor y r el menor. Muestre ejemplos prácticos: la pista de un estadio de atletismo, un disco de vinilo, el área de un anillo. Los alumnos resuelven: una pista circular tiene radio interior de 30 m y radio exterior de 36 m, ¿cuál es el área de la pista? Haga notar que la corona circular no depende del ángulo central sino de la diferencia de radios.",
+        "tip": "Factorice la fórmula como π(R+r)(R-r) para que los alumnos la conecten con la diferencia de cuadrados que estudiarán en álgebra."
+      },
+      {
+        "titulo": "Polígonos inscritos, circunscritos y la aproximación al círculo",
+        "diapositiva": "6-8",
+        "libro": "Sección 'Polígonos y circunferencia'",
+        "video": "min 4:30-6:00",
+        "descripcion": "Presente los polígonos inscritos (vértices sobre la circunferencia) y circunscritos (lados tangentes a la circunferencia). Construya con compás un hexágono regular inscrito en un círculo (la abertura del compás igual al radio permite marcar 6 puntos equidistantes). Los alumnos repiten la construcción. Luego muestre dibujos de polígonos regulares inscritos con cada vez más lados (6, 8, 12, 24...) y pregunte: ¿a qué se parece cuando hay muchos lados? Guíe a la conclusión de que un círculo es el límite de un polígono regular con infinitos lados. Mencione que así calculó Arquímedes una aproximación de π.",
+        "tip": "Si tiene acceso a GeoGebra o similar, proyecte una animación donde el número de lados del polígono inscrito aumente gradualmente para que los alumnos vean la convergencia al círculo."
+      }
+    ],
+    "cierre_individual": {
+      "reflexiona": "¿Qué figura relacionada con el círculo te resultó más nueva o sorprendente? ¿En qué situaciones de tu vida cotidiana podrías necesitar calcular el área de un sector o una corona circular?",
+      "profundiza": [
+        {
+          "pregunta": "Si duplicas el ángulo central de un sector circular sin cambiar el radio, ¿qué le pasa al área? ¿Y si duplicas el radio sin cambiar el ángulo?",
+          "respuesta_modelo": "R.M. Si duplicas el ángulo, el área se duplica (relación directa con θ). Si duplicas el radio, el área se cuadruplica porque el área depende de r² (el doble de radio al cuadrado es cuatro veces más). Esto muestra que el radio tiene un efecto mucho mayor que el ángulo en el área del sector."
+        },
+        {
+          "pregunta": "¿Por qué crees que Arquímedes usó polígonos de muchos lados para aproximar el valor de π? Explica con tus palabras.",
+          "respuesta_modelo": "Un polígono regular inscrito en un círculo se parece cada vez más al círculo conforme se le agregan lados. Arquímedes calculó el perímetro de polígonos con muchos lados para obtener un valor muy cercano al perímetro de la circunferencia, y así aproximar π."
+        }
+      ]
+    },
+    "cierre_grupal": [
+      "El sector circular es la región entre dos radios y su arco; su área es (θ/360) × π × r²",
+      "El segmento circular es la región entre una cuerda y su arco; se calcula como área del sector menos área del triángulo",
+      "La corona circular es la región entre dos circunferencias concéntricas; su área es π(R² - r²)",
+      "Un polígono inscrito tiene sus vértices sobre la circunferencia; un polígono circunscrito tiene sus lados tangentes",
+      "A medida que un polígono regular inscrito tiene más lados, se aproxima más al círculo"
+    ],
+    "preguntas_comprension": [
+      "¿Cuál es la diferencia principal entre un sector circular y un segmento circular?",
+      "Si un sector circular abarca la mitad del círculo, ¿cuánto mide su ángulo central y qué fracción del área total representa?",
+      "¿Cómo calcularías el área de una corona circular si conoces el radio exterior y el ancho de la corona?",
+      "¿Por qué un hexágono regular inscrito se construye fácilmente con compás?",
+      "Si inscribes un cuadrado y un hexágono regular en la misma circunferencia, ¿cuál tiene mayor perímetro?"
+    ]
+  },
+  "libro": {
+    "introduccion": "Alguna vez has partido una pizza en rebanadas? O has visto una dona desde arriba? Sin saberlo, estabas creando figuras geometricas con nombre propio. Hoy vas a aprender como se llaman todas las figuras que se forman a partir del circulo y que propiedades tienen.",
+    "conceptos": [
+      {
+        "titulo": "Sector circular y segmento circular",
+        "contenido": "El sector circular es la region entre dos radios y el arco que los une (forma de rebanada de pizza). El angulo entre los radios se llama angulo central. La fraccion de area que ocupa es angulo/360. El segmento circular es la region entre una cuerda y el arco que delimita (forma de media luna o gajo). No confundas sector (dos radios + arco) con segmento (una cuerda + arco).",
+        "definicion": "Sector circular: region del circulo delimitada por dos radios y el arco que los une.",
+        "figura": {
+          "tipo": "circulo",
+          "radio": 50,
+          "elementos": ["radio", "cuerda"],
+          "width": 180,
+          "height": 180
+        }
+      },
+      {
+        "titulo": "Corona circular",
+        "contenido": "La corona circular es la region entre dos circunferencias concentricas (mismo centro, diferente radio). Tiene forma de dona o anillo. Su area se calcula como pi(R^2 - r^2) donde R es el radio mayor y r el radio menor. Ejemplos: un CD, un anillo, la pista de atletismo.",
+        "definicion": "Corona circular: region comprendida entre dos circunferencias concentricas."
+      },
+      {
+        "titulo": "Semicirculo y arco",
+        "contenido": "El semicirculo es la mitad del circulo, dividido por un diametro. Es un sector circular con angulo central de 180 grados. El arco es una porcion de la circunferencia (la linea curva, no la region). Cada cuerda genera un arco menor (el mas corto) y un arco mayor (el mas largo).",
+        "definicion": null
+      }
+    ],
+    "ejemplos": [
+      {
+        "titulo": "Fraccion de area de un sector",
+        "enunciado": "Un sector circular tiene un angulo central de 90 grados en un circulo de radio 6 cm. Que fraccion del area total representa?",
+        "pasos": [
+          "Paso 1: El circulo completo tiene 360 grados",
+          "Paso 2: Fraccion = 90/360 = 1/4",
+          "Paso 3: El sector representa un cuarto del area total"
+        ],
+        "resultado": "El sector representa 1/4 (un cuarto) del area total del circulo."
+      },
+      {
+        "titulo": "Rebanadas de pizza",
+        "enunciado": "Una pizza se corta en 8 rebanadas iguales. Cual es el angulo central de cada rebanada y que fraccion del circulo es?",
+        "pasos": ["Paso 1: Angulo central = 360/8 = 45 grados", "Paso 2: Fraccion = 45/360 = 1/8"],
+        "resultado": "Cada rebanada tiene un angulo de 45 grados y ocupa 1/8 del circulo."
+      },
+      {
+        "titulo": "Efecto de duplicar el radio vs. el angulo",
+        "enunciado": "Si duplicas el angulo central de un sector sin cambiar el radio, que le pasa al area? Y si duplicas el radio sin cambiar el angulo?",
+        "pasos": [
+          "Paso 1: Area del sector = (angulo/360) x pi x r^2",
+          "Paso 2: Si duplicas el angulo: el area se duplica (relacion directa)",
+          "Paso 3: Si duplicas el radio: r^2 se cuadruplica, asi que el area se cuadruplica"
+        ],
+        "resultado": "Duplicar el angulo duplica el area. Duplicar el radio cuadruplica el area."
+      }
+    ],
+    "datos_curiosos": "Arquimedes, hace mas de 2,200 anos, descubrio que si inscribes poligonos regulares con cada vez mas lados dentro de un circulo, el poligono se parece cada vez mas al circulo. Uso poligonos de 96 lados para calcular una de las primeras aproximaciones de pi (entre 3.1408 y 3.1429).",
+    "ejercicios": [
+      {
+        "numero": 1,
+        "enunciado": "Un sector circular abarca la mitad del circulo. Cuanto mide su angulo central y que fraccion del area total representa?",
+        "espacio": true,
+        "lineas": 3
+      },
+      {
+        "numero": 2,
+        "enunciado": "Una pista circular de atletismo tiene radio interior de 30 m y radio exterior de 36 m. Calcula el area de la pista (corona circular). Usa pi = 3.14.",
+        "espacio": true,
+        "lineas": 4
+      },
+      {
+        "numero": 3,
+        "enunciado": "Explica con tus palabras la diferencia entre un sector circular y un segmento circular. Da un ejemplo de la vida real de cada uno.",
+        "espacio": true,
+        "lineas": 4
+      }
+    ],
+    "puntos_clave": [
+      "Sector circular: region entre 2 radios + arco (rebanada). Fraccion del area = angulo/360.",
+      "Segmento circular: region entre una cuerda + arco (gajo de luna).",
+      "Corona circular: region entre 2 circunferencias concentricas (dona). Area = pi(R^2 - r^2).",
+      "El semicirculo es un sector de 180 grados (la mitad del circulo).",
+      "A medida que un poligono regular inscrito tiene mas lados, se aproxima mas al circulo."
+    ]
+  },
+  "diapositiva": [
+    {
+      "titulo": "Figuras dentro del círculo",
+      "puntos": [
+        "El círculo se puede dividir en varias figuras con nombre",
+        "Hoy conoceremos: sector, segmento, corona y semicírculo",
+        "También hablaremos del arco"
+      ],
+      "ejemplo": "¿Qué forma tiene una rebanada de pizza? ¡Eso es un sector circular!"
+    },
+    {
+      "titulo": "Sector circular",
+      "puntos": [
+        "Región entre dos radios y el arco que los une",
+        "Forma de rebanada de pizza o pastel",
+        "El ángulo entre los radios se llama ángulo central",
+        "Fracción del área = ángulo central / 360°"
+      ],
+      "ejemplo": "Pizza de 8 rebanadas → cada sector tiene ángulo de 45° → ocupa 1/8 del círculo",
+      "figura": {
+        "tipo": "circulo",
+        "radio": 60,
+        "elementos": ["radio", "diametro", "cuerda"],
+        "width": 200,
+        "height": 200
+      }
+    },
+    {
+      "titulo": "Segmento circular",
+      "puntos": [
+        "Región entre una cuerda y el arco que delimita",
+        "Forma de gajo o media luna",
+        "Hay segmento menor y segmento mayor",
+        "Si la cuerda es el diámetro → dos semicírculos"
+      ],
+      "ejemplo": "Corta un pan redondo en línea recta: la parte pequeña es un segmento circular"
+    },
+    {
+      "titulo": "Corona circular",
+      "puntos": [
+        "Región entre dos circunferencias concéntricas",
+        "Concéntricas = mismo centro, diferente radio",
+        "Forma de dona o anillo"
+      ],
+      "ejemplo": "Un CD, una dona, la vista aérea de una pista de atletismo circular"
+    },
+    {
+      "titulo": "Semicírculo y arco",
+      "puntos": [
+        "Semicírculo: mitad del círculo dividido por un diámetro",
+        "Es un sector de 180°",
+        "Arco: porción de la circunferencia (línea curva)",
+        "Arco menor + arco mayor = circunferencia completa"
+      ],
+      "ejemplo": "Medio limón cortado por la mitad es un semicírculo"
+    },
+    {
+      "titulo": "Diferencia clave: sector vs. segmento",
+      "puntos": [
+        "Sector: limitado por 2 RADIOS + arco → rebanada",
+        "Segmento: limitado por 1 CUERDA + arco → gajo",
+        "El sector siempre tiene vértice en el centro",
+        "El segmento no pasa por el centro (a menos que sea semicírculo)"
+      ],
+      "ejemplo": "Dibuja ambos en un mismo círculo para ver la diferencia"
+    },
+    {
+      "titulo": "Actividad práctica",
+      "puntos": [
+        "Traza un círculo de radio 5 cm",
+        "Colorea un sector de 90° en rojo (1/4 del círculo)",
+        "Traza una cuerda y colorea el segmento en azul",
+        "Traza un círculo interior para formar la corona en verde"
+      ],
+      "ejemplo": "Etiqueta cada figura con su nombre"
+    },
+    {
+      "titulo": "Resumen",
+      "puntos": [
+        "Sector = 2 radios + arco (rebanada)",
+        "Segmento = cuerda + arco (gajo)",
+        "Corona = 2 circunferencias concéntricas (dona)",
+        "Semicírculo = sector de 180° (media naranja)",
+        "Arco = porción curva de la circunferencia"
+      ],
+      "ejemplo": "Tarea: busca 3 objetos en tu casa que tengan forma de sector, segmento o corona circular"
+    }
+  ],
+  "video_script": "# Figuras relacionadas con el círculo — Script de video\n\n[VISUAL: Título animado con un círculo dividiéndose en diferentes figuras de colores]\n\n¡Qué onda! Hoy vamos a partir el círculo en pedazos y ponerles nombre. Suena raro, pero ya verás que todas estas figuras las conoces de tu vida diaria. Solo no sabías cómo se llamaban.\n\n[VISUAL: Una pizza entera vista desde arriba]\n\nEmpecemos con la más fácil. ¿Ves esta pizza? Si la cortas en rebanadas, cada rebanada es un **sector circular**.\n\n[VISUAL: La pizza se corta y una rebanada se separa, transformándose en un diagrama geométrico con dos radios y un arco etiquetados]\n\nEl sector circular es la región que queda entre dos radios y el arco que los conecta. El ángulo que se forma entre los dos radios se llama ángulo central.\n\n¿Cuánto del círculo ocupa cada rebanada? Fácil: divides el ángulo central entre 360. Si la pizza tiene 6 rebanadas iguales, cada una tiene un ángulo de 360 entre 6 = 60 grados. Y ocupa 60/360 = un sexto del círculo.\n\n[VISUAL: Pizza de 6 rebanadas con ángulos marcados y fracción 1/6]\n\nAhora imagina que en vez de cortar la pizza desde el centro, la cortas con un cuchillo en línea recta, como cortando un pedazo de pan.\n\n[VISUAL: Un círculo con una cuerda horizontal, la parte inferior sombreada en forma de luna]\n\nEsa pieza que te queda tiene forma de media luna. Se llama **segmento circular**. Está limitada por una cuerda (la línea recta) y el arco (la parte curva).\n\nCuidado con la diferencia: el sector tiene forma de rebanada (dos radios desde el centro), el segmento tiene forma de gajo (una cuerda recta y un arco). El sector tiene su punta en el centro del círculo; el segmento no.\n\n[VISUAL: Lado a lado: sector (rebanada) y segmento (gajo), con flechas señalando las diferencias]\n\nOjo: cada cuerda genera dos segmentos. El chiquito se llama segmento menor y el grande, segmento mayor. Si la cuerda es el diámetro, los dos segmentos son iguales y cada uno es un **semicírculo**: exactamente la mitad del círculo.\n\n[VISUAL: Un diámetro dividiendo el círculo en dos semicírculos iguales]\n\nEl semicírculo también es un sector circular especial, con ángulo central de 180 grados. Medio giro completo.\n\nAhora, ¿conoces las donas? Por supuesto que sí.\n\n[VISUAL: Una dona real transformándose en un diagrama de corona circular]\n\nUna dona vista desde arriba tiene forma de **corona circular**. Es la región entre dos circunferencias que tienen el mismo centro pero diferente radio. Esas circunferencias se llaman **concéntricas**, que significa \"mismo centro\".\n\nOtros ejemplos de corona circular: un CD (el hoyo del centro y el borde forman las dos circunferencias), un anillo, la pista de carreras del Autódromo.\n\n[VISUAL: Ejemplos de objetos con forma de corona: CD, anillo, pista de atletismo]\n\nY por último, el **arco**. El arco no es una región, es una línea curva. Es una parte de la circunferencia. Cuando trazas una cuerda, la circunferencia queda dividida en dos arcos: el arco menor (el cortito) y el arco mayor (el largo).\n\n[VISUAL: Circunferencia con una cuerda y los dos arcos señalados con colores diferentes]\n\nVamos a repasar todo junto.\n\n[VISUAL: Un solo círculo grande donde aparecen una por una las cuatro figuras]\n\n- **Sector circular** = rebanada de pizza → 2 radios + arco.\n- **Segmento circular** = gajo de luna → 1 cuerda + arco.\n- **Corona circular** = dona → 2 circunferencias concéntricas.\n- **Semicírculo** = media naranja → diámetro + semicircunferencia.\n- **Arco** = pedazo de la circunferencia (línea curva).\n\n[VISUAL: Tabla resumen animada]\n\nEl dato que más te va a servir: la fracción de área de un sector es ángulo central dividido entre 360. Si el ángulo es 90°, es un cuarto. Si es 120°, es un tercio. Así de simple.\n\nTu reto de hoy: busca en tu casa tres objetos que tengan forma de sector, segmento o corona circular. Tómales foto y explica a cuál figura corresponde cada uno.\n\n[VISUAL: Reto en pantalla con íconos de cámara]\n\n¡Nos vemos en la siguiente clase donde vamos a armar circunferencias desde cero con el compás!"
+}

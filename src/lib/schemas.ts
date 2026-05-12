@@ -8,19 +8,11 @@ const pdaItemSchema = z.object({
 })
 
 const generarPayloadSchema = z.object({
-  materia: z.string().min(1, 'La materia es requerida'),
-  dificultad: z.enum(['Fácil', 'Media', 'Difícil']),
-  metodologia: z.enum([
-    'Feynman',
-    'Memorización activa',
-    'Resolución de problemas',
-    'Práctica directa',
-  ]),
+  dificultad: z.enum(['Facil', 'Media', 'Dificil']),
   tipos: z.array(z.string().min(1)).min(1, 'Selecciona al menos un tipo de ejercicio'),
   numeroPreguntas: z.number().int().min(1).max(20),
   pda: z.union([pdaItemSchema, z.array(pdaItemSchema).max(5)]).optional(),
   instrucciones: z.string().nullable().optional(),
-  idioma: z.enum(['English']).optional(),
 })
 
 const preguntaSchema = z.object({
@@ -32,9 +24,8 @@ const preguntaSchema = z.object({
 
 const corregirPayloadSchema = z.object({
   tarea: z.object({
-    materia: z.string().min(1),
     dificultad: z.string().min(1),
-    preguntas: z.array(preguntaSchema).min(1),
+    contenido_cpa: z.array(preguntaSchema).min(1),
   }),
   respuestasAlumno: z.union([
     z.array(z.string().nullable()),
@@ -44,9 +35,8 @@ const corregirPayloadSchema = z.object({
 
 const modificarPayloadSchema = z.object({
   pregunta: preguntaSchema,
-  instruccion: z.string().min(1, 'La instrucción es requerida'),
-  materia: z.string().min(1),
-  dificultad: z.enum(['Fácil', 'Media', 'Difícil']),
+  instruccion: z.string().min(1, 'La instruccion es requerida'),
+  dificultad: z.enum(['Facil', 'Media', 'Dificil']),
 })
 
 export const requestBodySchema = z.discriminatedUnion('type', [

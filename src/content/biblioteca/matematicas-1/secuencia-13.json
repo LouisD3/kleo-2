@@ -1,0 +1,272 @@
+{
+  "secuencia": 13,
+  "titulo": "Porcentajes",
+  "contenido": "Porcentajes en diversas situaciones.",
+  "pda": "Resuelve problemas de porcentajes en diversas situaciones.",
+  "evaluacion": {
+    "preguntas": [
+      {
+        "tipo": "opcion_multiple",
+        "pregunta": "¿Cuál es el 25% de 480?",
+        "opciones": ["A) 100", "B) 120", "C) 140", "D) 96"],
+        "respuesta": "B"
+      },
+      {
+        "tipo": "verdadero_falso",
+        "pregunta": "El 50% de cualquier número siempre es igual a dividir ese número entre 2.",
+        "respuesta": true
+      },
+      {
+        "tipo": "abierta",
+        "pregunta": "En una tienda, un pantalón cuesta $600 y tiene un descuento del 30%. ¿Cuál es el precio final? Explica tu procedimiento.",
+        "respuesta": "El descuento es 600 × 0.30 = $180. El precio final es 600 − 180 = $420. Se puede también calcular directamente: 600 × 0.70 = $420."
+      },
+      {
+        "tipo": "espacios",
+        "pregunta": "Para convertir un porcentaje a decimal, se divide entre ___.",
+        "respuesta": "100"
+      },
+      {
+        "tipo": "calculo",
+        "pregunta": "En un salón de 40 alumnos, el 35% aprobó con 10. ¿Cuántos alumnos obtuvieron 10?",
+        "respuesta": "Paso 1: Convertir el porcentaje a decimal: 35% = 35/100 = 0.35\nPaso 2: Multiplicar por el total de alumnos: 40 × 0.35 = 14\nRespuesta: 14 alumnos obtuvieron 10."
+      }
+    ]
+  },
+  "orientacion": {
+    "contenidos_especificos": [
+      "Calcular el porcentaje de una cantidad dada usando fracciones, decimales y la regla de tres",
+      "Resolver problemas de la vida cotidiana que involucren descuentos, aumentos e IVA",
+      "Relacionar porcentaje, fracción y decimal como tres representaciones equivalentes"
+    ],
+    "actividad_inicio": [
+      "Mostrar un volante de ofertas de una tienda con descuentos del 10%, 25% y 50%, y preguntar: ¿cuánto pagarían realmente por cada producto?",
+      "Preguntar al grupo: ¿qué significa la palabra 'por ciento'? Guiar hacia la idea de 'por cada 100'",
+      "Escribir 50% en el pizarrón y pedir que lo expresen como fracción (1/2) y como decimal (0.5)",
+      "Lanzar el reto rápido: si un pantalón cuesta $400 y tiene 25% de descuento, ¿cuánto se ahorra? Que lo intenten sin calculadora",
+      "Presentar el objetivo de la sesión: dominar el cálculo de porcentajes y aplicarlo a situaciones reales"
+    ],
+    "desarrollo": [
+      {
+        "titulo": "Concepto de porcentaje y equivalencias",
+        "diapositiva": "1-3",
+        "libro": "Sección 'Porcentaje: fracción y decimal'",
+        "video": "min 0:30-2:30",
+        "descripcion": "Explique que porcentaje significa 'de cada 100'. Muestre en el pizarrón que 35% = 35/100 = 0.35. Practique con el grupo la conversión de porcentajes comunes a fracción y decimal: 10%, 20%, 25%, 50%, 75%. Use una tabla de tres columnas (%, fracción, decimal) y pida a los alumnos que la copien y la completen. Enfatice que conocer estas equivalencias de memoria agiliza cualquier cálculo.",
+        "tip": "Imprima o dibuje una cuadrícula de 10×10 y sombree regiones para que los alumnos visualicen físicamente qué representa cada porcentaje."
+      },
+      {
+        "titulo": "Métodos de cálculo: fracción, decimal y regla de tres",
+        "diapositiva": "4-6",
+        "libro": "Sección 'Calculando porcentajes'",
+        "video": "min 2:30-5:00",
+        "descripcion": "Presente tres métodos para calcular el 15% de 240. Método 1 (fracción): 15/100 × 240 = 36. Método 2 (decimal): 0.15 × 240 = 36. Método 3 (regla de tres): 100 → 240, 15 → x, x = 15×240/100 = 36. Resuelva un ejemplo con cada método en el pizarrón. Los alumnos practican individualmente calculando el 30% de 180, el 12% de 500 y el 8% de 350. Circule verificando que manejen al menos dos de los tres métodos.",
+        "tip": "Permita que cada alumno elija el método con el que se sienta más cómodo; lo importante es que entienda la lógica, no que use un método específico."
+      },
+      {
+        "titulo": "Problemas contextualizados: descuentos, aumentos e IVA",
+        "diapositiva": "7-8",
+        "libro": "Sección 'Porcentajes en la vida diaria'",
+        "video": null,
+        "descripcion": "Forme equipos de 3-4 alumnos. Entregue a cada equipo 3 problemas contextualizados: un descuento en tienda, un aumento de precio por inflación y el cálculo del IVA (16%) sobre un servicio. Los equipos resuelven en su cuaderno y un representante explica al grupo. Guíe la socialización haciendo énfasis en la diferencia entre calcular el porcentaje solo y calcular el precio final (precio original ± porcentaje). Cierre con la fórmula: precio final = precio × (1 ± porcentaje en decimal).",
+        "tip": "Use precios reales de productos que los alumnos conozcan (videojuegos, tenis, comida rápida) para que sientan el contenido cercano a su realidad."
+      }
+    ],
+    "cierre_individual": {
+      "reflexiona": "¿Cuál de los tres métodos para calcular porcentajes te resultó más claro y por qué? Escribe en tu cuaderno un ejemplo de tu vida diaria donde los porcentajes te serían útiles y resuélvelo.",
+      "profundiza": [
+        {
+          "pregunta": "Un artículo cuesta $600, tiene un descuento del 20% y luego se le aplica el 16% de IVA sobre el precio con descuento. ¿Cuánto se paga al final?",
+          "respuesta_modelo": "R.M. Primero se calcula el descuento: 20% de 600 = 120, precio con descuento = 480. Luego se calcula el IVA: 16% de 480 = 76.80. Precio final = 480 + 76.80 = $556.80."
+        },
+        {
+          "pregunta": "¿Es lo mismo aplicar un aumento del 10% y luego un descuento del 10% que quedarse con el precio original? Justifica con un ejemplo numérico.",
+          "respuesta_modelo": "R.M. No es lo mismo. Si un producto cuesta $100 y sube 10%, queda en $110. Si luego se le aplica 10% de descuento: 10% de 110 = 11, precio final = $99. Se pierde $1 porque el descuento se aplica sobre una base mayor que el precio original."
+        }
+      ]
+    },
+    "cierre_grupal": [
+      "Porcentaje significa 'de cada 100' y se puede expresar como fracción o como decimal",
+      "Para calcular un porcentaje se puede multiplicar por la fracción, por el decimal o usar regla de tres",
+      "Un descuento se resta al precio original; un aumento o impuesto se suma",
+      "El IVA en México es del 16% y se calcula sobre el precio antes de impuestos",
+      "El orden en que se aplican porcentajes sucesivos sí importa: el resultado cambia según la base de cálculo"
+    ],
+    "preguntas_comprension": [
+      "¿Cómo conviertes 45% a fracción simplificada y a decimal?",
+      "¿Cuánto es el 18% de 250? Explica el procedimiento que usaste.",
+      "Un celular de $8,500 tiene 15% de descuento. ¿Cuánto pagas? ¿Y si además aplicas el 16% de IVA?",
+      "¿Por qué decimos que 100% de algo es 'el todo'? Exprésalo usando fracciones.",
+      "Si en una encuesta 60 de 200 alumnos prefieren futbol, ¿qué porcentaje es ese y cómo lo calculaste?"
+    ]
+  },
+  "libro": {
+    "introduccion": "Cada vez que ves un letrero de \"50% de descuento\" o te dicen que el IVA es del 16%, estas usando porcentajes. Es de las herramientas matematicas mas utiles que vas a aprender, y hoy la vas a dominar por completo.",
+    "conceptos": [
+      {
+        "titulo": "Que es un porcentaje",
+        "contenido": "La palabra porcentaje viene del latin per centum, que significa \"por cada cien\". Cuando dices 25%, estas diciendo \"25 de cada 100\". Puedes escribir cualquier porcentaje como fraccion o como decimal: 25% = 25/100 = 0.25, 50% = 50/100 = 0.50, 10% = 10/100 = 0.10. Para pasar de porcentaje a decimal, divide entre 100 (o recorre el punto dos lugares a la izquierda).",
+        "definicion": "Porcentaje: cantidad que expresa una proporcion de cada 100 unidades.",
+        "figura": {
+          "tipo": "fraccion",
+          "numerador": 1,
+          "denominador": 4,
+          "width": 200,
+          "height": 50
+        }
+      },
+      {
+        "titulo": "Como calcular el porcentaje de una cantidad",
+        "contenido": "Usa la formula: Resultado = Cantidad x (Porcentaje / 100). Tambien puedes multiplicar directamente por el decimal equivalente. Por ejemplo, el 20% de 800 es 800 x 0.20 = 160. Este metodo funciona para descuentos, propinas, impuestos y cualquier situacion donde necesites una parte proporcional.",
+        "definicion": null
+      },
+      {
+        "titulo": "Descuentos, aumentos e IVA",
+        "contenido": "Para un descuento, restas el porcentaje al precio original. Para un aumento (como el IVA del 16%), lo sumas. Hay un atajo muy util: si te descuentan el 20%, tu pagas el 80% restante, asi que puedes hacer directamente precio x 0.80. Para sumar IVA: precio x 1.16.",
+        "definicion": null
+      }
+    ],
+    "ejemplos": [
+      {
+        "titulo": "Descuento en una tienda",
+        "enunciado": "Una sudadera cuesta $800 y tiene 20% de descuento. Cuanto te ahorras y cual es el precio final?",
+        "pasos": [
+          "Paso 1: Convertir el porcentaje a decimal: 20% = 0.20",
+          "Paso 2: Calcular el descuento: 800 x 0.20 = $160",
+          "Paso 3: Restar al precio original: 800 - 160 = $640"
+        ],
+        "resultado": "Te ahorras $160 y pagas $640. Atajo: 800 x 0.80 = $640.",
+        "figura": {
+          "tipo": "fraccion",
+          "numerador": 3,
+          "denominador": 10,
+          "width": 200,
+          "height": 50
+        }
+      },
+      {
+        "titulo": "Propina en un restaurante",
+        "enunciado": "La cuenta del restaurante es de $350 y quieres dejar 15% de propina. Cuanto dejas y cuanto pagas en total?",
+        "pasos": [
+          "Paso 1: Convertir: 15% = 0.15",
+          "Paso 2: Calcular la propina: 350 x 0.15 = $52.50",
+          "Paso 3: Sumar al total: 350 + 52.50 = $402.50"
+        ],
+        "resultado": "La propina es $52.50 y el total a pagar es $402.50."
+      },
+      {
+        "titulo": "Que porcentaje representa una parte",
+        "enunciado": "En tu salon hay 40 alumnos y 12 sacaron 10 en el examen. Que porcentaje saco 10?",
+        "pasos": [
+          "Paso 1: Dividir la parte entre el total: 12 / 40 = 0.30",
+          "Paso 2: Multiplicar por 100: 0.30 x 100 = 30%"
+        ],
+        "resultado": "El 30% de los alumnos saco 10."
+      }
+    ],
+    "datos_curiosos": "Si algo sube 50% y luego baja 50%, no regresa al precio original. Si costaba $100, sube a $150 y luego baja 50% queda en $75. Esto pasa porque el segundo porcentaje se calcula sobre una base diferente.",
+    "ejercicios": [
+      {
+        "numero": 1,
+        "enunciado": "Un videojuego cuesta $1,200 y tiene 25% de descuento. Calcula el descuento y el precio final.",
+        "espacio": true,
+        "lineas": 3
+      },
+      {
+        "numero": 2,
+        "enunciado": "En una encuesta, 45 de 150 personas prefieren el futbol. Que porcentaje es ese?",
+        "espacio": true,
+        "lineas": 3
+      },
+      {
+        "numero": 3,
+        "enunciado": "Una comida cuesta $280 antes de IVA (16%). Cual es el precio final con IVA incluido?",
+        "espacio": true,
+        "lineas": 3
+      },
+      {
+        "numero": 4,
+        "enunciado": "Un articulo cuesta $500, tiene un descuento del 15% y luego se le aplica el 16% de IVA sobre el precio con descuento. Cuanto se paga al final?",
+        "espacio": true,
+        "lineas": 4
+      }
+    ],
+    "puntos_clave": [
+      "Porcentaje significa 'de cada 100' y se puede expresar como fraccion o como decimal.",
+      "Para calcular un porcentaje, multiplica la cantidad por el decimal equivalente.",
+      "Descuento: restas el porcentaje al precio. Aumento (IVA): sumas el porcentaje al precio.",
+      "100% de algo es el total completo; 50% es la mitad; 200% es el doble.",
+      "El orden en que aplicas porcentajes sucesivos si importa: el resultado cambia segun la base de calculo."
+    ]
+  },
+  "diapositiva": [
+    {
+      "titulo": "¿Qué es un porcentaje?",
+      "puntos": [
+        "Significa \"por cada 100\"",
+        "25% = 25 de cada 100",
+        "Se usa en descuentos, impuestos, estadísticas"
+      ],
+      "ejemplo": "Si 25 de cada 100 alumnos usan lentes, el 25% usa lentes."
+    },
+    {
+      "titulo": "Conversiones clave",
+      "puntos": [
+        "Porcentaje → decimal: dividir entre 100",
+        "Porcentaje → fracción: escribir sobre 100 y simplificar",
+        "Decimal → porcentaje: multiplicar por 100"
+      ],
+      "ejemplo": "75% = 75/100 = 3/4 = 0.75"
+    },
+    {
+      "titulo": "Calcular el porcentaje de una cantidad",
+      "puntos": [
+        "Fórmula: Cantidad × (Porcentaje / 100)",
+        "También: Cantidad × decimal equivalente"
+      ],
+      "ejemplo": "El 30% de 200 = 200 × 0.30 = 60"
+    },
+    {
+      "titulo": "Problema: Descuento",
+      "puntos": [
+        "Un videojuego cuesta $1,200 con 25% de descuento",
+        "Descuento = 1200 × 0.25 = $300",
+        "Precio final = 1200 − 300 = $900"
+      ],
+      "ejemplo": "Atajo: precio final = 1200 × 0.75 = $900"
+    },
+    {
+      "titulo": "Problema: Aumento (IVA)",
+      "puntos": [
+        "Una comida cuesta $250 + 16% de IVA",
+        "IVA = 250 × 0.16 = $40",
+        "Total = 250 + 40 = $290"
+      ],
+      "ejemplo": "Atajo: total = 250 × 1.16 = $290"
+    },
+    {
+      "titulo": "¿Qué porcentaje representa?",
+      "puntos": ["Fórmula: (Parte / Total) × 100", "Sirve para comparar proporciones"],
+      "ejemplo": "18 de 60 alumnos aprobaron: (18/60) × 100 = 30%"
+    },
+    {
+      "titulo": "Encontrar el total",
+      "puntos": [
+        "Si el 40% de algo es 80, ¿cuánto es el total?",
+        "Total = Parte / (Porcentaje / 100)",
+        "Total = 80 / 0.40 = 200"
+      ],
+      "ejemplo": "El 15% de un precio es $45. Precio = 45/0.15 = $300"
+    },
+    {
+      "titulo": "Resumen y puntos clave",
+      "puntos": [
+        "Porcentaje = por cada 100",
+        "Tres tipos de problemas: calcular parte, calcular porcentaje, calcular total",
+        "Aparece en la vida diaria: compras, impuestos, datos"
+      ],
+      "ejemplo": "Reto: Si algo sube 20% y luego baja 20%, ¿regresa al precio original? ¡No! Compruébalo con $100."
+    }
+  ],
+  "video_script": "# Porcentajes — Script de video (5-7 min)\n\n[VISUAL: Animación de un letrero de tienda que dice \"¡GRAN VENTA! 50% de descuento\"]\n\n¡Qué onda! Hoy vamos a hablar de algo que usas todo el tiempo aunque no te des cuenta: **los porcentajes**. Cada vez que ves un descuento en la tienda, cuando te hablan del IVA, o cuando checas las estadísticas de tu equipo favorito... ahí están los porcentajes.\n\n[VISUAL: La palabra \"PORCENTAJE\" se descompone en \"POR\" + \"CIENTO\" con una animación]\n\nLa palabra viene del latín *per centum* y significa literalmente **\"por cada cien\"**. Así que cuando decimos 25%, estamos diciendo \"25 de cada 100\". Si en tu salón hubiera exactamente 100 alumnos y 25 trajeran tenis negros, el 25% trae tenis negros. ¡Así de fácil!\n\n[VISUAL: Cuadrícula de 10×10 donde se van coloreando 25 cuadritos]\n\nAhora, lo más importante: **¿cómo calculas un porcentaje de una cantidad?** Hay un truco muy sencillo. Solo necesitas convertir el porcentaje a decimal dividiendo entre 100 y luego multiplicar.\n\n[VISUAL: Aparece la fórmula: Resultado = Cantidad × (Porcentaje ÷ 100)]\n\nVamos con un ejemplo real. Imagina que quieres comprar unos audífonos que cuestan **$800** y tienen **20% de descuento**.\n\nPrimero, conviertes: 20% ÷ 100 = **0.20**\nDespués, multiplicas: 800 × 0.20 = **$160** de descuento.\nFinalmente, restas: 800 − 160 = **$640** es lo que pagas.\n\n[VISUAL: Animación de los $800 bajando a $640 con los $160 tachados]\n\nPero hay un **atajo** buenísimo. Si te descuentan el 20%, tú pagas el 80% restante. Entonces puedes hacer directamente: 800 × 0.80 = $640. ¡Mismo resultado, un solo paso!\n\n[VISUAL: Comparación lado a lado de ambos métodos]\n\nAhora veamos el caso contrario: un **aumento**. Cuando vas a un restaurante y la cuenta es de $350, normalmente agregas el 16% de IVA.\n\n350 × 0.16 = $56 de IVA.\n350 + 56 = **$406** total.\n\nO con el atajo: 350 × 1.16 = **$406**. Cuando sumas un porcentaje, multiplicas por 1 + el decimal.\n\n[VISUAL: Ticket de restaurante animado que muestra subtotal, IVA y total]\n\nHay otro tipo de problema que es muy común: **¿qué porcentaje representa algo?** Por ejemplo, si de 40 alumnos, 12 sacaron 10 en el examen, ¿qué porcentaje es?\n\nDivides la parte entre el total: 12 ÷ 40 = 0.30\nMultiplicas por 100: 0.30 × 100 = **30%**\n\n[VISUAL: Diagrama circular que muestra 12/40 = 30%]\n\nY el tercer tipo de problema: **encontrar el total**. Si te dicen que el 15% de un precio es $45, ¿cuál es el precio completo?\n\nDivides: 45 ÷ 0.15 = **$300**\n\n[VISUAL: Ecuación animada resolviendo paso a paso]\n\nAntes de irnos, un dato que sorprende a muchos. Si algo sube 50% y luego baja 50%, ¿regresa al precio original? ¡**No**! Si algo costaba $100, sube 50% a $150, y luego baja 50% queda en $75. Piénsalo bien.\n\n[VISUAL: Animación mostrando $100 → $150 → $75 con cara de sorpresa]\n\nRecuerda los tres tipos de problemas:\n1. Calcular el porcentaje de una cantidad → **multiplica**\n2. Saber qué porcentaje es una parte → **divide parte entre total × 100**\n3. Encontrar el total conociendo el porcentaje → **divide parte entre el decimal**\n\n[VISUAL: Resumen con los tres tipos de problema en recuadros de colores]\n\n¡Ahora sí estás listo para dominar los porcentajes! Practícalo la próxima vez que vayas a una tienda. Nos vemos en el siguiente video."
+}

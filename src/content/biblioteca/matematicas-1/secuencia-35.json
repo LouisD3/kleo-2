@@ -1,0 +1,276 @@
+{
+  "secuencia": 35,
+  "titulo": "Condicionales y bicondicionales",
+  "contenido": "Razonamiento lógico.",
+  "pda": "Utiliza la lógica simbólica para formalizar razonamientos con condicionales y bicondicionales.",
+  "evaluacion": {
+    "preguntas": [
+      {
+        "tipo": "opcion_multiple",
+        "pregunta": "¿Cuándo es falsa la proposición condicional p → q?",
+        "opciones": [
+          "A) Cuando p es V y q es V",
+          "B) Cuando p es V y q es F",
+          "C) Cuando p es F y q es V",
+          "D) Cuando p es F y q es F"
+        ],
+        "respuesta": "B"
+      },
+      {
+        "tipo": "verdadero_falso",
+        "pregunta": "El bicondicional p ↔ q es verdadero cuando ambas proposiciones tienen el mismo valor de verdad (ambas V o ambas F).",
+        "respuesta": true
+      },
+      {
+        "tipo": "espacios",
+        "pregunta": "En la proposición condicional p → q, p se llama ___ y q se llama consecuente.",
+        "respuesta": "antecedente"
+      },
+      {
+        "tipo": "calculo",
+        "pregunta": "Evalúa (p → q) ∧ (q → p) cuando p = V y q = F.",
+        "respuesta": "Paso 1: Evaluar p → q: V → F = F. Paso 2: Evaluar q → p: F → V = V. Paso 3: F ∧ V = F. El resultado es F. Nota: (p → q) ∧ (q → p) es equivalente al bicondicional p ↔ q."
+      },
+      {
+        "tipo": "abierta",
+        "pregunta": "Traduce a lenguaje simbólico: 'Si estudio, entonces paso el examen'. Identifica el antecedente y el consecuente, y explica en qué caso esta proposición sería falsa.",
+        "respuesta": "Sea p = 'estudio' y q = 'paso el examen'. La proposición es p → q. El antecedente es p ('estudio') y el consecuente es q ('paso el examen'). Sería falsa únicamente cuando p es verdadera y q es falsa, es decir, cuando SÍ estudio pero NO paso el examen."
+      }
+    ]
+  },
+  "orientacion": {
+    "contenidos_especificos": [
+      "Comprender el condicional (→, 'si... entonces') y su tabla de verdad",
+      "Identificar el antecedente (hipótesis) y el consecuente (conclusión) de un condicional",
+      "Comprender el bicondicional (↔, 'si y solo si') como doble condicional",
+      "Construir tablas de verdad de proposiciones con condicionales y bicondicionales",
+      "Aplicar condicionales y bicondicionales para formalizar razonamientos cotidianos y matemáticos"
+    ],
+    "actividad_inicio": [
+      "Escribir en el pizarrón: 'Si sacas 10 en el examen, entonces te compro un helado'. Preguntar: ¿en qué situación se rompe esta promesa?",
+      "Explorar los 4 casos: sacas 10 y te compran helado (promesa cumplida), sacas 10 y NO te compran helado (promesa rota), no sacas 10 y te compran helado (la promesa no se rompió), no sacas 10 y no te compran helado (tampoco se rompió)",
+      "Hacer notar que la promesa solo se rompe en UN caso: cuando la condición se cumple pero la consecuencia no",
+      "Presentar el objetivo: formalizar razonamientos del tipo 'si... entonces' y 'si y solo si' con símbolos lógicos"
+    ],
+    "desarrollo": [
+      {
+        "titulo": "El condicional: si p entonces q",
+        "diapositiva": "1-3",
+        "libro": "Sección 'Condicional'",
+        "video": "min 0:30-2:15",
+        "descripcion": "Formalice el condicional p → q. Construya la tabla de verdad enfatizando el caso contraintuitivo: cuando p es falso, el condicional es verdadero sin importar q. Use la analogía de la promesa y otros ejemplos: 'Si un número es múltiplo de 4, entonces es par' (siempre verdadero). Pida a los alumnos que escriban 3 condicionales matemáticos y 3 cotidianos. Evalúen su valor de verdad actual.",
+        "tip": "El caso F → V = V es el más difícil de aceptar. La analogía de la promesa funciona muy bien: si no se cumple la condición, no puedes acusar de mentiroso a nadie."
+      },
+      {
+        "titulo": "Recíproco, inverso y contrapositivo",
+        "diapositiva": "4-5",
+        "libro": "Sección 'Variantes del condicional'",
+        "video": "min 2:15-3:15",
+        "descripcion": "A partir de p → q, presente las tres variantes: recíproco (q → p), inverso (¬p → ¬q) y contrapositivo (¬q → ¬p). Use el ejemplo: original = 'Si llueve, entonces el piso se moja'; contrapositivo = 'Si el piso no está mojado, entonces no llovió'. Construyan tablas de verdad y descubran que p → q y ¬q → ¬p siempre tienen los mismos valores (son equivalentes). Los alumnos practican escribiendo las 4 variantes de 2 condicionales.",
+        "tip": "Resalte que el recíproco NO siempre tiene el mismo valor de verdad que el original. Ejemplo: 'Si es perro, entonces es animal' es verdadero, pero 'Si es animal, entonces es perro' es falso."
+      },
+      {
+        "titulo": "El bicondicional: si y solo si",
+        "diapositiva": "6-8",
+        "libro": "Sección 'Bicondicional'",
+        "video": "min 3:15-4:45",
+        "descripcion": "Presente p ↔ q como 'p si y solo si q', que equivale a (p → q) ∧ (q → p). Tabla de verdad: verdadero cuando ambas tienen el mismo valor. Ejemplo matemático: 'Un número es par si y solo si es divisible entre 2'. Ejemplo cotidiano: 'Entras al cine si y solo si tienes boleto'. Verifique con el grupo que ambos condicionales se cumplen. Los alumnos construyen tablas de verdad de expresiones como (p → q) ↔ (¬q → ¬p) y verifican que es una tautología.",
+        "tip": "El bicondicional aparece mucho en definiciones matemáticas. Señálelo para que los alumnos reconozcan su importancia."
+      }
+    ],
+    "cierre_individual": {
+      "reflexiona": "Piensa en una regla de tu escuela que tenga forma de condicional (Si..., entonces...). Escríbela formalmente y analiza: ¿se cumple siempre? ¿Su recíproco también es verdadero? Si lo fuera, ¿sería un bicondicional?",
+      "profundiza": [
+        {
+          "pregunta": "'Si un cuadrilátero es cuadrado, entonces tiene 4 ángulos rectos'. ¿Es verdadero? ¿Su recíproco es verdadero? ¿Es un bicondicional?",
+          "respuesta_modelo": "R.M. El condicional es verdadero: todo cuadrado tiene 4 ángulos rectos. El recíproco ('Si tiene 4 ángulos rectos, es cuadrado') es falso: un rectángulo también tiene 4 ángulos rectos pero no es cuadrado. Como el recíproco es falso, no es un bicondicional."
+        },
+        {
+          "pregunta": "Demuestra con tabla de verdad que p → q es equivalente a ¬p ∨ q.",
+          "respuesta_modelo": "R.M. Para (V,V): p→q=V, ¬p∨q=F∨V=V. Para (V,F): p→q=F, ¬p∨q=F∨F=F. Para (F,V): p→q=V, ¬p∨q=V∨V=V. Para (F,F): p→q=V, ¬p∨q=V∨F=V. Ambas columnas: V, F, V, V. Son equivalentes."
+        }
+      ]
+    },
+    "cierre_grupal": [
+      "El condicional p → q es falso únicamente cuando p es verdadero y q es falso",
+      "En p → q, p es el antecedente (condición) y q es el consecuente (resultado)",
+      "El contrapositivo (¬q → ¬p) siempre tiene el mismo valor de verdad que el condicional original",
+      "El bicondicional p ↔ q es verdadero cuando ambas proposiciones tienen el mismo valor de verdad",
+      "El bicondicional equivale a que tanto el condicional como su recíproco sean verdaderos"
+    ],
+    "preguntas_comprension": [
+      "¿Por qué el condicional 'Si 2 + 2 = 5, entonces la Luna es de queso' se considera verdadero en lógica?",
+      "Escribe el contrapositivo de: 'Si un animal es mamífero, entonces tiene sangre caliente'.",
+      "¿Cuál es la diferencia entre el condicional y el bicondicional?",
+      "Da un ejemplo de un bicondicional verdadero en matemáticas.",
+      "Si p → q es verdadero y q → p también es verdadero, ¿qué puedes afirmar sobre p ↔ q?"
+    ]
+  },
+  "libro": {
+    "introduccion": "¿Has notado que muchas reglas se expresan como condiciones? 'Si estudias, pasas el examen'. 'Entras al cine si y solo si tienes boleto'. Estas frases tienen una estructura lógica precisa: los condicionales ('si... entonces') y los bicondicionales ('si y solo si'). Hoy vas a formalizar estos razonamientos con símbolos matemáticos.",
+    "conceptos": [
+      {
+        "titulo": "Condicional (→) — 'Si... entonces'",
+        "contenido": "El condicional p → q se lee 'si p, entonces q'. La proposición p se llama hipótesis (o antecedente) y q se llama conclusión (o consecuente). Un condicional es falso únicamente cuando la hipótesis es verdadera y la conclusión es falsa. En todos los demás casos, es verdadero. Esto puede parecer raro, pero tiene lógica: una promesa solo se rompe cuando se cumple la condición y no se cumple lo prometido.",
+        "definicion": "p → q es falso solo cuando p = V y q = F. En los otros tres casos (V→V, F→V, F→F), es verdadero."
+      },
+      {
+        "titulo": "Bicondicional (↔) — 'Si y solo si'",
+        "contenido": "El bicondicional p ↔ q se lee 'p si y solo si q'. Es verdadero cuando ambas proposiciones tienen el mismo valor de verdad (ambas verdaderas o ambas falsas). Es falso cuando tienen valores distintos. Es como decir: las dos van juntas, o las dos no van.",
+        "definicion": "p ↔ q es verdadero cuando p y q tienen el mismo valor de verdad (V↔V = V, F↔F = V). Es falso cuando tienen valores distintos (V↔F = F, F↔V = F)."
+      },
+      {
+        "titulo": "Contrarrecíproco e inverso",
+        "contenido": "De un condicional p → q se pueden formar proposiciones relacionadas. El contrarrecíproco (¬q → ¬p) siempre tiene el mismo valor de verdad que el original, es decir, son lógicamente equivalentes. El recíproco (q → p) y el inverso (¬p → ¬q) no necesariamente son equivalentes al original.",
+        "definicion": null
+      }
+    ],
+    "ejemplos": [
+      {
+        "titulo": "Tabla de verdad del condicional",
+        "enunciado": "Construye la tabla de verdad de p → q.",
+        "pasos": [
+          "Paso 1: Si p = V y q = V, entonces p → q = V (la promesa se cumplió).",
+          "Paso 2: Si p = V y q = F, entonces p → q = F (la promesa se rompió).",
+          "Paso 3: Si p = F y q = V, entonces p → q = V (no se activó la condición).",
+          "Paso 4: Si p = F y q = F, entonces p → q = V (no se activó la condición)."
+        ],
+        "resultado": "El condicional solo es falso en un caso: cuando la hipótesis es verdadera y la conclusión es falsa."
+      },
+      {
+        "titulo": "Bicondicional con ejemplo",
+        "enunciado": "p = 'Un número es par' y q = 'El número es divisible entre 2'. Evalúa p ↔ q.",
+        "pasos": [
+          "Paso 1: Si el número es par (V) y es divisible entre 2 (V): p ↔ q = V.",
+          "Paso 2: Si el número no es par (F) y no es divisible entre 2 (F): p ↔ q = V.",
+          "Paso 3: En este caso p y q siempre coinciden, así que p ↔ q es siempre verdadero."
+        ],
+        "resultado": "'Un número es par si y solo si es divisible entre 2' es una proposición siempre verdadera (tautología)."
+      },
+      {
+        "titulo": "Contrarrecíproco",
+        "enunciado": "Dado p → q: 'Si llueve, entonces la calle se moja'. Forma el contrarrecíproco.",
+        "pasos": [
+          "Paso 1: p = 'llueve', q = 'la calle se moja'.",
+          "Paso 2: Contrarrecíproco = ¬q → ¬p = 'Si la calle no se moja, entonces no llueve'.",
+          "Paso 3: Ambas proposiciones (original y contrarrecíproco) son lógicamente equivalentes."
+        ],
+        "resultado": "'Si la calle no se moja, entonces no llueve' tiene el mismo valor de verdad que 'Si llueve, la calle se moja'."
+      }
+    ],
+    "datos_curiosos": "El condicional es la base de la programación: 'if... then...' (si... entonces...) es una de las instrucciones más usadas en cualquier lenguaje de programación. Cada vez que usas una app, cientos de condicionales se evalúan: 'si el usuario presiona este botón, entonces muestra esta pantalla'. Sin la lógica condicional, no existiría ni un solo programa de computadora.",
+    "ejercicios": [
+      {
+        "numero": 1,
+        "enunciado": "Construye la tabla de verdad completa del bicondicional p ↔ q (las 4 combinaciones).",
+        "espacio": true,
+        "lineas": 5
+      },
+      {
+        "numero": 2,
+        "enunciado": "Dado el condicional 'Si sacas 10, te compro un helado': a) ¿Cuándo se rompe la promesa? b) Escribe el contrarrecíproco.",
+        "espacio": true,
+        "lineas": 4
+      },
+      {
+        "numero": 3,
+        "enunciado": "Si p = V y q = F, evalúa: a) p → q, b) q → p, c) p ↔ q, d) ¬p → ¬q.",
+        "espacio": true,
+        "lineas": 4
+      },
+      {
+        "numero": 4,
+        "enunciado": "Escribe un ejemplo de bicondicional verdadero y uno falso usando situaciones cotidianas.",
+        "espacio": true,
+        "lineas": 3
+      },
+      {
+        "numero": 5,
+        "enunciado": "Encuentra el error: Un compañero dice: 'Si llueve, llevo paraguas. No llueve, entonces no llevo paraguas.' ¿Es correcto su razonamiento? Explica qué falla lógica comete.",
+        "espacio": true,
+        "lineas": 5
+      }
+    ],
+    "puntos_clave": [
+      "El condicional p → q es falso solo cuando p es verdadera y q es falsa.",
+      "El bicondicional p ↔ q es verdadero cuando ambas proposiciones tienen el mismo valor de verdad.",
+      "El contrarrecíproco (¬q → ¬p) es lógicamente equivalente al condicional original (p → q).",
+      "Las tablas de verdad son esenciales para verificar la validez de razonamientos condicionales.",
+      "Los condicionales y bicondicionales son la base de las demostraciones matemáticas y la programación."
+    ]
+  },
+  "diapositiva": [
+    {
+      "titulo": "El condicional: Si... entonces...",
+      "puntos": [
+        "Se escribe p → q",
+        "p = antecedente (condición), q = consecuente (resultado)",
+        "Estructura: 'Si [condición], entonces [resultado]'"
+      ],
+      "ejemplo": "Si llueve (p), entonces me mojo (q) → p → q."
+    },
+    {
+      "titulo": "Tabla de verdad del condicional",
+      "puntos": [
+        "V → V = V (promesa cumplida)",
+        "V → F = F (promesa rota, ÚNICO caso falso)",
+        "F → V = V (no aplica la condición)",
+        "F → F = V (no aplica la condición)"
+      ],
+      "ejemplo": "'Si sacas 10, te compro un celular': solo es mentira si saca 10 y no se lo compras."
+    },
+    {
+      "titulo": "¿Por qué F → V es verdadero?",
+      "puntos": [
+        "Si la condición NO se cumple, la promesa no se rompe",
+        "Ejemplo: 'Si nieva en Cancún, te doy $1000'",
+        "Nunca nieva, así que nunca puedes decir que mentí",
+        "La promesa sigue vigente"
+      ],
+      "ejemplo": "No nevó → cualquier cosa → el condicional es V."
+    },
+    {
+      "titulo": "El bicondicional: Si y solo si",
+      "puntos": [
+        "Se escribe p ↔ q",
+        "Es verdadero cuando ambas son V o ambas son F",
+        "Equivale a (p → q) ∧ (q → p)"
+      ],
+      "ejemplo": "'Un número es par si y solo si termina en 0, 2, 4, 6 u 8.'"
+    },
+    {
+      "titulo": "Tabla de verdad del bicondicional",
+      "puntos": ["V ↔ V = V", "V ↔ F = F", "F ↔ V = F", "F ↔ F = V"],
+      "ejemplo": "El bicondicional verifica que la relación funcione en ambas direcciones."
+    },
+    {
+      "titulo": "Condicional vs. bicondicional",
+      "puntos": [
+        "p → q: solo pide que si p entonces q",
+        "p ↔ q: pide que si p entonces q, Y si q entonces p",
+        "Todo bicondicional verdadero contiene dos condicionales verdaderos"
+      ],
+      "ejemplo": "'Si es cuadrado, tiene 4 lados' (V), pero 'si tiene 4 lados, es cuadrado' (F → no es bicondicional)."
+    },
+    {
+      "titulo": "Traducción al lenguaje simbólico",
+      "puntos": [
+        "Identifica las proposiciones simples (p, q)",
+        "Identifica el conectivo ('si...entonces' = →, 'si y solo si' = ↔)",
+        "Escribe la fórmula y evalúa"
+      ],
+      "ejemplo": "'Si estudio, paso' → p → q. 'Apruebo si y solo si asisto' → p ↔ q."
+    },
+    {
+      "titulo": "Resumen",
+      "puntos": [
+        "→ (condicional): falso solo cuando V → F",
+        "↔ (bicondicional): verdadero cuando ambos coinciden",
+        "Ya tienes 5 conectivos: ¬, ∧, ∨, →, ↔",
+        "Con ellos formalizas cualquier razonamiento lógico"
+      ],
+      "ejemplo": "Busca condicionales en reglamentos, leyes o definiciones matemáticas."
+    }
+  ],
+  "video_script": "# Condicionales y bicondicionales\n\n[VISUAL: Escena animada: un papá le dice a su hijo \"Si sacas 10, te compro un celular\" con un globo de diálogo]\n\n¡Hola! ¿Alguna vez te han prometido algo con un \"si\"? \"Si recoges tu cuarto, puedes salir.\" \"Si llegas temprano, te dejo jugar.\" Todas esas frases son condicionales, y hoy las vamos a analizar como matemáticos.\n\n[VISUAL: Aparece la fórmula p → q con flechas señalando antecedente y consecuente]\n\nEl condicional se escribe p → q y se lee \"si p, entonces q\". La primera parte, p, se llama antecedente — es la condición. La segunda parte, q, se llama consecuente — es lo que pasa si la condición se cumple.\n\nVamos con el ejemplo del papá: p = \"Sacas 10\" y q = \"Te compro un celular\". La promesa es p → q: \"Si sacas 10, te compro un celular.\"\n\n[VISUAL: Cuatro escenas animadas representando cada caso de la tabla de verdad]\n\nAhora pensemos: ¿cuándo el papá miente? Caso 1: sacas 10 y te compra el celular. Promesa cumplida, verdadero. Caso 2: sacas 10 y NO te compra el celular. ¡Mentiroso! Falso. Este es el ÚNICO caso donde el condicional es falso. Caso 3: no sacas 10 pero te compra el celular de todos modos. Pues qué buena onda, pero no mintió. Verdadero. Caso 4: no sacas 10 y no te compra nada. Tampoco mintió porque la condición no se cumplió. Verdadero.\n\n[VISUAL: Tabla de verdad completa de p → q con el caso V→F resaltado en rojo]\n\nEse es el chiste del condicional: solo es falso cuando la condición SÍ se cumple pero el resultado NO. V → F = F. Todos los demás casos son verdaderos.\n\nLo sé, el caso de F → V parece raro. ¿Cómo va a ser verdadero si la condición es falsa? Piénsalo así: si nunca se cumple la condición, no puedes acusar a nadie de haber mentido. La promesa sigue \"vigente\" pero sin activarse.\n\n[VISUAL: Transición a una nueva sección, aparece el símbolo ↔ con \"si y solo si\"]\n\nAhora vamos con el bicondicional. Se escribe p ↔ q y se lee \"p si y solo si q\". Es como un condicional doble: funciona para ambos lados. No solo \"si p entonces q\", sino también \"si q entonces p\".\n\n[VISUAL: Ejemplo con triángulo equilátero girando]\n\nEjemplo perfecto: \"Un triángulo es equilátero SI Y SOLO SI sus tres lados miden lo mismo.\" Esto significa dos cosas: si es equilátero, sus lados son iguales (p → q), y si sus lados son iguales, es equilátero (q → p). Ambas direcciones funcionan, así que es un bicondicional verdadero.\n\n[VISUAL: Contraejemplo con cuadrado y rectángulo]\n\nPero cuidado: \"Una figura es un cuadrado si y solo si tiene 4 lados.\" ¡Falso! Porque un rectángulo también tiene 4 lados y no es cuadrado. El condicional p → q funciona (si es cuadrado, tiene 4 lados), pero q → p no (si tiene 4 lados, no necesariamente es cuadrado). Sin ambas direcciones, no hay bicondicional.\n\n[VISUAL: Tabla de verdad de p ↔ q con colores]\n\nLa tabla de verdad del bicondicional es elegante: es verdadero cuando ambas proposiciones tienen el mismo valor. V ↔ V = V. F ↔ F = V. Los casos mixtos son falsos: V ↔ F = F y F ↔ V = F.\n\n[VISUAL: Los 5 símbolos lógicos en fila: ¬ ∧ ∨ → ↔]\n\nCon esto ya tienes los 5 conectivos de la lógica proposicional: negación, conjunción, disyunción, condicional y bicondicional. Con estos 5 símbolos puedes formalizar cualquier razonamiento humano.\n\nPractica traduciendo frases de tu vida diaria: reglamentos de la escuela, instrucciones de videojuegos, condiciones de una apuesta con tus amigos. Todo es lógica. ¡Nos vemos!"
+}

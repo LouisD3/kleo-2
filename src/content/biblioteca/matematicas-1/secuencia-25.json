@@ -1,0 +1,362 @@
+{
+  "secuencia": 25,
+  "titulo": "Distancia entre dos puntos",
+  "contenido": "Medición y cálculo en diferentes contextos.",
+  "pda": "Introduce la idea de distancia entre dos puntos como la longitud del segmento que los une.",
+  "evaluacion": {
+    "preguntas": [
+      {
+        "tipo": "opcion_multiple",
+        "pregunta": "¿Cuál es la distancia entre los puntos A(1, 2) y B(4, 6)?",
+        "opciones": ["A) 3", "B) 5", "C) 7", "D) 25"],
+        "respuesta": "B"
+      },
+      {
+        "tipo": "verdadero_falso",
+        "pregunta": "La distancia entre dos puntos siempre es un valor positivo o cero.",
+        "opciones": [],
+        "respuesta": true
+      },
+      {
+        "tipo": "espacios",
+        "pregunta": "La distancia entre dos puntos es la ___ del segmento que los une.",
+        "opciones": [],
+        "respuesta": "longitud"
+      },
+      {
+        "tipo": "abierta",
+        "pregunta": "Explica con tus propias palabras por qué la distancia entre dos puntos no puede ser negativa.",
+        "opciones": [],
+        "respuesta": "La distancia es una medida de longitud, y las longitudes siempre son positivas o cero. Al usar la fórmula de distancia, el resultado está dentro de una raíz cuadrada, lo que garantiza un valor no negativo. Además, conceptualmente la distancia representa cuánto hay que recorrer de un punto a otro, lo cual nunca puede ser negativo."
+      },
+      {
+        "tipo": "calculo",
+        "pregunta": "Calcula la distancia entre los puntos P(−2, 3) y Q(4, −1).",
+        "opciones": [],
+        "respuesta": "Paso 1: Identificar coordenadas: x₁ = −2, y₁ = 3, x₂ = 4, y₂ = −1.\nPaso 2: Aplicar la fórmula: d = √[(x₂ − x₁)² + (y₂ − y₁)²]\nPaso 3: Sustituir: d = √[(4 − (−2))² + (−1 − 3)²] = √[(6)² + (−4)²] = √[36 + 16] = √52\nPaso 4: Simplificar: √52 = √(4 × 13) = 2√13 ≈ 7.21 unidades."
+      }
+    ]
+  },
+  "orientacion": {
+    "contenidos_especificos": [
+      "Comprender la distancia entre dos puntos como la longitud del segmento que los une",
+      "Construir triángulos rectángulos auxiliares en el plano cartesiano para visualizar la distancia",
+      "Aplicar el teorema de Pitágoras para deducir y utilizar la fórmula de distancia"
+    ],
+    "actividad_inicio": [
+      "Proyectar un mapa cuadriculado de la colonia cercana a la escuela y preguntar: ¿cómo medirían la distancia en línea recta entre dos lugares?",
+      "Pedir a un alumno que camine en línea recta desde una esquina del salón hasta otra; medir con un flexómetro y anotar el resultado",
+      "Dibujar en el pizarrón un plano cartesiano con dos puntos, por ejemplo A(1, 1) y B(4, 5), y preguntar: ¿cuánto mide el segmento AB?",
+      "Guiar a los alumnos a notar que no basta sumar las diferencias en x y en y; se necesita otro método",
+      "Presentar el objetivo: aprender a calcular la distancia exacta entre dos puntos usando el teorema de Pitágoras"
+    ],
+    "desarrollo": [
+      {
+        "titulo": "Del segmento al triángulo rectángulo",
+        "diapositiva": "1-3",
+        "libro": "Sección 'Distancia entre dos puntos'",
+        "video": "min 0:30-2:30",
+        "descripcion": "Trace en el pizarrón los puntos A(1, 2) y B(4, 6). Una ambos con un segmento. Luego dibuje las líneas auxiliares horizontal y vertical para formar un triángulo rectángulo. Identifique los catetos: el horizontal mide |4 − 1| = 3 y el vertical mide |6 − 2| = 4. Pregunte al grupo: ¿qué teorema nos permite calcular la hipotenusa? Guíe hacia el teorema de Pitágoras. Calcule d = √(3² + 4²) = √25 = 5. Repita con otro par de puntos pidiendo participación individual.",
+        "tip": "Utilice papel cuadriculado o una cuadrícula proyectada para que los alumnos cuenten las unidades de los catetos antes de aplicar la fórmula."
+      },
+      {
+        "titulo": "Fórmula general de distancia",
+        "diapositiva": "4-6",
+        "libro": "Sección 'Fórmula de distancia'",
+        "video": "min 2:30-4:30",
+        "descripcion": "Generalice el procedimiento anterior con la fórmula d = √((x₂ − x₁)² + (y₂ − y₁)²). Enfatice que el orden de la resta no importa porque se eleva al cuadrado. Trabaje el ejemplo P(−2, 3) y Q(4, −1) paso a paso en el pizarrón. Los alumnos copian y resuelven individualmente tres ejercicios adicionales con coordenadas positivas y negativas. Circule verificando que no olviden elevar al cuadrado ni extraer la raíz.",
+        "tip": "Recuerde a los alumnos que (−4)² = 16, no −16. Los errores de signos al cuadrado son el error más frecuente."
+      },
+      {
+        "titulo": "Práctica en parejas: puntos en el mapa",
+        "diapositiva": "7-8",
+        "libro": "Sección 'Problemas de aplicación'",
+        "video": null,
+        "descripcion": "Entregue a cada pareja un plano cartesiano con 6 puntos marcados que representan lugares de una ciudad ficticia (escuela, parque, tienda, biblioteca, hospital, casa). Cada pareja debe calcular la distancia entre al menos 4 pares de puntos y determinar cuáles dos lugares están más cerca y cuáles más lejos. Al terminar, dos parejas comparten sus resultados y el grupo verifica colectivamente.",
+        "tip": null
+      }
+    ],
+    "cierre_individual": {
+      "reflexiona": "¿En qué pasos del cálculo de distancia te sientes más seguro y en cuáles necesitas más práctica? Escribe en tu cuaderno un ejemplo resuelto por ti de principio a fin, explicando cada paso.",
+      "profundiza": [
+        {
+          "pregunta": "Si tres puntos A(0, 0), B(3, 4) y C(6, 0) forman un triángulo, calcula el perímetro de ese triángulo.",
+          "respuesta_modelo": "R.M. AB = √(9 + 16) = 5. BC = √(9 + 16) = 5. AC = √(36 + 0) = 6. Perímetro = 5 + 5 + 6 = 16 unidades. Se forma un triángulo isósceles."
+        },
+        {
+          "pregunta": "¿Por qué la distancia entre dos puntos nunca puede ser negativa? Justifica tu respuesta.",
+          "respuesta_modelo": "R.M. Porque la distancia es la longitud de un segmento, que es una medida física. Matemáticamente, al elevar las diferencias al cuadrado siempre obtenemos valores positivos o cero, y la raíz cuadrada de un número positivo es positiva. Solo es cero cuando ambos puntos coinciden."
+        }
+      ]
+    },
+    "cierre_grupal": [
+      "La distancia entre dos puntos es la longitud del segmento que los une",
+      "Se calcula formando un triángulo rectángulo auxiliar y aplicando el teorema de Pitágoras",
+      "La fórmula general es d = √((x₂ − x₁)² + (y₂ − y₁)²)",
+      "El orden de la resta no afecta el resultado porque las diferencias se elevan al cuadrado",
+      "La distancia siempre es un valor positivo o cero"
+    ],
+    "preguntas_comprension": [
+      "¿Cuál es la distancia entre los puntos (0, 0) y (5, 12)? Explica tu procedimiento.",
+      "Si dos puntos tienen la misma coordenada y, ¿cómo se simplifica la fórmula de distancia?",
+      "Calcula la distancia entre (−3, −1) y (1, 2). ¿Por qué es importante elevar al cuadrado antes de sumar?",
+      "¿Es posible que la distancia entre dos puntos distintos sea cero? Argumenta.",
+      "Un punto está en (2, 3) y otro a una distancia de 10 unidades sobre el eje x. ¿Cuáles son las coordenadas posibles del segundo punto?"
+    ]
+  },
+  "libro": {
+    "introduccion": "¿Alguna vez has querido saber exactamente qué tan lejos están dos lugares en un mapa? Hoy vas a aprender a calcular la distancia entre dos puntos usando el plano cartesiano y el teorema de Pitágoras. Es como tener un superpoder matemático para medir cualquier distancia sin necesidad de un flexómetro.",
+    "conceptos": [
+      {
+        "titulo": "Distancia entre dos puntos",
+        "contenido": "La distancia entre dos puntos es la longitud del segmento recto que los une. Es el camino más corto posible entre ellos. Cuando colocas dos puntos en el plano cartesiano, puedes formar un triángulo rectángulo cuyos catetos son las diferencias en las coordenadas x e y, y la hipotenusa es la distancia que buscas.",
+        "definicion": "Dados dos puntos A(x₁, y₁) y B(x₂, y₂), la distancia entre ellos es d = √[(x₂ − x₁)² + (y₂ − y₁)²].",
+        "figura": {
+          "tipo": "plano_cartesiano",
+          "xMin": -1,
+          "xMax": 7,
+          "yMin": -1,
+          "yMax": 6,
+          "puntos": [
+            {
+              "x": 1,
+              "y": 1,
+              "label": "A(1,1)"
+            },
+            {
+              "x": 5,
+              "y": 4,
+              "label": "B(5,4)"
+            }
+          ],
+          "lineas": [
+            {
+              "x1": 1,
+              "y1": 1,
+              "x2": 5,
+              "y2": 4
+            },
+            {
+              "x1": 1,
+              "y1": 1,
+              "x2": 5,
+              "y2": 1,
+              "color": "#E11D48"
+            },
+            {
+              "x1": 5,
+              "y1": 1,
+              "x2": 5,
+              "y2": 4,
+              "color": "#E11D48"
+            }
+          ],
+          "width": 180,
+          "height": 180
+        }
+      },
+      {
+        "titulo": "Triángulo rectángulo auxiliar",
+        "contenido": "Para visualizar la distancia, imagina que desde el punto A caminas horizontalmente hasta quedar debajo (o arriba) de B, y luego subes (o bajas) verticalmente hasta llegar a B. Esos dos recorridos forman los catetos de un triángulo rectángulo. El cateto horizontal mide |x₂ − x₁| y el vertical mide |y₂ − y₁|. La hipotenusa, calculada con Pitágoras, es la distancia.",
+        "definicion": null
+      },
+      {
+        "titulo": "Casos especiales",
+        "contenido": "Cuando dos puntos comparten la misma coordenada y (están en la misma línea horizontal), la distancia se reduce a |x₂ − x₁|. De manera similar, si comparten la coordenada x (misma línea vertical), la distancia es |y₂ − y₁|. En estos casos la fórmula se simplifica porque uno de los catetos vale cero.",
+        "definicion": null
+      }
+    ],
+    "ejemplos": [
+      {
+        "titulo": "Coordenadas positivas",
+        "enunciado": "Calcula la distancia entre A(2, 3) y B(5, 7).",
+        "pasos": [
+          "Paso 1: Identifica las coordenadas: x₁ = 2, y₁ = 3, x₂ = 5, y₂ = 7.",
+          "Paso 2: Sustituye en la fórmula: d = √[(5 − 2)² + (7 − 3)²].",
+          "Paso 3: Calcula las diferencias: d = √[3² + 4²] = √[9 + 16].",
+          "Paso 4: Suma y obtén la raíz: d = √25 = 5."
+        ],
+        "resultado": "La distancia es 5 unidades. Este es un ejemplo de terna pitagórica (3, 4, 5)."
+      },
+      {
+        "titulo": "Coordenadas negativas",
+        "enunciado": "Calcula la distancia entre P(−3, 1) y Q(2, −2).",
+        "pasos": [
+          "Paso 1: Identifica: x₁ = −3, y₁ = 1, x₂ = 2, y₂ = −2.",
+          "Paso 2: Sustituye: d = √[(2 − (−3))² + (−2 − 1)²].",
+          "Paso 3: Resuelve los paréntesis: d = √[(5)² + (−3)²] = √[25 + 9].",
+          "Paso 4: d = √34 ≈ 5.83."
+        ],
+        "resultado": "La distancia es √34 ≈ 5.83 unidades. Recuerda: restar un negativo es sumar."
+      },
+      {
+        "titulo": "Puntos alineados horizontalmente",
+        "enunciado": "Calcula la distancia entre M(1, 4) y N(7, 4).",
+        "pasos": [
+          "Paso 1: Observa que y₁ = y₂ = 4, ambos puntos están en la misma línea horizontal.",
+          "Paso 2: La fórmula se simplifica: d = |x₂ − x₁| = |7 − 1| = 6."
+        ],
+        "resultado": "La distancia es 6 unidades. Cuando los puntos comparten una coordenada, solo se resta la otra."
+      }
+    ],
+    "datos_curiosos": "La fórmula de distancia funciona en cualquier plano cartesiano del universo. Los astrónomos la usan para calcular distancias entre estrellas proyectadas en mapas del cielo. Y en 3D se extiende añadiendo (z₂ − z₁)² dentro de la raíz.",
+    "ejercicios": [
+      {
+        "numero": 1,
+        "enunciado": "Calcula la distancia entre los puntos A(0, 0) y B(6, 8).",
+        "espacio": true,
+        "lineas": 4
+      },
+      {
+        "numero": 2,
+        "enunciado": "Encuentra la distancia entre P(−4, 2) y Q(3, −5). Simplifica tu resultado si es posible.",
+        "espacio": true,
+        "lineas": 4
+      },
+      {
+        "numero": 3,
+        "enunciado": "Dos puntos tienen coordenadas R(5, −1) y S(5, 7). Sin usar la fórmula completa, ¿cuál es la distancia entre ellos? Explica por qué.",
+        "espacio": true,
+        "lineas": 3
+      },
+      {
+        "numero": 4,
+        "enunciado": "Los vértices de un triángulo son A(0, 0), B(3, 4) y C(6, 0). Calcula el perímetro del triángulo usando la fórmula de distancia.",
+        "espacio": true,
+        "lineas": 5
+      }
+    ],
+    "puntos_clave": [
+      "La distancia entre dos puntos es la longitud del segmento recto que los une.",
+      "Se calcula con la fórmula d = √[(x₂ − x₁)² + (y₂ − y₁)²], derivada del teorema de Pitágoras.",
+      "La distancia siempre es un valor positivo o cero (cero solo si los puntos coinciden).",
+      "Al elevar al cuadrado, los signos negativos desaparecen, así que el orden de la resta no importa.",
+      "Si los puntos comparten una coordenada, la fórmula se simplifica a una simple resta con valor absoluto."
+    ]
+  },
+  "diapositiva": [
+    {
+      "titulo": "Distancia entre dos puntos",
+      "puntos": [
+        "Tema: Medición y cálculo en diferentes contextos",
+        "Objetivo: Comprender la distancia como la longitud del segmento que une dos puntos",
+        "Conexión con el teorema de Pitágoras"
+      ],
+      "ejemplo": "¿Cuánto mide la línea recta entre tu casa y la escuela en un mapa?"
+    },
+    {
+      "titulo": "¿Qué es la distancia?",
+      "puntos": [
+        "Es la longitud del segmento recto que une dos puntos",
+        "Siempre es un valor positivo o cero",
+        "Es la menor distancia posible entre ambos puntos",
+        "Se mide en unidades de longitud"
+      ],
+      "ejemplo": "Si A y B están en un mapa, la distancia es la línea recta, no el camino por las calles."
+    },
+    {
+      "titulo": "El triángulo rectángulo escondido",
+      "puntos": [
+        "Dados dos puntos A(x₁, y₁) y B(x₂, y₂), podemos trazar un triángulo rectángulo",
+        "Cateto horizontal = |x₂ − x₁|",
+        "Cateto vertical = |y₂ − y₁|",
+        "La hipotenusa es la distancia que buscamos"
+      ],
+      "ejemplo": "A(1,1) y B(4,5): cateto horizontal = 3, cateto vertical = 4, hipotenusa = 5.",
+      "figura": {
+        "tipo": "plano_cartesiano",
+        "xMin": -1,
+        "xMax": 8,
+        "yMin": -1,
+        "yMax": 6,
+        "puntos": [
+          {
+            "x": 2,
+            "y": 1,
+            "label": "P"
+          },
+          {
+            "x": 6,
+            "y": 4,
+            "label": "Q"
+          }
+        ],
+        "lineas": [
+          {
+            "x1": 2,
+            "y1": 1,
+            "x2": 6,
+            "y2": 4
+          },
+          {
+            "x1": 2,
+            "y1": 1,
+            "x2": 6,
+            "y2": 1,
+            "color": "#E11D48"
+          },
+          {
+            "x1": 6,
+            "y1": 1,
+            "x2": 6,
+            "y2": 4,
+            "color": "#E11D48"
+          }
+        ],
+        "width": 220,
+        "height": 200
+      }
+    },
+    {
+      "titulo": "La fórmula de distancia",
+      "puntos": [
+        "d = √[(x₂ − x₁)² + (y₂ − y₁)²]",
+        "Se deriva directamente del teorema de Pitágoras",
+        "Funciona para cualquier par de puntos en el plano",
+        "Al elevar al cuadrado, el orden de la resta no importa"
+      ],
+      "ejemplo": "d² = (cateto₁)² + (cateto₂)² → d = √(suma)"
+    },
+    {
+      "titulo": "Ejemplo resuelto 1",
+      "puntos": [
+        "Puntos: A(2, 3) y B(5, 7)",
+        "d = √[(5−2)² + (7−3)²]",
+        "d = √[9 + 16] = √25 = 5",
+        "La distancia es 5 unidades"
+      ],
+      "ejemplo": "Terna pitagórica 3-4-5: ¡la más famosa!"
+    },
+    {
+      "titulo": "Ejemplo resuelto 2: con negativos",
+      "puntos": [
+        "Puntos: P(−3, 1) y Q(2, −2)",
+        "d = √[(2−(−3))² + (−2−1)²]",
+        "d = √[25 + 9] = √34 ≈ 5.83",
+        "Cuidado: restar un negativo = sumar"
+      ],
+      "ejemplo": "2 − (−3) = 2 + 3 = 5"
+    },
+    {
+      "titulo": "Errores comunes a evitar",
+      "puntos": [
+        "Olvidar la raíz cuadrada al final",
+        "Confundir las coordenadas x con las y",
+        "Errores de signo con números negativos",
+        "Sumar en vez de restar las coordenadas"
+      ],
+      "ejemplo": "Error típico: d = (5−2)² + (7−3)² = 25 → ¡falta la raíz! Lo correcto: d = √25 = 5"
+    },
+    {
+      "titulo": "Resumen y puntos clave",
+      "puntos": [
+        "Distancia = longitud del segmento recto entre dos puntos",
+        "Fórmula: d = √[(x₂−x₁)² + (y₂−y₁)²]",
+        "Siempre es ≥ 0; es 0 solo si los puntos coinciden",
+        "Casos especiales: puntos alineados → solo una resta"
+      ],
+      "ejemplo": "Si y₁ = y₂, entonces d = |x₂ − x₁|. ¡Se simplifica mucho!"
+    }
+  ],
+  "video_script": "## Script de video: Distancia entre dos puntos\n\n[VISUAL: Pantalla con título animado \"Distancia entre dos puntos\" sobre un plano cartesiano colorido]\n\n¡Hola! ¿Alguna vez te has preguntado cómo calcula Google Maps la distancia entre dos lugares? Bueno, hoy vas a aprender el truco matemático que hay detrás de eso. Vamos a descubrir cómo medir la distancia entre dos puntos usando el plano cartesiano. ¡Es más fácil de lo que crees!\n\n[VISUAL: Mapa de una ciudad con dos puntos marcados, luego transición a un plano cartesiano]\n\nPrimero, pensemos en algo sencillo. Si te digo que tu casa está en el punto A y la tienda está en el punto B, la distancia entre los dos es simplemente la línea recta que los conecta. Esa línea recta es un segmento, y su longitud es lo que llamamos distancia.\n\n[VISUAL: Plano cartesiano con los puntos A(1,1) y B(4,5) marcados, segmento dibujado entre ellos]\n\nAhora, vamos a poner esto en el plano cartesiano. Mira, tengo el punto A en las coordenadas (1, 1) y el punto B en (4, 5). Si trazo la línea recta entre ellos, ¿cómo calculo su longitud? Aquí viene lo genial: ¡usamos el teorema de Pitágoras!\n\n[VISUAL: Se dibuja un triángulo rectángulo con el segmento AB como hipotenusa, mostrando catetos horizontal y vertical]\n\nFíjate: si desde el punto A me muevo hacia la derecha hasta estar debajo de B, recorro 3 unidades en horizontal. Luego subo 4 unidades en vertical. ¡Acabamos de formar un triángulo rectángulo! Los catetos miden 3 y 4, y la hipotenusa —que es la distancia que buscamos— se calcula con Pitágoras.\n\n[VISUAL: Fórmula apareciendo paso a paso: d² = 3² + 4² = 9 + 16 = 25, d = √25 = 5]\n\nEntonces: d al cuadrado es igual a 3 al cuadrado más 4 al cuadrado. Eso nos da 9 más 16, que es 25. Y la raíz cuadrada de 25 es 5. ¡La distancia entre A y B es de 5 unidades! ¿Ves? No fue tan difícil.\n\nAhora, generalicemos esto con una fórmula que funciona para cualquier par de puntos.\n\n[VISUAL: Fórmula general apareciendo con colores: d = √[(x₂ − x₁)² + (y₂ − y₁)²]]\n\nSi tenemos el punto A con coordenadas (x₁, y₁) y el punto B con coordenadas (x₂, y₂), la distancia es igual a la raíz cuadrada de la diferencia de las x al cuadrado, más la diferencia de las y al cuadrado. Escríbela en tu cuaderno, porque esta fórmula la vas a usar mucho.\n\n[VISUAL: Nuevo ejemplo con P(−3, 1) y Q(2, −2) en el plano cartesiano]\n\nVamos con un ejemplo un poco más retador. Tenemos P en (−3, 1) y Q en (2, −2). ¡Hay números negativos! Pero no te preocupes, la fórmula funciona igual.\n\nSustituimos: la diferencia en x es 2 menos (−3), que es 2 más 3, igual a 5. La diferencia en y es −2 menos 1, que es −3. Ahora elevamos al cuadrado: 5 al cuadrado es 25, y −3 al cuadrado es 9. Sumamos: 25 más 9 es 34. La distancia es la raíz cuadrada de 34, que es aproximadamente 5.83 unidades.\n\n[VISUAL: Cálculo paso a paso apareciendo en pantalla con resultado resaltado]\n\n¡Excelente! Fíjate que al elevar al cuadrado, los signos negativos desaparecen. Así que no importa si restas en un orden o en otro, el resultado siempre es positivo.\n\n[VISUAL: Caso especial: dos puntos con la misma coordenada y, línea horizontal]\n\nUn tip rápido: si los dos puntos están en la misma línea horizontal, o sea que tienen la misma coordenada y, la distancia se simplifica a solo la diferencia de las x. Por ejemplo, entre (1, 4) y (7, 4), la distancia es simplemente 7 − 1 = 6. ¡Facilísimo!\n\n[VISUAL: Resumen con los tres puntos clave en tarjetas animadas]\n\nVamos a recapitular lo que aprendimos hoy. Primero: la distancia entre dos puntos es la longitud del segmento recto que los une. Segundo: se calcula con la fórmula d = √[(x₂ − x₁)² + (y₂ − y₁)²], que viene del teorema de Pitágoras. Y tercero: la distancia siempre es positiva o cero.\n\n[VISUAL: Pantalla de cierre con la fórmula y texto \"¡Practica con ejercicios!\"]\n\n¡Ahora te toca a ti! Practica con varios pares de puntos y verás que cada vez te sale más rápido. Nos vemos en la siguiente lección donde aprenderemos la distancia de un punto a una recta. ¡Hasta pronto!"
+}

@@ -1,0 +1,300 @@
+{
+  "secuencia": 17,
+  "titulo": "Ángulos",
+  "contenido": "Rectas y ángulos.",
+  "pda": "Encuentra y calcula los ángulos que se forman al intersecar dos segmentos.",
+  "evaluacion": {
+    "preguntas": [
+      {
+        "tipo": "opcion_multiple",
+        "pregunta": "Si dos rectas se intersecan y uno de los ángulos formados mide 65°, ¿cuánto mide el ángulo opuesto por el vértice?",
+        "opciones": ["A) 115°", "B) 25°", "C) 65°", "D) 90°"],
+        "respuesta": "C"
+      },
+      {
+        "tipo": "verdadero_falso",
+        "pregunta": "Dos ángulos suplementarios siempre suman 180°.",
+        "respuesta": true
+      },
+      {
+        "tipo": "espacios",
+        "pregunta": "Un ángulo que mide exactamente 90° se llama ángulo ___.",
+        "respuesta": "recto"
+      },
+      {
+        "tipo": "calculo",
+        "pregunta": "Dos rectas se intersecan formando 4 ángulos. Si uno de ellos mide 72°, calcula la medida de los otros tres ángulos.",
+        "respuesta": "Paso 1: Los ángulos opuestos por el vértice son iguales, así que el ángulo opuesto también mide 72°.\nPaso 2: Los ángulos adyacentes son suplementarios (suman 180°).\nPaso 3: Ángulo adyacente = 180° − 72° = 108°.\nPaso 4: El otro ángulo opuesto a este también mide 108°.\nRespuesta: Los cuatro ángulos son 72°, 108°, 72° y 108°."
+      },
+      {
+        "tipo": "abierta",
+        "pregunta": "¿Por qué los ángulos opuestos por el vértice siempre son iguales? Explica con tus propias palabras.",
+        "respuesta": "Cuando dos rectas se cruzan, forman 4 ángulos. Cada par de ángulos adyacentes forma una línea recta, así que suman 180° (son suplementarios). Si un ángulo mide x, su adyacente mide 180° − x. El ángulo opuesto al primer ángulo también es adyacente al de 180° − x, entonces mide 180° − (180° − x) = x. Por eso los opuestos por el vértice siempre son iguales."
+      }
+    ]
+  },
+  "orientacion": {
+    "contenidos_especificos": [
+      "Identificar y medir ángulos formados por dos segmentos que se intersecan usando el transportador",
+      "Clasificar ángulos como agudos, rectos, obtusos, llanos y completos",
+      "Reconocer y calcular ángulos opuestos por el vértice y ángulos suplementarios y complementarios"
+    ],
+    "actividad_inicio": [
+      "Dibujar en el pizarrón dos segmentos que se cruzan formando una X y preguntar: ¿cuántos ángulos se forman? Pedir que los señalen",
+      "Entregar un transportador a cada alumno (o compartir en parejas) y repasar cómo se usa: centro en el vértice, base en un lado, lectura en la escala",
+      "Medir los cuatro ángulos de la X del pizarrón y anotar los valores. Preguntar: ¿qué notan sobre los ángulos que están uno frente al otro?",
+      "Introducir la pregunta generadora: si sabes el valor de uno de los cuatro ángulos, ¿puedes encontrar los otros tres sin medir?",
+      "Presentar el objetivo: aprender a encontrar y calcular ángulos formados al intersecar dos segmentos"
+    ],
+    "desarrollo": [
+      {
+        "titulo": "Clasificación de ángulos y uso del transportador",
+        "diapositiva": "1-3",
+        "libro": "Sección 'Tipos de ángulos'",
+        "video": "min 0:30-2:30",
+        "descripcion": "Presente la clasificación: agudo (0°-90°), recto (90°), obtuso (90°-180°), llano (180°) y completo (360°). Dibuje un ejemplo de cada tipo y pida a los alumnos que los midan con el transportador para verificar. Enfatice la notación ∠ABC donde B es el vértice. Practique con 5 ángulos dibujados en una hoja de ejercicios: los alumnos miden, clasifican y escriben la notación. Circule verificando el uso correcto del transportador.",
+        "tip": "El error más común es colocar el transportador al revés (leer la escala exterior en vez de la interior o viceversa). Demuestre ambas escalas y cómo elegir la correcta."
+      },
+      {
+        "titulo": "Ángulos opuestos por el vértice, suplementarios y complementarios",
+        "diapositiva": "4-6",
+        "libro": "Sección 'Relaciones entre ángulos'",
+        "video": "min 2:30-5:00",
+        "descripcion": "Retome la X del inicio. Demuestre que los ángulos opuestos por el vértice son iguales y que los ángulos adyacentes suman 180° (suplementarios). Formalice: si un ángulo mide α, el opuesto también mide α, y los adyacentes miden 180° - α. Introduzca también los ángulos complementarios (suman 90°) y pida que no los confundan con suplementarios. Resuelva en el pizarrón: si dos segmentos se intersecan y uno de los ángulos mide 65°, ¿cuánto miden los otros tres? Los alumnos practican con 4 ejercicios similares, variando el ángulo dado.",
+        "tip": "Use colores distintos para marcar los ángulos opuestos (mismo color) y los adyacentes (colores diferentes) para que la relación sea visualmente clara."
+      },
+      {
+        "titulo": "Resolución de problemas y verificación con transportador",
+        "diapositiva": "7-8",
+        "libro": "Sección 'Problemas con ángulos'",
+        "video": null,
+        "descripcion": "Forme equipos de 3. Cada equipo recibe una hoja con 3 figuras donde dos segmentos se intersecan. Se da el valor de un ángulo (algebraicamente en algunos: 2x + 10°). Los equipos deben: (1) calcular todos los ángulos sin medir, (2) verificar midiendo con transportador. Incluya un problema donde tres rectas se cruzan en un mismo punto (6 ángulos) para los equipos que terminen antes. Socialice las estrategias y los resultados.",
+        "tip": "Al introducir expresiones algebraicas para los ángulos, refuerce que la ecuación sale de la propiedad geométrica (opuestos iguales o adyacentes que suman 180°), no de la nada."
+      }
+    ],
+    "cierre_individual": {
+      "reflexiona": "¿Qué relación entre ángulos te parece más útil: opuestos por el vértice, suplementarios o complementarios? ¿En qué situaciones de construcción o diseño podrías necesitarlas? Escribe tu reflexión.",
+      "profundiza": [
+        {
+          "pregunta": "Dos segmentos se intersecan. Uno de los ángulos formados mide (3x + 15)° y su ángulo opuesto por el vértice mide (5x - 25)°. Encuentra el valor de x y la medida de los cuatro ángulos.",
+          "respuesta_modelo": "R.M. Como son opuestos por el vértice, son iguales: 3x + 15 = 5x - 25, entonces 40 = 2x, x = 20. El ángulo mide 3(20) + 15 = 75°. Los cuatro ángulos son: 75°, 105°, 75°, 105° (los adyacentes suman 180°)."
+        },
+        {
+          "pregunta": "¿Es posible que dos ángulos sean complementarios y suplementarios al mismo tiempo? Justifica matemáticamente.",
+          "respuesta_modelo": "R.M. No. Si fueran complementarios: a + b = 90°. Si fueran suplementarios: a + b = 180°. No puede ser 90° = 180° simultáneamente. Por lo tanto, es imposible."
+        }
+      ]
+    },
+    "cierre_grupal": [
+      "Los ángulos se clasifican según su medida: agudo (< 90°), recto (= 90°), obtuso (> 90° y < 180°) y llano (= 180°)",
+      "Cuando dos segmentos se intersecan, se forman dos pares de ángulos opuestos por el vértice que son iguales",
+      "Los ángulos adyacentes formados por dos rectas secantes son suplementarios: suman 180°",
+      "Dos ángulos complementarios suman 90°; dos ángulos suplementarios suman 180°",
+      "Conociendo un solo ángulo de la intersección, se pueden determinar los otros tres"
+    ],
+    "preguntas_comprension": [
+      "Si dos segmentos se intersecan y uno de los ángulos mide 42°, ¿cuánto miden los otros tres?",
+      "¿Cuál es el complemento de un ángulo de 53°? ¿Y su suplemento?",
+      "¿Por qué los ángulos opuestos por el vértice siempre son iguales? Explícalo con tus palabras.",
+      "Clasifica un ángulo de 137°. ¿Es agudo, recto u obtuso?",
+      "¿Puede un ángulo obtuso tener complemento? Justifica tu respuesta."
+    ]
+  },
+  "libro": {
+    "introduccion": "Te has fijado como se abren las hojas de unas tijeras? Cuando las abres poquito, el angulo es pequeno. Cuando las abres mucho, el angulo es grande. Hoy vas a aprender a medir, clasificar y calcular angulos. Y con una sola regla, vas a poder encontrar cuatro angulos de un tiron.",
+    "conceptos": [
+      {
+        "titulo": "Que es un angulo y como se clasifica",
+        "contenido": "Un angulo se forma cuando dos semirrectas comparten el mismo punto de origen (vertice). La abertura entre ellas se mide en grados con el transportador. Clasificacion: agudo (entre 0 y 90 grados), recto (exactamente 90 grados), obtuso (entre 90 y 180 grados), llano (180 grados) y completo (360 grados).",
+        "definicion": "Angulo: region del plano comprendida entre dos semirrectas que parten de un mismo punto llamado vertice, medida en grados.",
+        "figura": {
+          "tipo": "plano_cartesiano",
+          "xMin": -1,
+          "xMax": 5,
+          "yMin": -1,
+          "yMax": 5,
+          "puntos": [
+            {
+              "x": 0,
+              "y": 0,
+              "label": "O"
+            }
+          ],
+          "lineas": [
+            {
+              "x1": 0,
+              "y1": 0,
+              "x2": 4,
+              "y2": 0
+            },
+            {
+              "x1": 0,
+              "y1": 0,
+              "x2": 3,
+              "y2": 3,
+              "color": "#E11D48"
+            }
+          ],
+          "width": 160,
+          "height": 160
+        }
+      },
+      {
+        "titulo": "Angulos opuestos por el vertice",
+        "contenido": "Cuando dos rectas se intersecan, se forman 4 angulos. Los angulos que estan uno enfrente del otro (opuestos por el vertice) siempre son iguales. Esto sucede porque ambos son suplementarios del mismo angulo adyacente.",
+        "definicion": "Angulos opuestos por el vertice: par de angulos no adyacentes formados por dos rectas que se intersecan; siempre son congruentes."
+      },
+      {
+        "titulo": "Angulos suplementarios y complementarios",
+        "contenido": "Dos angulos son suplementarios cuando suman 180 grados (los angulos adyacentes en una interseccion siempre son suplementarios). Dos angulos son complementarios cuando suman 90 grados. Conociendo un solo angulo de una interseccion, puedes calcular los otros tres.",
+        "definicion": null
+      }
+    ],
+    "ejemplos": [
+      {
+        "titulo": "Calcular los 4 angulos de una interseccion",
+        "enunciado": "Dos rectas se cruzan y uno de los angulos mide 70 grados. Calcula los otros tres.",
+        "pasos": [
+          "Paso 1: El angulo opuesto por el vertice = 70 grados (opuestos son iguales)",
+          "Paso 2: El angulo adyacente = 180 - 70 = 110 grados (suplementarios)",
+          "Paso 3: El otro angulo opuesto = 110 grados",
+          "Paso 4: Verificacion: 70 + 110 + 70 + 110 = 360 grados (vuelta completa)"
+        ],
+        "resultado": "Los cuatro angulos son: 70, 110, 70 y 110 grados."
+      },
+      {
+        "titulo": "Caso especial: rectas perpendiculares",
+        "enunciado": "Dos rectas perpendiculares se cruzan. Cuanto miden los 4 angulos?",
+        "pasos": [
+          "Paso 1: Un angulo mide 90 grados (por definicion de perpendiculares)",
+          "Paso 2: Opuesto = 90 grados",
+          "Paso 3: Adyacente = 180 - 90 = 90 grados",
+          "Paso 4: Los cuatro angulos son de 90 grados"
+        ],
+        "resultado": "Los cuatro angulos miden 90 grados. Es el unico caso donde todos son iguales."
+      },
+      {
+        "titulo": "Problema con expresion algebraica",
+        "enunciado": "Dos segmentos se intersecan. Un angulo mide (3x + 15) grados y su opuesto mide (5x - 25) grados. Encuentra x y los cuatro angulos.",
+        "pasos": [
+          "Paso 1: Como son opuestos por el vertice, son iguales: 3x + 15 = 5x - 25",
+          "Paso 2: Resolver: 40 = 2x, x = 20",
+          "Paso 3: El angulo mide 3(20) + 15 = 75 grados",
+          "Paso 4: Adyacente = 180 - 75 = 105 grados"
+        ],
+        "resultado": "x = 20. Los cuatro angulos son: 75, 105, 75 y 105 grados."
+      }
+    ],
+    "datos_curiosos": "Las manecillas de un reloj forman angulos diferentes cada hora. A las 3:00 forman un angulo recto (90 grados), a las 6:00 un angulo llano (180 grados) y a las 1:00 un angulo de aproximadamente 30 grados. La proxima vez que veas un reloj, trata de estimar el angulo.",
+    "ejercicios": [
+      {
+        "numero": 1,
+        "enunciado": "Dos rectas se cruzan y un angulo mide 42 grados. Calcula los otros tres angulos.",
+        "espacio": true,
+        "lineas": 3
+      },
+      {
+        "numero": 2,
+        "enunciado": "Cual es el complemento de un angulo de 53 grados? Y su suplemento?",
+        "espacio": true,
+        "lineas": 3
+      },
+      {
+        "numero": 3,
+        "enunciado": "Un angulo mide (2x + 10) grados y su adyacente mide (3x + 20) grados. Encuentra x y la medida de ambos angulos. (Pista: los adyacentes suman 180 grados.)",
+        "espacio": true,
+        "lineas": 4
+      },
+      {
+        "numero": 4,
+        "enunciado": "Las manecillas del reloj marcan las 3:00. ¿Qué ángulo forman? ¿Y a las 5:00?",
+        "espacio": true,
+        "lineas": 4
+      }
+    ],
+    "puntos_clave": [
+      "Un angulo mide la abertura entre dos semirrectas con el mismo vertice.",
+      "Clasificacion: agudo (< 90), recto (= 90), obtuso (> 90 y < 180), llano (= 180).",
+      "Opuestos por el vertice: siempre iguales. Adyacentes: siempre suman 180 grados.",
+      "Complementarios suman 90 grados; suplementarios suman 180 grados.",
+      "Los 4 angulos de una interseccion siempre suman 360 grados."
+    ]
+  },
+  "diapositiva": [
+    {
+      "titulo": "¿Qué es un ángulo?",
+      "puntos": [
+        "Abertura entre dos semirrectas con el mismo vértice",
+        "Se mide en grados (°)",
+        "Se usa el transportador para medir"
+      ],
+      "ejemplo": "Las tijeras forman un ángulo: el tornillo es el vértice, las hojas son las semirrectas."
+    },
+    {
+      "titulo": "Clasificación de ángulos",
+      "puntos": [
+        "Agudo: 0° < ángulo < 90°",
+        "Recto: exactamente 90°",
+        "Obtuso: 90° < ángulo < 180°",
+        "Llano: exactamente 180°"
+      ],
+      "ejemplo": "Reloj a las 3:00 → recto (90°). Reloj a las 1:00 → agudo (~30°)."
+    },
+    {
+      "titulo": "Dos rectas que se cruzan → 4 ángulos",
+      "puntos": [
+        "Se forman 4 ángulos alrededor del punto de intersección",
+        "Los 4 ángulos suman 360°",
+        "Hay dos pares de ángulos opuestos"
+      ],
+      "ejemplo": "Dibujar dos rectas cruzándose y numerar ∠1, ∠2, ∠3, ∠4"
+    },
+    {
+      "titulo": "Ángulos opuestos por el vértice",
+      "puntos": [
+        "Son los que están uno enfrente del otro",
+        "Siempre son iguales",
+        "∠1 = ∠3 y ∠2 = ∠4"
+      ],
+      "ejemplo": "Si ∠1 = 50°, entonces ∠3 = 50°"
+    },
+    {
+      "titulo": "Ángulos adyacentes (suplementarios)",
+      "puntos": [
+        "Son los que están uno junto al otro",
+        "Suman 180° (forman una línea recta)",
+        "∠1 + ∠2 = 180°"
+      ],
+      "ejemplo": "Si ∠1 = 50°, entonces ∠2 = 180° − 50° = 130°"
+    },
+    {
+      "titulo": "Calcular los 4 ángulos conociendo 1",
+      "puntos": [
+        "Paso 1: Opuesto = mismo valor",
+        "Paso 2: Adyacente = 180° − valor",
+        "Paso 3: Otro opuesto = 180° − valor"
+      ],
+      "ejemplo": "∠1 = 72° → ∠2 = 108° → ∠3 = 72° → ∠4 = 108°"
+    },
+    {
+      "titulo": "Caso especial: rectas perpendiculares",
+      "puntos": [
+        "Si un ángulo es 90°, todos son 90°",
+        "Los 4 ángulos son rectos",
+        "Se marca con un cuadradito en el vértice"
+      ],
+      "ejemplo": "Una + perfecta: cuatro ángulos rectos"
+    },
+    {
+      "titulo": "Resumen",
+      "puntos": [
+        "Ángulo = abertura entre dos semirrectas",
+        "Agudo < 90° < Obtuso < 180° (llano)",
+        "Opuestos por el vértice: iguales. Adyacentes: suman 180°",
+        "Si sabes 1 ángulo, calculas los 4"
+      ],
+      "ejemplo": "Reto: Tres rectas se cruzan en un punto. Si un ángulo mide 40°, ¿puedes encontrar todos los demás?"
+    }
+  ],
+  "video_script": "# Ángulos — Script de video (5-7 min)\n\n[VISUAL: Tijeras animadas abriéndose y cerrándose, con un arco que muestra el ángulo cambiando]\n\n¡Hola! Hoy hablamos de **ángulos**, uno de los conceptos más importantes de la geometría. Y lo mejor: con una sola regla vas a poder calcular cuatro ángulos de un tirón.\n\n[VISUAL: Dos semirrectas saliendo del mismo punto, con un arco entre ellas]\n\nUn ángulo se forma cuando **dos semirrectas comparten el mismo punto de origen**, que llamamos **vértice**. La abertura entre ellas es lo que medimos, y lo hacemos en **grados** con el transportador.\n\n[VISUAL: Transportador colocándose sobre un ángulo, mostrando la lectura]\n\nPara usar el transportador: centras el puntito en el vértice, alineas un lado con 0°, y lees donde cruza el otro lado. Facilísimo.\n\nAhora, los ángulos se clasifican según cuánto miden:\n\n[VISUAL: Cuatro ángulos aparecen uno por uno con su nombre y medida]\n\n- **Agudo:** menos de 90°. Piensa en un ángulo chiquito, como las 1:00 en el reloj.\n- **Recto:** exactamente 90°. La esquina de tu cuaderno. Las 3:00 en el reloj.\n- **Obtuso:** más de 90° pero menos de 180°. Bien abierto.\n- **Llano:** exactamente 180°. Básicamente una línea recta.\n\nAhora viene lo más importante del tema de hoy: **¿qué pasa cuando dos rectas se cruzan?**\n\n[VISUAL: Dos rectas cruzándose, formando 4 ángulos numerados ∠1, ∠2, ∠3, ∠4]\n\nSe forman **cuatro ángulos**. Y estos ángulos no son cualquier cosa: siguen dos reglas que siempre se cumplen.\n\n**Regla 1: Los ángulos opuestos por el vértice son iguales.** Los que están uno enfrente del otro. ∠1 = ∠3 y ∠2 = ∠4.\n\n[VISUAL: Los ángulos opuestos se resaltan del mismo color: ∠1 y ∠3 en azul, ∠2 y ∠4 en rojo]\n\n**Regla 2: Los ángulos adyacentes suman 180°.** Los que están uno junto al otro. ∠1 + ∠2 = 180°.\n\n[VISUAL: Se resalta ∠1 y ∠2 formando una línea recta = 180°]\n\nEsto es poderosísimo porque con saber **un solo ángulo** puedes calcular los otros tres.\n\nVamos con un ejemplo.\n\n[VISUAL: Dos rectas cruzándose, con ∠1 = 65° marcado]\n\nSi ∠1 = 65°, entonces:\n- ∠3 = **65°** (opuesto por el vértice).\n- ∠2 = 180° − 65° = **115°** (suplementario).\n- ∠4 = **115°** (opuesto a ∠2).\n\n[VISUAL: Los valores aparecen uno por uno en cada ángulo con animación]\n\nPodemos verificar: 65 + 115 + 65 + 115 = **360°**. ¡Siempre suman 360° porque son una vuelta completa!\n\nOtro ejemplo.\n\n[VISUAL: Intersección con ∠1 = 130°]\n\n∠1 = 130° (obtuso).\n- ∠3 = **130°**.\n- ∠2 = 180° − 130° = **50°** (agudo).\n- ∠4 = **50°**.\n\n[VISUAL: Verificación: 130 + 50 + 130 + 50 = 360°]\n\nY hay un caso especial que ya conoces.\n\n[VISUAL: Dos rectas perpendiculares formando una +]\n\nSi las rectas son **perpendiculares**, el ángulo es 90°. Y como 180° − 90° = 90°, ¡**los cuatro ángulos son de 90°**! Por eso las perpendiculares se ven tan simétricas.\n\n[VISUAL: Cuadradito de ángulo recto en cada esquina]\n\n¿Y por qué los opuestos por el vértice son siempre iguales? Piénsalo así: ∠1 + ∠2 = 180° y ∠2 + ∠3 = 180°. Si ambas sumas dan 180°, entonces ∠1 tiene que ser igual a ∠3. ¡Es pura lógica!\n\n[VISUAL: Ecuaciones apareciendo paso a paso]\n\nResumamos:\n1. Un ángulo mide la abertura entre dos semirrectas.\n2. Se clasifican en agudo, recto, obtuso y llano.\n3. Al cruzarse dos rectas: opuestos son iguales, adyacentes suman 180°.\n4. Con un ángulo, calculas los cuatro.\n\n[VISUAL: Resumen en tarjetas de colores]\n\n¡En el siguiente video vamos con punto medio y mediatriz, donde vas a usar la regla y el compás como un verdadero ingeniero!"
+}

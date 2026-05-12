@@ -1,0 +1,297 @@
+{
+  "secuencia": 2,
+  "titulo": "Los enteros negativos",
+  "contenido": "Extensión de los números a positivos y negativos y su orden.",
+  "pda": "Reconoce la necesidad de los números negativos a partir de usar cantidades que tienen al cero como referencia.",
+  "evaluacion": {
+    "preguntas": [
+      {
+        "tipo": "opcion_multiple",
+        "pregunta": "¿Cuál de las siguientes situaciones se representa mejor con un número negativo?",
+        "opciones": [
+          "A) Tener 50 pesos en la cartera",
+          "B) Deber 30 pesos a un amigo",
+          "C) Medir 1.60 metros de estatura",
+          "D) Contar 25 alumnos en el salón"
+        ],
+        "respuesta": "B"
+      },
+      {
+        "tipo": "verdadero_falso",
+        "pregunta": "El número -5 es mayor que el número -2.",
+        "respuesta": false
+      },
+      {
+        "tipo": "abierta",
+        "pregunta": "Menciona tres situaciones de la vida cotidiana donde se utilizan números negativos y explica qué representa el cero en cada caso.",
+        "respuesta": "1) Temperatura: el cero es el punto de congelación del agua; las temperaturas bajo cero son negativas. 2) Dinero: el cero significa no tener deuda ni ahorro; los negativos representan deudas. 3) Altitud: el cero es el nivel del mar; los negativos representan profundidades bajo el nivel del mar (por ejemplo, el Mar Muerto está a -430 m)."
+      },
+      {
+        "tipo": "espacios",
+        "pregunta": "En la recta numérica, los números negativos se ubican a la ___ del cero.",
+        "respuesta": "izquierda"
+      },
+      {
+        "tipo": "calculo",
+        "pregunta": "Ordena los siguientes números de menor a mayor: 3, -7, 0, -1, 5, -3.",
+        "respuesta": "Paso 1: Identificar los negativos: -7, -1, -3. Paso 2: Ordenar los negativos (el más alejado de cero es el menor): -7 < -3 < -1. Paso 3: Luego el cero y los positivos: 0 < 3 < 5. Resultado: -7, -3, -1, 0, 3, 5."
+      }
+    ]
+  },
+  "orientacion": {
+    "contenidos_especificos": [
+      "Identificar situaciones cotidianas donde se necesitan números negativos",
+      "Representar números positivos y negativos en la recta numérica",
+      "Comprender el cero como punto de referencia entre positivos y negativos"
+    ],
+    "actividad_inicio": [
+      "Pregunta: '¿Qué significa cuando el pronóstico del clima dice -5 °C? ¿Es posible tener menos de cero grados?' Deja que compartan experiencias.",
+      "Muestra una imagen de un termómetro y un edificio con sótanos. Pregunta qué tienen en común ambas situaciones.",
+      "Plantea: 'Si tienes $50 en tu cuenta y compras algo de $80, ¿cuánto dinero tienes? ¿Cómo lo escribirías?'",
+      "Pide que mencionen situaciones donde hayan escuchado números negativos (deudas, temperatura, altitud bajo el mar).",
+      "Dibuja una recta numérica con solo el 0 marcado y pregunta qué números irían a cada lado y por qué."
+    ],
+    "desarrollo": [
+      {
+        "titulo": "¿Por qué necesitamos números negativos?",
+        "diapositiva": "1-3",
+        "libro": "Sección Conceptos: Números con signo",
+        "video": null,
+        "descripcion": "Presenta tres contextos donde los negativos son indispensables: temperatura (sobre/bajo cero), altitud (sobre/bajo el nivel del mar) y finanzas (ahorro/deuda). En cada caso, muestra que el cero es el punto de referencia. Pide a los alumnos que en su cuaderno escriban 3 ejemplos propios de situaciones con números negativos e identifiquen qué representa el cero en cada una.",
+        "tip": "Evita introducir la recta numérica de inmediato; primero asegúrate de que los alumnos comprendan la necesidad de los negativos a través de los contextos reales."
+      },
+      {
+        "titulo": "La recta numérica con números positivos y negativos",
+        "diapositiva": "4-6",
+        "libro": "Sección Ejemplos: Representación en la recta",
+        "video": "min 0:30-2:30",
+        "descripcion": "Dibuja una recta numérica horizontal en el pizarrón con el cero al centro. Marca los enteros del -10 al 10. Explica la convención: a la derecha los positivos, a la izquierda los negativos. Pide a varios alumnos que pasen al pizarrón a ubicar números dados (-7, +3, -1, +9). Luego, en parejas, cada alumno dice un número con signo y el compañero lo ubica en una recta dibujada en su cuaderno.",
+        "tip": "Asegúrate de que los alumnos tracen la recta con espaciado uniforme; un error común es que compriman los negativos."
+      },
+      {
+        "titulo": "El cero como referencia y la noción de opuesto",
+        "diapositiva": "7-8",
+        "libro": "Sección Práctica: Números opuestos",
+        "video": null,
+        "descripcion": "Explica que cada número positivo tiene un opuesto negativo a la misma distancia del cero (por ejemplo, +4 y -4). Pide que en su recta numérica marquen pares de opuestos y midan la distancia de cada uno al cero. Plantea 5 problemas contextuales: 'Un submarino está a -200 m y un avión a +200 m, ¿a qué distancia del nivel del mar está cada uno?' Los alumnos resuelven individualmente y se revisa en grupo.",
+        "tip": "Introduce informalmente el concepto de valor absoluto como 'distancia al cero' sin usar todavía la notación formal |x|; eso vendrá en sesiones posteriores."
+      }
+    ],
+    "cierre_individual": {
+      "reflexiona": "Piensa en tu vida diaria: escribe dos situaciones donde usarías números negativos y explica qué significa el cero en cada caso.",
+      "profundiza": [
+        {
+          "pregunta": "¿Por qué el cero no es positivo ni negativo?",
+          "respuesta_modelo": "El cero funciona como punto de referencia o frontera entre los positivos y los negativos. No tiene signo porque no representa una cantidad por encima ni por debajo de la referencia; es la referencia misma. Por ejemplo, 0 °C no es frío ni caliente en la escala, es el punto donde el agua se congela."
+        },
+        {
+          "pregunta": "Un buzo desciende a -30 metros y otro a -15 metros. ¿Quién está más profundo y por qué?",
+          "respuesta_modelo": "El buzo a -30 metros está más profundo porque se encuentra a mayor distancia del nivel del mar (0 metros) hacia abajo. En la recta numérica, -30 está más a la izquierda que -15, lo que significa que es un número menor y, en este contexto, indica mayor profundidad."
+        }
+      ]
+    },
+    "cierre_grupal": [
+      "Los números negativos surgen de la necesidad de representar cantidades por debajo de un punto de referencia (el cero).",
+      "En la recta numérica, los positivos se ubican a la derecha del cero y los negativos a la izquierda.",
+      "El cero no es positivo ni negativo; es el punto de referencia.",
+      "Cada número positivo tiene un opuesto negativo que está a la misma distancia del cero.",
+      "Los números negativos se usan en contextos reales como temperatura, altitud, deudas y cronología."
+    ],
+    "preguntas_comprension": [
+      "¿Qué número es el opuesto de +12 en la recta numérica?",
+      "Si la temperatura bajó de 3 °C a -4 °C, ¿cuántos grados descendió?",
+      "¿Dónde se ubica el -6 en la recta numérica respecto al -2?",
+      "Menciona una situación cotidiana donde el cero sea un punto de referencia.",
+      "¿Es -1 mayor o menor que -10? Justifica usando la recta numérica."
+    ]
+  },
+  "libro": {
+    "introduccion": "Imagínate que estás en Chihuahua en pleno invierno y el termómetro marca -5 °C. ¿Qué onda con ese signo de menos? Hoy vas a descubrir de dónde vienen los números negativos, por qué los necesitamos y cómo ubicarlos en la recta numérica.",
+    "conceptos": [
+      {
+        "titulo": "Los números negativos y el cero como referencia",
+        "contenido": "Los números negativos nacen de la necesidad de representar cantidades por debajo de un punto de referencia, que es el cero. En temperatura, 0 °C es donde se congela el agua; en dinero, $0 significa que no tienes ni debes; en altitud, 0 m es el nivel del mar. Todo lo que está \"por debajo\" de esa referencia se expresa con signo negativo.",
+        "definicion": "Número negativo: número menor que cero, se escribe con el signo − delante (por ejemplo, −5).",
+        "figura": {
+          "tipo": "recta_numerica",
+          "min": -5,
+          "max": 5,
+          "puntos": [
+            {
+              "valor": -3,
+              "label": "-3"
+            },
+            {
+              "valor": 2,
+              "label": "2"
+            }
+          ],
+          "width": 400,
+          "height": 55
+        }
+      },
+      {
+        "titulo": "La recta numérica extendida",
+        "contenido": "Al extender la recta numérica hacia la izquierda del cero aparecen los negativos: ..., −3, −2, −1, 0, 1, 2, 3, ... Los positivos van a la derecha, los negativos a la izquierda. Un número es mayor que otro si está más a la derecha.",
+        "definicion": null
+      },
+      {
+        "titulo": "Números opuestos y valor absoluto",
+        "contenido": "Cada número tiene un opuesto: el opuesto de +4 es −4 y viceversa. Ambos están a la misma distancia del cero pero en lados contrarios. Esa distancia se llama valor absoluto y se escribe con barras: |−4| = 4, |4| = 4.",
+        "definicion": "Valor absoluto: distancia de un número al cero en la recta numérica, siempre positiva o cero."
+      }
+    ],
+    "ejemplos": [
+      {
+        "titulo": "Comparar dos negativos",
+        "enunciado": "¿Qué es mayor, −3 o −7?",
+        "pasos": [
+          "Paso 1: Ubica ambos en la recta numérica.",
+          "Paso 2: −3 está más a la derecha que −7.",
+          "Paso 3: El que está más a la derecha es mayor."
+        ],
+        "resultado": "−3 > −7"
+      },
+      {
+        "titulo": "Ordenar un conjunto de enteros",
+        "enunciado": "Ordena de menor a mayor: 4, −2, 0, −6, 1.",
+        "pasos": [
+          "Paso 1: Identifica los negativos (−6 y −2), el cero y los positivos (1 y 4).",
+          "Paso 2: Entre los negativos, el más alejado del cero es el menor: −6 < −2.",
+          "Paso 3: Luego va el cero, y después los positivos en orden: 1 < 4."
+        ],
+        "resultado": "−6, −2, 0, 1, 4"
+      }
+    ],
+    "datos_curiosos": "Los antiguos griegos rechazaban los números negativos porque no podían imaginar \"menos que nada\". No fue sino hasta el siglo VII que los matemáticos indios, como Brahmagupta, los usaron formalmente para representar deudas.",
+    "ejercicios": [
+      {
+        "numero": 1,
+        "enunciado": "Escribe el opuesto de cada número: 9, −3, 0, −12, 7.",
+        "espacio": true,
+        "lineas": 2
+      },
+      {
+        "numero": 2,
+        "enunciado": "Ordena de menor a mayor: 3, −7, 0, −1, 5, −3.",
+        "espacio": true,
+        "lineas": 3
+      },
+      {
+        "numero": 3,
+        "enunciado": "Un submarino está a −200 m y un dron a +150 m. ¿Cuál está más lejos del nivel del mar? ¿Cuántos metros los separan?",
+        "espacio": true,
+        "lineas": 3
+      },
+      {
+        "numero": 4,
+        "enunciado": "Calcula: |−8|, |5|, |0|, |−15|.",
+        "espacio": true,
+        "lineas": 2
+      }
+    ],
+    "puntos_clave": [
+      "Los negativos representan cantidades por debajo de una referencia (el cero).",
+      "En la recta numérica: derecha = mayor, izquierda = menor.",
+      "El cero no es positivo ni negativo.",
+      "Cualquier positivo es mayor que cualquier negativo.",
+      "El valor absoluto mide la distancia al cero, sin importar el signo."
+    ]
+  },
+  "diapositiva": [
+    {
+      "titulo": "Los enteros negativos",
+      "puntos": [
+        "Extendemos los números más allá del cero",
+        "Objetivo: entender cuándo y por qué usamos números negativos"
+      ],
+      "ejemplo": "Temperatura en Chihuahua: máxima 12°C, mínima -3°C"
+    },
+    {
+      "titulo": "¿Por qué los necesitamos?",
+      "puntos": [
+        "Temperatura bajo cero",
+        "Deudas de dinero",
+        "Profundidad bajo el nivel del mar",
+        "Pisos de sótano en un edificio"
+      ],
+      "ejemplo": "Si tienes $0 y gastas $50, tu saldo es -$50.",
+      "figura": {
+        "tipo": "recta_numerica",
+        "min": -5,
+        "max": 5,
+        "puntos": [
+          {
+            "valor": -3,
+            "label": "-3"
+          },
+          {
+            "valor": 0,
+            "label": "0"
+          },
+          {
+            "valor": 4,
+            "label": "4"
+          }
+        ],
+        "width": 500,
+        "height": 60
+      }
+    },
+    {
+      "titulo": "La recta numérica extendida",
+      "puntos": [
+        "Negativos a la izquierda del cero",
+        "Positivos a la derecha del cero",
+        "El cero es el punto de referencia"
+      ],
+      "ejemplo": "... -4, -3, -2, -1, 0, 1, 2, 3, 4 ..."
+    },
+    {
+      "titulo": "¿Cómo comparamos enteros?",
+      "puntos": [
+        "Más a la derecha = mayor",
+        "Más a la izquierda = menor",
+        "Cualquier positivo > cualquier negativo"
+      ],
+      "ejemplo": "-3 > -7 porque -3 está más a la derecha en la recta"
+    },
+    {
+      "titulo": "Cuidado con los negativos",
+      "puntos": [
+        "-5 NO es mayor que -2",
+        "Entre negativos, el de menor valor absoluto es mayor",
+        "Piensa en temperatura: -2°C es más cálido que -5°C"
+      ],
+      "ejemplo": "Orden: -10 < -5 < -1 < 0 < 3 < 8"
+    },
+    {
+      "titulo": "El valor absoluto",
+      "puntos": [
+        "Es la distancia al cero (siempre positiva)",
+        "Se escribe con barras: |n|",
+        "|-7| = 7 y |7| = 7"
+      ],
+      "ejemplo": "|-4| = 4 porque -4 está a 4 unidades del cero"
+    },
+    {
+      "titulo": "El cero: punto de referencia",
+      "puntos": [
+        "No es positivo ni negativo",
+        "Separa positivos de negativos",
+        "En cada contexto, el cero tiene un significado distinto"
+      ],
+      "ejemplo": "En un termómetro: 0°C = punto de congelación. En dinero: $0 = ni deuda ni ahorro."
+    },
+    {
+      "titulo": "Resumen y práctica",
+      "puntos": [
+        "Los negativos representan cantidades debajo de la referencia",
+        "En la recta: izquierda = menor, derecha = mayor",
+        "Valor absoluto = distancia al cero, sin signo"
+      ],
+      "ejemplo": "Ordena: 2, -8, 0, -1, 5, -5 → -8, -5, -1, 0, 2, 5"
+    }
+  ],
+  "video_script": "## Los enteros negativos\n\n[VISUAL: Animación del título con un termómetro mostrando temperaturas bajo cero]\n\n¡Qué onda! Hoy vamos a hablar de unos números que a lo mejor te parecen raros al principio, pero que usas más de lo que crees: los números negativos.\n\n[VISUAL: Mapa de México con temperaturas, resaltando Chihuahua con -5°C]\n\nImagínate que estás viendo el pronóstico del tiempo y dice que en Chihuahua va a hacer -5 grados. ¿Qué significa ese signo de menos? Significa que la temperatura está 5 grados por debajo del punto de congelación del agua, que es cero grados. El cero es nuestra referencia, y todo lo que está por debajo se expresa con un número negativo.\n\n[VISUAL: Animación de persona con cartera, dinero entrando y saliendo]\n\nOtro ejemplo que seguro conoces: el dinero. Si tienes $300 y gastas $500, no te quedas en cero... ¡debes $200! Tu saldo es -200 pesos. El cero significa que no tienes nada, y los negativos significan que debes.\n\n### La recta numérica\n\n[VISUAL: Recta numérica construyéndose desde el cero hacia ambos lados]\n\nYa conoces la recta numérica: 0, 1, 2, 3... Pero ahora la vamos a extender hacia la izquierda. A la izquierda del cero aparecen -1, -2, -3, -4 y así hasta el infinito.\n\nLa regla es simple: todo lo que está a la derecha es mayor, y todo lo que está a la izquierda es menor. Entonces 3 es mayor que 1, eso ya lo sabías. Pero también -1 es mayor que -5, porque -1 está más a la derecha.\n\n### El error más común\n\n[VISUAL: Comparación visual de -3 y -7 en la recta numérica con flechas]\n\nMucha gente piensa que -7 es mayor que -3 porque 7 es más grande que 3. ¡Pero no! Con los negativos es al revés. Piénsalo así: ¿qué prefieres, deber 3 pesos o deber 7 pesos? Obvio deber menos, ¿no? Por eso -3 es mayor que -7.\n\nUn truco que nunca falla: ubica los números en la recta numérica. El que esté más a la derecha es el mayor. Siempre.\n\n### El valor absoluto\n\n[VISUAL: Número -4 y número 4, ambos con flechas midiendo distancia al cero]\n\nEl valor absoluto es la distancia de un número al cero, sin importar hacia dónde. Se escribe con barras así: |-4| = 4 y |4| = 4. Ambos están a 4 unidades del cero, solo que en lados opuestos.\n\nEsto es útil porque a veces solo te importa la magnitud, no la dirección. Por ejemplo, si la temperatura baja 8 grados, el cambio es de 8 sin importar si pasó de 5 a -3 o de 20 a 12.\n\n### Ordenar números con signo\n\n[VISUAL: Números desordenados flotando, luego acomodándose en la recta]\n\nVamos a practicar. Ordena de menor a mayor: 4, -2, 0, -6, 1.\n\nPrimero ubico los negativos: -6 está más lejos del cero que -2, así que -6 va primero. Luego -2. Después el cero. Luego los positivos: 1 y después 4.\n\nResultado: -6, -2, 0, 1, 4. ¡Fácil cuando usas la recta!\n\n[VISUAL: Resumen con íconos de termómetro, dinero y recta numérica]\n\nResumiendo: los números negativos nacen cuando necesitamos representar cosas debajo de una referencia. En la recta numérica van a la izquierda del cero. Y entre dos negativos, el que tiene valor absoluto menor es el mayor. Practica ordenando números y nos vemos en la siguiente lección donde vamos a comparar positivos, negativos, fracciones y decimales. ¡Nos vemos!\n\n[VISUAL: Pantalla de cierre con ejercicios de práctica]"
+}

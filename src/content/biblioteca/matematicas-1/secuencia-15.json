@@ -1,0 +1,328 @@
+{
+  "secuencia": 15,
+  "titulo": "Fórmula de proporcionalidad",
+  "contenido": "Ecuaciones proporcionales con constante positiva y negativa.",
+  "pda": "Modela y resuelve diversas situaciones a través de ecuaciones proporcionales con constante positiva y negativa.",
+  "evaluacion": {
+    "preguntas": [
+      {
+        "tipo": "opcion_multiple",
+        "pregunta": "Si y = −3x, ¿cuál es el valor de y cuando x = 4?",
+        "opciones": ["A) 12", "B) −12", "C) 7", "D) −7"],
+        "respuesta": "B"
+      },
+      {
+        "tipo": "verdadero_falso",
+        "pregunta": "Una constante de proporcionalidad negativa indica que cuando x aumenta, y disminuye.",
+        "respuesta": true
+      },
+      {
+        "tipo": "espacios",
+        "pregunta": "La ecuación general de una relación proporcional es y = ___, donde k es la constante de proporcionalidad.",
+        "respuesta": "kx"
+      },
+      {
+        "tipo": "calculo",
+        "pregunta": "Un tanque pierde 5 litros de agua por hora. Escribe la ecuación proporcional que modela la pérdida de agua y calcula cuántos litros se pierden en 8 horas.",
+        "respuesta": "Paso 1: Identificar las variables. x = horas, y = litros perdidos.\nPaso 2: La constante es k = −5 (negativa porque se pierde agua).\nPaso 3: Ecuación: y = −5x.\nPaso 4: Para x = 8: y = −5(8) = −40.\nRespuesta: Se pierden 40 litros en 8 horas (y = −40 indica una disminución de 40 litros)."
+      },
+      {
+        "tipo": "abierta",
+        "pregunta": "¿Qué diferencia hay entre una relación proporcional con k positiva y una con k negativa? Da un ejemplo de cada una.",
+        "respuesta": "Cuando k es positiva, ambas cantidades crecen juntas (si x aumenta, y también). Ejemplo: el costo de la gasolina, y = 22x. Cuando k es negativa, las cantidades van en direcciones opuestas (si x aumenta, y disminuye). Ejemplo: el nivel de agua en un tinaco que se vacía a ritmo constante, y = −10x. En la gráfica, k positiva da una recta que sube; k negativa da una recta que baja."
+      }
+    ]
+  },
+  "orientacion": {
+    "contenidos_especificos": [
+      "Escribir la ecuación y = kx que modela una relación de proporcionalidad directa, con k positiva o negativa",
+      "Resolver problemas que se modelan con ecuaciones proporcionales, despejando la incógnita",
+      "Interpretar el significado de la constante k (positiva y negativa) en el contexto de cada problema"
+    ],
+    "actividad_inicio": [
+      "Retomar la tabla de proporcionalidad de la clase anterior (velocidad constante) y preguntar: ¿podrían escribir una fórmula general que relacione km y horas?",
+      "Guiar hacia la expresión d = 90t y explicar que es una ecuación de proporcionalidad donde 90 es la constante k",
+      "Preguntar: ¿qué pasaría si la constante fuera negativa? Dar el ejemplo de una cuenta bancaria que pierde $50 por cada mes: saldo = -50 × meses",
+      "Lanzar el reto: si y = kx y sabemos que cuando x = 4, y = -20, ¿cuánto vale k?",
+      "Presentar el objetivo: aprender a escribir y usar la ecuación y = kx para resolver problemas con constante positiva y negativa"
+    ],
+    "desarrollo": [
+      {
+        "titulo": "La ecuación y = kx: estructura y significado",
+        "diapositiva": "1-3",
+        "libro": "Sección 'Ecuación de proporcionalidad'",
+        "video": "min 0:30-3:00",
+        "descripcion": "Formalice la ecuación y = kx. Explique que k = y/x y que se puede encontrar con cualquier par de valores de la tabla. Muestre dos ejemplos con k positiva: costo total de boletos (y = 85x) y litros de gasolina por km (y = 0.08x). Luego presente un ejemplo con k negativa: la profundidad de un buzo que desciende 3 metros por minuto (y = -3x, donde y es la altitud). Enfatice que el signo de k indica la dirección del cambio. Los alumnos practican encontrando k y escribiendo la ecuación a partir de 3 tablas diferentes.",
+        "tip": "Subraye que k negativa no significa 'error'; significa que y disminuye cuando x aumenta. Use la metáfora de 'subir vs. bajar' para que sea intuitivo."
+      },
+      {
+        "titulo": "Resolver problemas con y = kx: despejar incógnitas",
+        "diapositiva": "4-6",
+        "libro": "Sección 'Resolución de problemas proporcionales'",
+        "video": "min 3:00-5:00",
+        "descripcion": "Presente tres tipos de problema: (1) dada k y x, encontrar y; (2) dada k y y, encontrar x = y/k; (3) dados x e y, encontrar k. Resuelva un ejemplo de cada tipo en el pizarrón con participación del grupo. Problema tipo 1: un grifo llena 2.5 litros por minuto, ¿cuántos litros en 12 minutos? Problema tipo 2: si k = -4 y y = -48, ¿cuánto vale x? Problema tipo 3: un resorte se estira 6 cm con 3 N de fuerza, ¿cuál es k? Los alumnos resuelven 4 problemas individualmente en su cuaderno.",
+        "tip": "Asegúrese de que los alumnos incluyan unidades en sus respuestas; esto refuerza la interpretación de k y evita confusiones en problemas contextualizados."
+      },
+      {
+        "titulo": "Gráfica de y = kx con k positiva y negativa",
+        "diapositiva": "7-8",
+        "libro": "Sección 'Gráficas de ecuaciones proporcionales'",
+        "video": null,
+        "descripcion": "Pida a los alumnos que, en parejas, grafiquen y = 3x y y = -2x en el mismo plano cartesiano, tabulando al menos 5 valores de x (incluyendo negativos). Observe que ambas son rectas que pasan por el origen, pero una sube (k > 0) y otra baja (k < 0). Discutan: ¿qué pasa cuando k es más grande? La recta es más inclinada. ¿Y cuando k está entre 0 y 1? La recta es menos inclinada. Proyecte la diapositiva comparativa y pida que identifiquen valores de k a partir de gráficas mostradas.",
+        "tip": "Si hay tiempo, use una hoja de cálculo proyectada para que los alumnos vean cómo cambia la recta al modificar el valor de k en tiempo real."
+      }
+    ],
+    "cierre_individual": {
+      "reflexiona": "¿En qué situaciones de la vida real has visto relaciones donde una cantidad aumenta y otra disminuye proporcionalmente (k negativa)? Escribe al menos un ejemplo y la ecuación que lo representaría.",
+      "profundiza": [
+        {
+          "pregunta": "Un tanque tiene 200 litros y se vacía a razón constante de 8 litros por minuto. Escribe la ecuación que modela los litros restantes en función del tiempo y determina en cuántos minutos se vacía completamente.",
+          "respuesta_modelo": "R.M. La ecuación es y = 200 - 8x (o bien, el cambio en litros respecto al inicio es Δy = -8x). Para vaciarse: 200 - 8x = 0, entonces x = 200/8 = 25 minutos."
+        },
+        {
+          "pregunta": "¿Es posible que la constante de proporcionalidad sea cero? ¿Qué significaría en una gráfica y en la realidad?",
+          "respuesta_modelo": "R.M. Si k = 0, entonces y = 0x = 0 para cualquier valor de x. La gráfica sería el eje x (una recta horizontal sobre y = 0). En la realidad significaría que y no depende de x en absoluto; no hay relación entre las variables."
+        }
+      ]
+    },
+    "cierre_grupal": [
+      "La ecuación y = kx modela cualquier relación de proporcionalidad directa",
+      "La constante k se calcula dividiendo y entre x con cualquier par de valores conocidos",
+      "Si k > 0, la recta sube de izquierda a derecha; si k < 0, la recta baja",
+      "Cuanto mayor sea el valor absoluto de k, más inclinada será la recta",
+      "Para resolver problemas con y = kx se puede despejar cualquiera de las tres cantidades: y, x o k"
+    ],
+    "preguntas_comprension": [
+      "¿Cuál es la ecuación de proporcionalidad si 5 artículos cuestan $175?",
+      "Si y = -6x, ¿qué valor tiene y cuando x = 7? ¿Qué significa el signo negativo en un contexto real?",
+      "¿Cómo se ve en la gráfica la diferencia entre y = 2x y y = 10x?",
+      "Un avión desciende a 150 metros por minuto desde 4,500 m de altitud. Escribe la ecuación y calcula cuándo llega al nivel del suelo.",
+      "Si alguien te da la gráfica de una recta que pasa por el origen y por el punto (3, -12), ¿cuál es la ecuación?"
+    ]
+  },
+  "libro": {
+    "introduccion": "En la clase pasada aprendiste a reconocer relaciones proporcionales. Hoy vas a dar el siguiente paso: escribir la ecuacion que las describe. Esto te va a permitir calcular cualquier valor sin necesidad de hacer tablas enormes. Vas a ver que es mas facil de lo que piensas.",
+    "conceptos": [
+      {
+        "titulo": "La ecuacion y = kx",
+        "contenido": "Toda relacion proporcional se puede escribir como y = kx, donde y es la variable dependiente (lo que calculas), x es la variable independiente (lo que conoces) y k es la constante de proporcionalidad. Para encontrar k, divides y entre x con cualquier par de datos: k = y/x.",
+        "definicion": "Ecuacion de proporcionalidad: y = kx, donde k es la constante de proporcionalidad que relaciona las dos variables.",
+        "figura": {
+          "tipo": "plano_cartesiano",
+          "xMin": -3,
+          "xMax": 5,
+          "yMin": -6,
+          "yMax": 10,
+          "puntos": [
+            {
+              "x": 1,
+              "y": 3,
+              "label": ""
+            },
+            {
+              "x": 2,
+              "y": 6,
+              "label": ""
+            },
+            {
+              "x": 3,
+              "y": 9,
+              "label": ""
+            }
+          ],
+          "lineas": [
+            {
+              "x1": -1,
+              "y1": -3,
+              "x2": 3,
+              "y2": 9
+            }
+          ],
+          "width": 180,
+          "height": 180
+        }
+      },
+      {
+        "titulo": "Constante positiva y negativa",
+        "contenido": "Cuando k es positiva, ambas cantidades crecen juntas: si x sube, y tambien sube. La grafica es una recta que sube pasando por el origen. Cuando k es negativa, una cantidad crece mientras la otra disminuye (perdida, desgaste, consumo). La grafica es una recta que baja pasando por el origen.",
+        "definicion": null
+      },
+      {
+        "titulo": "Despejar variables",
+        "contenido": "A veces conoces y y necesitas encontrar x. En ese caso despejas: x = y/k. Tambien puedes encontrar k si te dan x e y: k = y/x. La magnitud de k (su valor sin signo) indica que tan rapido cambia y respecto a x. Cuanto mayor sea |k|, mas empinada sera la recta.",
+        "definicion": null
+      }
+    ],
+    "ejemplos": [
+      {
+        "titulo": "Constante positiva: salario por hora",
+        "enunciado": "Un trabajador gana $150 por hora. Cuanto gana en 8 horas?",
+        "pasos": [
+          "Paso 1: Identificar k = 150 (pesos por hora)",
+          "Paso 2: Escribir la ecuacion: y = 150x",
+          "Paso 3: Sustituir x = 8: y = 150(8) = $1,200"
+        ],
+        "resultado": "Gana $1,200 en 8 horas."
+      },
+      {
+        "titulo": "Constante negativa: perdida de agua",
+        "enunciado": "Un tanque pierde 5 litros por hora. Cuantos litros se pierden en 6 horas?",
+        "pasos": [
+          "Paso 1: Identificar k = -5 (negativa porque se pierde agua)",
+          "Paso 2: Ecuacion: y = -5x",
+          "Paso 3: Sustituir x = 6: y = -5(6) = -30"
+        ],
+        "resultado": "Se pierden 30 litros en 6 horas. El signo negativo indica disminucion."
+      },
+      {
+        "titulo": "Encontrar k a partir de datos",
+        "enunciado": "Un resorte se estira 4 cm cuando le cuelgas 2 kg. Cual es la ecuacion y cuanto se estira con 5 kg?",
+        "pasos": [
+          "Paso 1: Calcular k = y/x = 4/2 = 2 cm por kg",
+          "Paso 2: Ecuacion: y = 2x",
+          "Paso 3: Para x = 5: y = 2(5) = 10 cm"
+        ],
+        "resultado": "La ecuacion es y = 2x. Con 5 kg se estira 10 cm."
+      }
+    ],
+    "datos_curiosos": "La Ley de Hooke en fisica dice que la fuerza de un resorte es proporcional a su estiramiento: F = kx. La constante k se llama constante elastica y cada resorte tiene la suya. Los ingenieros la usan para disenar suspension de coches y colchones.",
+    "ejercicios": [
+      {
+        "numero": 1,
+        "enunciado": "Si y = kx y cuando x = 4, y = -20, encuentra el valor de k y escribe la ecuacion.",
+        "espacio": true,
+        "lineas": 3
+      },
+      {
+        "numero": 2,
+        "enunciado": "Un grifo llena 2.5 litros por minuto. Escribe la ecuacion y calcula cuantos litros llena en 12 minutos.",
+        "espacio": true,
+        "lineas": 3
+      },
+      {
+        "numero": 3,
+        "enunciado": "Un avion desciende a 150 metros por minuto desde 4,500 m de altitud. Escribe la ecuacion del descenso y calcula en cuantos minutos llega al nivel del suelo.",
+        "espacio": true,
+        "lineas": 4
+      }
+    ],
+    "puntos_clave": [
+      "y = kx es la formula de toda relacion proporcional.",
+      "k positiva: ambas cantidades crecen juntas, recta que sube.",
+      "k negativa: una crece y la otra disminuye, recta que baja.",
+      "La magnitud de k indica que tan rapido cambia y respecto a x.",
+      "Siempre puedes encontrar k dividiendo: k = y/x."
+    ]
+  },
+  "diapositiva": [
+    {
+      "titulo": "Repaso rápido",
+      "puntos": [
+        "Relación proporcional: y/x = constante",
+        "Gráfica: recta por el origen",
+        "Hoy: vamos a escribir la ecuación"
+      ],
+      "ejemplo": "Si k = 10, ¿cómo escribimos la ecuación? y = 10x"
+    },
+    {
+      "titulo": "La fórmula: y = kx",
+      "puntos": [
+        "y = variable dependiente (lo que calculas)",
+        "x = variable independiente (lo que conoces)",
+        "k = constante de proporcionalidad"
+      ],
+      "ejemplo": "Gasolina a $22/litro: y = 22x (costo = 22 × litros)"
+    },
+    {
+      "titulo": "Constante positiva (k > 0)",
+      "puntos": [
+        "Ambas cantidades crecen juntas",
+        "Gráfica: recta que sube, pasa por (0,0)",
+        "Ejemplos: precio, distancia, ganancia"
+      ],
+      "ejemplo": "y = 150x → Un trabajador gana $150 por hora"
+    },
+    {
+      "titulo": "Constante negativa (k < 0)",
+      "puntos": [
+        "Una cantidad crece, la otra disminuye",
+        "Gráfica: recta que baja, pasa por (0,0)",
+        "Ejemplos: pérdida de agua, desgaste, consumo"
+      ],
+      "ejemplo": "y = −5x → Un tanque pierde 5 litros por hora",
+      "figura": {
+        "tipo": "plano_cartesiano",
+        "xMin": -4,
+        "xMax": 4,
+        "yMin": -8,
+        "yMax": 8,
+        "puntos": [
+          {
+            "x": 1,
+            "y": 2,
+            "label": "k=2"
+          },
+          {
+            "x": 1,
+            "y": -3,
+            "label": "k=-3"
+          }
+        ],
+        "lineas": [
+          {
+            "x1": -3,
+            "y1": -6,
+            "x2": 3,
+            "y2": 6
+          },
+          {
+            "x1": -2,
+            "y1": 6,
+            "x2": 2,
+            "y2": -6,
+            "color": "#E11D48"
+          }
+        ],
+        "width": 220,
+        "height": 220
+      }
+    },
+    {
+      "titulo": "Encontrar k a partir de datos",
+      "puntos": [
+        "k = y / x",
+        "Usa cualquier par de datos (excepto 0,0)",
+        "k tiene unidades: $/hora, km/h, cm/kg..."
+      ],
+      "ejemplo": "Datos: x=3, y=21. k = 21/3 = 7. Ecuación: y = 7x"
+    },
+    {
+      "titulo": "Despejar la variable desconocida",
+      "puntos": [
+        "Conoces y → despeja x: x = y/k",
+        "Conoces x → calcula y: y = kx",
+        "Cuidado con el signo de k al dividir"
+      ],
+      "ejemplo": "y = −4x. Si y = −28, x = −28/−4 = 7"
+    },
+    {
+      "titulo": "Gráficas comparadas",
+      "puntos": [
+        "y = 2x vs y = 5x: ambas suben, pero y = 5x es más empinada",
+        "y = 3x vs y = −3x: misma inclinación, direcciones opuestas",
+        "Mayor |k| = recta más empinada"
+      ],
+      "ejemplo": "Dibujar y = 2x y y = −2x en los mismos ejes"
+    },
+    {
+      "titulo": "Resumen",
+      "puntos": [
+        "y = kx modela toda relación proporcional",
+        "k > 0: crecimiento; k < 0: decrecimiento",
+        "Encontrar k: dividir y/x. Despejar: x = y/k"
+      ],
+      "ejemplo": "Reto: Si un globo pierde 3 cm³ de aire por minuto, escribe la ecuación y calcula la pérdida en 15 min."
+    }
+  ],
+  "video_script": "# Fórmula de proporcionalidad — Script de video (5-7 min)\n\n[VISUAL: Pizarrón animado con el título \"y = kx\" apareciendo con efecto de tiza]\n\n¡Qué onda! En el video pasado aprendimos a reconocer relaciones proporcionales. Hoy vamos a aprender la fórmula que las gobierna a todas: **y = kx**. Con esta ecuación vas a poder resolver cualquier problema de proporcionalidad en segundos.\n\n[VISUAL: La ecuación y = kx en grande, con cada letra resaltada en un color diferente]\n\nEmpecemos con lo básico. En **y = kx**, la **x** es lo que tú conoces o controlas, la **y** es lo que quieres calcular, y la **k** es la famosa constante de proporcionalidad que ya conoces.\n\nVamos directo con un ejemplo. Un trabajador gana **$150 por hora**.\n\n[VISUAL: Ícono de reloj y billetes apareciendo]\n\nAquí k = 150. La ecuación es **y = 150x**, donde x son las horas y y es el salario.\n\n¿Cuánto gana en 6 horas? y = 150 × 6 = **$900**. ¡Listo!\n\n¿Y si ya sé que ganó $1,200 y quiero saber cuántas horas trabajó? Despejo x: x = 1200 ÷ 150 = **8 horas**.\n\n[VISUAL: Ecuación que se despeja paso a paso con animación]\n\nAhora viene la parte nueva: **¿qué pasa cuando k es negativa?**\n\n[VISUAL: Tinaco lleno de agua con una fuga que gotea]\n\nImagina un tinaco que pierde 5 litros de agua cada hora. La pérdida acumulada es: y = **−5**x.\n\nEn 2 horas: y = −5(2) = −10. Perdió 10 litros.\nEn 6 horas: y = −5(6) = −30. Perdió 30 litros.\n\nEl signo negativo nos dice que algo **disminuye**. Cuando k es negativa, x sube pero y baja.\n\n[VISUAL: Gráfica animada: recta que baja de izquierda a derecha pasando por el origen]\n\nEn la gráfica se ve clarísimo. Si k es positiva, la recta **sube**. Si k es negativa, la recta **baja**. Ambas pasan por el origen.\n\n[VISUAL: Dos rectas en los mismos ejes: y = 3x (azul, sube) y y = −3x (roja, baja)]\n\nOtra cosa importante: **el tamaño de k** (sin importar el signo) te dice qué tan empinada es la recta. Comparemos y = 2x y y = 5x.\n\n[VISUAL: Dos rectas azules: una poco inclinada (y=2x) y otra muy inclinada (y=5x)]\n\nLa de k = 5 es mucho más empinada. Eso significa que y cambia más rápido. Si k es el salario, ganar $5 por hora te da una recta más empinada que ganar $2 por hora. Lógico, ¿no?\n\nAhora practiquemos encontrar k cuando te dan datos.\n\n[VISUAL: Tabla que aparece: x=4, y=28]\n\nSi cuando x = 4, y = 28, entonces k = 28 ÷ 4 = **7**. La ecuación es y = 7x.\n\n¿Cuánto vale y cuando x = 10? y = 7(10) = **70**.\n\n[VISUAL: Verificación rápida con la tabla completándose]\n\nY un último ejemplo con k negativa. Un bloque de hielo pierde 8 gramos por minuto.\n\nk = −8. Ecuación: y = −8x.\n\nEn 15 minutos: y = −8(15) = **−120 gramos**.\n\n[VISUAL: Bloque de hielo derritiéndose con un cronómetro]\n\nResumamos:\n- **y = kx** es LA fórmula de proporcionalidad.\n- **k positiva** → ambas cantidades crecen → recta que sube.\n- **k negativa** → una crece, la otra baja → recta que baja.\n- Para encontrar k: **divide y entre x**.\n- Para despejar x: **divide y entre k**.\n\n[VISUAL: Resumen en cuadro con los puntos clave y flechas de colores]\n\nPractica con situaciones de tu vida: ¿cuánto gastas en transporte por día? ¿Cuántos datos de internet consumes por hora? Todo eso es y = kx.\n\n[VISUAL: Íconos de camión, celular, reloj]\n\n¡Nos vemos en el siguiente video donde hablaremos de rectas y ángulos!"
+}

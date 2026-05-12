@@ -1,0 +1,294 @@
+{
+  "secuencia": 33,
+  "titulo": "Eventos aleatorios",
+  "contenido": "Azar y probabilidad.",
+  "pda": "Identifica eventos en los que interviene el azar, determina el espacio muestral y experimenta. Identifica diversos procedimientos de conteo y resuelve problemas.",
+  "evaluacion": {
+    "preguntas": [
+      {
+        "tipo": "opcion_multiple",
+        "pregunta": "Al lanzar dos monedas al mismo tiempo, ¿cuántos resultados posibles tiene el espacio muestral?",
+        "opciones": ["A) 2", "B) 3", "C) 4", "D) 6"],
+        "respuesta": "C"
+      },
+      {
+        "tipo": "verdadero_falso",
+        "pregunta": "El espacio muestral de lanzar un dado de 6 caras es {1, 2, 3, 4, 5, 6}.",
+        "respuesta": true
+      },
+      {
+        "tipo": "calculo",
+        "pregunta": "Si tienes 3 camisas (roja, azul, blanca) y 2 pantalones (negro, café), ¿cuántos atuendos diferentes puedes formar? Usa el principio multiplicativo.",
+        "respuesta": "Paso 1: Identificar las opciones de cada categoría: camisas = 3, pantalones = 2. Paso 2: Aplicar el principio multiplicativo: 3 × 2 = 6. Paso 3: Los 6 atuendos son: roja-negro, roja-café, azul-negro, azul-café, blanca-negro, blanca-café."
+      },
+      {
+        "tipo": "espacios",
+        "pregunta": "El conjunto de todos los resultados posibles de un experimento aleatorio se llama espacio ___.",
+        "respuesta": "muestral"
+      },
+      {
+        "tipo": "abierta",
+        "pregunta": "Da un ejemplo de un evento aleatorio y otro de un evento determinista. Explica la diferencia entre ambos.",
+        "respuesta": "Evento aleatorio: lanzar un dado, porque no sabemos qué número saldrá. Evento determinista: soltar una pelota desde una altura, porque siempre caerá al suelo por la gravedad. La diferencia es que en un evento aleatorio el resultado es impredecible, mientras que en uno determinista el resultado siempre es el mismo bajo las mismas condiciones."
+      }
+    ]
+  },
+  "orientacion": {
+    "contenidos_especificos": [
+      "Distinguir entre eventos deterministas (predecibles) y eventos aleatorios (interviene el azar)",
+      "Determinar el espacio muestral de experimentos simples y compuestos",
+      "Representar el espacio muestral mediante listas, tablas de doble entrada y diagramas de árbol",
+      "Realizar experimentos aleatorios y registrar los resultados para compararlos con la teoría",
+      "Comprender que la frecuencia relativa se acerca a la probabilidad teórica al aumentar el número de repeticiones"
+    ],
+    "actividad_inicio": [
+      "Lanzar una moneda 10 veces frente al grupo y registrar los resultados. Preguntar: ¿salió exactamente 5 águilas y 5 soles? ¿Por qué?",
+      "Pedir a los alumnos que predigan el resultado del próximo lanzamiento. Discutir: ¿alguien puede estar seguro de su predicción?",
+      "Contrastar con un evento determinista: si suelto mi pluma, ¿qué va a pasar? (cae al suelo, siempre). Eso no es aleatorio.",
+      "Presentar el objetivo: aprender a identificar cuándo un evento es aleatorio, determinar todos sus posibles resultados y experimentar"
+    ],
+    "desarrollo": [
+      {
+        "titulo": "Eventos deterministas vs. aleatorios",
+        "diapositiva": "1-3",
+        "libro": "Sección 'Azar y determinismo'",
+        "video": "min 0:30-1:45",
+        "descripcion": "Presente una tabla con dos columnas: determinista y aleatorio. Coloque ejemplos: el agua se congela a 0°C (determinista), sale águila al lanzar moneda (aleatorio), un día tiene 24 horas (determinista), llueve mañana (aleatorio). Pida a los alumnos que clasifiquen en parejas 8 eventos adicionales. Discutan los casos ambiguos como grupo. Refuerce que aleatorio no significa 'sin reglas', sino que no podemos predecir el resultado exacto.",
+        "tip": "Los alumnos suelen confundir 'no sé la respuesta' con 'es aleatorio'. Aclare que la aleatoriedad es del evento, no de su conocimiento."
+      },
+      {
+        "titulo": "Espacio muestral: listas, tablas y diagramas de árbol",
+        "diapositiva": "4-6",
+        "libro": "Sección 'Espacio muestral'",
+        "video": "min 1:45-3:15",
+        "descripcion": "Defina espacio muestral como el conjunto de todos los resultados posibles. Para un dado: {1,2,3,4,5,6}. Para dos monedas, construya un diagrama de árbol en el pizarrón: primera moneda (A o S) → segunda moneda (A o S) → 4 resultados: {AA, AS, SA, SS}. Luego muestre la misma información en una tabla de doble entrada. Práctica en equipos: determinen el espacio muestral de lanzar un dado y una moneda simultáneamente usando diagrama de árbol. Deben obtener 12 resultados.",
+        "tip": "El diagrama de árbol es la herramienta más intuitiva para los alumnos. Úselo como base y después introduzca la tabla."
+      },
+      {
+        "titulo": "Experimentar y comparar con la teoría",
+        "diapositiva": "7-8",
+        "libro": "Sección 'Experimenta'",
+        "video": "min 3:15-4:45",
+        "descripcion": "Actividad práctica: cada equipo lanza un dado 30 veces y registra los resultados en una tabla de frecuencias. Calculen la frecuencia relativa de cada número (frecuencia/30). Comparen con la probabilidad teórica (1/6 ≈ 0.167). ¿Son iguales? Discuta por qué no y que al aumentar el número de lanzamientos, las frecuencias relativas se acercan a la probabilidad teórica (ley de los grandes números, sin formalizar).",
+        "tip": "Si el tiempo lo permite, sume los resultados de todos los equipos para mostrar que con más datos, las frecuencias se estabilizan."
+      }
+    ],
+    "cierre_individual": {
+      "reflexiona": "Hoy experimentaste con el azar. ¿Los resultados de tu equipo coincidieron con lo que esperabas teóricamente? ¿Qué crees que pasaría si lanzaras el dado 1,000 veces en lugar de 30? Escribe tu reflexión.",
+      "profundiza": [
+        {
+          "pregunta": "¿Jugar a la lotería es un evento aleatorio? Si compras un boleto de 1,000 posibles, ¿cuál es la probabilidad de ganar? ¿Cambiaría si compras 10 boletos?",
+          "respuesta_modelo": "R.M. Sí, es aleatorio porque no se puede predecir el boleto ganador. La probabilidad con 1 boleto es 1/1000 = 0.001. Con 10 boletos es 10/1000 = 1/100 = 0.01. Aumenta 10 veces, pero sigue siendo muy baja."
+        },
+        {
+          "pregunta": "Si lanzas una moneda 10 veces y salen 10 águilas seguidas, ¿es más probable que la siguiente sea sol? Explica.",
+          "respuesta_modelo": "R.M. No. Cada lanzamiento es independiente, así que la probabilidad sigue siendo 1/2 para águila y 1/2 para sol. La moneda no tiene memoria de los lanzamientos anteriores. Creer que 'le toca' al sol es un error conocido como la falacia del jugador."
+        }
+      ]
+    },
+    "cierre_grupal": [
+      "Un evento aleatorio es aquel cuyo resultado no se puede predecir con certeza antes de realizarlo",
+      "El espacio muestral es el conjunto de todos los resultados posibles de un experimento",
+      "Se puede representar el espacio muestral con listas, tablas de doble entrada o diagramas de árbol",
+      "La frecuencia relativa de un resultado se acerca a su probabilidad teórica cuando aumentamos el número de experimentos",
+      "Que un evento sea aleatorio no significa que no tenga reglas; simplemente su resultado individual no es predecible"
+    ],
+    "preguntas_comprension": [
+      "¿Cuál es la diferencia entre un evento determinista y uno aleatorio? Da un ejemplo de cada uno.",
+      "¿Cuántos elementos tiene el espacio muestral de lanzar 3 monedas? Enlistálos.",
+      "¿Por qué el diagrama de árbol es útil para determinar el espacio muestral de experimentos compuestos?",
+      "Si lanzas un dado 60 veces, ¿cuántas veces esperarías que cayera el número 4? ¿Obtendrás exactamente ese número?",
+      "¿Un volado es realmente justo? ¿Qué condiciones se necesitan para que lo sea?"
+    ]
+  },
+  "libro": {
+    "introduccion": "¿Qué tienen en común lanzar un dado, sacar una carta de la baraja y elegir un alumno al azar? Que el resultado depende del azar. Hoy vas a aprender a identificar experimentos aleatorios, a determinar su espacio muestral (todos los resultados posibles) y a usar técnicas de conteo para no dejarte ninguno fuera.",
+    "conceptos": [
+      {
+        "titulo": "Experimento aleatorio y espacio muestral",
+        "contenido": "Un experimento aleatorio es aquel cuyo resultado no se puede predecir con certeza antes de realizarlo, aunque sí podemos listar todos los resultados posibles. El conjunto de todos esos resultados se llama espacio muestral y se representa con la letra S o la letra griega Ω.",
+        "definicion": "Espacio muestral (S): conjunto de todos los resultados posibles de un experimento aleatorio. Ejemplo: al lanzar un dado, S = {1, 2, 3, 4, 5, 6}."
+      },
+      {
+        "titulo": "Diagrama de árbol",
+        "contenido": "Cuando un experimento tiene varias etapas (como lanzar dos monedas o elegir dos objetos), un diagrama de árbol te ayuda a visualizar todos los resultados posibles. Cada rama representa una opción, y los caminos completos desde la raíz hasta las hojas dan todos los resultados del espacio muestral.",
+        "definicion": null
+      },
+      {
+        "titulo": "Principio multiplicativo de conteo",
+        "contenido": "Si un experimento tiene dos etapas, y la primera tiene m resultados posibles y la segunda tiene n resultados posibles, el total de resultados es m × n. Este principio se extiende a cualquier número de etapas: se multiplican todas las posibilidades.",
+        "definicion": "Si la etapa 1 tiene m opciones, la etapa 2 tiene n opciones y la etapa 3 tiene p opciones, el total de resultados = m × n × p."
+      }
+    ],
+    "ejemplos": [
+      {
+        "titulo": "Espacio muestral de dos monedas",
+        "enunciado": "Determina el espacio muestral al lanzar dos monedas.",
+        "pasos": [
+          "Paso 1: La moneda 1 tiene 2 resultados: Cara (C) o Cruz (X).",
+          "Paso 2: La moneda 2 también tiene 2 resultados: C o X.",
+          "Paso 3: Por el principio multiplicativo: 2 × 2 = 4 resultados.",
+          "Paso 4: S = {CC, CX, XC, XX}."
+        ],
+        "resultado": "Hay 4 resultados posibles. El diagrama de árbol muestra las 4 ramas completas.",
+        "figura": {
+          "tipo": "grafica_barras",
+          "datos": [
+            {
+              "label": "1",
+              "valor": 1
+            },
+            {
+              "label": "2",
+              "valor": 1
+            },
+            {
+              "label": "3",
+              "valor": 1
+            },
+            {
+              "label": "4",
+              "valor": 1
+            },
+            {
+              "label": "5",
+              "valor": 1
+            },
+            {
+              "label": "6",
+              "valor": 1
+            }
+          ],
+          "width": 250,
+          "height": 120
+        }
+      },
+      {
+        "titulo": "Principio multiplicativo con ropa",
+        "enunciado": "Tienes 3 camisas (roja, azul, verde) y 2 pantalones (negro, café). ¿Cuántos conjuntos diferentes puedes armar?",
+        "pasos": [
+          "Paso 1: Opciones de camisa: 3.",
+          "Paso 2: Opciones de pantalón: 2.",
+          "Paso 3: Total de combinaciones: 3 × 2 = 6."
+        ],
+        "resultado": "Puedes armar 6 conjuntos diferentes: roja-negro, roja-café, azul-negro, azul-café, verde-negro, verde-café."
+      },
+      {
+        "titulo": "Espacio muestral de un dado y una moneda",
+        "enunciado": "Lanzas un dado y una moneda al mismo tiempo. ¿Cuántos resultados posibles hay? Lista algunos.",
+        "pasos": [
+          "Paso 1: El dado tiene 6 resultados, la moneda tiene 2.",
+          "Paso 2: Total = 6 × 2 = 12 resultados.",
+          "Paso 3: Algunos resultados: (1, C), (1, X), (2, C), (2, X), ..., (6, C), (6, X)."
+        ],
+        "resultado": "El espacio muestral tiene 12 elementos. Cada uno combina una cara del dado con una cara de la moneda."
+      }
+    ],
+    "datos_curiosos": "El principio multiplicativo explica por qué las contraseñas largas son más seguras. Si una contraseña usa solo dígitos (10 opciones por posición), una de 4 dígitos tiene 10⁴ = 10,000 combinaciones, pero una de 8 dígitos tiene 10⁸ = 100,000,000. Agregar letras y símbolos multiplica aún más las posibilidades, haciendo casi imposible adivinarla.",
+    "ejercicios": [
+      {
+        "numero": 1,
+        "enunciado": "Lista el espacio muestral al lanzar tres monedas. ¿Cuántos resultados hay?",
+        "espacio": true,
+        "lineas": 4
+      },
+      {
+        "numero": 2,
+        "enunciado": "Un menú ofrece 4 entradas, 3 platos fuertes y 2 postres. ¿Cuántas comidas diferentes puedes armar eligiendo una opción de cada categoría?",
+        "espacio": true,
+        "lineas": 3
+      },
+      {
+        "numero": 3,
+        "enunciado": "Dibuja el diagrama de árbol para el experimento de lanzar un dado de 4 caras y luego elegir una letra entre A y B. Lista el espacio muestral completo.",
+        "espacio": true,
+        "lineas": 5
+      },
+      {
+        "numero": 4,
+        "enunciado": "¿Cuántas placas de auto diferentes se pueden formar si tienen 3 letras seguidas de 4 números? (Hay 26 letras y 10 dígitos.)",
+        "espacio": true,
+        "lineas": 3
+      }
+    ],
+    "puntos_clave": [
+      "Un experimento aleatorio es aquel cuyo resultado no se puede predecir con certeza.",
+      "El espacio muestral es el conjunto de todos los resultados posibles.",
+      "El diagrama de árbol ayuda a visualizar y listar todos los resultados de experimentos con varias etapas.",
+      "El principio multiplicativo: si hay m opciones en la etapa 1 y n en la etapa 2, el total es m × n.",
+      "Contar correctamente los resultados posibles es fundamental para calcular probabilidades."
+    ]
+  },
+  "diapositiva": [
+    {
+      "titulo": "Eventos aleatorios vs. deterministas",
+      "puntos": [
+        "Aleatorio: resultado impredecible (lanzar moneda, sacar carta)",
+        "Determinista: resultado siempre igual (soltar un objeto → cae)",
+        "En matemáticas estudiamos los eventos aleatorios"
+      ],
+      "ejemplo": "Aleatorio: ¿qué número saldrá en el dado? Determinista: el agua hierve a 100°C."
+    },
+    {
+      "titulo": "¿Qué es el espacio muestral?",
+      "puntos": [
+        "Conjunto de TODOS los resultados posibles",
+        "Se denota con S o Ω",
+        "Es el primer paso para analizar probabilidades"
+      ],
+      "ejemplo": "Dado: S = {1, 2, 3, 4, 5, 6} → 6 resultados posibles."
+    },
+    {
+      "titulo": "Espacio muestral de dos monedas",
+      "puntos": ["Moneda 1: sol o águila", "Moneda 2: sol o águila", "Total: 4 resultados (no 3)"],
+      "ejemplo": "S = {(S,S), (S,A), (A,S), (A,A)}. El orden importa: SA ≠ AS."
+    },
+    {
+      "titulo": "Diagrama de árbol",
+      "puntos": [
+        "Herramienta visual para listar todos los resultados",
+        "Cada nivel = una decisión/experimento",
+        "Cada rama = una opción. Cada camino = un resultado"
+      ],
+      "ejemplo": "2 monedas: primera rama S/A, de cada una salen 2 ramas más → 4 caminos."
+    },
+    {
+      "titulo": "El principio multiplicativo",
+      "puntos": [
+        "Si hay m opciones para A y n opciones para B",
+        "Total de combinaciones = m × n",
+        "Se extiende: m × n × p × ... para más categorías"
+      ],
+      "ejemplo": "3 camisas × 2 pantalones = 6 atuendos diferentes."
+    },
+    {
+      "titulo": "Ejemplo: contraseñas",
+      "puntos": [
+        "Contraseña de 4 dígitos (0-9)",
+        "Cada posición tiene 10 opciones",
+        "Total = 10 × 10 × 10 × 10 = 10,000"
+      ],
+      "ejemplo": "Por eso te piden contraseñas largas: cada dígito multiplica las posibilidades."
+    },
+    {
+      "titulo": "Ejemplo: sumas con dos dados",
+      "puntos": [
+        "Cada dado tiene 6 caras → espacio muestral = 6 × 6 = 36",
+        "La suma 7 se puede obtener de 6 formas: (1,6)(2,5)(3,4)(4,3)(5,2)(6,1)",
+        "La suma 2 solo de 1 forma: (1,1)"
+      ],
+      "ejemplo": "Por eso en juegos de mesa, el 7 sale mucho más seguido que el 2 o el 12."
+    },
+    {
+      "titulo": "Resumen",
+      "puntos": [
+        "Identifica si el evento es aleatorio o determinista",
+        "Lista el espacio muestral completo",
+        "Usa diagramas de árbol y el principio multiplicativo",
+        "Estos son los fundamentos del cálculo de probabilidades"
+      ],
+      "ejemplo": "Practica: ¿cuántos resultados tiene lanzar 3 monedas? R: 2×2×2 = 8."
+    }
+  ],
+  "video_script": "# Eventos aleatorios\n\n[VISUAL: Animación de un dado rodando por una mesa y cayendo en un número aleatorio]\n\n¡Hola! ¿Listo para una clase que combina juegos, conteo y un poco de misterio? Hoy vamos a hablar de eventos aleatorios, espacios muestrales y procedimientos de conteo. Suena complicado, pero ya verás que es bastante intuitivo.\n\n[VISUAL: Dos escenas lado a lado: izquierda — una manzana cayendo de un árbol; derecha — un volado con una moneda]\n\nEmpecemos con una pregunta: ¿qué diferencia hay entre soltar una manzana y lanzar una moneda? La manzana SIEMPRE cae al piso por la gravedad, eso es un evento determinista. La moneda puede caer sol o águila y no hay forma de saberlo de antemano, eso es un evento aleatorio.\n\nLos eventos aleatorios son los que nos interesan hoy porque son los que podemos estudiar con probabilidad.\n\n[VISUAL: Aparece un recuadro con la etiqueta \"Espacio muestral\" y los resultados de un dado: {1, 2, 3, 4, 5, 6}]\n\nCuando analizamos un evento aleatorio, lo primero que hacemos es listar TODOS los resultados posibles. A ese conjunto le llamamos **espacio muestral**. Para un dado de 6 caras, el espacio muestral es {1, 2, 3, 4, 5, 6}. Fácil.\n\n¿Pero qué pasa si lanzamos DOS monedas? Mucha gente dice: \"son 3 resultados: dos soles, dos águilas, o uno y uno\". ¡Error! Son 4 resultados.\n\n[VISUAL: Diagrama de árbol animado. Primera moneda: Sol/Águila. De Sol salen Sol y Águila. De Águila salen Sol y Águila. Se muestran los 4 caminos]\n\nMira este diagrama de árbol. La primera moneda puede caer sol o águila. Y para CADA resultado de la primera, la segunda también puede caer sol o águila. Eso nos da 4 caminos: sol-sol, sol-águila, águila-sol, águila-águila. Sol-águila y águila-sol son resultados DIFERENTES porque importa qué moneda dio qué resultado.\n\n[VISUAL: Se resalta que son 2 × 2 = 4 caminos con una ecuación animada]\n\nAquí entra el principio multiplicativo de conteo. Si un experimento tiene dos partes y la primera tiene 2 opciones y la segunda tiene 2 opciones, el total es 2 × 2 = 4. Así de simple: multiplicas.\n\n[VISUAL: Escena de un restaurante con menú: 4 entradas, 3 platos, 2 postres]\n\nVamos con un ejemplo más grande. En un restaurante hay 4 entradas, 3 platos fuertes y 2 postres. ¿Cuántos menús completos diferentes puedes pedir? Multiplicamos: 4 × 3 × 2 = 24 menús diferentes. ¡Sin necesidad de listarlos todos!\n\n[VISUAL: Un candado con 4 dígitos, cada rueda gira mostrando números del 0 al 9]\n\n¿Y qué tal las contraseñas? Si tu celular tiene un PIN de 4 dígitos y cada uno va del 0 al 9, ¿cuántas contraseñas posibles hay? Son 10 × 10 × 10 × 10 = 10,000. Por eso es tan difícil adivinar una contraseña: ¡hay diez mil opciones!\n\n[VISUAL: Dos dados se lanzan simultáneamente, se forma una tabla de 6×6 mostrando todas las sumas posibles]\n\nAhora un ejemplo clásico: dos dados. El espacio muestral tiene 6 × 6 = 36 resultados. Si te fijas en las sumas, la suma 7 se puede formar de 6 maneras diferentes: (1,6), (2,5), (3,4), (4,3), (5,2), (6,1). Pero la suma 12 solo de una manera: (6,6). Por eso si juegas Monopoly, el 7 sale muchísimo más que el 12.\n\n[VISUAL: Tabla coloreada donde las celdas de suma=7 están en verde y suma=12 en rojo]\n\nEntonces, para resolver problemas de conteo: paso 1, identifica si es un evento aleatorio. Paso 2, determina el espacio muestral listando todos los resultados o usando el principio multiplicativo. Paso 3, si necesitas contar combinaciones específicas, usa diagramas de árbol o tablas.\n\n[VISUAL: Resumen con 3 pasos y flechas, iconos de dado, árbol y calculadora]\n\nPractica en tu casa: ¿cuántos resultados posibles hay al lanzar 3 monedas? Piénsalo... 2 × 2 × 2 = 8. ¿Puedes listarlos todos? ¡Inténtalo con un diagrama de árbol! Nos vemos en la siguiente clase."
+}

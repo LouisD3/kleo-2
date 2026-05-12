@@ -1,0 +1,271 @@
+{
+  "secuencia": 34,
+  "titulo": "Conjunción y disyunción",
+  "contenido": "Razonamiento lógico.",
+  "pda": "Utiliza la lógica simbólica para formalizar razonamientos que involucren conjunciones, disyunciones y negaciones.",
+  "evaluacion": {
+    "preguntas": [
+      {
+        "tipo": "opcion_multiple",
+        "pregunta": "Si p = \"Llueve\" y q = \"Hace frío\", ¿qué representa p ∧ q?",
+        "opciones": [
+          "A) Llueve o hace frío",
+          "B) Llueve y hace frío",
+          "C) No llueve",
+          "D) Si llueve, entonces hace frío"
+        ],
+        "respuesta": "B"
+      },
+      {
+        "tipo": "verdadero_falso",
+        "pregunta": "La disyunción p ∨ q es verdadera cuando al menos una de las dos proposiciones es verdadera.",
+        "respuesta": true
+      },
+      {
+        "tipo": "espacios",
+        "pregunta": "La ___ de una proposición cambia su valor de verdad: si p es verdadera, ¬p es falsa, y viceversa.",
+        "respuesta": "negación"
+      },
+      {
+        "tipo": "calculo",
+        "pregunta": "Completa la tabla de verdad de p ∧ q para los cuatro casos posibles de p y q.",
+        "respuesta": "Caso 1: p=V, q=V → p∧q=V. Caso 2: p=V, q=F → p∧q=F. Caso 3: p=F, q=V → p∧q=F. Caso 4: p=F, q=F → p∧q=F. La conjunción solo es verdadera cuando AMBAS son verdaderas."
+      },
+      {
+        "tipo": "abierta",
+        "pregunta": "Escribe un ejemplo de la vida cotidiana que use una disyunción y explica cuándo sería verdadera y cuándo falsa.",
+        "respuesta": "Ejemplo: 'Hoy como pizza o como hamburguesa' (p ∨ q). Es verdadera si como pizza (aunque no hamburguesa), si como hamburguesa (aunque no pizza), o si como ambas. Solo es falsa si no como ninguna de las dos."
+      }
+    ]
+  },
+  "orientacion": {
+    "contenidos_especificos": [
+      "Identificar proposiciones simples y asignarles un valor de verdad (verdadero o falso)",
+      "Comprender y aplicar la negación (¬) como operación que invierte el valor de verdad",
+      "Comprender la conjunción (∧, Y): verdadera solo cuando ambas proposiciones son verdaderas",
+      "Comprender la disyunción (∨, O): falsa solo cuando ambas proposiciones son falsas",
+      "Construir tablas de verdad para proposiciones compuestas"
+    ],
+    "actividad_inicio": [
+      "Escribir en el pizarrón: 'Para pasar la materia necesitas aprobar los exámenes Y entregar las tareas'. Preguntar: ¿qué pasa si solo cumples una de las dos condiciones?",
+      "Cambiar a: 'Puedes hacer el trabajo en equipo O individual'. Preguntar: ¿cuántas opciones válidas tienes?",
+      "Hacer notar que en la vida diaria usamos Y, O, NO para unir condiciones, y que las matemáticas tienen una forma precisa de manejar esto",
+      "Presentar el objetivo: aprender a usar los conectivos lógicos conjunción, disyunción y negación para formalizar razonamientos"
+    ],
+    "desarrollo": [
+      {
+        "titulo": "Proposiciones y negación",
+        "diapositiva": "1-3",
+        "libro": "Sección 'Proposiciones y negación'",
+        "video": "min 0:30-2:00",
+        "descripcion": "Defina proposición como un enunciado que es verdadero o falso, nunca ambos. Practiquen identificando: '7 es par' (proposición, falsa), '¿Cómo te llamas?' (no es proposición, es pregunta), 'Cierra la puerta' (no es proposición, es orden). Introduzca la negación ¬p: si p es V, ¬p es F y viceversa. Los alumnos escriben 5 proposiciones, les asignan valor de verdad y escriben su negación.",
+        "tip": "Use el ejemplo 'Hoy es lunes': su verdad depende del día, pero en un momento dado es V o F. Eso sí es proposición."
+      },
+      {
+        "titulo": "Conjunción (Y) y su tabla de verdad",
+        "diapositiva": "4-5",
+        "libro": "Sección 'Conjunción'",
+        "video": "min 2:00-3:15",
+        "descripcion": "Presente el conectivo ∧ (Y). Use el ejemplo del reglamento: 'Traes uniforme Y traes credencial'. Solo estás en regla si AMBAS son verdaderas. Construya la tabla de verdad en el pizarrón con participación del grupo. Enfatice: la conjunción es verdadera SOLO cuando las dos proposiciones son verdaderas. Los alumnos completan en su cuaderno 3 tablas de verdad con proposiciones que ellos inventen.",
+        "tip": "Relacione con circuitos eléctricos en serie: ambos interruptores deben estar encendidos para que pase la corriente."
+      },
+      {
+        "titulo": "Disyunción (O) y combinaciones",
+        "diapositiva": "6-8",
+        "libro": "Sección 'Disyunción'",
+        "video": "min 3:15-4:45",
+        "descripcion": "Presente el conectivo ∨ (O). Ejemplo: 'Vienes en autobús O te traen tus papás'. Basta con que una sea verdadera. Construya la tabla de verdad: la disyunción es falsa SOLO cuando ambas son falsas. Compare lado a lado la tabla de ∧ y la de ∨. Practiquen combinando los tres operadores: evalúen ¬p ∨ q y p ∧ ¬q para distintos valores de p y q. Los alumnos construyen tablas de verdad de proposiciones compuestas en equipos.",
+        "tip": "Aclare que el O lógico es inclusivo: 'café o té' permite tomar ambos. En español a veces el O es exclusivo, pero en lógica no."
+      }
+    ],
+    "cierre_individual": {
+      "reflexiona": "Piensa en alguna regla de tu escuela o casa que use las palabras Y, O o NO. Escríbela en lenguaje cotidiano y luego tradúcela a símbolos lógicos. ¿Cambia el significado al formalizarla?",
+      "profundiza": [
+        {
+          "pregunta": "¿La proposición ¬(p ∧ q) tiene la misma tabla de verdad que ¬p ∨ ¬q? Construye ambas tablas y compara.",
+          "respuesta_modelo": "R.M. Sí, son equivalentes. Para (V,V): ¬(V∧V) = ¬V = F; ¬V∨¬V = F∨F = F. Para (V,F): ¬(V∧F) = ¬F = V; ¬V∨¬F = F∨V = V. Para (F,V): ¬(F∧V) = V; V∨F = V. Para (F,F): ¬(F∧F) = V; V∨V = V. Las columnas son idénticas: F, V, V, V. Esto se conoce como Ley de De Morgan."
+        },
+        {
+          "pregunta": "En un juego, ganas si: (sacas 6 en el dado) Y (la moneda cae águila O sacas un número par). Traduce a símbolos y evalúa si ganas cuando sacas 6 y cae sol.",
+          "respuesta_modelo": "R.M. Sea p = 'sacas 6' (V), q = 'cae águila' (F), r = 'sacas par' (V, porque 6 es par). La condición es p ∧ (q ∨ r) = V ∧ (F ∨ V) = V ∧ V = V. Sí ganas."
+        }
+      ]
+    },
+    "cierre_grupal": [
+      "Una proposición es un enunciado que puede ser verdadero o falso, pero no ambos",
+      "La negación (¬) invierte el valor de verdad de una proposición",
+      "La conjunción (∧, Y) es verdadera solo cuando ambas proposiciones son verdaderas",
+      "La disyunción (∨, O) es falsa solo cuando ambas proposiciones son falsas",
+      "Las tablas de verdad nos permiten analizar todas las combinaciones posibles de valores",
+      "Nota: Si el tiempo es limitado, prioriza la negación y la conjunción. La disyunción puede reforzarse la siguiente semana."
+    ],
+    "preguntas_comprension": [
+      "¿Por qué '¡Siéntate!' no es una proposición lógica?",
+      "Si p es falso y q es verdadero, ¿cuál es el valor de p ∧ q? ¿Y de p ∨ q?",
+      "Construye la tabla de verdad de ¬p ∧ q.",
+      "Traduce a símbolos: 'No es cierto que hoy sea viernes o que estemos de vacaciones'.",
+      "¿Cuántas filas tiene la tabla de verdad de una proposición compuesta con 3 variables (p, q, r)?"
+    ]
+  },
+  "libro": {
+    "introduccion": "En tu vida cotidiana usas lógica todo el tiempo: 'Si llueve Y no tengo paraguas, me mojo'. 'Voy al cine O me quedo en casa'. Esas palabras 'y', 'o', 'no' tienen un significado muy preciso en matemáticas. Hoy vas a aprender a formalizar razonamientos usando conjunciones, disyunciones y negaciones con lógica simbólica.",
+    "conceptos": [
+      {
+        "titulo": "Proposiciones lógicas",
+        "contenido": "Una proposición es un enunciado que puede ser verdadero (V) o falso (F), pero no ambos. Por ejemplo: '5 es un número primo' es una proposición verdadera. '3 + 2 = 8' es una proposición falsa. Las preguntas, exclamaciones y opiniones no son proposiciones porque no tienen un valor de verdad definido.",
+        "definicion": "Una proposición es un enunciado declarativo que tiene exactamente un valor de verdad: verdadero (V) o falso (F).",
+        "figura": {
+          "tipo": "recta_numerica",
+          "min": 0,
+          "max": 1,
+          "puntos": [
+            {
+              "valor": 0,
+              "label": "F"
+            },
+            {
+              "valor": 1,
+              "label": "V"
+            }
+          ],
+          "width": 200,
+          "height": 50
+        }
+      },
+      {
+        "titulo": "Conjunción (∧) — 'Y'",
+        "contenido": "La conjunción une dos proposiciones con 'y'. Se simboliza con ∧. La conjunción p ∧ q es verdadera solo cuando ambas proposiciones son verdaderas. Si al menos una es falsa, toda la conjunción es falsa. Es como una cadena: se rompe si cualquier eslabón falla.",
+        "definicion": "p ∧ q es verdadera si y solo si p es V y q es V. En cualquier otro caso es falsa."
+      },
+      {
+        "titulo": "Disyunción (∨) — 'O' y Negación (¬) — 'No'",
+        "contenido": "La disyunción une dos proposiciones con 'o'. Se simboliza con ∨. Es verdadera cuando al menos una de las proposiciones es verdadera; solo es falsa cuando ambas son falsas. La negación invierte el valor de verdad: si p es verdadera, ¬p es falsa, y viceversa.",
+        "definicion": "p ∨ q es verdadera si al menos una (p o q) es verdadera. ¬p es verdadera cuando p es falsa, y viceversa."
+      }
+    ],
+    "ejemplos": [
+      {
+        "titulo": "Tabla de verdad de la conjunción",
+        "enunciado": "Sean p = '4 es par' (V) y q = '7 es primo' (V). Evalúa p ∧ q, p ∧ ¬q, ¬p ∧ q, ¬p ∧ ¬q.",
+        "pasos": [
+          "Paso 1: p = V, q = V. Entonces p ∧ q = V ∧ V = V.",
+          "Paso 2: ¬q = F. Entonces p ∧ ¬q = V ∧ F = F.",
+          "Paso 3: ¬p = F. Entonces ¬p ∧ q = F ∧ V = F.",
+          "Paso 4: ¬p ∧ ¬q = F ∧ F = F."
+        ],
+        "resultado": "La conjunción solo es verdadera en el primer caso, cuando ambas proposiciones son verdaderas."
+      },
+      {
+        "titulo": "Disyunción en la vida cotidiana",
+        "enunciado": "p = 'Hoy es lunes' (supón V). q = 'Está lloviendo' (supón F). Evalúa p ∨ q.",
+        "pasos": [
+          "Paso 1: p = V, q = F.",
+          "Paso 2: p ∨ q = V ∨ F = V.",
+          "Paso 3: Basta con que una sea verdadera para que la disyunción sea verdadera."
+        ],
+        "resultado": "p ∨ q es verdadera. 'Hoy es lunes o está lloviendo' es verdadero porque al menos una parte (es lunes) es cierta."
+      },
+      {
+        "titulo": "Combinación de operadores",
+        "enunciado": "Evalúa ¬(p ∧ q) si p = V y q = F.",
+        "pasos": [
+          "Paso 1: Primero evalúa el paréntesis: p ∧ q = V ∧ F = F.",
+          "Paso 2: Aplica la negación: ¬(F) = V."
+        ],
+        "resultado": "¬(p ∧ q) = V. La negación de una conjunción falsa es verdadera."
+      }
+    ],
+    "datos_curiosos": "La lógica simbólica es el lenguaje de las computadoras. Cada circuito electrónico dentro de tu celular o computadora opera con puertas lógicas AND (∧), OR (∨) y NOT (¬). Cuando presionas una tecla, miles de millones de operaciones lógicas se ejecutan en fracciones de segundo. George Boole, quien formalizó esta lógica en 1854, nunca imaginó que su trabajo haría posible la era digital.",
+    "ejercicios": [
+      {
+        "numero": 1,
+        "enunciado": "Identifica si los siguientes enunciados son proposiciones: a) '8 es múltiplo de 4'. b) '¿Cómo estás?'. c) 'El agua hierve a 100°C al nivel del mar'. d) '¡Qué bonito día!'.",
+        "espacio": true,
+        "lineas": 4
+      },
+      {
+        "numero": 2,
+        "enunciado": "Si p = V y q = F, evalúa: a) p ∧ q, b) p ∨ q, c) ¬p ∨ q, d) ¬(p ∨ q).",
+        "espacio": true,
+        "lineas": 4
+      },
+      {
+        "numero": 3,
+        "enunciado": "Construye la tabla de verdad completa de p ∧ ¬q (con las 4 combinaciones de V y F para p y q).",
+        "espacio": true,
+        "lineas": 5
+      }
+    ],
+    "puntos_clave": [
+      "Una proposición es un enunciado que es verdadero o falso, pero no ambos.",
+      "La conjunción (∧, 'y') es verdadera solo cuando ambas proposiciones son verdaderas.",
+      "La disyunción (∨, 'o') es verdadera cuando al menos una proposición es verdadera.",
+      "La negación (¬, 'no') invierte el valor de verdad de una proposición.",
+      "Las tablas de verdad muestran todos los casos posibles y son la herramienta clave para evaluar expresiones lógicas."
+    ]
+  },
+  "diapositiva": [
+    {
+      "titulo": "¿Qué es una proposición?",
+      "puntos": [
+        "Enunciado que es verdadero (V) o falso (F)",
+        "No pueden ser preguntas, órdenes o exclamaciones",
+        "Se representan con letras: p, q, r..."
+      ],
+      "ejemplo": "p = '5 > 3' → V. q = '2 + 2 = 5' → F. '¿Cómo estás?' → no es proposición."
+    },
+    {
+      "titulo": "La negación (¬)",
+      "puntos": ["Invierte el valor de verdad", "Si p es V, entonces ¬p es F", "Se lee 'no p'"],
+      "ejemplo": "p = 'Hoy es lunes' (V) → ¬p = 'Hoy NO es lunes' (F)."
+    },
+    {
+      "titulo": "La conjunción (∧) — 'y'",
+      "puntos": [
+        "Une dos proposiciones con 'y'",
+        "Solo es V cuando AMBAS son V",
+        "Se escribe p ∧ q"
+      ],
+      "ejemplo": "p = 'Llueve' (V), q = 'Hace frío' (F) → p ∧ q = F."
+    },
+    {
+      "titulo": "Tabla de verdad: conjunción",
+      "puntos": ["V ∧ V = V", "V ∧ F = F", "F ∧ V = F", "F ∧ F = F"],
+      "ejemplo": "Piensa: un plan se cumple solo si TODAS las condiciones se cumplen."
+    },
+    {
+      "titulo": "La disyunción (∨) — 'o'",
+      "puntos": [
+        "Une dos proposiciones con 'o'",
+        "Es V cuando al menos UNA es V",
+        "Solo es F cuando AMBAS son F"
+      ],
+      "ejemplo": "p = 'Voy al cine' (F), q = 'Voy al parque' (V) → p ∨ q = V."
+    },
+    {
+      "titulo": "Tabla de verdad: disyunción",
+      "puntos": ["V ∨ V = V", "V ∨ F = V", "F ∨ V = V", "F ∨ F = F"],
+      "ejemplo": "El 'o' lógico es inclusivo: ambas pueden ser verdaderas."
+    },
+    {
+      "titulo": "Combinando conectivos",
+      "puntos": [
+        "Podemos combinar ¬, ∧ y ∨",
+        "Se evalúa primero ¬, luego ∧, luego ∨",
+        "Ejemplo: ¬p ∧ q con p=V, q=V → F ∧ V = F"
+      ],
+      "ejemplo": "¬(p ∧ q) ≠ ¬p ∧ ¬q. ¡Cuidado con la distribución de la negación!"
+    },
+    {
+      "titulo": "Resumen",
+      "puntos": [
+        "Proposición: V o F",
+        "¬ (negación): invierte",
+        "∧ (conjunción): ambas verdaderas",
+        "∨ (disyunción): al menos una verdadera"
+      ],
+      "ejemplo": "La lógica simbólica es la base de la programación y la inteligencia artificial."
+    }
+  ],
+  "video_script": "# Conjunción y disyunción\n\n[VISUAL: Pantalla estilo código de computadora con ceros y unos, se transforma en el título \"Lógica simbólica\"]\n\n¡Qué onda! Hoy te voy a enseñar el lenguaje secreto de las computadoras y de los matemáticos: la lógica simbólica. ¿Sabías que cada vez que tu celular toma una decisión — mostrarte una notificación, abrir una app, filtrar un mensaje — usa exactamente lo que vamos a aprender hoy?\n\n[VISUAL: Dos oraciones en pantalla: \"La Tierra es redonda\" con palomita verde, \"2+2=5\" con tache rojo]\n\nTodo empieza con las proposiciones. Una proposición es una oración que puede ser verdadera o falsa, punto. \"La Tierra es redonda\" es verdadera. \"2+2=5\" es falsa. Pero \"¿Qué hora es?\" no es proposición porque no puedes decir si es verdadera o falsa. Las proposiciones las representamos con letras: p, q, r.\n\n[VISUAL: Aparece el símbolo ¬ grande con animación de un espejo que invierte los colores]\n\nPrimer conectivo: la negación, que se escribe con este símbolo: ¬. Simplemente invierte el valor de verdad. Si p es verdadera, ¬p es falsa. Si p es falsa, ¬p es verdadera. Es como un espejo lógico.\n\nPor ejemplo: p = \"Hoy es viernes\" y resulta que sí es viernes, entonces p = V. ¿Cuánto vale ¬p? \"Hoy NO es viernes\" = F. Facilísimo.\n\n[VISUAL: El símbolo ∧ aparece con la palabra \"Y\" y dos candados que deben abrirse AMBOS]\n\nSegundo conectivo: la conjunción, se escribe ∧ y se lee \"y\". Es como una puerta con DOS candados: solo se abre si abres AMBOS. Es decir, p ∧ q solo es verdadera cuando p es verdadera Y q también es verdadera.\n\nEjemplo: p = \"Tengo dinero\" (V), q = \"La tienda está abierta\" (F). ¿Puedo comprar algo? p ∧ q = F. No, porque aunque tengo dinero, la tienda está cerrada. Se necesitan las dos condiciones.\n\n[VISUAL: Tabla de verdad de p ∧ q aparece fila por fila con animación, colores verde y rojo]\n\nVeamos la tabla de verdad completa. V y V da V. V y F da F. F y V da F. F y F da F. Solo un caso es verdadero: cuando las dos son verdaderas.\n\n[VISUAL: El símbolo ∨ aparece con la palabra \"O\" y dos caminos que llevan a la misma meta]\n\nTercer conectivo: la disyunción, se escribe ∨ y se lee \"o\". Es como tener DOS caminos para llegar a tu destino: basta con que UNO funcione. p ∨ q es verdadera cuando al menos una de las dos es verdadera.\n\nEjemplo: p = \"Voy caminando\" (F), q = \"Tomo el camión\" (V). ¿Llego a la escuela? p ∨ q = V. Sí, porque aunque no voy caminando, tomo el camión.\n\n[VISUAL: Tabla de verdad de p ∨ q, se resalta que solo F ∨ F = F]\n\nTabla de verdad: V o V da V, V o F da V, F o V da V, F o F da F. El único caso falso es cuando NINGUNA es verdadera.\n\nOjo con algo importante: en lógica, el \"o\" es inclusivo. Cuando dices \"voy al cine o al parque\", en lógica puede ser que vayas a los dos y sigue siendo verdadero. Esto es diferente del lenguaje cotidiano donde a veces \"o\" significa \"uno u otro, pero no los dos\".\n\n[VISUAL: Ejemplo combinado: ¬p ∨ q se evalúa paso a paso con p=V, q=F]\n\nAhora combinemos. Evalúa ¬p ∨ q con p = V y q = F. Paso 1: calcula ¬p. Como p es V, entonces ¬p = F. Paso 2: evalúa F ∨ F = F. Resultado final: F.\n\n[VISUAL: Resumen con los tres símbolos grandes: ¬ ∧ ∨ y sus definiciones en una línea]\n\nRecapitulemos. La negación invierte. La conjunción necesita que ambas sean verdaderas. La disyunción necesita que al menos una sea verdadera. Con estos tres bloques básicos puedes construir razonamientos tan complejos como quieras.\n\n[VISUAL: Un chip de computadora con las compuertas lógicas AND, OR, NOT etiquetadas]\n\nDato curioso: dentro de tu celular hay millones de circuitos que hacen exactamente estas operaciones, pero con electricidad en vez de V y F. Se llaman compuertas lógicas: AND (conjunción), OR (disyunción) y NOT (negación). ¡Tú ya hablas el idioma de las computadoras! Nos vemos."
+}

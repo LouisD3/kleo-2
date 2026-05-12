@@ -1,0 +1,306 @@
+{
+  "secuencia": 20,
+  "titulo": "Rectas notables",
+  "contenido": "Construcción y propiedades de las figuras planas y cuerpos.",
+  "pda": "Identifica y traza las rectas notables en triángulos y cuadriláteros a partir del análisis de distinta información.",
+  "evaluacion": {
+    "preguntas": [
+      {
+        "tipo": "opcion_multiple",
+        "pregunta": "¿Cuál de las siguientes rectas notables de un triángulo une un vértice con el punto medio del lado opuesto?",
+        "opciones": ["A) Mediatriz", "B) Bisectriz", "C) Mediana", "D) Altura"],
+        "respuesta": "C"
+      },
+      {
+        "tipo": "verdadero_falso",
+        "pregunta": "La altura de un triángulo siempre cae dentro del triángulo.",
+        "respuesta": false
+      },
+      {
+        "tipo": "espacios",
+        "pregunta": "El punto donde se cruzan las tres medianas de un triángulo se llama ___.",
+        "respuesta": "centroide"
+      },
+      {
+        "tipo": "abierta",
+        "pregunta": "Explica la diferencia entre la mediatriz de un lado y la bisectriz de un ángulo en un triángulo.",
+        "respuesta": "La mediatriz es una recta perpendicular a un lado del triángulo que pasa por su punto medio; no necesariamente pasa por un vértice. La bisectriz es un rayo que parte de un vértice y divide el ángulo interior en dos ángulos iguales. La mediatriz trabaja sobre lados y la bisectriz trabaja sobre ángulos."
+      },
+      {
+        "tipo": "calculo",
+        "pregunta": "En un triángulo, la mediana divide al lado opuesto en dos segmentos. Si el lado BC mide 12 cm, ¿cuánto mide cada segmento que forma la mediana trazada desde A?",
+        "respuesta": "La mediana desde A llega al punto medio M de BC. Cada segmento mide 12 cm ÷ 2 = 6 cm. BM = MC = 6 cm."
+      }
+    ]
+  },
+  "orientacion": {
+    "contenidos_especificos": [
+      "Definición y trazo de la mediana de un triángulo",
+      "Definición y trazo de la altura de un triángulo (incluidos triángulos obtusángulos)",
+      "Definición y trazo de la mediatriz de un segmento y su relación con el triángulo",
+      "Definición y trazo de la bisectriz interior de un triángulo",
+      "Puntos notables asociados: baricentro, ortocentro, circuncentro e incentro"
+    ],
+    "actividad_inicio": [
+      "Entregar a cada equipo un triángulo recortado en cartulina y pedir que encuentren el punto donde se equilibra en la punta de un lápiz",
+      "Explicar que ese punto de equilibrio tiene nombre matemático (baricentro) y está relacionado con unas rectas especiales del triángulo",
+      "Preguntar: ¿cuántas rectas especiales creen que tiene un triángulo? Anotar las respuestas en el pizarrón",
+      "Presentar el objetivo: conocer y trazar las cuatro rectas notables de un triángulo y sus puntos de concurrencia"
+    ],
+    "desarrollo": [
+      {
+        "titulo": "Mediana y baricentro",
+        "diapositiva": "1-3",
+        "libro": "Sección 'Medianas del triángulo'",
+        "video": "min 0:30-2:30",
+        "descripcion": "Defina la mediana como el segmento que une un vértice con el punto medio del lado opuesto. En el pizarrón, dibuje un triángulo escaleno y trace las tres medianas, mostrando que se cruzan en un solo punto: el baricentro o centroide. Explique que el baricentro divide cada mediana en razón 2:1 desde el vértice. Los alumnos trazan en su cuaderno un triángulo escaleno, encuentran los puntos medios de cada lado con regla y trazan las tres medianas. Verifican que se intersecan en un punto.",
+        "tip": "Use un triángulo escaleno, no equilátero, para que los alumnos vean que las medianas no son iguales pero aun así concurren."
+      },
+      {
+        "titulo": "Altura, mediatriz y bisectriz",
+        "diapositiva": "4-6",
+        "libro": "Sección 'Alturas, mediatrices y bisectrices'",
+        "video": "min 2:30-5:00",
+        "descripcion": "Presente cada recta notable con su definición y construcción. Altura: segmento perpendicular desde un vértice al lado opuesto (o su prolongación); las tres alturas se cortan en el ortocentro. Mediatriz: recta perpendicular a un lado que pasa por su punto medio; las tres mediatrices se cortan en el circuncentro. Bisectriz: semirrecta que divide un ángulo interior en dos ángulos iguales; las tres bisectrices se cortan en el incentro. Trabaje un ejemplo de triángulo obtusángulo para mostrar que la altura puede caer fuera del triángulo. Los alumnos practican trazando las cuatro rectas notables en triángulos distintos.",
+        "tip": "Asigne un color distinto a cada tipo de recta notable para que los alumnos distingan fácilmente cuál es cuál en su dibujo."
+      },
+      {
+        "titulo": "Rectas notables en cuadriláteros y actividad de síntesis",
+        "diapositiva": "7-8",
+        "libro": "Sección 'Rectas notables en cuadriláteros'",
+        "video": null,
+        "descripcion": "Extienda el concepto a cuadriláteros: las diagonales de un cuadrilátero como rectas notables. En un paralelogramo las diagonales se bisecan mutuamente. En un rombo las diagonales son perpendiculares. En un rectángulo las diagonales son congruentes. Los alumnos trabajan en equipos para llenar una tabla comparativa de las 4 rectas notables del triángulo indicando: definición, punto de concurrencia, y una propiedad especial. Cada equipo expone una recta notable al grupo.",
+        "tip": "Prepare la tabla con los encabezados ya impresos para ahorrar tiempo y que los alumnos se concentren en completar el contenido."
+      }
+    ],
+    "cierre_individual": {
+      "reflexiona": "¿Cuál de las cuatro rectas notables te pareció más fácil de trazar y cuál más difícil? ¿Por qué? Escribe en tu cuaderno un truco personal que te ayude a recordar la diferencia entre mediatriz y mediana.",
+      "profundiza": [
+        {
+          "pregunta": "¿Por qué en un triángulo obtusángulo el ortocentro queda fuera del triángulo?",
+          "respuesta_modelo": "R.M. Porque al trazar la altura desde el vértice del ángulo obtuso, la perpendicular al lado opuesto cae fuera del triángulo ya que el pie de la altura queda en la prolongación del lado, no en el lado mismo. Como las tres alturas deben concurrir, el ortocentro queda en el exterior."
+        },
+        {
+          "pregunta": "¿Existe algún triángulo donde el baricentro, el ortocentro, el circuncentro y el incentro sean el mismo punto? ¿Cuál y por qué?",
+          "respuesta_modelo": "R.M. Sí, en el triángulo equilátero. Como los tres lados y los tres ángulos son iguales, todas las rectas notables coinciden: la mediana, la altura, la mediatriz y la bisectriz desde cada vértice son la misma recta. Por lo tanto, los cuatro puntos notables se fusionan en uno solo, que es el centro del triángulo."
+        }
+      ]
+    },
+    "cierre_grupal": [
+      "La mediana une un vértice con el punto medio del lado opuesto; las tres se cruzan en el baricentro",
+      "La altura es perpendicular al lado opuesto desde un vértice; las tres se cruzan en el ortocentro",
+      "La mediatriz es perpendicular a un lado y pasa por su punto medio; las tres se cruzan en el circuncentro",
+      "La bisectriz divide un ángulo interior en dos iguales; las tres se cruzan en el incentro",
+      "En un triángulo equilátero, las cuatro rectas notables coinciden"
+    ],
+    "preguntas_comprension": [
+      "¿Qué diferencia hay entre una mediana y una mediatriz? ¿Pueden coincidir alguna vez?",
+      "¿En qué tipo de triángulo la altura puede caer fuera de la figura? Da un ejemplo.",
+      "Si trazas las tres mediatrices de un triángulo y dibujas un círculo con centro en su punto de intersección pasando por un vértice, ¿qué ocurre con los otros dos vértices?",
+      "¿Cuántas medianas tiene un triángulo y cuántas tiene un cuadrilátero?",
+      "¿Por qué el baricentro siempre queda dentro del triángulo sin importar el tipo de triángulo?"
+    ]
+  },
+  "libro": {
+    "introduccion": "Sabias que todo triangulo, sin importar su forma, tiene lineas especiales que revelan propiedades increibles? Se llaman rectas notables y hay cuatro tipos. Hoy vas a conocerlas todas y vas a descubrir los puntos secretos que se esconden en cada triangulo.",
+    "conceptos": [
+      {
+        "titulo": "Mediana y centroide",
+        "contenido": "La mediana es un segmento que va desde un vertice hasta el punto medio del lado opuesto. Todo triangulo tiene tres medianas. Las tres siempre se cruzan en un mismo punto llamado centroide (o baricentro), que es el centro de gravedad del triangulo. El centroide divide cada mediana en razon 2:1 desde el vertice.",
+        "definicion": "Mediana: segmento que une un vertice de un triangulo con el punto medio del lado opuesto.",
+        "figura": {
+          "tipo": "plano_cartesiano",
+          "xMin": -1,
+          "xMax": 7,
+          "yMin": -1,
+          "yMax": 6,
+          "puntos": [
+            {
+              "x": 0,
+              "y": 0,
+              "label": "A"
+            },
+            {
+              "x": 6,
+              "y": 0,
+              "label": "B"
+            },
+            {
+              "x": 3,
+              "y": 5,
+              "label": "C"
+            }
+          ],
+          "lineas": [
+            {
+              "x1": 0,
+              "y1": 0,
+              "x2": 6,
+              "y2": 0
+            },
+            {
+              "x1": 6,
+              "y1": 0,
+              "x2": 3,
+              "y2": 5
+            },
+            {
+              "x1": 3,
+              "y1": 5,
+              "x2": 0,
+              "y2": 0
+            },
+            {
+              "x1": 3,
+              "y1": 0,
+              "x2": 3,
+              "y2": 5,
+              "color": "#E11D48"
+            }
+          ],
+          "width": 180,
+          "height": 160
+        }
+      },
+      {
+        "titulo": "Altura y ortocentro",
+        "contenido": "La altura es un segmento perpendicular que va de un vertice al lado opuesto (o a su prolongacion). Las tres alturas se cruzan en el ortocentro. Importante: en un triangulo obtusangulo, el ortocentro queda fuera del triangulo, porque alguna altura cae en la prolongacion del lado.",
+        "definicion": "Altura: segmento perpendicular trazado desde un vertice hasta el lado opuesto o su prolongacion."
+      },
+      {
+        "titulo": "Mediatriz, circuncentro, bisectriz e incentro",
+        "contenido": "La mediatriz de un lado es perpendicular a ese lado y pasa por su punto medio (no sale de un vertice). Las tres mediatrices se cruzan en el circuncentro, centro de la circunferencia circunscrita. La bisectriz de cada angulo interior divide ese angulo en dos iguales. Las tres bisectrices se cruzan en el incentro, centro de la circunferencia inscrita. En un triangulo equilatero, las cuatro rectas notables desde cada vertice coinciden en una sola linea.",
+        "definicion": null
+      }
+    ],
+    "ejemplos": [
+      {
+        "titulo": "Mediana y punto medio",
+        "enunciado": "En un triangulo ABC, el lado BC mide 12 cm. Traza la mediana desde A. Cuanto mide cada segmento del lado BC?",
+        "pasos": [
+          "Paso 1: La mediana desde A llega al punto medio M de BC",
+          "Paso 2: BM = MC = 12/2 = 6 cm"
+        ],
+        "resultado": "Cada segmento mide 6 cm. BM = MC = 6 cm."
+      },
+      {
+        "titulo": "Tabla comparativa de rectas notables",
+        "enunciado": "Completa la informacion de las cuatro rectas notables.",
+        "pasos": [
+          "Paso 1: Mediana -> de vertice a punto medio del lado opuesto -> centroide",
+          "Paso 2: Altura -> de vertice al lado opuesto (perpendicular) -> ortocentro",
+          "Paso 3: Mediatriz -> perpendicular por el punto medio del lado -> circuncentro",
+          "Paso 4: Bisectriz -> divide el angulo interior en dos iguales -> incentro"
+        ],
+        "resultado": "Cada grupo de 3 rectas del mismo tipo se cruzan en un punto notable unico."
+      }
+    ],
+    "datos_curiosos": "En un triangulo equilatero, el centroide, ortocentro, circuncentro e incentro son todos el mismo punto. En cualquier otro triangulo, tres de estos cuatro puntos (centroide, ortocentro y circuncentro) siempre estan alineados sobre una recta llamada recta de Euler.",
+    "ejercicios": [
+      {
+        "numero": 1,
+        "enunciado": "Dibuja un triangulo escaleno y traza sus tres medianas con regla. Verifica que se cruzan en un mismo punto (centroide).",
+        "espacio": true,
+        "lineas": 4
+      },
+      {
+        "numero": 2,
+        "enunciado": "Explica la diferencia entre la mediatriz de un lado y la mediana que va al mismo lado. Pueden coincidir alguna vez?",
+        "espacio": true,
+        "lineas": 4
+      },
+      {
+        "numero": 3,
+        "enunciado": "Por que en un triangulo obtusangulo el ortocentro queda fuera del triangulo? Dibuja un ejemplo.",
+        "espacio": true,
+        "lineas": 4
+      }
+    ],
+    "puntos_clave": [
+      "Cada triangulo tiene 3 medianas, 3 alturas, 3 mediatrices y 3 bisectrices.",
+      "Cada grupo de tres rectas se cruza en un punto notable unico: centroide, ortocentro, circuncentro, incentro.",
+      "La mediana trabaja con puntos medios; la altura con perpendicularidad al lado opuesto.",
+      "La mediatriz es perpendicular al lado por su punto medio; la bisectriz divide angulos.",
+      "En un triangulo equilatero, las cuatro rectas notables coinciden."
+    ]
+  },
+  "diapositiva": [
+    {
+      "titulo": "¿Qué son las rectas notables?",
+      "puntos": [
+        "Líneas especiales que se trazan en los triángulos",
+        "Hay 4 tipos: mediana, altura, mediatriz, bisectriz",
+        "Cada grupo de 3 rectas se cruza en un punto notable"
+      ],
+      "ejemplo": "Hoy vamos a trazar las cuatro en un solo triángulo"
+    },
+    {
+      "titulo": "La mediana",
+      "puntos": [
+        "Va de un vértice al punto medio del lado opuesto",
+        "Cada triángulo tiene 3 medianas",
+        "Se cruzan en el centroide (centro de gravedad)"
+      ],
+      "ejemplo": "Si BC = 10 cm, la mediana desde A llega al punto que está a 5 cm de B y de C"
+    },
+    {
+      "titulo": "La altura",
+      "puntos": [
+        "Va de un vértice al lado opuesto formando 90°",
+        "Se cruzan en el ortocentro",
+        "En triángulos obtusángulos puede caer fuera del triángulo"
+      ],
+      "ejemplo": "Un triángulo rectángulo: las dos alturas de los catetos son los catetos mismos"
+    },
+    {
+      "titulo": "La mediatriz",
+      "puntos": [
+        "Recta perpendicular al lado que pasa por su punto medio",
+        "No necesariamente pasa por un vértice",
+        "Se cruzan en el circuncentro (centro de la circunferencia circunscrita)"
+      ],
+      "ejemplo": "Para trazar la mediatriz de AB: encuentra el punto medio con compás y levanta la perpendicular"
+    },
+    {
+      "titulo": "La bisectriz",
+      "puntos": [
+        "Divide el ángulo interior en dos partes iguales",
+        "Sale del vértice hacia el interior del triángulo",
+        "Se cruzan en el incentro (centro de la circunferencia inscrita)"
+      ],
+      "ejemplo": "Si el ángulo A mide 80°, la bisectriz lo parte en dos de 40°"
+    },
+    {
+      "titulo": "Los 4 puntos notables",
+      "puntos": [
+        "Centroide (medianas) — centro de gravedad",
+        "Ortocentro (alturas) — puede estar fuera del triángulo",
+        "Circuncentro (mediatrices) — centro de la circunferencia circunscrita",
+        "Incentro (bisectrices) — centro de la circunferencia inscrita"
+      ],
+      "ejemplo": "En un triángulo equilátero, ¡los 4 puntos son el mismo!"
+    },
+    {
+      "titulo": "Actividad práctica",
+      "puntos": [
+        "Traza un triángulo escaleno grande en hoja blanca",
+        "Usa un color diferente para cada recta notable",
+        "Verifica que cada grupo de 3 rectas se cruzan en un solo punto",
+        "Etiqueta los 4 puntos notables"
+      ],
+      "ejemplo": "Rojo = medianas, Azul = alturas, Verde = mediatrices, Morado = bisectrices"
+    },
+    {
+      "titulo": "Resumen",
+      "puntos": [
+        "4 rectas notables → 4 puntos notables",
+        "Mediana: vértice → punto medio del lado opuesto",
+        "Altura: vértice → lado opuesto (perpendicular)",
+        "Mediatriz: perpendicular por el punto medio del lado",
+        "Bisectriz: divide el ángulo interior en dos iguales"
+      ],
+      "ejemplo": "Tarea: investiga qué es la línea de Euler y qué puntos notables conecta"
+    }
+  ],
+  "video_script": "# Rectas notables en triángulos — Script de video\n\n[VISUAL: Animación del título con un triángulo y líneas de colores apareciendo una por una]\n\n¡Qué onda! Hoy vamos a descubrir los secretos que esconde cualquier triángulo. Sí, hasta el más chueco y raro tiene líneas especiales escondidas. Se llaman **rectas notables** y hay cuatro tipos. Agarra lápiz y papel porque esto te va a volar la cabeza.\n\n[VISUAL: Un triángulo escaleno grande en el centro de la pantalla]\n\nEmpecemos con la primera: la **mediana**.\n\n[VISUAL: Se marca el punto medio del lado inferior. Una línea roja se traza del vértice superior al punto medio]\n\nLa mediana es un segmento que va de un vértice al punto medio del lado opuesto. Como cada triángulo tiene tres vértices, hay tres medianas. Y aquí viene lo increíble: las tres siempre se cruzan en un mismo punto. Se llama **centroide**.\n\n[VISUAL: Las tres medianas se trazan en rojo, el centroide se ilumina con un brillo]\n\n¿Y sabes qué tiene de especial el centroide? Es el centro de gravedad. Si recortas el triángulo en cartón y lo pones sobre la punta de un lápiz justo en el centroide, se equilibra. ¡Haz la prueba!\n\nAhora la segunda recta notable: la **altura**.\n\n[VISUAL: Línea azul perpendicular desde un vértice al lado opuesto, con el símbolo de 90°]\n\nLa altura va de un vértice al lado opuesto, pero con una condición: tiene que ser perpendicular, o sea, formar un ángulo de 90 grados. Las tres alturas se cruzan en el **ortocentro**.\n\n[VISUAL: Triángulo obtusángulo donde una altura cae fuera del triángulo]\n\n¡Ojo! En triángulos obtusángulos, las alturas pueden caer fuera del triángulo. El ortocentro también queda afuera. No te espantes si te pasa, es normal.\n\nTercera recta notable: la **mediatriz**.\n\n[VISUAL: Línea verde perpendicular al lado, pasando por su punto medio]\n\nLa mediatriz de un lado es una recta perpendicular que pasa por el punto medio de ese lado. Ojo: no sale de un vértice, sale del lado mismo. Las tres mediatrices se cruzan en el **circuncentro**, que es el centro de un círculo que pasa exactamente por los tres vértices del triángulo.\n\n[VISUAL: Circunferencia circunscrita aparece pasando por los tres vértices, circuncentro marcado en verde]\n\nY la cuarta ya te la sabes de la clase pasada: la **bisectriz**.\n\n[VISUAL: Línea morada desde un vértice, dividiendo el ángulo en dos partes iguales]\n\nLa bisectriz divide cada ángulo interior en dos ángulos iguales. Las tres se cruzan en el **incentro**, y ahí puedes meter un círculo que toque los tres lados por dentro. Se llama circunferencia inscrita.\n\n[VISUAL: Circunferencia inscrita aparece dentro del triángulo, incentro marcado en morado]\n\nEntonces tenemos cuatro rectas y cuatro puntos notables. Vamos a repasarlos.\n\n[VISUAL: Tabla animada que se llena fila por fila]\n\n| Recta | Punto notable |\n|---|---|\n| Mediana → Centroide |\n| Altura → Ortocentro |\n| Mediatriz → Circuncentro |\n| Bisectriz → Incentro |\n\nUn dato que está padrísimo: en un triángulo equilátero, las cuatro rectas notables desde cada vértice son la misma línea. O sea, el centroide, ortocentro, circuncentro e incentro son todos el mismo punto. Eso solo pasa en el equilátero.\n\n[VISUAL: Triángulo equilátero con todas las rectas superpuestas y un solo punto central brillando]\n\n¿Cómo los diferencias? Recuerda:\n- La mediana busca el **punto medio** del lado.\n- La altura busca la **perpendicular** al lado.\n- La mediatriz combina ambas: **perpendicular** por el **punto medio** del lado.\n- La bisectriz trabaja con el **ángulo**, no con el lado.\n\n[VISUAL: Cuatro mini-triángulos, cada uno mostrando una sola recta notable con su nombre]\n\nTu reto para hoy: traza un triángulo bien grandote en una hoja blanca. Con cuatro colores distintos, traza las cuatro rectas notables y marca los cuatro puntos. ¡Tómale foto y presúmelo!\n\n[VISUAL: Pantalla final con el resumen y el reto]\n\n¡Nos vemos en la siguiente clase donde vamos a clasificar triángulos y cuadriláteros!"
+}

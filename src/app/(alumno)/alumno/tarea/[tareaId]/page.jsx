@@ -3,6 +3,7 @@
 import { useParams, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import RenderizadorPregunta from '@/components/alumno/RenderizadorPregunta.jsx'
+import StepperCPA from '@/components/alumno/StepperCPA'
 import NavBar from '@/components/layout/NavBar.jsx'
 import Boton from '@/components/ui/Boton.jsx'
 import MensajeError from '@/components/ui/MensajeError.jsx'
@@ -10,6 +11,38 @@ import Spinner from '@/components/ui/Spinner.jsx'
 import { useAnthropicAPI } from '@/hooks/useAnthropicAPI.js'
 import { useGuardarResultado, useTareasAlumno } from '@/hooks/useTareas.js'
 import useAuthStore from '@/store/useAuthStore.js'
+
+/** Check if contenido_cpa is a CPA structure (has concreto/pictorico/abstracto) vs legacy flat array */
+function isTareaCPA(contenido) {
+  return (
+    contenido &&
+    typeof contenido === 'object' &&
+    !Array.isArray(contenido) &&
+    'concreto' in contenido
+  )
+}
+
+/** Score an array of questions against student responses. Returns 0-10. */
+function scorearPreguntas(preguntas, respuestas) {
+  if (!preguntas || preguntas.length === 0) return 10
+  let correctas = 0
+  for (let i = 0; i < preguntas.length; i++) {
+    const p = preguntas[i]
+    const resp = respuestas[i]
+    if (resp === undefined || resp === null || String(resp).trim() === '') continue
+    const alumno = String(resp).toLowerCase().trim()
+    if (p.tipo === 'opcion_multiple' || p.tipo === 'espacios') {
+      if (alumno === String(p.respuesta).toLowerCase().trim()) correctas++
+    } else if (p.tipo === 'verdadero_falso') {
+      const correcta = String(p.respuesta).toLowerCase().trim()
+      if (alumno === correcta) correctas++
+    } else {
+      // calculo / abierta: count as correct if non-empty (AI grading TODO)
+      if (alumno.length > 0) correctas++
+    }
+  }
+  return Math.round((correctas / preguntas.length) * 100) / 10
+}
 
 export default function RealizarTarea() {
   const { tareaId } = useParams()
@@ -22,6 +55,7 @@ export default function RealizarTarea() {
   const tarea = (data?.tareas ?? []).find((t) => t.id === tareaId)
   const [respuestas, setRespuestas] = useState({})
   const [confirmando, setConfirmando] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
 
   useEffect(() => {
     if (!tarea) router.push('/alumno')
@@ -29,7 +63,69 @@ export default function RealizarTarea() {
 
   if (!tarea || !alumno) return null
 
-  const totalPreguntas = tarea.preguntas?.length ?? 0
+  const esCPA = isTareaCPA(tarea.contenido_cpa)
+
+  // ── CPA submission handler ────────────────────────────────────
+
+  async function handleCPASubmit(datos) {
+    setSubmitting(true)
+    try {
+      const cpa = tarea.contenido_cpa
+      const picPreguntas = cpa.pictorico?.preguntas ?? []
+      const absPreguntas = cpa.abstracto?.preguntas ?? []
+
+      // Build flat responses map
+      const allResp = {}
+      picPreguntas.forEach((_, i) => {
+        allResp[`pic_${i}`] = datos.pictorico.respuestas[i] ?? null
+      })
+      absPreguntas.forEach((_, i) => {
+        allResp[`abs_${i}`] = datos.abstracto.respuestas[i] ?? null
+      })
+
+      // Score Concreto: max(10 - (intentos-1)*2, 2)
+      const scoreConcreto = Math.max(10 - (datos.concreto.intentos - 1) * 2, 2)
+
+      // Score Pictorico: (correct/total) * 10
+      const scorePictorico = scorearPreguntas(picPreguntas, datos.pictorico.respuestas)
+
+      // Score Abstracto: (correct/total) * 10
+      const scoreAbstracto = scorearPreguntas(absPreguntas, datos.abstracto.respuestas)
+
+      // Global: 20% concreto + 30% pictorico + 50% abstracto
+      const global =
+        Math.round((scoreConcreto * 0.2 + scorePictorico * 0.3 + scoreAbstracto * 0.5) * 10) / 10
+
+      const scores_cpa = {
+        concreto: { nota: scoreConcreto, completada: true },
+        pictorico: { nota: scorePictorico, completada: true },
+        abstracto: { nota: scoreAbstracto, completada: true },
+        global,
+      }
+
+      await guardarResultadoMut.mutateAsync({
+        tareaId,
+        alumnoId: alumno.id,
+        resultado: {
+          respuestas: allResp,
+          calificacion: global,
+          retroalimentacion: [],
+          areas_de_mejora: [],
+          scores_cpa,
+        },
+      })
+      router.push(`/alumno/resultado/${tareaId}`)
+    } catch {
+      setError('No se pudo guardar tu resultado. Intenta de nuevo.')
+    } finally {
+      setSubmitting(false)
+    }
+  }
+
+  // ── Legacy flat tarea flow ────────────────────────────────────
+
+  const contenidoFlat = !esCPA ? tarea.contenido_cpa : null
+  const totalPreguntas = contenidoFlat?.length ?? 0
   const respondidas = Object.keys(respuestas).filter((k) => {
     const r = respuestas[k]
     return r !== null && r !== undefined && String(r).trim() !== ''
@@ -50,7 +146,6 @@ export default function RealizarTarea() {
   async function enviarTarea() {
     setConfirmando(false)
     const resultado = await corregirTarea({ tarea, respuestasAlumno: respuestas })
-    console.log('[RealizarTarea] resultado IA:', resultado)
     if (resultado) {
       try {
         await guardarResultadoMut.mutateAsync({
@@ -63,7 +158,6 @@ export default function RealizarTarea() {
             areas_de_mejora: resultado.areas_de_mejora ?? [],
           },
         })
-        console.log('[RealizarTarea] guardarResultado saved')
         router.push(`/alumno/resultado/${tareaId}`)
       } catch {
         setError('No se pudo guardar tu resultado. Intenta de nuevo.')
@@ -73,111 +167,103 @@ export default function RealizarTarea() {
 
   const porcentaje = totalPreguntas > 0 ? Math.round((respondidas / totalPreguntas) * 100) : 0
 
+  // ── Render ────────────────────────────────────────────────────
+
   return (
     <div className="min-h-screen bg-gray-50">
       <NavBar titulo={tarea.nombre} volver="/alumno" />
-
-      {/* Barra de progreso */}
-      <div className="sticky top-14 z-30 bg-white border-b border-gray-100 shadow-sm">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 py-3">
-          <div className="flex items-center justify-between text-sm mb-2">
-            <span className="font-medium text-gray-700">
-              {respondidas} de {totalPreguntas} respondidas
-            </span>
-            <span className="text-gray-400">{porcentaje}%</span>
-          </div>
-          <div className="h-1.5 bg-gray-100 rounded-full overflow-hidden">
-            <div
-              className="h-full bg-amarillo rounded-full transition-all duration-300"
-              style={{ width: `${porcentaje}%` }}
-            />
-          </div>
-        </div>
-      </div>
 
       <main className="max-w-3xl mx-auto px-4 sm:px-6 py-8">
         <div className="mb-6">
           <h1 className="text-xl font-bold text-gray-900 mb-1">{tarea.nombre}</h1>
           <p className="text-sm text-gray-500">
-            {tarea.materia} · {tarea.dificultad} · {totalPreguntas} preguntas
+            Matematicas · {tarea.dificultad}
+            {esCPA ? ' · Metodo Singapur' : ` · ${totalPreguntas} preguntas`}
           </p>
-        </div>
-
-        <div className="space-y-4 mb-8">
-          {tarea.preguntas?.map((pregunta, i) => (
-            <RenderizadorPregunta
-              key={i}
-              pregunta={pregunta}
-              indice={i}
-              respuesta={respuestas[i]}
-              onChange={(valor) => actualizarRespuesta(i, valor)}
-            />
-          ))}
         </div>
 
         <MensajeError mensaje={error} onCerrar={() => setError(null)} />
 
-        {confirmando && (
-          <div className="card p-5 mb-4 border-orange-200 bg-orange-50 animate-slide-up">
-            <div className="flex items-start gap-3">
-              <svg
-                className="w-5 h-5 text-orange-500 flex-shrink-0 mt-0.5"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
-                  clipRule="evenodd"
+        {esCPA ? (
+          <StepperCPA
+            tareaCPA={tarea.contenido_cpa}
+            tareaId={tareaId}
+            alumnoId={alumno.id}
+            onSubmit={handleCPASubmit}
+            submitting={submitting}
+          />
+        ) : (
+          <>
+            {/* Legacy progress bar */}
+            <div className="mb-6 bg-white rounded-xl border border-gray-100 p-4">
+              <div className="flex items-center justify-between text-sm mb-2">
+                <span className="font-medium text-gray-700">
+                  {respondidas} de {totalPreguntas} respondidas
+                </span>
+                <span className="text-gray-400">{porcentaje}%</span>
+              </div>
+              <div className="h-1.5 bg-gray-100 rounded-full overflow-hidden">
+                <div
+                  className="h-full bg-amarillo rounded-full transition-all duration-300"
+                  style={{ width: `${porcentaje}%` }}
                 />
-              </svg>
-              <div className="flex-1">
-                <p className="text-sm font-semibold text-orange-800">
-                  Tienes {totalPreguntas - respondidas} pregunta
-                  {totalPreguntas - respondidas > 1 ? 's' : ''} sin responder.
-                </p>
-                <p className="text-sm text-orange-700 mt-1">
-                  ¿Quieres entregar tu tarea de todas formas? Las preguntas sin respuesta se
-                  marcarán como incorrectas.
-                </p>
-                <div className="flex gap-3 mt-3">
-                  <Boton variante="peligro" size="sm" onClick={enviarTarea}>
-                    Sí, entregar así
-                  </Boton>
-                  <Boton variante="secundario" size="sm" onClick={() => setConfirmando(false)}>
-                    Seguir respondiendo
-                  </Boton>
-                </div>
               </div>
             </div>
-          </div>
-        )}
 
-        <Boton
-          variante="primario"
-          size="lg"
-          onClick={handleEntregar}
-          disabled={cargando}
-          className="w-full"
-        >
-          {cargando ? (
-            <>
-              <Spinner size="sm" />
-              Corrigiendo con IA...
-            </>
-          ) : (
-            <>
-              <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
-                <path
-                  fillRule="evenodd"
-                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                  clipRule="evenodd"
+            <div className="space-y-4 mb-8">
+              {contenidoFlat?.map((pregunta, i) => (
+                <RenderizadorPregunta
+                  key={i}
+                  pregunta={pregunta}
+                  indice={i}
+                  respuesta={respuestas[i]}
+                  onChange={(valor) => actualizarRespuesta(i, valor)}
                 />
-              </svg>
-              ENTREGAR TAREA
-            </>
-          )}
-        </Boton>
+              ))}
+            </div>
+
+            {confirmando && (
+              <div className="card p-5 mb-4 border-orange-200 bg-orange-50 animate-slide-up">
+                <div className="flex items-start gap-3">
+                  <div className="flex-1">
+                    <p className="text-sm font-semibold text-orange-800">
+                      Tienes {totalPreguntas - respondidas} pregunta
+                      {totalPreguntas - respondidas > 1 ? 's' : ''} sin responder.
+                    </p>
+                    <p className="text-sm text-orange-700 mt-1">
+                      ¿Quieres entregar tu tarea de todas formas?
+                    </p>
+                    <div className="flex gap-3 mt-3">
+                      <Boton variante="peligro" size="sm" onClick={enviarTarea}>
+                        Si, entregar asi
+                      </Boton>
+                      <Boton variante="secundario" size="sm" onClick={() => setConfirmando(false)}>
+                        Seguir respondiendo
+                      </Boton>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            <Boton
+              variante="primario"
+              size="lg"
+              onClick={handleEntregar}
+              disabled={cargando}
+              className="w-full"
+            >
+              {cargando ? (
+                <>
+                  <Spinner size="sm" />
+                  Corrigiendo con IA...
+                </>
+              ) : (
+                'ENTREGAR TAREA'
+              )}
+            </Boton>
+          </>
+        )}
       </main>
     </div>
   )

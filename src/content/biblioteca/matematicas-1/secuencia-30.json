@@ -1,0 +1,310 @@
+{
+  "secuencia": 30,
+  "titulo": "Frecuencia absoluta y relativa",
+  "contenido": "Interpretación de la información a través de medidas de tendencia central y de dispersión.",
+  "pda": "Determina e interpreta la frecuencia absoluta, la frecuencia relativa, la media, la mediana y la moda en un conjunto de datos.",
+  "evaluacion": {
+    "preguntas": [
+      {
+        "tipo": "opcion_multiple",
+        "pregunta": "En un grupo de 25 alumnos, 10 sacaron 8 en el examen. ¿Cuál es la frecuencia relativa de la calificación 8?",
+        "opciones": ["A) 10", "B) 0.25", "C) 0.40", "D) 40"],
+        "respuesta": "C"
+      },
+      {
+        "tipo": "verdadero_falso",
+        "pregunta": "La suma de todas las frecuencias relativas de un conjunto de datos siempre es igual a 1 (o 100%).",
+        "opciones": [],
+        "respuesta": true
+      },
+      {
+        "tipo": "espacios",
+        "pregunta": "La ___ es el valor que más se repite en un conjunto de datos.",
+        "opciones": [],
+        "respuesta": "moda"
+      },
+      {
+        "tipo": "calculo",
+        "pregunta": "Dado el conjunto de datos: 4, 7, 5, 9, 7, 3, 7, 8, 6, 4. Calcula la media, la mediana y la moda.",
+        "opciones": [],
+        "respuesta": "Paso 1 — Media: Suma = 4+7+5+9+7+3+7+8+6+4 = 60. Media = 60/10 = 6.\nPaso 2 — Mediana: Ordenar: 3, 4, 4, 5, 6, 7, 7, 7, 8, 9. Como hay 10 datos (par), mediana = (6+7)/2 = 6.5.\nPaso 3 — Moda: El valor que más se repite es 7 (aparece 3 veces). Moda = 7.\nMedia = 6, Mediana = 6.5, Moda = 7."
+      },
+      {
+        "tipo": "abierta",
+        "pregunta": "Explica la diferencia entre frecuencia absoluta y frecuencia relativa. ¿Por qué la frecuencia relativa es más útil para comparar grupos de diferente tamaño?",
+        "opciones": [],
+        "respuesta": "La frecuencia absoluta es el número de veces que aparece un dato en el conjunto (es un conteo directo). La frecuencia relativa es la proporción que ese dato representa respecto al total; se calcula dividiendo la frecuencia absoluta entre el total de datos. La frecuencia relativa es más útil para comparar grupos de diferente tamaño porque expresa la proporción. Por ejemplo, si en un grupo de 20 alumnos 10 sacaron 9, y en otro grupo de 100 alumnos 30 sacaron 9, la frecuencia absoluta es mayor en el segundo grupo (30 vs 10), pero la frecuencia relativa muestra que el primer grupo tuvo mejor desempeño (0.50 vs 0.30)."
+      }
+    ]
+  },
+  "orientacion": {
+    "contenidos_especificos": [
+      "Calcular la frecuencia absoluta (conteo) y la frecuencia relativa (proporción del total) de cada dato",
+      "Calcular e interpretar las medidas de tendencia central: media aritmética, mediana y moda",
+      "Organizar datos en tablas de frecuencia completas con frecuencia absoluta, relativa y porcentaje"
+    ],
+    "actividad_inicio": [
+      "Pedir a cada alumno que escriba en un papelito su calificación en el último examen de otra materia",
+      "Recoger los papelitos, leer las calificaciones en voz alta y anotarlas en el pizarrón",
+      "Preguntar: ¿cuál calificación se repite más? ¿Cuál sería una calificación 'promedio' del grupo? ¿Cuál queda 'en medio'?",
+      "Explicar que esas tres preguntas corresponden a la moda, la media y la mediana",
+      "Presentar el objetivo: aprender a calcular frecuencias y medidas de tendencia central"
+    ],
+    "desarrollo": [
+      {
+        "titulo": "Frecuencia absoluta y frecuencia relativa",
+        "diapositiva": "1-3",
+        "libro": "Sección 'Frecuencia absoluta y relativa'",
+        "video": "min 0:30-2:30",
+        "descripcion": "Con los datos del grupo, construya una tabla con columnas: calificación, frecuencia absoluta (cuántas veces aparece), frecuencia relativa (frecuencia absoluta / total) y porcentaje (frecuencia relativa × 100). Enfatice que la suma de frecuencias absolutas es el total de datos y la suma de frecuencias relativas es 1 (o 100%). Trabaje un ejemplo completo. Los alumnos verifican sumando cada columna. Luego practican con un segundo conjunto de datos en parejas.",
+        "tip": "Pida a los alumnos que expresen la frecuencia relativa como fracción, decimal y porcentaje para reforzar las tres representaciones."
+      },
+      {
+        "titulo": "Media, mediana y moda",
+        "diapositiva": "4-6",
+        "libro": "Sección 'Medidas de tendencia central'",
+        "video": "min 2:30-5:00",
+        "descripcion": "Defina cada medida: la media es la suma de todos los datos entre el número de datos; la mediana es el valor central de los datos ordenados (o el promedio de los dos centrales si hay un número par); la moda es el valor que más se repite. Calcule las tres con los datos del grupo. Discuta: ¿cuándo son iguales? ¿Cuándo son diferentes? ¿Cuál es más representativa? Muestre un ejemplo donde un dato extremo (por ejemplo, un 1 en un grupo de 8, 9 y 10) afecta la media pero no la mediana. Los alumnos resuelven individualmente tres ejercicios con datos variados.",
+        "tip": "El error más común es olvidar ordenar los datos antes de calcular la mediana. Insista: siempre ordenar primero."
+      },
+      {
+        "titulo": "Análisis integrado con datos reales",
+        "diapositiva": "7-8",
+        "libro": "Sección 'Análisis completo'",
+        "video": null,
+        "descripcion": "Entregue a cada equipo un conjunto de datos reales (edades de jugadores de un equipo, temperaturas de una semana, precios de productos en una tienda). Cada equipo debe: 1) construir la tabla de frecuencias completa, 2) calcular media, mediana y moda, 3) redactar tres conclusiones sobre los datos. Cada equipo presenta sus resultados al grupo. Discutan cuál medida de tendencia central es la más representativa para cada caso y por qué.",
+        "tip": null
+      }
+    ],
+    "cierre_individual": {
+      "reflexiona": "¿Cuál medida de tendencia central crees que es más útil: la media, la mediana o la moda? ¿Depende del contexto? Escribe un ejemplo donde cada una sea la más adecuada.",
+      "profundiza": [
+        {
+          "pregunta": "En un grupo de 5 amigos, las edades son 12, 12, 13, 14 y 49 años (el último es un error de captura, debería ser 14). ¿Cómo afecta este dato extremo a la media y a la mediana?",
+          "respuesta_modelo": "R.M. Con el error: media = (12+12+13+14+49)/5 = 100/5 = 20 años, mediana = 13. Sin el error: media = (12+12+13+14+14)/5 = 65/5 = 13, mediana = 13. El dato extremo cambió la media de 13 a 20 (una diferencia enorme), pero la mediana no se movió. Esto muestra que la mediana es más resistente a datos atípicos."
+        },
+        {
+          "pregunta": "¿Puede un conjunto de datos tener dos modas? ¿Y ninguna moda? Da ejemplos.",
+          "respuesta_modelo": "R.M. Sí. Bimodal: {2, 3, 3, 5, 5, 7} tiene dos modas: 3 y 5. Sin moda: {1, 2, 3, 4, 5} no tiene moda porque ningún valor se repite. También puede ser multimodal si tres o más valores empatan en la mayor frecuencia."
+        }
+      ]
+    },
+    "cierre_grupal": [
+      "La frecuencia absoluta es el conteo de veces que aparece un dato; la relativa es la proporción respecto al total",
+      "La suma de frecuencias relativas siempre es 1 (o 100%)",
+      "La media aritmética es la suma de todos los datos entre el número de datos",
+      "La mediana es el valor central de los datos ordenados; es resistente a datos extremos",
+      "La moda es el dato que más se repite; puede haber más de una o ninguna"
+    ],
+    "preguntas_comprension": [
+      "Si la frecuencia absoluta de un dato es 12 y el total de datos es 60, ¿cuál es la frecuencia relativa?",
+      "Calcula la media de: 3, 5, 7, 9, 11. ¿Coincide con la mediana?",
+      "¿Por qué la mediana es más adecuada que la media cuando hay datos extremos?",
+      "Un conjunto de datos tiene moda 8 y media 6.5. ¿Es posible? Inventa un ejemplo.",
+      "¿Qué le pasa a la media si a todos los datos les sumas 3? ¿Y a la moda?"
+    ]
+  },
+  "libro": {
+    "introduccion": "¿Te has preguntado qué significa cuando dicen 'el 40% de los alumnos sacó 8'? Eso es frecuencia relativa, y junto con la frecuencia absoluta, son las herramientas básicas para entender cualquier conjunto de datos. Hoy vas a aprender a calcularlas e interpretarlas para tomar decisiones informadas.",
+    "conceptos": [
+      {
+        "titulo": "Frecuencia absoluta",
+        "contenido": "La frecuencia absoluta es simplemente el número de veces que un dato aparece en un conjunto. Es un conteo directo. Si en un grupo de 30 alumnos, 12 sacaron 9 en el examen, la frecuencia absoluta de la calificación 9 es 12. La suma de todas las frecuencias absolutas siempre es igual al total de datos.",
+        "definicion": "Frecuencia absoluta (fᵢ): número de veces que aparece el valor xᵢ en el conjunto de datos. Σfᵢ = n (total de datos)."
+      },
+      {
+        "titulo": "Frecuencia relativa",
+        "contenido": "La frecuencia relativa expresa la proporción que representa cada dato respecto al total. Se obtiene dividiendo la frecuencia absoluta entre el total de datos. Puede expresarse como decimal, fracción o porcentaje. La suma de todas las frecuencias relativas siempre es 1 (o 100%).",
+        "definicion": "Frecuencia relativa (frᵢ) = fᵢ / n, donde fᵢ es la frecuencia absoluta y n es el total de datos. Se puede expresar como porcentaje multiplicando por 100."
+      },
+      {
+        "titulo": "Tabla de frecuencias completa",
+        "contenido": "Una tabla de frecuencias completa incluye: el dato o categoría, la frecuencia absoluta, la frecuencia relativa (en decimal o porcentaje) y, a veces, la frecuencia acumulada. Es la herramienta fundamental para resumir y analizar información antes de calcular medidas como la media, mediana o moda.",
+        "definicion": null
+      }
+    ],
+    "ejemplos": [
+      {
+        "titulo": "Tabla de frecuencias con absolutas y relativas",
+        "enunciado": "En un grupo de 25 alumnos, las calificaciones fueron: 7 (5 alumnos), 8 (10 alumnos), 9 (7 alumnos), 10 (3 alumnos). Construye la tabla completa.",
+        "pasos": [
+          "Paso 1: Verifica el total: 5 + 10 + 7 + 3 = 25.",
+          "Paso 2: Frecuencias relativas: 7 → 5/25 = 0.20 (20%), 8 → 10/25 = 0.40 (40%), 9 → 7/25 = 0.28 (28%), 10 → 3/25 = 0.12 (12%).",
+          "Paso 3: Verificación: 0.20 + 0.40 + 0.28 + 0.12 = 1.00 (100%)."
+        ],
+        "resultado": "La calificación más frecuente es 8 (40% del grupo). Las frecuencias relativas suman exactamente 1.",
+        "figura": {
+          "tipo": "grafica_barras",
+          "datos": [
+            {
+              "label": "Rojo",
+              "valor": 12
+            },
+            {
+              "label": "Azul",
+              "valor": 8
+            },
+            {
+              "label": "Verde",
+              "valor": 15
+            },
+            {
+              "label": "Amarillo",
+              "valor": 5
+            }
+          ],
+          "width": 280,
+          "height": 150
+        }
+      },
+      {
+        "titulo": "Interpretación de frecuencia relativa",
+        "enunciado": "En una encuesta a 200 personas, 50 prefieren el color azul. ¿Cuál es la frecuencia relativa?",
+        "pasos": [
+          "Paso 1: Frecuencia absoluta del azul = 50.",
+          "Paso 2: Total = 200.",
+          "Paso 3: Frecuencia relativa = 50 / 200 = 0.25 = 25%."
+        ],
+        "resultado": "El 25% de las personas prefiere el azul, o dicho de otra forma, 1 de cada 4 personas."
+      }
+    ],
+    "datos_curiosos": "La frecuencia relativa es la base de la probabilidad frecuentista. Si lanzas una moneda 1000 veces y obtienes cara 503 veces, la frecuencia relativa de cara es 0.503, muy cercana al 0.5 teórico. Mientras más repeticiones hagas, más se acerca la frecuencia relativa a la probabilidad real. A esto se le llama la Ley de los Grandes Números.",
+    "ejercicios": [
+      {
+        "numero": 1,
+        "enunciado": "En un grupo de 40 alumnos, 8 sacaron 6, 12 sacaron 7, 15 sacaron 8 y 5 sacaron 9. Construye la tabla de frecuencias absolutas y relativas.",
+        "espacio": true,
+        "lineas": 5
+      },
+      {
+        "numero": 2,
+        "enunciado": "Si la frecuencia relativa de un dato es 0.35 y el total de datos es 60, ¿cuál es la frecuencia absoluta?",
+        "espacio": true,
+        "lineas": 3
+      },
+      {
+        "numero": 3,
+        "enunciado": "En una bolsa hay canicas de 4 colores. Las frecuencias relativas son: rojo 0.30, azul 0.25, verde 0.20. ¿Cuál es la frecuencia relativa del cuarto color? Si hay 80 canicas en total, ¿cuántas hay de cada color?",
+        "espacio": true,
+        "lineas": 4
+      }
+    ],
+    "puntos_clave": [
+      "La frecuencia absoluta es el conteo de cuántas veces aparece un dato.",
+      "La frecuencia relativa es la proporción respecto al total: frᵢ = fᵢ / n.",
+      "La suma de frecuencias absolutas = total de datos. La suma de frecuencias relativas = 1 (o 100%).",
+      "La frecuencia relativa permite comparar datos de conjuntos con diferente cantidad de elementos.",
+      "Siempre verifica tus cálculos comprobando que las sumas den el total esperado."
+    ]
+  },
+  "diapositiva": [
+    {
+      "titulo": "Frecuencia absoluta y relativa",
+      "puntos": [
+        "Tema: Interpretación de la información",
+        "Objetivo: Determinar frecuencias, media, mediana y moda",
+        "Herramientas para analizar conjuntos de datos"
+      ],
+      "ejemplo": "¿Cuál fue la calificación más común del grupo en el último examen?"
+    },
+    {
+      "titulo": "Frecuencia absoluta",
+      "puntos": [
+        "Es el número de veces que aparece un dato",
+        "Es un conteo directo",
+        "La suma de todas las frecuencias absolutas = total de datos",
+        "Se simboliza como fi"
+      ],
+      "ejemplo": "En {3, 5, 3, 7, 3, 5}, la f. absoluta de 3 es 3, de 5 es 2, de 7 es 1."
+    },
+    {
+      "titulo": "Frecuencia relativa",
+      "puntos": [
+        "Es la proporción: fr = fi / total",
+        "Siempre está entre 0 y 1",
+        "En porcentaje: fr × 100",
+        "La suma de todas las fr = 1 (o 100%)"
+      ],
+      "ejemplo": "Si fi = 3 y total = 6: fr = 3/6 = 0.5 = 50%."
+    },
+    {
+      "titulo": "La media (promedio)",
+      "puntos": [
+        "Suma de todos los datos / número de datos",
+        "Representa el valor 'típico'",
+        "Se afecta por valores extremos (outliers)",
+        "Todos los datos contribuyen al cálculo"
+      ],
+      "ejemplo": "Datos: 4, 6, 8, 10, 7. Media = 35/5 = 7.",
+      "figura": {
+        "tipo": "grafica_barras",
+        "datos": [
+          {
+            "label": "A",
+            "valor": 10
+          },
+          {
+            "label": "B",
+            "valor": 6
+          },
+          {
+            "label": "C",
+            "valor": 14
+          },
+          {
+            "label": "D",
+            "valor": 8
+          },
+          {
+            "label": "E",
+            "valor": 12
+          }
+        ],
+        "width": 350,
+        "height": 180
+      }
+    },
+    {
+      "titulo": "La mediana",
+      "puntos": [
+        "Valor central de los datos ordenados",
+        "Número impar de datos: el dato del medio",
+        "Número par: promedio de los dos centrales",
+        "No se afecta tanto por valores extremos"
+      ],
+      "ejemplo": "Datos ordenados: 3, 5, 7, 9, 11 → Mediana = 7. Datos: 3, 5, 7, 9 → Mediana = (5+7)/2 = 6."
+    },
+    {
+      "titulo": "La moda",
+      "puntos": [
+        "El dato que más se repite",
+        "Puede haber más de una moda (bimodal, multimodal)",
+        "Puede no haber moda si todos los valores son diferentes",
+        "Útil para datos cualitativos y cuantitativos"
+      ],
+      "ejemplo": "En {2, 4, 4, 6, 8, 8, 8}: Moda = 8 (aparece 3 veces)."
+    },
+    {
+      "titulo": "Ejemplo completo",
+      "puntos": [
+        "Datos: 5, 3, 8, 5, 7, 5, 9, 3, 6, 5",
+        "Media: 56/10 = 5.6",
+        "Mediana: ordenados → 3,3,5,5,5,5,6,7,8,9 → (5+5)/2 = 5",
+        "Moda: 5 (aparece 4 veces)"
+      ],
+      "ejemplo": "Las tres medidas dan valores cercanos pero diferentes: cada una nos dice algo distinto."
+    },
+    {
+      "titulo": "Resumen",
+      "puntos": [
+        "Frecuencia absoluta: conteo. Relativa: proporción.",
+        "Media: promedio aritmético",
+        "Mediana: valor central (datos ordenados)",
+        "Moda: dato más frecuente",
+        "Usar la medida según el contexto y los datos"
+      ],
+      "ejemplo": "Si un dato extremo distorsiona la media, la mediana es mejor representante del grupo."
+    }
+  ],
+  "video_script": "## Script de video: Frecuencia absoluta y relativa\n\n[VISUAL: Dados cayendo sobre una mesa, mostrando diferentes números]\n\n¡Hola! Imagina que lanzas un dado 30 veces y anotas cada resultado. ¿Cómo organizas toda esa información? ¿Cómo encuentras patrones? Hoy vas a aprender las herramientas más importantes del análisis de datos: frecuencias, media, mediana y moda.\n\n[VISUAL: Lista desordenada de números que se organiza en una tabla]\n\nEmpecemos con las frecuencias. La frecuencia absoluta es simplemente cuántas veces aparece un dato. Si lanzaste el dado 30 veces y el número 4 salió 7 veces, la frecuencia absoluta del 4 es 7. Así de fácil: es un conteo.\n\nPero ahora viene algo más interesante: la frecuencia relativa. Esta te dice qué proporción del total representa ese dato. Se calcula dividiendo la frecuencia absoluta entre el total. Entonces: 7 entre 30 es 0.233, o sea el 23.3%. Eso significa que en casi una de cada cuatro lanzadas salió el 4.\n\n[VISUAL: Tabla completándose con columnas de f. absoluta, f. relativa y porcentaje]\n\nAquí está el truco: la suma de todas las frecuencias absolutas debe ser igual al total de datos. Y la suma de todas las frecuencias relativas siempre es 1, o 100% si las expresas en porcentaje. Si no te da así, ¡hay un error en algún lado!\n\n[VISUAL: Fórmula de la media apareciendo con animación]\n\n¿Y la frecuencia relativa para qué sirve? ¡Para comparar! Imagina que en tu grupo de 30 alumnos, 12 sacaron 9 en el examen. Y en otro grupo de 50 alumnos, 15 sacaron 9. ¿Quién lo hizo mejor? La frecuencia absoluta dice que el segundo grupo tiene más nueves. Pero la frecuencia relativa cuenta otra historia: 12 de 30 es 40%, y 15 de 50 es 30%. ¡Tu grupo lo hizo mejor!\n\nAhora vamos con las medidas de tendencia central. Empezamos con la media, que es el famoso promedio. Sumas todos los datos y divides entre cuántos son.\n\n[VISUAL: Ejemplo con datos: 6, 8, 7, 9, 5, 8, 7, 7, 10, 3]\n\nVeamos con un ejemplo: las calificaciones de 10 alumnos son 6, 8, 7, 9, 5, 8, 7, 7, 10, 3. La suma es 70. Dividimos entre 10: la media es 7. Eso significa que, en promedio, el grupo sacó 7.\n\n[VISUAL: Datos ordenándose de menor a mayor con flechas señalando los centrales]\n\nLa mediana es el valor que está justo en medio cuando ordenas los datos. Ordenamos: 3, 5, 6, 7, 7, 7, 8, 8, 9, 10. Como hay 10 datos, que es par, tomamos los dos del centro: el quinto es 7 y el sexto es 7. Promedio de ambos: 7. La mediana es 7.\n\nPero ojo: si el dato más bajo hubiera sido 1 en vez de 3, la media bajaría a 6.8, pero la mediana seguiría siendo 7. La mediana no se mueve por un solo dato extremo, y por eso a veces es más representativa.\n\n[VISUAL: Resaltando el número 7 que aparece tres veces]\n\nY la moda es el dato que más se repite. En nuestro ejemplo, el 7 aparece 3 veces. Ningún otro valor se repite tanto. La moda es 7.\n\nDato curioso: puede haber conjuntos con dos modas, o tres, o incluso sin moda si ningún valor se repite.\n\n[VISUAL: Tres tarjetas lado a lado: Media, Mediana, Moda]\n\n¿Cuándo usar cada una? La media es buena cuando los datos son uniformes. La mediana es mejor cuando hay valores extremos que distorsionan. Y la moda te dice qué es lo más popular o frecuente.\n\n[VISUAL: Resumen animado con las definiciones clave]\n\nRecapitulemos. Frecuencia absoluta: cuántas veces aparece un dato. Frecuencia relativa: la proporción respecto al total. Media: el promedio. Mediana: el valor central. Moda: el más repetido. Con estas cinco herramientas, ya puedes analizar cualquier conjunto de datos como todo un profesional.\n\n[VISUAL: Pantalla de cierre con ejercicio]\n\nTe dejo un reto: pide las edades de 15 personas de tu familia y calcula la media, mediana, moda y las frecuencias. ¿Qué medida describe mejor las edades de tu familia? ¡Nos vemos!"
+}

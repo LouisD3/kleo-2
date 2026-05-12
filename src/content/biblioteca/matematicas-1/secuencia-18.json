@@ -1,0 +1,297 @@
+{
+  "secuencia": 18,
+  "titulo": "Punto medio y mediatriz",
+  "contenido": "Construcción y propiedades de las figuras planas y cuerpos.",
+  "pda": "Utiliza la regla y el compás para trazar: punto medio, mediatriz de un segmento, segmentos y ángulos congruentes, bisectriz de un ángulo, rectas perpendiculares y rectas paralelas.",
+  "evaluacion": {
+    "preguntas": [
+      {
+        "tipo": "opcion_multiple",
+        "pregunta": "¿Qué propiedad tiene todo punto que pertenece a la mediatriz de un segmento AB?",
+        "opciones": [
+          "A) Está más cerca de A que de B",
+          "B) Está más cerca de B que de A",
+          "C) Está a la misma distancia de A y de B",
+          "D) Forma un ángulo agudo con AB"
+        ],
+        "respuesta": "C"
+      },
+      {
+        "tipo": "verdadero_falso",
+        "pregunta": "La mediatriz de un segmento es una recta perpendicular al segmento que pasa por su punto medio.",
+        "respuesta": true
+      },
+      {
+        "tipo": "espacios",
+        "pregunta": "Para trazar la mediatriz con compás, se abren arcos desde ambos ___ del segmento con la misma abertura, y se unen los puntos donde los arcos se cruzan.",
+        "respuesta": "extremos"
+      },
+      {
+        "tipo": "calculo",
+        "pregunta": "Un segmento AB mide 12 cm. Encuentra la longitud de AM si M es el punto medio de AB.",
+        "respuesta": "AM = AB ÷ 2 = 12 ÷ 2 = 6 cm"
+      },
+      {
+        "tipo": "abierta",
+        "pregunta": "Describe paso a paso cómo trazarías la mediatriz de un segmento AB usando regla y compás.",
+        "respuesta": "1. Dibujo el segmento AB con la regla. 2. Abro el compás con una abertura mayor a la mitad de AB. 3. Sin cambiar la abertura, coloco la punta del compás en A y trazo un arco arriba y abajo del segmento. 4. Sin cambiar la abertura, coloco la punta en B y trazo otro arco que cruce los anteriores. 5. Los arcos se cruzan en dos puntos (uno arriba y uno abajo del segmento). 6. Con la regla, uno esos dos puntos de intersección. Esa recta es la mediatriz: es perpendicular a AB y pasa por su punto medio."
+      }
+    ]
+  },
+  "orientacion": {
+    "contenidos_especificos": [
+      "Trazar el punto medio de un segmento usando regla y compás",
+      "Construir la mediatriz de un segmento con regla y compás, y comprender sus propiedades",
+      "Trazar segmentos congruentes, ángulos congruentes, bisectriz de un ángulo, rectas perpendiculares y rectas paralelas con instrumentos geométricos"
+    ],
+    "actividad_inicio": [
+      "Entregar a cada alumno regla y compás. Preguntar: ¿cómo dividirían un segmento exactamente a la mitad sin usar la regla para medir? Dejar que propongan ideas",
+      "Mostrar que doblar un papel por la mitad da el punto medio de un borde, y preguntar: ¿cómo hacemos lo mismo con compás sobre un trazo en papel?",
+      "Demostrar rápidamente el trazo de un arco con compás: abrir a cierta medida, fijar la punta en un punto, girar. Verificar que todos saben manipular el compás",
+      "Preguntar: ¿por qué creen que los arquitectos e ingenieros usan compás si ya tienen computadoras? Guiar hacia la idea de precisión y comprensión geométrica",
+      "Presentar el objetivo: aprender a construir punto medio, mediatriz, bisectriz, segmentos y ángulos congruentes, rectas perpendiculares y paralelas usando regla y compás"
+    ],
+    "desarrollo": [
+      {
+        "titulo": "Punto medio y mediatriz de un segmento",
+        "diapositiva": "1-3",
+        "libro": "Sección 'Punto medio y mediatriz'",
+        "video": "min 0:30-3:00",
+        "descripcion": "Paso a paso, guíe la construcción de la mediatriz (que automáticamente da el punto medio): (1) Dibujar el segmento AB. (2) Con el compás abierto a más de la mitad de AB, trazar un arco desde A. (3) Sin cambiar la abertura, trazar un arco desde B. (4) Los arcos se intersecan en dos puntos; unirlos con la regla. Esa recta es la mediatriz y cruza AB en su punto medio M. Explique la propiedad: todo punto de la mediatriz equidista de A y de B. Los alumnos repiten la construcción con dos segmentos de diferentes longitudes. Verifique midiendo con regla que AM = MB.",
+        "tip": "Insista en que no deben cambiar la abertura del compás entre el arco desde A y el arco desde B; ese es el error más frecuente que arruina la construcción."
+      },
+      {
+        "titulo": "Segmentos congruentes, ángulos congruentes y bisectriz",
+        "diapositiva": "4-6",
+        "libro": "Sección 'Construcciones con compás'",
+        "video": "min 3:00-6:00",
+        "descripcion": "Segmento congruente: (1) dibujar un rayo, (2) abrir el compás a la medida del segmento original, (3) marcar la medida sobre el rayo. Ángulo congruente: (1) trazar un arco en el ángulo original, (2) trazar el mismo arco en el nuevo vértice, (3) medir con el compás la distancia entre los puntos del arco original, (4) trasladar esa distancia al nuevo arco, (5) trazar el lado. Bisectriz: (1) trazar un arco desde el vértice que corte ambos lados, (2) desde cada intersección trazar arcos iguales, (3) unir el vértice con el cruce de los arcos. Demuestre cada construcción en el pizarrón paso a paso. Los alumnos practican las tres construcciones en su cuaderno.",
+        "tip": "Para la bisectriz, pida que verifiquen midiendo con el transportador que ambos ángulos resultantes son iguales; esto refuerza la comprensión del procedimiento."
+      },
+      {
+        "titulo": "Rectas perpendiculares y paralelas con regla y compás",
+        "diapositiva": "7-8",
+        "libro": "Sección 'Perpendiculares y paralelas'",
+        "video": null,
+        "descripcion": "Perpendicular a una recta por un punto sobre ella: es la mediatriz de un segmento simétrico alrededor del punto. Perpendicular a una recta desde un punto exterior: trazar dos arcos desde el punto que corten la recta, luego la mediatriz de esos dos puntos de corte pasa por el punto exterior. Recta paralela: trazar una perpendicular a la recta dada por un punto exterior, luego trazar una perpendicular a esa perpendicular por el mismo punto; el resultado es paralelo a la recta original. Forme parejas: cada pareja practica las tres construcciones. Al terminar, intercambian cuadernos y verifican con escuadra y transportador que las construcciones sean correctas.",
+        "tip": "La construcción de la recta paralela puede parecer complicada; explíquela como 'dos perpendiculares seguidas' para simplificar la lógica del procedimiento."
+      }
+    ],
+    "cierre_individual": {
+      "reflexiona": "De todas las construcciones que aprendiste hoy, ¿cuál te costó más trabajo y por qué? Escribe los pasos de esa construcción con tus propias palabras para reforzarla.",
+      "profundiza": [
+        {
+          "pregunta": "Si trazas la mediatriz de un segmento AB y luego tomas un punto P cualquiera sobre la mediatriz, ¿qué relación hay entre la distancia PA y la distancia PB? Demuéstralo con una construcción y midiendo.",
+          "respuesta_modelo": "R.M. PA = PB. Todo punto sobre la mediatriz de un segmento equidista de sus extremos. Esto se puede verificar midiendo con el compás o la regla: al abrir el compás desde P hasta A y luego verificar que llega exactamente a B."
+        },
+        {
+          "pregunta": "¿Para qué crees que sirve en la vida real saber trazar la bisectriz de un ángulo? Da al menos un ejemplo práctico.",
+          "respuesta_modelo": "R.M. La bisectriz se usa, por ejemplo, en carpintería al cortar molduras para esquinas: hay que cortar cada pieza al ángulo exacto de la mitad para que encajen perfectamente (corte a inglete). También se usa en arquitectura para diseñar simetrías y en topografía para dividir terrenos equitativamente."
+        }
+      ]
+    },
+    "cierre_grupal": [
+      "El punto medio de un segmento lo divide en dos partes iguales y se obtiene automáticamente al trazar la mediatriz",
+      "La mediatriz es perpendicular al segmento en su punto medio y todos sus puntos equidistan de los extremos",
+      "La bisectriz divide un ángulo en dos ángulos iguales",
+      "Para trazar segmentos o ángulos congruentes, el compás 'transporta' medidas sin necesidad de regla graduada",
+      "Las rectas perpendiculares y paralelas se construyen con compás aplicando el principio de la mediatriz"
+    ],
+    "preguntas_comprension": [
+      "Describe los pasos para trazar la mediatriz de un segmento con regla y compás.",
+      "¿Por qué es importante no cambiar la abertura del compás al trazar los arcos desde ambos extremos?",
+      "¿Qué propiedad tiene cualquier punto que esté sobre la mediatriz de un segmento?",
+      "¿Cuántos pasos necesitas para trazar la bisectriz de un ángulo? Descríbelos brevemente.",
+      "Si ya sabes trazar perpendiculares, ¿cómo puedes usar ese conocimiento para trazar una recta paralela?"
+    ]
+  },
+  "libro": {
+    "introduccion": "Hace miles de anos, los matematicos griegos descubrieron que con solo dos herramientas, una regla y un compas, podian construir figuras geometricas perfectas. Hoy vas a aprender dos de esas construcciones: encontrar el punto medio de un segmento y trazar su mediatriz. Agarra tu compas y vamos.",
+    "conceptos": [
+      {
+        "titulo": "Punto medio",
+        "contenido": "El punto medio M de un segmento AB es el punto que esta exactamente a la mitad entre A y B. Divide al segmento en dos partes iguales: AM = MB = AB/2. Si AB mide 10 cm, entonces M esta a 5 cm de cada extremo.",
+        "definicion": "Punto medio: punto que divide un segmento en dos partes de igual longitud.",
+        "figura": {
+          "tipo": "plano_cartesiano",
+          "xMin": -1,
+          "xMax": 7,
+          "yMin": -2,
+          "yMax": 4,
+          "puntos": [
+            {
+              "x": 1,
+              "y": 1,
+              "label": "A"
+            },
+            {
+              "x": 5,
+              "y": 1,
+              "label": "B"
+            },
+            {
+              "x": 3,
+              "y": 1,
+              "label": "M"
+            }
+          ],
+          "lineas": [
+            {
+              "x1": 1,
+              "y1": 1,
+              "x2": 5,
+              "y2": 1
+            },
+            {
+              "x1": 3,
+              "y1": -1,
+              "x2": 3,
+              "y2": 3,
+              "color": "#E11D48"
+            }
+          ],
+          "width": 180,
+          "height": 140
+        }
+      },
+      {
+        "titulo": "Mediatriz",
+        "contenido": "La mediatriz de un segmento AB es una recta perpendicular al segmento que pasa por su punto medio. Tiene una propiedad increible: todo punto que pertenece a la mediatriz esta a la misma distancia de A que de B (equidistancia). Si el punto P esta en la mediatriz, entonces PA = PB.",
+        "definicion": "Mediatriz: recta perpendicular a un segmento que pasa por su punto medio; todos sus puntos equidistan de los extremos del segmento."
+      },
+      {
+        "titulo": "Construccion con regla y compas",
+        "contenido": "Para trazar la mediatriz: 1) Dibuja el segmento AB. 2) Abre el compas con abertura mayor a la mitad de AB. 3) Desde A, traza un arco arriba y abajo. 4) Sin cambiar la abertura, desde B traza otro arco. 5) Une los puntos donde se cruzan los arcos. Esa recta es la mediatriz y cruza AB en el punto medio M. Es crucial no cambiar la abertura del compas entre los dos arcos.",
+        "definicion": null
+      }
+    ],
+    "ejemplos": [
+      {
+        "titulo": "Trazar la mediatriz de un segmento de 8 cm",
+        "enunciado": "Construye la mediatriz de un segmento AB de 8 cm y verifica que M esta a 4 cm de cada extremo.",
+        "pasos": [
+          "Paso 1: Dibuja el segmento AB de 8 cm con tu regla",
+          "Paso 2: Abre el compas a 6 cm (mayor a 4 cm, que es la mitad)",
+          "Paso 3: Desde A, traza arcos arriba y abajo del segmento",
+          "Paso 4: Sin cambiar la abertura, haz lo mismo desde B",
+          "Paso 5: Une los puntos de interseccion con la regla"
+        ],
+        "resultado": "La mediatriz cruza AB en M. Verificacion: AM = MB = 4 cm."
+      },
+      {
+        "titulo": "Propiedad de equidistancia",
+        "enunciado": "Un segmento AB mide 10 cm. M es su punto medio. Un punto P esta sobre la mediatriz a 8 cm de M. Cuanto mide PA?",
+        "pasos": [
+          "Paso 1: AM = 10/2 = 5 cm",
+          "Paso 2: P esta en la mediatriz, a 8 cm de M. Se forma un triangulo rectangulo AMP",
+          "Paso 3: Por Pitagoras: PA^2 = AM^2 + PM^2 = 25 + 64 = 89",
+          "Paso 4: PA = raiz de 89 = 9.43 cm aprox."
+        ],
+        "resultado": "La distancia de P a A es raiz de 89, aproximadamente 9.43 cm. Y PA = PB (equidistancia)."
+      }
+    ],
+    "datos_curiosos": "Si trazas las tres mediatrices de un triangulo, las tres se cruzan en un mismo punto llamado circuncentro. Ese punto es el centro de un circulo que pasa exactamente por los tres vertices del triangulo. Pruebalo con cualquier triangulo que dibujes.",
+    "ejercicios": [
+      {
+        "numero": 1,
+        "enunciado": "Traza un segmento de 12 cm y construye su mediatriz con regla y compas. Verifica que AM = MB = 6 cm.",
+        "espacio": true,
+        "lineas": 3
+      },
+      {
+        "numero": 2,
+        "enunciado": "Si el segmento AB mide 14 cm, cuanto mide AM si M es el punto medio?",
+        "espacio": true,
+        "lineas": 2
+      },
+      {
+        "numero": 3,
+        "enunciado": "Explica paso a paso como trazarias la mediatriz de un segmento usando regla y compas. Por que es importante no cambiar la abertura del compas?",
+        "espacio": true,
+        "lineas": 5
+      }
+    ],
+    "puntos_clave": [
+      "El punto medio divide un segmento en dos partes iguales: M esta a AB/2 de cada extremo.",
+      "La mediatriz es perpendicular al segmento y pasa por su punto medio.",
+      "Todo punto en la mediatriz equidista de ambos extremos del segmento (PA = PB).",
+      "Construccion con compas: abertura mayor a la mitad, arcos desde ambos extremos, unir intersecciones.",
+      "No cambies la abertura del compas entre los dos arcos: es el error mas comun."
+    ]
+  },
+  "diapositiva": [
+    {
+      "titulo": "Herramientas del geómetra",
+      "puntos": [
+        "Regla: para trazar líneas rectas",
+        "Compás: para trazar arcos y circunferencias",
+        "Con solo estas dos se pueden hacer construcciones exactas"
+      ],
+      "ejemplo": "Los griegos construían figuras perfectas solo con regla y compás"
+    },
+    {
+      "titulo": "Punto medio",
+      "puntos": [
+        "Punto M que divide un segmento AB en dos partes iguales",
+        "AM = MB = AB/2",
+        "Se puede encontrar midiendo o con compás"
+      ],
+      "ejemplo": "Si AB = 12 cm, entonces AM = MB = 6 cm"
+    },
+    {
+      "titulo": "Mediatriz",
+      "puntos": [
+        "Recta perpendicular a AB que pasa por M",
+        "Todo punto en la mediatriz equidista de A y B",
+        "PA = PB para cualquier punto P en la mediatriz"
+      ],
+      "ejemplo": "Si P está en la mediatriz de AB, y PA = 7 cm, entonces PB = 7 cm"
+    },
+    {
+      "titulo": "Construcción: Paso 1 y 2",
+      "puntos": [
+        "Dibujar segmento AB con regla",
+        "Abrir compás con abertura MAYOR a la mitad de AB",
+        "Esto es indispensable para que los arcos se crucen"
+      ],
+      "ejemplo": "AB = 10 cm → abrir compás a 7 cm (más de 5)"
+    },
+    {
+      "titulo": "Construcción: Paso 3 y 4",
+      "puntos": [
+        "Punta del compás en A → trazar arco arriba y abajo",
+        "SIN CAMBIAR LA ABERTURA, punta en B → trazar arco",
+        "Los arcos se cruzan en dos puntos"
+      ],
+      "ejemplo": "Demostración en el pizarrón con compás grande"
+    },
+    {
+      "titulo": "Construcción: Paso 5",
+      "puntos": [
+        "Unir las dos intersecciones de los arcos con la regla",
+        "Esa recta es la mediatriz",
+        "Donde cruza AB está el punto medio M"
+      ],
+      "ejemplo": "Verificar con regla: AM = MB"
+    },
+    {
+      "titulo": "Propiedad de equidistancia",
+      "puntos": [
+        "Elegir cualquier punto P sobre la mediatriz",
+        "Medir PA y PB → son iguales",
+        "Aplicación: colocar algo a la misma distancia de dos puntos"
+      ],
+      "ejemplo": "¿Dónde poner un hospital equidistante de dos pueblos? En la mediatriz."
+    },
+    {
+      "titulo": "Resumen",
+      "puntos": [
+        "Punto medio: mitad exacta del segmento",
+        "Mediatriz: perpendicular por el punto medio, propiedad de equidistancia",
+        "Construcción con compás: abrir más de la mitad, arcos desde ambos extremos, unir cruces"
+      ],
+      "ejemplo": "Reto: Traza un triángulo y construye las 3 mediatrices. ¿Se cruzan en un punto?"
+    }
+  ],
+  "video_script": "# Punto medio y mediatriz — Script de video (5-7 min)\n\n[VISUAL: Compás y regla sobre una hoja blanca, estilo stop-motion]\n\n¡Hola! Hoy vamos a usar las herramientas más clásicas de las matemáticas: la **regla** y el **compás**. Con ellas vas a aprender a encontrar el punto medio de un segmento y a trazar algo que se llama **mediatriz**. Suena complicado, pero te prometo que es súper satisfactorio.\n\n[VISUAL: Segmento AB dibujándose en la pantalla]\n\nEmpecemos con lo básico. Tengo un segmento AB de 10 centímetros. El **punto medio** es el punto M que está exactamente a la mitad: a 5 cm de A y a 5 cm de B. Divide el segmento en dos partes iguales.\n\n[VISUAL: Marca de M apareciendo a la mitad, con medidas 5 cm a cada lado]\n\nCalcularlo es fácil: divides la longitud entre 2. Pero, ¿qué tal si no tienes regla con números? ¿O si necesitas más precisión? Para eso usamos el **compás**.\n\n[VISUAL: Compás abriéndose]\n\nPero antes de construir, hablemos de la **mediatriz**. La mediatriz de un segmento AB es una recta que cumple dos cosas: es **perpendicular** a AB y **pasa por su punto medio**.\n\n[VISUAL: La mediatriz aparece como una línea vertical cruzando AB en M, con el símbolo de ángulo recto]\n\nY tiene una propiedad increíble: **cualquier punto que esté sobre la mediatriz está a la misma distancia de A que de B**.\n\n[VISUAL: Varios puntos sobre la mediatriz con líneas punteadas hacia A y B, mostrando PA = PB]\n\nImagina que A y B son dos pueblos y quieres poner un hospital que esté a la misma distancia de ambos. ¡Lo pones en cualquier punto de la mediatriz!\n\n[VISUAL: Mapa animado con dos pueblos y un hospital sobre la mediatriz]\n\nAhora sí, vamos a construirla. Pon mucha atención porque cada paso importa.\n\n[VISUAL: Hoja blanca con el segmento AB trazado. Manos aparecen con compás]\n\n**Paso 1:** Ya tengo mi segmento AB de 10 cm.\n\n**Paso 2:** Abro el compás con una abertura **mayor a la mitad** del segmento. En este caso, más de 5 cm. Voy a abrirlo a unos 7 cm. Esto es clave: si lo abres muy poco, los arcos no se van a cruzar y no funciona.\n\n[VISUAL: Compás abriéndose a 7 cm, con una indicación de \"> mitad\"]\n\n**Paso 3:** Pongo la punta del compás en **A** y trazo un arco que pase por arriba y por abajo del segmento.\n\n[VISUAL: Arco trazándose desde A, arriba y abajo]\n\n**Paso 4:** **Sin cambiar la abertura** — esto es importantísimo — pongo la punta en **B** y trazo otro arco. ¡Los arcos se cruzan en dos puntos!\n\n[VISUAL: Arco desde B cruzando al anterior en dos puntos, resaltados con color]\n\n**Paso 5:** Con la regla, uno esos dos puntos de intersección. Y... ¡listo! Esa línea es la **mediatriz**. Y donde cruza el segmento AB, ese es el **punto medio M**.\n\n[VISUAL: Regla uniendo los puntos, la mediatriz aparece. M se marca donde cruza AB]\n\n¿Quieres verificar? Mide AM y MB con tu regla. Deberían ser exactamente iguales: 5 cm cada uno.\n\n[VISUAL: Regla midiendo AM = 5 cm y MB = 5 cm con palomitas verdes]\n\nAhora comprobemos la propiedad de equidistancia. Voy a marcar un punto P cualquiera sobre la mediatriz y medir la distancia a A y a B.\n\n[VISUAL: Punto P en la mediatriz, regla midiendo PA y PB]\n\nPA = 8.6 cm. PB = 8.6 cm. ¡Iguales! Puedes elegir cualquier punto sobre la mediatriz y siempre va a pasar lo mismo.\n\nLos errores más comunes que debes evitar:\n\n[VISUAL: Lista con íconos de advertencia]\n\n1. **Abrir el compás muy poco.** Si no es mayor a la mitad del segmento, los arcos no se cruzan.\n2. **Cambiar la abertura** entre el arco de A y el de B. ¡Debe ser la misma!\n3. **No anclar bien la punta.** Si se resbala, el arco queda chueco.\n\n[VISUAL: Ejemplo de cada error con una X roja]\n\nResumamos:\n- El **punto medio** divide un segmento en dos partes iguales.\n- La **mediatriz** es perpendicular al segmento y pasa por su punto medio.\n- Todo punto en la mediatriz **equidista** de ambos extremos.\n- Se construye con **compás** (arcos desde ambos extremos) y **regla** (unir intersecciones).\n\n[VISUAL: Los cuatro puntos en tarjetas de colores]\n\nTe dejo un reto: dibuja un triángulo y traza la mediatriz de cada uno de sus tres lados. Vas a ver que las tres mediatrices se cruzan en un **mismo punto**. Ese punto se llama **circuncentro** y es el centro de un círculo que pasa por los tres vértices. ¡Pruébalo!\n\n[VISUAL: Triángulo con tres mediatrices cruzándose y un círculo pasando por los tres vértices]\n\n¡Nos vemos en el siguiente tema!"
+}

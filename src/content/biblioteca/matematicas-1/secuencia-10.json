@@ -1,0 +1,284 @@
+{
+  "secuencia": 10,
+  "titulo": "Introducción al álgebra",
+  "contenido": "Introducción al álgebra.",
+  "pda": "Interpreta y plantea diversas situaciones del lenguaje común al lenguaje algebraico y viceversa.",
+  "evaluacion": {
+    "preguntas": [
+      {
+        "tipo": "opcion_multiple",
+        "pregunta": "¿Cuál es la expresión algebraica para \"el triple de un número más cinco\"?",
+        "opciones": ["A) x + 3 + 5", "B) 3x + 5", "C) 3(x + 5)", "D) 3 + x + 5"],
+        "respuesta": "B"
+      },
+      {
+        "tipo": "espacios",
+        "pregunta": "La expresión 2x − 7 se lee en lenguaje común como: \"el ___ de un número menos siete\".",
+        "respuesta": "doble"
+      },
+      {
+        "tipo": "verdadero_falso",
+        "pregunta": "La expresión algebraica para \"la mitad de un número\" se escribe como x/2.",
+        "respuesta": true
+      },
+      {
+        "tipo": "calculo",
+        "pregunta": "Si x = 4, ¿cuánto vale la expresión 5x² − 3x + 1?",
+        "respuesta": "Sustituimos x = 4: 5(4)² − 3(4) + 1 = 5(16) − 12 + 1 = 80 − 12 + 1 = 69."
+      },
+      {
+        "tipo": "abierta",
+        "pregunta": "Escribe en lenguaje algebraico: \"Juan tiene el doble de la edad de Pedro. La suma de sus edades es 36 años.\" Define las variables que uses.",
+        "respuesta": "Sea x la edad de Pedro. La edad de Juan es 2x. La suma de sus edades: x + 2x = 36, es decir 3x = 36. Variables: x = edad de Pedro, 2x = edad de Juan."
+      }
+    ]
+  },
+  "orientacion": {
+    "contenidos_especificos": [
+      "Concepto de variable y constante en expresiones algebraicas",
+      "Traducción del lenguaje común al lenguaje algebraico",
+      "Traducción del lenguaje algebraico al lenguaje común"
+    ],
+    "actividad_inicio": [
+      "Plantea: 'Piensa en un número, súmale 5 y multiplica el resultado por 2. ¿Cuánto te dio?'",
+      "Varios alumnos comparten sus resultados; pregunta si pueden adivinar el número original de cada quien.",
+      "Escribe en el pizarrón: si el número pensado es x, entonces el resultado es 2(x + 5).",
+      "Explica que x representa cualquier número: es una variable.",
+      "Pregunta: ¿Qué ventaja tiene usar una letra en lugar de probar número por número?"
+    ],
+    "desarrollo": [
+      {
+        "titulo": "Variables, constantes y expresiones algebraicas",
+        "diapositiva": "1-3",
+        "libro": "Sección correspondiente",
+        "video": null,
+        "descripcion": "Define variable (letra que representa un valor desconocido o que puede cambiar) y constante (valor fijo). Presenta ejemplos: en 3x + 7, la variable es x y las constantes son 3 y 7. Muestra expresiones con más de una variable: 2a + 3b. Pide a los alumnos que identifiquen variables y constantes en 5 expresiones dadas.",
+        "tip": "Relaciona con la fórmula de sucesiones (aₙ = a₁ + (n−1)d) que ya conocen: n es la variable y a₁, d son constantes para cada sucesión particular."
+      },
+      {
+        "titulo": "Del lenguaje común al algebraico",
+        "diapositiva": "4-6",
+        "libro": "Sección correspondiente",
+        "video": "min 1:00-3:30",
+        "descripcion": "Presenta una tabla de traducción con frases clave: 'el doble de un número' → 2x, 'un número aumentado en 5' → x + 5, 'el cuadrado de un número' → x², 'la mitad de un número menos 3' → x/2 − 3. Trabaja 6 frases en grupo, discutiendo posibles confusiones. Enfatiza que 'un número' se reemplaza por una variable.",
+        "tip": null
+      },
+      {
+        "titulo": "Del lenguaje algebraico al común",
+        "diapositiva": "7-9",
+        "libro": "Sección correspondiente",
+        "video": null,
+        "descripcion": "Ahora el proceso inverso: dada la expresión 4x − 10, redactar en español qué representa. Forma parejas y entrega 8 tarjetas: 4 con frases en español y 4 con expresiones algebraicas; deben emparejarlas. Después, cada pareja inventa 2 expresiones propias y las intercambia con otra pareja para traducir.",
+        "tip": "Acepta diferentes redacciones válidas: '3x + 1' puede ser 'el triple de un número más uno' o 'tres veces un número, aumentado en uno'. Esto refuerza la flexibilidad del lenguaje."
+      }
+    ],
+    "cierre_individual": {
+      "reflexiona": "¿En qué situaciones de tu vida cotidiana podrías usar una variable para representar algo que no conoces? Da al menos dos ejemplos.",
+      "profundiza": [
+        {
+          "pregunta": "Traduce al lenguaje algebraico: 'La edad de María es el triple de la edad de su hijo, menos 2 años.'",
+          "respuesta_modelo": "R.M. Si la edad del hijo es x, entonces la edad de María es 3x − 2. La variable x representa la edad del hijo, que desconocemos, y a partir de ella expresamos la edad de María."
+        },
+        {
+          "pregunta": "¿Qué representa la expresión 2(l + a) si l es el largo y a es el ancho de un rectángulo?",
+          "respuesta_modelo": "R.M. Representa el perímetro del rectángulo. La suma l + a da la medida de un largo más un ancho, y al multiplicar por 2 se obtienen los cuatro lados. En lenguaje común: el doble de la suma del largo y el ancho."
+        }
+      ]
+    },
+    "cierre_grupal": [
+      "Revisa las tarjetas de emparejamiento y aclara las expresiones que generaron confusión.",
+      "Escribe en el pizarrón 'cinco menos que el doble de un número' y discutan si es 2x − 5 o 5 − 2x.",
+      "Pregunta: ¿Por qué es importante que todos traduzcamos igual las expresiones matemáticas?",
+      "Conecta con geometría: el perímetro de un cuadrado de lado s es 4s; eso es lenguaje algebraico.",
+      "Anticipa: la semana que viene usaremos el álgebra para representar perímetros de diferentes figuras."
+    ],
+    "preguntas_comprension": [
+      "¿Qué es una variable en una expresión algebraica?",
+      "Traduce al lenguaje algebraico: 'un número disminuido en su tercera parte'.",
+      "¿Qué frase en español representa la expresión x² + 5?",
+      "En la expresión 7y − 4, ¿cuáles son las constantes y cuál es la variable?",
+      "Escribe una expresión algebraica para: 'el producto de dos números consecutivos'."
+    ]
+  },
+  "libro": {
+    "introduccion": "Bienvenido al álgebra, donde los números ya no están solos: ahora se acompañan de letras. No te asustes, las letras solo representan números que todavía no conoces. Hoy vas a aprender a hablar este nuevo idioma matemático.",
+    "conceptos": [
+      {
+        "titulo": "Variables y expresiones algebraicas",
+        "contenido": "Una variable es una letra (como x, y, n) que representa un número desconocido o que puede cambiar. Una expresión algebraica combina números, variables y operaciones. Por ejemplo, 3x + 5 significa \"tres veces un número desconocido, más cinco\".",
+        "definicion": "Variable: letra que representa un valor numérico desconocido o que puede variar. Expresión algebraica: combinación de números, variables y operaciones.",
+        "figura": {
+          "tipo": "recta_numerica",
+          "min": 0,
+          "max": 10,
+          "puntos": [
+            {
+              "valor": 3,
+              "label": "x=3"
+            },
+            {
+              "valor": 7,
+              "label": "x=7"
+            }
+          ],
+          "width": 400,
+          "height": 55
+        }
+      },
+      {
+        "titulo": "Términos semejantes",
+        "contenido": "Dos términos son semejantes cuando tienen la misma variable elevada a la misma potencia. Por ejemplo, 3x y 7x son semejantes (ambos tienen x¹). Pero 3x y 3x² NO son semejantes. Solo puedes sumar o restar términos semejantes.",
+        "definicion": "Términos semejantes: términos con la misma parte literal (mismas variables con los mismos exponentes)."
+      },
+      {
+        "titulo": "Evaluar una expresión algebraica",
+        "contenido": "Evaluar significa sustituir la variable por un número y calcular el resultado. Si tienes 2x + 3 y x = 4, sustituyes: 2(4) + 3 = 8 + 3 = 11.",
+        "definicion": null
+      }
+    ],
+    "ejemplos": [
+      {
+        "titulo": "Simplificar combinando términos semejantes",
+        "enunciado": "Simplifica: 5x + 3 − 2x + 7.",
+        "pasos": [
+          "Paso 1: Identifica los términos semejantes: 5x y −2x son semejantes; 3 y 7 son constantes.",
+          "Paso 2: Combina: 5x − 2x = 3x y 3 + 7 = 10."
+        ],
+        "resultado": "5x + 3 − 2x + 7 = 3x + 10"
+      },
+      {
+        "titulo": "Evaluar una expresión",
+        "enunciado": "Si a = −3, evalúa 4a² − 2a + 1.",
+        "pasos": [
+          "Paso 1: Sustituye a por −3: 4(−3)² − 2(−3) + 1.",
+          "Paso 2: Calcula el exponente: (−3)² = 9.",
+          "Paso 3: Multiplica: 4 × 9 = 36 y −2 × (−3) = 6.",
+          "Paso 4: Suma: 36 + 6 + 1 = 43."
+        ],
+        "resultado": "4a² − 2a + 1 = 43 cuando a = −3."
+      },
+      {
+        "titulo": "Traducir lenguaje cotidiano a algebraico",
+        "enunciado": "\"El doble de un número, disminuido en 8.\"",
+        "pasos": [
+          "Paso 1: \"Un número\" → x.",
+          "Paso 2: \"El doble de un número\" → 2x.",
+          "Paso 3: \"Disminuido en 8\" → − 8."
+        ],
+        "resultado": "2x − 8"
+      }
+    ],
+    "datos_curiosos": "El álgebra está en todas partes. Si tienes x amigos y cada uno trae 3 refrescos a tu fiesta, tendrás 3x refrescos. Si x = 5, tienes 15 refrescos. Si x = 10, tienes 30. ¡La variable x te permite calcular para cualquier cantidad de amigos sin hacer una cuenta nueva cada vez! Los programadores usan variables todo el tiempo para hacer que las apps funcionen.",
+    "ejercicios": [
+      {
+        "numero": 1,
+        "enunciado": "Simplifica: 8y − 3 + 2y − 5y + 9.",
+        "espacio": true,
+        "lineas": 3
+      },
+      {
+        "numero": 2,
+        "enunciado": "Evalúa 3x − 7 cuando x = 5 y cuando x = −2.",
+        "espacio": true,
+        "lineas": 3
+      },
+      {
+        "numero": 3,
+        "enunciado": "Traduce a expresión algebraica: \"La edad de María dentro de 4 años, si hoy tiene n años.\"",
+        "espacio": true,
+        "lineas": 2
+      },
+      {
+        "numero": 4,
+        "enunciado": "¿Son 4xy y 7xy términos semejantes? ¿Y 4xy y 4x²y? Justifica.",
+        "espacio": true,
+        "lineas": 3
+      }
+    ],
+    "puntos_clave": [
+      "Una variable es una letra que representa un número desconocido.",
+      "Solo puedes sumar o restar términos semejantes (misma variable, mismo exponente).",
+      "Evaluar = sustituir la variable por un número y calcular.",
+      "Las expresiones algebraicas permiten representar situaciones de la vida real de forma general.",
+      "Respetar la jerarquía de operaciones al evaluar es fundamental."
+    ]
+  },
+  "diapositiva": [
+    {
+      "titulo": "¿Qué es el álgebra?",
+      "puntos": [
+        "Rama de las matemáticas que usa letras para representar números desconocidos",
+        "Nos permite generalizar: una expresión funciona para muchos valores",
+        "Hoy: traducir del español a expresiones algebraicas y viceversa"
+      ],
+      "ejemplo": "\"Piensa en un número, súmale 5\" → x + 5"
+    },
+    {
+      "titulo": "Variables y expresiones algebraicas",
+      "puntos": [
+        "Variable: letra que representa un número desconocido (x, y, n...)",
+        "Expresión algebraica: combinación de variables, números y operaciones",
+        "Ejemplos: 3x, x + 7, 2x² − 5"
+      ],
+      "ejemplo": "x puede valer 1, 2, 3... ¡o 1,000!"
+    },
+    {
+      "titulo": "Diccionario español → álgebra",
+      "puntos": [
+        "Más, aumentado, suma → +",
+        "Menos, disminuido → −",
+        "Doble, triple → 2x, 3x",
+        "Mitad, tercera parte → x/2, x/3",
+        "Cuadrado → x²"
+      ],
+      "ejemplo": "\"El triple de un número más uno\" → 3x + 1"
+    },
+    {
+      "titulo": "Traducción: ejemplos prácticos",
+      "puntos": [
+        "\"Un número disminuido en 8\" → x − 8",
+        "\"El cuádruple de un número\" → 4x",
+        "\"La suma de un número y su doble\" → x + 2x = 3x"
+      ],
+      "ejemplo": "\"Cinco más que el doble de un número\" → 2x + 5"
+    },
+    {
+      "titulo": "¡Cuidado con la ambigüedad!",
+      "puntos": [
+        "\"5 menos que un número\" → x − 5",
+        "\"5 menos un número\" → 5 − x",
+        "\"El doble de un número más 3\" → ¿2x + 3 o 2(x + 3)?",
+        "Los paréntesis eliminan la ambigüedad"
+      ],
+      "ejemplo": "Lee con cuidado y usa paréntesis cuando sea necesario"
+    },
+    {
+      "titulo": "Evaluar expresiones algebraicas",
+      "puntos": [
+        "Sustituir la variable por el valor dado",
+        "Respetar la jerarquía de operaciones",
+        "Verificar el resultado"
+      ],
+      "ejemplo": "Si x = 4: 3x + 2 = 3(4) + 2 = 14"
+    },
+    {
+      "titulo": "Del álgebra al español",
+      "puntos": [
+        "También puedes leer expresiones y decirlas con palabras",
+        "x/2 + 3 → \"La mitad de un número más tres\"",
+        "Esto refuerza la comprensión de las expresiones"
+      ],
+      "ejemplo": "(x − 1)² → \"El cuadrado de un número menos uno\""
+    },
+    {
+      "titulo": "Actividad: traduce y evalúa",
+      "puntos": [
+        "Traduce: \"El cuádruple de un número menos 10\" → ?",
+        "Evalúa 5x − 3 cuando x = 6 → ?",
+        "¿Qué frase representa x² + x? → ?"
+      ],
+      "ejemplo": "Respuestas: 4x − 10, 27, \"El cuadrado de un número más ese número\""
+    }
+  ],
+  "video_script": "## Introducción al álgebra — Script de video\n\n[VISUAL: Título \"¡Bienvenido al álgebra!\" con una X gigante animada que se transforma en diferentes números]\n\n¡Qué onda! Hoy empezamos con uno de los temas más importantes de las matemáticas: el álgebra. Sé que suena intimidante, pero te prometo que es más sencillo de lo que parece. Básicamente, el álgebra es como aprender un nuevo idioma... ¡pero para las mates!\n\n[VISUAL: Globo de diálogo con \"Tengo cierta cantidad de dinero\" y una caja misteriosa con \"?\"]\n\nImagina que alguien te dice: \"Tengo cierta cantidad de dinero. Si le sumo 50 pesos, tendré 200.\" ¿Cuánto tiene? Pues 150, ¿no? Ahora, en álgebra escribimos eso como x + 50 = 200, donde x es esa cantidad que no conocemos. La **x** es una **variable**: una letra que representa un número misterioso.\n\n[VISUAL: Tabla de dos columnas: izquierda frases en español, derecha expresiones con x]\n\nLo primero que vas a aprender es a traducir del español al lenguaje algebraico. Es como ser traductor. Mira estas reglas básicas:\n- \"Más\" o \"suma\" se escribe con el signo +\n- \"Menos\" o \"diferencia\" con el signo −\n- \"Doble\" o \"el doble de\" se escribe 2x\n- \"Triple\" es 3x\n- \"Mitad\" es x entre 2\n- \"Cuadrado\" es x al cuadrado\n\n[VISUAL: Frase \"El triple de un número más cinco\" se descompone: \"triple\" brilla → 3x, \"más cinco\" brilla → + 5, resultado: 3x + 5]\n\nVamos con un ejemplo: \"El triple de un número más cinco.\" Triple significa multiplicar por 3, y más cinco es sumar 5. Resultado: 3x + 5. ¡Así de fácil!\n\n[VISUAL: Señal de advertencia con dos frases similares pero diferentes]\n\nPero ojo, hay trampas. \"Cinco menos que un número\" y \"cinco menos un número\" suenan parecido pero NO son lo mismo. \"Cinco menos que un número\" significa que al número le quitas 5: x − 5. \"Cinco menos un número\" significa que a 5 le quitas el número: 5 − x. El orden importa, así que lee con cuidado.\n\n[VISUAL: Expresión 4x + 7 con x = 3, se anima la sustitución]\n\nAhora, cuando ya sabes cuánto vale x, puedes **evaluar** la expresión. Esto significa sustituir la letra por el número y calcular. Si x = 3 y tienes 4x + 7, reemplazas: 4 por 3 más 7 = 12 más 7 = 19.\n\n[VISUAL: Expresión más compleja x² − 2x + 1 con x = 5, resolución paso a paso]\n\nVamos con uno más complejo: x al cuadrado menos 2x más 1, con x = 5. Primero: 5 al cuadrado es 25. Luego: 2 por 5 es 10. Entonces: 25 menos 10 más 1 = 16. Recuerda siempre respetar la jerarquía de operaciones que vimos la clase pasada.\n\n[VISUAL: Flechas invertidas: expresión algebraica → frase en español]\n\nY también funciona al revés: si te dan x/2 + 3, puedes leerlo como \"la mitad de un número más tres\". Esto te ayuda a verificar que tu traducción tenga sentido.\n\n[VISUAL: Problema con dibujo de María y su hermano]\n\nCerremos con un problema real: \"María tiene x años. Su hermano tiene el doble de su edad más 3.\" La edad del hermano es 2x + 3. Si María tiene 10 años: 2 por 10 más 3 = 23 años. Nota cómo la fórmula funciona para CUALQUIER edad de María. Esa es la magia del álgebra: generalizar.\n\n[VISUAL: Resumen con tres puntos clave y ejercicios de práctica]\n\n¡Listo! Ya diste tu primer paso en el álgebra. Recuerda: variable = letra para un número desconocido, traduce con las palabras clave, y evalúa sustituyendo. ¡Nos vemos!"
+}

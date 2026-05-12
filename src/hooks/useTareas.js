@@ -106,15 +106,12 @@ export function useAgregarTarea() {
           profesor_id: tarea.profesor_id,
           clase_id: tarea.clase_id,
           nombre: tarea.nombre,
-          materia: tarea.materia,
           dificultad: tarea.dificultad,
-          metodologia: tarea.metodologia,
-          tipos: tarea.tipos,
-          preguntas: tarea.preguntas,
+          contenido_cpa: tarea.contenido_cpa,
           estado: 'borrador',
           fecha_limite: tarea.fecha_limite || null,
           pda: tarea.pda || null,
-          numero_preguntas: tarea.preguntas?.length ?? 0,
+          secuencia_ref: tarea.secuencia_ref ?? null,
         })
         .select()
         .single()
@@ -157,17 +154,22 @@ export function useGuardarResultado() {
   const queryClient = useQueryClient()
   return useMutation({
     mutationFn: async ({ tareaId, alumnoId, resultado }) => {
-      const { error } = await supabase.from('resultados').upsert(
-        {
-          tarea_id: tareaId,
-          alumno_id: alumnoId,
-          respuestas: resultado.respuestas,
-          calificacion: resultado.calificacion,
-          retroalimentacion: resultado.retroalimentacion,
-          areas_de_mejora: resultado.areas_de_mejora ?? [],
-        },
-        { onConflict: 'tarea_id,alumno_id' },
-      )
+      const row = {
+        tarea_id: tareaId,
+        alumno_id: alumnoId,
+        respuestas: resultado.respuestas,
+        calificacion: resultado.calificacion,
+        retroalimentacion: resultado.retroalimentacion,
+        areas_de_mejora: resultado.areas_de_mejora ?? [],
+      }
+      if (resultado.scores_cpa) {
+        row.scores_cpa = resultado.scores_cpa
+        row.numero_intentos = (resultado.numero_intentos ?? 0) + 1
+        row.ultima_tentativa_at = new Date().toISOString()
+      }
+      const { error } = await supabase.from('resultados').upsert(row, {
+        onConflict: 'tarea_id,alumno_id',
+      })
       if (error) {
         console.error('[useGuardarResultado] error:', error)
         throw error

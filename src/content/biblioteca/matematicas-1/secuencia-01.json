@@ -1,0 +1,293 @@
+{
+  "secuencia": 1,
+  "titulo": "Fracciones y decimales",
+  "contenido": "Expresión de fracciones como decimales y de decimales como fracciones.",
+  "pda": "Usa diversas estrategias al convertir números fraccionarios a decimales y viceversa.",
+  "evaluacion": {
+    "preguntas": [
+      {
+        "tipo": "opcion_multiple",
+        "pregunta": "¿Cuál es la representación decimal de la fracción 3/8?",
+        "opciones": ["A) 0.25", "B) 0.375", "C) 0.38", "D) 0.35"],
+        "respuesta": "B"
+      },
+      {
+        "tipo": "verdadero_falso",
+        "pregunta": "El número decimal 0.333... (periódico) es equivalente a la fracción 1/3.",
+        "respuesta": true
+      },
+      {
+        "tipo": "espacios",
+        "pregunta": "Para convertir una fracción a decimal, se divide el ___ entre el ___.",
+        "respuesta": "numerador, denominador"
+      },
+      {
+        "tipo": "calculo",
+        "pregunta": "Convierte el decimal 0.625 a fracción y simplifica.",
+        "respuesta": "Paso 1: 0.625 = 625/1000. Paso 2: Encontrar el MCD de 625 y 1000. MCD = 125. Paso 3: 625 ÷ 125 = 5 y 1000 ÷ 125 = 8. Resultado: 5/8."
+      },
+      {
+        "tipo": "abierta",
+        "pregunta": "Explica con tus propias palabras por qué la fracción 1/7 genera un decimal periódico y menciona cuál es.",
+        "respuesta": "Cuando dividimos 1 entre 7, el residuo nunca es cero, por lo que la división no termina. El resultado es 0.142857142857... donde el bloque 142857 se repite infinitamente. Esto sucede porque 7 no es divisible entre 2 ni entre 5, que son los factores primos de 10."
+      }
+    ]
+  },
+  "orientacion": {
+    "contenidos_especificos": [
+      "Convertir fracciones a su representación decimal mediante división",
+      "Convertir decimales finitos y periódicos a fracciones equivalentes",
+      "Identificar fracciones equivalentes a partir de sus representaciones decimales"
+    ],
+    "actividad_inicio": [
+      "Pregunta al grupo: '¿0.5 y 1/2 representan la misma cantidad? ¿Cómo lo saben?' Permite que discutan brevemente en parejas.",
+      "Muestra una pizza dividida en 8 partes y pregunta cuánto es 3 rebanadas en fracción y en decimal.",
+      "Escribe en el pizarrón 0.333… y pregunta si alguien sabe qué fracción representa.",
+      "Pide a los alumnos que repartan $100 entre 3 personas y escriban el resultado como fracción y como decimal.",
+      "Presenta un ticket de supermercado con precios decimales y pregunta cómo expresarían cada precio como fracción."
+    ],
+    "desarrollo": [
+      {
+        "titulo": "De fracción a decimal: el método de la división",
+        "diapositiva": "1-3",
+        "libro": "Sección Conceptos: Fracciones y decimales",
+        "video": null,
+        "descripcion": "Explica que toda fracción a/b se puede convertir a decimal dividiendo a entre b. Realiza paso a paso en el pizarrón las divisiones de 1/4, 3/8 y 2/3. Señala que algunas divisiones terminan (decimales finitos) y otras se repiten (decimales periódicos). Pide a los alumnos que resuelvan individualmente 5/8, 7/4 y 1/6, y que clasifiquen el resultado como finito o periódico.",
+        "tip": "Usa colores distintos para marcar el periodo en los decimales periódicos; ayuda a que los alumnos identifiquen visualmente el patrón de repetición."
+      },
+      {
+        "titulo": "De decimal a fracción: decimales finitos",
+        "diapositiva": "4-5",
+        "libro": "Sección Ejemplos: Conversión decimal-fracción",
+        "video": "min 1:30-3:30",
+        "descripcion": "Muestra el procedimiento: escribir el decimal como fracción con denominador potencia de 10 (por ejemplo, 0.75 = 75/100) y luego simplificar. Trabaja los ejemplos 0.4, 0.25 y 0.125 con el grupo. Después, pide que en parejas conviertan 0.6, 0.35 y 0.875 a fracción simplificada. Circula por el salón verificando que simplifiquen correctamente usando MCD.",
+        "tip": null
+      },
+      {
+        "titulo": "De decimal periódico a fracción y práctica integradora",
+        "diapositiva": "6-8",
+        "libro": "Sección Práctica: Ejercicios de conversión",
+        "video": null,
+        "descripcion": "Introduce el método algebraico para decimales periódicos: si x = 0.333…, entonces 10x = 3.333…, restando se obtiene 9x = 3, así x = 3/9 = 1/3. Repite con 0.666… y 0.1818…. Luego, entrega una hoja de práctica con 10 conversiones mixtas (fracciones a decimales y decimales a fracciones) para trabajo individual. Revisa las respuestas en plenaria.",
+        "tip": "Si algún alumno tiene dificultad con el método algebraico, permítele verificar con la calculadora que la fracción obtenida sí produce el decimal original; esto refuerza la comprensión."
+      }
+    ],
+    "cierre_individual": {
+      "reflexiona": "Escribe en tu cuaderno: ¿Qué pasos seguiste para convertir un decimal periódico a fracción? ¿En qué paso te trabaste y cómo lo resolviste?",
+      "profundiza": [
+        {
+          "pregunta": "¿Por qué 1/3 no puede escribirse como un decimal finito?",
+          "respuesta_modelo": "Porque al dividir 1 entre 3, el residuo nunca llega a ser cero; siempre queda un residuo de 1 que vuelve a dividirse, generando el dígito 3 de forma infinita. Un decimal finito solo es posible cuando el denominador, en su forma simplificada, tiene únicamente factores 2 y/o 5."
+        },
+        {
+          "pregunta": "Si tienes el decimal 0.125, ¿cómo puedes comprobar que la fracción que obtuviste es correcta?",
+          "respuesta_modelo": "Primero convierto: 0.125 = 125/1000. Simplifico dividiendo numerador y denominador entre 125, obteniendo 1/8. Para comprobar, divido 1 entre 8 con la operación de división larga y verifico que el resultado sea exactamente 0.125."
+        }
+      ]
+    },
+    "cierre_grupal": [
+      "Toda fracción se puede expresar como decimal dividiendo el numerador entre el denominador.",
+      "Los decimales finitos se convierten a fracción colocando el número sobre una potencia de 10 y simplificando.",
+      "Los decimales periódicos se convierten a fracción usando el método algebraico (multiplicar por potencia de 10 y restar).",
+      "Una fracción produce decimal finito solo si su denominador simplificado tiene factores 2 y/o 5.",
+      "Fracciones y decimales son dos formas distintas de representar la misma cantidad."
+    ],
+    "preguntas_comprension": [
+      "¿Cuál es el resultado de convertir 5/6 a decimal?",
+      "Convierte 0.375 a fracción simplificada. ¿Cuál es el resultado?",
+      "¿Cómo sabes si una fracción producirá un decimal finito o periódico?",
+      "Usa el método algebraico para convertir 0.272727… a fracción.",
+      "¿Es cierto que 0.50 y 1/2 representan la misma cantidad? Justifica tu respuesta."
+    ]
+  },
+  "libro": {
+    "introduccion": "¿Alguna vez te has preguntado por qué en la tienda los precios dicen $15.50 en lugar de \"quince pesos y medio\"? Las fracciones y los decimales son dos formas de decir lo mismo: partes de un entero. Hoy vas a aprender a pasar de una forma a otra como todo un experto.",
+    "conceptos": [
+      {
+        "titulo": "Conversión de fracción a decimal",
+        "contenido": "Para convertir cualquier fracción a decimal, solo tienes que dividir el numerador (el de arriba) entre el denominador (el de abajo). Por ejemplo, 3/4 se convierte dividiendo 3 ÷ 4 = 0.75. Cuando la división termina, tienes un decimal exacto o finito. Cuando el residuo se repite sin parar, tienes un decimal periódico, como 1/3 = 0.333...",
+        "definicion": "Decimal finito: decimal cuya división termina. Decimal periódico: decimal donde un bloque de cifras se repite infinitamente.",
+        "figura": {
+          "tipo": "fraccion",
+          "numerador": 3,
+          "denominador": 4,
+          "width": 200,
+          "height": 50
+        }
+      },
+      {
+        "titulo": "Conversión de decimal a fracción",
+        "contenido": "Para ir al revés, cuenta cuántas cifras hay después del punto y coloca el número sin punto sobre una potencia de 10 (10, 100, 1000...). Después simplifica dividiendo numerador y denominador entre su Máximo Común Divisor (MCD). Por ejemplo, 0.625 = 625/1000; dividiendo ambos entre 125 obtienes 5/8.",
+        "definicion": "MCD (Máximo Común Divisor): el número más grande que divide exactamente tanto al numerador como al denominador.",
+        "figura": {
+          "tipo": "fraccion",
+          "numerador": 1,
+          "denominador": 3,
+          "width": 200,
+          "height": 50
+        }
+      },
+      {
+        "titulo": "Decimales periódicos a fracción (método algebraico)",
+        "contenido": "Si el decimal se repite, usa este truco: llama x al decimal. Multiplica por 10 (o 100, según cuántas cifras se repitan). Resta la ecuación original de la nueva. Despeja x. Por ejemplo, si x = 0.333..., entonces 10x = 3.333...; restando: 9x = 3, así que x = 3/9 = 1/3.",
+        "definicion": null
+      }
+    ],
+    "ejemplos": [
+      {
+        "titulo": "Fracción a decimal",
+        "enunciado": "Convierte 5/8 a decimal.",
+        "pasos": [
+          "Paso 1: Divide 5 ÷ 8. Como 5 < 8, escribimos 0. y trabajamos con 50.",
+          "Paso 2: 50 ÷ 8 = 6 (residuo 2). Bajamos un cero: 20 ÷ 8 = 2 (residuo 4). Bajamos un cero: 40 ÷ 8 = 5 (residuo 0).",
+          "Paso 3: La división terminó. Juntamos: 0.625."
+        ],
+        "resultado": "5/8 = 0.625",
+        "figura": {
+          "tipo": "fraccion",
+          "numerador": 5,
+          "denominador": 8,
+          "width": 200,
+          "height": 50
+        }
+      },
+      {
+        "titulo": "Decimal a fracción",
+        "enunciado": "Convierte 0.35 a fracción simplificada.",
+        "pasos": [
+          "Paso 1: Hay 2 cifras después del punto, así que el denominador es 100. Fracción: 35/100.",
+          "Paso 2: Busca el MCD de 35 y 100. Los factores de 35 son 5 × 7; los de 100 son 2² × 5². MCD = 5.",
+          "Paso 3: Divide ambos entre 5: 35 ÷ 5 = 7, 100 ÷ 5 = 20."
+        ],
+        "resultado": "0.35 = 7/20"
+      },
+      {
+        "titulo": "Decimal periódico a fracción",
+        "enunciado": "Convierte 0.1818... a fracción.",
+        "pasos": [
+          "Paso 1: Sea x = 0.1818... El bloque que se repite tiene 2 cifras, así que multiplicamos por 100.",
+          "Paso 2: 100x = 18.1818... Restamos: 100x − x = 18.1818... − 0.1818... → 99x = 18.",
+          "Paso 3: x = 18/99. Simplificamos dividiendo entre 9: x = 2/11."
+        ],
+        "resultado": "0.1818... = 2/11"
+      }
+    ],
+    "datos_curiosos": "¿Sabías que la fracción 1/7 produce el decimal periódico 0.142857142857... y que ese bloque de 6 dígitos (142857) es un número cíclico? Si lo multiplicas por 2, 3, 4, 5 o 6, obtienes los mismos dígitos en diferente orden.",
+    "ejercicios": [
+      {
+        "numero": 1,
+        "enunciado": "Convierte 7/8 a decimal.",
+        "espacio": true,
+        "lineas": 3
+      },
+      {
+        "numero": 2,
+        "enunciado": "Convierte 0.875 a fracción simplificada.",
+        "espacio": true,
+        "lineas": 3
+      },
+      {
+        "numero": 3,
+        "enunciado": "Convierte 0.666... a fracción usando el método algebraico.",
+        "espacio": true,
+        "lineas": 4
+      },
+      {
+        "numero": 4,
+        "enunciado": "¿El decimal de 3/11 es finito o periódico? Justifica tu respuesta sin hacer la división.",
+        "espacio": true,
+        "lineas": 3
+      }
+    ],
+    "puntos_clave": [
+      "Fracción a decimal: divide el numerador entre el denominador.",
+      "Decimal a fracción: escribe el número sobre la potencia de 10 correspondiente y simplifica con el MCD.",
+      "Si el denominador (simplificado) solo tiene factores 2 y/o 5, el decimal será finito; si tiene otros factores, será periódico.",
+      "Fracciones y decimales son dos representaciones equivalentes del mismo número.",
+      "Siempre simplifica tu fracción al máximo."
+    ]
+  },
+  "diapositiva": [
+    {
+      "titulo": "Fracciones y decimales",
+      "puntos": [
+        "Dos formas de representar partes de un entero",
+        "Objetivo: convertir de una forma a otra con confianza"
+      ],
+      "ejemplo": "1/2 = 0.5 — ¡Son el mismo número!"
+    },
+    {
+      "titulo": "¿Qué es una fracción?",
+      "puntos": [
+        "Numerador: las partes que tomamos",
+        "Denominador: las partes en que dividimos el entero",
+        "Ejemplo: 3/4 significa 3 de 4 partes iguales"
+      ],
+      "ejemplo": "Si una pizza tiene 8 rebanadas y comes 3, comiste 3/8 de la pizza.",
+      "figura": {
+        "tipo": "fraccion",
+        "numerador": 2,
+        "denominador": 5,
+        "width": 250,
+        "height": 55
+      }
+    },
+    {
+      "titulo": "De fracción a decimal",
+      "puntos": [
+        "Regla: divide el numerador entre el denominador",
+        "Usa la división larga si no tienes calculadora",
+        "El resultado puede ser exacto o periódico"
+      ],
+      "ejemplo": "3/4 → 3 ÷ 4 = 0.75"
+    },
+    {
+      "titulo": "Decimales exactos vs. periódicos",
+      "puntos": [
+        "Exacto: la división termina (0.75, 0.5, 0.125)",
+        "Periódico: un bloque de cifras se repite infinitamente (0.333..., 0.142857...)",
+        "Truco: si el denominador solo tiene factores 2 y 5, el decimal es exacto"
+      ],
+      "ejemplo": "1/3 = 0.333... (periódico) vs. 1/4 = 0.25 (exacto)"
+    },
+    {
+      "titulo": "De decimal a fracción — Paso a paso",
+      "puntos": [
+        "1. Cuenta las cifras después del punto",
+        "2. Escribe el número sin punto sobre 10, 100 o 1000",
+        "3. Simplifica dividiendo entre el MCD"
+      ],
+      "ejemplo": "0.45 → 45/100 → MCD = 5 → 9/20"
+    },
+    {
+      "titulo": "Ejemplo resuelto completo",
+      "puntos": [
+        "Convierte 0.625 a fracción:",
+        "625/1000",
+        "MCD(625, 1000) = 125",
+        "625 ÷ 125 = 5, 1000 ÷ 125 = 8"
+      ],
+      "ejemplo": "0.625 = 5/8 ✓"
+    },
+    {
+      "titulo": "Equivalencias que debes memorizar",
+      "puntos": [
+        "1/2 = 0.5",
+        "1/4 = 0.25 y 3/4 = 0.75",
+        "1/5 = 0.2 y 2/5 = 0.4",
+        "1/8 = 0.125 y 1/10 = 0.1"
+      ],
+      "ejemplo": "Conocer estas equivalencias te ahorra tiempo en exámenes."
+    },
+    {
+      "titulo": "Resumen y práctica",
+      "puntos": [
+        "Fracción → decimal: dividir numerador ÷ denominador",
+        "Decimal → fracción: valor posicional + simplificar",
+        "Siempre verifica tu resultado con la operación inversa"
+      ],
+      "ejemplo": "Tarea: convierte 7/8, 2/3, 0.35 y 0.875."
+    }
+  ],
+  "video_script": "## Fracciones y decimales\n\n[VISUAL: Animación de título con números 3/4 transformándose en 0.75]\n\n¡Hola! ¿Qué onda? Hoy vamos a hablar de algo que usas todos los días aunque no te des cuenta: fracciones y decimales. Cada vez que ves un precio como $29.99 o que partes una pizza en rebanadas, estás trabajando con estos números. Así que vamos a aprender a convertir de uno a otro.\n\n[VISUAL: Pizza dividida en 4 partes iguales, 3 partes sombreadas]\n\nEmpecemos con lo básico. Una fracción como 3/4 te dice que tienes 3 partes de un total de 4. Y un decimal como 0.75 te dice exactamente lo mismo, solo que usando el sistema posicional. Son dos idiomas para la misma idea.\n\n### De fracción a decimal\n\n[VISUAL: Animación de la división larga 3 ÷ 4 paso a paso]\n\nPara convertir una fracción a decimal, haces algo bien sencillo: divides el numerador entre el denominador. O sea, el de arriba entre el de abajo.\n\nVamos con 3/4. Dividimos 3 entre 4. Como 3 es menor que 4, ponemos 0 punto y le agregamos un cero al 3 para tener 30. ¿Cuántas veces cabe 4 en 30? Siete veces, porque 4 por 7 es 28. Nos sobran 2. Le ponemos otro cero: 20 entre 4 es 5 exacto. ¡Listo! 3/4 es igual a 0.75.\n\n[VISUAL: Resultado resaltado: 3/4 = 0.75]\n\nAhora, ¿qué pasa con 1/3? Vamos a ver.\n\n[VISUAL: División larga 1 ÷ 3 mostrando la repetición del residuo]\n\n10 entre 3 es 3, sobra 1. Otra vez 10 entre 3 es 3, sobra 1. ¡Se repite para siempre! Esto es un **decimal periódico**: 0.333 con los tres repitiéndose hasta el infinito. Lo escribimos con una rayita arriba del 3.\n\nUn dato interesante: si el denominador de tu fracción solo se puede descomponer en factores 2 y 5, el decimal va a ser exacto. Si tiene cualquier otro factor primo, va a ser periódico.\n\n### De decimal a fracción\n\n[VISUAL: Tabla de valor posicional: décimos, centésimos, milésimos]\n\nAhora vamos al revés. Digamos que tienes 0.625 y quieres la fracción. El truco está en fijarte en la posición del último dígito. El 5 está en los milésimos, así que escribimos 625 sobre 1000.\n\n[VISUAL: 0.625 → 625/1000 → simplificación animada]\n\nAhora simplificamos. ¿Qué número divide a ambos? 125. Entonces 625 entre 125 es 5, y 1000 entre 125 es 8. Resultado: 5/8. Y si quieres verificar, divide 5 entre 8 en tu calculadora y te va a dar... ¡0.625! Perfecto.\n\n[VISUAL: Tabla de equivalencias comunes con animación]\n\nHay algunas equivalencias que te conviene aprender de memoria porque aparecen todo el tiempo: 1/2 es 0.5, 1/4 es 0.25, 3/4 es 0.75, 1/5 es 0.2. Mientras más las practiques, más rápido vas a ser resolviendo problemas.\n\n[VISUAL: Resumen con los dos métodos lado a lado]\n\nRecapitulemos: para ir de fracción a decimal, divide arriba entre abajo. Para ir de decimal a fracción, usa el valor posicional y simplifica. Así de fácil.\n\nPractica hoy con estas: convierte 7/8 y 2/3 a decimal, y convierte 0.35 y 0.875 a fracción. Nos vemos en la siguiente lección donde vamos a entrar al mundo de los números negativos. ¡Hasta pronto!\n\n[VISUAL: Pantalla de cierre con los ejercicios de práctica]"
+}

@@ -1,0 +1,262 @@
+{
+  "secuencia": 8,
+  "titulo": "Propiedad distributiva",
+  "contenido": "Extensión del significado de las operaciones y sus relaciones inversas.",
+  "pda": "Identifica y aplica la jerarquía de operaciones y símbolos de agrupación al realizar cálculos.",
+  "evaluacion": {
+    "preguntas": [
+      {
+        "tipo": "opcion_multiple",
+        "pregunta": "¿Cuál es el resultado de aplicar la propiedad distributiva a 3 × (10 + 4)?",
+        "opciones": [
+          "A) 30 + 4 = 34",
+          "B) 3 × 10 + 3 × 4 = 42",
+          "C) 3 + 10 × 4 = 43",
+          "D) 30 × 4 = 120"
+        ],
+        "respuesta": "B"
+      },
+      {
+        "tipo": "verdadero_falso",
+        "pregunta": "Según la jerarquía de operaciones, la multiplicación se resuelve antes que la suma.",
+        "respuesta": true
+      },
+      {
+        "tipo": "calculo",
+        "pregunta": "Resuelve usando la jerarquía de operaciones: 8 + 2 × (5 + 3) − 4",
+        "respuesta": "Primero el paréntesis: 5 + 3 = 8. Luego la multiplicación: 2 × 8 = 16. Finalmente suma y resta de izquierda a derecha: 8 + 16 − 4 = 20."
+      },
+      {
+        "tipo": "espacios",
+        "pregunta": "La propiedad distributiva relaciona la ___ con la suma o la resta.",
+        "respuesta": "multiplicación"
+      },
+      {
+        "tipo": "abierta",
+        "pregunta": "Explica por qué es útil la propiedad distributiva para calcular mentalmente 7 × 98.",
+        "respuesta": "Podemos descomponer 98 como 100 − 2, entonces 7 × 98 = 7 × (100 − 2) = 7 × 100 − 7 × 2 = 700 − 14 = 686. Es más fácil multiplicar por 100 y restar que multiplicar directamente por 98."
+      }
+    ]
+  },
+  "orientacion": {
+    "contenidos_especificos": [
+      "Propiedad distributiva de la multiplicación respecto a la suma y la resta",
+      "Jerarquía de operaciones: potencias, multiplicación/división, suma/resta",
+      "Uso de paréntesis, corchetes y llaves como símbolos de agrupación"
+    ],
+    "actividad_inicio": [
+      "Plantea el problema: En una tienda, 4 amigos compran un refresco de $15 y unas papas de $8 cada uno. ¿Cuánto pagan en total?",
+      "Pide que lo resuelvan de dos maneras distintas y comparen resultados.",
+      "Un alumno probablemente calculará 4 × (15 + 8) = 4 × 23 = 92; otro hará 4 × 15 + 4 × 8 = 60 + 32 = 92.",
+      "Pregunta: ¿Por qué ambos procedimientos dan lo mismo?",
+      "Introduce el nombre formal: propiedad distributiva."
+    ],
+    "desarrollo": [
+      {
+        "titulo": "Propiedad distributiva",
+        "diapositiva": "1-3",
+        "libro": "Sección correspondiente",
+        "video": null,
+        "descripcion": "Formaliza: a × (b + c) = a × b + a × c. También funciona con la resta: a × (b − c) = a × b − a × c. Resuelve 3 ejemplos numéricos variados. Muestra el modelo de área: un rectángulo de 4 × (5 + 3) equivale a dos rectángulos de 4 × 5 y 4 × 3 juntos.",
+        "tip": "El modelo de área es muy poderoso; dibuja los rectángulos con colores distintos para que los alumnos visualicen la descomposición."
+      },
+      {
+        "titulo": "Jerarquía de operaciones",
+        "diapositiva": "4-6",
+        "libro": "Sección correspondiente",
+        "video": "min 1:00-4:00",
+        "descripcion": "Presenta la jerarquía: 1° paréntesis (de dentro hacia fuera), 2° potencias y raíces, 3° multiplicación y división (de izquierda a derecha), 4° suma y resta (de izquierda a derecha). Resuelve paso a paso: 3 + 4 × 2 = 3 + 8 = 11 (no 14). Presenta 2 ejercicios donde el error típico es ignorar la jerarquía.",
+        "tip": null
+      },
+      {
+        "titulo": "Símbolos de agrupación y ejercicios combinados",
+        "diapositiva": "7-9",
+        "libro": "Sección correspondiente",
+        "video": null,
+        "descripcion": "Explica el orden de los símbolos de agrupación: primero paréntesis (), luego corchetes [], luego llaves {}. Resuelve en el pizarrón: {2 × [3 + (4 − 1)] + 5} paso a paso. Forma equipos de 3 y entrega 4 expresiones para que las resuelvan aplicando jerarquía y agrupación. Socialicen resultados.",
+        "tip": "Pide a los equipos que escriban cada paso intermedio; esto ayuda a detectar exactamente dónde ocurre un error."
+      }
+    ],
+    "cierre_individual": {
+      "reflexiona": "Explica con tus palabras por qué es importante respetar la jerarquía de operaciones. ¿Qué pasaría si cada persona resolviera en el orden que quisiera?",
+      "profundiza": [
+        {
+          "pregunta": "Usa la propiedad distributiva para calcular mentalmente 7 × 98. Muestra tu procedimiento.",
+          "respuesta_modelo": "R.M. Descompongo 98 = 100 − 2. Entonces 7 × 98 = 7 × (100 − 2) = 7 × 100 − 7 × 2 = 700 − 14 = 686. La distributiva permite convertir una multiplicación difícil en dos más sencillas."
+        },
+        {
+          "pregunta": "Evalúa la expresión 5 + 3 × (8 − 2)² ÷ 6 paso a paso.",
+          "respuesta_modelo": "R.M. Primero el paréntesis: 8 − 2 = 6. Luego la potencia: 6² = 36. Después la multiplicación y división de izquierda a derecha: 3 × 36 = 108, luego 108 ÷ 6 = 18. Finalmente la suma: 5 + 18 = 23."
+        }
+      ]
+    },
+    "cierre_grupal": [
+      "Revisa las respuestas de los equipos y aclara errores comunes.",
+      "Escribe una expresión incorrectamente resuelta en el pizarrón y pide que identifiquen el error.",
+      "Pregunta: ¿En qué paso de la jerarquía se cometen más errores? ¿Por qué?",
+      "Retoma la distributiva: ¿Cómo la usarían para calcular 12 × 15 mentalmente?",
+      "Cierra conectando: la jerarquía de operaciones y la distributiva serán fundamentales cuando trabajemos con expresiones algebraicas."
+    ],
+    "preguntas_comprension": [
+      "¿Cómo se expresa algebraicamente la propiedad distributiva?",
+      "¿Cuál es el resultado correcto de 2 + 6 × 3? ¿Por qué no es 24?",
+      "Resuelve usando la distributiva: 5 × (40 + 7).",
+      "¿Qué símbolos de agrupación se resuelven primero en una expresión?",
+      "Evalúa: 4 × [10 − (3 + 2)] + 1."
+    ]
+  },
+  "libro": {
+    "introduccion": "¿Te has fijado que si compras 3 tacos de $15 y 3 aguas de $10, puedes calcular 3 × 15 + 3 × 10 o directamente 3 × (15 + 10)? Eso es la propiedad distributiva. Y cuando hay varias operaciones juntas, necesitas saber cuál va primero: eso es la jerarquía de operaciones.",
+    "conceptos": [
+      {
+        "titulo": "Propiedad distributiva",
+        "contenido": "La multiplicación se distribuye sobre la suma y la resta: a × (b + c) = a × b + a × c. Funciona en ambas direcciones: puedes \"expandir\" para quitar paréntesis o \"factorizar\" para simplificar. Ejemplo: 5 × (20 + 3) = 5 × 20 + 5 × 3 = 100 + 15 = 115.",
+        "definicion": "Propiedad distributiva: a × (b + c) = a × b + a × c."
+      },
+      {
+        "titulo": "Jerarquía de operaciones (PEMDAS)",
+        "contenido": "Cuando hay varias operaciones en una expresión, se resuelven en este orden: 1) Paréntesis, 2) Exponentes (potencias), 3) Multiplicación y División (de izquierda a derecha), 4) Adición (suma) y Sustracción (resta) (de izquierda a derecha). Si no respetas el orden, obtendrás resultados incorrectos.",
+        "definicion": null
+      },
+      {
+        "titulo": "Errores comunes",
+        "contenido": "El error más frecuente es hacer las operaciones de izquierda a derecha sin respetar la jerarquía. Por ejemplo, en 3 + 4 × 2, muchos hacen 7 × 2 = 14, pero lo correcto es 3 + 8 = 11 (la multiplicación va primero).",
+        "definicion": null
+      }
+    ],
+    "ejemplos": [
+      {
+        "titulo": "Distributiva para cálculo mental",
+        "enunciado": "Calcula 7 × 98 usando la distributiva.",
+        "pasos": [
+          "Paso 1: Reescribe 98 como 100 − 2.",
+          "Paso 2: 7 × (100 − 2) = 7 × 100 − 7 × 2.",
+          "Paso 3: 700 − 14 = 686."
+        ],
+        "resultado": "7 × 98 = 686"
+      },
+      {
+        "titulo": "Jerarquía de operaciones",
+        "enunciado": "Calcula: 2 + 3 × (8 − 2)² ÷ 6.",
+        "pasos": [
+          "Paso 1: Paréntesis: (8 − 2) = 6.",
+          "Paso 2: Exponente: 6² = 36.",
+          "Paso 3: Multiplicación: 3 × 36 = 108.",
+          "Paso 4: División: 108 ÷ 6 = 18.",
+          "Paso 5: Suma: 2 + 18 = 20."
+        ],
+        "resultado": "2 + 3 × (8 − 2)² ÷ 6 = 20"
+      }
+    ],
+    "datos_curiosos": "En internet se hacen virales problemas como \"8 ÷ 2(2 + 2) = ?\" donde la gente se pelea por el resultado. La confusión casi siempre es por no respetar la jerarquía de operaciones. ¡Tú ya sabes cómo resolverlos correctamente!",
+    "ejercicios": [
+      {
+        "numero": 1,
+        "enunciado": "Usa la distributiva para calcular: 12 × 53. (Pista: 53 = 50 + 3.)",
+        "espacio": true,
+        "lineas": 3
+      },
+      {
+        "numero": 2,
+        "enunciado": "Resuelve respetando la jerarquía: 10 − 2 × 3 + 4.",
+        "espacio": true,
+        "lineas": 3
+      },
+      {
+        "numero": 3,
+        "enunciado": "Resuelve: (5 + 3)² − 4 × (6 − 2).",
+        "espacio": true,
+        "lineas": 4
+      },
+      {
+        "numero": 4,
+        "enunciado": "Factoriza usando la distributiva: 6 × 14 + 6 × 6. Escríbelo como un solo producto.",
+        "espacio": true,
+        "lineas": 3
+      }
+    ],
+    "puntos_clave": [
+      "Distributiva: a × (b + c) = a × b + a × c. Sirve para expandir y para factorizar.",
+      "Jerarquía: Paréntesis → Exponentes → Multiplicación/División → Suma/Resta.",
+      "Multiplicación y división tienen la misma prioridad: se resuelven de izquierda a derecha.",
+      "Suma y resta tienen la misma prioridad: se resuelven de izquierda a derecha.",
+      "Los paréntesis siempre se resuelven primero y pueden cambiar completamente el resultado."
+    ]
+  },
+  "diapositiva": [
+    {
+      "titulo": "Recordatorio: propiedades de la semana pasada",
+      "puntos": [
+        "Conmutativa: cambiar el orden → mismo resultado (suma y multiplicación)",
+        "Asociativa: cambiar la agrupación → mismo resultado (suma y multiplicación)",
+        "Hoy aprenderemos una nueva: la propiedad DISTRIBUTIVA"
+      ],
+      "ejemplo": ""
+    },
+    {
+      "titulo": "La propiedad distributiva",
+      "puntos": [
+        "Relaciona la multiplicación con la suma (o resta)",
+        "a × (b + c) = a × b + a × c",
+        "a × (b − c) = a × b − a × c"
+      ],
+      "ejemplo": "3 × (10 + 2) = 3 × 10 + 3 × 2 = 30 + 6 = 36"
+    },
+    {
+      "titulo": "Modelo de área: ¿por qué funciona?",
+      "puntos": [
+        "Un rectángulo de 3 × 12 se puede dividir en dos: 3 × 10 y 3 × 2",
+        "El área total no cambia: 30 + 6 = 36 = 3 × 12",
+        "La distributiva tiene un significado geométrico real"
+      ],
+      "ejemplo": "[Dibujar rectángulo dividido en dos partes]"
+    },
+    {
+      "titulo": "Distributiva como truco de cálculo mental",
+      "puntos": [
+        "Para multiplicar por números difíciles, descompón en partes fáciles",
+        "Busca múltiplos de 10 o de 100"
+      ],
+      "ejemplo": "7 × 98 = 7 × (100 − 2) = 700 − 14 = 686"
+    },
+    {
+      "titulo": "Jerarquía de operaciones: las reglas del juego",
+      "puntos": [
+        "1° Paréntesis y corchetes (de adentro hacia afuera)",
+        "2° Potencias",
+        "3° Multiplicación y división (izquierda a derecha)",
+        "4° Suma y resta (izquierda a derecha)"
+      ],
+      "ejemplo": "Pa-Po-Mu-Di-Su-Re"
+    },
+    {
+      "titulo": "Ejemplo paso a paso",
+      "puntos": [
+        "Resuelve: 10 − 2 × (1 + 3)",
+        "Paso 1: Paréntesis → 1 + 3 = 4",
+        "Paso 2: Multiplicación → 2 × 4 = 8",
+        "Paso 3: Resta → 10 − 8 = 2"
+      ],
+      "ejemplo": "10 − 2 × (1 + 3) = 10 − 2 × 4 = 10 − 8 = 2"
+    },
+    {
+      "titulo": "Error común: ¡cuidado!",
+      "puntos": [
+        "INCORRECTO: 2 + 3 × 4 = 5 × 4 = 20",
+        "CORRECTO: 2 + 3 × 4 = 2 + 12 = 14",
+        "La multiplicación va ANTES que la suma"
+      ],
+      "ejemplo": "Siempre verifica: ¿respetaste la jerarquía?"
+    },
+    {
+      "titulo": "Actividad: resuelve y comprueba",
+      "puntos": [
+        "Usa la distributiva: 5 × (40 + 3) = ?",
+        "Jerarquía: 6 + 2 × 5 − 3 = ?",
+        "Combinado: 4 × (10 − 3) + 2 = ?"
+      ],
+      "ejemplo": "Respuestas: 215, 13, 30"
+    }
+  ],
+  "video_script": "## Propiedad distributiva y jerarquía de operaciones — Script de video\n\n[VISUAL: Título animado \"La propiedad distributiva\" con números que se reparten como cartas de un mazo]\n\n¡Qué onda! Hoy vas a aprender un truco que te va a hacer mucho más rápido en matemáticas: la propiedad distributiva. Además, vamos a ver las reglas de la jerarquía de operaciones para que nunca te equivoques al resolver expresiones largas.\n\n[VISUAL: Aparece una tienda con precios: cuaderno $18, pluma $7]\n\nImagina esto: vas a comprar 5 cuadernos de $18 y 5 plumas de $7. Puedes calcularlo así: 5 × 18 + 5 × 7 = 90 + 35 = 125 pesos. Pero también puedes pensar: \"son 5 artículos que juntos cuestan 18 + 7 = 25 pesos\", o sea, 5 × 25 = 125. ¡El mismo resultado!\n\n[VISUAL: Fórmula a × (b + c) = a × b + a × c aparece con animación, el \"a\" se distribuye con flechas hacia \"b\" y \"c\"]\n\nEsto es la **propiedad distributiva**: a por, paréntesis, b más c, es igual a a por b, más a por c. El número de afuera se \"distribuye\" — se reparte — entre cada término de adentro del paréntesis. También funciona con la resta: a por, paréntesis, b menos c, es a por b, menos a por c.\n\n[VISUAL: Rectángulo dividido en dos secciones de colores, con medidas 4 de alto, 10 y 3 de ancho]\n\nMira, hay una forma visual de entenderlo. Este rectángulo mide 4 de alto y 13 de ancho. Su área es 4 por 13 igual a 52. Ahora, si lo divido en dos partes: una de 4 por 10 y otra de 4 por 3. Las áreas son 40 y 12. Suma: 40 más 12 igual a 52. ¡Lo mismo! Eso es la distributiva en acción.\n\n[VISUAL: Cálculo mental destacado con estrellas: 6 × 98]\n\nAhora el truco de cálculo mental. ¿Cuánto es 6 por 98? Piensa: 98 es 100 menos 2. Entonces: 6 por 100 menos 6 por 2, igual a 600 menos 12, igual a 588. ¡Boom! Sin calculadora.\n\n[VISUAL: Transición con texto \"Jerarquía de operaciones\"]\n\nAhora vamos con algo igual de importante: la **jerarquía de operaciones**. Cuando tienes una expresión con varias operaciones, hay un orden estricto que debes seguir.\n\n[VISUAL: Pirámide con 4 niveles: Paréntesis > Potencias > × ÷ > + −]\n\nPrimero: paréntesis, resuelve todo lo que esté dentro. Segundo: potencias. Tercero: multiplicaciones y divisiones, de izquierda a derecha. Cuarto: sumas y restas, de izquierda a derecha. Puedes recordarlo con: Pa-Po-Mu-Di-Su-Re.\n\n[VISUAL: Expresión 5 + 3 × (8 − 2) se resuelve paso a paso con colores]\n\nVamos a practicar: 5 más 3 por, paréntesis, 8 menos 2. Primero el paréntesis: 8 menos 2 es 6. Luego la multiplicación: 3 por 6 es 18. Por último la suma: 5 más 18 es 23. Si hubieras sumado primero 5 más 3, te habría dado 48, y eso está mal.\n\n[VISUAL: Señal de precaución con el error común: 2 + 3 × 4 ≠ 20]\n\nEl error más común es no respetar la jerarquía. 2 más 3 por 4 NO es 20. La multiplicación va primero: 3 por 4 es 12, y luego 2 más 12 es 14.\n\n[VISUAL: Pantalla de cierre con los tres conceptos clave y ejercicios de práctica]\n\nRecapitulando: la propiedad distributiva te permite repartir una multiplicación en partes más fáciles, y la jerarquía de operaciones te dice el orden exacto para resolver cualquier expresión. ¡Practícalo y verás cómo todo se vuelve más sencillo!"
+}

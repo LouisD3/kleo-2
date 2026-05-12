@@ -1,0 +1,294 @@
+{
+  "secuencia": 5,
+  "titulo": "Suma y resta",
+  "contenido": "Extensión del significado de las operaciones y sus relaciones inversas.",
+  "pda": "Reconoce el significado de las cuatro operaciones básicas y sus relaciones inversas al resolver problemas que impliquen el uso de números con signo.",
+  "evaluacion": {
+    "preguntas": [
+      {
+        "tipo": "opcion_multiple",
+        "pregunta": "¿Cuál es el resultado de (-8) + (+3)?",
+        "opciones": ["A) -11", "B) -5", "C) +5", "D) +11"],
+        "respuesta": "B"
+      },
+      {
+        "tipo": "verdadero_falso",
+        "pregunta": "Restar un número negativo es lo mismo que sumar un número positivo.",
+        "respuesta": true
+      },
+      {
+        "tipo": "calculo",
+        "pregunta": "Calcula: (-15) + (+7) - (-3) + (-2).",
+        "respuesta": "Paso 1: (-15) + (+7) = -8. Paso 2: -(-3) = +3, entonces -8 + 3 = -5. Paso 3: -5 + (-2) = -7. Resultado: -7."
+      },
+      {
+        "tipo": "espacios",
+        "pregunta": "Cuando sumas dos números con signos diferentes, restas sus valores absolutos y pones el signo del número con mayor ___.",
+        "respuesta": "valor absoluto"
+      },
+      {
+        "tipo": "abierta",
+        "pregunta": "Un buzo está a -12 metros (bajo el nivel del mar). Sube 5 metros, luego baja 3 metros. ¿A qué profundidad queda? Escribe la expresión matemática y resuélvela.",
+        "respuesta": "Expresión: (-12) + (+5) + (-3). Paso 1: (-12) + 5 = -7. Paso 2: (-7) + (-3) = -10. El buzo queda a -10 metros, es decir, 10 metros bajo el nivel del mar."
+      }
+    ]
+  },
+  "orientacion": {
+    "contenidos_especificos": [
+      "Sumar números con el mismo signo y con signos diferentes",
+      "Restar números con signo interpretando la resta como suma del opuesto",
+      "Resolver problemas contextualizados que involucren suma y resta de números con signo"
+    ],
+    "actividad_inicio": [
+      "Plantea: 'Si la temperatura es -3 °C y sube 7 grados, ¿a cuánto llega?' Luego: 'Si está a 2 °C y baja 5 grados, ¿a cuánto llega?' Modela ambos en la recta.",
+      "Presenta un estado de cuenta bancario: saldo inicial $200, retiro $350. Pregunta: '¿Cuál es el saldo final? ¿Cómo lo escribirían con números con signo?'",
+      "Pide a los alumnos que piensen en un elevador: si estás en el piso -2 (sótano 2) y subes 5 pisos, ¿a qué piso llegas?",
+      "Escribe (+5) + (-8) = ? y pregunta si alguien puede predecir el resultado y el signo antes de calcularlo.",
+      "Juego rápido: lanza dos dados, uno rojo (negativo) y uno azul (positivo). Suma los valores. Repite 5 veces y observa los resultados."
+    ],
+    "desarrollo": [
+      {
+        "titulo": "Suma de números con el mismo signo",
+        "diapositiva": "1-3",
+        "libro": "Sección Conceptos: Suma con signo",
+        "video": null,
+        "descripcion": "Establece la regla: al sumar dos números con el mismo signo, se suman sus valores absolutos y se conserva el signo. Ejemplos: (+3) + (+5) = +8; (-4) + (-6) = -10. Usa la recta numérica para mostrar cada operación como desplazamientos en la misma dirección. Pide que resuelvan 6 sumas del mismo signo y verifiquen en la recta numérica. Asegúrate de incluir ejemplos con fracciones: (-1/3) + (-2/3) = -1.",
+        "tip": "Vincula el concepto con las deudas: si debes $4 y luego debes $6 más, ahora debes $10. El signo negativo se mantiene porque ambas son deudas."
+      },
+      {
+        "titulo": "Suma de números con distinto signo y la resta como suma del opuesto",
+        "diapositiva": "4-6",
+        "libro": "Sección Ejemplos: Suma con signos diferentes y resta",
+        "video": "min 1:00-4:00",
+        "descripcion": "Para signos diferentes: se restan los valores absolutos y se pone el signo del número con mayor valor absoluto. Ejemplo: (+5) + (-8) = -3 porque |8| > |5| y el negativo domina. Modela en la recta numérica. Luego, conecta con la resta: muestra que a - b = a + (-b). Ejemplo: 3 - 7 = 3 + (-7) = -4. Trabaja 4 ejemplos de resta reescritos como suma del opuesto. En parejas, resuelven 8 operaciones mixtas de suma y resta.",
+        "tip": "Muchos alumnos se confunden con doble signo negativo. Enfatiza: restar un negativo es sumar un positivo, es decir, a - (-b) = a + b. Usa el ejemplo: 'quitar una deuda es como ganar dinero'."
+      },
+      {
+        "titulo": "Problemas contextualizados de suma y resta",
+        "diapositiva": "7-8",
+        "libro": "Sección Práctica: Problemas con suma y resta",
+        "video": null,
+        "descripcion": "Presenta 5 problemas: (1) Variación de temperatura a lo largo de un día. (2) Movimientos en una cuenta bancaria. (3) Ascenso y descenso de un dron. (4) Puntos ganados y perdidos en un juego. (5) Cambio de altitud de un excursionista. Para cada uno, los alumnos deben plantear la expresión con números con signo, resolverla paso a paso e interpretar el resultado en contexto. Trabajan individualmente 12 minutos y revisan en equipos de 4.",
+        "tip": "Insiste en que interpreten el resultado: no basta con decir '-150', deben decir 'el dron está 150 metros bajo su punto de partida'."
+      }
+    ],
+    "cierre_individual": {
+      "reflexiona": "Escribe las reglas de la suma con signo con tus propias palabras. ¿Qué te ayudó más a entenderlas: la recta numérica, los ejemplos con dinero o las reglas de signos?",
+      "profundiza": [
+        {
+          "pregunta": "¿Por qué (-5) + (+5) = 0? Explica qué significado tiene este resultado.",
+          "respuesta_modelo": "Porque +5 y -5 son números opuestos: están a la misma distancia del cero pero en direcciones contrarias. Al sumarlos, uno cancela exactamente al otro. En contexto: si debes $5 (-5) y recibes $5 (+5), tu saldo queda en $0. La suma de cualquier número con su opuesto siempre es cero."
+        },
+        {
+          "pregunta": "¿Es lo mismo 8 - 3 que 3 - 8? ¿Por qué la resta no es conmutativa?",
+          "respuesta_modelo": "No es lo mismo. 8 - 3 = 5 pero 3 - 8 = -5. Los resultados son opuestos. La resta no es conmutativa porque cambiar el orden cambia quién 'domina': en 8 - 3 el positivo es mayor y el resultado es positivo; en 3 - 8 estamos quitando más de lo que tenemos y el resultado es negativo."
+        }
+      ]
+    },
+    "cierre_grupal": [
+      "Al sumar números con el mismo signo, se suman los valores absolutos y se conserva el signo.",
+      "Al sumar números con distinto signo, se restan los valores absolutos y se pone el signo del que tenga mayor valor absoluto.",
+      "La resta se puede transformar en suma del opuesto: a - b = a + (-b).",
+      "La suma de un número con su opuesto siempre es cero.",
+      "Es fundamental interpretar el resultado en el contexto del problema, no solo dar el número."
+    ],
+    "preguntas_comprension": [
+      "Resuelve: (-12) + (+7) = ?",
+      "Reescribe 5 - (-3) como una suma y resuélvelo.",
+      "Si un submarino está a -80 m y desciende 45 m más, ¿a qué profundidad llega?",
+      "¿Cuál es el resultado de (-2.5) + (-3.5) + (+1)?",
+      "¿Por qué (-6) + (+6) = 0? Explícalo con un ejemplo de la vida diaria."
+    ]
+  },
+  "libro": {
+    "introduccion": "¿Alguna vez has visto una cuenta de banco donde sumas depósitos y restas retiros, y a veces terminas con saldo negativo? Sumar y restar números con signo es la clave para entender esas situaciones. Hoy vas a aprender las reglas que lo hacen sencillo.",
+    "conceptos": [
+      {
+        "titulo": "Suma de números con el mismo signo",
+        "contenido": "Si los dos números tienen el mismo signo, sumas sus valores absolutos y le pones el signo que comparten. Por ejemplo: (+3) + (+5) = +8, y (−4) + (−6) = −10. Piénsalo como juntar deudas: si debes $4 y luego debes $6 más, ahora debes $10.",
+        "definicion": null
+      },
+      {
+        "titulo": "Suma de números con distinto signo",
+        "contenido": "Si los signos son diferentes, restas el valor absoluto menor del mayor y le pones el signo del que tiene mayor valor absoluto. Ejemplo: (+7) + (−3) = +4 (porque 7 > 3 y el 7 es positivo). Otro: (−9) + (+5) = −4 (porque 9 > 5 y el 9 es negativo).",
+        "definicion": null
+      },
+      {
+        "titulo": "Resta como suma del opuesto",
+        "contenido": "Restar un número es lo mismo que sumar su opuesto. Así que a − b = a + (−b). Esto convierte cualquier resta en una suma, y ya sabes sumar con signo. Ejemplo: 3 − 8 = 3 + (−8) = −5.",
+        "definicion": "Opuesto de un número: el número que está a la misma distancia del cero pero con signo contrario. El opuesto de 8 es −8."
+      }
+    ],
+    "ejemplos": [
+      {
+        "titulo": "Suma con mismo signo",
+        "enunciado": "Calcula (−7) + (−5).",
+        "pasos": [
+          "Paso 1: Ambos son negativos → mismo signo.",
+          "Paso 2: Suma valores absolutos: 7 + 5 = 12.",
+          "Paso 3: El signo es negativo."
+        ],
+        "resultado": "(−7) + (−5) = −12",
+        "figura": {
+          "tipo": "recta_numerica",
+          "min": -6,
+          "max": 6,
+          "puntos": [
+            {
+              "valor": 3,
+              "label": "inicio"
+            },
+            {
+              "valor": -2,
+              "label": "resultado"
+            }
+          ],
+          "intervalos": [
+            {
+              "desde": -2,
+              "hasta": 3
+            }
+          ],
+          "width": 400,
+          "height": 55
+        }
+      },
+      {
+        "titulo": "Suma con distinto signo",
+        "enunciado": "Calcula (−15) + (+9).",
+        "pasos": [
+          "Paso 1: Signos diferentes → resta valores absolutos: 15 − 9 = 6.",
+          "Paso 2: ¿Quién tiene mayor valor absoluto? |−15| = 15 > |+9| = 9.",
+          "Paso 3: El resultado lleva el signo del mayor: negativo."
+        ],
+        "resultado": "(−15) + (+9) = −6"
+      },
+      {
+        "titulo": "Resta convertida en suma",
+        "enunciado": "Calcula 4 − (−3).",
+        "pasos": [
+          "Paso 1: Restar −3 es lo mismo que sumar su opuesto: 4 + (+3).",
+          "Paso 2: Ahora es suma de dos positivos: 4 + 3 = 7."
+        ],
+        "resultado": "4 − (−3) = 7"
+      }
+    ],
+    "datos_curiosos": "La idea de que \"menos por menos da más\" fue descrita por el matemático indio Brahmagupta en el año 628 d.C. Él la explicaba con deudas: si te quitan una deuda (−), eso es como ganar dinero (+).",
+    "ejercicios": [
+      {
+        "numero": 1,
+        "enunciado": "Calcula: (−8) + (+3).",
+        "espacio": true,
+        "lineas": 2
+      },
+      {
+        "numero": 2,
+        "enunciado": "Calcula: (−6) + (−11).",
+        "espacio": true,
+        "lineas": 2
+      },
+      {
+        "numero": 3,
+        "enunciado": "Calcula: 5 − (−7).",
+        "espacio": true,
+        "lineas": 3
+      },
+      {
+        "numero": 4,
+        "enunciado": "La temperatura a las 6 a.m. era −4 °C. A mediodía subió 12 grados. ¿Cuál es la temperatura a mediodía?",
+        "espacio": true,
+        "lineas": 3
+      },
+      {
+        "numero": 5,
+        "enunciado": "A las 6:00 a.m. la temperatura en la Ciudad de México era de -2 °C. A mediodía subió 9 °C y por la noche bajó 5 °C. ¿Cuál fue la temperatura final?",
+        "espacio": true,
+        "lineas": 3
+      }
+    ],
+    "puntos_clave": [
+      "Mismo signo: suma valores absolutos, conserva el signo.",
+      "Distinto signo: resta valores absolutos, usa el signo del mayor.",
+      "Restar es sumar el opuesto: a − b = a + (−b).",
+      "Sumar cero a cualquier número no lo cambia (elemento neutro).",
+      "Un número más su opuesto siempre da cero: a + (−a) = 0."
+    ]
+  },
+  "diapositiva": [
+    {
+      "titulo": "Suma y resta con números con signo",
+      "puntos": [
+        "Extendemos las operaciones básicas a los negativos",
+        "Objetivo: sumar y restar con confianza usando las reglas de signos"
+      ],
+      "ejemplo": "(-8) + (+3) = ?"
+    },
+    {
+      "titulo": "Sumar con el mismo signo",
+      "puntos": [
+        "Suma los valores absolutos",
+        "Pon el signo que comparten",
+        "Positivo + Positivo = Positivo",
+        "Negativo + Negativo = Negativo"
+      ],
+      "ejemplo": "(-4) + (-6) = -10 porque 4 + 6 = 10 y ambos son negativos"
+    },
+    {
+      "titulo": "Sumar con diferente signo",
+      "puntos": [
+        "Resta el valor absoluto menor del mayor",
+        "Pon el signo del que tiene mayor valor absoluto",
+        "Es como una batalla: gana el más fuerte"
+      ],
+      "ejemplo": "(-8) + (+3): |8| - |3| = 5, gana el negativo → -5"
+    },
+    {
+      "titulo": "El modelo de fichas",
+      "puntos": [
+        "Ficha azul = +1, ficha roja = -1",
+        "Una azul + una roja = se cancelan (par nulo)",
+        "Lo que sobra es el resultado"
+      ],
+      "ejemplo": "(+3) + (-5): 3 azules + 5 rojas → se cancelan 3 pares → sobran 2 rojas = -2"
+    },
+    {
+      "titulo": "La resta = sumar el opuesto",
+      "puntos": [
+        "Regla de oro: a - b = a + (-b)",
+        "Cambia el signo de la resta a suma",
+        "Cambia el signo del número que se resta",
+        "Ahora aplica las reglas de suma"
+      ],
+      "ejemplo": "(-3) - (-7) = (-3) + (+7) = +4"
+    },
+    {
+      "titulo": "Restar un negativo = sumar un positivo",
+      "puntos": [
+        "- (-) = +",
+        "Piensa: quitar una deuda es como ganar dinero",
+        "Es la regla que más confunde pero es la más útil"
+      ],
+      "ejemplo": "5 - (-3) = 5 + 3 = 8"
+    },
+    {
+      "titulo": "Operaciones combinadas",
+      "puntos": [
+        "Resuelve de izquierda a derecha",
+        "Convierte restas en sumas del opuesto",
+        "Aplica las reglas de suma paso a paso"
+      ],
+      "ejemplo": "(-15) + (+7) - (-3) + (-2) = -8 + 3 + (-2) = -5 + (-2) = -7"
+    },
+    {
+      "titulo": "Resumen: suma y resta son inversas",
+      "puntos": [
+        "a + b - b = a (siempre vuelves al inicio)",
+        "Mismo signo: suma valores absolutos",
+        "Distinto signo: resta valores absolutos",
+        "Restar = sumar el opuesto"
+      ],
+      "ejemplo": "Tarea: (-12) + 5 - (-8) + (-3) - 6"
+    }
+  ],
+  "video_script": "## Suma y resta con números con signo\n\n[VISUAL: Título animado con números positivos y negativos chocando como en una batalla]\n\n¡Qué onda! Hoy vamos a aprender a sumar y restar números con signo. Es uno de los temas más importantes porque es la base de todo lo que viene después en matemáticas. Pero no te preocupes, con las reglas que te voy a enseñar, va a ser pan comido.\n\n### Sumar con el mismo signo\n\n[VISUAL: Fichas azules (+1) y rojas (-1) apareciendo en pantalla]\n\nVamos a empezar con lo más fácil. Cuando los dos números tienen el mismo signo, sumas sus valores absolutos y les dejas el signo que comparten.\n\n(-4) + (-6): ambos son negativos. Sumamos 4 + 6 = 10 y le ponemos el negativo: -10.\n\n[VISUAL: 4 fichas rojas + 6 fichas rojas = 10 fichas rojas]\n\nPiénsalo como deudas: si debes 4 pesos y luego debes 6 más, pues ahora debes 10. Lógico, ¿no?\n\n### Sumar con diferente signo\n\n[VISUAL: Fichas azules y rojas cancelándose en pares]\n\nAhora, cuando los signos son diferentes, es como una batalla. Restas el valor absoluto del chiquito al grande y le pones el signo del que tiene mayor valor absoluto.\n\n(-8) + (+3): valores absolutos 8 y 3. Restamos: 8 - 3 = 5. El 8 era del negativo, así que el resultado es -5.\n\nCon fichas: pones 8 rojas y 3 azules. Se cancelan 3 pares (roja con azul) y quedan 5 rojas. Resultado: -5.\n\n[VISUAL: Animación de 8 fichas rojas y 3 azules, cancelándose 3 pares, quedando 5 rojas]\n\n### El gran secreto: la resta\n\n[VISUAL: Ecuación a - b = a + (-b) apareciendo con efecto luminoso]\n\nAquí viene el truco más poderoso de esta lección. Restar un número es exactamente lo mismo que sumar su opuesto. O sea: a - b = a + (-b).\n\nVeamos: (+6) - (+8). Convertimos: (+6) + (-8). Ahora es una suma con signos diferentes: 8 - 6 = 2, gana el negativo: -2.\n\n¿Y qué pasa cuando restas un número negativo?\n\n[VISUAL: -(-7) transformándose en +7 con animación]\n\n(-3) - (-7) = (-3) + (+7). ¡Restar un negativo se convierte en sumar un positivo! Ahora sumamos: 7 - 3 = 4, gana el positivo: +4.\n\nPiénsalo así: si te quitan una deuda de 7 pesos, es como si te regalaran 7 pesos. Quitar algo malo es algo bueno.\n\n### Problema de la vida real\n\n[VISUAL: Animación de un buzo bajo el agua con medidor de profundidad]\n\nUn buzo está a -12 metros bajo el nivel del mar. Sube 5 metros, luego baja 3 metros. ¿Dónde queda?\n\nExpresión: (-12) + (+5) + (-3).\nPaso 1: (-12) + 5 = -7. Sube 5 metros, pasa de -12 a -7.\nPaso 2: (-7) + (-3) = -10. Baja 3 metros, queda a -10.\n\n[VISUAL: Recta numérica vertical mostrando el movimiento del buzo]\n\nEl buzo queda a 10 metros de profundidad.\n\n### Operaciones combinadas\n\n[VISUAL: Expresión larga resolviéndose paso a paso]\n\nPara cerrar, vamos con una cadena: (-15) + (+7) - (-3) + (-2).\n\nPaso 1: (-15) + 7 = -8.\nPaso 2: -8 - (-3) = -8 + 3 = -5.\nPaso 3: -5 + (-2) = -7.\n\nResultado final: -7. El secreto es ir paso a paso, de izquierda a derecha, convirtiendo cada resta en suma.\n\n[VISUAL: Resumen con las 3 reglas en recuadros de colores]\n\nResumiendo: mismo signo, suma y conserva. Diferente signo, resta y pon el del mayor. Y restar es sumar el opuesto. Con estas tres reglas puedes con todo. Practica mucho y nos vemos en la siguiente lección donde vamos a multiplicar y dividir con signo. ¡Nos vemos!\n\n[VISUAL: Pantalla de cierre con ejercicios de práctica]"
+}

@@ -132,15 +132,12 @@ const useTareaStore = create((set, get) => ({
         profesor_id: tarea.profesor_id,
         clase_id: tarea.clase_id,
         nombre: tarea.nombre,
-        materia: tarea.materia,
         dificultad: tarea.dificultad,
-        metodologia: tarea.metodologia,
-        tipos: tarea.tipos,
-        preguntas: tarea.preguntas,
+        contenido_cpa: tarea.contenido_cpa,
         estado: 'borrador',
         fecha_limite: tarea.fecha_limite || null,
         pda: tarea.pda || null,
-        numero_preguntas: tarea.preguntas?.length ?? 0,
+        secuencia_ref: tarea.secuencia_ref ?? null,
       })
       .select()
       .single()

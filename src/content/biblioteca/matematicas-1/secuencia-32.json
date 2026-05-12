@@ -1,0 +1,286 @@
+{
+  "secuencia": 32,
+  "titulo": "Probabilidades",
+  "contenido": "Azar y probabilidad.",
+  "pda": "Compara cualitativamente dos o más eventos a partir de sus resultados posibles, usa relaciones como: 'es más probable que…', 'es menos probable que…'.",
+  "evaluacion": {
+    "preguntas": [
+      {
+        "tipo": "opcion_multiple",
+        "pregunta": "En una bolsa hay 5 canicas rojas, 3 azules y 2 verdes. ¿Qué evento es más probable al sacar una canica al azar?",
+        "opciones": [
+          "A) Sacar una canica verde",
+          "B) Sacar una canica azul",
+          "C) Sacar una canica roja",
+          "D) Sacar una canica amarilla"
+        ],
+        "respuesta": "C"
+      },
+      {
+        "tipo": "verdadero_falso",
+        "pregunta": "Si un evento tiene probabilidad 0, significa que es imposible que ocurra.",
+        "respuesta": true
+      },
+      {
+        "tipo": "espacios",
+        "pregunta": "Cuando decimos que un evento es ___ probable que otro, significa que tiene más resultados favorables o mayor proporción de ocurrencia.",
+        "respuesta": "más"
+      },
+      {
+        "tipo": "calculo",
+        "pregunta": "En una ruleta dividida en 8 secciones iguales, 3 son rojas, 3 son azules y 2 son amarillas. ¿Cuál es la probabilidad de caer en rojo?",
+        "respuesta": "Paso 1: Contar resultados favorables (secciones rojas) = 3. Paso 2: Contar resultados posibles (total de secciones) = 8. Paso 3: Probabilidad = 3/8 = 0.375. La probabilidad de caer en rojo es 3/8."
+      },
+      {
+        "tipo": "abierta",
+        "pregunta": "En una tómbola hay 10 boletos: 4 premiados y 6 sin premio. María dice que es más probable ganar que perder. ¿Tiene razón? Explica usando una comparación cualitativa.",
+        "respuesta": "No tiene razón. Hay 4 boletos premiados y 6 sin premio, así que es menos probable ganar (4 de 10) que perder (6 de 10). Podemos decir: es más probable NO ganar que ganar, porque hay más boletos sin premio."
+      }
+    ]
+  },
+  "orientacion": {
+    "contenidos_especificos": [
+      "Identificar los resultados posibles de un experimento aleatorio",
+      "Clasificar eventos como imposibles, poco probables, equiprobables, probables o seguros",
+      "Comparar cualitativamente la probabilidad de dos o más eventos",
+      "Expresar la probabilidad como fracción: casos favorables entre casos totales",
+      "Relacionar la probabilidad con situaciones cotidianas"
+    ],
+    "actividad_inicio": [
+      "Preguntar: ¿qué es más probable, que mañana llueva o que mañana nieve en tu ciudad? ¿Cómo lo sabes?",
+      "Mostrar una bolsa opaca con fichas de colores y preguntar: sin meter la mano, ¿de qué color crees que saldrá una ficha? ¿Por qué?",
+      "Revelar el contenido de la bolsa (por ejemplo, 8 rojas y 2 azules) y volver a preguntar. Discutir cómo cambia la respuesta al tener información",
+      "Presentar el objetivo: aprender a comparar qué tan probable es que ocurran diferentes eventos"
+    ],
+    "desarrollo": [
+      {
+        "titulo": "Resultados posibles y eventos",
+        "diapositiva": "1-3",
+        "libro": "Sección 'Resultados posibles'",
+        "video": "min 0:30-2:00",
+        "descripcion": "Defina experimento aleatorio, resultado posible y evento. Use el ejemplo del dado: el experimento es lanzarlo, los resultados posibles son {1, 2, 3, 4, 5, 6}, un evento puede ser 'sale par' = {2, 4, 6}. Los alumnos enlistan los resultados posibles de: lanzar una moneda, sacar una carta de una baraja española, elegir un día de la semana al azar. Practiquen identificar eventos dentro de cada experimento.",
+        "tip": "Lleve un dado real y una moneda al salón. El material concreto hace la clase mucho más atractiva."
+      },
+      {
+        "titulo": "Escala cualitativa de probabilidad",
+        "diapositiva": "4-5",
+        "libro": "Sección 'Escala de probabilidad'",
+        "video": "min 2:00-3:15",
+        "descripcion": "Dibuje en el pizarrón una línea horizontal con las etiquetas: imposible, poco probable, equiprobable (50-50), probable, seguro. Dé ejemplos para cada nivel: imposible = sacar 7 en un dado normal; seguro = sacar un número menor que 7 en un dado; equiprobable = águila o sol en una moneda. Los alumnos clasifican en equipos 10 eventos que usted les entregue impresos, ubicándolos en la escala.",
+        "tip": "Incluya eventos cotidianos como 'que haya tarea mañana' para generar debate y mostrar que la probabilidad no siempre es numérica exacta."
+      },
+      {
+        "titulo": "Comparar eventos cuantitativamente",
+        "diapositiva": "6-8",
+        "libro": "Sección 'Comparación de eventos'",
+        "video": "min 3:15-4:45",
+        "descripcion": "Introduzca la fórmula P = casos favorables / casos totales como herramienta para comparar. Ejemplo: en una bolsa con 5 rojas, 3 azules y 2 verdes, P(roja) = 5/10 = 1/2, P(azul) = 3/10, P(verde) = 2/10 = 1/5. Comparar: roja > azul > verde. Los alumnos resuelven en parejas: una ruleta dividida en 8 secciones iguales (3 rojas, 3 azules, 2 amarillas) — comparen la probabilidad de cada color y ordenen de más a menos probable.",
+        "tip": "Haga énfasis en que para comparar probabilidades, ambas fracciones deben referirse al mismo total de resultados posibles."
+      }
+    ],
+    "cierre_individual": {
+      "reflexiona": "¿En qué decisiones de tu vida diaria consideras la probabilidad sin darte cuenta? Piensa en al menos dos ejemplos y escríbelos. ¿Cómo podrías usar lo que aprendiste hoy para tomar mejores decisiones?",
+      "profundiza": [
+        {
+          "pregunta": "En un juego, lanzas dos monedas. ¿Es más probable obtener exactamente una águila o dos águilas? Justifica enlistando todos los resultados posibles.",
+          "respuesta_modelo": "R.M. Resultados posibles: (A,A), (A,S), (S,A), (S,S). Exactamente una águila ocurre en 2 casos: (A,S) y (S,A). Dos águilas ocurre en 1 caso: (A,A). Como 2/4 > 1/4, es más probable obtener exactamente una águila."
+        },
+        {
+          "pregunta": "Si en una tómbola hay 100 boletos y compraste 3, ¿cómo describirías cualitativamente tu probabilidad de ganar? ¿Qué tendrías que hacer para que fuera 'probable' ganar?",
+          "respuesta_modelo": "R.M. Con 3 de 100 boletos, la probabilidad es 3/100 = 0.03, que es 'poco probable'. Para que fuera 'probable' necesitaría tener más de la mitad de los boletos, es decir, al menos 51 boletos de 100."
+        }
+      ]
+    },
+    "cierre_grupal": [
+      "Un experimento aleatorio es aquel cuyo resultado no se puede predecir con certeza",
+      "Los resultados posibles forman el espacio muestral del experimento",
+      "La probabilidad de un evento se puede expresar como casos favorables entre casos totales",
+      "Los eventos se pueden clasificar como imposibles, poco probables, equiprobables, probables o seguros",
+      "Para comparar dos eventos, calculamos sus probabilidades y comparamos las fracciones"
+    ],
+    "preguntas_comprension": [
+      "¿Cuáles son todos los resultados posibles al lanzar un dado de 6 caras?",
+      "En una bolsa con 7 canicas azules y 3 rojas, ¿qué color es más probable sacar? ¿Cuánto más probable?",
+      "¿Un evento con probabilidad 0 puede ocurrir alguna vez? ¿Y uno con probabilidad 1?",
+      "¿Qué diferencia hay entre decir que algo es 'poco probable' y decir que es 'imposible'?",
+      "Si dos eventos tienen la misma probabilidad, ¿eso garantiza que ocurrirán la misma cantidad de veces en un experimento?"
+    ]
+  },
+  "libro": {
+    "introduccion": "¿Es más probable que llueva mañana o que haga sol? ¿Qué posibilidades tienes de ganar un sorteo? La probabilidad es la rama de las matemáticas que nos ayuda a medir qué tan posible es que algo ocurra. Hoy vas a aprender a comparar eventos y a usar el lenguaje probabilístico con confianza.",
+    "conceptos": [
+      {
+        "titulo": "Evento y resultado",
+        "contenido": "Un evento es algo que puede suceder en un experimento. Por ejemplo, al lanzar un dado, un evento puede ser 'obtener un número par'. Un resultado es cada posibilidad individual: 1, 2, 3, 4, 5 o 6. Los eventos se pueden comparar según qué tan probables son.",
+        "definicion": "Un evento es un subconjunto del espacio muestral. Un resultado es cada elemento individual del espacio muestral.",
+        "figura": {
+          "tipo": "recta_numerica",
+          "min": 0,
+          "max": 1,
+          "puntos": [
+            {
+              "valor": 0,
+              "label": "Imposible"
+            },
+            {
+              "valor": 0.5,
+              "label": "Igual"
+            },
+            {
+              "valor": 1,
+              "label": "Seguro"
+            }
+          ],
+          "width": 400,
+          "height": 55
+        }
+      },
+      {
+        "titulo": "Comparación cualitativa de probabilidades",
+        "contenido": "Antes de calcular números, podemos comparar eventos usando frases como: 'es más probable que...', 'es menos probable que...', 'es igualmente probable que...', 'es imposible que...', 'es seguro que...'. Esta comparación cualitativa nos ayuda a razonar sobre situaciones aleatorias sin necesidad de fórmulas.",
+        "definicion": null
+      },
+      {
+        "titulo": "Escala de probabilidad",
+        "contenido": "La probabilidad se mide en una escala de 0 a 1 (o de 0% a 100%). Un evento imposible tiene probabilidad 0. Un evento seguro tiene probabilidad 1. Todo lo demás está entre medio. Cuanto más cerca de 1, más probable es el evento.",
+        "definicion": "P(evento) = número de resultados favorables / número de resultados posibles. 0 ≤ P ≤ 1."
+      }
+    ],
+    "ejemplos": [
+      {
+        "titulo": "Comparación cualitativa con un dado",
+        "enunciado": "Al lanzar un dado justo de 6 caras, compara los eventos A = 'obtener un número par' y B = 'obtener un 6'.",
+        "pasos": [
+          "Paso 1: Resultados favorables de A (par): {2, 4, 6} → 3 resultados.",
+          "Paso 2: Resultados favorables de B (un 6): {6} → 1 resultado.",
+          "Paso 3: Ambos eventos tienen 6 resultados posibles.",
+          "Paso 4: Como 3 > 1, el evento A es más probable que el evento B."
+        ],
+        "resultado": "Es más probable obtener un número par (3 de 6) que obtener un 6 (1 de 6)."
+      },
+      {
+        "titulo": "Eventos seguros e imposibles",
+        "enunciado": "Al lanzar un dado de 6 caras, clasifica: A = 'obtener un número del 1 al 6', B = 'obtener un 8'.",
+        "pasos": [
+          "Paso 1: Evento A incluye todos los resultados posibles → es un evento seguro.",
+          "Paso 2: Evento B no incluye ningún resultado posible → es un evento imposible."
+        ],
+        "resultado": "P(A) = 1 (seguro, 100%). P(B) = 0 (imposible, 0%)."
+      },
+      {
+        "titulo": "Comparación con una bolsa de canicas",
+        "enunciado": "Una bolsa tiene 5 canicas rojas, 3 azules y 2 verdes. ¿Es más probable sacar roja o azul?",
+        "pasos": [
+          "Paso 1: Total = 5 + 3 + 2 = 10 canicas.",
+          "Paso 2: P(roja) = 5/10 = 0.5. P(azul) = 3/10 = 0.3.",
+          "Paso 3: 0.5 > 0.3, así que es más probable sacar roja."
+        ],
+        "resultado": "Es más probable sacar una canica roja que una azul. La verde es la menos probable (P = 0.2)."
+      }
+    ],
+    "datos_curiosos": "Los juegos de azar tienen miles de años. Los dados más antiguos que se han encontrado tienen más de 5,000 años y fueron descubiertos en Mesopotamia (actual Irak). Curiosamente, los antiguos usaban huesos de tobillo de animales como dados, y algunos no tenían caras perfectamente equilibradas, así que ciertos números salían más seguido que otros.",
+    "ejercicios": [
+      {
+        "numero": 1,
+        "enunciado": "Al lanzar una moneda justa, ¿es más probable, menos probable o igualmente probable obtener cara que cruz? Justifica.",
+        "espacio": true,
+        "lineas": 3
+      },
+      {
+        "numero": 2,
+        "enunciado": "En una urna hay 8 bolitas blancas y 2 negras. Compara la probabilidad de sacar blanca vs. negra usando lenguaje cualitativo.",
+        "espacio": true,
+        "lineas": 3
+      },
+      {
+        "numero": 3,
+        "enunciado": "Clasifica cada evento como imposible, poco probable, igualmente probable, probable o seguro: a) Sacar un 7 de un dado de 6 caras. b) Que mañana sea lunes o no sea lunes. c) Sacar una carta roja de una baraja española.",
+        "espacio": true,
+        "lineas": 4
+      }
+    ],
+    "puntos_clave": [
+      "La probabilidad mide qué tan posible es que ocurra un evento, en una escala de 0 (imposible) a 1 (seguro).",
+      "Podemos comparar eventos cualitativamente: 'es más probable que...', 'es menos probable que...'.",
+      "Un evento seguro tiene probabilidad 1; un evento imposible tiene probabilidad 0.",
+      "P(evento) = resultados favorables / resultados posibles.",
+      "Cuantos más resultados favorables tenga un evento, más probable es."
+    ]
+  },
+  "diapositiva": [
+    {
+      "titulo": "¿Qué es la probabilidad?",
+      "puntos": [
+        "Estudia qué tan posible es que ocurra un evento",
+        "Nos ayuda a tomar decisiones ante la incertidumbre",
+        "Se basa en analizar los resultados posibles"
+      ],
+      "ejemplo": "¿Lloverá mañana? ¿Ganaré la rifa? Son preguntas de probabilidad."
+    },
+    {
+      "titulo": "Eventos y azar",
+      "puntos": [
+        "Un evento al azar tiene un resultado impredecible",
+        "No todos los resultados al azar son igualmente probables",
+        "Ejemplos: lanzar moneda, sacar cartas, rifas"
+      ],
+      "ejemplo": "Bolsa con 9 rojas y 1 azul: ambas pueden salir, pero roja es mucho más probable."
+    },
+    {
+      "titulo": "Comparación cualitativa",
+      "puntos": [
+        "'Es más probable que...'",
+        "'Es menos probable que...'",
+        "'Es igualmente probable que...'"
+      ],
+      "ejemplo": "Dado de 6 caras: sacar par (2,4,6) es igualmente probable que impar (1,3,5)."
+    },
+    {
+      "titulo": "La escala de probabilidad",
+      "puntos": [
+        "Imposible → Poco probable → Igualmente probable → Muy probable → Seguro",
+        "Imposible = 0 resultados favorables",
+        "Seguro = todos los resultados son favorables"
+      ],
+      "ejemplo": "Sacar un 8 en un dado normal = Imposible. Sacar un número <7 = Seguro."
+    },
+    {
+      "titulo": "Ejemplo: canicas en una bolsa",
+      "puntos": [
+        "6 canicas rojas + 2 azules = 8 en total",
+        "Resultados favorables para rojo: 6",
+        "Resultados favorables para azul: 2"
+      ],
+      "ejemplo": "Es más probable sacar roja (6/8) que azul (2/8)."
+    },
+    {
+      "titulo": "Ejemplo: la tómbola",
+      "puntos": [
+        "20 boletos: 5 con premio, 15 sin premio",
+        "Más boletos sin premio que con premio",
+        "Es más probable NO ganar que ganar"
+      ],
+      "ejemplo": "15 sin premio vs 5 con premio → perder es 3 veces más probable."
+    },
+    {
+      "titulo": "Errores comunes",
+      "puntos": [
+        "'Ya le toca' — los eventos al azar no tienen memoria",
+        "Asumir que todo es 50-50 sin analizar",
+        "Confundir imposible con poco probable"
+      ],
+      "ejemplo": "5 lanzamientos de moneda cayeron sol → la probabilidad de águila SIGUE siendo 1/2."
+    },
+    {
+      "titulo": "Resumen",
+      "puntos": [
+        "Comparamos eventos contando resultados favorables",
+        "Más resultados favorables = más probable",
+        "Usamos lenguaje cualitativo para comparar",
+        "La probabilidad va de 0 (imposible) a 1 (seguro)"
+      ],
+      "ejemplo": "Practica comparando eventos de tu vida diaria: ¿qué es más probable hoy?"
+    }
+  ],
+  "video_script": "# Probabilidades\n\n[VISUAL: Animación de una moneda girando en el aire, se congela antes de caer]\n\n¡Hola! Hoy vamos a hablar de algo que está en todos lados: la probabilidad. Cada vez que dices \"seguro llueve\" o \"no creo que haya examen\", estás haciendo un juicio de probabilidad. Vamos a aprender a hacerlo como matemáticos.\n\n[VISUAL: Aparece la palabra AZAR con dados, cartas y monedas animadas alrededor]\n\nPrimero lo primero: ¿qué es el azar? Decimos que algo pasa al azar cuando no podemos saber con certeza qué va a pasar. Lanzar una moneda, sacar una carta de la baraja, que tu profe haga examen sorpresa... todo eso tiene un componente de azar.\n\nPero aquí viene lo interesante: que algo sea al azar NO significa que todas las opciones tengan las mismas chances. Y eso es justamente lo que vamos a aprender a comparar.\n\n[VISUAL: Aparecen dos bolsas transparentes. Bolsa A: 8 canicas rojas, 2 azules. Bolsa B: 5 rojas, 5 azules]\n\nMira estas dos bolsas. En la bolsa A hay 8 canicas rojas y 2 azules. En la bolsa B hay 5 rojas y 5 azules. Si metes la mano sin ver, ¿en cuál bolsa es más probable sacar una roja?\n\n¡En la bolsa A! Porque tiene muchas más rojas comparadas con las azules. En la bolsa A, 8 de cada 10 son rojas. En la bolsa B, solo 5 de cada 10. Acabas de hacer una comparación cualitativa de probabilidad.\n\n[VISUAL: Aparece una línea horizontal con etiquetas: Imposible — Poco probable — Igualmente probable — Muy probable — Seguro]\n\nLa probabilidad la podemos imaginar como una línea recta. A la izquierda está lo imposible: cosas que jamás van a pasar, como sacar un 8 en un dado de 6 caras. A la derecha está lo seguro: cosas que siempre pasan, como que al lanzar un dado salga un número del 1 al 6. Y en medio hay de todo.\n\n[VISUAL: Un dado 3D gira y muestra sus 6 caras]\n\nVamos con un ejemplo clásico: el dado. Tiene 6 caras. ¿Qué es más probable: sacar un número par o un número menor que 3? Números pares: 2, 4, 6, son 3 opciones. Números menores que 3: 1 y 2, son 2 opciones. Entonces, sacar par es MÁS PROBABLE que sacar un número menor que 3.\n\n[VISUAL: Se muestran las opciones con animación, los pares se iluminan en verde, los menores que 3 en azul]\n\n¿Y qué pasa si comparamos sacar par contra sacar impar? Pares: 2, 4, 6. Impares: 1, 3, 5. ¡Los dos tienen 3 opciones! Entonces son IGUALMENTE PROBABLES.\n\n[VISUAL: Escena de una tómbola de feria con boletos]\n\nAhora un ejemplo de la vida real. En la tómbola de la kermés hay 20 boletos: 5 con premio y 15 sin premio. Tu amigo dice: \"Ándale, seguro te sacas algo\". ¿Tiene razón? No. Es MENOS probable ganar (5 de 20) que no ganar (15 de 20). No es imposible ganar, pero es tres veces más probable perder.\n\n[VISUAL: Se muestran los 20 boletos, 5 se iluminan en dorado y 15 en gris]\n\nUn error muy común es pensar que \"ya te toca\". Si lanzas una moneda 5 veces y caen 5 soles, mucha gente piensa: \"La siguiente TIENE que ser águila\". Pero no. La moneda no tiene memoria. Cada lanzamiento es independiente y siempre es 50-50.\n\n[VISUAL: 5 monedas mostrando sol en fila, la sexta tiene un signo de interrogación]\n\nPara comparar probabilidades cualitativamente, recuerda esta receta: cuenta los resultados favorables de cada evento y compáralos. El que tenga más resultados favorables es más probable. Si tienen los mismos, son igualmente probables.\n\n[VISUAL: Resumen animado con las expresiones clave: más probable, menos probable, igualmente probable, imposible, seguro]\n\n¡Listo! Ya sabes comparar probabilidades como un pro. Practica con cosas de tu día a día: ¿qué es más probable, que haya tarea de mate o de español? Cuenta las veces que ha pasado cada una y compara. ¡Nos vemos!"
+}

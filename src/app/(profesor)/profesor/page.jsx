@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation'
 import { useMemo, useState } from 'react'
 import NavBar from '@/components/layout/NavBar.jsx'
-import ChecklistOnboarding from '@/components/profesor/ChecklistOnboarding.jsx'
+import HeatmapCPA from '@/components/profesor/HeatmapCPA'
 import TablaTareas from '@/components/profesor/TablaTareas.jsx'
 import Boton from '@/components/ui/Boton.jsx'
 import Spinner from '@/components/ui/Spinner.jsx'
@@ -12,14 +12,17 @@ import useAuthStore from '@/store/useAuthStore.js'
 
 export default function DashboardProfesor() {
   const router = useRouter()
-  const { profesor, clase, clases } = useAuthStore()
+  const { profesor, clases } = useAuthStore()
   const { data, isLoading } = useTareasProfesor(profesor?.id)
   const tareas = data?.tareas ?? []
   const resultados = data?.resultados ?? {}
-  const { data: alumnos = [] } = useAlumnos(clase?.id)
-
   const eliminarTareaMut = useEliminarTarea()
   const [filtroClases, setFiltroClases] = useState([])
+  const [vistaHeatmap, setVistaHeatmap] = useState(false)
+
+  // Fetch alumnos for heatmap (use first class or filtered class)
+  const claseHeatmapId = filtroClases.length === 1 ? filtroClases[0] : clases[0]?.id
+  const { data: alumnosData } = useAlumnos(vistaHeatmap ? claseHeatmapId : undefined)
 
   const clasesMap = useMemo(() => {
     const map = {}
@@ -103,12 +106,6 @@ export default function DashboardProfesor() {
           </div>
         )}
 
-        <ChecklistOnboarding
-          tieneClase={clases.length > 0}
-          tieneAlumnos={alumnos.length > 0}
-          tieneTareas={tareas.length > 0}
-        />
-
         {/* Stats */}
         <div className="grid grid-cols-3 gap-4 mb-8">
           {[
@@ -133,9 +130,46 @@ export default function DashboardProfesor() {
           ))}
         </div>
 
+        {/* Vista toggle */}
+        <div className="flex gap-2 mb-4">
+          <button
+            onClick={() => setVistaHeatmap(false)}
+            className={`px-4 py-2 rounded-xl text-sm font-medium border transition-all ${
+              !vistaHeatmap
+                ? 'border-gray-900 bg-gray-900 text-white'
+                : 'border-gray-200 text-gray-600 hover:border-gray-300'
+            }`}
+          >
+            Tareas
+          </button>
+          <button
+            onClick={() => setVistaHeatmap(true)}
+            className={`px-4 py-2 rounded-xl text-sm font-medium border transition-all ${
+              vistaHeatmap
+                ? 'border-gray-900 bg-gray-900 text-white'
+                : 'border-gray-200 text-gray-600 hover:border-gray-300'
+            }`}
+          >
+            Heatmap CPA
+          </button>
+        </div>
+
         {isLoading ? (
           <div className="card p-16 flex items-center justify-center">
             <Spinner size="lg" />
+          </div>
+        ) : vistaHeatmap ? (
+          <div className="card p-4 overflow-hidden">
+            {filtroClases.length > 1 && (
+              <p className="text-xs text-gray-400 mb-3">
+                Selecciona una sola clase para ver el heatmap.
+              </p>
+            )}
+            <HeatmapCPA
+              alumnos={alumnosData ?? []}
+              tareas={tareasFiltradas}
+              resultados={resultados}
+            />
           </div>
         ) : (
           <div className="card p-0 overflow-hidden">

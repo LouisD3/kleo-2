@@ -1,0 +1,284 @@
+{
+  "secuencia": 16,
+  "titulo": "Rectas",
+  "contenido": "Rectas y ángulos.",
+  "pda": "Explora las figuras básicas como rectas y ángulos y su notación.",
+  "evaluacion": {
+    "preguntas": [
+      {
+        "tipo": "opcion_multiple",
+        "pregunta": "¿Cuál es la diferencia entre una recta y un segmento?",
+        "opciones": [
+          "A) La recta tiene dos extremos y el segmento no",
+          "B) El segmento tiene dos extremos y la recta se extiende infinitamente",
+          "C) Son lo mismo pero con diferente nombre",
+          "D) La recta es curva y el segmento es recto"
+        ],
+        "respuesta": "B"
+      },
+      {
+        "tipo": "verdadero_falso",
+        "pregunta": "Dos rectas paralelas nunca se cruzan, sin importar cuánto las extiendas.",
+        "respuesta": true
+      },
+      {
+        "tipo": "abierta",
+        "pregunta": "Explica la diferencia entre rectas secantes y rectas perpendiculares. ¿Toda recta perpendicular es secante?",
+        "respuesta": "Las rectas secantes son aquellas que se cruzan en un punto. Las rectas perpendiculares son un caso especial de rectas secantes donde el ángulo que forman es exactamente 90°. Toda recta perpendicular es secante (porque se cruzan), pero no toda recta secante es perpendicular (pueden cruzarse formando ángulos distintos de 90°)."
+      },
+      {
+        "tipo": "espacios",
+        "pregunta": "Un segmento se denota con dos letras mayúsculas y una barra encima, por ejemplo ___. Una recta se denota con una letra minúscula o con dos puntos y una flecha doble encima.",
+        "respuesta": "AB"
+      },
+      {
+        "tipo": "calculo",
+        "pregunta": "Dibuja dos rectas que se crucen en un punto. ¿Cómo se llaman? Dibuja dos rectas que nunca se crucen. ¿Cómo se llaman?",
+        "respuesta": "Las rectas que se cruzan son secantes (perpendiculares si forman 90°). Las que nunca se cruzan son paralelas."
+      }
+    ]
+  },
+  "orientacion": {
+    "contenidos_especificos": [
+      "Identificar y nombrar rectas, segmentos y rayos utilizando notación geométrica estándar",
+      "Clasificar pares de rectas como paralelas, secantes o perpendiculares",
+      "Reconocer y usar la notación de puntos, rectas y ángulos en diagramas geométricos"
+    ],
+    "actividad_inicio": [
+      "Pedir a los alumnos que observen el salón de clases y encuentren ejemplos de rectas (borde del pizarrón), segmentos (lado de una mesa) y líneas que se cruzan (esquinas). Anotar los ejemplos en el pizarrón",
+      "Preguntar: ¿cuál es la diferencia entre una recta y un segmento? Guiar hacia la idea de que la recta se extiende infinitamente y el segmento tiene principio y fin",
+      "Dibujar en el pizarrón un punto y pedir que tracen una recta que pase por él. Luego pedir que tracen otra recta por el mismo punto. Preguntar cuántas rectas pueden pasar por un solo punto",
+      "Mostrar la notación: punto A, recta AB (con flecha doble), segmento AB (con barra), rayo AB (con flecha simple). Preguntar por qué es importante usar nombres estándar",
+      "Presentar el objetivo: aprender a identificar, nombrar y clasificar rectas y sus relaciones"
+    ],
+    "desarrollo": [
+      {
+        "titulo": "Puntos, rectas, segmentos y rayos: definiciones y notación",
+        "diapositiva": "1-3",
+        "libro": "Sección 'Elementos básicos de geometría'",
+        "video": "min 0:30-2:30",
+        "descripcion": "Defina formalmente cada concepto: el punto no tiene dimensión y se nombra con letra mayúscula (A). La recta es infinita en ambas direcciones y se nombra con dos puntos (recta AB) o una letra minúscula (recta ℓ). El segmento tiene dos extremos (segmento AB, longitud finita). El rayo tiene un extremo y se extiende infinitamente en una dirección. Dibuje cada uno con su símbolo correcto. Los alumnos copian las definiciones con los dibujos y practican nombrando 5 figuras que usted dibuje en el pizarrón.",
+        "tip": "Enfatice la diferencia visual: recta con flechas en ambos extremos, segmento con puntos en ambos extremos, rayo con un punto y una flecha."
+      },
+      {
+        "titulo": "Rectas paralelas, secantes y perpendiculares",
+        "diapositiva": "4-6",
+        "libro": "Sección 'Clasificación de rectas'",
+        "video": "min 2:30-4:30",
+        "descripcion": "Defina rectas paralelas (misma dirección, nunca se cruzan, símbolo ∥), rectas secantes (se cortan en un punto) y rectas perpendiculares (se cortan formando ángulos de 90°, símbolo ⊥). Muestre ejemplos reales: rieles del tren (paralelas), tijeras abiertas (secantes), esquina de un cuaderno (perpendiculares). Dibuje pares de rectas en el pizarrón y pida al grupo que las clasifique. Los alumnos dibujan en su cuaderno con regla un ejemplo de cada tipo y escriben la notación correcta. Verifique el uso del símbolo de ángulo recto (el cuadradito) en las perpendiculares.",
+        "tip": "Use una escuadra para demostrar las rectas perpendiculares y permita que los alumnos la manipulen para verificar si dos rectas realmente forman 90°."
+      },
+      {
+        "titulo": "Actividad práctica: identificación en figuras y planos",
+        "diapositiva": "7-8",
+        "libro": "Sección 'Rectas en figuras geométricas'",
+        "video": null,
+        "descripcion": "Entregue a cada equipo una hoja con figuras geométricas variadas (triángulos, rectángulos, trapecios, pentágonos). Los alumnos deben: (1) nombrar todos los vértices con letras, (2) listar todos los segmentos usando notación correcta, (3) identificar pares de lados paralelos y pares perpendiculares. Adicionalmente, entregue un plano simplificado de calles de una ciudad y pida que identifiquen calles paralelas y perpendiculares. Socialicen los resultados y corrijan la notación si es necesario.",
+        "tip": "Puede usar el mapa del entorno de la escuela para que el ejercicio sea más significativo y los alumnos conecten geometría con su espacio cotidiano."
+      }
+    ],
+    "cierre_individual": {
+      "reflexiona": "¿Por qué crees que es importante usar una notación estandarizada en geometría? Escribe en tu cuaderno qué confusiones podrían surgir si cada persona nombrara las figuras a su manera.",
+      "profundiza": [
+        {
+          "pregunta": "¿Cuántos segmentos diferentes se pueden formar con 4 puntos no alineados (A, B, C, D)? Nómbralos todos.",
+          "respuesta_modelo": "R.M. Se forman 6 segmentos: AB, AC, AD, BC, BD y CD. Esto corresponde a la combinación de 4 puntos tomados de 2 en 2: C(4,2) = 6."
+        },
+        {
+          "pregunta": "¿Pueden dos rectas ser paralelas y perpendiculares al mismo tiempo? Justifica.",
+          "respuesta_modelo": "R.M. No. Las rectas paralelas nunca se cruzan, mientras que las perpendiculares se cruzan formando un ángulo de 90°. Si se cruzan, no son paralelas; si no se cruzan, no son perpendiculares. Son condiciones mutuamente excluyentes."
+        }
+      ]
+    },
+    "cierre_grupal": [
+      "Un punto se nombra con letra mayúscula; una recta, con dos puntos o una letra minúscula",
+      "El segmento tiene dos extremos y longitud finita; el rayo tiene un extremo y se extiende infinitamente en una dirección",
+      "Las rectas paralelas van en la misma dirección y nunca se intersecan (símbolo ∥)",
+      "Las rectas perpendiculares se intersecan formando ángulos de 90° (símbolo ⊥)",
+      "La notación geométrica permite comunicar ideas de forma precisa y universal"
+    ],
+    "preguntas_comprension": [
+      "¿Cuál es la diferencia entre una recta, un segmento y un rayo? Dibuja cada uno con su notación.",
+      "¿Cuántas rectas pueden pasar por dos puntos distintos? ¿Y por un solo punto?",
+      "Nombra dos ejemplos de rectas paralelas y dos de rectas perpendiculares en tu entorno.",
+      "Si la recta AB es perpendicular a la recta BC, ¿qué ángulo se forma en el punto B?",
+      "¿Una recta y un segmento pueden ser la misma cosa? Explica por qué sí o por qué no."
+    ]
+  },
+  "libro": {
+    "introduccion": "Alguna vez te has fijado en las vias del tren? Van una junto a la otra sin tocarse nunca. Y en unas tijeras? Sus hojas se cruzan en un punto. Esas son relaciones entre rectas, y hoy vas a aprender a identificarlas y nombrarlas como un profesional de la geometria.",
+    "conceptos": [
+      {
+        "titulo": "Punto, recta, semirrecta y segmento",
+        "contenido": "El punto no tiene tamano, solo posicion (se nombra con letra mayuscula: A, B). La recta se extiende infinitamente en ambas direcciones (flechas en ambos extremos, se nombra con letra minuscula o con dos puntos). La semirrecta (rayo) tiene un punto de inicio pero se extiende infinitamente en una direccion. El segmento tiene dos puntos extremos y una longitud que puedes medir.",
+        "definicion": "Segmento: parte de una recta delimitada por dos puntos extremos, con longitud finita y medible.",
+        "figura": {
+          "tipo": "plano_cartesiano",
+          "xMin": -4,
+          "xMax": 4,
+          "yMin": -4,
+          "yMax": 4,
+          "puntos": [
+            {
+              "x": -2,
+              "y": 1,
+              "label": "A"
+            },
+            {
+              "x": 3,
+              "y": 1,
+              "label": "B"
+            }
+          ],
+          "lineas": [
+            {
+              "x1": -4,
+              "y1": 1,
+              "x2": 4,
+              "y2": 1
+            },
+            {
+              "x1": -4,
+              "y1": -2,
+              "x2": 4,
+              "y2": -2
+            }
+          ],
+          "width": 180,
+          "height": 180
+        }
+      },
+      {
+        "titulo": "Rectas paralelas, secantes y perpendiculares",
+        "contenido": "Rectas paralelas (simbolo ||): nunca se cruzan, mantienen siempre la misma distancia. Rectas secantes: se cruzan en exactamente un punto y forman angulos. Rectas perpendiculares (simbolo _|_): caso especial de secantes donde el angulo es exactamente 90 grados. Toda recta perpendicular es secante, pero no toda secante es perpendicular.",
+        "definicion": "Rectas perpendiculares: dos rectas que se intersecan formando un angulo de 90 grados."
+      },
+      {
+        "titulo": "Notacion geometrica",
+        "contenido": "Es importante usar la notacion correcta para comunicar ideas de forma precisa. Punto: letra mayuscula (A). Recta: letra minuscula (l) o dos puntos con flecha doble encima. Segmento: dos puntos con barra encima (AB). Semirrecta: punto origen primero con una flecha encima. No es lo mismo escribir recta AB que segmento AB.",
+        "definicion": null
+      }
+    ],
+    "ejemplos": [
+      {
+        "titulo": "Identificar rectas en la vida real",
+        "enunciado": "Clasifica las siguientes situaciones: rieles del tren, manecillas del reloj a las 2:00, esquina de un cuaderno.",
+        "pasos": [
+          "Paso 1: Los rieles van en la misma direccion sin tocarse -> paralelas (||)",
+          "Paso 2: Las manecillas se cruzan en el centro formando un angulo -> secantes",
+          "Paso 3: La esquina del cuaderno forma angulo de 90 grados -> perpendiculares (_|_)"
+        ],
+        "resultado": "Rieles = paralelas. Manecillas = secantes. Esquina = perpendiculares."
+      },
+      {
+        "titulo": "Cancha de futbol",
+        "enunciado": "Identifica las relaciones entre rectas en una cancha de futbol.",
+        "pasos": [
+          "Paso 1: Las lineas laterales van en la misma direccion -> paralelas",
+          "Paso 2: La linea de medio campo cruza las laterales a 90 grados -> perpendicular a ambas"
+        ],
+        "resultado": "Lineas laterales: paralelas entre si. Linea central: perpendicular a las laterales."
+      }
+    ],
+    "datos_curiosos": "Los matematicos griegos como Euclides definieron las rectas y sus propiedades hace mas de 2,300 anos. Su famoso quinto postulado sobre las rectas paralelas genero debates durante siglos y llevo al descubrimiento de geometrias no euclidianas, donde las paralelas si pueden cruzarse.",
+    "ejercicios": [
+      {
+        "numero": 1,
+        "enunciado": "Dibuja un ejemplo de rectas paralelas, uno de rectas secantes y uno de rectas perpendiculares. Escribe la notacion correcta para cada par.",
+        "espacio": true,
+        "lineas": 4
+      },
+      {
+        "numero": 2,
+        "enunciado": "En tu salon de clases, encuentra y describe 2 ejemplos de rectas paralelas y 2 de rectas perpendiculares.",
+        "espacio": true,
+        "lineas": 3
+      },
+      {
+        "numero": 3,
+        "enunciado": "Explica con tus propias palabras la diferencia entre una recta, un segmento y una semirrecta. Dibuja cada uno con su notacion.",
+        "espacio": true,
+        "lineas": 4
+      }
+    ],
+    "puntos_clave": [
+      "Punto: sin dimension, solo posicion (letra mayuscula).",
+      "Recta: infinita en ambas direcciones. Segmento: longitud finita con dos extremos.",
+      "Paralelas: nunca se cruzan (||). Secantes: se cruzan en un punto. Perpendiculares: secantes a 90 grados (_|_).",
+      "Toda perpendicular es secante, pero no toda secante es perpendicular.",
+      "La notacion correcta es fundamental para comunicar ideas geometricas con precision."
+    ]
+  },
+  "diapositiva": [
+    {
+      "titulo": "Elementos básicos de geometría",
+      "puntos": [
+        "Punto: sin dimensión, solo posición (A, B, C)",
+        "Se representa con un dot y letra mayúscula",
+        "Es la base de todo lo que sigue"
+      ],
+      "ejemplo": "Los puntos A y B definen una recta y un segmento"
+    },
+    {
+      "titulo": "Recta, semirrecta y segmento",
+      "puntos": [
+        "Recta: infinita en ambas direcciones → flechas en ambos extremos",
+        "Semirrecta (rayo): un origen, infinita en una dirección → una flecha",
+        "Segmento: dos extremos, longitud finita → sin flechas"
+      ],
+      "ejemplo": "Segmento AB: de A a B. Recta l: pasa por A y B, sigue para siempre."
+    },
+    {
+      "titulo": "Notación",
+      "puntos": [
+        "Punto: letra mayúscula (A)",
+        "Recta: letra minúscula (l) o dos puntos con flecha doble",
+        "Segmento: dos puntos con barra encima (AB)",
+        "Semirrecta: punto origen primero, una flecha encima"
+      ],
+      "ejemplo": "Recta AB ≠ Segmento AB — la notación importa"
+    },
+    {
+      "titulo": "Rectas paralelas",
+      "puntos": ["Nunca se cruzan", "Mantienen la misma distancia", "Símbolo: ∥"],
+      "ejemplo": "Los rieles del tren: recta l ∥ recta m"
+    },
+    {
+      "titulo": "Rectas secantes",
+      "puntos": [
+        "Se cruzan en exactamente un punto",
+        "Forman ángulos al cruzarse",
+        "Las tijeras abiertas son un ejemplo"
+      ],
+      "ejemplo": "Las manecillas del reloj a las 2:00 son rectas secantes"
+    },
+    {
+      "titulo": "Rectas perpendiculares",
+      "puntos": [
+        "Caso especial de secantes: ángulo de 90°",
+        "Símbolo: ⊥",
+        "Toda perpendicular es secante, no al revés"
+      ],
+      "ejemplo": "La esquina de tu cuaderno forma un ángulo de 90°: ⊥"
+    },
+    {
+      "titulo": "Identificar en la vida real",
+      "puntos": [
+        "Cancha de fútbol: líneas laterales ∥, línea central ⊥",
+        "Cruce de calles en +: perpendiculares",
+        "Cruce en X: secantes (no perpendiculares)"
+      ],
+      "ejemplo": "¿Las diagonales de tu cuaderno son perpendiculares o solo secantes?"
+    },
+    {
+      "titulo": "Resumen",
+      "puntos": [
+        "Punto → Segmento → Semirrecta → Recta (de menor a mayor extensión)",
+        "Dos rectas: paralelas, secantes o perpendiculares",
+        "La notación correcta distingue cada concepto"
+      ],
+      "ejemplo": "Reto: Encuentra en el salón un ejemplo de cada tipo de rectas"
+    }
+  ],
+  "video_script": "# Rectas — Script de video (5-7 min)\n\n[VISUAL: Animación de vías de tren extendiéndose hacia el horizonte]\n\n¡Hola! Hoy empezamos un tema nuevo: **rectas y su notación**. Esto es la base de toda la geometría, así que préstame atención porque lo que aprendas hoy lo vas a usar el resto del año.\n\n[VISUAL: Un punto aparece en la pantalla, luego se nombra con la letra A]\n\nTodo empieza con el **punto**. Es la cosa más simple de las matemáticas: no tiene largo, no tiene ancho, no tiene alto. Solo es una **posición** en el espacio. Lo representamos con un puntito y una letra mayúscula: punto A.\n\nAhora, si tomas dos puntos y los conectas, puedes formar tres cosas diferentes.\n\n[VISUAL: Dos puntos A y B aparecen. Primero se conectan con un segmento, luego se extiende a semirrecta, luego a recta completa]\n\nPrimero, el **segmento AB**. Va del punto A al punto B y ahí se acaba. Tiene una longitud que puedes medir con tu regla. Se dibuja sin flechas y se escribe con una barrita encima: AB.\n\nSegundo, la **semirrecta** o **rayo**. Empieza en un punto (el origen) y se extiende para siempre en una dirección. Como un rayo de luz que sale de una lámpara: tiene inicio pero no tiene final. Se dibuja con una flecha en un extremo.\n\nTercero, la **recta**. No tiene inicio ni final, se extiende infinitamente en ambas direcciones. Se dibuja con flechas en ambos extremos. Se puede nombrar con una letra minúscula (recta *l*) o con dos puntos (recta AB, con doble flecha encima).\n\n[VISUAL: Los tres conceptos lado a lado con su notación]\n\nAhora la pregunta interesante: **¿qué pasa cuando hay dos rectas en el mismo plano?**\n\n[VISUAL: Dos rectas horizontales, una encima de la otra, con el símbolo ∥]\n\nPrimer caso: **rectas paralelas**. Van en la misma dirección y nunca se tocan, por más que las extiendas. Piensa en los rieles del tren, en los renglones de tu cuaderno, en los bordes de tu regla. Se usa el símbolo de dos barritas: **∥**.\n\n[VISUAL: Dos rectas que se cruzan formando una X]\n\nSegundo caso: **rectas secantes**. Se cruzan en exactamente un punto y forman ángulos. Las manecillas del reloj, las hojas de unas tijeras cuando las abres, una equis.\n\n[VISUAL: Dos rectas que se cruzan formando una + perfecta, con el símbolo de ángulo recto]\n\nTercer caso: **rectas perpendiculares**. Son un tipo especial de rectas secantes donde el ángulo que forman es exactamente **90 grados**. La esquina de tu cuaderno, el cruce en forma de +, el marco de una puerta. Se usa el símbolo **⊥**.\n\nUn dato importante que muchos confunden: **toda recta perpendicular es secante** (porque se cruzan), pero **no toda recta secante es perpendicular** (pueden cruzarse en otros ángulos).\n\n[VISUAL: Diagrama de Venn: círculo grande \"secantes\" contiene círculo pequeño \"perpendiculares\"]\n\nVeamos si puedes identificarlos en la vida real.\n\n[VISUAL: Cancha de fútbol vista desde arriba]\n\n¿Ves las líneas laterales de la cancha? Son **paralelas**. ¿Y la línea de medio campo? Es **perpendicular** a las laterales.\n\n[VISUAL: Cruce de calles en diagonal]\n\n¿Y un cruce de calles en diagonal? Las calles son **secantes** pero no perpendiculares, porque el ángulo no es de 90°.\n\n[VISUAL: Resumen animado con los tres tipos]\n\nRecapitulemos:\n- **Punto:** posición sin dimensión.\n- **Segmento:** dos extremos, longitud finita.\n- **Semirrecta:** un origen, infinita en una dirección.\n- **Recta:** infinita en ambas direcciones.\n- Dos rectas: **paralelas** (∥, no se cruzan), **secantes** (se cruzan), **perpendiculares** (⊥, se cruzan a 90°).\n\n[VISUAL: Tabla resumen con dibujos y símbolos]\n\nEn el siguiente video vamos a meternos de lleno con los **ángulos**: cómo medirlos, cómo clasificarlos y cómo calcularlos cuando dos rectas se cruzan. ¡No te lo pierdas!"
+}

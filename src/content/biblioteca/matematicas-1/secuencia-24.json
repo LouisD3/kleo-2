@@ -1,0 +1,282 @@
+{
+  "secuencia": 24,
+  "titulo": "Partes del círculo",
+  "contenido": "Circunferencia, círculo y esfera.",
+  "pda": "Construye circunferencias a partir de distinta información. Verifica los criterios de existencia y unicidad de estas figuras.",
+  "evaluacion": {
+    "preguntas": [
+      {
+        "tipo": "opcion_multiple",
+        "pregunta": "¿Cuántas circunferencias distintas se pueden trazar que pasen por tres puntos no alineados?",
+        "opciones": ["A) Ninguna", "B) Exactamente una", "C) Exactamente dos", "D) Infinitas"],
+        "respuesta": "B"
+      },
+      {
+        "tipo": "verdadero_falso",
+        "pregunta": "Si tres puntos están alineados (sobre la misma recta), no es posible trazar una circunferencia que pase por los tres.",
+        "respuesta": true
+      },
+      {
+        "tipo": "espacios",
+        "pregunta": "Para construir una circunferencia que pase por tres puntos, se trazan las ___ de los segmentos que los unen y se busca su intersección.",
+        "respuesta": "mediatrices"
+      },
+      {
+        "tipo": "calculo",
+        "pregunta": "Una circunferencia tiene un diámetro de 14 cm. ¿Cuál es la longitud de su circunferencia? Usa π ≈ 3.14.",
+        "respuesta": "La longitud de la circunferencia = π × diámetro = 3.14 × 14 cm = 43.96 cm. También se puede calcular como 2 × π × radio = 2 × 3.14 × 7 = 43.96 cm."
+      },
+      {
+        "tipo": "abierta",
+        "pregunta": "Explica paso a paso cómo construir una circunferencia que pase por tres puntos dados A, B y C que no están alineados.",
+        "respuesta": "1) Traza el segmento AB y construye su mediatriz con compás. 2) Traza el segmento BC y construye su mediatriz. 3) Las dos mediatrices se cruzan en un punto O: ese es el centro de la circunferencia. 4) Mide la distancia de O a cualquiera de los tres puntos (OA, OB u OC): esa es el radio. 5) Con centro en O y ese radio, traza la circunferencia. Pasará por A, B y C."
+      }
+    ]
+  },
+  "orientacion": {
+    "contenidos_especificos": [
+      "Construcción de una circunferencia dado su centro y radio",
+      "Construcción de una circunferencia que pase por tres puntos no alineados usando mediatrices",
+      "Criterio de existencia: tres puntos no alineados determinan una única circunferencia",
+      "Criterio de unicidad: la circunferencia es única dados centro y radio, o tres puntos no alineados",
+      "Casos con información parcial: centro y un punto, diámetro conocido, cuerda y radio"
+    ],
+    "actividad_inicio": [
+      "Dibujar tres puntos no alineados en el pizarrón y lanzar el reto: ¿es posible trazar un círculo que pase exactamente por los tres?",
+      "Dejar que los alumnos intenten durante 2 minutos con compás en su cuaderno, probando distintos centros y aberturas",
+      "Preguntar: ¿cuántos lograron encontrar el centro correcto? ¿Cómo lo hicieron? ¿Probaron al azar o siguieron un método?",
+      "Presentar el objetivo: descubrir un método exacto para construir circunferencias a partir de diferente información y entender cuándo es posible y cuándo no"
+    ],
+    "desarrollo": [
+      {
+        "titulo": "Circunferencia por tres puntos: el método de las mediatrices",
+        "diapositiva": "1-4",
+        "libro": "Sección 'Construcción de circunferencias'",
+        "video": "min 0:30-3:00",
+        "descripcion": "Retome la propiedad de la mediatriz: todos los puntos de la mediatriz de un segmento equidistan de sus extremos. Si el centro de la circunferencia debe estar a la misma distancia de A y B, entonces está sobre la mediatriz de AB. Y si también debe equidistar de B y C, está sobre la mediatriz de BC. El centro es la intersección de ambas mediatrices. Demuestre el procedimiento completo en el pizarrón: 1) Marcar tres puntos no alineados A, B, C. 2) Trazar la mediatriz de AB (con compás). 3) Trazar la mediatriz de BC. 4) El punto de intersección O es el centro. 5) La distancia OA es el radio; trazar la circunferencia. Los alumnos replican el procedimiento con tres puntos diferentes.",
+        "tip": "Verifique que los alumnos no coloquen los tres puntos casi alineados, pues las mediatrices se intersecarán muy lejos y el radio será enorme, difícil de trazar en el cuaderno."
+      },
+      {
+        "titulo": "Criterios de existencia y unicidad",
+        "diapositiva": "5-6",
+        "libro": "Sección 'Existencia y unicidad'",
+        "video": "min 3:00-5:00",
+        "descripcion": "Formalice los criterios: 1) Un solo punto → infinitas circunferencias (cualquier radio). 2) Dos puntos → infinitas circunferencias (el centro puede estar en cualquier punto de la mediatriz del segmento). 3) Tres puntos no alineados → exactamente una circunferencia (las mediatrices se cortan en un solo punto). 4) Tres puntos alineados → ninguna circunferencia (las mediatrices son paralelas). Haga que los alumnos experimenten cada caso: con un punto, tracen 3 circunferencias distintas; con dos puntos, tracen 2 circunferencias distintas; con tres puntos no alineados, comprueben que solo hay una. Luego, intenten con tres puntos alineados y expliquen por qué no funciona.",
+        "tip": "Use la analogía: con un punto eres libre de elegir centro y radio; cada punto extra elimina libertad hasta que con tres puntos todo queda determinado."
+      },
+      {
+        "titulo": "Construcciones con información parcial",
+        "diapositiva": "7-8",
+        "libro": "Sección 'Problemas de construcción'",
+        "video": "min 5:00-6:30",
+        "descripcion": "Presente diferentes situaciones: a) Dado el centro y un punto de la circunferencia: medir la distancia (radio) y trazar. b) Dado un diámetro: el centro es el punto medio, el radio es la mitad. c) Dada una cuerda y el radio: encontrar el centro usando la mediatriz de la cuerda y la distancia adecuada. Trabaje el problema: 'Construye la circunferencia de radio 4 cm que pasa por los puntos A y B separados 5 cm.' Los alumnos deben trazar la mediatriz de AB y encontrar sobre ella los dos puntos a distancia 4 de A (hay dos soluciones). Concluya con una discusión sobre cuándo un problema de construcción tiene 0, 1, 2 o infinitas soluciones.",
+        "tip": "Para el caso c, si la cuerda mide más que el diámetro (2r), el problema no tiene solución. Pida a los alumnos que expliquen por qué."
+      }
+    ],
+    "cierre_individual": {
+      "reflexiona": "¿Qué te pareció más interesante: que tres puntos determinan un solo círculo, o que dos puntos permiten infinitos? ¿Puedes pensar en una situación práctica donde necesites encontrar el centro de un círculo del que solo conoces parte del borde?",
+      "profundiza": [
+        {
+          "pregunta": "Un arqueólogo encuentra un fragmento curvo de una vasija antigua. ¿Cómo podría determinar el diámetro original de la vasija usando solo regla y compás?",
+          "respuesta_modelo": "R.M. Marcaría tres puntos sobre el borde curvo del fragmento. Luego trazaría las mediatrices de los segmentos que unen cada par de puntos consecutivos. La intersección de las mediatrices le daría el centro original de la vasija. Midiendo la distancia del centro a cualquiera de los tres puntos, obtendría el radio y, multiplicando por 2, el diámetro."
+        },
+        {
+          "pregunta": "¿Cuántas circunferencias pueden pasar por cuatro puntos no alineados? ¿Siempre es posible?",
+          "respuesta_modelo": "R.M. Si los cuatro puntos son concíclicos (están sobre una misma circunferencia), pasa exactamente una. Pero en general, cuatro puntos arbitrarios no están sobre una misma circunferencia. Se puede verificar: cualquier combinación de tres de los cuatro puntos determina una circunferencia, y el cuarto punto puede no estar sobre ella. Solo en casos especiales (por ejemplo, los vértices de un rectángulo) los cuatro puntos son concíclicos."
+        }
+      ]
+    },
+    "cierre_grupal": [
+      "Tres puntos no alineados determinan una circunferencia única; su centro es la intersección de las mediatrices",
+      "Tres puntos alineados no pueden estar sobre ninguna circunferencia porque las mediatrices son paralelas",
+      "Con un solo punto hay infinitas circunferencias; con dos puntos también; con tres no alineados, solo una",
+      "El método de las mediatrices conecta las rectas notables del triángulo con la construcción de circunferencias",
+      "Problemas de construcción pueden tener 0, 1, 2 o infinitas soluciones según la información dada"
+    ],
+    "preguntas_comprension": [
+      "¿Por qué la intersección de las mediatrices da el centro de la circunferencia que pasa por los tres puntos?",
+      "Si dos puntos están separados 10 cm, ¿puede pasar por ellos una circunferencia de radio 4 cm? Justifica.",
+      "¿Cuántas circunferencias de radio 5 cm pasan por un punto dado? ¿Y por dos puntos separados 6 cm?",
+      "¿Qué relación tiene el circuncentro de un triángulo con la circunferencia que pasa por sus tres vértices?",
+      "Si tienes un arco de circunferencia pero no conoces el centro, ¿cómo lo encontrarías con regla y compás?"
+    ]
+  },
+  "libro": {
+    "introduccion": "Imaginate que eres un arqueologo y encuentras un pedazo de un plato antiguo roto. Solo tienes un fragmento curvo. Podrias reconstruir el plato completo? Si, y hoy vas a aprender como. Todo se basa en saber encontrar el centro y el radio de un circulo a partir de informacion parcial.",
+    "conceptos": [
+      {
+        "titulo": "Circunferencia por tres puntos",
+        "contenido": "Si tienes tres puntos que no esten en linea recta (no alineados), siempre puedes encontrar una y solo una circunferencia que pase por los tres. El metodo: 1) Traza la mediatriz del segmento AB. 2) Traza la mediatriz del segmento BC. 3) Las mediatrices se cruzan en O: ese es el centro. 4) La distancia OA es el radio. Funciona porque todo punto de la mediatriz de AB equidista de A y B, y todo punto de la mediatriz de BC equidista de B y C. El cruce equidista de los tres.",
+        "definicion": "Circunscripcion: propiedad por la cual tres puntos no alineados determinan una unica circunferencia que pasa por ellos.",
+        "figura": {
+          "tipo": "circulo",
+          "radio": 50,
+          "elementos": ["radio", "diametro", "tangente"],
+          "width": 180,
+          "height": 180
+        }
+      },
+      {
+        "titulo": "Criterios de existencia y unicidad",
+        "contenido": "Un punto: infinitas circunferencias pasan por el (cualquier radio). Dos puntos: infinitas circunferencias (el centro puede estar en cualquier punto de la mediatriz). Tres puntos no alineados: exactamente una circunferencia (las mediatrices se cruzan en un unico punto). Tres puntos alineados: ninguna circunferencia (las mediatrices son paralelas y nunca se cruzan).",
+        "definicion": null
+      },
+      {
+        "titulo": "Longitud de la circunferencia",
+        "contenido": "La longitud (perimetro) de la circunferencia se calcula con: Longitud = 2 x pi x radio = pi x diametro. Donde pi es aproximadamente 3.14159. Esta formula conecta el radio o diametro con la longitud total del borde curvo del circulo.",
+        "definicion": "Pi (pi): constante matematica que representa la razon entre la longitud de cualquier circunferencia y su diametro; aproximadamente 3.14159."
+      }
+    ],
+    "ejemplos": [
+      {
+        "titulo": "Construir la circunferencia por tres puntos",
+        "enunciado": "Dados los puntos A, B y C (no alineados), encuentra el centro y traza la circunferencia.",
+        "pasos": [
+          "Paso 1: Traza el segmento AB y construye su mediatriz con compas",
+          "Paso 2: Traza el segmento BC y construye su mediatriz",
+          "Paso 3: Las mediatrices se cruzan en O (el centro)",
+          "Paso 4: Mide OA con el compas: esa es la abertura del radio",
+          "Paso 5: Con centro en O, traza la circunferencia. Pasa por A, B y C"
+        ],
+        "resultado": "Se obtiene una unica circunferencia que pasa por los tres puntos."
+      },
+      {
+        "titulo": "Longitud de una circunferencia",
+        "enunciado": "Una circunferencia tiene un diametro de 14 cm. Calcula su longitud usando pi = 3.14.",
+        "pasos": ["Paso 1: Longitud = pi x diametro", "Paso 2: Longitud = 3.14 x 14 = 43.96 cm"],
+        "resultado": "La longitud de la circunferencia es 43.96 cm."
+      },
+      {
+        "titulo": "Puntos alineados: caso imposible",
+        "enunciado": "Tres puntos estan sobre la misma recta. Se puede trazar una circunferencia que pase por los tres?",
+        "pasos": [
+          "Paso 1: Si los puntos estan alineados, las mediatrices de los segmentos son paralelas",
+          "Paso 2: Rectas paralelas nunca se cruzan",
+          "Paso 3: No hay punto de interseccion, no hay centro"
+        ],
+        "resultado": "No, es imposible. Tres puntos alineados no definen ninguna circunferencia."
+      }
+    ],
+    "datos_curiosos": "Los arqueologos realmente usan el metodo de las mediatrices para reconstruir platos, vasijas y ruedas antiguas a partir de fragmentos. Marcan tres puntos sobre el borde curvo del fragmento, trazan las mediatrices y encuentran el centro original. Asi pueden saber el tamano completo de la pieza original.",
+    "ejercicios": [
+      {
+        "numero": 1,
+        "enunciado": "Una circunferencia tiene radio de 7 cm. Calcula su longitud usando pi = 3.14.",
+        "espacio": true,
+        "lineas": 3
+      },
+      {
+        "numero": 2,
+        "enunciado": "Marca tres puntos no alineados en tu cuaderno. Usando regla y compas, encuentra el centro de la circunferencia que pasa por los tres y trazala.",
+        "espacio": true,
+        "lineas": 4
+      },
+      {
+        "numero": 3,
+        "enunciado": "Si dos puntos estan separados 10 cm, puede pasar por ellos una circunferencia de radio 4 cm? Justifica tu respuesta.",
+        "espacio": true,
+        "lineas": 4
+      },
+      {
+        "numero": 4,
+        "enunciado": "Cuantas circunferencias pueden pasar por un solo punto? Y por dos puntos? Y por tres puntos no alineados? Explica por que.",
+        "espacio": true,
+        "lineas": 4
+      }
+    ],
+    "puntos_clave": [
+      "Tres puntos no alineados determinan una unica circunferencia; el centro es la interseccion de las mediatrices.",
+      "Tres puntos alineados no definen ninguna circunferencia (las mediatrices son paralelas).",
+      "Con un solo punto hay infinitas circunferencias; con dos tambien; con tres no alineados, solo una.",
+      "Longitud de la circunferencia = 2 x pi x radio = pi x diametro.",
+      "El metodo de las mediatrices conecta las construcciones con regla y compas con la circunferencia."
+    ]
+  },
+  "diapositiva": [
+    {
+      "titulo": "¿Cómo construir un círculo desde cero?",
+      "puntos": [
+        "Hoy aprenderemos a construir circunferencias con distintos datos",
+        "Criterios de existencia: ¿cuándo sí se puede y cuándo no?",
+        "Criterios de unicidad: ¿cuántas circunferencias son posibles?"
+      ],
+      "ejemplo": "¿Cuántos círculos pasan por 1 punto? ¿Por 2? ¿Por 3?"
+    },
+    {
+      "titulo": "Construir con radio o diámetro",
+      "puntos": [
+        "Con el radio: abre el compás a esa medida y traza",
+        "Con el diámetro: divide entre 2 para obtener el radio",
+        "El centro y el radio determinan la circunferencia completamente"
+      ],
+      "ejemplo": "Radio = 4 cm → abre compás a 4 cm. Diámetro = 10 cm → radio = 5 cm"
+    },
+    {
+      "titulo": "Circunferencia por tres puntos — Método",
+      "puntos": [
+        "Marca los puntos A, B, C (no alineados)",
+        "Traza la mediatriz de AB",
+        "Traza la mediatriz de BC",
+        "Las mediatrices se cruzan en el centro O",
+        "Mide OA = radio. Traza la circunferencia"
+      ],
+      "ejemplo": "Las mediatrices siempre se cruzan si los puntos no están en línea recta",
+      "figura": {
+        "tipo": "circulo",
+        "radio": 60,
+        "elementos": ["radio", "diametro", "cuerda", "tangente"],
+        "width": 200,
+        "height": 200
+      }
+    },
+    {
+      "titulo": "¿Por qué funciona?",
+      "puntos": [
+        "Todo punto de la mediatriz de AB equidista de A y B",
+        "Todo punto de la mediatriz de BC equidista de B y C",
+        "El cruce O equidista de A, B y C: ¡es el centro!"
+      ],
+      "ejemplo": "OA = OB = OC = radio de la circunferencia"
+    },
+    {
+      "titulo": "Criterios de existencia y unicidad",
+      "puntos": [
+        "1 punto → infinitas circunferencias",
+        "2 puntos → infinitas circunferencias",
+        "3 puntos no alineados → exactamente 1 circunferencia",
+        "3 puntos alineados → ninguna circunferencia"
+      ],
+      "ejemplo": "Puntos alineados: las mediatrices son paralelas → no hay centro"
+    },
+    {
+      "titulo": "Longitud de la circunferencia",
+      "puntos": [
+        "Longitud (perímetro) = 2 × π × radio",
+        "También: Longitud = π × diámetro",
+        "π ≈ 3.14159..."
+      ],
+      "ejemplo": "Radio = 7 cm → Longitud = 2 × 3.14 × 7 = 43.96 cm"
+    },
+    {
+      "titulo": "Repaso integrado: todas las partes",
+      "puntos": [
+        "Centro, radio, diámetro, cuerda, arco",
+        "Secante, tangente",
+        "Sector circular, segmento circular, corona circular",
+        "Cada parte tiene su definición y propiedades"
+      ],
+      "ejemplo": "Traza un círculo y etiqueta las 10 partes en un solo diagrama"
+    },
+    {
+      "titulo": "Resumen y actividad final",
+      "puntos": [
+        "3 puntos no alineados → 1 circunferencia única",
+        "Método: mediatrices para encontrar el centro",
+        "Longitud = 2πr = πd",
+        "El círculo es la figura con más propiedades en geometría plana"
+      ],
+      "ejemplo": "Reto: marca 3 puntos de una moneda, retírala y reconstruye la circunferencia con compás"
+    }
+  ],
+  "video_script": "# Partes del círculo — Script de video\n\n[VISUAL: Título animado con fragmentos de un plato roto que se reconstruyen formando un círculo]\n\n¡Hola! Hoy vas a aprender un truco increíble: reconstruir un círculo completo a partir de solo tres puntos. Suena a magia, pero es geometría pura. ¿Listo? Vámonos.\n\n[VISUAL: Tres puntos A, B y C aparecen en pantalla formando un triángulo]\n\nImagina que tienes tres puntos en una hoja: A, B y C. Y te preguntan: ¿puedes trazar un círculo que pase exactamente por los tres? La respuesta es sí, siempre y cuando los tres puntos no estén en línea recta.\n\nY no solo se puede, sino que hay uno solo. Una única circunferencia que pasa por esos tres puntos. Ni más ni menos.\n\n¿Cómo se construye? Con un truco que ya conoces: las mediatrices.\n\n[VISUAL: Segmento AB aparece. Se construye la mediatriz paso a paso con compás]\n\n**Paso 1:** Traza el segmento AB. Construye su mediatriz con el compás. ¿Recuerdas cómo? Abres el compás a más de la mitad de AB, haces arcos desde A y desde B, y unes los cruces. Esa es la mediatriz.\n\n**Paso 2:** Ahora haz lo mismo con el segmento BC. Traza su mediatriz.\n\n[VISUAL: Segmento BC y su mediatriz aparecen. Las dos mediatrices se cruzan en O]\n\n**Paso 3:** Las dos mediatrices se cruzan en un punto. Ese punto es el centro de la circunferencia. Le ponemos O.\n\n¿Por qué funciona? Porque todo punto en la mediatriz de AB está a la misma distancia de A que de B. Y todo punto en la mediatriz de BC está a la misma distancia de B que de C. Entonces O, que está en ambas mediatrices, está a la misma distancia de A, B y C. Esa distancia es el radio.\n\n[VISUAL: Líneas punteadas de O a A, O a B y O a C, todas con la misma medida resaltada]\n\n**Paso 4:** Mide la distancia de O a cualquiera de los tres puntos. Abre tu compás a esa medida.\n\n**Paso 5:** Traza la circunferencia. ¡Pasa por los tres puntos!\n\n[VISUAL: La circunferencia se traza y pasa perfectamente por A, B y C. Efecto de destello]\n\nAhora, ¿qué pasa si los tres puntos están en línea recta?\n\n[VISUAL: Tres puntos alineados. Las mediatrices se trazan paralelas, sin cruzarse]\n\nLas mediatrices resultan paralelas. Nunca se cruzan. No hay centro. No hay circunferencia posible. Esa es la regla de existencia: tres puntos alineados no definen un círculo.\n\nY hay más reglas interesantes:\n\n[VISUAL: Tabla animada]\n\n- Un solo punto → infinitas circunferencias pasan por él.\n- Dos puntos → infinitas circunferencias pasan por ellos.\n- Tres puntos no alineados → exactamente una circunferencia.\n- Tres puntos alineados → ninguna.\n\nEso de \"exactamente una\" se llama **unicidad**. Es única. Especial. Irrepetible.\n\n[VISUAL: Transición a un círculo con todas sus partes etiquetadas]\n\nAhora vamos a repasar todas las partes del círculo que hemos aprendido en estas semanas.\n\nEl **centro** es el punto del que todo equidista. El **radio** va del centro al borde. El **diámetro** cruza de lado a lado pasando por el centro y mide el doble del radio.\n\nLa **cuerda** une dos puntos de la circunferencia. El **arco** es el pedazo curvo entre dos puntos. La **secante** es la recta que corta en dos puntos. La **tangente** toca en uno solo y es perpendicular al radio.\n\nEl **sector** es la rebanada entre dos radios. El **segmento** es el gajo entre una cuerda y un arco. La **corona** es el espacio entre dos circunferencias concéntricas.\n\n[VISUAL: Todas las partes se iluminan una por una en un solo diagrama]\n\nY un dato importante: la longitud de la circunferencia se calcula con la fórmula:\n\nLongitud = 2 × π × radio\n\n[VISUAL: Fórmula grande en pantalla con π brillando]\n\nO lo que es lo mismo: π por el diámetro. Con π aproximadamente igual a 3.14.\n\nSi tu radio es 7 centímetros, la longitud es 2 × 3.14 × 7 = 43.96 centímetros.\n\n[VISUAL: Calculadora animada mostrando la operación]\n\nTu reto final para esta unidad: agarra una moneda o una tapa circular. Marca tres puntos de su borde en una hoja. Retira el objeto. Ahora, usando solo regla y compás, reconstruye la circunferencia completa con el método de las mediatrices. Luego coloca el objeto encima y verifica que coincida.\n\n[VISUAL: Manos haciendo la actividad en tiempo real, moneda encajando perfectamente al final]\n\nSi coincide, te ganaste un diez en geometría. ¡Nos vemos en la siguiente unidad!"
+}

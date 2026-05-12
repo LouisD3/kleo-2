@@ -1,0 +1,312 @@
+{
+  "secuencia": 9,
+  "titulo": "Sucesiones con progresión aritmética",
+  "contenido": "Regularidades y Patrones.",
+  "pda": "Representa algebraicamente una sucesión con progresión aritmética de figuras y números.",
+  "evaluacion": {
+    "preguntas": [
+      {
+        "tipo": "opcion_multiple",
+        "pregunta": "En la sucesión 3, 7, 11, 15, 19, ... ¿cuál es la diferencia común?",
+        "opciones": ["A) 3", "B) 4", "C) 5", "D) 7"],
+        "respuesta": "B"
+      },
+      {
+        "tipo": "verdadero_falso",
+        "pregunta": "La fórmula del término general de una progresión aritmética es aₙ = a₁ + (n − 1) × d.",
+        "respuesta": true
+      },
+      {
+        "tipo": "calculo",
+        "pregunta": "Encuentra el término 20 de la sucesión 5, 8, 11, 14, ...",
+        "respuesta": "a₁ = 5, d = 3, n = 20. Aplicando aₙ = a₁ + (n − 1) × d: a₂₀ = 5 + (20 − 1) × 3 = 5 + 19 × 3 = 5 + 57 = 62. El término 20 es 62."
+      },
+      {
+        "tipo": "espacios",
+        "pregunta": "En una progresión aritmética, la cantidad que se suma de un término al siguiente se llama diferencia ___.",
+        "respuesta": "común"
+      },
+      {
+        "tipo": "abierta",
+        "pregunta": "Una figura se forma con triángulos: la figura 1 tiene 3 triángulos, la figura 2 tiene 6, la figura 3 tiene 9. ¿Cuántos triángulos tendrá la figura 10? Explica tu razonamiento.",
+        "respuesta": "Es una progresión aritmética con a₁ = 3 y d = 3. La fórmula es aₙ = 3 + (n − 1) × 3 = 3n. Para la figura 10: a₁₀ = 3 × 10 = 30 triángulos. Cada figura agrega 3 triángulos más que la anterior."
+      }
+    ]
+  },
+  "orientacion": {
+    "contenidos_especificos": [
+      "Concepto de sucesión y progresión aritmética",
+      "Diferencia común (razón) en una progresión aritmética",
+      "Expresión algebraica del término general: aₙ = a₁ + (n − 1)d"
+    ],
+    "actividad_inicio": [
+      "Dibuja en el pizarrón una secuencia de figuras con triángulos: Figura 1 tiene 3, Figura 2 tiene 6, Figura 3 tiene 9.",
+      "Pregunta: ¿Cuántos triángulos tendrá la Figura 4? ¿Y la Figura 10?",
+      "Pide que identifiquen el patrón: ¿cuántos triángulos se agregan cada vez?",
+      "Anota la sucesión numérica: 3, 6, 9, 12, … y señala que la diferencia constante es 3.",
+      "Plantea: ¿Podrán encontrar una fórmula para calcular cualquier figura sin dibujarla?"
+    ],
+    "desarrollo": [
+      {
+        "titulo": "Sucesiones y diferencia común",
+        "diapositiva": "1-3",
+        "libro": "Sección correspondiente",
+        "video": null,
+        "descripcion": "Define sucesión como una lista ordenada de números que sigue un patrón. Introduce progresión aritmética: sucesión donde la diferencia entre términos consecutivos es constante (d). Presenta 3 sucesiones y pide que identifiquen cuáles son progresiones aritméticas y calculen d. Incluye una con d negativa (ejemplo: 20, 17, 14, 11, …).",
+        "tip": "Usa la notación a₁, a₂, a₃, … desde el inicio para que se familiaricen con los subíndices antes de llegar a la fórmula general."
+      },
+      {
+        "titulo": "Fórmula del término general",
+        "diapositiva": "4-6",
+        "libro": "Sección correspondiente",
+        "video": "min 0:30-3:00",
+        "descripcion": "Construye la fórmula inductivamente: a₁ = a₁, a₂ = a₁ + d, a₃ = a₁ + 2d, a₄ = a₁ + 3d. Pregunta: ¿Ven el patrón? Concluye que aₙ = a₁ + (n − 1)d. Aplica la fórmula para encontrar el término 50 de la sucesión 3, 6, 9, … (a₅₀ = 3 + 49 × 3 = 150). Resuelve otro ejemplo con d negativa.",
+        "tip": null
+      },
+      {
+        "titulo": "Sucesiones de figuras",
+        "diapositiva": "7-9",
+        "libro": "Sección correspondiente",
+        "video": null,
+        "descripcion": "Presenta 3 sucesiones figurales (cuadrados que crecen en L, hexágonos en fila, puntos en triángulo). En cada caso, los alumnos deben: 1) Contar los elementos en las primeras 4 figuras, 2) Escribir la sucesión numérica, 3) Encontrar d, 4) Escribir la expresión algebraica del término general, 5) Verificar calculando el término 10.",
+        "tip": "Anima a los alumnos a dibujar la Figura 5 antes de buscar la fórmula; la transición de lo concreto a lo abstracto es clave."
+      }
+    ],
+    "cierre_individual": {
+      "reflexiona": "¿Por qué es más útil tener una expresión algebraica que seguir contando figura por figura? Piensa en qué pasaría si te pidieran la Figura 1000.",
+      "profundiza": [
+        {
+          "pregunta": "Una sucesión aritmética comienza en 7 y tiene diferencia común d = 4. ¿Cuál es el término 25?",
+          "respuesta_modelo": "R.M. Usando la fórmula aₙ = a₁ + (n − 1)d: a₂₅ = 7 + (25 − 1) × 4 = 7 + 24 × 4 = 7 + 96 = 103. El término 25 de la sucesión es 103."
+        },
+        {
+          "pregunta": "En la sucesión 50, 45, 40, 35, … ¿cuál es la diferencia común y en qué término la sucesión llega a cero?",
+          "respuesta_modelo": "R.M. La diferencia común es d = −5. Para encontrar cuándo aₙ = 0: 0 = 50 + (n − 1)(−5), entonces 5(n − 1) = 50, n − 1 = 10, n = 11. La sucesión llega a cero en el término 11."
+        }
+      ]
+    },
+    "cierre_grupal": [
+      "Pide a un alumno que explique con sus palabras qué es una progresión aritmética.",
+      "Escriban juntos la fórmula del término general y verifiquen que funciona con la sucesión de triángulos del inicio.",
+      "Pregunta: ¿Puede una progresión aritmética tener d = 0? ¿Cómo se vería?",
+      "Reto rápido: ¿Cuál sucesión aritmética tiene a₁ = 2 y a₁₀ = 20? Encuentren d.",
+      "Anticipa: la próxima semana usaremos letras para representar cantidades desconocidas, lo cual se llama álgebra."
+    ],
+    "preguntas_comprension": [
+      "¿Qué es la diferencia común en una progresión aritmética?",
+      "¿Cuál es la fórmula para encontrar el término n de una progresión aritmética?",
+      "Escribe los primeros 5 términos de la sucesión con a₁ = 10 y d = −3.",
+      "Si una sucesión figural tiene 4, 7, 10, 13, … elementos, ¿cuántos tendrá la Figura 20?",
+      "¿Toda sucesión numérica es una progresión aritmética? Justifica."
+    ]
+  },
+  "libro": {
+    "introduccion": "¿Te has dado cuenta de que algunos patrones numéricos se repiten de forma predecible? Si alguien te dice 2, 5, 8, 11... ¿puedes adivinar el siguiente? ¡Claro que sí! Eso es una sucesión con progresión aritmética, y hoy vas a aprender a descifrarlas y construirlas.",
+    "conceptos": [
+      {
+        "titulo": "Sucesión y progresión aritmética",
+        "contenido": "Una sucesión es una lista ordenada de números que sigue una regla. Una progresión aritmética es una sucesión donde la diferencia entre un término y el anterior siempre es la misma. Esa diferencia constante se llama diferencia común (d).",
+        "definicion": "Progresión aritmética: sucesión donde cada término se obtiene sumando una cantidad fija (diferencia común d) al término anterior.",
+        "figura": {
+          "tipo": "recta_numerica",
+          "min": 0,
+          "max": 15,
+          "puntos": [
+            {
+              "valor": 2,
+              "label": "a₁"
+            },
+            {
+              "valor": 5,
+              "label": "a₂"
+            },
+            {
+              "valor": 8,
+              "label": "a₃"
+            },
+            {
+              "valor": 11,
+              "label": "a₄"
+            },
+            {
+              "valor": 14,
+              "label": "a₅"
+            }
+          ],
+          "width": 400,
+          "height": 55
+        }
+      },
+      {
+        "titulo": "Fórmula del término general",
+        "contenido": "Si conoces el primer término (a₁) y la diferencia común (d), puedes encontrar cualquier término de la sucesión sin tener que calcular todos los anteriores. La fórmula es: aₙ = a₁ + (n − 1) × d, donde n es la posición del término que buscas.",
+        "definicion": null
+      }
+    ],
+    "ejemplos": [
+      {
+        "titulo": "Identificar la diferencia común",
+        "enunciado": "En la sucesión 4, 9, 14, 19, 24, ..., ¿cuál es la diferencia común?",
+        "pasos": [
+          "Paso 1: Resta términos consecutivos: 9 − 4 = 5, 14 − 9 = 5, 19 − 14 = 5.",
+          "Paso 2: La diferencia es constante."
+        ],
+        "resultado": "La diferencia común es d = 5."
+      },
+      {
+        "titulo": "Encontrar un término lejano",
+        "enunciado": "En la sucesión 3, 7, 11, 15, ..., ¿cuál es el término 20?",
+        "pasos": [
+          "Paso 1: Identifica a₁ = 3 y d = 7 − 3 = 4.",
+          "Paso 2: Usa la fórmula: a₂₀ = 3 + (20 − 1) × 4.",
+          "Paso 3: a₂₀ = 3 + 19 × 4 = 3 + 76 = 79."
+        ],
+        "resultado": "El término 20 es 79."
+      },
+      {
+        "titulo": "Sucesión con diferencia negativa",
+        "enunciado": "En la sucesión 50, 43, 36, 29, ..., ¿cuál es el término 8?",
+        "pasos": [
+          "Paso 1: d = 43 − 50 = −7.",
+          "Paso 2: a₈ = 50 + (8 − 1) × (−7) = 50 + 7 × (−7).",
+          "Paso 3: a₈ = 50 − 49 = 1."
+        ],
+        "resultado": "El término 8 es 1."
+      }
+    ],
+    "datos_curiosos": "Carl Friedrich Gauss, uno de los matemáticos más grandes de la historia, descubrió a los 10 años que la suma de los números del 1 al 100 es 5,050. Lo hizo emparejando el primero con el último (1 + 100 = 101) y multiplicando por la cantidad de pares (50 × 101 = 5,050). ¡Usó las propiedades de la progresión aritmética!",
+    "ejercicios": [
+      {
+        "numero": 1,
+        "enunciado": "Encuentra la diferencia común y los siguientes 3 términos de: 10, 16, 22, 28, ...",
+        "espacio": true,
+        "lineas": 3
+      },
+      {
+        "numero": 2,
+        "enunciado": "Calcula el término 15 de la sucesión: 2, 5, 8, 11, ...",
+        "espacio": true,
+        "lineas": 3
+      },
+      {
+        "numero": 3,
+        "enunciado": "Una sucesión aritmética empieza en 100 y tiene d = −8. ¿Cuál es el primer término negativo? ¿En qué posición está?",
+        "espacio": true,
+        "lineas": 4
+      },
+      {
+        "numero": 4,
+        "enunciado": "El término 1 de una sucesión es 5 y el término 10 es 41. ¿Cuál es la diferencia común?",
+        "espacio": true,
+        "lineas": 3
+      }
+    ],
+    "puntos_clave": [
+      "Una progresión aritmética tiene diferencia constante entre términos consecutivos.",
+      "Fórmula del término general: aₙ = a₁ + (n − 1) × d.",
+      "Si d es positiva, la sucesión crece; si d es negativa, decrece.",
+      "Para verificar, resta cualquier par de términos consecutivos: siempre debe dar d.",
+      "La fórmula te permite saltar directamente a cualquier término sin calcular todos los anteriores."
+    ]
+  },
+  "diapositiva": [
+    {
+      "titulo": "¿Qué es una sucesión?",
+      "puntos": [
+        "Una lista ordenada de números que sigue un patrón",
+        "Ejemplos: 2, 4, 6, 8, ... | 10, 7, 4, 1, ...",
+        "Hoy nos enfocamos en sucesiones con progresión aritmética"
+      ],
+      "ejemplo": "Patrón en las casas: 2, 4, 6, 8, 10, ..."
+    },
+    {
+      "titulo": "Progresión aritmética",
+      "puntos": [
+        "Cada término se obtiene sumando siempre la misma cantidad al anterior",
+        "Esa cantidad constante se llama diferencia común (d)",
+        "d puede ser positiva (sucesión creciente) o negativa (decreciente)"
+      ],
+      "ejemplo": "3, 7, 11, 15, 19, ... → d = +4"
+    },
+    {
+      "titulo": "¿Cómo encontrar la diferencia común?",
+      "puntos": [
+        "Resta cualquier término menos el anterior: d = aₙ − aₙ₋₁",
+        "Si todas las restas dan lo mismo, es progresión aritmética",
+        "Si no, NO es progresión aritmética"
+      ],
+      "ejemplo": "Sucesión: 10, 16, 22, 28 → d = 16 − 10 = 6 ✓",
+      "figura": {
+        "tipo": "recta_numerica",
+        "min": 0,
+        "max": 20,
+        "puntos": [
+          {
+            "valor": 3,
+            "label": "3"
+          },
+          {
+            "valor": 7,
+            "label": "7"
+          },
+          {
+            "valor": 11,
+            "label": "11"
+          },
+          {
+            "valor": 15,
+            "label": "15"
+          },
+          {
+            "valor": 19,
+            "label": "19"
+          }
+        ],
+        "width": 500,
+        "height": 60
+      }
+    },
+    {
+      "titulo": "Fórmula del término general",
+      "puntos": [
+        "aₙ = a₁ + (n − 1) × d",
+        "a₁ = primer término, n = posición, d = diferencia común",
+        "Te permite calcular CUALQUIER término sin listar todos"
+      ],
+      "ejemplo": "a₁ = 3, d = 5 → a₂₀ = 3 + 19 × 5 = 98"
+    },
+    {
+      "titulo": "Ejemplo con figuras",
+      "puntos": ["Figura 1: 4 palillos", "Figura 2: 7 palillos", "Figura 3: 10 palillos → d = 3"],
+      "ejemplo": "aₙ = 4 + (n−1) × 3 = 3n + 1 → Figura 10: 31 palillos"
+    },
+    {
+      "titulo": "Problema inverso: encontrar a₁ o d",
+      "puntos": [
+        "Si conoces un término y d, puedes despejar a₁",
+        "Si conoces a₁ y un término, puedes despejar d",
+        "Usa la misma fórmula y despeja la incógnita"
+      ],
+      "ejemplo": "a₁₀ = 45, d = 4 → 45 = a₁ + 9(4) → a₁ = 9"
+    },
+    {
+      "titulo": "De figuras a fórmulas",
+      "puntos": [
+        "Paso 1: Cuenta los elementos de cada figura → tabla",
+        "Paso 2: Identifica a₁ y d",
+        "Paso 3: Escribe aₙ = a₁ + (n − 1) × d y simplifica"
+      ],
+      "ejemplo": "Triángulos: 3, 6, 9, 12 → aₙ = 3n"
+    },
+    {
+      "titulo": "Practica: encuentra el término indicado",
+      "puntos": [
+        "Sucesión: 1, 6, 11, 16, ... → ¿Término 30?",
+        "Sucesión: 100, 93, 86, 79, ... → ¿Término 15?",
+        "Escribe la fórmula antes de calcular"
+      ],
+      "ejemplo": "Respuestas: 146 y 2"
+    }
+  ],
+  "video_script": "## Sucesiones con progresión aritmética — Script de video\n\n[VISUAL: Título \"Sucesiones con progresión aritmética\" con una secuencia de figuras geométricas que crece]\n\n¡Hola! Hoy vamos a hablar de patrones y sucesiones. ¿Listo para aprender a predecir números como si fueras adivino? Bueno, no es magia, son matemáticas.\n\n[VISUAL: Calle con casas numeradas 2, 4, 6, 8, 10, 12...]\n\nPiensa en los números de las casas en una calle: 2, 4, 6, 8, 10... Si alguien te pregunta cuál es el número de la casa 50, no necesitas contar todas. Solo necesitas entender el patrón. A eso le llamamos una **sucesión**: una lista ordenada de números que sigue una regla.\n\n[VISUAL: Aparecen las sucesiones 3, 7, 11, 15, 19 con flechas mostrando \"+4\" entre cada par]\n\nCuando la regla es \"sumar siempre la misma cantidad\", le llamamos **progresión aritmética**. Mira esta: 3, 7, 11, 15, 19... De 3 a 7 sumamos 4. De 7 a 11, otra vez 4. De 11 a 15, de nuevo 4. Esa cantidad que siempre se repite se llama **diferencia común**, y la representamos con la letra **d**.\n\n[VISUAL: Aparece la fórmula aₙ = a₁ + (n − 1) × d con cada parte etiquetada]\n\nAhora, la parte más poderosa: la fórmula del término general. Se escribe así: a sub n, igual a, a sub uno, más, paréntesis, n menos 1, por d. ¿Qué significa cada letra? a sub n es el término que buscas, a sub 1 es el primer término, n es la posición y d es la diferencia común.\n\n[VISUAL: Se resuelve paso a paso con la sucesión 3, 7, 11, 15... encontrando el término 50]\n\nVamos a usarla. En nuestra sucesión 3, 7, 11, 15... el primer término es 3 y la diferencia común es 4. ¿Cuánto vale el término 50? a sub 50 = 3 + (50 − 1) × 4 = 3 + 49 × 4 = 3 + 196 = 199. ¡Así de rápido!\n\n[VISUAL: Secuencia de figuras con cuadrados unidos: 1 cuadrado (4 palillos), 2 cuadrados (7 palillos), 3 cuadrados (10 palillos)]\n\nTambién funciona con figuras. Mira esta secuencia de cuadrados hechos con palillos. La figura 1 tiene 4 palillos. La 2 tiene 7. La 3 tiene 10. ¿Cuál es la diferencia común? Correcto: d = 3, porque cada cuadrado nuevo agrega 3 palillos (ya comparte un lado con el anterior).\n\nLa fórmula queda: aₙ = 4 + (n − 1) × 3. Simplificando: aₙ = 3n + 1. Verificamos: para n = 1, da 4 palillos. Para n = 2, da 7. Para n = 3, da 10. ¡Funciona!\n\n[VISUAL: Se muestra un problema inverso con signos de interrogación]\n\nY oye, la fórmula es tan versátil que también puedes usarla al revés. Si te dicen que el término 12 de una sucesión vale 35 y la diferencia común es 3, puedes encontrar el primer término: 35 = a₁ + 11 × 3, entonces a₁ = 35 − 33 = 2.\n\n[VISUAL: Resumen con tres pasos: 1. Identifica a₁ y d, 2. Escribe la fórmula, 3. Sustituye y calcula]\n\nPara cerrar, recuerda estos tres pasos: primero identifica el primer término y la diferencia común. Luego escribe la fórmula. Y finalmente, sustituye los valores y calcula. Con esta herramienta puedes encontrar el término mil de una sucesión en segundos. ¡Practica con diferentes sucesiones y nos vemos en el siguiente video!"
+}

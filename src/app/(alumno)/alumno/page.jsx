@@ -122,7 +122,7 @@ export default function DashboardAlumno() {
                         )}
                       </div>
                       <div className="flex flex-wrap gap-3 text-xs text-gray-500">
-                        <span>{tarea.materia}</span>
+                        <span>Matematicas</span>
                         <span>·</span>
                         <span>{tarea.dificultad}</span>
                         {fechaLimite && (

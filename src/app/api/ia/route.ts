@@ -125,29 +125,14 @@ interface PdaItem {
 }
 
 function promptGenerar({
-  materia,
   dificultad,
-  metodologia,
   tipos,
   numeroPreguntas,
   pda,
   instrucciones,
-  idioma,
 }: GenerarPayload): string {
-  const instruccionMetodologia: Record<string, string> = {
-    Feynman:
-      'Las preguntas deben pedirle al alumno que explique el concepto con sus propias palabras, como si se lo explicara a alguien que no sabe nada del tema. Fomenta la comprensión profunda, no la memorización.',
-    'Memorización activa':
-      'Las preguntas deben ser de rappel directo: definiciones exactas, fechas, nombres, fórmulas o hechos concretos que el alumno debe restituir de memoria.',
-    'Resolución de problemas':
-      'Las preguntas deben plantear situaciones prácticas con contexto real. El alumno debe mostrar sus pasos intermedios y el proceso de razonamiento, no solo el resultado final.',
-    'Práctica directa':
-      'Genera ejercicios directos, cortos y sin contexto narrativo. Sin escenarios, sin historias, sin personajes. Solo la operación, el ejercicio o la pregunta puntual que el alumno debe resolver. Ejemplo para matemáticas: "3/4 + 1/2 = ___" en vez de "Don Pepe tiene una panadería y necesita calcular…".',
-  }
-
   const instruccionMet =
-    instruccionMetodologia[metodologia] ??
-    'Genera preguntas claras y apropiadas para el nivel indicado.'
+    'Sigue el método Singapur: las preguntas deben partir de situaciones concretas y contextualizadas, usar modelos visuales (barras, diagramas) cuando sea pertinente, y progresar hacia la abstracción. Fomenta la comprensión profunda y el razonamiento, no la memorización.'
 
   const tiposEfectivos = tipos.includes('Ejercicio mixto')
     ? ['opcion_multiple', 'verdadero_falso', 'abierta', 'espacios', 'calculo']
@@ -168,13 +153,13 @@ function promptGenerar({
         `\nLas preguntas deben estar directamente alineadas con ${pdas.length > 1 ? 'estos PDAs' : 'este PDA'} del programa NEM.${pdas.length > 1 ? ' Distribuye las preguntas equitativamente entre los PDAs indicados.' : ''}`
       : ''
 
-  return `Eres un experto en pedagogía mexicana. Genera una tarea escolar con exactamente ${numeroPreguntas} preguntas.
+  return `Eres un experto en el metodo Singapur para matematicas de 1o de secundaria en Mexico. Genera una tarea con exactamente ${numeroPreguntas} preguntas.
 
-Materia: ${materia}
+Materia: Matematicas 1o Secundaria
 Dificultad: ${dificultad}
-Metodología pedagógica: ${metodologia}
-Instrucción pedagógica específica: ${instruccionMet}
-Tipos de ejercicios a incluir: ${tiposStr}${pdaLinea}${instrucciones ? `\nInstrucciones específicas del profesor: ${instrucciones}` : ''}
+Metodologia pedagogica: Singapur (CPA)
+Instruccion pedagogica especifica: ${instruccionMet}
+Tipos de ejercicios a incluir: ${tiposStr}${pdaLinea}${instrucciones ? `\nInstrucciones especificas del profesor: ${instrucciones}` : ''}
 
 Reglas estrictas:
 - Distribuye las preguntas equitativamente entre los tipos indicados.
@@ -182,9 +167,9 @@ Reglas estrictas:
 - Para "verdadero_falso": incluye un campo "respuesta" con valor booleano true o false.
 - Para "espacios": la pregunta debe tener exactamente un ___ donde va la respuesta. Incluye "respuesta" con la palabra o frase correcta.
 - Para "abierta": incluye un campo "respuesta" con una respuesta modelo completa y bien redactada que sirva de referencia al profesor para corregir.
-- Para "calculo": incluye un campo "respuesta" con la resolución paso a paso y el resultado final.
-- ${idioma === 'English' ? 'All questions, options, and answers MUST be written entirely in English. Use clear, age-appropriate language for secondary/high school students.' : 'Todo en español mexicano, lenguaje claro y apropiado para estudiantes de secundaria o preparatoria.'}
-- El contenido debe ser coherente con la materia y la dificultad indicadas.
+- Para "calculo": incluye un campo "respuesta" con la resolucion paso a paso y el resultado final.
+- Todo en espanol mexicano, lenguaje claro y apropiado para estudiantes de 1o de secundaria.
+- El contenido debe ser coherente con matematicas de 1o de secundaria y la dificultad indicada.
 
 Formato de respuesta JSON requerido:
 {
@@ -201,7 +186,7 @@ Responde ÚNICAMENTE con el JSON. Sin texto adicional, sin explicaciones, sin co
 }
 
 function promptCorregir({ tarea, respuestasAlumno }: CorregirPayload): string {
-  const preguntasStr = tarea.preguntas
+  const preguntasStr = tarea.contenido_cpa
     .map((p, i) => {
       const respAlumno =
         (Array.isArray(respuestasAlumno) ? respuestasAlumno[i] : respuestasAlumno[String(i)]) ??
@@ -220,9 +205,8 @@ function promptCorregir({ tarea, respuestasAlumno }: CorregirPayload): string {
     })
     .join('\n\n')
 
-  return `Eres un maestro mexicano experto. Corrige la siguiente tarea de un alumno.
+  return `Eres un maestro mexicano experto en el metodo Singapur. Corrige la siguiente tarea de matematicas de 1o de secundaria.
 
-Materia: ${tarea.materia}
 Dificultad: ${tarea.dificultad}
 
 ${preguntasStr}
@@ -247,10 +231,10 @@ Formato de respuesta JSON requerido:
 Responde ÚNICAMENTE con el JSON. Sin texto adicional, sin explicaciones, sin comillas de bloque de código.`
 }
 
-function promptModificar({ pregunta, instruccion, materia, dificultad }: ModificarPayload): string {
+function promptModificar({ pregunta, instruccion, dificultad }: ModificarPayload): string {
   const preguntaJSON = JSON.stringify(pregunta, null, 2)
 
-  return `Eres un experto en pedagogía mexicana. Un profesor quiere modificar la siguiente pregunta de una tarea de ${materia} (dificultad: ${dificultad}).
+  return `Eres un experto en el metodo Singapur para matematicas de 1o de secundaria en Mexico. Un profesor quiere modificar la siguiente pregunta (dificultad: ${dificultad}).
 
 Pregunta actual:
 ${preguntaJSON}

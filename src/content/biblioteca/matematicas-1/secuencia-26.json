@@ -1,0 +1,310 @@
+{
+  "secuencia": 26,
+  "titulo": "Distancia de un punto a una recta",
+  "contenido": "Medición y cálculo en diferentes contextos.",
+  "pda": "Encuentra la distancia de un punto a una recta y la distancia entre dos rectas paralelas.",
+  "evaluacion": {
+    "preguntas": [
+      {
+        "tipo": "verdadero_falso",
+        "pregunta": "La distancia de un punto a una recta es siempre la longitud del segmento perpendicular que va del punto a la recta.",
+        "opciones": [],
+        "respuesta": true
+      },
+      {
+        "tipo": "opcion_multiple",
+        "pregunta": "¿Cuál es la distancia del punto P(0, 3) a la recta y = 0 (el eje x)?",
+        "opciones": ["A) 0", "B) 1", "C) 3", "D) 9"],
+        "respuesta": "C"
+      },
+      {
+        "tipo": "espacios",
+        "pregunta": "La distancia entre dos rectas paralelas es ___ en todos sus puntos.",
+        "opciones": [],
+        "respuesta": "constante"
+      },
+      {
+        "tipo": "calculo",
+        "pregunta": "Calcula la distancia del punto P(3, 4) a la recta que pasa por el eje x (y = 0).",
+        "opciones": [],
+        "respuesta": "Paso 1: La recta y = 0 es el eje x, una recta horizontal.\nPaso 2: La distancia de un punto a una recta horizontal y = k es |y₁ − k|.\nPaso 3: Sustituir: d = |4 − 0| = |4| = 4 unidades.\nLa distancia es 4 unidades."
+      },
+      {
+        "tipo": "abierta",
+        "pregunta": "¿Por qué la distancia de un punto a una recta se mide de forma perpendicular y no en diagonal?",
+        "opciones": [],
+        "respuesta": "Porque la distancia más corta entre un punto y una recta es siempre el segmento perpendicular. Cualquier otro segmento desde el punto hasta la recta sería más largo que el perpendicular. Es como cuando quieres cruzar una calle: el camino más corto es cruzar en línea recta (perpendicular), no en diagonal."
+      }
+    ]
+  },
+  "orientacion": {
+    "contenidos_especificos": [
+      "Comprender que la distancia de un punto a una recta es la longitud del segmento perpendicular trazado desde el punto hasta la recta",
+      "Calcular la distancia de un punto a rectas horizontales y verticales usando diferencias de coordenadas",
+      "Determinar la distancia entre dos rectas paralelas como la distancia de cualquier punto de una recta a la otra"
+    ],
+    "actividad_inicio": [
+      "Pedir a un alumno que se pare a un lado del salón y preguntar: ¿cuál es la forma más corta de llegar a la pared de enfrente?",
+      "Hacer que otro alumno mida caminando en diagonal y comparar: ¿cuál camino fue más corto?",
+      "Dibujar en el pizarrón una recta y un punto fuera de ella; trazar varios segmentos desde el punto hasta la recta y preguntar cuál parece más corto",
+      "Introducir la idea: la distancia más corta siempre es la perpendicular",
+      "Presentar el objetivo: aprender a calcular la distancia de un punto a una recta y entre rectas paralelas"
+    ],
+    "desarrollo": [
+      {
+        "titulo": "Distancia de un punto a una recta: concepto y perpendicular",
+        "diapositiva": "1-3",
+        "libro": "Sección 'Distancia punto-recta'",
+        "video": "min 0:30-2:30",
+        "descripcion": "Dibuje una recta horizontal en el pizarrón y un punto P arriba de ella. Trace varios segmentos desde P hasta distintos puntos de la recta. Mida cada uno (o use la cuadrícula). Confirme que el perpendicular es el más corto. Explique formalmente: la distancia de un punto a una recta es la longitud del segmento perpendicular. Para rectas horizontales (y = k), la distancia desde P(a, b) es |b − k|. Practique con tres ejemplos: y = 2 y P(4, 7); y = −1 y P(2, 3); y = 5 y P(−1, 1).",
+        "tip": "Use una escuadra o un libro para mostrar físicamente el ángulo recto entre la perpendicular y la recta."
+      },
+      {
+        "titulo": "Distancia a rectas verticales y casos en cuadrícula",
+        "diapositiva": "4-6",
+        "libro": "Sección 'Rectas verticales y cuadrícula'",
+        "video": "min 2:30-4:00",
+        "descripcion": "Extienda el procedimiento a rectas verticales (x = k): la distancia desde P(a, b) es |a − k|. Trabaje el ejemplo x = 3 con P(8, 2): distancia = |8 − 3| = 5. Luego plantee problemas en cuadrícula donde los alumnos identifiquen si la recta es horizontal o vertical y calculen la distancia. En parejas, resuelven 4 ejercicios variados. Circule y aclare dudas sobre valor absoluto.",
+        "tip": "Recuerde a los alumnos que el valor absoluto convierte cualquier resultado en positivo: |−4| = 4."
+      },
+      {
+        "titulo": "Distancia entre rectas paralelas",
+        "diapositiva": "7-8",
+        "libro": "Sección 'Rectas paralelas'",
+        "video": "min 4:00-5:30",
+        "descripcion": "Presente dos rectas paralelas horizontales, por ejemplo y = 2 e y = 7. Pregunte: ¿cuál es la distancia entre ellas? Tome cualquier punto de una recta, por ejemplo (0, 2), y calcule su distancia a la otra: |7 − 2| = 5. Repita con otro punto como (10, 2): misma distancia, 5. Concluya: la distancia entre rectas paralelas es constante y se calcula como la distancia de cualquier punto de una recta a la otra. Los alumnos practican con pares de rectas paralelas verticales y horizontales.",
+        "tip": null
+      }
+    ],
+    "cierre_individual": {
+      "reflexiona": "¿Por qué crees que la perpendicular da siempre la distancia más corta? Intenta explicarlo con tus propias palabras y dibuja un ejemplo en tu cuaderno.",
+      "profundiza": [
+        {
+          "pregunta": "Dos rectas paralelas están a una distancia de 8 unidades. Si una es y = 3, ¿cuáles son las posibles ecuaciones de la otra recta?",
+          "respuesta_modelo": "R.M. La otra recta puede ser y = 11 (3 + 8 = 11) o y = −5 (3 − 8 = −5), porque la recta paralela puede estar arriba o abajo."
+        },
+        {
+          "pregunta": "Si un punto está exactamente sobre la recta, ¿cuál es su distancia a esa recta? ¿Tiene sentido geométricamente?",
+          "respuesta_modelo": "R.M. La distancia es cero, porque no hay separación entre el punto y la recta. Geométricamente tiene sentido: si el punto ya pertenece a la recta, no necesita recorrer ninguna distancia para \"llegar\" a ella."
+        }
+      ]
+    },
+    "cierre_grupal": [
+      "La distancia de un punto a una recta es la longitud del segmento perpendicular desde el punto hasta la recta",
+      "La perpendicular es siempre el camino más corto del punto a la recta",
+      "Para rectas horizontales y = k: distancia = |y_punto − k|",
+      "Para rectas verticales x = k: distancia = |x_punto − k|",
+      "La distancia entre dos rectas paralelas es constante y se obtiene midiendo la perpendicular entre ellas"
+    ],
+    "preguntas_comprension": [
+      "¿Cuál es la distancia del punto (5, −3) a la recta y = 4?",
+      "Si la distancia de un punto a la recta x = 2 es 6, ¿cuáles son los posibles valores de la coordenada x del punto?",
+      "¿Por qué no tiene sentido hablar de la distancia entre dos rectas que se cruzan?",
+      "¿La distancia entre las rectas y = −2 e y = 5 es 7 o −7? Justifica.",
+      "Un poste de luz está a 10 metros de una banqueta recta. ¿Cómo medirías esa distancia correctamente?"
+    ]
+  },
+  "libro": {
+    "introduccion": "Imagina que estás en medio de un campo y quieres saber qué tan lejos estás de la carretera más cercana. ¿Caminarías en diagonal? ¡Claro que no! Irías directo, en línea recta perpendicular a la carretera. Hoy vas a aprender a calcular esa distancia mínima entre un punto y una recta, y también entre dos rectas paralelas.",
+    "conceptos": [
+      {
+        "titulo": "Distancia de un punto a una recta",
+        "contenido": "La distancia de un punto a una recta es la longitud del segmento perpendicular que va desde el punto hasta la recta. De todos los segmentos que puedes trazar desde el punto hacia la recta, el perpendicular siempre es el más corto. Ese ángulo de 90° es la clave. Este principio funciona para cualquier recta, incluyendo las oblicuas (con pendiente), aunque en este curso nos concentramos en los casos más sencillos: rectas horizontales y verticales.",
+        "definicion": "Para una recta horizontal y = k, la distancia desde P(a, b) es |b − k|. Para una recta vertical x = k, la distancia desde P(a, b) es |a − k|.",
+        "figura": {
+          "tipo": "plano_cartesiano",
+          "xMin": -1,
+          "xMax": 7,
+          "yMin": -1,
+          "yMax": 6,
+          "puntos": [
+            {
+              "x": 3,
+              "y": 4,
+              "label": "P"
+            },
+            {
+              "x": 3,
+              "y": 1,
+              "label": "H"
+            }
+          ],
+          "lineas": [
+            {
+              "x1": 0,
+              "y1": 1,
+              "x2": 6,
+              "y2": 1
+            },
+            {
+              "x1": 3,
+              "y1": 4,
+              "x2": 3,
+              "y2": 1,
+              "color": "#E11D48"
+            }
+          ],
+          "width": 180,
+          "height": 180
+        }
+      },
+      {
+        "titulo": "Perpendicularidad y distancia mínima",
+        "contenido": "¿Por qué el segmento perpendicular es el más corto? Porque cualquier otro segmento desde el punto hasta la recta forma un triángulo rectángulo donde la perpendicular es un cateto y el otro segmento es la hipotenusa. Como la hipotenusa siempre es mayor que cualquier cateto, el perpendicular siempre gana.",
+        "definicion": null
+      },
+      {
+        "titulo": "Distancia entre rectas paralelas",
+        "contenido": "Dos rectas paralelas mantienen siempre la misma separación. Para calcular la distancia entre ellas, basta con tomar cualquier punto de una recta y medir su distancia perpendicular a la otra. El resultado es el mismo sin importar qué punto elijas.",
+        "definicion": "Para dos rectas horizontales y = k₁ e y = k₂, la distancia es |k₂ − k₁|. Para verticales x = k₁ y x = k₂, la distancia es |k₂ − k₁|."
+      }
+    ],
+    "ejemplos": [
+      {
+        "titulo": "Punto a recta horizontal",
+        "enunciado": "Calcula la distancia del punto P(4, 8) a la recta y = 3.",
+        "pasos": [
+          "Paso 1: Identifica que la recta es horizontal (y = k con k = 3).",
+          "Paso 2: Usa la coordenada y del punto: d = |y − k| = |8 − 3|.",
+          "Paso 3: d = |5| = 5."
+        ],
+        "resultado": "La distancia es 5 unidades."
+      },
+      {
+        "titulo": "Punto a recta vertical",
+        "enunciado": "Calcula la distancia del punto Q(5, 1) a la recta x = −2.",
+        "pasos": [
+          "Paso 1: Identifica que la recta es vertical (x = k con k = −2).",
+          "Paso 2: Usa la coordenada x del punto: d = |x − k| = |5 − (−2)|.",
+          "Paso 3: d = |5 + 2| = |7| = 7."
+        ],
+        "resultado": "La distancia es 7 unidades. Recuerda: restar un número negativo equivale a sumar."
+      },
+      {
+        "titulo": "Distancia entre paralelas",
+        "enunciado": "Calcula la distancia entre las rectas y = 1 e y = 6.",
+        "pasos": [
+          "Paso 1: Ambas son horizontales y paralelas.",
+          "Paso 2: d = |k₂ − k₁| = |6 − 1| = 5."
+        ],
+        "resultado": "La distancia es 5 unidades, constante en cualquier punto."
+      }
+    ],
+    "datos_curiosos": "En la vida real, la distancia perpendicular se usa para diseñar carriles de carreteras, determinar zonas de seguridad alrededor de vías de tren y calcular la altura de un triángulo. Los arquitectos la utilizan constantemente para asegurar que las paredes estén a la distancia correcta.",
+    "ejercicios": [
+      {
+        "numero": 1,
+        "enunciado": "Calcula la distancia del punto A(−3, 7) a la recta y = 2.",
+        "espacio": true,
+        "lineas": 3
+      },
+      {
+        "numero": 2,
+        "enunciado": "Calcula la distancia del punto B(6, −4) a la recta x = −1.",
+        "espacio": true,
+        "lineas": 3
+      },
+      {
+        "numero": 3,
+        "enunciado": "Dos rectas paralelas tienen ecuaciones y = −3 e y = 5. ¿Cuál es la distancia entre ellas?",
+        "espacio": true,
+        "lineas": 3
+      },
+      {
+        "numero": 4,
+        "enunciado": "Si la distancia de un punto a la recta x = 4 es 6 unidades, ¿cuáles son los posibles valores de la coordenada x del punto?",
+        "espacio": true,
+        "lineas": 3
+      }
+    ],
+    "puntos_clave": [
+      "La distancia de un punto a una recta es la longitud del segmento perpendicular, que siempre es el camino más corto.",
+      "Para rectas horizontales y = k: distancia = |y del punto − k|.",
+      "Para rectas verticales x = k: distancia = |x del punto − k|.",
+      "La distancia entre dos rectas paralelas es constante y se calcula como |k₂ − k₁|.",
+      "Si el punto está sobre la recta, la distancia es cero."
+    ]
+  },
+  "diapositiva": [
+    {
+      "titulo": "Distancia de un punto a una recta",
+      "puntos": [
+        "Tema: Medición y cálculo en diferentes contextos",
+        "Objetivo: Encontrar la distancia de un punto a una recta y entre rectas paralelas",
+        "Conexión con la semana anterior: distancia entre dos puntos"
+      ],
+      "ejemplo": "¿Cuál es el camino más corto de tu banca al pizarrón?"
+    },
+    {
+      "titulo": "¿Qué es la distancia punto-recta?",
+      "puntos": [
+        "Es la longitud del segmento perpendicular desde el punto a la recta",
+        "El segmento perpendicular es siempre el más corto",
+        "Se forma un ángulo de 90° con la recta",
+        "Siempre es un valor ≥ 0"
+      ],
+      "ejemplo": "Como cruzar una calle: el camino más corto es en línea recta, no en diagonal."
+    },
+    {
+      "titulo": "Distancia a rectas horizontales",
+      "puntos": [
+        "Una recta horizontal tiene forma y = k",
+        "La distancia es d = |y₁ − k|",
+        "Solo usamos la coordenada y del punto",
+        "El valor absoluto garantiza resultado positivo"
+      ],
+      "ejemplo": "P(3, 7) a y = 2: d = |7 − 2| = 5 unidades"
+    },
+    {
+      "titulo": "Distancia a rectas verticales",
+      "puntos": [
+        "Una recta vertical tiene forma x = k",
+        "La distancia es d = |x₁ − k|",
+        "Solo usamos la coordenada x del punto",
+        "¡Cuidado con los signos negativos!"
+      ],
+      "ejemplo": "Q(−4, 5) a x = 1: d = |−4 − 1| = 5 unidades"
+    },
+    {
+      "titulo": "Ejemplo resuelto paso a paso",
+      "puntos": [
+        "Punto: R(−2, 9), Recta: y = 4",
+        "Identificar: recta horizontal → usar coordenada y",
+        "Calcular: d = |9 − 4| = 5",
+        "La distancia es 5 unidades"
+      ],
+      "ejemplo": "Si el punto fuera R(−2, 4), la distancia sería |4 − 4| = 0 porque el punto está sobre la recta."
+    },
+    {
+      "titulo": "Distancia entre rectas paralelas",
+      "puntos": [
+        "Dos rectas paralelas mantienen siempre la misma distancia",
+        "Se calcula midiendo desde cualquier punto de una recta a la otra",
+        "Para paralelas horizontales: d = |k₂ − k₁|",
+        "Para paralelas verticales: d = |k₂ − k₁|"
+      ],
+      "ejemplo": "Entre y = 3 e y = 10: d = |10 − 3| = 7 unidades"
+    },
+    {
+      "titulo": "Errores comunes",
+      "puntos": [
+        "Medir en diagonal en vez de perpendicular",
+        "Usar la coordenada incorrecta (x en vez de y o viceversa)",
+        "Olvidar el valor absoluto y obtener distancias negativas",
+        "Pensar que la distancia entre paralelas varía según el punto"
+      ],
+      "ejemplo": "Error: P(3,7) a y=2 → \"d = 3\" (usó x en vez de y). Correcto: d = |7−2| = 5"
+    },
+    {
+      "titulo": "Resumen",
+      "puntos": [
+        "Distancia punto-recta = segmento perpendicular más corto",
+        "Rectas horizontales: d = |y₁ − k|",
+        "Rectas verticales: d = |x₁ − k|",
+        "Entre paralelas: distancia constante = |k₂ − k₁|"
+      ],
+      "ejemplo": "Si el punto está sobre la recta, d = 0."
+    }
+  ],
+  "video_script": "## Script de video: Distancia de un punto a una recta\n\n[VISUAL: Animación de una persona parada en un campo con una carretera recta a lo lejos]\n\n¡Hola! Imagina que estás en medio de un campo y necesitas llegar a la carretera lo más rápido posible. ¿Qué haces? ¡Caminas en línea recta hacia la carretera, formando un ángulo de 90 grados! Ese camino más corto es exactamente lo que vamos a estudiar hoy: la distancia de un punto a una recta.\n\n[VISUAL: Transición a un plano cartesiano con un punto P y una recta L]\n\nVamos a ponernos formales. La distancia de un punto a una recta es la longitud del segmento perpendicular que va desde el punto hasta la recta. ¿Y por qué perpendicular? Porque es el camino más corto. Si trazas cualquier otro segmento desde el punto hasta la recta, va a ser más largo. Siempre.\n\n[VISUAL: Animación mostrando varios segmentos del punto a la recta, resaltando que el perpendicular es el más corto]\n\nMira, voy a trazar varios caminos desde el punto P hasta la recta. Este mide 7... este mide 6.5... este mide 8... ¡y el perpendicular mide solo 5! ¿Ves? El perpendicular siempre gana.\n\n[VISUAL: Plano cartesiano con recta horizontal y = 3 y punto P(4, 8)]\n\nAhora, ¿cómo calculamos esta distancia? Empecemos con el caso más sencillo: cuando la recta es horizontal. Tenemos la recta y = 3 y el punto P en las coordenadas (4, 8). Para encontrar la distancia, solo necesitamos la coordenada y del punto.\n\nLa fórmula es super sencilla: d = |y del punto − valor de la recta|. Entonces: d = |8 − 3| = 5 unidades. ¡Listo! Las barras de valor absoluto nos aseguran que el resultado siempre sea positivo.\n\n[VISUAL: Plano con recta vertical x = −2 y punto Q(5, 1)]\n\nAhora veamos una recta vertical. Aquí tenemos la recta x = −2 y el punto Q en (5, 1). En este caso usamos la coordenada x: d = |5 − (−2)| = |5 + 2| = 7 unidades. Recuerda: restar un negativo es lo mismo que sumar.\n\n[VISUAL: Dos rectas paralelas horizontales y = 1 e y = 6 con flechas mostrando la distancia constante]\n\nAhora vamos con algo interesante: la distancia entre dos rectas paralelas. Como las paralelas nunca se cruzan, la distancia entre ellas es siempre la misma, sin importar desde dónde midas. Para las rectas y = 1 e y = 6, la distancia es |6 − 1| = 5 unidades. Puedes medirla desde cualquier punto y siempre obtendrás 5.\n\n[VISUAL: Caso especial: punto sobre la recta, distancia = 0]\n\nUn caso especial: ¿qué pasa si el punto está sobre la recta? Pues la distancia es cero. Si el punto P está en (3, 3) y la recta es y = 3, entonces d = |3 − 3| = 0. ¡Obvio! Ya estás sobre la recta, no necesitas moverte.\n\n[VISUAL: Resumen con tres fórmulas en tarjetas de colores]\n\nVamos a recapitular. La distancia de un punto a una recta se mide con el segmento perpendicular. Para rectas horizontales usas la coordenada y, para verticales la coordenada x. Y la distancia entre dos rectas paralelas es constante: solo restas los valores. Recuerda usar siempre el valor absoluto.\n\n[VISUAL: Pantalla de cierre con ejercicio propuesto]\n\nTe dejo un reto: calcula la distancia del punto (−6, 2) a la recta x = 4. Ponlo en tu cuaderno y comprueba tu resultado. ¡Nos vemos en la siguiente lección donde exploraremos la desigualdad triangular!"
+}

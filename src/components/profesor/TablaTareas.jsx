@@ -86,7 +86,7 @@ export default function TablaTareas({ tareas, clasesMap, resultados, onEliminar,
                     </td>
                   )}
                   <td className="px-4 py-3.5 hidden sm:table-cell">
-                    <span className="text-gray-600">{tarea.materia}</span>
+                    <span className="text-gray-600">Matematicas</span>
                   </td>
                   <td className="px-4 py-3.5 hidden md:table-cell">
                     <Badge valor={tarea.dificultad} />

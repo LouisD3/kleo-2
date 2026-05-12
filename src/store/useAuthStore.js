@@ -105,7 +105,7 @@ const useAuthStore = create((set, get) => ({
       email,
       password,
       options: {
-        emailRedirectTo: `${window.location.origin}/profesor/bienvenida`,
+        emailRedirectTo: `${window.location.origin}/profesor`,
         data: { nombre, escuela: escuela || null },
       },
     })
@@ -194,21 +194,6 @@ const useAuthStore = create((set, get) => ({
 
     localStorage.setItem('kleo_alumno', JSON.stringify(alumno))
     set({ alumno, rol: 'alumno' })
-    return true
-  },
-
-  iniciarSesionConGoogle: async () => {
-    set({ error: null })
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider: 'google',
-      options: {
-        redirectTo: `${window.location.origin}/profesor/bienvenida`,
-      },
-    })
-    if (error) {
-      set({ error: traducirError(error.message) })
-      return false
-    }
     return true
   },
 
