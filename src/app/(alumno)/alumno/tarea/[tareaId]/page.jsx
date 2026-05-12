@@ -14,12 +14,10 @@ import useAuthStore from '@/store/useAuthStore.js'
 
 /** Check if contenido_cpa is a CPA structure (has concreto/pictorico/abstracto) vs legacy flat array */
 function isTareaCPA(contenido) {
-  return (
-    contenido &&
-    typeof contenido === 'object' &&
-    !Array.isArray(contenido) &&
-    'concreto' in contenido
-  )
+  if (!contenido) return false
+  // Supabase may return JSONB as string in some configs
+  const obj = typeof contenido === 'string' ? JSON.parse(contenido) : contenido
+  return obj && !Array.isArray(obj) && obj.concreto != null && obj.pictorico != null
 }
 
 /** Score an array of questions against student responses. Returns 0-10. */
@@ -64,13 +62,19 @@ export default function RealizarTarea() {
   if (!tarea || !alumno) return null
 
   const esCPA = isTareaCPA(tarea.contenido_cpa)
+  // Ensure parsed object (Supabase may return JSONB as string)
+  const contenidoCPA = esCPA
+    ? typeof tarea.contenido_cpa === 'string'
+      ? JSON.parse(tarea.contenido_cpa)
+      : tarea.contenido_cpa
+    : null
 
   // ── CPA submission handler ────────────────────────────────────
 
   async function handleCPASubmit(datos) {
     setSubmitting(true)
     try {
-      const cpa = tarea.contenido_cpa
+      const cpa = contenidoCPA
       const picPreguntas = cpa.pictorico?.preguntas ?? []
       const absPreguntas = cpa.abstracto?.preguntas ?? []
 
@@ -124,7 +128,7 @@ export default function RealizarTarea() {
 
   // ── Legacy flat tarea flow ────────────────────────────────────
 
-  const contenidoFlat = !esCPA ? tarea.contenido_cpa : null
+  const contenidoFlat = !esCPA ? tarea.contenido_cpa : null // legacy: flat array
   const totalPreguntas = contenidoFlat?.length ?? 0
   const respondidas = Object.keys(respuestas).filter((k) => {
     const r = respuestas[k]
@@ -186,7 +190,7 @@ export default function RealizarTarea() {
 
         {esCPA ? (
           <StepperCPA
-            tareaCPA={tarea.contenido_cpa}
+            tareaCPA={contenidoCPA}
             tareaId={tareaId}
             alumnoId={alumno.id}
             onSubmit={handleCPASubmit}
