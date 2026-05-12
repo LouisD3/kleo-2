@@ -108,7 +108,7 @@ export function useAgregarTarea() {
           nombre: tarea.nombre,
           dificultad: tarea.dificultad,
           contenido_cpa: tarea.contenido_cpa,
-          estado: 'borrador',
+          estado: tarea.estado_override ?? 'borrador',
           fecha_limite: tarea.fecha_limite || null,
           pda: tarea.pda || null,
           secuencia_ref: tarea.secuencia_ref ?? null,

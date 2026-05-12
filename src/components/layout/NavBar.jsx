@@ -1,6 +1,6 @@
 'use client'
 
-import { LogOut, Settings } from 'lucide-react'
+import { BookOpen, LogOut, Settings } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import useAuthStore from '../../store/useAuthStore.js'
 
@@ -72,6 +72,15 @@ export default function NavBar({ titulo, volver }) {
                 {profesor.nombre}
               </span>
             </div>
+          )}
+          {rol === 'profesor' && (
+            <button
+              onClick={() => router.push('/profesor/biblioteca')}
+              className="p-1.5 rounded-lg text-gray-400 hover:text-gray-700 hover:bg-gray-100 transition-colors"
+              title="Biblioteca"
+            >
+              <BookOpen className="w-[18px] h-[18px]" />
+            </button>
           )}
           {rol === 'profesor' && (
             <button

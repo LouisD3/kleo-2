@@ -54,25 +54,25 @@ export default function DashboardProfesor() {
           <div>
             <h1 className="text-2xl font-bold text-gray-900">Mis tareas</h1>
             <p className="text-sm text-gray-500 mt-1">
-              Gestiona y revisa el progreso de tus grupos
+              Asigna tareas de la biblioteca o genera tareas personalizadas
             </p>
           </div>
           <div className="flex gap-3">
-            <Boton onClick={() => router.push('/profesor/clase')} variante="secundario" size="md">
+            <Boton
+              onClick={() => router.push('/profesor/biblioteca')}
+              variante="primario"
+              size="md"
+            >
               <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
-                <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
+                <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z" />
               </svg>
+              Biblioteca
+            </Boton>
+            <Boton onClick={() => router.push('/profesor/clase')} variante="secundario" size="md">
               Mis clases
             </Boton>
-            <Boton onClick={() => router.push('/profesor/generar')} variante="primario" size="md">
-              <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
-                <path
-                  fillRule="evenodd"
-                  d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
-                  clipRule="evenodd"
-                />
-              </svg>
-              Generar nueva tarea
+            <Boton onClick={() => router.push('/profesor/generar')} variante="secundario" size="md">
+              Generar tarea personalizada
             </Boton>
           </div>
         </div>
