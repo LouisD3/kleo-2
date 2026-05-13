@@ -219,7 +219,7 @@ Quand l'élève passe de Concreto à Pictórico, il ne sait **pas pourquoi**. Il
 
 **Livrable** : 1 PR par manipulable (4 PR).
 
-### Phase E — Feedback adaptatif (1 session)
+### Phase E — Feedback adaptatif (1 session) ✅ DONE
 
 **Objectif** : remplacer le validate/invalidate binaire par un coaching ciblé.
 

@@ -101,6 +101,7 @@ export default function StepperCPA({ tareaCPA, tareaId, alumnoId, onSubmit, subm
   const [estadoManipulable, setEstadoManipulable] = useState<EstadoManipulable | undefined>(
     saved.current?.concreto_estado?.estado_manipulable as EstadoManipulable | undefined,
   )
+  const [diagnostico, setDiagnostico] = useState<string | null>(null)
 
   // Pictorico state
   const [pictoricoResp, setPictoricoResp] = useState<Record<string, string | boolean>>(
@@ -188,6 +189,11 @@ export default function StepperCPA({ tareaCPA, tareaId, alumnoId, onSubmit, subm
 
   function handleManipulableChange(estado: EstadoManipulable) {
     setEstadoManipulable(estado)
+  }
+
+  function handleDiagnostico(msg: string) {
+    setDiagnostico(msg)
+    setTimeout(() => setDiagnostico(null), 5000)
   }
 
   // ── Pictorico handlers ────────────────────────────────────────
@@ -388,7 +394,9 @@ export default function StepperCPA({ tareaCPA, tareaId, alumnoId, onSubmit, subm
                 bloque={tareaCPA.concreto}
                 estadoInicial={estadoManipulable}
                 onValidado={handleConcretoValidado}
+                onDiagnostico={handleDiagnostico}
                 onChange={handleManipulableChange}
+                diagnostico={diagnostico}
                 transicion={tareaCPA.contexto?.transiciones.concreto}
               />
               {recapConcreto && (
@@ -446,13 +454,17 @@ function EtapaConcreto({
   bloque,
   estadoInicial,
   onValidado,
+  onDiagnostico,
   onChange,
+  diagnostico,
   transicion,
 }: {
   bloque: BloqueConcreto
   estadoInicial?: EstadoManipulable
   onValidado: (intentos: number, pistaUsada: boolean) => void
+  onDiagnostico?: (diagnostico: string) => void
   onChange: (estado: EstadoManipulable) => void
+  diagnostico?: string | null
   transicion?: string
 }) {
   return (
@@ -467,8 +479,21 @@ function EtapaConcreto({
         bloque={bloque}
         estadoInicial={estadoInicial}
         onValidado={onValidado}
+        onDiagnostico={onDiagnostico}
         onChange={onChange}
       />
+      <AnimatePresence>
+        {diagnostico && (
+          <motion.div
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            className="mt-3 rounded-lg bg-orange-50 border border-orange-200 px-4 py-2 text-sm text-orange-800"
+          >
+            {diagnostico}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   )
 }

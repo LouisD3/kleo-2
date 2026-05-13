@@ -24,6 +24,7 @@ interface Props {
   /** Restore state from localStorage progress */
   estadoInicial?: EstadoManipulable
   onValidado: (intentos: number, pistaUsada: boolean) => void
+  onDiagnostico?: (diagnostico: string) => void
   onChange?: (estado: EstadoManipulable) => void
 }
 
@@ -157,6 +158,7 @@ export default function ManipulableAgrupable({
   intentos_para_pista,
   estadoInicial,
   onValidado,
+  onDiagnostico,
   onChange,
 }: Props) {
   const itemEmoji = spec.emoji
@@ -292,6 +294,20 @@ export default function ManipulableAgrupable({
       if (nuevoIntentos >= intentos_para_pista && spec.pista) {
         setPistaVisible(true)
       }
+      // Diagnostic feedback
+      if (onDiagnostico) {
+        const esperado = spec.soluciones_validas[0]
+        if (sinAsignar.length > 0) {
+          onDiagnostico(`Todavia tienes ${sinAsignar.length} ${sinAsignar.length === 1 ? 'elemento' : 'elementos'} sin asignar.`)
+        } else if (numGrupos !== esperado.grupos) {
+          onDiagnostico(`Formaste ${numGrupos} grupos, pero se necesitan ${esperado.grupos}.`)
+        } else {
+          const incorrectos = tamanos.filter((t) => t !== esperado.por_grupo)
+          if (incorrectos.length > 0) {
+            onDiagnostico(`Cada grupo debe tener ${esperado.por_grupo} elementos, pero algunos tienen ${incorrectos[0]}.`)
+          }
+        }
+      }
     }
   }, [
     validado,
@@ -303,6 +319,7 @@ export default function ManipulableAgrupable({
     intentos_para_pista,
     pistaVisible,
     onValidado,
+    onDiagnostico,
   ])
 
   // ── Render ────────────────────────────────────────────────────

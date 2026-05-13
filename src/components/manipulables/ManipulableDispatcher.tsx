@@ -25,6 +25,7 @@ interface Props {
   // biome-ignore lint/suspicious/noExplicitAny: each manipulable has its own state shape
   estadoInicial?: any
   onValidado: (intentos: number, pistaUsada: boolean) => void
+  onDiagnostico?: (diagnostico: string) => void
   // biome-ignore lint/suspicious/noExplicitAny: each manipulable has its own state shape
   onChange?: (estado: any) => void
 }
@@ -33,6 +34,7 @@ export default function ManipulableDispatcher({
   bloque,
   estadoInicial,
   onValidado,
+  onDiagnostico,
   onChange,
 }: Props) {
   const spec = bloque.manipulable
@@ -45,6 +47,7 @@ export default function ManipulableDispatcher({
           intentos_para_pista={bloque.intentos_para_pista}
           estadoInicial={estadoInicial}
           onValidado={onValidado}
+          onDiagnostico={onDiagnostico}
           onChange={onChange}
         />
       )
@@ -56,6 +59,7 @@ export default function ManipulableDispatcher({
           intentos_para_pista={bloque.intentos_para_pista}
           estadoInicial={estadoInicial}
           onValidado={onValidado}
+          onDiagnostico={onDiagnostico}
           onChange={onChange}
         />
       )
@@ -78,6 +82,7 @@ export default function ManipulableDispatcher({
           intentos_para_pista={bloque.intentos_para_pista}
           estadoInicial={estadoInicial}
           onValidado={onValidado}
+          onDiagnostico={onDiagnostico}
           onChange={onChange}
         />
       )
