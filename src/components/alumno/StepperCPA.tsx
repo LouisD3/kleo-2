@@ -28,10 +28,16 @@ interface Props {
   submitting: boolean
 }
 
+export interface RetroItem {
+  indice_pregunta: number
+  correcta: boolean
+  comentario: string
+}
+
 export interface DatosIntento {
   concreto: { intentos: number; pista_usada: boolean }
   pictorico: { respuestas: Record<string, string | boolean> }
-  abstracto: { respuestas: Record<string, string | boolean> }
+  abstracto: { respuestas: Record<string, string | boolean>; retroIA?: RetroItem[] }
   tiempos: { concreto_ms: number; pictorico_ms: number; abstracto_ms: number }
 }
 
@@ -225,8 +231,60 @@ export default function StepperCPA({ tareaCPA, tareaId, alumnoId, onSubmit, subm
     (_, i) => abstractoResp[i] !== undefined && String(abstractoResp[i]).trim() !== '',
   ).length
 
-  async function handleSubmit() {
-    // Flush timing for current step
+  // AI grading state
+  const [corrigiendo, setCorrigiendo] = useState(false)
+  const [retroIA, setRetroIA] = useState<RetroItem[] | null>(null)
+  const [errorIA, setErrorIA] = useState<string | null>(null)
+
+  async function handleCorregir() {
+    // Check if there are any calculo/abierta questions that need AI grading
+    const needsAI = abstractoPreguntas.some(
+      (p) => p.tipo === 'calculo' || p.tipo === 'abierta',
+    )
+
+    if (!needsAI) {
+      // All objective — skip AI, submit directly
+      await doSubmit(null)
+      return
+    }
+
+    setCorrigiendo(true)
+    setErrorIA(null)
+
+    try {
+      const res = await fetch('/api/ia', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'corregir',
+          payload: {
+            tarea: {
+              dificultad: 'Media',
+              contenido_cpa: abstractoPreguntas.map((p) => ({
+                tipo: p.tipo,
+                pregunta: p.pregunta,
+                opciones: p.opciones,
+                respuesta: p.respuesta,
+              })),
+            },
+            respuestasAlumno: abstractoResp,
+          },
+        }),
+      })
+
+      const data = await res.json()
+      if (!res.ok) throw new Error(data?.error ?? 'Error al corregir')
+
+      const retro: RetroItem[] = data.retroalimentacion ?? []
+      setRetroIA(retro)
+    } catch (err) {
+      setErrorIA(err instanceof Error ? err.message : 'Error al conectar con IA')
+    } finally {
+      setCorrigiendo(false)
+    }
+  }
+
+  async function doSubmit(retro: RetroItem[] | null) {
     const elapsed = Date.now() - etapaStartRef.current
     tiempoRef.current.abstracto += elapsed
     etapaStartRef.current = Date.now()
@@ -234,7 +292,7 @@ export default function StepperCPA({ tareaCPA, tareaId, alumnoId, onSubmit, subm
     await onSubmit({
       concreto: { intentos: concretoIntentos, pista_usada: concretoPista },
       pictorico: { respuestas: pictoricoResp },
-      abstracto: { respuestas: abstractoResp },
+      abstracto: { respuestas: abstractoResp, retroIA: retro ?? undefined },
       tiempos: {
         concreto_ms: tiempoRef.current.concreto,
         pictorico_ms: tiempoRef.current.pictorico,
@@ -242,6 +300,16 @@ export default function StepperCPA({ tareaCPA, tareaId, alumnoId, onSubmit, subm
       },
     })
     clearProgreso(tareaId, alumnoId)
+  }
+
+  async function handleSubmit() {
+    if (retroIA) {
+      // Already graded, submit with AI results
+      await doSubmit(retroIA)
+    } else {
+      // First click: grade with AI
+      await handleCorregir()
+    }
   }
 
   // ── Navigation ────────────────────────────────────────────────
@@ -327,6 +395,9 @@ export default function StepperCPA({ tareaCPA, tareaId, alumnoId, onSubmit, subm
               total={abstractoPreguntas.length}
               onSubmit={handleSubmit}
               submitting={submitting}
+              corrigiendo={corrigiendo}
+              retroIA={retroIA}
+              errorIA={errorIA}
             />
           )}
         </motion.div>
@@ -438,6 +509,9 @@ function EtapaAbstracto({
   total,
   onSubmit,
   submitting,
+  corrigiendo,
+  retroIA,
+  errorIA,
 }: {
   bloque: BloqueAbstracto
   respuestas: Record<string, string | boolean>
@@ -446,40 +520,82 @@ function EtapaAbstracto({
   total: number
   onSubmit: () => void
   submitting: boolean
+  corrigiendo: boolean
+  retroIA: RetroItem[] | null
+  errorIA: string | null
 }) {
+  const yaCorregido = retroIA !== null
+
   return (
     <div className="space-y-4">
       <div className="card p-5 sm:p-6">
         <StepHeader
           numero={3}
           titulo="Abstracto"
-          descripcion={`Resuelve las preguntas (${respondidas}/${total})`}
+          descripcion={
+            yaCorregido
+              ? 'Revisa tu retroalimentacion y envia'
+              : `Resuelve las preguntas (${respondidas}/${total})`
+          }
         />
       </div>
 
-      {bloque.preguntas.map((p, i) => (
-        <PreguntaCard
-          key={i}
-          pregunta={p}
-          indice={i}
-          respuesta={respuestas[i]}
-          onChange={(val) => onResp(i, val)}
-          disabled={submitting}
-        />
-      ))}
+      {bloque.preguntas.map((p, i) => {
+        const retro = retroIA?.find((r) => r.indice_pregunta === i)
+        return (
+          <div key={i}>
+            <PreguntaCard
+              pregunta={p}
+              indice={i}
+              respuesta={respuestas[i]}
+              onChange={(val) => onResp(i, val)}
+              disabled={yaCorregido || submitting || corrigiendo}
+            />
+            {retro && (
+              <motion.div
+                initial={{ opacity: 0, y: -8 }}
+                animate={{ opacity: 1, y: 0 }}
+                className={`mx-1 -mt-1 rounded-b-xl px-4 py-3 text-sm border-x border-b ${
+                  retro.correcta
+                    ? 'bg-green-50 border-green-200 text-green-700'
+                    : 'bg-red-50 border-red-200 text-red-700'
+                }`}
+              >
+                <span className="font-semibold">
+                  {retro.correcta ? 'Correcto' : 'Incorrecto'}:
+                </span>{' '}
+                {retro.comentario}
+              </motion.div>
+            )}
+          </div>
+        )
+      })}
+
+      {errorIA && (
+        <div className="rounded-xl bg-red-50 border border-red-200 px-4 py-3 text-sm text-red-700">
+          {errorIA}
+        </div>
+      )}
 
       <Boton
         variante="primario"
         size="lg"
         onClick={onSubmit}
-        disabled={submitting || respondidas === 0}
+        disabled={submitting || corrigiendo || respondidas === 0}
         className="w-full"
       >
-        {submitting ? (
+        {corrigiendo ? (
+          <>
+            <Spinner size="sm" />
+            Corrigiendo con IA...
+          </>
+        ) : submitting ? (
           <>
             <Spinner size="sm" />
             Enviando...
           </>
+        ) : yaCorregido ? (
+          'ENVIAR RESULTADO'
         ) : (
           'ENTREGAR TAREA'
         )}

@@ -93,8 +93,20 @@ export default function RealizarTarea() {
       // Score Pictorico: (correct/total) * 10
       const scorePictorico = scorearPreguntas(picPreguntas, datos.pictorico.respuestas)
 
-      // Score Abstracto: (correct/total) * 10
-      const scoreAbstracto = scorearPreguntas(absPreguntas, datos.abstracto.respuestas)
+      // Score Abstracto: use AI retroalimentacion if available, else client-side
+      let scoreAbstracto
+      let retroalimentacion = []
+      let areas_de_mejora = []
+      if (datos.abstracto.retroIA && datos.abstracto.retroIA.length > 0) {
+        const retro = datos.abstracto.retroIA
+        const correctas = retro.filter((r) => r.correcta).length
+        scoreAbstracto = absPreguntas.length > 0
+          ? Math.round((correctas / absPreguntas.length) * 100) / 10
+          : 10
+        retroalimentacion = retro
+      } else {
+        scoreAbstracto = scorearPreguntas(absPreguntas, datos.abstracto.respuestas)
+      }
 
       // Global: 20% concreto + 30% pictorico + 50% abstracto
       const global =
@@ -113,8 +125,8 @@ export default function RealizarTarea() {
         resultado: {
           respuestas: allResp,
           calificacion: global,
-          retroalimentacion: [],
-          areas_de_mejora: [],
+          retroalimentacion,
+          areas_de_mejora,
           scores_cpa,
         },
       })

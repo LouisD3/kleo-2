@@ -45,17 +45,26 @@ L'eleve **doit** valider l'etape N avant d'acceder a N+1. Pas de saut.
 Le JSON d'une tarea specifie le type de manipulable via `tipo_concreto`.
 Un dispatcher React (`ManipulableDispatcher.tsx`) selectionne le composant.
 
-### Composants cibles
+### Catalogue complet des manipulables
 
-| `tipo_concreto` | Composant React | Concept mathematique | Tech | Phase |
+Chaque manipulable correspond a une activite concrete reelle de la methode Singapour.
+
+| `tipo_concreto` | Objet reel | Concept | Interaction | Statut |
 |---|---|---|---|---|
-| `dulces_agrupables` | `DulcesAgrupables` | Razones, proportions | SVG + dnd-kit | 1 |
-| `chocolate_secable` | `ChocolateSecable` | Fractions | SVG + dnd-kit | 2 |
-| `bloques_base10` | `BloquesBase10` | Systeme decimal, operations | R3F (3D) + fallback SVG | 2 |
-| `balanza` | `Balanza` | Equations lineaires | SVG + Framer Motion | 2 |
-| `solidos_3d` | `Solidos3D` | Geometrie | R3F (3D) + fallback SVG | 3 |
-| `dados_monedas` | `DadosMonedas` | Probabilites | SVG + animation | 3 |
-| `histograma_construible` | `HistogramaConstruible` | Statistique | SVG + dnd-kit | 3 |
+| `chocolate_secable` | Tablette de chocolat a casser | Fractions (partie d'un tout) | Cliquer des morceaux | OK |
+| `tiras_fracciones` | Bandes de papier pliees | Fractions equivalentes | Selectionner bandes equivalentes | OK |
+| `recta_numerica` | Droite numerique au sol | Decimaux, ordre, fractions | Glisser un curseur | OK |
+| `bloques_base10` | Cubes, barres, plaques | Systeme decimal, operations | Stepper +/- | OK |
+| `fichas_positivas_negativas` | Jetons bicolores (+/-) | Entiers, operations avec signes | Annuler des paires | OK |
+| `patron_figuras` | Allumettes/cubes en patron | Sucesiones aritmeticas | Placer des pieces | OK |
+| `balanza` | Balance a deux plateaux | Equations simples | Input x, balance animee | OK |
+| `azulejos_algebra` | Tuiles d'algebre (barres x + carres) | Equations, expressions | Manipuler tuiles, entrer x | OK |
+| `cuadricula_100` | Grille de 100 cases | Porcentajes | Colorier des cases | OK |
+| `dulces_agrupables` | Bonbons/objets a repartir | Razones, reparto | Drag & drop en groupes | OK |
+| `geoplano` | Clous + elastiques | Geometrie, perimetres, aires | Cliquer des clous, tracer | OK |
+| `dados_ruleta` | Des, roulette, pieces | Probabilites | Lancer, observer, calculer | OK |
+| `histograma_construible` | Cartes a trier en colonnes | Statistique | Empiler des barres | Future |
+| `solidos_3d` | Solides en plastique | Geometrie 3D | Rotation 3D | Future |
 
 ### Spec JSON : `DulcesAgrupables` (Phase 1)
 
@@ -359,26 +368,28 @@ FORMATO RESPUESTA:
 
 ## 7. Mapping secuencias NEM -> manipulables
 
-Guide pour choisir le `tipo_concreto` en fonction du theme mathematique.
+Guide pour choisir le `tipo_concreto` en fonction du theme.
+Base sur les manipulables reels de la methode Singapour.
 
-| Secuencias | Theme | Manipulable suggere |
-|---|---|---|
-| 1 | Fractions et decimaux | `chocolate_secable` |
-| 2-4 | Entiers negatifs, ordre | `bloques_base10` (adapte pour negatifs) |
-| 5-8 | Operations, proprietes | `bloques_base10` |
-| 9 | Suites arithmetiques | `dulces_agrupables` (patterns) |
-| 10-11 | Algebre, perimetres | `balanza` |
-| 12 | Equations lineaires | `balanza` |
-| 13 | Pourcentages | `chocolate_secable` |
-| 14-15 | Proportions, razones | `dulces_agrupables` |
-| 16-17 | Droites, angles | `solidos_3d` (2D mode) |
-| 18-21 | Constructions geometriques | `solidos_3d` |
-| 22-24 | Cercle, circonference | `solidos_3d` |
-| 25-28 | Distances, perimetre, aire | `solidos_3d` (2D mode) |
-| 29-31 | Statistique | `histograma_construible` |
-| 32-33 | Probabilites | `dados_monedas` |
-| 34-35 | Logique | `balanza` (adapte) |
-| 36 | Nombres binaires | `bloques_base10` (adapte base 2) |
+| Sec | Theme | Manipulable principal | Alternative | Objet reel equivalent |
+|---|---|---|---|---|
+| 1 | Fractions et decimaux | `chocolate_secable` | `tiras_fracciones`, `recta_numerica` | Tablette, bandes papier, droite au sol |
+| 2-4 | Entiers, ordre | `fichas_positivas_negativas` | `recta_numerica` | Jetons bicolores, droite numerique |
+| 5-6 | Operaciones con signo | `fichas_positivas_negativas` | `bloques_base10` | Jetons, cubes base 10 |
+| 7-8 | Proprietes, jerarquia | `bloques_base10` | | Cubes, barres, plaques |
+| 9 | Sucesiones | `patron_figuras` | | Allumettes, cubes colores |
+| 10-11 | Algebre, perimetres | `azulejos_algebra` | `geoplano` | Tuiles d'algebre, geoplano |
+| 12 | Ecuaciones lineales | `azulejos_algebra` | `balanza` | Tuiles d'algebre, balance |
+| 13 | Porcentajes | `cuadricula_100` | | Grille de 100 cases |
+| 14-15 | Razones, proporcionalidad | `dulces_agrupables` | | Objets a repartir |
+| 16-17 | Rectas, angulos | `geoplano` | | Geoplano, regle, rapporteur |
+| 18-21 | Construcciones geometricas | `geoplano` | | Geoplano, compas, regle |
+| 22-24 | Circunferencia | `geoplano` | | Geoplano, compas |
+| 25-28 | Distancia, perimetro, area | `geoplano` | | Geoplano, grille |
+| 29-31 | Estadistica | `histograma_construible` | | Cartes a trier (future) |
+| 32-33 | Probabilidades | `dados_ruleta` | | Des, roulette, pieces |
+| 34-35 | Logica | `balanza` | | Balance (adapte) |
+| 36 | Numeros binarios | `bloques_base10` | | Cubes base 10 (adapte) |
 
 ---
 
@@ -424,7 +435,77 @@ SVG isometrique a la place (meme logique, rendu 2D).
 
 ---
 
-## 10. TODO post-MVP
+## 10. Guide de creation de tareas de reference
+
+### Principes fondamentaux
+
+1. **Un concept par tarea** — Chaque tarea CPA cible un seul sous-concept,
+   formule dans le champ `concepto_clave`. Les 3 blocs (C, P, A) travaillent
+   exclusivement ce sous-concept. L'Abstracto ne doit JAMAIS introduire une
+   notion absente du Concreto et du Pictorico.
+
+2. **Plusieurs tareas par secuencia** — Un PDA NEM couvre souvent plusieurs
+   sous-concepts. On cree une tarea distincte pour chacun. Exemple : la
+   secuencia 1 (fracciones y decimales) genere 3 tareas : representation,
+   equivalences, conversion.
+
+3. **Fil conceptuel unique C->P->A** — Le Concreto pose le probleme avec des
+   objets. Le Pictorico le represente visuellement avec le modele en barres.
+   L'Abstracto le formalise avec des nombres. Les 3 etapes utilisent le MEME
+   scenario ou un scenario tres proche.
+
+4. **Progression de difficulte dans l'Abstracto** :
+   - Q1 : FACILE — opcion_multiple, application directe du concept, meme
+     contexte que C/P
+   - Q2 : MOYEN — calculo, 1-2 etapes, contexte nouveau mais meme concept
+   - Q3 : DIFFICILE — abierta, raisonnement/explication, comprehension profonde
+
+5. **Pictorico = pont** — Les questions Pictorico doivent faire le lien entre
+   le manipulable et le formel. Q1 : lecture directe du modele. Q2 : question
+   "et si..." qui prepare l'Abstracto.
+
+6. **Langage** — Espanol mexicano, vocabulaire adapte a 1o Secundaria (12-13 ans).
+   Contextes de la vie quotidienne (dulces, chocolate, tienda, amigos).
+
+### Mapping secuencias -> sous-concepts -> tareas
+
+Chaque ligne = une tarea de reference distincte.
+
+| ID | Sec | Sous-concept (concepto_clave) | Manipulable | Spec cle |
+|---|---|---|---|---|
+| 1A | 1 | Representar una fraccion como parte de un todo | `chocolate_secable` | 2x4, seleccionar 3/8 |
+| 1B | 1 | Encontrar fracciones equivalentes | `chocolate_secable` | 2x8 (16 piezas), seleccionar 6/16 = 3/8 |
+| 1C | 1 | Convertir una fraccion a decimal dividiendo | `chocolate_secable` | 2x5 (10 piezas), seleccionar 3/10 = 0.3 |
+| 5A | 5 | Descomponer un numero en centenas, decenas y unidades | `bloques_base10` | representar 235 |
+| 5B | 5 | Sumar dos numeros con reagrupacion | `bloques_base10` | construir 148 + 87 = 235 |
+| 5C | 5 | Restar como operacion inversa de la suma | `bloques_base10` | de 235 quitar 148 = 87 |
+| 9A | 9 | Identificar el patron en una sucesion aritmetica | `dulces_agrupables` | 10 dulces, patron 2+2+3+3 |
+| 9B | 9 | Predecir terminos de una sucesion aritmetica | `dulces_agrupables` | 12 dulces, grupos crecientes 1,2,3,... |
+| 12A | 12 | Resolver ecuaciones de la forma x + a = b | `balanza` | x + 3 = 7 |
+| 12B | 12 | Resolver ecuaciones de la forma ax = b | `balanza` | 2x = 8 |
+| 12C | 12 | Resolver ecuaciones de la forma ax + b = c | `balanza` | 2x + 1 = 7 |
+| 13A | 13 | Encontrar el porcentaje de una cantidad | `chocolate_secable` | 2x5, seleccionar 30% de 10 |
+| 13B | 13 | Calcular un descuento con porcentajes | `chocolate_secable` | 2x5, quitar 20% de 10 |
+| 14A | 14 | Repartir en partes iguales (razon como reparto) | `dulces_agrupables` | 12 dulces entre 3 ninos |
+| 14B | 14 | Comparar dos razones diferentes | `dulces_agrupables` | 12 dulces, comparar 3 vs 4 grupos |
+| 15A | 15 | Encontrar la constante de proporcionalidad | `dulces_agrupables` | 15 galletas entre 5 amigos |
+| 15B | 15 | Usar la constante para predecir | `dulces_agrupables` | 15 galletas, predecir para 8 amigos |
+
+### Checklist avant de valider une tarea
+
+- [ ] Le `concepto_clave` est formule en une phrase
+- [ ] Le Concreto manipule des objets en lien direct avec le concept
+- [ ] Le Pictorico Q1 est une lecture directe du modele en barres
+- [ ] Le Pictorico Q2 fait le pont vers l'Abstracto (meme contexte)
+- [ ] L'Abstracto Q1 est facile, meme contexte, opcion_multiple
+- [ ] L'Abstracto Q2 est moyen, nouveau contexte, calculo 1-2 etapes
+- [ ] L'Abstracto Q3 est difficile, abierta, explication du concept
+- [ ] AUCUNE question n'introduit un concept absent du Concreto
+- [ ] Le langage est adapte a 1o Secundaria, espanol mexicano
+
+---
+
+## 11. TODO post-MVP
 
 - [ ] Regenerer les Abstracto de toutes les tareas en style Singapour-aware
       (questions qui font reference au modele en barres vu en Pictorico)

@@ -11,7 +11,7 @@ import {
   useSensors,
 } from '@dnd-kit/core'
 import { AnimatePresence, motion } from 'framer-motion'
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import type { DulcesAgrupablesSpec } from '@/types/tarea-cpa'
 
 // ── Types ────────────────────────────────────────────────────────
@@ -159,9 +159,11 @@ export default function DulcesAgrupables({
   const [overGroupId, setOverGroupId] = useState<string | null>(null)
 
   // Notify parent of state changes for persistence
+  const onChangeRef = useRef(onChange)
+  onChangeRef.current = onChange
   useEffect(() => {
-    onChange?.({ grupos, sinAsignar, intentos, pistaVisible, validado })
-  }, [grupos, sinAsignar, intentos, pistaVisible, validado, onChange])
+    onChangeRef.current?.({ grupos, sinAsignar, intentos, pistaVisible, validado })
+  }, [grupos, sinAsignar, intentos, pistaVisible, validado])
 
   // Sensors for pointer + touch
   const pointerSensor = useSensor(PointerSensor, {

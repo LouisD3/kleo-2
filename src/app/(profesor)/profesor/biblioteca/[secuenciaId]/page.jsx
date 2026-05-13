@@ -3,12 +3,13 @@
 import { useParams, useRouter } from 'next/navigation'
 import { useState } from 'react'
 import NavBar from '@/components/layout/NavBar.jsx'
+import ManipulableDispatcher from '@/components/manipulables/ManipulableDispatcher'
 import ModeloBarras from '@/components/pictorico/ModeloBarras'
 import Boton from '@/components/ui/Boton.jsx'
 import Modal from '@/components/ui/Modal.jsx'
 import Toast from '@/components/ui/Toast.jsx'
 import { getSecuenciaById } from '@/content/biblioteca/matematicas-1'
-import { getTareaReferencia } from '@/data/tareas-referencia'
+import { getTareaReferencia, getTareasReferencia } from '@/data/tareas-referencia'
 import { useAgregarTarea } from '@/hooks/useTareas.js'
 import useAuthStore from '@/store/useAuthStore.js'
 
@@ -25,7 +26,7 @@ export default function SecuenciaDetalle() {
   const router = useRouter()
   const id = Number(secuenciaId)
   const sec = getSecuenciaById(id)
-  const tareaCPA = getTareaReferencia(id)
+  const tareasCPA = getTareasReferencia(id)
 
   const [tab, setTab] = useState('orientacion')
 
@@ -75,7 +76,7 @@ export default function SecuenciaDetalle() {
         {tab === 'diapositivas' && <TabDiapositivas slides={sec.diapositiva} />}
         {tab === 'libro' && <TabLibro libro={sec.libro} />}
         {tab === 'examenes' && <TabExamenes preguntas={sec.evaluacion.preguntas} />}
-        {tab === 'tarea' && <TabTareaSingapur tareaCPA={tareaCPA} secuencia={sec} />}
+        {tab === 'tarea' && <TabTareaSingapur tareasCPA={tareasCPA} secuencia={sec} />}
       </main>
     </div>
   )
@@ -321,18 +322,19 @@ function TabExamenes({ preguntas }) {
 
 // ── Tab 5: Tarea Singapur ────────────────────────────────────────
 
-function TabTareaSingapur({ tareaCPA, secuencia }) {
+function TabTareaSingapur({ tareasCPA, secuencia }) {
   const { profesor, clases } = useAuthStore()
   const agregarTarea = useAgregarTarea()
   const router = useRouter()
 
+  const [tareaActiva, setTareaActiva] = useState(0)
   const [modalAbierto, setModalAbierto] = useState(false)
   const [claseId, setClaseId] = useState(clases?.[0]?.id ?? '')
   const [fechaLimite, setFechaLimite] = useState('')
   const [asignando, setAsignando] = useState(false)
   const [toast, setToast] = useState(false)
 
-  if (!tareaCPA) {
+  if (!tareasCPA || tareasCPA.length === 0) {
     return (
       <div className="card p-12 text-center">
         <p className="text-4xl mb-4">🔨</p>
@@ -345,6 +347,8 @@ function TabTareaSingapur({ tareaCPA, secuencia }) {
     )
   }
 
+  const tareaCPA = tareasCPA[tareaActiva]
+
   async function handleAsignar() {
     if (!claseId || !profesor) return
     setAsignando(true)
@@ -352,7 +356,7 @@ function TabTareaSingapur({ tareaCPA, secuencia }) {
       await agregarTarea.mutateAsync({
         profesor_id: profesor.id,
         clase_id: claseId,
-        nombre: `${secuencia.titulo} — Secuencia ${secuencia.secuencia}`,
+        nombre: `${secuencia.titulo} — Secuencia ${secuencia.secuencia} (${tareaActiva + 1}/${tareasCPA.length})`,
         dificultad: 'Media',
         contenido_cpa: tareaCPA,
         fecha_limite: fechaLimite || null,
@@ -373,49 +377,67 @@ function TabTareaSingapur({ tareaCPA, secuencia }) {
 
   return (
     <div className="space-y-6">
-      {/* Preview Concreto */}
+      {/* Tarea selector — only show if multiple */}
+      {tareasCPA.length > 1 && (
+        <div className="flex gap-2 overflow-x-auto pb-1">
+          {tareasCPA.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setTareaActiva(i)}
+              className={`px-4 py-2 rounded-xl text-sm font-medium whitespace-nowrap transition-all ${
+                tareaActiva === i
+                  ? 'bg-gray-900 text-white'
+                  : 'bg-white border border-gray-200 text-gray-600 hover:border-gray-300'
+              }`}
+            >
+              Tarea {i + 1}
+            </button>
+          ))}
+        </div>
+      )}
+
+      {/* Concept label */}
+      {tareaCPA.concepto_clave && (
+        <p className="text-sm text-gray-500 italic">{tareaCPA.concepto_clave}</p>
+      )}
+
+      {/* Preview Concreto — interactive */}
       <div className="card p-5">
-        <h3 className="font-semibold text-gray-900 text-sm mb-1 flex items-center gap-2">
-          <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-gray-900 text-white text-xs font-bold">
-            1
-          </span>
-          Concreto — {spec.tipo_concreto.replace('_', ' ')}
-        </h3>
-        <p className="text-sm text-gray-600 ml-8 mb-2">{spec.pregunta}</p>
-        <p className="text-xs text-gray-400 ml-8">
-          {spec.cantidad} objetos · {tareaCPA.concreto.intentos_para_pista} intentos para pista
-        </p>
+        <SectionHeader numero={1} titulo={`Concreto — ${spec.tipo_concreto.replaceAll('_', ' ')}`} />
+        <div className="mt-3">
+          <ManipulableDispatcher
+            key={tareaActiva}
+            bloque={tareaCPA.concreto}
+            onValidado={() => {}}
+          />
+        </div>
+        {spec.pista && (
+          <details className="mt-3 text-sm ml-8">
+            <summary className="cursor-pointer text-blue-600 hover:text-blue-800 text-xs font-medium">
+              Ver pista
+            </summary>
+            <p className="mt-1 text-gray-500">{spec.pista}</p>
+          </details>
+        )}
       </div>
 
-      {/* Preview Pictorico */}
+      {/* Preview Pictorico — bar model + questions with answers */}
       <div className="card p-5">
-        <h3 className="font-semibold text-gray-900 text-sm mb-3 flex items-center gap-2">
-          <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-gray-900 text-white text-xs font-bold">
-            2
-          </span>
-          Pictorico — Modelo de barras
-        </h3>
-        <ModeloBarras spec={tareaCPA.pictorico.modelo_barras} className="mb-3" />
-        <p className="text-xs text-gray-400 ml-8">
-          {tareaCPA.pictorico.preguntas.length} pregunta
-          {tareaCPA.pictorico.preguntas.length > 1 ? 's' : ''} sobre el modelo
-        </p>
+        <SectionHeader numero={2} titulo="Pictorico — Modelo de barras" />
+        <ModeloBarras spec={tareaCPA.pictorico.modelo_barras} className="mt-3 mb-4" />
+        <div className="space-y-3">
+          {tareaCPA.pictorico.preguntas.map((p, i) => (
+            <PreviewPregunta key={i} pregunta={p} indice={i} />
+          ))}
+        </div>
       </div>
 
-      {/* Preview Abstracto */}
+      {/* Preview Abstracto — all questions with answers */}
       <div className="card p-5">
-        <h3 className="font-semibold text-gray-900 text-sm mb-2 flex items-center gap-2">
-          <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-gray-900 text-white text-xs font-bold">
-            3
-          </span>
-          Abstracto — {tareaCPA.abstracto.preguntas.length} preguntas
-        </h3>
-        <div className="ml-8 space-y-2">
+        <SectionHeader numero={3} titulo={`Abstracto — ${tareaCPA.abstracto.preguntas.length} preguntas`} />
+        <div className="mt-3 space-y-3">
           {tareaCPA.abstracto.preguntas.map((p, i) => (
-            <div key={i} className="text-sm text-gray-600 flex gap-2">
-              <span className="text-gray-400 font-semibold flex-shrink-0">{i + 1}.</span>
-              <span className="line-clamp-2">{p.pregunta}</span>
-            </div>
+            <PreviewPregunta key={i} pregunta={p} indice={i} />
           ))}
         </div>
       </div>
@@ -491,6 +513,64 @@ function Section({ titulo, children }) {
     <div className="card p-5">
       <h3 className="font-semibold text-gray-900 text-sm mb-3">{titulo}</h3>
       {children}
+    </div>
+  )
+}
+
+// ── Tarea preview helpers ───────────────────────────────────────
+
+function SectionHeader({ numero, titulo }) {
+  return (
+    <h3 className="font-semibold text-gray-900 text-sm flex items-center gap-2">
+      <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-gray-900 text-white text-xs font-bold">
+        {numero}
+      </span>
+      {titulo}
+    </h3>
+  )
+}
+
+function PreviewPregunta({ pregunta, indice }) {
+  const tipoLabel = {
+    opcion_multiple: 'Opcion multiple',
+    verdadero_falso: 'Verdadero / Falso',
+    calculo: 'Calculo',
+    abierta: 'Abierta',
+    espacios: 'Espacios',
+  }
+
+  return (
+    <div className="rounded-xl border border-gray-100 p-4">
+      <div className="flex items-start gap-3 mb-2">
+        <span className="flex-shrink-0 inline-flex items-center justify-center w-6 h-6 rounded-full bg-gray-100 text-xs font-bold text-gray-500">
+          {indice + 1}
+        </span>
+        <div className="flex-1">
+          <span className="text-[10px] font-semibold text-gray-400 uppercase tracking-wider">
+            {tipoLabel[pregunta.tipo] ?? pregunta.tipo}
+          </span>
+          <p className="text-sm text-gray-800 mt-1">{pregunta.pregunta}</p>
+        </div>
+      </div>
+
+      {pregunta.opciones && (
+        <div className="ml-9 space-y-1 mb-2">
+          {pregunta.opciones.map((op, j) => (
+            <p key={j} className="text-sm text-gray-600 bg-gray-50 rounded-lg px-3 py-1.5">
+              {op}
+            </p>
+          ))}
+        </div>
+      )}
+
+      <details className="ml-9 text-sm">
+        <summary className="cursor-pointer text-blue-600 hover:text-blue-800 text-xs font-medium">
+          Mostrar respuesta
+        </summary>
+        <p className="mt-2 text-gray-600 bg-green-50 border border-green-200 rounded-lg px-3 py-2 whitespace-pre-line">
+          {String(pregunta.respuesta)}
+        </p>
+      </details>
     </div>
   )
 }

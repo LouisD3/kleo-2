@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation'
 import { useMemo, useState } from 'react'
 import NavBar from '@/components/layout/NavBar.jsx'
 import { getAllSecuencias } from '@/content/biblioteca/matematicas-1'
-import { getTareaReferencia } from '@/data/tareas-referencia'
+import { getTareasReferencia } from '@/data/tareas-referencia'
 
 const secuencias = getAllSecuencias()
 
@@ -49,7 +49,7 @@ export default function BibliotecaPage() {
         {/* Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {filtradas.map((sec) => {
-            const tieneTareaCPA = !!getTareaReferencia(sec.secuencia)
+            const numTareas = getTareasReferencia(sec.secuencia).length
             return (
               <button
                 key={sec.secuencia}
@@ -61,9 +61,9 @@ export default function BibliotecaPage() {
                   <span className="text-3xl font-black text-gray-200 group-hover:text-gray-300 transition-colors leading-none">
                     {String(sec.secuencia).padStart(2, '0')}
                   </span>
-                  {tieneTareaCPA ? (
+                  {numTareas > 0 ? (
                     <span className="flex-shrink-0 text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full bg-yellow-100 text-yellow-700 border border-yellow-200">
-                      Tarea CPA
+                      {numTareas} tarea{numTareas > 1 ? 's' : ''} CPA
                     </span>
                   ) : (
                     <span className="flex-shrink-0 text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full bg-gray-100 text-gray-400">

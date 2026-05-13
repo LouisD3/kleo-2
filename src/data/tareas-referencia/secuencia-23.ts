@@ -1,0 +1,73 @@
+import type { TareaCPA } from '@/types/tarea-cpa'
+
+/**
+ * Tarea de referencia — Secuencia 23: Figuras relacionadas con el circulo
+ * Concepto clave: Explorar la relacion entre radio y circunferencia
+ *
+ * Concreto: CompasCirculo (trazar circulo de radio 2, observar la circunferencia)
+ * Pictorico: Modelo en barras (comparar radio y circunferencia)
+ * Abstracto: 3 preguntas sobre circunferencia y pi
+ */
+export const tareaSecuencia23: TareaCPA = {
+  secuencia_ref: 23,
+  concreto: {
+    manipulable: {
+      tipo_concreto: 'compas_circulo',
+      centro: [4, 4],
+      radio_objetivo: 2,
+      elementos_a_trazar: ['radio'],
+      pregunta:
+        'Traza un circulo de radio 2 unidades. Observa la relacion entre el radio y el tamano del circulo.',
+      pista: 'Ajusta el compas hasta que el radio mida exactamente 2 cuadros de la cuadricula.',
+    },
+    intentos_para_pista: 3,
+  },
+  pictorico: {
+    modelo_barras: {
+      barras: [
+        { label: 'Diametro (2r)', valor: 4, color: 'azul', subdivisiones: 4 },
+        { label: 'Circunferencia (aprox)', valor: 12, color: 'verde', subdivisiones: 12 },
+      ],
+      orientacion: 'horizontal',
+    },
+    preguntas: [
+      {
+        pregunta:
+          'El diametro de tu circulo es 4. La circunferencia mide aproximadamente 12.56. Cuantas veces cabe el diametro en la circunferencia?',
+        tipo: 'opcion_multiple',
+        opciones: ['A) Aproximadamente 2 veces', 'B) Aproximadamente 3 veces', 'C) Exactamente 4 veces', 'D) Aproximadamente 6 veces'],
+        respuesta: 'B',
+      },
+      {
+        pregunta:
+          'Si divides la circunferencia entre el diametro, siempre obtienes el mismo numero (aproximadamente 3.14). Como se llama ese numero?',
+        tipo: 'calculo',
+        respuesta: 'Ese numero se llama pi (π). Circunferencia / diametro = 12.56 / 4 = 3.14. Pi es siempre igual, sin importar el tamano del circulo.',
+      },
+    ],
+  },
+  abstracto: {
+    preguntas: [
+      {
+        tipo: 'opcion_multiple',
+        pregunta:
+          'Tu circulo tenia radio 2 y circunferencia de aproximadamente 12.56. Si el radio fuera 3, la circunferencia seria...',
+        opciones: ['A) Mayor', 'B) Menor', 'C) Igual', 'D) No se puede saber'],
+        respuesta: 'A',
+      },
+      {
+        tipo: 'calculo',
+        pregunta:
+          'Calcula la circunferencia de un circulo con radio 5. Usa la formula C = 2 x pi x radio (pi = 3.14).',
+        respuesta: 'C = 2 x 3.14 x 5 = 31.4 unidades.',
+      },
+      {
+        tipo: 'abierta',
+        pregunta:
+          'Explica con tus palabras por que el numero pi aparece siempre que se trabaja con circulos, sin importar su tamano.',
+        respuesta:
+          'Pi aparece siempre porque es la relacion constante entre la circunferencia y el diametro de CUALQUIER circulo. No importa si el circulo es muy grande o muy chico, si divides cuanto mide su borde entre cuanto mide de lado a lado, siempre da aproximadamente 3.14. Es una propiedad de la forma circular misma.',
+      },
+    ],
+  },
+}

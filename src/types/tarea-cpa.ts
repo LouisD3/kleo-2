@@ -19,9 +19,19 @@ export type TipoConcreto =
   | 'chocolate_secable' // breakable chocolate bar (fractions)
   | 'bloques_base10' // base-10 blocks (decimal system, operations)
   | 'balanza' // two-pan balance (linear equations)
-  | 'solidos_3d' // 3D solids (geometry)
-  | 'dados_monedas' // dice/coins/urns (probability)
+  | 'recta_numerica' // number line with draggable marker
+  | 'tiras_fracciones' // fraction strips/wall (equivalences)
+  | 'cuadricula_100' // 10x10 grid for percentages
+  | 'patron_figuras' // build next term of visual pattern
+  | 'fichas_positivas_negativas' // +/- chips for integer operations
+  | 'azulejos_algebra' // algebra tiles (x-bars + unit squares)
+  | 'geoplano' // geoboard (pegs + rubber bands)
+  | 'dados_ruleta' // dice and spinner (probability experiments)
   | 'histograma_construible' // buildable histogram (statistics)
+  | 'compas_circulo' // compass/circle drawing tool
+  | 'tabla_verdad' // truth table for logic propositions
+  | 'interruptores_binarios' // ON/OFF switches for binary numbers
+  | 'solidos_3d' // 3D solids (geometry, future)
 
 /** Spec for dulces_agrupables manipulable */
 export interface DulcesAgrupablesSpec {
@@ -64,13 +74,151 @@ export interface BalanzaSpec {
   pista?: string
 }
 
+/** Spec for recta_numerica — draggable marker on a number line */
+export interface RectaNumericaSpec {
+  tipo_concreto: 'recta_numerica'
+  min: number
+  max: number
+  divisiones: number // number of visible tick marks
+  objetivo: number // correct position
+  tolerancia?: number // margin of error (default 0 = exact)
+  etiquetas?: Array<{ posicion: number; texto: string }> // labeled ticks
+  pregunta: string
+  pista?: string
+}
+
+/** Spec for tiras_fracciones — fraction wall, select equivalent strips */
+export interface TirasFraccionesSpec {
+  tipo_concreto: 'tiras_fracciones'
+  fraccion_objetivo: string // e.g. "1/2"
+  filas: Array<{ divisiones: number; color: string }> // each row: strip divided into N parts
+  soluciones_validas: Array<{ fila: number; piezas: number }> // valid selections
+  pregunta: string
+  pista?: string
+}
+
+/** Spec for cuadricula_100 — 10x10 grid to shade for percentages */
+export interface Cuadricula100Spec {
+  tipo_concreto: 'cuadricula_100'
+  porcentaje_objetivo: number // e.g. 35 means shade 35 squares
+  pregunta: string
+  pista?: string
+}
+
+/** Spec for patron_figuras — build next term of a visual pattern */
+export interface PatronFigurasSpec {
+  tipo_concreto: 'patron_figuras'
+  tipo_pieza: 'cuadrado' | 'triangulo' | 'circulo' // piece shape
+  terminos: number[] // pieces per visible term, e.g. [1, 3, 5]
+  termino_objetivo: number // pieces the student must place for next term
+  pregunta: string
+  pista?: string
+}
+
+/** Spec for fichas_positivas_negativas — +/- chips for integer operations */
+export interface FichasPositivasNegativasSpec {
+  tipo_concreto: 'fichas_positivas_negativas'
+  positivas: number // initial positive chips
+  negativas: number // initial negative chips
+  resultado_objetivo: number // expected result after cancellation
+  pregunta: string
+  pista?: string
+}
+
+/** Spec for azulejos_algebra — algebra tiles for equations */
+export interface AzulejosAlgebraSpec {
+  tipo_concreto: 'azulejos_algebra'
+  ecuacion: string // display equation, e.g. "2x + 3 = 7"
+  lado_izquierdo: { x_barras: number; unidades: number }
+  lado_derecho: { x_barras: number; unidades: number }
+  solucion: number
+  pregunta: string
+  pista?: string
+}
+
+/** Spec for geoplano — geoboard with pegs and rubber bands */
+export interface GeoplanoSpec {
+  tipo_concreto: 'geoplano'
+  filas: number // grid rows (e.g. 5)
+  columnas: number // grid columns (e.g. 5)
+  figura_objetivo: Array<[number, number]> // ordered points [[row,col],...] forming the shape
+  propiedad_a_medir?: 'perimetro' | 'area' | 'angulo'
+  valor_esperado?: number // expected measurement
+  pregunta: string
+  pista?: string
+}
+
+/** Spec for dados_ruleta — dice rolls and spinner for probability */
+export interface DadosRuletaSpec {
+  tipo_concreto: 'dados_ruleta'
+  tipo: 'dado' | 'ruleta' | 'moneda'
+  caras?: number // dice faces (default 6)
+  secciones_ruleta?: Array<{ label: string; color: string }> // spinner sections
+  lanzamientos: number // number of trials to run
+  evento_favorable: string // description of favorable event
+  respuesta_probabilidad: string // expected probability as fraction, e.g. "1/6"
+  pregunta: string
+  pista?: string
+}
+
+/** Spec for histograma_construible — build a histogram by setting bar heights */
+export interface HistogramaConstruibleSpec {
+  tipo_concreto: 'histograma_construible'
+  categorias: Array<{ label: string; color: string }>
+  frecuencias_objetivo: number[] // correct frequency for each category
+  datos_brutos?: string[] // raw data items to count (optional context)
+  pregunta: string
+  pista?: string
+}
+
+/** Spec for compas_circulo — SVG compass/circle drawing tool */
+export interface CompasCirculoSpec {
+  tipo_concreto: 'compas_circulo'
+  centro: [number, number] // center point [x, y] on grid
+  radio_objetivo: number // correct radius in grid units
+  elementos_a_trazar?: Array<'radio' | 'diametro' | 'cuerda' | 'sector'>
+  pregunta: string
+  pista?: string
+}
+
+/** Spec for tabla_verdad — interactive truth table for logic */
+export interface TablaVerdadSpec {
+  tipo_concreto: 'tabla_verdad'
+  variables: string[] // e.g. ["p", "q"]
+  expresion: string // e.g. "p AND q", "p OR q", "IF p THEN q"
+  valores_objetivo: boolean[] // correct column values for each row (2^n rows)
+  pregunta: string
+  pista?: string
+}
+
+/** Spec for interruptores_binarios — ON/OFF toggles for binary */
+export interface InterruptoresBinariosSpec {
+  tipo_concreto: 'interruptores_binarios'
+  num_bits: number // e.g. 4 for 4-bit numbers
+  valor_objetivo: number // decimal value to represent, e.g. 13 = 1101
+  pregunta: string
+  pista?: string
+}
+
 // Union of all concrete specs (extend as new manipulables are built)
 export type ManipulableSpec =
   | DulcesAgrupablesSpec
   | ChocolateSecableSpec
   | BloquesBase10Spec
   | BalanzaSpec
-// Future: SolidoSpec, DadosSpec, HistogramaSpec
+  | RectaNumericaSpec
+  | TirasFraccionesSpec
+  | Cuadricula100Spec
+  | PatronFigurasSpec
+  | FichasPositivasNegativasSpec
+  | AzulejosAlgebraSpec
+  | GeoplanoSpec
+  | DadosRuletaSpec
+  | HistogramaConstruibleSpec
+  | CompasCirculoSpec
+  | TablaVerdadSpec
+  | InterruptoresBinariosSpec
+// Future: SolidoSpec
 
 export interface BloqueConcreto {
   manipulable: ManipulableSpec

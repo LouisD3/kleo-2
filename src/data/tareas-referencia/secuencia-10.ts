@@ -1,0 +1,77 @@
+import type { TareaCPA } from '@/types/tarea-cpa'
+
+/**
+ * Tarea de referencia — Secuencia 10: Introducción al álgebra
+ * Concepto clave: Traducir del lenguaje común al lenguaje algebraico (x + a = b)
+ *
+ * Concreto: Azulejos de álgebra (x + 5 = 9, solución x = 4)
+ * Pictorico: Modelo en barras (x + 5 = 9, incógnita en primera barra)
+ * Abstracto: 3 preguntas con progresión de dificultad sobre expresiones algebraicas
+ */
+export const tareaSecuencia10: TareaCPA = {
+  secuencia_ref: 10,
+  concreto: {
+    manipulable: {
+      tipo_concreto: 'azulejos_algebra',
+      ecuacion: 'x + 5 = 9',
+      lado_izquierdo: { x_barras: 1, unidades: 5 },
+      lado_derecho: { x_barras: 0, unidades: 9 },
+      solucion: 4,
+      pregunta:
+        'Usa los azulejos de álgebra para resolver la ecuación x + 5 = 9. Coloca las barras y los cuadrados unitarios en cada lado hasta encontrar el valor de x.',
+      pista: 'Quita 5 cuadrados unitarios de cada lado. ¿Cuántos quedan del lado derecho?',
+    },
+    intentos_para_pista: 3,
+  },
+  pictorico: {
+    modelo_barras: {
+      barras: [
+        { label: 'x', valor: 4, color: 'amarillo' },
+        { label: '5', valor: 5, color: 'azul' },
+      ],
+      total: { valor: 9, visible: true },
+      incognita: { posicion: 'barra', label: 'x = ?' },
+      orientacion: 'horizontal',
+    },
+    preguntas: [
+      {
+        pregunta:
+          'Observa el modelo de barras. Si el total es 9 y una parte vale 5, ¿cuánto vale la parte marcada con x?',
+        tipo: 'opcion_multiple',
+        opciones: ['A) 3', 'B) 4', 'C) 5', 'D) 9'],
+        respuesta: 'B',
+      },
+      {
+        pregunta:
+          'Usando el modelo, explica qué operación hiciste para encontrar el valor de x en x + 5 = 9.',
+        tipo: 'calculo',
+        respuesta:
+          'Se resta 5 de ambos lados: x + 5 - 5 = 9 - 5, entonces x = 4. La operación es una resta: al total se le quita la parte conocida.',
+      },
+    ],
+  },
+  abstracto: {
+    preguntas: [
+      {
+        tipo: 'opcion_multiple',
+        pregunta: '¿Cuál expresión algebraica representa "el doble de un número más tres"?',
+        opciones: ['A) x + 3', 'B) 2x + 3', 'C) 2 + 3x', 'D) 2(x + 3)'],
+        respuesta: 'B',
+      },
+      {
+        tipo: 'calculo',
+        pregunta:
+          'Si "un número aumentado en 7 es igual a 15", plantea la ecuación y resuélvela.',
+        respuesta:
+          'Paso 1: Planteamos la ecuación: x + 7 = 15.\nPaso 2: Restamos 7 de ambos lados: x = 15 - 7.\nPaso 3: x = 8.\nRespuesta: El número es 8.',
+      },
+      {
+        tipo: 'abierta',
+        pregunta:
+          'Explica con tus palabras cuál es la diferencia entre una expresión algebraica y una ecuación. Da un ejemplo de cada una.',
+        respuesta:
+          'Una expresión algebraica es una combinación de números y letras con operaciones, por ejemplo 3x + 2. No tiene signo de igual. Una ecuación es una igualdad entre dos expresiones, por ejemplo 3x + 2 = 11. La ecuación se puede resolver para encontrar el valor de la incógnita, mientras que la expresión solo representa una cantidad.',
+      },
+    ],
+  },
+}
