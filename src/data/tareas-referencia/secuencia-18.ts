@@ -75,7 +75,13 @@ export const tareaSecuencia18: TareaCPA = {
         pregunta:
           'Explica con tus palabras por qué cualquier punto que está sobre la mediatriz de un segmento se encuentra a la misma distancia de ambos extremos.',
         respuesta:
-          'La mediatriz pasa por el punto medio del segmento y es perpendicular a él. Si tomas cualquier punto P sobre la mediatriz y lo unes con los dos extremos A y B del segmento, se forman dos triángulos rectángulos iguales. Comparten la misma altura (la distancia de P al segmento), tienen la misma base (la mitad del segmento) y el ángulo entre ellos es recto. Por lo tanto, los dos triángulos son congruentes, lo que significa que la distancia de P a A es igual a la distancia de P a B.',
+          'La mediatriz pasa por el punto medio del segmento y es perpendicular a él. Cualquier punto sobre la mediatriz forma dos triángulos iguales con los extremos del segmento, por lo que está a la misma distancia de ambos extremos.',
+        criterios_aceptacion: [
+          'punto medio',
+          'perpendicular',
+          'misma distancia',
+          'triángulos iguales o congruentes',
+        ],
       },
     ],
   },

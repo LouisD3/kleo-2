@@ -72,7 +72,13 @@ export const tareaSecuencia22: TareaCPA = {
         pregunta:
           'Explica con tus palabras que es el radio y que es el diametro de un circulo. Por que el diametro siempre es el doble del radio?',
         respuesta:
-          'El radio es la distancia del centro del circulo hasta cualquier punto del borde. El diametro es la distancia de un lado al otro del circulo pasando por el centro. El diametro siempre es el doble del radio porque esta formado por dos radios unidos punta con punta: uno del centro hacia la izquierda y otro del centro hacia la derecha.',
+          'El radio va del centro al borde del circulo. El diametro cruza el circulo de lado a lado pasando por el centro. El diametro siempre es el doble del radio porque esta formado por dos radios juntos.',
+        criterios_aceptacion: [
+          'radio: del centro al borde',
+          'diametro: cruza el centro',
+          'diametro = 2 x radio',
+          'dos radios',
+        ],
       },
     ],
   },

@@ -86,7 +86,13 @@ export const tareaSecuencia04: TareaCPA = {
         pregunta:
           'Explica con tus palabras que significa la propiedad de densidad de los numeros racionales. Usa la recta numerica y el ejemplo de ubicar 1.5 entre enteros para apoyar tu explicacion.',
         respuesta:
-          'La propiedad de densidad significa que entre cualesquiera dos numeros racionales siempre podemos encontrar otro numero. Por ejemplo, entre 1 y 2 encontramos 1.5, pero entre 1 y 1.5 tambien hay numeros como 1.25, y entre 1 y 1.25 hay 1.125, y asi sucesivamente. En la recta numerica, no importa que tan cerca esten dos puntos, siempre hay mas numeros entre ellos. Por eso los racionales son densos: no hay huecos entre ellos.',
+          'La densidad significa que entre dos numeros racionales siempre hay otro. Entre 1 y 2 esta 1.5; entre 1 y 1.5 esta 1.25, y asi sin parar. En la recta nunca quedan huecos entre dos puntos racionales.',
+        criterios_aceptacion: [
+          'siempre hay un numero entre dos racionales',
+          'ejemplo de numero entre 1 y 2',
+          'se puede repetir infinitamente',
+          'no hay huecos',
+        ],
       },
     ],
   },

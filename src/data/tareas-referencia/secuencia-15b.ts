@@ -15,10 +15,7 @@ export const tareaSecuencia15b: TareaCPA = {
       tipo_concreto: 'dulces_agrupables',
       cantidad: 15,
       grupos_objetivo: 5,
-      soluciones_validas: [
-        { grupos: 5, por_grupo: 3 },
-        { grupos: 3, por_grupo: 5 },
-      ],
+      soluciones_validas: [{ grupos: 5, por_grupo: 3 }],
       pregunta:
         '15 galletas entre 5 amigos. Agrupa para encontrar cuantas recibe cada uno.',
       pista: 'Distribuye las galletas una por una entre los 5 amigos.',
@@ -75,7 +72,8 @@ export const tareaSecuencia15b: TareaCPA = {
         pregunta:
           'Explica como la constante de proporcionalidad te permite predecir sin contar uno por uno.',
         respuesta:
-          'La constante de proporcionalidad es un atajo: en vez de repartir galleta por galleta, ya se que cada amigo recibe 3. Entonces solo multiplico 3 por el numero de amigos para saber cuantas galletas necesito en total. No necesito contar una por una porque la relacion siempre es la misma. Es como una regla fija: si k = 3, entonces para cualquier numero de amigos puedo calcular el total con una simple multiplicacion.',
+          'Con k = 3, solo multiplico: amigos x 3 = galletas totales. No necesito repartir una por una porque la relacion siempre es la misma. Por ejemplo, 8 amigos x 3 = 24 galletas.',
+        criterios_aceptacion: ['multiplicacion con k', 'relacion siempre igual', 'prediccion sin contar', 'ejemplo con numeros'],
       },
     ],
   },

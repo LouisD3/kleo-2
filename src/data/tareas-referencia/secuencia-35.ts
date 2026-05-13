@@ -42,9 +42,10 @@ export const tareaSecuencia35: TareaCPA = {
       {
         pregunta:
           'En que caso exacto es Falso el condicional "SI p ENTONCES q"? Explica con la tabla que completaste.',
-        tipo: 'calculo',
+        tipo: 'abierta',
         respuesta:
-          'El condicional es Falso solo cuando p=Verdadero y q=Falso. En la tabla, esa es la segunda fila (VF). Significa que la condicion se cumple (p es verdadera) pero la consecuencia no (q es falsa). La promesa se rompio.',
+          'El condicional es Falso solo cuando p=Verdadero y q=Falso (segunda fila). La condición se cumple pero la consecuencia no: la promesa se rompió.',
+        criterios_aceptacion: ['p=V y q=F', 'segunda fila de la tabla', 'condición cumplida consecuencia no', 'promesa rota'],
       },
     ],
   },
@@ -74,7 +75,8 @@ export const tareaSecuencia35: TareaCPA = {
         pregunta:
           'Explica con tus palabras por que el condicional "SI llueve ENTONCES llevo paraguas" es verdadero cuando NO llueve, sin importar si llevas paraguas o no.',
         respuesta:
-          'El condicional es como una promesa que solo se activa cuando la condicion se cumple. Si no llueve (p=Falso), la promesa no fue puesta a prueba: no importa si llevas paraguas o no, porque nunca dijiste que harias algo cuando no llueve. Solo puedes romper la promesa si llueve y no llevas paraguas. Por eso, cuando p=Falso, el condicional siempre es Verdadero.',
+          'Si no llueve, la promesa nunca se puso a prueba. Solo puedes romperla si llueve y no llevas paraguas. Por eso, cuando p=Falso, el condicional siempre es Verdadero.',
+        criterios_aceptacion: ['promesa no activada cuando p=Falso', 'solo se rompe con p=V y q=F', 'cuando p=F el resultado es siempre Verdadero', 'ejemplo de lluvia o paraguas'],
       },
     ],
   },

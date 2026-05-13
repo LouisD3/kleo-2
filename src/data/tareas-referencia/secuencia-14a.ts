@@ -2,52 +2,80 @@ import type { TareaCPA } from '@/types/tarea-cpa'
 
 /**
  * Tarea de referencia — Secuencia 14a: Razones
- * Concepto clave: Repartir en partes iguales (razon como reparto)
+ * Concepto clave: Razon como reparto equitativo
+ * Anchor task: Maria prepara aguas frescas con limones y jarras
  *
- * Concreto: DulcesAgrupables (12 dulces, 3 grupos)
- * Pictorico: Modelo en barras (3 barras de 4, total 12)
- * Abstracto: 3 preguntas con progresion de dificultad sobre reparto equitativo
+ * Concreto: Agrupar 12 limones en grupos de 3 (= 4 jarras)
+ * Pictorico: Modelo de barras — 4 jarras de 3 limones, total 12
+ * Abstracto: Formalizar la razon, extender a otros valores
  */
 export const tareaSecuencia14a: TareaCPA = {
   secuencia_ref: 14,
+  contexto: {
+    personaje: 'Maria',
+    objetos: {
+      a: { nombre: 'limon', emoji: '🍋' },
+      b: { nombre: 'jarra', emoji: '🫙' },
+    },
+    valores_clave: {
+      razon: [3, 1],
+      objetivo: 12,
+    },
+    tipo: 'razon',
+    narrativa:
+      'Maria prepara aguas frescas para una fiesta. Su receta dice que necesita 3 limones por cada jarra. Tiene 12 limones.',
+    pregunta_central: '¿Cuantas jarras de agua fresca puede preparar Maria?',
+    transiciones: {
+      concreto:
+        'Ayuda a Maria a organizar sus limones. Agrupa los limones de 3 en 3 para ver cuantas jarras puede llenar.',
+      bridge_pictorico:
+        'Descubriste que con 12 limones y 3 por jarra, Maria puede preparar 4 jarras.',
+      pictorico: 'Ahora observa como se ve este reparto en un modelo de barras.',
+      bridge_abstracto:
+        'El modelo de barras confirma que cada jarra usa 3 limones y hay 4 jarras iguales.',
+      abstracto: 'Ahora formaliza esta razon y aplica a nuevas situaciones.',
+    },
+  },
   concreto: {
     manipulable: {
       tipo_concreto: 'dulces_agrupables',
       cantidad: 12,
-      grupos_objetivo: 3,
-      soluciones_validas: [
-        { grupos: 3, por_grupo: 4 },
-        { grupos: 4, por_grupo: 3 },
-      ],
+      grupos_objetivo: 4,
+      soluciones_validas: [{ grupos: 4, por_grupo: 3 }],
       pregunta:
-        'Hay 12 dulces para 3 ninos. Agrupa para que cada nino reciba lo mismo.',
-      pista: 'Intenta repartir los dulces uno por uno entre los 3 ninos hasta que no quede ninguno.',
+        'Maria tiene 12 limones y necesita 3 por cada jarra. Agrupa los limones para ver cuantas jarras puede preparar.',
+      pista:
+        'Cada jarra necesita exactamente 3 limones. Arrastra los limones de 3 en 3 a cada grupo.',
+      etiqueta: 'limon',
+      emoji: '🍋',
+      etiqueta_grupo: 'Jarra',
+      emoji_grupo: '🫙',
     },
     intentos_para_pista: 3,
   },
   pictorico: {
     modelo_barras: {
       barras: [
-        { label: 'Nino 1', valor: 4, color: 'amarillo', subdivisiones: 4 },
-        { label: 'Nino 2', valor: 4, color: 'azul', subdivisiones: 4 },
-        { label: 'Nino 3', valor: 4, color: 'verde', subdivisiones: 4 },
+        { label: '🫙 Jarra 1', valor: 3, color: 'amarillo', subdivisiones: 3 },
+        { label: '🫙 Jarra 2', valor: 3, color: 'verde', subdivisiones: 3 },
+        { label: '🫙 Jarra 3', valor: 3, color: 'azul', subdivisiones: 3 },
+        { label: '🫙 Jarra 4', valor: 3, color: 'morado', subdivisiones: 3 },
       ],
       total: { valor: 12, visible: true },
       orientacion: 'horizontal',
     },
     preguntas: [
       {
-        pregunta: 'Segun el modelo, cuantos dulces le tocan a cada nino?',
+        pregunta: 'Segun el modelo, cuantos limones usa Maria en cada jarra?',
         tipo: 'opcion_multiple',
-        opciones: ['A) 3 dulces', 'B) 4 dulces', 'C) 6 dulces', 'D) 12 dulces'],
+        opciones: ['A) 2 limones', 'B) 3 limones', 'C) 4 limones', 'D) 12 limones'],
         respuesta: 'B',
       },
       {
         pregunta:
-          'Si cada barra representa los dulces de un nino, cuantos dulces hay en total? Escribe la operacion.',
+          'Si cada barra representa una jarra con 3 limones, cuantas jarras prepara Maria? Escribe la operacion.',
         tipo: 'calculo',
-        respuesta:
-          'Cada nino recibe 4 dulces. Total = 4 x 3 = 12 dulces. La operacion es una multiplicacion: dulces por nino por numero de ninos.',
+        respuesta: '12 / 3 = 4 jarras. Se divide el total de limones entre los limones por jarra.',
       },
     ],
   },
@@ -55,23 +83,25 @@ export const tareaSecuencia14a: TareaCPA = {
     preguntas: [
       {
         tipo: 'opcion_multiple',
-        pregunta: '12 dulces entre 3 ninos por igual, cuantos dulces recibe cada uno?',
-        opciones: ['A) 3', 'B) 4', 'C) 6', 'D) 9'],
-        respuesta: 'B',
+        pregunta:
+          'Maria usa 3 limones por jarra y tiene 12 limones. ¿Cual es la razon de limones a jarras?',
+        opciones: ['A) 3:1', 'B) 4:1', 'C) 12:3', 'D) A y C son correctas'],
+        respuesta: 'D',
       },
       {
         tipo: 'calculo',
         pregunta:
-          'Hay 20 galletas para 4 amigos y se reparten en partes iguales. Cuantas galletas recibe cada amigo? Muestra el procedimiento.',
+          'Si Maria consigue 21 limones mas (33 en total), ¿cuantas jarras puede preparar con la misma receta de 3 limones por jarra? Muestra el procedimiento.',
         respuesta:
-          'Paso 1: Se tienen 20 galletas y 4 amigos.\nPaso 2: Se divide: 20 / 4 = 5 galletas por amigo.\nRespuesta: Cada amigo recibe 5 galletas.',
+          'Paso 1: Maria tiene 33 limones en total.\nPaso 2: La razon es 3 limones por jarra.\nPaso 3: 33 / 3 = 11 jarras.\nRespuesta: Maria puede preparar 11 jarras.',
       },
       {
         tipo: 'abierta',
         pregunta:
-          'Explica con tus palabras que es una razon usando el ejemplo de los dulces.',
+          'Explica con tus palabras que es una razon usando el ejemplo de Maria y sus aguas frescas.',
         respuesta:
-          'Una razon es una comparacion entre dos cantidades. En el ejemplo, la razon de dulces a ninos es 12:3, que significa que por cada 3 ninos hay 12 dulces, o bien, por cada nino hay 4 dulces. La razon nos dice cuanto le corresponde a cada uno cuando repartimos en partes iguales.',
+          'Una razon compara dos cantidades relacionadas. La razon 3:1 significa 3 limones por jarra. Dividiendo el total de limones entre 3 sabemos cuantas jarras se pueden llenar.',
+        criterios_aceptacion: ['comparacion de cantidades', 'razon 3:1', 'division', 'limones por jarra'],
       },
     ],
   },

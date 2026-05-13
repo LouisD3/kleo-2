@@ -74,7 +74,14 @@ export const tareaSecuencia20: TareaCPA = {
         pregunta:
           'Las tres medianas de un triángulo se cruzan en un solo punto llamado baricentro. Explica qué representa el baricentro y menciona una propiedad que lo haga especial.',
         respuesta:
-          'El baricentro es el centro de gravedad del triángulo. Si recortaras un triángulo de cartón, podrías equilibrarlo en la punta de un lápiz exactamente en el baricentro. Una propiedad especial es que el baricentro divide a cada mediana en dos partes con una razón de 2:1, es decir, la distancia del vértice al baricentro es el doble de la distancia del baricentro al punto medio del lado opuesto.',
+          'El baricentro es el centro de gravedad del triángulo: si recortaras un triángulo de cartón, podrías equilibrarlo en ese punto. Una propiedad especial es que divide cada mediana en razón 2:1 (la parte del vértice es el doble que la del lado opuesto).',
+        criterios_aceptacion: [
+          'centro de gravedad',
+          'equilibrio',
+          'razón 2:1',
+          'tres medianas',
+          'se cruzan en un punto',
+        ],
       },
     ],
   },

@@ -68,7 +68,13 @@ export const tareaSecuencia24: TareaCPA = {
         pregunta:
           'Explica con tus palabras la diferencia entre un sector y un arco de un circulo. Usa el ejemplo de la pizza.',
         respuesta:
-          'Un sector es la region entera de la rebanada de pizza: incluye las dos orillas rectas (radios) y la parte curva (arco). Un arco es solo la parte curva del borde, como la costra de la pizza. El sector es un area (superficie) mientras que el arco es una longitud (linea curva).',
+          'El sector es toda la rebanada de pizza: las dos orillas rectas y la parte curva. El arco es solo la costra (la parte curva del borde). El sector es una superficie y el arco es una linea curva.',
+        criterios_aceptacion: [
+          'sector: superficie o region',
+          'arco: solo la parte curva',
+          'radios forman el sector',
+          'arco es el borde curvo',
+        ],
       },
     ],
   },

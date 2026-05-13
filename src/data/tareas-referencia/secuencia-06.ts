@@ -68,7 +68,13 @@ export const tareaSecuencia06: TareaCPA = {
         pregunta:
           'Explica con tus palabras por que cancelar una ficha positiva con una negativa da cero. Usa un ejemplo de la vida real.',
         respuesta:
-          'Una ficha positiva y una negativa se cancelan porque representan cantidades opuestas: +1 y -1 suman 0. Es como si debes $1 a un amigo y el te debe $1 a ti: las deudas se cancelan y nadie debe nada. En la vida real, si ganas $5 y gastas $5, tu balance es $0. Cada gasto cancela una ganancia.',
+          '+1 y -1 son opuestos y juntos suman cero. Es como ganar $5 y gastar $5: el balance queda en $0. Por eso cada par positivo-negativo se cancela.',
+        criterios_aceptacion: [
+          'opuestos que suman cero',
+          'ejemplo de la vida real',
+          'balance o resultado final cero',
+          '+1 + (-1) = 0',
+        ],
       },
     ],
   },

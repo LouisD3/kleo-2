@@ -75,7 +75,13 @@ export const tareaSecuencia05a: TareaCPA = {
         pregunta:
           'Explica con tus palabras por que nuestro sistema numerico se llama "base 10". Usa un ejemplo con un numero de tres cifras.',
         respuesta:
-          'Nuestro sistema se llama base 10 porque cada posicion vale 10 veces mas que la posicion anterior. Las unidades valen 1, las decenas valen 10 (10 veces 1) y las centenas valen 100 (10 veces 10). Por ejemplo, en el numero 235, el 2 vale 200 porque esta en la posicion de las centenas, el 3 vale 30 porque esta en las decenas, y el 5 vale 5 porque esta en las unidades. Cada vez que nos movemos una posicion a la izquierda, multiplicamos por 10.',
+          'Se llama base 10 porque cada posicion vale 10 veces mas que la anterior: unidades (1), decenas (10), centenas (100). En 235, el 2 vale 200, el 3 vale 30 y el 5 vale 5.',
+        criterios_aceptacion: [
+          'cada posicion vale 10 veces mas',
+          'unidades, decenas, centenas',
+          'ejemplo con numero de tres cifras',
+          'descomposicion correcta',
+        ],
       },
     ],
   },

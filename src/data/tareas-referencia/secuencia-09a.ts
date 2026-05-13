@@ -70,7 +70,13 @@ export const tareaSecuencia09a: TareaCPA = {
         pregunta:
           'Explica con tus palabras que es la diferencia constante en una sucesion. Por que te ayuda a predecir los siguientes terminos?',
         respuesta:
-          'La diferencia constante es el numero que siempre se suma para pasar de un termino al siguiente. En el patron de cuadrados era 2: siempre sumabamos 2. Nos ayuda a predecir porque si sabemos que la diferencia es fija, podemos calcular cualquier termino futuro sin necesidad de construirlo: solo sumamos la diferencia las veces necesarias.',
+          'La diferencia constante es el numero que se suma siempre entre un termino y el siguiente. En esta sucesion era 2. Con ese dato puedes calcular cualquier termino siguiente sin construir todos los anteriores.',
+        criterios_aceptacion: [
+          'numero que se suma igual cada vez',
+          'diferencia fija o constante',
+          'permite predecir terminos futuros',
+          'ejemplo con la sucesion vista',
+        ],
       },
     ],
   },

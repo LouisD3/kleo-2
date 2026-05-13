@@ -86,7 +86,13 @@ export const tareaSecuencia27: TareaCPA = {
         pregunta:
           'Imagina que tienes tres varillas de 5, 5 y 10 cm. Puedes formar un triangulo? Explica que pasa en el caso limite cuando la suma de dos lados es igual al tercero.',
         respuesta:
-          'No se puede formar un triangulo porque 5 + 5 = 10, que es igual al tercer lado, no mayor. En este caso limite, las tres varillas quedarian alineadas formando un segmento recto, no un triangulo. La desigualdad triangular exige que la suma sea estrictamente mayor, no solo igual. Cuando la suma es exactamente igual, la figura se "aplasta" y no hay area interior.',
+          'No se puede formar un triangulo porque 5 + 5 = 10, que es igual al tercer lado, no mayor. En el caso limite las varillas quedan alineadas formando una linea recta, no un triangulo. La suma debe ser estrictamente mayor.',
+        criterios_aceptacion: [
+          '5 + 5 = 10 no es mayor',
+          'quedan alineadas o en linea recta',
+          'no hay triangulo',
+          'la suma debe ser estrictamente mayor',
+        ],
       },
     ],
   },

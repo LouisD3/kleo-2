@@ -40,6 +40,10 @@ export function useAnthropicAPI() {
     return llamarAPI('generar', params)
   }
 
+  function generarTareaCPA(params) {
+    return llamarAPI('generar_cpa', params)
+  }
+
   function corregirTarea(params) {
     return llamarAPI('corregir', params)
   }
@@ -48,5 +52,13 @@ export function useAnthropicAPI() {
     return llamarAPI('modificar', params)
   }
 
-  return { generarTarea, corregirTarea, modificarPregunta, cargando, error, setError }
+  return {
+    generarTarea,
+    generarTareaCPA,
+    corregirTarea,
+    modificarPregunta,
+    cargando,
+    error,
+    setError,
+  }
 }

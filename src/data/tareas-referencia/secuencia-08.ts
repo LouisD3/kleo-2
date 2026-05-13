@@ -80,7 +80,13 @@ export const tareaSecuencia08: TareaCPA = {
         pregunta:
           'Explica con tus palabras que es la propiedad distributiva y por que es util. Usa el ejemplo de los azulejos de algebra con 2(x + 3) = 14 para apoyar tu explicacion.',
         respuesta:
-          'La propiedad distributiva nos permite multiplicar un numero por una suma al multiplicarlo por cada sumando y luego sumar los resultados: a(b + c) = ab + ac. Es util porque nos ayuda a simplificar expresiones y resolver ecuaciones. Por ejemplo, con los azulejos, 2(x + 3) se convierte en 2x + 6 al distribuir el 2. Esto nos permite ver claramente cuantas barras de x y cuantas unidades tenemos, y asi resolver paso a paso: 2x + 6 = 14, luego 2x = 8, y finalmente x = 4.',
+          'La propiedad distributiva dice que puedes multiplicar un numero por cada parte de una suma: 2(x+3) = 2x+6. Es util porque convierte una expresion con parentesis en una mas facil de resolver.',
+        criterios_aceptacion: [
+          'multiplicar por cada sumando',
+          'ejemplo con 2(x+3)',
+          'resultado 2x+6',
+          'simplifica la ecuacion',
+        ],
       },
     ],
   },

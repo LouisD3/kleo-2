@@ -83,7 +83,13 @@ export const tareaSecuencia31: TareaCPA = {
         pregunta:
           'Un alumno dice que la media es la mejor medida para describir las calificaciones del grupo. Otro dice que la moda es mejor. Con cual estas de acuerdo y por que?',
         respuesta:
-          'Ambas medidas son utiles pero en diferentes situaciones. La media (6.9) nos da un promedio general del grupo, pero puede verse afectada por valores extremos. La moda (7) nos dice cual calificacion fue la mas comun. En este caso, ambas son parecidas (6.9 y 7), asi que las dos describen bien al grupo. Sin embargo, si hubiera un valor muy alto o muy bajo (valor atipico), la media cambiaria mucho pero la moda no, asi que la moda seria mas representativa en ese caso.',
+          'Ambas son utiles. La media da el promedio del grupo pero puede cambiar mucho si hay un valor muy alto o muy bajo. La moda dice cual calificacion fue la mas comun y no se afecta por valores extremos. Depende de la situacion.',
+        criterios_aceptacion: [
+          'media: promedio general',
+          'moda: valor mas frecuente',
+          'valores extremos afectan la media',
+          'ambas son utiles segun el caso',
+        ],
       },
     ],
   },

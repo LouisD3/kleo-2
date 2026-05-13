@@ -80,7 +80,13 @@ export const tareaSecuencia02: TareaCPA = {
         pregunta:
           'Explica con tus palabras por que al cancelar fichas positivas con negativas obtenemos el resultado de una suma de numeros con signo. Usa el ejemplo de las 5 fichas positivas y 3 negativas.',
         respuesta:
-          'Cuando tenemos fichas positivas y negativas, cada par de una positiva con una negativa se cancela porque representan valores opuestos (+1 y -1 suman 0). Al cancelar 3 pares de las 5 positivas y 3 negativas, quedan 2 fichas positivas sin cancelar. Por eso (+5) + (-3) = +2. Las fichas nos ayudan a ver que sumar un numero negativo es como quitar fichas positivas.',
+          'Cada par de una ficha positiva y una negativa se cancela porque +1 y -1 suman 0. Con 5 positivas y 3 negativas, se cancelan 3 pares y quedan 2 positivas: (+5) + (-3) = +2.',
+        criterios_aceptacion: [
+          '+1 y -1 suman cero',
+          'cancelar pares',
+          'fichas sobrantes = resultado',
+          'ejemplo con numeros correctos',
+        ],
       },
     ],
   },

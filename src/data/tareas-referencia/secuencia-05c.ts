@@ -69,7 +69,13 @@ export const tareaSecuencia05c: TareaCPA = {
         pregunta:
           'Explica con tus palabras por que la resta es la operacion inversa de la suma. Usa un ejemplo con numeros para demostrarlo.',
         respuesta:
-          'La resta es la operacion inversa de la suma porque deshace lo que la suma hace. Si sumo dos numeros y obtengo un resultado, al restar uno de esos numeros al resultado, recupero el otro. Por ejemplo: 148 + 87 = 235. Si ahora resto 148 del resultado: 235 - 148 = 87, regreso al otro numero. Siempre que a + b = c, entonces c - a = b y c - b = a. Son operaciones que se "cancelan" mutuamente.',
+          'La resta deshace lo que la suma hace. Si 148 + 87 = 235, entonces 235 - 148 = 87. Si a + b = c, siempre podemos recuperar un sumando restando el otro al resultado.',
+        criterios_aceptacion: [
+          'operacion inversa',
+          'deshace la suma',
+          'ejemplo numerico correcto',
+          'relacion a + b = c implica c - a = b',
+        ],
       },
     ],
   },

@@ -3,33 +3,61 @@ import type { TareaCPA } from '@/types/tarea-cpa'
 /**
  * Tarea de referencia — Secuencia 14b: Razones
  * Concepto clave: Comparar dos razones diferentes
+ * Anchor task: Don Pedro vende tacos — comparar receta de salsa roja vs verde
  *
- * Concreto: DulcesAgrupables (12 dulces, 4 grupos)
- * Pictorico: Modelo en barras comparativo (3 ninos vs 4 ninos)
- * Abstracto: 3 preguntas con progresion de dificultad sobre comparacion de razones
+ * Concreto: Agrupar 12 chiles en grupos de 4 (= 3 tandas) vs grupos de 3 (= 4 tandas)
+ * Pictorico: Modelo comparativo — 3 chiles/tanda vs 4 chiles/tanda
+ * Abstracto: Formalizar la comparacion de razones, generalizar
  */
 export const tareaSecuencia14b: TareaCPA = {
   secuencia_ref: 14,
+  contexto: {
+    personaje: 'Don Pedro',
+    objetos: {
+      a: { nombre: 'chile', emoji: '🌶️' },
+      b: { nombre: 'tanda de salsa', emoji: '🫕' },
+    },
+    valores_clave: {
+      razon: [4, 1],
+      objetivo: 12,
+    },
+    tipo: 'comparacion',
+    narrativa:
+      'Don Pedro tiene un puesto de tacos y prepara dos tipos de salsa. Para la salsa roja usa 4 chiles por tanda, y para la verde usa 3 chiles por tanda. Hoy tiene 12 chiles.',
+    pregunta_central: '¿De cual salsa puede hacer mas tandas con los mismos 12 chiles?',
+    transiciones: {
+      concreto:
+        'Ayuda a Don Pedro a organizar sus chiles. Agrupa de 4 en 4 para ver cuantas tandas de salsa roja salen.',
+      bridge_pictorico:
+        'Con 12 chiles y 4 por tanda, salen 3 tandas de salsa roja. Pero la verde usa solo 3 chiles por tanda.',
+      pictorico: 'Ahora compara las dos recetas en un modelo de barras: ¿cual rinde mas?',
+      bridge_abstracto:
+        'Las barras muestran que con menos chiles por tanda, se hacen mas tandas: 4 verdes vs 3 rojas.',
+      abstracto:
+        'Formaliza esta comparacion: ¿por que al usar menos ingredientes por tanda se obtienen mas tandas?',
+    },
+  },
   concreto: {
     manipulable: {
       tipo_concreto: 'dulces_agrupables',
       cantidad: 12,
-      grupos_objetivo: 4,
-      soluciones_validas: [
-        { grupos: 4, por_grupo: 3 },
-        { grupos: 3, por_grupo: 4 },
-      ],
+      grupos_objetivo: 3,
+      soluciones_validas: [{ grupos: 3, por_grupo: 4 }],
       pregunta:
-        'Ahora hay 4 ninos en vez de 3. Agrupa los 12 dulces entre 4.',
-      pista: 'Reparte los dulces uno por uno entre los 4 ninos hasta repartir todos.',
+        'Don Pedro tiene 12 chiles para la salsa roja (4 por tanda). Agrupa los chiles para ver cuantas tandas salen.',
+      pista: 'Cada tanda de salsa roja necesita 4 chiles. Intenta hacer grupos de 4.',
+      etiqueta: 'chile',
+      emoji: '🌶️',
+      etiqueta_grupo: 'Tanda',
+      emoji_grupo: '🫕',
     },
     intentos_para_pista: 3,
   },
   pictorico: {
     modelo_barras: {
       barras: [
-        { label: '3 ninos: c/u', valor: 4, color: 'amarillo', subdivisiones: 4 },
-        { label: '4 ninos: c/u', valor: 3, color: 'azul', subdivisiones: 3 },
+        { label: '🌶️ Roja (4 c/tanda)', valor: 4, color: 'rojo', subdivisiones: 4 },
+        { label: '🌶️ Verde (3 c/tanda)', valor: 3, color: 'verde', subdivisiones: 3 },
       ],
       total: { valor: 12, visible: true },
       orientacion: 'horizontal',
@@ -37,22 +65,23 @@ export const tareaSecuencia14b: TareaCPA = {
     preguntas: [
       {
         pregunta:
-          'Segun el modelo, con 3 ninos cada uno recibe 4 dulces y con 4 ninos cada uno recibe 3. Quien recibe mas dulces?',
+          'Con 12 chiles, Don Pedro hace 3 tandas de roja (4 chiles c/u) y 4 tandas de verde (3 chiles c/u). ¿De cual salsa hace mas tandas?',
         tipo: 'opcion_multiple',
         opciones: [
-          'A) Los ninos cuando son 3',
-          'B) Los ninos cuando son 4',
-          'C) Reciben lo mismo',
+          'A) De la salsa roja',
+          'B) De la salsa verde',
+          'C) Hace la misma cantidad',
           'D) No se puede saber',
         ],
-        respuesta: 'A',
+        respuesta: 'B',
       },
       {
         pregunta:
-          'Compara las dos barras. Por que la barra de "3 ninos" es mas larga que la de "4 ninos"? Explica.',
-        tipo: 'calculo',
+          'Observa las barras. ¿Por que la barra de la salsa verde es mas corta que la de la roja, pero Don Pedro hace mas tandas de verde? Explica.',
+        tipo: 'abierta',
         respuesta:
-          'La barra de 3 ninos mide 4 porque 12/3 = 4 dulces por nino. La barra de 4 ninos mide 3 porque 12/4 = 3 dulces por nino. Al haber mas ninos, los mismos 12 dulces se reparten en mas partes, entonces cada parte es mas chica.',
+          'Cada tanda verde usa 3 chiles (menos que la roja con 4). Con menos chiles por tanda, los 12 chiles alcanzan para mas tandas: 12/3 = 4 verdes vs 12/4 = 3 rojas.',
+        criterios_aceptacion: ['menos chiles por tanda', 'division 12/3 o 12/4', 'mas tandas de verde', 'comparacion de resultados'],
       },
     ],
   },
@@ -61,28 +90,29 @@ export const tareaSecuencia14b: TareaCPA = {
       {
         tipo: 'opcion_multiple',
         pregunta:
-          'Con 3 ninos cada uno recibe 4 dulces; con 4 ninos cada uno recibe 3 dulces. Quien recibe mas?',
+          'Don Pedro usa 4 chiles por tanda de roja y 3 por tanda de verde. Con 12 chiles, ¿cuantas tandas de cada salsa puede hacer?',
         opciones: [
-          'A) Cada nino cuando son 3',
-          'B) Cada nino cuando son 4',
-          'C) Reciben igual',
-          'D) Depende del tipo de dulce',
+          'A) 3 rojas y 4 verdes',
+          'B) 4 rojas y 3 verdes',
+          'C) 6 de cada una',
+          'D) Depende del tamano del chile',
         ],
         respuesta: 'A',
       },
       {
         tipo: 'calculo',
         pregunta:
-          'Compara: 15 galletas entre 3 amigos vs 15 galletas entre 5 amigos. Cuantas recibe cada uno en cada caso? Muestra el procedimiento.',
+          'Si Don Pedro consigue 24 chiles, ¿cuantas tandas de cada salsa puede hacer? Compara los resultados y muestra el procedimiento.',
         respuesta:
-          'Caso 1: 15 galletas / 3 amigos = 5 galletas por amigo.\nCaso 2: 15 galletas / 5 amigos = 3 galletas por amigo.\nCon 3 amigos cada uno recibe mas (5) que con 5 amigos (3).',
+          'Salsa roja: 24 / 4 = 6 tandas.\nSalsa verde: 24 / 3 = 8 tandas.\nCon 24 chiles, Don Pedro hace 2 tandas mas de verde que de roja (8 vs 6), porque la razon de chiles por tanda es menor en la verde.',
       },
       {
         tipo: 'abierta',
         pregunta:
-          'Explica por que al aumentar el numero de personas, cada una recibe menos si el total no cambia.',
+          'Explica por que al usar menos ingredientes por tanda, se pueden hacer mas tandas con la misma cantidad total. Usa el ejemplo de Don Pedro.',
         respuesta:
-          'Si el total de cosas no cambia pero hay mas personas, cada persona recibe menos porque el mismo total se divide en mas partes. Es como un pastel: si lo partes en 3, los pedazos son grandes; si lo partes en 6, cada pedazo es la mitad de grande. Matematicamente, al dividir el mismo numero entre un divisor mas grande, el resultado es mas chico.',
+          'Si cada tanda gasta menos chiles, el total alcanza para mas tandas. Con 12 chiles: 12/3 = 4 tandas verdes, pero 12/4 = 3 tandas rojas. Dividir entre un numero menor siempre da un resultado mayor.',
+        criterios_aceptacion: ['menos por tanda mas tandas', 'division', 'comparacion 12/3 vs 12/4', 'divisor menor resultado mayor'],
       },
     ],
   },

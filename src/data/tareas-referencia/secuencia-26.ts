@@ -81,7 +81,13 @@ export const tareaSecuencia26: TareaCPA = {
         pregunta:
           'Un punto esta a la misma distancia de dos rectas paralelas. Donde se encuentra ese punto? Explica tu razonamiento.',
         respuesta:
-          'El punto se encuentra exactamente en la recta que esta a la mitad entre las dos rectas paralelas. Si las rectas paralelas estan en y = 1 y y = 6, el punto equidistante esta en y = 3.5 porque 3.5 - 1 = 2.5 y 6 - 3.5 = 2.5. Este lugar geometrico es otra recta paralela a las dos originales, ubicada justo a la mitad.',
+          'Ese punto esta exactamente a la mitad entre las dos rectas paralelas, sobre una tercera recta paralela a ellas. Por ejemplo, si las rectas estan en y = 1 y y = 6, el punto equidistante esta en y = 3.5.',
+        criterios_aceptacion: [
+          'a la mitad entre las dos rectas',
+          'tercera recta paralela',
+          'misma distancia a ambas',
+          'lugar geometrico',
+        ],
       },
     ],
   },

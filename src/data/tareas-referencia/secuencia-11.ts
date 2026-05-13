@@ -79,7 +79,13 @@ export const tareaSecuencia11: TareaCPA = {
         pregunta:
           'Si un cuadrado y un rectángulo tienen el mismo perímetro, ¿siempre tienen la misma área? Explica tu razonamiento con un ejemplo.',
         respuesta:
-          'No, no siempre tienen la misma área. Por ejemplo, un cuadrado con perímetro de 16 cm tiene lados de 4 cm y su área es 4 × 4 = 16 cm². Un rectángulo con el mismo perímetro de 16 cm podría tener largo de 6 cm y ancho de 2 cm, y su área sería 6 × 2 = 12 cm². Aunque el perímetro es igual, el área es diferente. El cuadrado siempre tiene mayor área que cualquier rectángulo con el mismo perímetro.',
+          'No, no siempre. Un cuadrado de perímetro 16 cm tiene lados de 4 cm y área 16 cm². Un rectángulo de 6×2 cm tiene el mismo perímetro pero área 12 cm². El perímetro igual no garantiza áreas iguales.',
+        criterios_aceptacion: [
+          'respuesta negativa justificada',
+          'ejemplo numérico concreto',
+          'cálculo correcto de área',
+          'distinción entre perímetro y área',
+        ],
       },
     ],
   },

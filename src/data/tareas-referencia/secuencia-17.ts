@@ -49,9 +49,10 @@ export const tareaSecuencia17: TareaCPA = {
       {
         pregunta:
           'Usando el modelo, explica la relación entre un ángulo agudo y un ángulo obtuso respecto al ángulo recto.',
-        tipo: 'calculo',
+        tipo: 'abierta',
         respuesta:
-          'Un ángulo agudo mide menos de 90° (como el de 45° del modelo). Un ángulo obtuso mide más de 90° pero menos de 180° (como el de 135° del modelo). El ángulo recto de 90° es el punto de referencia: los agudos están por debajo y los obtusos están por arriba.',
+          'El ángulo agudo mide menos de 90° y el obtuso mide más de 90°. El ángulo recto de 90° es el punto de referencia entre ambos.',
+        criterios_aceptacion: ['agudo menor que 90°', 'obtuso mayor que 90°', 'recto como referencia', 'valores del modelo mencionados'],
       },
     ],
   },
@@ -75,7 +76,8 @@ export const tareaSecuencia17: TareaCPA = {
         pregunta:
           'Cuando dos rectas se cruzan, se forman cuatro ángulos. Explica qué relación tienen entre sí los ángulos opuestos y los ángulos adyacentes.',
         respuesta:
-          'Cuando dos rectas se cruzan, se forman dos pares de ángulos opuestos por el vértice. Los ángulos opuestos siempre son iguales entre sí. Los ángulos adyacentes (que están uno al lado del otro) son suplementarios, es decir, suman 180°. Por ejemplo, si un ángulo mide 70°, el opuesto también mide 70°, y los dos adyacentes miden 110° cada uno. Esto ocurre siempre, sin importar el ángulo con el que se crucen las rectas.',
+          'Los ángulos opuestos por el vértice son iguales. Los ángulos adyacentes (uno al lado del otro) suman 180°.',
+        criterios_aceptacion: ['opuestos iguales', 'adyacentes suman 180°', 'suplementarios o ángulo recto mencionado', 'ejemplo numérico'],
       },
     ],
   },

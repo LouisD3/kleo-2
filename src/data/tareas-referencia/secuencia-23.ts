@@ -66,7 +66,13 @@ export const tareaSecuencia23: TareaCPA = {
         pregunta:
           'Explica con tus palabras por que el numero pi aparece siempre que se trabaja con circulos, sin importar su tamano.',
         respuesta:
-          'Pi aparece siempre porque es la relacion constante entre la circunferencia y el diametro de CUALQUIER circulo. No importa si el circulo es muy grande o muy chico, si divides cuanto mide su borde entre cuanto mide de lado a lado, siempre da aproximadamente 3.14. Es una propiedad de la forma circular misma.',
+          'Pi es la relacion entre la circunferencia y el diametro de cualquier circulo. No importa el tamano: si divides el borde entre el diametro, siempre obtienes aproximadamente 3.14. Es una constante de la forma circular.',
+        criterios_aceptacion: [
+          'relacion constante',
+          'circunferencia entre diametro',
+          'aproximadamente 3.14',
+          'cualquier circulo',
+        ],
       },
     ],
   },

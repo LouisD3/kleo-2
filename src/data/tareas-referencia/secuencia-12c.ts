@@ -73,7 +73,14 @@ export const tareaSecuencia12c: TareaCPA = {
         pregunta:
           'Explica con tus palabras los pasos para resolver una ecuacion que tiene dos operaciones, como 2x + 3 = 11.',
         respuesta:
-          'Para resolver una ecuacion con dos operaciones se trabaja al reves de como se construyo. Primero se quita lo que esta sumado o restado: restamos 3 de ambos lados para obtener 2x = 8. Luego se quita lo que esta multiplicado: dividimos ambos lados entre 2 para obtener x = 4. Siempre se hace la misma operacion en ambos lados para mantener el equilibrio de la ecuacion.',
+          'Primero se quita lo que esta sumado: 2x + 3 - 3 = 11 - 3, queda 2x = 8. Luego se divide para quitar la multiplicacion: x = 8 / 2 = 4. Siempre se opera igual en ambos lados.',
+        criterios_aceptacion: [
+          'dos pasos en orden correcto',
+          'restar primero',
+          'dividir despues',
+          'operar en ambos lados',
+          'resultado x=4',
+        ],
       },
     ],
   },

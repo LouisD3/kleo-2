@@ -2,17 +2,17 @@
 
 import type { BloqueConcreto } from '@/types/tarea-cpa'
 import AzulejosAlgebra from './AzulejosAlgebra'
-import CompasCirculo from './CompasCirculo'
-import DadosRuleta from './DadosRuleta'
 import Balanza from './Balanza'
 import BloquesBase10 from './BloquesBase10'
 import ChocolateSecable from './ChocolateSecable'
+import CompasCirculo from './CompasCirculo'
 import Cuadricula100 from './Cuadricula100'
-import DulcesAgrupables from './DulcesAgrupables'
+import DadosRuleta from './DadosRuleta'
 import FichasPositivasNegativas from './FichasPositivasNegativas'
 import Geoplano from './Geoplano'
 import HistogramaConstruible from './HistogramaConstruible'
 import InterruptoresBinarios from './InterruptoresBinarios'
+import ManipulableAgrupable from './ManipulableAgrupable'
 import PatronFiguras from './PatronFiguras'
 import RectaNumerica from './RectaNumerica'
 import TablaVerdad from './TablaVerdad'
@@ -38,7 +38,7 @@ export default function ManipulableDispatcher({
   switch (spec.tipo_concreto) {
     case 'dulces_agrupables':
       return (
-        <DulcesAgrupables
+        <ManipulableAgrupable
           spec={spec}
           intentos_para_pista={bloque.intentos_para_pista}
           estadoInicial={estadoInicial}

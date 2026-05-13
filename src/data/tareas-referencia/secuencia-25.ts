@@ -76,7 +76,13 @@ export const tareaSecuencia25: TareaCPA = {
         pregunta:
           'Por que no podemos simplemente sumar las distancias horizontal y vertical para obtener la distancia real entre dos puntos? Explica con un ejemplo.',
         respuesta:
-          'Si sumamos horizontal + vertical obtenemos la distancia caminando por las calles (como en cuadricula), no en linea recta. Por ejemplo, de (0,0) a (3,4): horizontal + vertical = 3 + 4 = 7, pero la distancia real es 5 (linea recta). La linea recta siempre es mas corta que el recorrido por las orillas, por eso usamos el teorema de Pitagoras en lugar de sumar.',
+          'Sumar horizontal y vertical da la distancia caminando por las calles, no en linea recta. Por ejemplo, de (0,0) a (3,4) la suma da 7, pero la distancia real es 5. La linea recta siempre es mas corta, por eso usamos el teorema de Pitagoras.',
+        criterios_aceptacion: [
+          'linea recta mas corta',
+          'teorema de Pitagoras',
+          'no es sumar los catetos',
+          'ejemplo concreto con numeros',
+        ],
       },
     ],
   },

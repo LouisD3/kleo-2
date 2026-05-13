@@ -70,7 +70,14 @@ export const tareaSecuencia10: TareaCPA = {
         pregunta:
           'Explica con tus palabras cuál es la diferencia entre una expresión algebraica y una ecuación. Da un ejemplo de cada una.',
         respuesta:
-          'Una expresión algebraica es una combinación de números y letras con operaciones, por ejemplo 3x + 2. No tiene signo de igual. Una ecuación es una igualdad entre dos expresiones, por ejemplo 3x + 2 = 11. La ecuación se puede resolver para encontrar el valor de la incógnita, mientras que la expresión solo representa una cantidad.',
+          'Una expresión algebraica tiene números y letras pero sin signo igual, por ejemplo 3x + 2. Una ecuación tiene signo igual, por ejemplo 3x + 2 = 11, y se puede resolver para encontrar el valor de x.',
+        criterios_aceptacion: [
+          'expresión sin signo igual',
+          'ecuación con signo igual',
+          'ejemplo de expresión',
+          'ejemplo de ecuación',
+          'incógnita o resolver',
+        ],
       },
     ],
   },

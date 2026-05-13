@@ -47,9 +47,10 @@ export const tareaSecuencia19: TareaCPA = {
       {
         pregunta:
           'Explica qué es una bisectriz y cómo se relaciona con los ángulos congruentes.',
-        tipo: 'calculo',
+        tipo: 'abierta',
         respuesta:
-          'La bisectriz es un rayo que divide un ángulo en dos ángulos iguales (congruentes). En este caso, la bisectriz divide el ángulo de 80° en dos ángulos de 40° cada uno. Dos ángulos son congruentes cuando tienen la misma medida. La bisectriz siempre genera dos ángulos congruentes a partir de un ángulo dado.',
+          'La bisectriz es un rayo que divide un ángulo en dos partes iguales. Dos ángulos congruentes tienen la misma medida.',
+        criterios_aceptacion: ['bisectriz divide en dos partes iguales', 'congruente significa igual medida', 'resultado 40° mencionado'],
       },
     ],
   },
@@ -74,7 +75,8 @@ export const tareaSecuencia19: TareaCPA = {
         pregunta:
           'Si trazas la bisectriz de cada ángulo de un triángulo, las tres bisectrices se encuentran en un solo punto. ¿Cómo se llama ese punto y qué propiedad especial tiene?',
         respuesta:
-          'Ese punto se llama incentro. Es el punto donde se cruzan las tres bisectrices de los ángulos interiores de un triángulo. La propiedad especial del incentro es que está a la misma distancia de los tres lados del triángulo. Esa distancia se llama inradio y es el radio de la circunferencia inscrita en el triángulo, es decir, el círculo más grande que cabe dentro del triángulo tocando los tres lados.',
+          'Ese punto se llama incentro. Está a la misma distancia de los tres lados del triángulo y es el centro del círculo que cabe dentro del triángulo.',
+        criterios_aceptacion: ['incentro', 'equidistante a los tres lados', 'tres bisectrices se cruzan', 'círculo inscrito'],
       },
     ],
   },

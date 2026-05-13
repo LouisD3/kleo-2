@@ -51,9 +51,10 @@ export const tareaSecuencia28: TareaCPA = {
       {
         pregunta:
           'Usando el modelo, explica la diferencia entre perimetro y area del rectangulo de 4x3.',
-        tipo: 'calculo',
+        tipo: 'abierta',
         respuesta:
-          'El perimetro es la suma de todos los lados: P = 2 x (largo + ancho) = 2 x (4 + 3) = 2 x 7 = 14 unidades. El area es el espacio interior: A = largo x ancho = 4 x 3 = 12 unidades cuadradas. El perimetro mide el contorno y el area mide la superficie.',
+          'El perímetro mide el contorno: P = 2×(4+3) = 14 unidades. El área mide el espacio interior: A = 4×3 = 12 unidades cuadradas.',
+        criterios_aceptacion: ['perímetro es el contorno', 'área es el espacio interior', 'fórmula perímetro correcta', 'fórmula área correcta'],
       },
     ],
   },
@@ -78,7 +79,8 @@ export const tareaSecuencia28: TareaCPA = {
         pregunta:
           'Dos rectangulos tienen el mismo perimetro de 20 cm pero diferente area. Da un ejemplo de cada uno y explica por que el area cambia aunque el perimetro sea igual.',
         respuesta:
-          'Ejemplo 1: Rectangulo de 9 x 1 cm. Perimetro = 2(9+1) = 20 cm, area = 9 cm2.\nEjemplo 2: Rectangulo de 5 x 5 cm (cuadrado). Perimetro = 2(5+5) = 20 cm, area = 25 cm2.\nEl area cambia porque depende del producto de las dimensiones, no de su suma. Cuando las dimensiones son mas parecidas (como en el cuadrado), el area es mayor. Cuando una dimension es mucho mayor que la otra, la figura se alarga y el area disminuye.',
+          'Un rectángulo de 9×1 tiene perímetro 20 cm y área 9 cm². Un cuadrado de 5×5 tiene el mismo perímetro pero área 25 cm². El área cambia porque depende del producto de las dimensiones, no de su suma.',
+        criterios_aceptacion: ['dos ejemplos con perímetro 20', 'áreas diferentes', 'área depende del producto', 'dimensiones más iguales dan mayor área'],
       },
     ],
   },

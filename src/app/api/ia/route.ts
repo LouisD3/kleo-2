@@ -2,7 +2,9 @@ import { type NextRequest, NextResponse } from 'next/server'
 import {
   type CorregirPayload,
   corregirResponseSchema,
+  type GenerarCPAPayload,
   type GenerarPayload,
+  generarCPAResponseSchema,
   generarResponseSchema,
   type ModificarPayload,
   requestBodySchema,
@@ -42,12 +44,16 @@ export async function POST(request: NextRequest) {
 
   // 3. Construire le prompt
   let prompt: string
+  let maxTokens = 4000
   if (type === 'generar') {
     prompt = promptGenerar(payload as GenerarPayload)
+  } else if (type === 'generar_cpa') {
+    prompt = promptGenerarCPA(payload as GenerarCPAPayload)
   } else if (type === 'modificar') {
     prompt = promptModificar(payload as ModificarPayload)
   } else {
     prompt = promptCorregir(payload as CorregirPayload)
+    maxTokens = 2000
   }
 
   // 4. Appeler Claude
@@ -62,7 +68,7 @@ export async function POST(request: NextRequest) {
       },
       body: JSON.stringify({
         model: 'claude-sonnet-4-20250514',
-        max_tokens: 2000,
+        max_tokens: maxTokens,
         messages: [{ role: 'user', content: prompt }],
       }),
     })
@@ -98,7 +104,12 @@ export async function POST(request: NextRequest) {
     const datos = JSON.parse(match[0])
 
     // Valider la réponse de Claude avec Zod
-    const responseSchema = type === 'corregir' ? corregirResponseSchema : generarResponseSchema
+    const responseSchema =
+      type === 'corregir'
+        ? corregirResponseSchema
+        : type === 'generar_cpa'
+          ? generarCPAResponseSchema
+          : generarResponseSchema
     const validado = responseSchema.safeParse(datos)
 
     if (!validado.success) {
@@ -258,6 +269,93 @@ Formato de respuesta JSON requerido:
 }
 
 Responde ÚNICAMENTE con el JSON. Sin texto adicional, sin explicaciones, sin comillas de bloque de código.`
+}
+
+function promptGenerarCPA({
+  dificultad,
+  pda,
+  instrucciones,
+  tipo_concreto,
+}: GenerarCPAPayload): string {
+  const pdas: PdaItem[] = Array.isArray(pda) ? pda : pda ? [pda] : []
+  const pdaLinea =
+    pdas.length > 0
+      ? pdas
+          .map((p) => `PDA: ${p.pda}${p.contenido ? ` | Contenido: ${p.contenido}` : ''}`)
+          .join('\n')
+      : ''
+
+  return `Eres un experto en el metodo Singapur para matematicas de 1o de secundaria en Mexico. Genera una tarea CPA completa (Concreto → Pictorico → Abstracto) construida alrededor de UN UNICO problema ancla (anchor task).
+
+Materia: Matematicas 1o Secundaria
+Dificultad: ${dificultad}
+Tipo de manipulable concreto: ${tipo_concreto}
+${pdaLinea ? `\n${pdaLinea}` : ''}${instrucciones ? `\nInstrucciones del profesor: ${instrucciones}` : ''}
+
+REGLAS CRITICAS:
+1. Inventa UN contexto narrativo con un personaje mexicano, una situacion cotidiana y dos objetos relacionados.
+2. Las 3 etapas (concreto, pictorico, abstracto) DEBEN representar EL MISMO PROBLEMA visto desde 3 angulos.
+3. El bloque concreto usa el manipulable "${tipo_concreto}" con los campos correspondientes.
+4. El bloque pictorico usa un modelo de barras que represente visualmente el mismo problema.
+5. El bloque abstracto tiene 3 preguntas que formalizan y extienden el problema a nuevos valores.
+6. Las transiciones entre etapas deben mencionar al personaje y resumir lo descubierto.
+7. Todo en espanol mexicano, claro para estudiantes de 1o de secundaria.
+
+Para "${tipo_concreto}" (dulces_agrupables), el spec concreto DEBE tener:
+- tipo_concreto: "dulces_agrupables"
+- cantidad: numero total de objetos
+- grupos_objetivo: numero de grupos esperados
+- soluciones_validas: array de { grupos, por_grupo }
+- pregunta: instruccion contextualizada
+- pista: ayuda si falla
+- etiqueta: nombre del objeto (ej. "limon")
+- emoji: emoji del objeto (ej. "🍋")
+- etiqueta_grupo: nombre del grupo (ej. "jarra")
+- emoji_grupo: emoji del grupo (ej. "🫙")
+
+Para las preguntas pictorico/abstracto, cada una tiene:
+- tipo: "opcion_multiple" | "verdadero_falso" | "calculo" | "abierta" | "espacios"
+- pregunta: enunciado
+- opciones: (solo opcion_multiple) array de 4 opciones con letras A-D
+- respuesta: respuesta correcta
+
+Para el modelo_barras:
+- barras: array de { label, valor, color, subdivisiones }
+- total: { valor, visible: true }
+- orientacion: "horizontal"
+
+Formato JSON de respuesta (UNICAMENTE el JSON, sin texto adicional):
+{
+  "contexto": {
+    "personaje": "...",
+    "objetos": {
+      "a": { "nombre": "...", "emoji": "..." },
+      "b": { "nombre": "...", "emoji": "..." }
+    },
+    "valores_clave": { "razon": [N, M], "objetivo": X },
+    "tipo": "razon|proporcion|reparto|comparacion|fraccion|ecuacion|porcentaje|patron|medicion|probabilidad|estadistica",
+    "narrativa": "2-3 frases del problema ancla",
+    "pregunta_central": "la pregunta que guia las 3 etapas",
+    "transiciones": {
+      "concreto": "frase que introduce la etapa concreta mencionando al personaje",
+      "bridge_pictorico": "1 frase: resume lo que el alumno descubrio en concreto (retrospectiva)",
+      "pictorico": "frase que introduce el modelo de barras",
+      "bridge_abstracto": "1 frase: resume lo que el alumno observo en el modelo de barras",
+      "abstracto": "frase que introduce la formalizacion matematica"
+    }
+  },
+  "concreto": {
+    "manipulable": { ... },
+    "intentos_para_pista": 3
+  },
+  "pictorico": {
+    "modelo_barras": { ... },
+    "preguntas": [ { "pregunta": "...", "tipo": "...", "respuesta": "..." } ]
+  },
+  "abstracto": {
+    "preguntas": [ ... ]
+  }
+}`
 }
 
 function mapTipo(tipo: string): string | null {

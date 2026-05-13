@@ -7,6 +7,8 @@ import {
   type DragStartEvent,
   PointerSensor,
   TouchSensor,
+  useDraggable,
+  useDroppable,
   useSensor,
   useSensors,
 } from '@dnd-kit/core'
@@ -26,16 +28,16 @@ interface Props {
 }
 
 export interface EstadoManipulable {
-  grupos: Record<string, string[]> // groupId -> dulceIds
+  grupos: Record<string, string[]> // groupId -> itemIds
   sinAsignar: string[]
   intentos: number
   pistaVisible: boolean
   validado: boolean
 }
 
-// ── Candy SVG ────────────────────────────────────────────────────
+// ── Fallback candy SVG (used when no emoji is provided) ──────────
 
-const CANDY_COLORS = [
+const ITEM_COLORS = [
   '#EF4444',
   '#F59E0B',
   '#10B981',
@@ -50,7 +52,7 @@ const CANDY_COLORS = [
   '#84CC16',
 ]
 
-function CandySVG({ color, size = 36 }: { color: string; size?: number }) {
+function FallbackSVG({ color, size = 36 }: { color: string; size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 36 36">
       <circle cx="18" cy="18" r="14" fill={color} opacity="0.9" />
@@ -60,27 +62,46 @@ function CandySVG({ color, size = 36 }: { color: string; size?: number }) {
   )
 }
 
-// ── Draggable candy ──────────────────────────────────────────────
+// ── Emoji item ──────────────────────────────────────────────────
 
-function DraggableDulce({
+function EmojiItem({ emoji, size = 36 }: { emoji: string; size?: number }) {
+  return (
+    <span className="select-none leading-none" style={{ fontSize: size * 0.75 }} role="img">
+      {emoji}
+    </span>
+  )
+}
+
+// ── Renderable item (emoji or fallback SVG) ─────────────────────
+
+function ItemVisual({ emoji, color, size }: { emoji?: string; color: string; size?: number }) {
+  if (emoji) return <EmojiItem emoji={emoji} size={size} />
+  return <FallbackSVG color={color} size={size} />
+}
+
+// ── Draggable item ──────────────────────────────────────────────
+
+function DraggableItem({
   id,
+  emoji,
   color,
   isDragging,
 }: {
   id: string
+  emoji?: string
   color: string
   isDragging: boolean
 }) {
   return (
     <motion.div
       layoutId={id}
-      data-dulce-id={id}
+      data-item-id={id}
       className="touch-none cursor-grab active:cursor-grabbing"
       style={{ opacity: isDragging ? 0.3 : 1 }}
       whileTap={{ scale: 1.1 }}
       transition={{ type: 'spring', stiffness: 400, damping: 25 }}
     >
-      <CandySVG color={color} />
+      <ItemVisual emoji={emoji} color={color} />
     </motion.div>
   )
 }
@@ -89,15 +110,17 @@ function DraggableDulce({
 
 function GrupoZone({
   id,
-  dulces,
-  dulceColors,
-  activeDulceId,
+  items,
+  itemColors,
+  emoji,
+  activeItemId,
   isOver,
 }: {
   id: string
-  dulces: string[]
-  dulceColors: Record<string, string>
-  activeDulceId: string | null
+  items: string[]
+  itemColors: Record<string, string>
+  emoji?: string
+  activeItemId: string | null
   isOver: boolean
 }) {
   return (
@@ -109,16 +132,17 @@ function GrupoZone({
         ${isOver ? 'border-yellow-400 bg-yellow-50' : 'border-gray-300 bg-white'}
       `}
     >
-      {dulces.length === 0 && !isOver && (
+      {items.length === 0 && !isOver && (
         <span className="text-xs text-gray-300">Arrastra aqui</span>
       )}
       <AnimatePresence>
-        {dulces.map((dId) => (
-          <DraggableDulce
+        {items.map((dId) => (
+          <DraggableItem
             key={dId}
             id={dId}
-            color={dulceColors[dId]}
-            isDragging={activeDulceId === dId}
+            emoji={emoji}
+            color={itemColors[dId]}
+            isDragging={activeItemId === dId}
           />
         ))}
       </AnimatePresence>
@@ -128,34 +152,38 @@ function GrupoZone({
 
 // ── Main component ───────────────────────────────────────────────
 
-export default function DulcesAgrupables({
+export default function ManipulableAgrupable({
   spec,
   intentos_para_pista,
   estadoInicial,
   onValidado,
   onChange,
 }: Props) {
-  // Build stable candy IDs and colors
-  const dulceIds = useMemo(
+  const itemEmoji = spec.emoji
+  const grupoLabel = spec.etiqueta_grupo ?? 'Grupo'
+  const grupoEmoji = spec.emoji_grupo
+
+  // Build stable item IDs and colors
+  const itemIds = useMemo(
     () => Array.from({ length: spec.cantidad }, (_, i) => `d${i}`),
     [spec.cantidad],
   )
-  const dulceColors = useMemo(() => {
+  const itemColors = useMemo(() => {
     const map: Record<string, string> = {}
-    for (let i = 0; i < dulceIds.length; i++) {
-      map[dulceIds[i]] = CANDY_COLORS[i % CANDY_COLORS.length]
+    for (let i = 0; i < itemIds.length; i++) {
+      map[itemIds[i]] = ITEM_COLORS[i % ITEM_COLORS.length]
     }
     return map
-  }, [dulceIds])
+  }, [itemIds])
 
   // State
   const [grupos, setGrupos] = useState<Record<string, string[]>>(estadoInicial?.grupos ?? {})
-  const [sinAsignar, setSinAsignar] = useState<string[]>(estadoInicial?.sinAsignar ?? [...dulceIds])
+  const [sinAsignar, setSinAsignar] = useState<string[]>(estadoInicial?.sinAsignar ?? [...itemIds])
   const [intentos, setIntentos] = useState(estadoInicial?.intentos ?? 0)
   const [pistaVisible, setPistaVisible] = useState(estadoInicial?.pistaVisible ?? false)
   const [validado, setValidado] = useState(estadoInicial?.validado ?? false)
   const [errorFlash, setErrorFlash] = useState(false)
-  const [activeDulceId, setActiveDulceId] = useState<string | null>(null)
+  const [activeItemId, setActiveItemId] = useState<string | null>(null)
   const [overGroupId, setOverGroupId] = useState<string | null>(null)
 
   // Notify parent of state changes for persistence
@@ -192,7 +220,7 @@ export default function DulcesAgrupables({
   // ── Drag handlers ─────────────────────────────────────────────
 
   function handleDragStart(event: DragStartEvent) {
-    setActiveDulceId(String(event.active.id))
+    setActiveItemId(String(event.active.id))
   }
 
   function handleDragOver(event: { over: { id: string | number } | null }) {
@@ -200,40 +228,36 @@ export default function DulcesAgrupables({
   }
 
   function handleDragEnd(event: DragEndEvent) {
-    const dulceId = String(event.active.id)
+    const itemId = String(event.active.id)
     const overId = event.over ? String(event.over.id) : null
-    setActiveDulceId(null)
+    setActiveItemId(null)
     setOverGroupId(null)
 
     if (!overId) return
 
     // Target is "pool" (unassigned area)
     if (overId === 'pool') {
-      // Remove from current group
       setGrupos((prev) => {
         const next = { ...prev }
         for (const gId in next) {
-          next[gId] = next[gId].filter((d) => d !== dulceId)
+          next[gId] = next[gId].filter((d) => d !== itemId)
         }
         return next
       })
-      setSinAsignar((prev) => (prev.includes(dulceId) ? prev : [...prev, dulceId]))
+      setSinAsignar((prev) => (prev.includes(itemId) ? prev : [...prev, itemId]))
       return
     }
 
     // Target is a group
     if (overId.startsWith('g')) {
-      // Remove from sinAsignar
-      setSinAsignar((prev) => prev.filter((d) => d !== dulceId))
-      // Remove from any other group
+      setSinAsignar((prev) => prev.filter((d) => d !== itemId))
       setGrupos((prev) => {
         const next = { ...prev }
         for (const gId in next) {
-          next[gId] = next[gId].filter((d) => d !== dulceId)
+          next[gId] = next[gId].filter((d) => d !== itemId)
         }
-        // Add to target group
         if (next[overId]) {
-          next[overId] = [...next[overId], dulceId]
+          next[overId] = [...next[overId], itemId]
         }
         return next
       })
@@ -284,6 +308,7 @@ export default function DulcesAgrupables({
   // ── Render ────────────────────────────────────────────────────
 
   const grupoIds = Object.keys(grupos)
+  const itemLabel = spec.etiqueta ?? 'dulce'
 
   return (
     <div className="space-y-4">
@@ -304,10 +329,11 @@ export default function DulcesAgrupables({
             )}
             {sinAsignar.map((dId) => (
               <DraggableWrapper key={dId} id={dId}>
-                <DraggableDulce
+                <DraggableItem
                   id={dId}
-                  color={dulceColors[dId]}
-                  isDragging={activeDulceId === dId}
+                  emoji={itemEmoji}
+                  color={itemColors[dId]}
+                  isDragging={activeItemId === dId}
                 />
               </DraggableWrapper>
             ))}
@@ -319,7 +345,8 @@ export default function DulcesAgrupables({
           {grupoIds.map((gId, idx) => (
             <div key={gId} className="relative">
               <span className="text-[10px] font-semibold text-gray-400 uppercase tracking-wider mb-1 block">
-                Grupo {idx + 1}
+                {grupoEmoji ? `${grupoEmoji} ` : ''}
+                {grupoLabel} {idx + 1}
                 {!validado && grupos[gId].length === 0 && (
                   <button
                     type="button"
@@ -333,9 +360,10 @@ export default function DulcesAgrupables({
               <DroppableZone id={gId} isOver={overGroupId === gId}>
                 <GrupoZone
                   id={gId}
-                  dulces={grupos[gId]}
-                  dulceColors={dulceColors}
-                  activeDulceId={activeDulceId}
+                  items={grupos[gId]}
+                  itemColors={itemColors}
+                  emoji={itemEmoji}
+                  activeItemId={activeItemId}
                   isOver={overGroupId === gId}
                 />
               </DroppableZone>
@@ -345,7 +373,9 @@ export default function DulcesAgrupables({
 
         {/* Drag overlay */}
         <DragOverlay>
-          {activeDulceId && <CandySVG color={dulceColors[activeDulceId]} size={40} />}
+          {activeItemId && (
+            <ItemVisual emoji={itemEmoji} color={itemColors[activeItemId]} size={40} />
+          )}
         </DragOverlay>
       </DndContext>
 
@@ -356,7 +386,7 @@ export default function DulcesAgrupables({
           onClick={agregarGrupo}
           className="w-full py-2.5 rounded-xl border-2 border-dashed border-gray-300 text-sm text-gray-500 hover:border-gray-400 hover:text-gray-700 transition-colors"
         >
-          + Agregar grupo
+          + Agregar {grupoLabel.toLowerCase()}
         </button>
       )}
 
@@ -392,7 +422,7 @@ export default function DulcesAgrupables({
           `}
         >
           {sinAsignar.length > 0
-            ? `Asigna todos los dulces (${sinAsignar.length} restantes)`
+            ? `Asigna todos los ${itemLabel}s (${sinAsignar.length} restantes)`
             : 'Verificar'}
         </button>
       )}
@@ -417,8 +447,6 @@ export default function DulcesAgrupables({
 }
 
 // ── dnd-kit wrappers ─────────────────────────────────────────────
-
-import { useDraggable, useDroppable } from '@dnd-kit/core'
 
 function DraggableWrapper({ id, children }: { id: string; children: React.ReactNode }) {
   const { attributes, listeners, setNodeRef, transform } = useDraggable({

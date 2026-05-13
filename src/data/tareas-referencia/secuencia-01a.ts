@@ -81,7 +81,13 @@ export const tareaSecuencia01a: TareaCPA = {
         pregunta:
           'Explica con tus palabras que significa una fraccion. Usa el ejemplo del chocolate para que tu explicacion sea clara.',
         respuesta:
-          'Una fraccion representa una parte de un todo. El denominador (numero de abajo) nos dice en cuantas partes iguales se divide el entero, y el numerador (numero de arriba) nos dice cuantas de esas partes tomamos. Por ejemplo, en la tableta de chocolate con 8 piezas, la fraccion 3/8 significa que dividimos la tableta en 8 partes iguales y tomamos 3 de ellas.',
+          'Una fraccion representa una parte de un todo. El denominador dice en cuantas partes iguales se divide el entero y el numerador dice cuantas tomamos. En la tableta de 8 piezas, 3/8 significa que tomamos 3 de las 8 partes.',
+        criterios_aceptacion: [
+          'parte de un todo',
+          'denominador = total de partes',
+          'numerador = partes tomadas',
+          'ejemplo con chocolate o numeros correctos',
+        ],
       },
     ],
   },

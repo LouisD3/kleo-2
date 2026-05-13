@@ -45,9 +45,10 @@ export const tareaSecuencia16: TareaCPA = {
       {
         pregunta:
           'Explica la diferencia entre rectas paralelas y rectas perpendiculares. Menciona un ejemplo de cada una que veas en tu salón de clases.',
-        tipo: 'calculo',
+        tipo: 'abierta',
         respuesta:
-          'Las rectas paralelas son rectas que van en la misma dirección y nunca se cruzan, como los bordes superior e inferior del pizarrón. Las rectas perpendiculares se cruzan formando un ángulo de 90°, como el borde horizontal y el borde vertical de una puerta.',
+          'Las rectas paralelas van en la misma dirección y nunca se cruzan. Las rectas perpendiculares sí se cruzan y forman un ángulo de 90°.',
+        criterios_aceptacion: ['paralelas nunca se cruzan', 'perpendiculares forman 90°', 'ejemplo correcto de cada tipo'],
       },
     ],
   },
@@ -72,7 +73,8 @@ export const tareaSecuencia16: TareaCPA = {
         pregunta:
           'Imagina que caminas por tu colonia. Describe una situación donde veas rectas paralelas y otra donde veas rectas perpendiculares. Explica por qué las clasificas así.',
         respuesta:
-          'Las vías del tren son un ejemplo de rectas paralelas: los dos rieles van siempre a la misma distancia y nunca se juntan. Un cruce de calles donde una calle va de norte a sur y otra de este a oeste es un ejemplo de rectas perpendiculares: se cruzan formando un ángulo recto de 90°. Se clasifican así porque las paralelas mantienen siempre la misma distancia entre ellas, mientras que las perpendiculares forman ángulos rectos al intersecarse.',
+          'Las vías del tren son paralelas porque nunca se juntan. Un cruce de calles es perpendicular porque las calles se cruzan formando un ángulo recto de 90°.',
+        criterios_aceptacion: ['ejemplo de rectas paralelas', 'ejemplo de rectas perpendiculares', 'justificación con dirección o ángulo', 'ángulo recto mencionado'],
       },
     ],
   },

@@ -90,7 +90,13 @@ export const tareaSecuencia03: TareaCPA = {
         pregunta:
           'Explica con tus palabras como decides cual de dos numeros con signo es mayor usando la recta numerica. Da un ejemplo con un numero positivo y uno negativo.',
         respuesta:
-          'Para comparar dos numeros con signo, los ubico en la recta numerica. El numero que esta mas a la derecha siempre es el mayor. Por ejemplo, si comparo -2 y 3, ubico -2 a la izquierda del cero y 3 a la derecha. Como 3 esta mas a la derecha que -2, entonces 3 > -2. Esto funciona porque la recta numerica esta ordenada de menor a mayor de izquierda a derecha.',
+          'En la recta numerica, el numero que esta mas a la derecha es el mayor. Por ejemplo, 3 esta a la derecha de -2, entonces 3 > -2. Todo positivo es mayor que cualquier negativo.',
+        criterios_aceptacion: [
+          'mas a la derecha = mayor',
+          'negativos a la izquierda del cero',
+          'positivos a la derecha del cero',
+          'ejemplo correcto con un positivo y un negativo',
+        ],
       },
     ],
   },

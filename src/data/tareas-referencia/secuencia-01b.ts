@@ -85,7 +85,13 @@ export const tareaSecuencia01b: TareaCPA = {
         pregunta:
           'Explica con tus palabras como puedes saber si dos fracciones son equivalentes. Usa lo que aprendiste con las tiras de fracciones.',
         respuesta:
-          'Dos fracciones son equivalentes cuando representan la misma cantidad, como lo vimos en las tiras: 1/2, 2/4 y 3/6 tenian la misma longitud. Para verificarlo sin tiras, puedo multiplicar o dividir el numerador y el denominador por el mismo numero. Si llego de una fraccion a la otra asi, son equivalentes. Ejemplo: 2/4 es equivalente a 1/2 porque 2 dividido entre 2 = 1, y 4 dividido entre 2 = 2.',
+          'Dos fracciones son equivalentes cuando representan la misma cantidad. En las tiras, 1/2, 2/4 y 3/6 tenian la misma longitud. Para verificarlo, multiplico o divido el numerador y el denominador por el mismo numero.',
+        criterios_aceptacion: [
+          'misma cantidad',
+          'multiplicar o dividir numerador y denominador por el mismo numero',
+          'ejemplo correcto de fracciones equivalentes',
+          'referencia a las tiras o al modelo visual',
+        ],
       },
     ],
   },

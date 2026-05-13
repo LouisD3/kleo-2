@@ -80,7 +80,13 @@ export const tareaSecuencia01c: TareaCPA = {
         pregunta:
           'Explica con tus palabras por que dividir el numerador entre el denominador te da el decimal de una fraccion. Usa el ejemplo de la recta numerica y las 10 partes.',
         respuesta:
-          'Una fraccion como 3/10 significa "3 partes de 10 iguales". La recta de 0 a 1 esta dividida en 10 partes iguales, y cada parte vale 0.1. Entonces 3 partes valen 3 x 0.1 = 0.3. Dividir 3 entre 10 es lo mismo: cuantas veces cabe el total (10) en la parte (3), que es 0.3. Por eso dividir el numerador entre el denominador siempre da el decimal.',
+          '3/10 significa 3 partes de 10 iguales. En la recta, cada parte vale 0.1, entonces 3 partes valen 0.3. Dividir el numerador entre el denominador (3 ÷ 10) siempre da ese mismo decimal.',
+        criterios_aceptacion: [
+          'fraccion = partes de un total',
+          'cada parte vale 1 dividido entre el denominador',
+          'numerador ÷ denominador = decimal',
+          'ejemplo con numeros correctos',
+        ],
       },
     ],
   },

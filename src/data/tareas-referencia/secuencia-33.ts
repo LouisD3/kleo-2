@@ -77,7 +77,13 @@ export const tareaSecuencia33: TareaCPA = {
         pregunta:
           'Explica con tus palabras que es el espacio muestral de un experimento aleatorio y por que es importante conocerlo antes de calcular probabilidades.',
         respuesta:
-          'El espacio muestral es el conjunto de todos los resultados posibles de un experimento aleatorio. Por ejemplo, al lanzar un dado el espacio muestral es {1, 2, 3, 4, 5, 6}. Es importante conocerlo porque la probabilidad se calcula como la razon entre los resultados favorables y el total de resultados posibles. Si no conocemos todos los resultados posibles, no podemos calcular correctamente la probabilidad. Ademas, el espacio muestral nos ayuda a verificar que no nos falte ningun resultado.',
+          'El espacio muestral es el conjunto de todos los resultados posibles. Por ejemplo, al lanzar un dado es {1, 2, 3, 4, 5, 6}. Es importante conocerlo porque la probabilidad se calcula dividiendo los resultados favorables entre el total posible.',
+        criterios_aceptacion: [
+          'todos los resultados posibles',
+          'ejemplo concreto (dado, ruleta, etc.)',
+          'necesario para calcular probabilidad',
+          'resultados favorables entre total',
+        ],
       },
     ],
   },

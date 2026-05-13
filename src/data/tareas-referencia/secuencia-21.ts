@@ -82,7 +82,14 @@ export const tareaSecuencia21: TareaCPA = {
         pregunta:
           'Explica la relación entre un cuadrado, un rectángulo, un rombo y un paralelogramo. ¿Cuál incluye a los demás y por qué?',
         respuesta:
-          'El paralelogramo es la figura más general: solo requiere dos pares de lados paralelos. El rectángulo es un paralelogramo con todos los ángulos de 90°. El rombo es un paralelogramo con todos los lados iguales. El cuadrado cumple las condiciones del rectángulo y del rombo a la vez: tiene todos los ángulos de 90° y todos los lados iguales. Entonces el paralelogramo incluye a todos los demás. El cuadrado es a la vez un rectángulo y un rombo. Es como una jerarquía: paralelogramo es la familia, rectángulo y rombo son subgrupos, y el cuadrado pertenece a ambos subgrupos.',
+          'El paralelogramo es la figura más general (dos pares de lados paralelos) e incluye a las demás. El rectángulo es un paralelogramo con ángulos de 90°, el rombo tiene todos los lados iguales, y el cuadrado cumple ambas condiciones a la vez.',
+        criterios_aceptacion: [
+          'paralelogramo incluye a los demás',
+          'ángulos de 90° en el rectángulo',
+          'lados iguales en el rombo',
+          'cuadrado es rectángulo y rombo',
+          'jerarquía de figuras',
+        ],
       },
     ],
   },

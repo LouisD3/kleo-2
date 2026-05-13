@@ -74,7 +74,14 @@ export const tareaSecuencia34: TareaCPA = {
         pregunta:
           'Explica con tus palabras la diferencia entre "Y" (conjuncion) y "O" (disyuncion). Da un ejemplo de la vida cotidiana para cada una.',
         respuesta:
-          '"Y" (conjuncion) requiere que AMBAS condiciones se cumplan al mismo tiempo. Ejemplo: "Puedes ir al cine Y al parque" solo es posible si tienes tiempo para los dos. "O" (disyuncion) requiere que AL MENOS UNA se cumpla. Ejemplo: "Puedes ir al cine O al parque" es posible si vas a cualquiera de los dos (o a ambos). La Y es mas estricta que la O.',
+          '"Y" exige que ambas condiciones se cumplan al mismo tiempo (ejemplo: tienes dinero Y tiempo libre). "O" basta con que se cumpla al menos una (ejemplo: puedes ir al cine O al parque). La Y es mas estricta que la O.',
+        criterios_aceptacion: [
+          'Y requiere ambas condiciones',
+          'O requiere al menos una',
+          'ejemplo cotidiano para Y',
+          'ejemplo cotidiano para O',
+          'Y es mas estricta',
+        ],
       },
     ],
   },

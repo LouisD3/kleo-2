@@ -72,7 +72,13 @@ export const tareaSecuencia12a: TareaCPA = {
         pregunta:
           'Explica con tus palabras por que, al resolver una ecuacion, debes hacer la misma operacion en ambos lados.',
         respuesta:
-          'Una ecuacion es como una balanza equilibrada: ambos lados valen lo mismo. Si quitas o agregas algo de un solo lado, la balanza se desequilibra y la igualdad se pierde. Por eso, cualquier operacion que hagas de un lado, debes hacerla tambien del otro para mantener el equilibrio. Asi encontramos el valor de la incognita sin romper la igualdad.',
+          'Una ecuacion es como una balanza: ambos lados son iguales. Si operas solo un lado, se rompe la igualdad. Por eso debes hacer lo mismo en los dos lados para mantener el equilibrio.',
+        criterios_aceptacion: [
+          'analogia con balanza',
+          'igualdad en ambos lados',
+          'operacion igual en los dos lados',
+          'mantener equilibrio',
+        ],
       },
     ],
   },

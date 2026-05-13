@@ -69,7 +69,13 @@ export const tareaSecuencia36: TareaCPA = {
         pregunta:
           'Explica con tus palabras por que el sistema binario solo usa 0 y 1, mientras que el decimal usa del 0 al 9. Usa la idea de los interruptores.',
         respuesta:
-          'El sistema binario solo usa 0 y 1 porque cada posicion es como un interruptor: esta encendido (1) o apagado (0), no hay estados intermedios. En el sistema decimal, cada posicion puede tener 10 valores diferentes (0-9) porque usamos 10 simbolos. El binario tiene base 2 (dos estados posibles) y el decimal tiene base 10 (diez simbolos posibles). Las computadoras usan binario porque los circuitos electricos funcionan con dos estados: con corriente o sin corriente.',
+          'El binario usa solo 0 y 1 porque cada posicion es como un interruptor: encendido (1) o apagado (0). El decimal usa 10 simbolos porque tiene base 10. Las computadoras usan binario porque sus circuitos solo tienen dos estados: con corriente o sin corriente.',
+        criterios_aceptacion: [
+          'interruptor encendido o apagado',
+          'base 2 vs base 10',
+          'computadoras usan binario',
+          'dos estados posibles',
+        ],
       },
     ],
   },

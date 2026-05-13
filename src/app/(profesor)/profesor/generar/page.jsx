@@ -34,12 +34,14 @@ export default function GenerarTarea() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const tareaIdParam = searchParams.get('tarea')
-  const { generarTarea, cargando, error, setError } = useAnthropicAPI()
+  const { generarTarea, generarTareaCPA, cargando, error, setError } = useAnthropicAPI()
   const agregarTarea = useAgregarTarea()
   const actualizarTarea = useActualizarTarea()
   const publicarTarea = usePublicarTarea()
   const { profesor, clases } = useAuthStore()
   const { data: tareasData } = useTareasProfesor(profesor?.id)
+
+  const [modoCPA, setModoCPA] = useState(true)
 
   const [form, setForm] = useState({
     nombre: '',
@@ -67,14 +69,17 @@ export default function GenerarTarea() {
     const tarea = tareasData.tareas.find((t) => t.id === tareaIdParam)
     if (!tarea || tarea.estado !== 'borrador') return
     inicializado.current = true
-    setTareaGenerada(tarea.contenido_cpa)
+    const contenido = tarea.contenido_cpa
+    const esCPA = contenido && !Array.isArray(contenido) && contenido.concreto != null
+    setModoCPA(esCPA)
+    setTareaGenerada(contenido)
     setTareaGuardada(tarea)
     setForm((prev) => ({
       ...prev,
       nombre: tarea.nombre,
       dificultad: tarea.dificultad,
       tipos: prev.tipos,
-      numeroPreguntas: tarea.contenido_cpa?.length ?? prev.numeroPreguntas,
+      numeroPreguntas: Array.isArray(contenido) ? contenido.length : prev.numeroPreguntas,
       fecha_limite: tarea.fecha_limite ?? '',
       pdas: tarea.pda ?? [],
     }))
@@ -100,7 +105,7 @@ export default function GenerarTarea() {
       setError('Por favor escribe un nombre para la tarea.')
       return
     }
-    if (form.tipos.length === 0) {
+    if (!modoCPA && form.tipos.length === 0) {
       setError('Selecciona al menos un tipo de ejercicio.')
       return
     }
@@ -109,26 +114,40 @@ export default function GenerarTarea() {
       return
     }
 
-    const resultado = await generarTarea({
-      dificultad: form.dificultad,
-      tipos: form.tipos,
-      numeroPreguntas: form.numeroPreguntas,
-      pda: form.pdas.length > 0 ? form.pdas : null,
-      instrucciones: form.instrucciones.trim() || null,
-    })
+    let contenido
+    if (modoCPA) {
+      const resultado = await generarTareaCPA({
+        dificultad: form.dificultad,
+        pda: form.pdas.length > 0 ? form.pdas : null,
+        instrucciones: form.instrucciones.trim() || null,
+        tipo_concreto: 'dulces_agrupables',
+      })
+      if (!resultado?.concreto) return
+      contenido = resultado
+    } else {
+      const resultado = await generarTarea({
+        dificultad: form.dificultad,
+        tipos: form.tipos,
+        numeroPreguntas: form.numeroPreguntas,
+        pda: form.pdas.length > 0 ? form.pdas : null,
+        instrucciones: form.instrucciones.trim() || null,
+      })
+      if (!resultado?.preguntas) return
+      contenido = resultado.preguntas
+    }
 
-    if (resultado?.preguntas) {
+    if (contenido) {
       const nueva = await agregarTarea.mutateAsync({
         profesor_id: profesor.id,
         clase_id: clases[0]?.id,
         nombre: form.nombre,
         dificultad: form.dificultad,
-        contenido_cpa: resultado.preguntas,
+        contenido_cpa: contenido,
         fecha_limite: form.fecha_limite || null,
         pda: form.pdas.length > 0 ? form.pdas : null,
         secuencia_ref: null,
       })
-      setTareaGenerada(resultado.preguntas)
+      setTareaGenerada(contenido)
       setTareaGuardada(nueva)
       setToastVisible(true)
       window.scrollTo(0, 0)
@@ -267,6 +286,41 @@ export default function GenerarTarea() {
               />
             </div>
 
+            {/* Modo CPA vs Legacy */}
+            <div className="card p-6">
+              <label className="label-base">Formato de tarea</label>
+              <div className="flex gap-3">
+                <button
+                  type="button"
+                  onClick={() => setModoCPA(true)}
+                  className={`flex-1 py-2 px-4 rounded-xl border text-sm font-medium transition-all ${
+                    modoCPA
+                      ? 'border-gray-900 bg-gray-900 text-white'
+                      : 'border-gray-200 text-gray-600 hover:border-gray-300'
+                  }`}
+                >
+                  Singapur (CPA)
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setModoCPA(false)}
+                  className={`flex-1 py-2 px-4 rounded-xl border text-sm font-medium transition-all ${
+                    !modoCPA
+                      ? 'border-gray-900 bg-gray-900 text-white'
+                      : 'border-gray-200 text-gray-600 hover:border-gray-300'
+                  }`}
+                >
+                  Preguntas clasicas
+                </button>
+              </div>
+              {modoCPA && (
+                <p className="text-xs text-gray-400 mt-2">
+                  Genera una tarea con 3 etapas (Concreto, Pictorico, Abstracto) alrededor de un
+                  problema unico.
+                </p>
+              )}
+            </div>
+
             {/* Dificultad */}
             <div className="card p-6">
               <label className="label-base">Dificultad</label>
@@ -388,54 +442,58 @@ export default function GenerarTarea() {
               />
             </div>
 
-            {/* Tipos de ejercicio */}
-            <div className="card p-6">
-              <label className="label-base">Tipo(s) de ejercicio</label>
-              <p className="text-xs text-gray-400 mb-3">
-                Selecciona uno o mas. "Ejercicio mixto" combina todos los tipos.
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {TIPOS_EJERCICIO.map((tipo) => {
-                  const seleccionado = form.tipos.includes(tipo)
-                  return (
-                    <button
-                      key={tipo}
-                      type="button"
-                      onClick={() => toggleTipo(tipo)}
-                      className={`px-3.5 py-1.5 rounded-full text-sm font-medium border transition-all ${
-                        seleccionado
-                          ? 'bg-gray-900 text-white border-gray-900'
-                          : 'bg-white text-gray-600 border-gray-200 hover:border-gray-400'
-                      }`}
-                    >
-                      {tipo}
-                    </button>
-                  )
-                })}
+            {/* Tipos de ejercicio — solo en modo clasico */}
+            {!modoCPA && (
+              <div className="card p-6">
+                <label className="label-base">Tipo(s) de ejercicio</label>
+                <p className="text-xs text-gray-400 mb-3">
+                  Selecciona uno o mas. "Ejercicio mixto" combina todos los tipos.
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {TIPOS_EJERCICIO.map((tipo) => {
+                    const seleccionado = form.tipos.includes(tipo)
+                    return (
+                      <button
+                        key={tipo}
+                        type="button"
+                        onClick={() => toggleTipo(tipo)}
+                        className={`px-3.5 py-1.5 rounded-full text-sm font-medium border transition-all ${
+                          seleccionado
+                            ? 'bg-gray-900 text-white border-gray-900'
+                            : 'bg-white text-gray-600 border-gray-200 hover:border-gray-400'
+                        }`}
+                      >
+                        {tipo}
+                      </button>
+                    )
+                  })}
+                </div>
               </div>
-            </div>
+            )}
 
-            {/* Numero de preguntas */}
-            <div className="card p-6">
-              <div className="flex items-center justify-between mb-3">
-                <label className="label-base mb-0">Numero de preguntas</label>
-                <span className="text-2xl font-bold text-gray-900">{form.numeroPreguntas}</span>
+            {/* Numero de preguntas — solo en modo clasico */}
+            {!modoCPA && (
+              <div className="card p-6">
+                <div className="flex items-center justify-between mb-3">
+                  <label className="label-base mb-0">Numero de preguntas</label>
+                  <span className="text-2xl font-bold text-gray-900">{form.numeroPreguntas}</span>
+                </div>
+                <input
+                  type="range"
+                  min={3}
+                  max={20}
+                  value={form.numeroPreguntas}
+                  onChange={(e) =>
+                    setForm((p) => ({ ...p, numeroPreguntas: Number(e.target.value) }))
+                  }
+                  className="w-full accent-yellow-400 h-2 rounded-full"
+                />
+                <div className="flex justify-between text-xs text-gray-400 mt-1">
+                  <span>3</span>
+                  <span>20</span>
+                </div>
               </div>
-              <input
-                type="range"
-                min={3}
-                max={20}
-                value={form.numeroPreguntas}
-                onChange={(e) =>
-                  setForm((p) => ({ ...p, numeroPreguntas: Number(e.target.value) }))
-                }
-                className="w-full accent-yellow-400 h-2 rounded-full"
-              />
-              <div className="flex justify-between text-xs text-gray-400 mt-1">
-                <span>3</span>
-                <span>20</span>
-              </div>
-            </div>
+            )}
 
             <MensajeError mensaje={error} onCerrar={() => setError(null)} />
 
@@ -467,44 +525,114 @@ export default function GenerarTarea() {
                 </span>
               </div>
               <p className="text-sm text-gray-500">
-                {form.nombre} · Matematicas 1° Sec · {form.dificultad} · {tareaGenerada.length} preguntas
+                {form.nombre} · Matematicas 1° Sec · {form.dificultad}
+                {!modoCPA && ` · ${tareaGenerada.length} preguntas`}
+                {modoCPA && ' · Metodo Singapur (CPA)'}
                 {form.fecha_limite &&
                   ` · Limite: ${new Date(form.fecha_limite).toLocaleDateString('es-MX', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })}`}
               </p>
             </div>
 
-            {/* Questions preview */}
-            <div className="card p-0 overflow-hidden">
-              <div className="divide-y divide-gray-50">
-                {tareaGenerada.map((p, i) => (
-                  <div key={i} className="px-6 py-4">
-                    <div className="flex items-start gap-4">
-                      <span className="flex-shrink-0 inline-flex items-center justify-center w-7 h-7 rounded-full bg-gray-100 text-xs font-bold text-gray-600">
-                        {i + 1}
-                      </span>
-                      <div className="flex-1 min-w-0">
-                        <span className="text-xs font-medium text-gray-400 uppercase tracking-wide">
-                          {p.tipo}
+            {/* CPA contexto preview */}
+            {modoCPA && tareaGenerada?.contexto && (
+              <div className="card p-6 space-y-3">
+                <h3 className="font-semibold text-gray-900">Problema ancla</h3>
+                <div className="rounded-xl bg-amber-50 border border-amber-200 px-4 py-3">
+                  <p className="text-sm text-amber-900 leading-relaxed">
+                    {tareaGenerada.contexto.narrativa}
+                  </p>
+                  <p className="text-sm font-semibold text-amber-800 mt-1">
+                    {tareaGenerada.contexto.pregunta_central}
+                  </p>
+                </div>
+                <div className="flex flex-wrap gap-2 text-xs">
+                  <span className="px-2.5 py-1 rounded-full bg-gray-100 text-gray-600">
+                    {tareaGenerada.contexto.objetos.a.emoji}{' '}
+                    {tareaGenerada.contexto.objetos.a.nombre}
+                  </span>
+                  <span className="px-2.5 py-1 rounded-full bg-gray-100 text-gray-600">
+                    {tareaGenerada.contexto.objetos.b.emoji}{' '}
+                    {tareaGenerada.contexto.objetos.b.nombre}
+                  </span>
+                  <span className="px-2.5 py-1 rounded-full bg-gray-100 text-gray-600">
+                    Personaje: {tareaGenerada.contexto.personaje}
+                  </span>
+                </div>
+              </div>
+            )}
+
+            {/* CPA structure preview */}
+            {modoCPA && tareaGenerada?.concreto && (
+              <div className="space-y-3">
+                <div className="card p-4">
+                  <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">
+                    1. Concreto
+                  </p>
+                  <p className="text-sm text-gray-700">
+                    {tareaGenerada.concreto.manipulable.pregunta}
+                  </p>
+                </div>
+                <div className="card p-4">
+                  <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">
+                    2. Pictorico
+                  </p>
+                  <p className="text-sm text-gray-700 mb-1">
+                    {tareaGenerada.pictorico.modelo_barras.barras.length} barras ·{' '}
+                    {tareaGenerada.pictorico.preguntas.length} preguntas
+                  </p>
+                  {tareaGenerada.pictorico.preguntas.map((p, i) => (
+                    <p key={i} className="text-xs text-gray-500 ml-3">
+                      — {p.pregunta}
+                    </p>
+                  ))}
+                </div>
+                <div className="card p-4">
+                  <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">
+                    3. Abstracto
+                  </p>
+                  {tareaGenerada.abstracto.preguntas.map((p, i) => (
+                    <p key={i} className="text-xs text-gray-500 ml-3">
+                      — [{p.tipo}] {p.pregunta}
+                    </p>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Legacy flat questions preview */}
+            {!modoCPA && Array.isArray(tareaGenerada) && (
+              <div className="card p-0 overflow-hidden">
+                <div className="divide-y divide-gray-50">
+                  {tareaGenerada.map((p, i) => (
+                    <div key={i} className="px-6 py-4">
+                      <div className="flex items-start gap-4">
+                        <span className="flex-shrink-0 inline-flex items-center justify-center w-7 h-7 rounded-full bg-gray-100 text-xs font-bold text-gray-600">
+                          {i + 1}
                         </span>
-                        <p className="text-sm text-gray-800 mt-1">{p.pregunta}</p>
-                        {p.opciones && (
-                          <ul className="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-1">
-                            {p.opciones.map((op, j) => (
-                              <li
-                                key={j}
-                                className="text-xs px-2.5 py-1.5 rounded-lg text-gray-500 bg-gray-50"
-                              >
-                                {op}
-                              </li>
-                            ))}
-                          </ul>
-                        )}
+                        <div className="flex-1 min-w-0">
+                          <span className="text-xs font-medium text-gray-400 uppercase tracking-wide">
+                            {p.tipo}
+                          </span>
+                          <p className="text-sm text-gray-800 mt-1">{p.pregunta}</p>
+                          {p.opciones && (
+                            <ul className="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-1">
+                              {p.opciones.map((op, j) => (
+                                <li
+                                  key={j}
+                                  className="text-xs px-2.5 py-1.5 rounded-lg text-gray-500 bg-gray-50"
+                                >
+                                  {op}
+                                </li>
+                              ))}
+                            </ul>
+                          )}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
 
             <MensajeError mensaje={error} onCerrar={() => setError(null)} />
 

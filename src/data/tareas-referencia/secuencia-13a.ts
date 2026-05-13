@@ -67,7 +67,13 @@ export const tareaSecuencia13a: TareaCPA = {
         pregunta:
           'Explica con tus palabras que significa "porcentaje" y por que la cuadricula de 100 casillas te ayuda a entenderlo.',
         respuesta:
-          'Porcentaje significa "de cada cien". La cuadricula de 100 casillas lo hace visible: cada casilla vale exactamente 1%. Si sombreas 35 casillas, ves directamente que es el 35% del total. Funciona porque la cuadricula tiene exactamente 100 partes iguales, igual que el porcentaje siempre se refiere a 100.',
+          'Porcentaje significa "de cada cien". La cuadricula tiene exactamente 100 casillas, asi que cada una vale 1%. Si sombreas 35, ves de inmediato que es el 35%.',
+        criterios_aceptacion: [
+          'de cada cien',
+          '100 partes iguales',
+          'cada casilla vale 1%',
+          'representacion visual del porcentaje',
+        ],
       },
     ],
   },

@@ -33,7 +33,7 @@ export type TipoConcreto =
   | 'interruptores_binarios' // ON/OFF switches for binary numbers
   | 'solidos_3d' // 3D solids (geometry, future)
 
-/** Spec for dulces_agrupables manipulable */
+/** Spec for dulces_agrupables manipulable (generalized grouping) */
 export interface DulcesAgrupablesSpec {
   tipo_concreto: 'dulces_agrupables'
   cantidad: number
@@ -41,6 +41,14 @@ export interface DulcesAgrupablesSpec {
   soluciones_validas: Array<{ grupos: number; por_grupo: number }>
   pregunta: string
   pista?: string
+  /** Label for items being grouped (e.g. "limon"). Falls back to "dulce". */
+  etiqueta?: string
+  /** Emoji rendered instead of CandySVG (e.g. "🍋"). Falls back to colored circles. */
+  emoji?: string
+  /** Label for group zones (e.g. "jarra"). Falls back to "Grupo". */
+  etiqueta_grupo?: string
+  /** Emoji for group headers (e.g. "🫙"). */
+  emoji_grupo?: string
 }
 
 /** Spec for chocolate_secable manipulable */
@@ -246,6 +254,8 @@ export interface PreguntaPictorico {
   tipo: TipoPregunta
   opciones?: string[]
   respuesta: string | boolean
+  /** Keywords/criteria the AI grader should look for in open answers (3-5 items) */
+  criterios_aceptacion?: string[]
 }
 
 export interface BloquePictorico {
@@ -260,10 +270,63 @@ export interface PreguntaAbstracto {
   pregunta: string
   opciones?: string[]
   respuesta: string | boolean
+  /** Keywords/criteria the AI grader should look for in open answers (3-5 items) */
+  criterios_aceptacion?: string[]
 }
 
 export interface BloqueAbstracto {
   preguntas: PreguntaAbstracto[]
+}
+
+// ── Anchor Task context ──────────────────────────────────────────
+
+export interface ObjetoContexto {
+  nombre: string
+  emoji: string
+}
+
+export type TipoContexto =
+  | 'razon'
+  | 'proporcion'
+  | 'reparto'
+  | 'comparacion'
+  | 'fraccion'
+  | 'ecuacion'
+  | 'porcentaje'
+  | 'patron'
+  | 'medicion'
+  | 'probabilidad'
+  | 'estadistica'
+
+export interface ContextoAnchor {
+  /** Personaje protagonista del problema */
+  personaje: string
+  /** Objetos del problema (a y b forman la relacion) */
+  objetos: {
+    a: ObjetoContexto
+    b: ObjetoContexto
+  }
+  /** Valores numericos clave del anchor */
+  valores_clave: {
+    razon: [number, number]
+    objetivo: number
+  }
+  /** Tipo de problema pedagogico */
+  tipo: TipoContexto
+  /** Narrativa corta del problema ancla (2-3 frases) */
+  narrativa: string
+  /** Pregunta central que guia las 3 etapas */
+  pregunta_central: string
+  /** Frases de transicion narrativa entre etapas */
+  transiciones: {
+    concreto: string
+    pictorico: string
+    abstracto: string
+    /** Resumen retroactivo tras concreto (mostrado al entrar a pictorico) */
+    bridge_pictorico?: string
+    /** Resumen retroactivo tras pictorico (mostrado al entrar a abstracto) */
+    bridge_abstracto?: string
+  }
 }
 
 // ── Tarea CPA (complete structure) ───────────────────────────────
@@ -271,6 +334,9 @@ export interface BloqueAbstracto {
 export interface TareaCPA {
   /** Reference secuencia number (1-36), null for custom AI-generated tareas */
   secuencia_ref: number | null
+  /** Contexto narrativo que atraviesa las 3 etapas (anchor task).
+   *  Opcional para backward compat con tareas existentes. */
+  contexto?: ContextoAnchor
   concreto: BloqueConcreto
   pictorico: BloquePictorico
   abstracto: BloqueAbstracto

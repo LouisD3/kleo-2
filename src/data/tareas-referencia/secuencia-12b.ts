@@ -69,7 +69,13 @@ export const tareaSecuencia12b: TareaCPA = {
         pregunta:
           'Explica con tus palabras la diferencia entre resolver x + 4 = 8 y resolver 4x = 8.',
         respuesta:
-          'En x + 4 = 8 se suma 4 a la incognita, asi que para despejar x restamos 4 de ambos lados: x = 8 - 4 = 4. En 4x = 8 se multiplica la incognita por 4, asi que para despejar x dividimos ambos lados entre 4: x = 8 / 4 = 2. La diferencia es la operacion inversa que se usa: resta para la suma, division para la multiplicacion.',
+          'En x + 4 = 8 hay una suma, asi que se resta: x = 8 - 4 = 4. En 4x = 8 hay una multiplicacion, asi que se divide: x = 8 / 4 = 2. Cada caso usa la operacion inversa para despejar x.',
+        criterios_aceptacion: [
+          'operacion inversa',
+          'resta para despejar suma',
+          'division para despejar multiplicacion',
+          'resultados correctos (x=4 y x=2)',
+        ],
       },
     ],
   },

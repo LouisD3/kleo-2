@@ -84,7 +84,13 @@ export const tareaSecuencia07: TareaCPA = {
         pregunta:
           'Explica con tus palabras por que la suma es conmutativa pero la resta no. Usa la recta numerica para explicarlo.',
         respuesta:
-          'En la recta numerica, sumar es avanzar. Si avanzo 5 y luego 3, llego al 8. Si avanzo 3 y luego 5, tambien llego al 8. El orden no importa porque los saltos se acumulan igual. Pero restar es retroceder: si empiezo en 8 y retrocedo 3, llego a 5. Si empiezo en 3 y retrocedo 8, llego a -5. El punto de partida SI importa en la resta, por eso no es conmutativa.',
+          'En la suma, el orden no importa: 5+3 y 3+5 llegan al mismo punto en la recta. En la resta si importa: 8-3=5, pero 3-8=-5, que es un punto diferente.',
+        criterios_aceptacion: [
+          'orden no importa en suma',
+          'orden si importa en resta',
+          'ejemplo numerico correcto',
+          'referencia a la recta numerica',
+        ],
       },
     ],
   },

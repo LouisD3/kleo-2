@@ -67,7 +67,14 @@ export const tareaSecuencia13b: TareaCPA = {
         pregunta:
           'Si un producto tiene primero un descuento de 20% y luego otro descuento de 20%, es lo mismo que un descuento de 40%? Explica usando numeros.',
         respuesta:
-          'No es lo mismo. Ejemplo: un producto de $100 con 20% de descuento queda en $80. Luego otro 20% de descuento se aplica sobre $80 (no sobre $100): 20% de $80 = $16, entonces queda en $64. Con 40% de descuento directo: 40% de $100 = $40, quedaria en $60. $64 no es igual a $60. El segundo descuento se calcula sobre un precio ya rebajado.',
+          'No es lo mismo. Con $100 y 20% de descuento queda en $80. El segundo 20% se aplica sobre $80: $80 - $16 = $64. Con 40% directo quedaria en $60. Son resultados diferentes.',
+        criterios_aceptacion: [
+          'respuesta negativa',
+          'segundo descuento sobre precio ya rebajado',
+          'calculo correcto de los dos pasos',
+          'comparacion con descuento directo de 40%',
+          'resultados $64 vs $60',
+        ],
       },
     ],
   },

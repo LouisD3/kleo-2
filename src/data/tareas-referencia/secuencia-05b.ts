@@ -69,7 +69,13 @@ export const tareaSecuencia05b: TareaCPA = {
         pregunta:
           'Explica con tus palabras que pasa cuando las unidades de una suma dan mas de 10. Usa un ejemplo.',
         respuesta:
-          'Cuando las unidades suman mas de 10, hacemos una reagrupacion (tambien llamada "acarreo"). Tomamos 10 de esas unidades y las convertimos en 1 decena. Por ejemplo, en 148 + 87: las unidades son 8 + 7 = 15. Como 15 es mayor que 10, escribimos 5 en las unidades y llevamos 1 decena al siguiente lugar. Esto funciona porque 10 unidades equivalen a 1 decena en nuestro sistema base 10.',
+          'Cuando las unidades suman mas de 10 hacemos una reagrupacion o acarreo: convertimos 10 unidades en 1 decena. En 148 + 87, las unidades dan 15: escribimos 5 y llevamos 1 decena.',
+        criterios_aceptacion: [
+          'reagrupacion o acarreo',
+          '10 unidades = 1 decena',
+          'escribir el residuo y llevar el acarreo',
+          'ejemplo con numeros correctos',
+        ],
       },
     ],
   },

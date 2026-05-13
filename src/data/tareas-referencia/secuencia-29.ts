@@ -82,7 +82,13 @@ export const tareaSecuencia29: TareaCPA = {
         pregunta:
           'Explica con tus palabras por que una grafica de barras es util para representar los resultados de una encuesta.',
         respuesta:
-          'Una grafica de barras permite ver de manera visual y rapida cuales categorias tienen mas o menos frecuencia. Es mas facil comparar cantidades viendo la altura de las barras que leyendo una lista de numeros. Ademas, ayuda a identificar patrones como cual es la categoria mas popular o la menos popular.',
+          'Una grafica de barras permite comparar categorias de forma visual y rapida. Es mas facil ver cual categoria es la mayor o menor mirando la altura de las barras que leyendo una lista de numeros.',
+        criterios_aceptacion: [
+          'visual o rapida comparacion',
+          'altura de las barras',
+          'identificar la mas popular o menos popular',
+          'mas facil que una lista de numeros',
+        ],
       },
     ],
   },
