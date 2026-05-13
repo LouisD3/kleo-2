@@ -132,6 +132,8 @@ export default function Cuadricula100({
           height={svgH}
           viewBox={`0 0 ${svgW} ${svgH}`}
           className="max-w-full h-auto touch-none select-none"
+          role="application"
+          aria-label="Cuadricula de 100 casillas"
           onPointerUp={handlePointerUp}
         >
           {/* Background */}

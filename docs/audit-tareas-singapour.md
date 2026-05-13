@@ -230,7 +230,7 @@ Quand l'élève passe de Concreto à Pictórico, il ne sait **pas pourquoi**. Il
 
 **Livrable** : 1 PR. Tests : 3 manipulables (Dulces, Chocolate, Balanza) avec diagnostic riche.
 
-### Phase F — Pictórico actif & accessibilité (1-2 sessions)
+### Phase F — Pictórico actif & accessibilité (1-2 sessions) ✅ DONE (F2+F3)
 
 **Objectif** : terminer la promesse Singapour (modeling actif).
 

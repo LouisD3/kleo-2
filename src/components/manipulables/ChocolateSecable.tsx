@@ -109,6 +109,8 @@ export default function ChocolateSecable({
           height={svgH}
           viewBox={`0 0 ${svgW} ${svgH}`}
           className="max-w-full h-auto"
+          role="application"
+          aria-label="Barra de chocolate partida"
         >
           {/* Background wrapper */}
           <rect

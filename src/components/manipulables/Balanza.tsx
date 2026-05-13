@@ -128,7 +128,7 @@ export default function Balanza({
         <div className="relative w-full max-w-sm">
           {/* Base */}
           <div className="flex justify-center">
-            <svg width="200" height="140" viewBox="0 0 200 140" className="overflow-visible">
+            <svg width="200" height="140" viewBox="0 0 200 140" className="overflow-visible" role="img" aria-label="Balanza de dos platos">
               {/* Fulcrum triangle */}
               <polygon points="100,60 85,90 115,90" fill="#6B7280" />
               {/* Base */}

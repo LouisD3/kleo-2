@@ -174,6 +174,8 @@ export default function AzulejosAlgebra({
           height={svgHeight}
           viewBox={`0 0 ${svgWidth} ${svgHeight}`}
           className="max-w-full"
+          role="img"
+          aria-label="Azulejos de algebra"
         >
           {/* Left side background */}
           <rect

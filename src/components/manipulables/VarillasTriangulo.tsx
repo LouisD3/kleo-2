@@ -104,7 +104,7 @@ export default function VarillasTriangulo({
 
       {/* Triangle visualization */}
       <div className="flex justify-center">
-        <svg viewBox={`0 0 ${SVG_W} ${SVG_H}`} className="w-full max-w-sm">
+        <svg viewBox={`0 0 ${SVG_W} ${SVG_H}`} className="w-full max-w-sm" role="img" aria-label={`Varillas: a=${a}, b=${b}, c=${c}`}>
           {trianglePoints ? (
             <g>
               <polygon

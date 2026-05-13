@@ -110,6 +110,8 @@ export default function CompasCirculo({
           viewBox={`0 0 ${svgWidth} ${svgHeight}`}
           className="border border-gray-200 rounded-xl bg-white"
           style={{ maxWidth: '100%', height: 'auto' }}
+          role="application"
+          aria-label="Compas para trazar circulos"
         >
           {/* Grid dots */}
           {dots}

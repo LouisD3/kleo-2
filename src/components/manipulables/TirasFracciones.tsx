@@ -183,6 +183,8 @@ export default function TirasFracciones({
           height={svgH}
           viewBox={`0 0 ${svgW} ${svgH}`}
           className="max-w-full h-auto"
+          role="application"
+          aria-label="Tiras de fracciones"
         >
           {spec.filas.map((fila, filaIdx) => {
             const y = padding + filaIdx * (stripH + rowGap)

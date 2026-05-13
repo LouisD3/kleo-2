@@ -199,6 +199,8 @@ export default function Geoplano({
           height={svgH}
           viewBox={`0 0 ${svgW} ${svgH}`}
           className="max-w-full h-auto"
+          role="application"
+          aria-label="Geoplano interactivo"
         >
           {/* Board background */}
           <rect

@@ -173,6 +173,8 @@ export default function RectaNumerica({
           ref={svgRef}
           viewBox={`0 0 ${SVG_WIDTH} ${SVG_HEIGHT}`}
           className="w-full max-w-md touch-none select-none"
+          role="application"
+          aria-label="Recta numerica interactiva"
           onPointerDown={handlePointerDown}
           onPointerMove={handlePointerMove}
           onPointerUp={handlePointerUp}
