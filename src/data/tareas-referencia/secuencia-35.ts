@@ -5,7 +5,7 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  * Concepto clave: Evaluar proposiciones condicionales (SI...ENTONCES) con tabla de verdad
  *
  * Concreto: TablaVerdad (completar la tabla de SI p ENTONCES q)
- * Pictorico: Modelo en barras (casos verdaderos vs falsos del condicional)
+ * Pictorico: Tabla de verdad — condicional SI p ENTONCES q
  * Abstracto: 3 preguntas progresivas sobre condicionales
  */
 export const tareaSecuencia35: TareaCPA = {
@@ -23,13 +23,23 @@ export const tareaSecuencia35: TareaCPA = {
     intentos_para_pista: 3,
   },
   pictorico: {
-    modelo_barras: {
-      barras: [
-        { label: 'Casos verdaderos', valor: 3, color: 'verde' },
-        { label: 'Casos falsos', valor: 1, color: 'rojo' },
+    representacion: {
+      tipo_representacion: 'tabla',
+      columnas: [
+        { key: 'p', header: 'p' },
+        { key: 'q', header: 'q' },
+        { key: 'condicional', header: 'SI p ENTONCES q' },
       ],
-      total: { valor: 4, visible: true },
-      orientacion: 'horizontal',
+      filas: [
+        { p: 'V', q: 'V', condicional: 'V' },
+        { p: 'V', q: 'F', condicional: 'F' },
+        { p: 'F', q: 'V', condicional: 'V' },
+        { p: 'F', q: 'F', condicional: 'V' },
+      ],
+      resaltados: [
+        { fila: 1, columna: 'condicional', color: '#EF4444' },
+      ],
+      titulo: 'Tabla de verdad: Condicional (SI...ENTONCES)',
     },
     preguntas: [
       {

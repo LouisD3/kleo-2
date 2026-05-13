@@ -5,7 +5,7 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  * Concepto clave: Calcular perimetro y area de poligonos
  *
  * Concreto: Geoplano 5x5 — trazar un rectangulo 4x3, area = 12
- * Pictorico: Modelo en barras — largo y ancho del rectangulo
+ * Pictorico: Diagrama geometrico — rectangulo 4×3 annote avec cuadricula unitaire
  * Abstracto: 3 preguntas con progresion de dificultad sobre perimetro y area
  */
 export const tareaSecuencia28: TareaCPA = {
@@ -31,14 +31,30 @@ export const tareaSecuencia28: TareaCPA = {
     intentos_para_pista: 3,
   },
   pictorico: {
-    modelo_barras: {
-      barras: [
-        { label: 'Largo', valor: 4, color: 'azul' },
-        { label: 'Ancho', valor: 3, color: 'verde' },
+    representacion: {
+      tipo_representacion: 'diagrama_geometrico',
+      ancho: 6,
+      alto: 5,
+      puntos: [
+        { id: 'a', x: 1, y: 1, label: 'A' },
+        { id: 'b', x: 5, y: 1, label: 'B' },
+        { id: 'c', x: 5, y: 4, label: 'C' },
+        { id: 'd', x: 1, y: 4, label: 'D' },
       ],
-      total: { valor: 12, visible: true },
-      incognita: { posicion: 'total', label: 'Area = ?' },
-      orientacion: 'horizontal',
+      segmentos: [
+        { tipo: 'segmento', desde: 'a', hasta: 'b', color: 'azul', medida: '4 u' },
+        { tipo: 'segmento', desde: 'b', hasta: 'c', color: 'verde', medida: '3 u' },
+        { tipo: 'segmento', desde: 'c', hasta: 'd', color: 'azul', medida: '4 u' },
+        { tipo: 'segmento', desde: 'd', hasta: 'a', color: 'verde', medida: '3 u' },
+      ],
+      angulos: [
+        { vertice: 'a', lado_a: 'b', lado_b: 'd', medida: '90°', color: 'gris' },
+      ],
+      poligonos: [
+        { puntos: ['a', 'b', 'c', 'd'], relleno: 'azul', opacidad: 0.1 },
+      ],
+      cuadricula: { filas: 3, columnas: 4, celdas_resaltadas: [], color_resaltado: '#3B82F6' },
+      titulo: 'Rectangulo 4×3 — Perimetro = 2(4+3) = 14 u, Area = 4×3 = ?',
     },
     preguntas: [
       {

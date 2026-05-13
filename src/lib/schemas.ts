@@ -103,11 +103,77 @@ const barraSchema = z.object({
 })
 
 const modeloBarrasSpecSchema = z.object({
+  tipo_representacion: z.literal('modelo_barras'),
   barras: z.array(barraSchema).min(1),
   total: z.object({ valor: z.number(), visible: z.boolean() }).optional(),
   incognita: z.object({ posicion: z.enum(['barra', 'total']), label: z.string() }).optional(),
   orientacion: z.enum(['horizontal', 'vertical']).optional(),
 })
+
+const puntoGeoSchema = z.object({
+  id: z.string(),
+  x: z.number(),
+  y: z.number(),
+  label: z.string().optional(),
+})
+
+const segmentoGeoSchema = z.object({
+  tipo: z.enum(['segmento', 'recta']),
+  desde: z.string(),
+  hasta: z.string(),
+  label: z.string().optional(),
+  estilo: z.enum(['solido', 'punteado', 'doble']).optional(),
+  color: z.string().optional(),
+  medida: z.string().optional(),
+})
+
+const anguloGeoSchema = z.object({
+  vertice: z.string(),
+  lado_a: z.string(),
+  lado_b: z.string(),
+  medida: z.string().optional(),
+  color: z.string().optional(),
+  arco: z.boolean().optional(),
+})
+
+const poligonoGeoSchema = z.object({
+  puntos: z.array(z.string()).min(3),
+  relleno: z.string().optional(),
+  opacidad: z.number().optional(),
+})
+
+const cuadriculaGeoSchema = z.object({
+  filas: z.number(),
+  columnas: z.number(),
+  celdas_resaltadas: z.array(z.tuple([z.number(), z.number()])).optional(),
+  color_resaltado: z.string().optional(),
+})
+
+const diagramaGeometricoSpecSchema = z.object({
+  tipo_representacion: z.literal('diagrama_geometrico'),
+  ancho: z.number(),
+  alto: z.number(),
+  puntos: z.array(puntoGeoSchema).min(1),
+  segmentos: z.array(segmentoGeoSchema).optional(),
+  angulos: z.array(anguloGeoSchema).optional(),
+  poligonos: z.array(poligonoGeoSchema).optional(),
+  cuadricula: cuadriculaGeoSchema.optional(),
+  titulo: z.string().optional(),
+})
+
+const tablaPictoricaSpecSchema = z.object({
+  tipo_representacion: z.literal('tabla'),
+  columnas: z.array(z.object({ key: z.string(), header: z.string() })).min(1),
+  filas: z.array(z.record(z.string(), z.union([z.string(), z.number(), z.boolean()]))).min(1),
+  resaltados: z.array(z.object({ fila: z.number(), columna: z.string(), color: z.string() })).optional(),
+  titulo: z.string().optional(),
+})
+
+const representacionPictoricaSchema = z.discriminatedUnion('tipo_representacion', [
+  modeloBarrasSpecSchema,
+  diagramaGeometricoSpecSchema,
+  tablaPictoricaSpecSchema,
+])
 
 export const generarCPAResponseSchema = z.object({
   contexto: contextoAnchorSchema,
@@ -116,7 +182,7 @@ export const generarCPAResponseSchema = z.object({
     intentos_para_pista: z.number().default(3),
   }),
   pictorico: z.object({
-    modelo_barras: modeloBarrasSpecSchema,
+    representacion: representacionPictoricaSchema,
     preguntas: z.array(preguntaGeneradaSchema).min(1),
   }),
   abstracto: z.object({

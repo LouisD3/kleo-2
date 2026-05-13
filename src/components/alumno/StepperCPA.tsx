@@ -4,7 +4,9 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import type { EstadoManipulable } from '@/components/manipulables/ManipulableAgrupable'
 import ManipulableDispatcher from '@/components/manipulables/ManipulableDispatcher'
+import DiagramaGeometrico from '@/components/pictorico/DiagramaGeometrico'
 import ModeloBarras from '@/components/pictorico/ModeloBarras'
+import TablaPictorica from '@/components/pictorico/TablaPictorica'
 import Boton from '@/components/ui/Boton'
 import Spinner from '@/components/ui/Spinner'
 import type {
@@ -471,6 +473,26 @@ function EtapaConcreto({
   )
 }
 
+// ── Visual representation dispatcher ─────────────────────────────
+
+function RepresentacionVisual({ bloque }: { bloque: BloquePictorico }) {
+  // New field: representacion (discriminated union)
+  const rep = bloque.representacion ?? (bloque.modelo_barras ? { ...bloque.modelo_barras, tipo_representacion: 'modelo_barras' as const } : null)
+
+  if (!rep) return null
+
+  switch (rep.tipo_representacion) {
+    case 'modelo_barras':
+      return <ModeloBarras spec={rep} className="mb-6" />
+    case 'diagrama_geometrico':
+      return <DiagramaGeometrico spec={rep} className="mb-6" />
+    case 'tabla':
+      return <TablaPictorica spec={rep} className="mb-6" />
+    default:
+      return null
+  }
+}
+
 // ── Step: Pictorico ──────────────────────────────────────────────
 
 function EtapaPictorico({
@@ -498,11 +520,11 @@ function EtapaPictorico({
         <StepHeader
           numero={2}
           titulo="Pictorico"
-          descripcion="Observa el modelo de barras y responde"
+          descripcion="Observa la representacion visual y responde"
         />
         {bridge && <BridgeRetrospectivo texto={bridge} />}
         {transicion && <TransicionNarrativa texto={transicion} />}
-        <ModeloBarras spec={bloque.modelo_barras} className="mb-6" />
+        <RepresentacionVisual bloque={bloque} />
       </div>
 
       {bloque.preguntas.map((p, i) => (

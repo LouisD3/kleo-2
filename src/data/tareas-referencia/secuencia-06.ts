@@ -23,7 +23,8 @@ export const tareaSecuencia06: TareaCPA = {
     intentos_para_pista: 3,
   },
   pictorico: {
-    modelo_barras: {
+    representacion: {
+      tipo_representacion: 'modelo_barras',
       barras: [
         { label: 'Fichas positivas', valor: 5, color: 'verde', subdivisiones: 5 },
         { label: 'Fichas negativas', valor: 8, color: 'rojo', subdivisiones: 8 },

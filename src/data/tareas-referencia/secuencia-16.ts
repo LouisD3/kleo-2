@@ -5,7 +5,7 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  * Concepto clave: Trazar rectas paralelas y perpendiculares
  *
  * Concreto: Geoplano (trazar una recta horizontal)
- * Pictorico: Modelo en barras comparando rectas paralelas y perpendiculares
+ * Pictorico: Diagrama geometrico — rectas paralelas y perpendiculares con angulo 90°
  * Abstracto: 3 preguntas con progresión de dificultad sobre rectas
  */
 export const tareaSecuencia16: TareaCPA = {
@@ -26,13 +26,27 @@ export const tareaSecuencia16: TareaCPA = {
     intentos_para_pista: 3,
   },
   pictorico: {
-    modelo_barras: {
-      barras: [
-        { label: 'Recta A', valor: 4, color: 'azul' },
-        { label: 'Recta B', valor: 4, color: 'verde' },
+    representacion: {
+      tipo_representacion: 'diagrama_geometrico',
+      ancho: 6,
+      alto: 5,
+      puntos: [
+        { id: 'a1', x: 1, y: 4, label: 'A' },
+        { id: 'a2', x: 5, y: 4 },
+        { id: 'b1', x: 1, y: 2, label: 'B' },
+        { id: 'b2', x: 5, y: 2 },
+        { id: 'c1', x: 3, y: 0, label: 'C' },
+        { id: 'c2', x: 3, y: 5 },
       ],
-      total: { valor: 4, visible: false },
-      orientacion: 'horizontal',
+      segmentos: [
+        { tipo: 'recta', desde: 'a1', hasta: 'a2', color: 'azul', label: 'Recta A' },
+        { tipo: 'recta', desde: 'b1', hasta: 'b2', color: 'verde', label: 'Recta B (paralela a A)' },
+        { tipo: 'recta', desde: 'c1', hasta: 'c2', color: 'rojo', label: 'Recta C (perpendicular)', estilo: 'punteado' },
+      ],
+      angulos: [
+        { vertice: 'b1', lado_a: 'b2', lado_b: 'c2', medida: '90°', color: 'rojo' },
+      ],
+      titulo: 'Rectas paralelas y perpendiculares',
     },
     preguntas: [
       {

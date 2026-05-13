@@ -23,7 +23,8 @@ export const tareaSecuencia24: TareaCPA = {
     intentos_para_pista: 3,
   },
   pictorico: {
-    modelo_barras: {
+    representacion: {
+      tipo_representacion: 'modelo_barras',
       barras: [
         { label: 'Sector (1/4 del circulo)', valor: 1, color: 'azul', subdivisiones: 1 },
         { label: 'Resto del circulo', valor: 3, color: 'amarillo', subdivisiones: 3 },

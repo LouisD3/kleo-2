@@ -164,7 +164,7 @@ Quand l'élève passe de Concreto à Pictórico, il ne sait **pas pourquoi**. Il
 
 **Livrable** : 1 PR. Tests : passage manuel sur 5 tareas représentatives.
 
-### Phase B — Refonte du Bloque Pictórico (1-2 sessions, moyen risque)
+### Phase B — Refonte du Bloque Pictórico (1-2 sessions, moyen risque) ✅ DONE
 
 **Objectif** : faire du Pictórico un vrai pont, ou utiliser un autre support quand le bar model n'est pas adapté.
 

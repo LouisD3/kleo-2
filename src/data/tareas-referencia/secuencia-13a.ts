@@ -21,7 +21,8 @@ export const tareaSecuencia13a: TareaCPA = {
     intentos_para_pista: 3,
   },
   pictorico: {
-    modelo_barras: {
+    representacion: {
+      tipo_representacion: 'modelo_barras',
       barras: [
         { label: 'Prefieren futbol (35%)', valor: 35, color: 'amarillo', subdivisiones: 7 },
         { label: 'Otros deportes (65%)', valor: 65, color: 'azul', subdivisiones: 13 },

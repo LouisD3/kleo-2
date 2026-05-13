@@ -23,7 +23,8 @@ export const tareaSecuencia23: TareaCPA = {
     intentos_para_pista: 3,
   },
   pictorico: {
-    modelo_barras: {
+    representacion: {
+      tipo_representacion: 'modelo_barras',
       barras: [
         { label: 'Diametro (2r)', valor: 4, color: 'azul', subdivisiones: 4 },
         { label: 'Circunferencia (aprox)', valor: 12, color: 'verde', subdivisiones: 12 },

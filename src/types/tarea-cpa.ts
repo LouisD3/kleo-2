@@ -243,11 +243,86 @@ export interface Barra {
 }
 
 export interface ModeloBarrasSpec {
+  tipo_representacion: 'modelo_barras'
   barras: Barra[]
   total?: { valor: number; visible: boolean }
   incognita?: { posicion: 'barra' | 'total'; label: string }
   orientacion?: 'horizontal' | 'vertical'
 }
+
+// ── Diagrama Geométrico (angles, segments, distances, etc.) ─────
+
+export type TipoElementoGeo =
+  | 'punto'
+  | 'segmento'
+  | 'angulo'
+  | 'recta'
+  | 'arco'
+  | 'poligono'
+  | 'cuadricula'
+
+export interface PuntoGeo {
+  id: string
+  x: number
+  y: number
+  label?: string
+}
+
+export interface SegmentoGeo {
+  tipo: 'segmento' | 'recta'
+  desde: string // punto id
+  hasta: string // punto id
+  label?: string
+  estilo?: 'solido' | 'punteado' | 'doble'
+  color?: string
+  medida?: string // e.g. "4 u" or "3 cm"
+}
+
+export interface AnguloGeo {
+  vertice: string // punto id
+  lado_a: string // punto id
+  lado_b: string // punto id
+  medida?: string // e.g. "45°"
+  color?: string
+  arco?: boolean // draw arc (default true)
+}
+
+export interface PoligonoGeo {
+  puntos: string[] // punto ids in order
+  relleno?: string // fill color
+  opacidad?: number
+}
+
+export interface CuadriculaGeo {
+  filas: number
+  columnas: number
+  celdas_resaltadas?: Array<[number, number]> // [fila, col] pairs to highlight
+  color_resaltado?: string
+}
+
+export interface DiagramaGeometricoSpec {
+  tipo_representacion: 'diagrama_geometrico'
+  ancho: number // viewBox width in grid units
+  alto: number // viewBox height in grid units
+  puntos: PuntoGeo[]
+  segmentos?: SegmentoGeo[]
+  angulos?: AnguloGeo[]
+  poligonos?: PoligonoGeo[]
+  cuadricula?: CuadriculaGeo
+  titulo?: string
+}
+
+// ── Tabla pictórica (logic, stats, comparisons) ─────────────────
+
+export interface TablaPictoricaSpec {
+  tipo_representacion: 'tabla'
+  columnas: Array<{ key: string; header: string }>
+  filas: Array<Record<string, string | number | boolean>>
+  resaltados?: Array<{ fila: number; columna: string; color: string }>
+  titulo?: string
+}
+
+export type RepresentacionPictorica = ModeloBarrasSpec | DiagramaGeometricoSpec | TablaPictoricaSpec
 
 export interface PreguntaPictorico {
   pregunta: string
@@ -259,8 +334,10 @@ export interface PreguntaPictorico {
 }
 
 export interface BloquePictorico {
-  modelo_barras: ModeloBarrasSpec
-  preguntas: PreguntaPictorico[] // 1-2 questions about the bar model
+  representacion: RepresentacionPictorica
+  /** @deprecated Use representacion instead. Kept for backward compat with existing tareas. */
+  modelo_barras?: ModeloBarrasSpec
+  preguntas: PreguntaPictorico[] // 1-2 questions about the visual
 }
 
 // ── Bloque Abstracto ─────────────────────────────────────────────

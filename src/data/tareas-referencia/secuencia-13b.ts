@@ -21,7 +21,8 @@ export const tareaSecuencia13b: TareaCPA = {
     intentos_para_pista: 3,
   },
   pictorico: {
-    modelo_barras: {
+    representacion: {
+      tipo_representacion: 'modelo_barras',
       barras: [
         { label: 'Descuento (20%)', valor: 20, color: 'rojo', subdivisiones: 4 },
         { label: 'Lo que pagas (80%)', valor: 80, color: 'verde', subdivisiones: 16 },

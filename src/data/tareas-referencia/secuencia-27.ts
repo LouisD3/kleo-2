@@ -5,7 +5,7 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  * Concepto clave: La suma de dos lados de un triangulo siempre es mayor que el tercero
  *
  * Concreto: Geoplano 5x5 — trazar un triangulo valido
- * Pictorico: Modelo en barras — comparar suma de dos lados vs tercer lado
+ * Pictorico: Tabla — verificacion de las 3 condiciones de desigualdad triangular
  * Abstracto: 3 preguntas con progresion de dificultad sobre desigualdad triangular
  */
 export const tareaSecuencia27: TareaCPA = {
@@ -28,15 +28,25 @@ export const tareaSecuencia27: TareaCPA = {
     intentos_para_pista: 3,
   },
   pictorico: {
-    modelo_barras: {
-      barras: [
-        { label: 'Lado a', valor: 4, color: 'azul' },
-        { label: 'Lado b', valor: 3, color: 'verde' },
-        { label: 'Lado c', valor: 3, color: 'rojo' },
+    representacion: {
+      tipo_representacion: 'tabla',
+      columnas: [
+        { key: 'condicion', header: 'Condicion' },
+        { key: 'suma', header: 'Suma de dos lados' },
+        { key: 'tercer_lado', header: 'Tercer lado' },
+        { key: 'cumple', header: 'Suma > tercer lado?' },
       ],
-      total: { valor: 4, visible: true },
-      incognita: { posicion: 'total', label: 'Lado mayor = ?' },
-      orientacion: 'horizontal',
+      filas: [
+        { condicion: 'a + b > c', suma: '4 + 3 = 7', tercer_lado: '3', cumple: 'Si (7 > 3)' },
+        { condicion: 'a + c > b', suma: '4 + 3 = 7', tercer_lado: '3', cumple: 'Si (7 > 3)' },
+        { condicion: 'b + c > a', suma: '3 + 3 = 6', tercer_lado: '4', cumple: 'Si (6 > 4)' },
+      ],
+      resaltados: [
+        { fila: 0, columna: 'cumple', color: '#10B981' },
+        { fila: 1, columna: 'cumple', color: '#10B981' },
+        { fila: 2, columna: 'cumple', color: '#10B981' },
+      ],
+      titulo: 'Verificacion de la desigualdad triangular (lados: 4, 3, 3)',
     },
     preguntas: [
       {

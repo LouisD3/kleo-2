@@ -5,7 +5,7 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  * Concepto clave: Evaluar proposiciones con AND y OR usando tablas de verdad
  *
  * Concreto: TablaVerdad (completar la tabla de p AND q)
- * Pictorico: Modelo en barras (casos verdaderos vs falsos)
+ * Pictorico: Tabla de verdad completa — conjuncion (Y) y disyuncion (O)
  * Abstracto: 3 preguntas progresivas sobre conjuncion y disyuncion
  */
 export const tareaSecuencia34: TareaCPA = {
@@ -23,13 +23,27 @@ export const tareaSecuencia34: TareaCPA = {
     intentos_para_pista: 3,
   },
   pictorico: {
-    modelo_barras: {
-      barras: [
-        { label: 'Casos verdaderos', valor: 1, color: 'verde' },
-        { label: 'Casos falsos', valor: 3, color: 'rojo' },
+    representacion: {
+      tipo_representacion: 'tabla',
+      columnas: [
+        { key: 'p', header: 'p' },
+        { key: 'q', header: 'q' },
+        { key: 'p_y_q', header: 'p Y q' },
+        { key: 'p_o_q', header: 'p O q' },
       ],
-      total: { valor: 4, visible: true },
-      orientacion: 'horizontal',
+      filas: [
+        { p: 'V', q: 'V', p_y_q: 'V', p_o_q: 'V' },
+        { p: 'V', q: 'F', p_y_q: 'F', p_o_q: 'V' },
+        { p: 'F', q: 'V', p_y_q: 'F', p_o_q: 'V' },
+        { p: 'F', q: 'F', p_y_q: 'F', p_o_q: 'F' },
+      ],
+      resaltados: [
+        { fila: 0, columna: 'p_y_q', color: '#10B981' },
+        { fila: 0, columna: 'p_o_q', color: '#10B981' },
+        { fila: 1, columna: 'p_o_q', color: '#10B981' },
+        { fila: 2, columna: 'p_o_q', color: '#10B981' },
+      ],
+      titulo: 'Tabla de verdad: Conjuncion (Y) y Disyuncion (O)',
     },
     preguntas: [
       {

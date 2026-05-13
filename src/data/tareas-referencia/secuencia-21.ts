@@ -5,7 +5,7 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  * Concepto clave: Clasificar triángulos y cuadriláteros por sus propiedades
  *
  * Concreto: Geoplano (paralelogramo para explorar propiedades)
- * Pictorico: Modelo en barras comparando lados del paralelogramo
+ * Pictorico: Tabla comparativa de propiedades de cuadrilateros
  * Abstracto: 3 preguntas con progresión de dificultad sobre clasificación de figuras
  */
 export const tareaSecuencia21: TareaCPA = {
@@ -28,16 +28,26 @@ export const tareaSecuencia21: TareaCPA = {
     intentos_para_pista: 3,
   },
   pictorico: {
-    modelo_barras: {
-      barras: [
-        { label: 'Lado a', valor: 3, color: 'azul' },
-        { label: 'Lado b', valor: 2, color: 'verde' },
-        { label: 'Lado a', valor: 3, color: 'azul' },
-        { label: 'Lado b', valor: 2, color: 'verde' },
+    representacion: {
+      tipo_representacion: 'tabla',
+      columnas: [
+        { key: 'figura', header: 'Figura' },
+        { key: 'lados_paralelos', header: 'Pares de lados paralelos' },
+        { key: 'lados_iguales', header: 'Lados iguales' },
+        { key: 'angulos_rectos', header: 'Angulos rectos' },
       ],
-      total: { valor: 10, visible: true },
-      incognita: { posicion: 'total', label: 'Perímetro = ?' },
-      orientacion: 'horizontal',
+      filas: [
+        { figura: 'Paralelogramo', lados_paralelos: 2, lados_iguales: 'Opuestos iguales', angulos_rectos: 'No necesariamente' },
+        { figura: 'Rectangulo', lados_paralelos: 2, lados_iguales: 'Opuestos iguales', angulos_rectos: 'Si (4 de 90°)' },
+        { figura: 'Rombo', lados_paralelos: 2, lados_iguales: 'Todos iguales', angulos_rectos: 'No necesariamente' },
+        { figura: 'Trapecio', lados_paralelos: 1, lados_iguales: 'No necesariamente', angulos_rectos: 'No necesariamente' },
+      ],
+      resaltados: [
+        { fila: 0, columna: 'lados_paralelos', color: '#3B82F6' },
+        { fila: 1, columna: 'angulos_rectos', color: '#10B981' },
+        { fila: 2, columna: 'lados_iguales', color: '#8B5CF6' },
+      ],
+      titulo: 'Propiedades de cuadrilateros',
     },
     preguntas: [
       {

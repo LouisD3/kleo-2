@@ -30,7 +30,8 @@ export const tareaSecuencia11: TareaCPA = {
     intentos_para_pista: 3,
   },
   pictorico: {
-    modelo_barras: {
+    representacion: {
+      tipo_representacion: 'modelo_barras',
       barras: [
         { label: 'Largo', valor: 2, color: 'azul' },
         { label: 'Largo', valor: 2, color: 'azul' },

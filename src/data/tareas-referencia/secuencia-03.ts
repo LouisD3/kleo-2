@@ -30,7 +30,8 @@ export const tareaSecuencia03: TareaCPA = {
     intentos_para_pista: 3,
   },
   pictorico: {
-    modelo_barras: {
+    representacion: {
+      tipo_representacion: 'modelo_barras',
       barras: [
         {
           label: 'Distancia de -3 al 0',
