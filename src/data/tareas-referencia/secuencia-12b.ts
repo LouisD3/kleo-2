@@ -10,6 +10,21 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia12b: TareaCPA = {
   secuencia_ref: 12,
+  contexto: {
+    personaje: 'Valentina',
+    objetos: { a: { nombre: 'pesa', emoji: '⚖️' }, b: { nombre: 'incognita', emoji: '❓' } },
+    valores_clave: { ecuacion: '3x = 12', solucion: 4 },
+    tipo: 'ecuacion',
+    narrativa: 'Valentina tiene 3 bolsas iguales en un lado de la balanza y 12 pesas en el otro. Cada bolsa pesa lo mismo.',
+    pregunta_central: '¿Cuanto pesa cada bolsa si 3x = 12?',
+    transiciones: {
+      concreto: 'Divide las pesas en 3 grupos iguales para encontrar el valor de x.',
+      bridge_pictorico: '12 ÷ 3 = 4. Cada bolsa pesa 4.',
+      pictorico: 'Observa como se reparten las pesas en el modelo.',
+      bridge_abstracto: 'Dividir ambos lados entre el coeficiente despeja x.',
+      abstracto: 'Ahora resuelve ecuaciones de la forma ax = b.',
+    },
+  },
   concreto: {
     manipulable: {
       tipo_concreto: 'balanza',

@@ -10,6 +10,21 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia16: TareaCPA = {
   secuencia_ref: 16,
+  contexto: {
+    personaje: 'Roberto',
+    objetos: { a: { nombre: 'recta', emoji: '📐' }, b: { nombre: 'angulo', emoji: '📏' } },
+    valores_clave: { angulo: 90 },
+    tipo: 'geometria',
+    narrativa: 'Roberto observa las lineas del patio de su escuela. Algunas van en la misma direccion y otras se cruzan formando angulos rectos.',
+    pregunta_central: '¿Como distinguir rectas paralelas de perpendiculares?',
+    transiciones: {
+      concreto: 'Traza una recta horizontal en el geoplano para explorar.',
+      bridge_pictorico: 'Una recta horizontal tiene la misma direccion que otra paralela.',
+      pictorico: 'Observa en el diagrama como se ven las rectas paralelas y perpendiculares.',
+      bridge_abstracto: 'Las paralelas nunca se cruzan. Las perpendiculares forman 90°.',
+      abstracto: 'Ahora clasifica rectas en diferentes contextos.',
+    },
+  },
   concreto: {
     manipulable: {
       tipo_concreto: 'geoplano',

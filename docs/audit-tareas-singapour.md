@@ -185,7 +185,7 @@ Quand l'élève passe de Concreto à Pictórico, il ne sait **pas pourquoi**. Il
 
 **Livrable** : 1 PR par groupe (arithmétique inchangé, géométrie refait).
 
-### Phase C — Système d'anchor task / contexte narratif (1 session)
+### Phase C — Système d'anchor task / contexte narratif (1 session) ✅ DONE
 
 **Objectif** : remettre la promesse *"un même problème, 3 angles"* au cœur du flux.
 

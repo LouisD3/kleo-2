@@ -10,6 +10,21 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia34: TareaCPA = {
   secuencia_ref: 34,
+  contexto: {
+    personaje: 'Marco',
+    objetos: { a: { nombre: 'proposicion', emoji: '💬' }, b: { nombre: 'tabla', emoji: '📋' } },
+    valores_clave: { casos_verdaderos_Y: 1, casos_verdaderos_O: 3 },
+    tipo: 'logica',
+    narrativa: 'Marco evalua proposiciones compuestas con "Y" y "O". Descubre que "Y" es mas estricta: ambas deben ser verdaderas.',
+    pregunta_central: '¿Cuantos casos son verdaderos para "p Y q" vs "p O q"?',
+    transiciones: {
+      concreto: 'Completa la tabla de verdad de "p Y q" evaluando las 4 combinaciones.',
+      bridge_pictorico: 'Solo 1 de 4 casos es verdadero para "Y". La conjuncion es estricta.',
+      pictorico: 'Compara los resultados de "Y" y "O" en la tabla de verdad.',
+      bridge_abstracto: '"Y" = ambas verdaderas. "O" = al menos una verdadera.',
+      abstracto: 'Ahora evalua proposiciones compuestas.',
+    },
+  },
   concreto: {
     manipulable: {
       tipo_concreto: 'tabla_verdad',

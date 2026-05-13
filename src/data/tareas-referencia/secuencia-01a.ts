@@ -10,6 +10,21 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia01a: TareaCPA = {
   secuencia_ref: 1,
+  contexto: {
+    personaje: 'Sofia',
+    objetos: { a: { nombre: 'chocolate', emoji: '🍫' }, b: { nombre: 'pedazo', emoji: '🟫' } },
+    valores_clave: { fraccion: '3/8' },
+    tipo: 'fraccion',
+    narrativa: 'Sofia tiene una barra de chocolate dividida en 8 pedazos iguales. Quiere comerse 3 pedazos y guardar el resto para despues.',
+    pregunta_central: '¿Que fraccion del chocolate se come Sofia?',
+    transiciones: {
+      concreto: 'Ayuda a Sofia a partir su chocolate y seleccionar los pedazos que quiere comerse.',
+      bridge_pictorico: 'Sofia se comio 3 de 8 pedazos. Eso es la fraccion 3/8 del chocolate.',
+      pictorico: 'Observa como se representa esta fraccion en un modelo de barras.',
+      bridge_abstracto: 'El modelo muestra que 3/8 es menos de la mitad del chocolate.',
+      abstracto: 'Ahora trabaja con fracciones en otros contextos.',
+    },
+  },
   concreto: {
     manipulable: {
       tipo_concreto: 'chocolate_secable',

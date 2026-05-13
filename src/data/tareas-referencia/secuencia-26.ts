@@ -10,6 +10,21 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia26: TareaCPA = {
   secuencia_ref: 26,
+  contexto: {
+    personaje: 'Roberto',
+    objetos: { a: { nombre: 'punto', emoji: '📍' }, b: { nombre: 'recta', emoji: '📏' } },
+    valores_clave: { distancia_perpendicular: 2, distancia_oblicua: 3 },
+    tipo: 'geometria',
+    narrativa: 'Roberto busca el camino mas corto desde un punto hasta una recta. Descubre que siempre es la perpendicular.',
+    pregunta_central: '¿Cual es la distancia mas corta de un punto a una recta?',
+    transiciones: {
+      concreto: 'Traza el punto y la recta en el geoplano. Observa las distancias.',
+      bridge_pictorico: 'La perpendicular (2 u) es mas corta que cualquier oblicua (3 u).',
+      pictorico: 'Compara las distancias en el modelo.',
+      bridge_abstracto: 'La distancia punto-recta es siempre la perpendicular.',
+      abstracto: 'Ahora calcula distancias punto-recta.',
+    },
+  },
   concreto: {
     manipulable: {
       tipo_concreto: 'geoplano',

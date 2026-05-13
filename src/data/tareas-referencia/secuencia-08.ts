@@ -10,6 +10,21 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia08: TareaCPA = {
   secuencia_ref: 8,
+  contexto: {
+    personaje: 'Ana',
+    objetos: { a: { nombre: 'azulejo', emoji: '🟦' }, b: { nombre: 'ecuacion', emoji: '🟰' } },
+    valores_clave: { objetivo: 14 },
+    tipo: 'ecuacion',
+    narrativa: 'Ana aprende que multiplicar una suma es lo mismo que sumar las multiplicaciones por separado. Usa azulejos para verlo.',
+    pregunta_central: '¿Cuanto es 2 × (3 + 4) usando la propiedad distributiva?',
+    transiciones: {
+      concreto: 'Arma la ecuacion con azulejos de algebra para ver la distributiva.',
+      bridge_pictorico: '2 × (3 + 4) = 2×3 + 2×4 = 6 + 8 = 14.',
+      pictorico: 'Observa como se distribuye la multiplicacion en el modelo.',
+      bridge_abstracto: 'La propiedad distributiva descompone una multiplicacion en sumas.',
+      abstracto: 'Ahora aplica la distributiva a expresiones algebraicas.',
+    },
+  },
   concreto: {
     manipulable: {
       tipo_concreto: 'azulejos_algebra',

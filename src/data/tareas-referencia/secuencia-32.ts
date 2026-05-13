@@ -10,6 +10,21 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia32: TareaCPA = {
   secuencia_ref: 32,
+  contexto: {
+    personaje: 'Pablo',
+    objetos: { a: { nombre: 'dado', emoji: '🎲' }, b: { nombre: 'probabilidad', emoji: '🔢' } },
+    valores_clave: { caras: 6, favorables: 3 },
+    tipo: 'probabilidad',
+    narrativa: 'Pablo lanza un dado y quiere calcular la probabilidad de sacar un numero par (2, 4 o 6).',
+    pregunta_central: '¿Cual es la probabilidad de sacar un numero par?',
+    transiciones: {
+      concreto: 'Lanza el dado varias veces y observa los resultados.',
+      bridge_pictorico: 'De 6 caras, 3 son pares: la probabilidad es 3/6 = 1/2.',
+      pictorico: 'Observa los casos favorables vs totales en el modelo.',
+      bridge_abstracto: 'P(evento) = casos favorables / casos totales.',
+      abstracto: 'Ahora calcula probabilidades en otros experimentos.',
+    },
+  },
   concreto: {
     manipulable: {
       tipo_concreto: 'dados_ruleta',

@@ -10,6 +10,21 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia01c: TareaCPA = {
   secuencia_ref: 1,
+  contexto: {
+    personaje: 'Sofia',
+    objetos: { a: { nombre: 'punto', emoji: '📍' }, b: { nombre: 'recta', emoji: '📏' } },
+    valores_clave: { fraccion: '3/8', decimal: 0.375 },
+    tipo: 'fraccion',
+    narrativa: 'Sofia aprendio que las fracciones tambien se pueden escribir como decimales. Quiere ubicar 3/8 en la recta numerica.',
+    pregunta_central: '¿Donde se ubica 3/8 en la recta numerica?',
+    transiciones: {
+      concreto: 'Arrastra el marcador en la recta numerica para ubicar 3/8 como decimal.',
+      bridge_pictorico: 'Ubicaste 0.375 en la recta, que es lo mismo que 3/8.',
+      pictorico: 'Observa como se compara esta fraccion con otras en el modelo.',
+      bridge_abstracto: 'La recta y el modelo muestran que 3/8 esta entre 0 y 1/2.',
+      abstracto: 'Ahora convierte fracciones a decimales y ubicalas.',
+    },
+  },
   concreto: {
     manipulable: {
       tipo_concreto: 'recta_numerica',

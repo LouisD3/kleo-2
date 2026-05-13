@@ -10,6 +10,21 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia12a: TareaCPA = {
   secuencia_ref: 12,
+  contexto: {
+    personaje: 'Valentina',
+    objetos: { a: { nombre: 'pesa', emoji: '⚖️' }, b: { nombre: 'incognita', emoji: '❓' } },
+    valores_clave: { ecuacion: 'x + 3 = 7', solucion: 4 },
+    tipo: 'ecuacion',
+    narrativa: 'Valentina usa una balanza para resolver ecuaciones. Si ambos lados pesan igual, la balanza esta equilibrada.',
+    pregunta_central: '¿Que valor de x equilibra x + 3 = 7?',
+    transiciones: {
+      concreto: 'Equilibra la balanza quitando pesas de ambos lados hasta aislar x.',
+      bridge_pictorico: 'Al quitar 3 de cada lado: x = 4.',
+      pictorico: 'Observa la ecuacion en el modelo de barras.',
+      bridge_abstracto: 'Resolver es despejar la incognita haciendo lo mismo en ambos lados.',
+      abstracto: 'Ahora resuelve otras ecuaciones.',
+    },
+  },
   concreto: {
     manipulable: {
       tipo_concreto: 'balanza',

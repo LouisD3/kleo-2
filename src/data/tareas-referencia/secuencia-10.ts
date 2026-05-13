@@ -10,6 +10,21 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia10: TareaCPA = {
   secuencia_ref: 10,
+  contexto: {
+    personaje: 'Valentina',
+    objetos: { a: { nombre: 'azulejo', emoji: '🟦' }, b: { nombre: 'expresion', emoji: '🔤' } },
+    valores_clave: { objetivo: 7 },
+    tipo: 'ecuacion',
+    narrativa: 'Valentina traduce frases cotidianas a expresiones algebraicas. "El doble de un numero mas 3" se escribe 2x + 3.',
+    pregunta_central: '¿Como se escribe "el doble de un numero mas 3 es igual a 17"?',
+    transiciones: {
+      concreto: 'Arma la expresion 2x + 3 = 17 con azulejos de algebra.',
+      bridge_pictorico: 'La ecuacion tiene 2 barras de x y 3 unidades en un lado, 17 en el otro.',
+      pictorico: 'Observa la ecuacion representada en el modelo.',
+      bridge_abstracto: 'Traducir a algebra permite resolver problemas sistematicamente.',
+      abstracto: 'Ahora traduce y resuelve otras expresiones.',
+    },
+  },
   concreto: {
     manipulable: {
       tipo_concreto: 'azulejos_algebra',

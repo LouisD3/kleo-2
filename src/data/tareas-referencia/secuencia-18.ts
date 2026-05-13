@@ -10,6 +10,21 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia18: TareaCPA = {
   secuencia_ref: 18,
+  contexto: {
+    personaje: 'Elena',
+    objetos: { a: { nombre: 'segmento', emoji: '📏' }, b: { nombre: 'punto medio', emoji: '📍' } },
+    valores_clave: { longitud: 4 },
+    tipo: 'geometria',
+    narrativa: 'Elena quiere encontrar el punto exacto que divide un segmento en dos partes iguales y trazar la mediatriz.',
+    pregunta_central: '¿Donde esta el punto medio de un segmento de 4 unidades?',
+    transiciones: {
+      concreto: 'Traza el segmento en el geoplano y encuentra su punto medio.',
+      bridge_pictorico: 'El punto medio divide el segmento en dos mitades de 2 unidades.',
+      pictorico: 'Observa la division en el modelo de barras.',
+      bridge_abstracto: 'Punto medio = (x1 + x2)/2. La mediatriz pasa perpendicular por ese punto.',
+      abstracto: 'Ahora calcula puntos medios y mediatrices.',
+    },
+  },
   concreto: {
     manipulable: {
       tipo_concreto: 'geoplano',

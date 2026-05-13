@@ -10,6 +10,21 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia24: TareaCPA = {
   secuencia_ref: 24,
+  contexto: {
+    personaje: 'Camila',
+    objetos: { a: { nombre: 'sector', emoji: '🍕' }, b: { nombre: 'arco', emoji: '🌙' } },
+    valores_clave: { radio: 4 },
+    tipo: 'geometria',
+    narrativa: 'Camila corta una pizza circular y observa que cada rebanada forma un sector circular con un arco en el borde.',
+    pregunta_central: '¿Que son un sector circular y un arco?',
+    transiciones: {
+      concreto: 'Traza el circulo y marca un sector con el compas.',
+      bridge_pictorico: 'El sector es la rebanada, el arco es el borde curvo.',
+      pictorico: 'Observa sector y arco en el modelo.',
+      bridge_abstracto: 'El sector depende del angulo central y el radio.',
+      abstracto: 'Ahora identifica y calcula sectores y arcos.',
+    },
+  },
   concreto: {
     manipulable: {
       tipo_concreto: 'compas_circulo',

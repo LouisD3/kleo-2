@@ -10,6 +10,21 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia35: TareaCPA = {
   secuencia_ref: 35,
+  contexto: {
+    personaje: 'Marco',
+    objetos: { a: { nombre: 'promesa', emoji: '🤝' }, b: { nombre: 'condicion', emoji: '❓' } },
+    valores_clave: { casos_falsos: 1 },
+    tipo: 'logica',
+    narrativa: 'Marco piensa en promesas: "Si llueve, llevo paraguas". Solo se rompe la promesa si llueve y NO llevas paraguas.',
+    pregunta_central: '¿Cuando es falso el condicional "SI p ENTONCES q"?',
+    transiciones: {
+      concreto: 'Completa la tabla de verdad del condicional para las 4 combinaciones.',
+      bridge_pictorico: 'Solo 1 caso es falso: cuando p=V y q=F (la promesa se rompe).',
+      pictorico: 'Observa en la tabla cual es el unico caso falso.',
+      bridge_abstracto: 'El condicional solo es falso cuando la condicion se cumple pero la consecuencia no.',
+      abstracto: 'Ahora evalua condicionales y bicondicionales.',
+    },
+  },
   concreto: {
     manipulable: {
       tipo_concreto: 'tabla_verdad',

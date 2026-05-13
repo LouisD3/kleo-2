@@ -10,6 +10,21 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia17: TareaCPA = {
   secuencia_ref: 17,
+  contexto: {
+    personaje: 'Roberto',
+    objetos: { a: { nombre: 'angulo', emoji: '📐' }, b: { nombre: 'grado', emoji: '°' } },
+    valores_clave: { angulos: [45, 90, 135] },
+    tipo: 'geometria',
+    narrativa: 'Roberto mide los angulos de diferentes objetos. Algunos son menores de 90° (agudos), otros son exactos (rectos) y otros son mayores (obtusos).',
+    pregunta_central: '¿Como se clasifican los angulos segun su medida?',
+    transiciones: {
+      concreto: 'Traza un angulo en el geoplano y observa su abertura.',
+      bridge_pictorico: 'Un angulo agudo mide menos de 90°, un recto 90° y un obtuso mas de 90°.',
+      pictorico: 'Observa los tres tipos de angulo en el modelo.',
+      bridge_abstracto: 'La clasificacion depende de comparar con 90°.',
+      abstracto: 'Ahora clasifica y calcula angulos.',
+    },
+  },
   concreto: {
     manipulable: {
       tipo_concreto: 'geoplano',

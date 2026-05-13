@@ -10,6 +10,21 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia05a: TareaCPA = {
   secuencia_ref: 5,
+  contexto: {
+    personaje: 'Diego',
+    objetos: { a: { nombre: 'bloque', emoji: '🧱' }, b: { nombre: 'numero', emoji: '🔢' } },
+    valores_clave: { objetivo: 253 },
+    tipo: 'numero',
+    narrativa: 'Diego usa bloques de base 10 para entender como se descompone un numero en centenas, decenas y unidades.',
+    pregunta_central: '¿Como se descompone 253 en bloques de base 10?',
+    transiciones: {
+      concreto: 'Usa los bloques para representar 253: cuadrados de 100, barras de 10 y unidades.',
+      bridge_pictorico: '253 = 2 centenas + 5 decenas + 3 unidades.',
+      pictorico: 'Observa la descomposicion en el modelo de barras.',
+      bridge_abstracto: 'Cada posicion tiene un valor: centenas, decenas, unidades.',
+      abstracto: 'Ahora descompone otros numeros.',
+    },
+  },
   concreto: {
     manipulable: {
       tipo_concreto: 'bloques_base10',

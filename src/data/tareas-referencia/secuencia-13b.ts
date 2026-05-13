@@ -10,6 +10,21 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia13b: TareaCPA = {
   secuencia_ref: 13,
+  contexto: {
+    personaje: 'Laura',
+    objetos: { a: { nombre: 'producto', emoji: '🏷️' }, b: { nombre: 'descuento', emoji: '💰' } },
+    valores_clave: { porcentaje: 20, precio: 500 },
+    tipo: 'porcentaje',
+    narrativa: 'Laura quiere comprar unos tenis de $500 que tienen 20% de descuento. Necesita calcular cuanto ahorra.',
+    pregunta_central: '¿Cuanto paga Laura con el 20% de descuento?',
+    transiciones: {
+      concreto: 'Colorea 20 de 100 cuadritos para ver cuanto representa el descuento.',
+      bridge_pictorico: '20% de 500 = $100 de descuento. Paga $400.',
+      pictorico: 'Observa el descuento en el modelo de barras.',
+      bridge_abstracto: 'Descuento = precio × porcentaje / 100.',
+      abstracto: 'Ahora calcula descuentos y aumentos.',
+    },
+  },
   concreto: {
     manipulable: {
       tipo_concreto: 'cuadricula_100',

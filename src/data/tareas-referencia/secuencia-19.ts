@@ -10,6 +10,21 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia19: TareaCPA = {
   secuencia_ref: 19,
+  contexto: {
+    personaje: 'Elena',
+    objetos: { a: { nombre: 'angulo', emoji: '📐' }, b: { nombre: 'bisectriz', emoji: '✂️' } },
+    valores_clave: { angulo: 80 },
+    tipo: 'geometria',
+    narrativa: 'Elena aprende que la bisectriz divide un angulo en dos partes iguales, como cortar un pastel exactamente a la mitad.',
+    pregunta_central: '¿Como se traza la bisectriz de un angulo de 80°?',
+    transiciones: {
+      concreto: 'Traza el triangulo en el geoplano para explorar sus angulos.',
+      bridge_pictorico: 'La bisectriz de 80° crea dos angulos de 40° cada uno.',
+      pictorico: 'Observa la division del angulo en el modelo.',
+      bridge_abstracto: 'Bisectriz: cada mitad mide angulo/2.',
+      abstracto: 'Ahora traza bisectrices y calcula angulos resultantes.',
+    },
+  },
   concreto: {
     manipulable: {
       tipo_concreto: 'geoplano',

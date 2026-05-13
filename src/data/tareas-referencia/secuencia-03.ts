@@ -10,6 +10,21 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia03: TareaCPA = {
   secuencia_ref: 3,
+  contexto: {
+    personaje: 'Carlos',
+    objetos: { a: { nombre: 'temperatura', emoji: '🌡️' }, b: { nombre: 'recta', emoji: '📏' } },
+    valores_clave: { objetivo: -3 },
+    tipo: 'comparacion',
+    narrativa: 'Carlos revisa las temperaturas de diferentes ciudades y quiere ordenarlas de menor a mayor en una recta numerica.',
+    pregunta_central: '¿Donde se ubica -3 en la recta numerica?',
+    transiciones: {
+      concreto: 'Arrastra el marcador para ubicar -3 en la recta numerica.',
+      bridge_pictorico: 'Ubicaste -3 correctamente a la izquierda del cero.',
+      pictorico: 'Observa como se comparan los numeros con signo en el modelo.',
+      bridge_abstracto: 'En la recta, los numeros mas a la izquierda son menores.',
+      abstracto: 'Ahora compara y ordena numeros con signo.',
+    },
+  },
   concreto: {
     manipulable: {
       tipo_concreto: 'recta_numerica',

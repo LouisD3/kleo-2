@@ -10,6 +10,21 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia20: TareaCPA = {
   secuencia_ref: 20,
+  contexto: {
+    personaje: 'Elena',
+    objetos: { a: { nombre: 'triangulo', emoji: '🔺' }, b: { nombre: 'recta notable', emoji: '📏' } },
+    valores_clave: { longitud: 4 },
+    tipo: 'geometria',
+    narrativa: 'Elena explora las rectas notables de un triangulo: mediana, altura, mediatriz y bisectriz. Cada una tiene una funcion diferente.',
+    pregunta_central: '¿Que hace la mediana de un triangulo?',
+    transiciones: {
+      concreto: 'Traza el triangulo en el geoplano y observa como se divide.',
+      bridge_pictorico: 'La mediana va de un vertice al punto medio del lado opuesto.',
+      pictorico: 'Observa como la mediana divide el lado en el modelo.',
+      bridge_abstracto: 'Mediana, altura, mediatriz y bisectriz son las 4 rectas notables.',
+      abstracto: 'Ahora identifica y traza rectas notables.',
+    },
+  },
   concreto: {
     manipulable: {
       tipo_concreto: 'geoplano',

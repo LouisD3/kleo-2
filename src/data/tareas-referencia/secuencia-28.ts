@@ -10,6 +10,21 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia28: TareaCPA = {
   secuencia_ref: 28,
+  contexto: {
+    personaje: 'Roberto',
+    objetos: { a: { nombre: 'terreno', emoji: '🏗️' }, b: { nombre: 'medida', emoji: '📏' } },
+    valores_clave: { largo: 4, ancho: 3, area: 12, perimetro: 14 },
+    tipo: 'medicion',
+    narrativa: 'Roberto necesita calcular el perimetro (para la cerca) y el area (para el pasto) de un terreno rectangular de 4×3.',
+    pregunta_central: '¿Cual es el perimetro y el area de un rectangulo 4×3?',
+    transiciones: {
+      concreto: 'Traza el rectangulo en el geoplano y calcula su area.',
+      bridge_pictorico: 'El rectangulo tiene 12 unidades cuadradas de area.',
+      pictorico: 'Observa el rectangulo con sus medidas y la cuadricula en el diagrama.',
+      bridge_abstracto: 'P = 2(4+3) = 14, A = 4×3 = 12. Perimetro es contorno, area es superficie.',
+      abstracto: 'Ahora calcula perimetros y areas de otros poligonos.',
+    },
+  },
   concreto: {
     manipulable: {
       tipo_concreto: 'geoplano',

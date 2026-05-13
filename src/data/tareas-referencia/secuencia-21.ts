@@ -10,6 +10,21 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia21: TareaCPA = {
   secuencia_ref: 21,
+  contexto: {
+    personaje: 'Roberto',
+    objetos: { a: { nombre: 'figura', emoji: '🔷' }, b: { nombre: 'propiedad', emoji: '📋' } },
+    valores_clave: { lados: 4 },
+    tipo: 'geometria',
+    narrativa: 'Roberto clasifica figuras geometricas segun sus propiedades: lados paralelos, lados iguales y angulos rectos.',
+    pregunta_central: '¿Que propiedades tiene un paralelogramo?',
+    transiciones: {
+      concreto: 'Traza un paralelogramo en el geoplano y observa sus lados.',
+      bridge_pictorico: 'Los lados opuestos son paralelos e iguales entre si.',
+      pictorico: 'Compara las propiedades de diferentes cuadrilateros en la tabla.',
+      bridge_abstracto: 'El paralelogramo incluye al rectangulo, rombo y cuadrado.',
+      abstracto: 'Ahora clasifica figuras por sus propiedades.',
+    },
+  },
   concreto: {
     manipulable: {
       tipo_concreto: 'geoplano',

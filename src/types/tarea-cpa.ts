@@ -374,6 +374,9 @@ export type TipoContexto =
   | 'medicion'
   | 'probabilidad'
   | 'estadistica'
+  | 'geometria'
+  | 'logica'
+  | 'numero'
 
 export interface ContextoAnchor {
   /** Personaje protagonista del problema */
@@ -383,10 +386,11 @@ export interface ContextoAnchor {
     a: ObjetoContexto
     b: ObjetoContexto
   }
-  /** Valores numericos clave del anchor */
+  /** Valores numericos clave del anchor (flexible per topic) */
   valores_clave: {
-    razon: [number, number]
-    objetivo: number
+    razon?: [number, number]
+    objetivo?: number
+    [key: string]: unknown
   }
   /** Tipo de problema pedagogico */
   tipo: TipoContexto

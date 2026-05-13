@@ -10,6 +10,21 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia07: TareaCPA = {
   secuencia_ref: 7,
+  contexto: {
+    personaje: 'Ana',
+    objetos: { a: { nombre: 'salto', emoji: '🦘' }, b: { nombre: 'recta', emoji: '📏' } },
+    valores_clave: { objetivo: 8 },
+    tipo: 'numero',
+    narrativa: 'Ana quiere comprobar que sumar en diferente orden da el mismo resultado. Usa la recta numerica para verificar.',
+    pregunta_central: '¿Da lo mismo sumar 3 + 5 que 5 + 3?',
+    transiciones: {
+      concreto: 'Ubica el resultado de 3 + 5 en la recta numerica.',
+      bridge_pictorico: 'Ambas sumas llegan al 8. El orden no cambia el resultado.',
+      pictorico: 'Observa las dos sumas en el modelo de barras.',
+      bridge_abstracto: 'Esto se llama propiedad conmutativa: a + b = b + a.',
+      abstracto: 'Ahora aplica la propiedad conmutativa a otras operaciones.',
+    },
+  },
   concreto: {
     manipulable: {
       tipo_concreto: 'recta_numerica',

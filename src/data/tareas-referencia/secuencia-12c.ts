@@ -10,6 +10,21 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia12c: TareaCPA = {
   secuencia_ref: 12,
+  contexto: {
+    personaje: 'Valentina',
+    objetos: { a: { nombre: 'pesa', emoji: '⚖️' }, b: { nombre: 'incognita', emoji: '❓' } },
+    valores_clave: { ecuacion: '2x + 3 = 11', solucion: 4 },
+    tipo: 'ecuacion',
+    narrativa: 'Valentina enfrenta una ecuacion mas compleja: 2 bolsas mas 3 pesas sueltas equilibran 11 pesas.',
+    pregunta_central: '¿Cuanto pesa cada bolsa si 2x + 3 = 11?',
+    transiciones: {
+      concreto: 'Primero quita 3 pesas de cada lado, luego divide entre 2.',
+      bridge_pictorico: '2x + 3 = 11 → 2x = 8 → x = 4.',
+      pictorico: 'Observa los dos pasos en el modelo.',
+      bridge_abstracto: 'Resolver en dos pasos: restar constante, luego dividir.',
+      abstracto: 'Ahora resuelve ecuaciones de dos pasos.',
+    },
+  },
   concreto: {
     manipulable: {
       tipo_concreto: 'balanza',

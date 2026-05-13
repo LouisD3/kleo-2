@@ -10,6 +10,21 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia04: TareaCPA = {
   secuencia_ref: 4,
+  contexto: {
+    personaje: 'Lucia',
+    objetos: { a: { nombre: 'fraccion', emoji: '🔢' }, b: { nombre: 'recta', emoji: '📏' } },
+    valores_clave: { fraccion: '5/4', decimal: 1.25 },
+    tipo: 'fraccion',
+    narrativa: 'Lucia quiere ubicar fracciones y decimales en la recta numerica para ver donde caen entre los numeros enteros.',
+    pregunta_central: '¿Donde se ubica 5/4 en la recta numerica?',
+    transiciones: {
+      concreto: 'Arrastra el marcador para ubicar 5/4 (= 1.25) en la recta numerica.',
+      bridge_pictorico: 'Ubicaste 5/4 entre 1 y 2, mas cerca de 1.',
+      pictorico: 'Observa como se representan las fracciones entre enteros.',
+      bridge_abstracto: 'El modelo muestra que 5/4 es un entero mas un cuarto.',
+      abstracto: 'Ahora ubica otras fracciones y decimales.',
+    },
+  },
   concreto: {
     manipulable: {
       tipo_concreto: 'recta_numerica',

@@ -10,6 +10,21 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia05b: TareaCPA = {
   secuencia_ref: 5,
+  contexto: {
+    personaje: 'Diego',
+    objetos: { a: { nombre: 'bloque', emoji: '🧱' }, b: { nombre: 'suma', emoji: '➕' } },
+    valores_clave: { objetivo: 368 },
+    tipo: 'numero',
+    narrativa: 'Diego quiere sumar 185 + 183 usando bloques de base 10 y aprender cuando hay que reagrupar.',
+    pregunta_central: '¿Cuanto es 185 + 183?',
+    transiciones: {
+      concreto: 'Junta los bloques de ambos numeros y reagrupa cuando tengas 10 o mas.',
+      bridge_pictorico: 'Al reagrupar, obtuviste 368.',
+      pictorico: 'Observa como se ve la suma en el modelo.',
+      bridge_abstracto: 'La reagrupacion es cuando 10 unidades se convierten en 1 decena.',
+      abstracto: 'Ahora suma otros numeros con reagrupacion.',
+    },
+  },
   concreto: {
     manipulable: {
       tipo_concreto: 'bloques_base10',

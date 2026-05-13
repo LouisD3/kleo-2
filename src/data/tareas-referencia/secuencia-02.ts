@@ -10,6 +10,21 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia02: TareaCPA = {
   secuencia_ref: 2,
+  contexto: {
+    personaje: 'Carlos',
+    objetos: { a: { nombre: 'ficha positiva', emoji: '🟢' }, b: { nombre: 'ficha negativa', emoji: '🔴' } },
+    valores_clave: { positivas: 5, negativas: 3, resultado: 2 },
+    tipo: 'numero',
+    narrativa: 'Carlos tiene fichas verdes (+) y rojas (-). Quiere entender como se combinan numeros positivos y negativos usando fichas que se cancelan.',
+    pregunta_central: '¿Que numero resulta al combinar 5 fichas positivas y 3 negativas?',
+    transiciones: {
+      concreto: 'Usa las fichas de Carlos para cancelar pares positivo-negativo y encontrar el resultado.',
+      bridge_pictorico: 'Al cancelar 3 pares, quedan 2 fichas positivas. El resultado es +2.',
+      pictorico: 'Observa como se representa esta operacion en el modelo.',
+      bridge_abstracto: 'El modelo muestra que (+5) + (-3) = +2.',
+      abstracto: 'Ahora opera con numeros positivos y negativos sin fichas.',
+    },
+  },
   concreto: {
     manipulable: {
       tipo_concreto: 'fichas_positivas_negativas',

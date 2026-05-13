@@ -10,6 +10,21 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia01b: TareaCPA = {
   secuencia_ref: 1,
+  contexto: {
+    personaje: 'Sofia',
+    objetos: { a: { nombre: 'tira', emoji: '📏' }, b: { nombre: 'fraccion', emoji: '🔢' } },
+    valores_clave: { fraccion: '1/2' },
+    tipo: 'fraccion',
+    narrativa: 'Sofia quiere demostrar que varias fracciones representan la misma cantidad. Usa tiras de papel de colores para comparar.',
+    pregunta_central: '¿Que fracciones son equivalentes a 1/2?',
+    transiciones: {
+      concreto: 'Usa las tiras de fracciones para encontrar cuales miden lo mismo que 1/2.',
+      bridge_pictorico: 'Descubriste que 2/4 y 3/6 miden igual que 1/2. Son fracciones equivalentes.',
+      pictorico: 'Ahora observa estas equivalencias en el modelo de barras.',
+      bridge_abstracto: 'El modelo confirma que las fracciones equivalentes ocupan el mismo espacio.',
+      abstracto: 'Aplica lo aprendido para encontrar mas fracciones equivalentes.',
+    },
+  },
   concreto: {
     manipulable: {
       tipo_concreto: 'tiras_fracciones',

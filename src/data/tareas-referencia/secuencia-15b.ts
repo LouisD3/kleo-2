@@ -10,6 +10,21 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia15b: TareaCPA = {
   secuencia_ref: 15,
+  contexto: {
+    personaje: 'Daniela',
+    objetos: { a: { nombre: 'naranja', emoji: '🍊' }, b: { nombre: 'bolsa', emoji: '🛍️' } },
+    valores_clave: { razon: [5, 1], objetivo: 35 },
+    tipo: 'proporcion',
+    narrativa: 'Daniela ya sabe que pone 5 naranjas por bolsa. Ahora quiere predecir cuantas bolsas necesita para pedidos grandes.',
+    pregunta_central: '¿Cuantas bolsas necesita para 35 naranjas?',
+    transiciones: {
+      concreto: 'Agrupa las naranjas de 5 en 5 para verificar.',
+      bridge_pictorico: '35 ÷ 5 = 7 bolsas. La constante sigue siendo 5.',
+      pictorico: 'Observa como crece proporcionalmente en el modelo.',
+      bridge_abstracto: 'Con k = 5, puedes predecir: bolsas = naranjas ÷ 5.',
+      abstracto: 'Ahora usa la constante para predecir en otras situaciones.',
+    },
+  },
   concreto: {
     manipulable: {
       tipo_concreto: 'dulces_agrupables',

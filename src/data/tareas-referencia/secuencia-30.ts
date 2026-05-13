@@ -10,6 +10,21 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia30: TareaCPA = {
   secuencia_ref: 30,
+  contexto: {
+    personaje: 'Profesor Garcia',
+    objetos: { a: { nombre: 'color', emoji: '🎨' }, b: { nombre: 'frecuencia', emoji: '📊' } },
+    valores_clave: { total: 10 },
+    tipo: 'estadistica',
+    narrativa: 'El Profesor Garcia saco 10 canicas de colores de una bolsa y quiere calcular la frecuencia de cada color.',
+    pregunta_central: '¿Cual es la frecuencia absoluta y relativa de cada color?',
+    transiciones: {
+      concreto: 'Construye el histograma con la frecuencia de cada color.',
+      bridge_pictorico: 'Rojo: 6/10 = 0.6. Azul: 3/10 = 0.3. Verde: 1/10 = 0.1.',
+      pictorico: 'Observa las frecuencias en el modelo.',
+      bridge_abstracto: 'Frecuencia relativa = absoluta / total.',
+      abstracto: 'Ahora calcula frecuencias en otros conjuntos.',
+    },
+  },
   concreto: {
     manipulable: {
       tipo_concreto: 'histograma_construible',

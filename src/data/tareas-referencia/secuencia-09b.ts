@@ -10,6 +10,21 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia09b: TareaCPA = {
   secuencia_ref: 9,
+  contexto: {
+    personaje: 'Miguel',
+    objetos: { a: { nombre: 'figura', emoji: '🔷' }, b: { nombre: 'sucesion', emoji: '📈' } },
+    valores_clave: { patron: [2, 5, 8], siguiente: 11 },
+    tipo: 'patron',
+    narrativa: 'Miguel encontro otra sucesion y quiere predecir terminos futuros sin construirlos todos.',
+    pregunta_central: '¿Cual es el termino 10 de la sucesion 2, 5, 8, 11...?',
+    transiciones: {
+      concreto: 'Construye el siguiente termino del patron para verificar la regla.',
+      bridge_pictorico: 'La sucesion aumenta de 3 en 3. El siguiente termino es 11.',
+      pictorico: 'Observa el crecimiento constante en el modelo.',
+      bridge_abstracto: 'Con la regla general puedes predecir cualquier termino.',
+      abstracto: 'Ahora calcula terminos lejanos usando la formula.',
+    },
+  },
   concreto: {
     manipulable: {
       tipo_concreto: 'patron_figuras',

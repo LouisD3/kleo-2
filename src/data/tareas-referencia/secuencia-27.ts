@@ -10,6 +10,21 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia27: TareaCPA = {
   secuencia_ref: 27,
+  contexto: {
+    personaje: 'Elena',
+    objetos: { a: { nombre: 'varilla', emoji: '🪵' }, b: { nombre: 'triangulo', emoji: '🔺' } },
+    valores_clave: { lados: [4, 3, 3] },
+    tipo: 'geometria',
+    narrativa: 'Elena tiene 3 varillas y quiere saber si puede formar un triangulo. Descubre que la suma de dos lados siempre debe ser mayor que el tercero.',
+    pregunta_central: '¿Se puede formar un triangulo con lados de 4, 3 y 3?',
+    transiciones: {
+      concreto: 'Traza el triangulo en el geoplano conectando los puntos dados.',
+      bridge_pictorico: 'El triangulo se forma porque 3+3=6 > 4, 4+3=7 > 3.',
+      pictorico: 'Verifica las 3 condiciones de desigualdad en la tabla.',
+      bridge_abstracto: 'Para formar triangulo: a+b > c, a+c > b, b+c > a.',
+      abstracto: 'Ahora verifica si otras medidas forman triangulos.',
+    },
+  },
   concreto: {
     manipulable: {
       tipo_concreto: 'geoplano',

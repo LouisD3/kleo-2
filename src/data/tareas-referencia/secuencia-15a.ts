@@ -10,6 +10,21 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia15a: TareaCPA = {
   secuencia_ref: 15,
+  contexto: {
+    personaje: 'Daniela',
+    objetos: { a: { nombre: 'naranja', emoji: '🍊' }, b: { nombre: 'bolsa', emoji: '🛍️' } },
+    valores_clave: { razon: [5, 1], objetivo: 20 },
+    tipo: 'proporcion',
+    narrativa: 'Daniela empaca naranjas: siempre pone 5 naranjas por bolsa. Quiere encontrar la constante de proporcionalidad.',
+    pregunta_central: '¿Cuantas bolsas necesita para 20 naranjas?',
+    transiciones: {
+      concreto: 'Agrupa las 20 naranjas de 5 en 5 para llenar bolsas.',
+      bridge_pictorico: '20 naranjas ÷ 5 por bolsa = 4 bolsas. La constante es 5.',
+      pictorico: 'Observa la relacion proporcional en el modelo.',
+      bridge_abstracto: 'La constante de proporcionalidad k = 5 naranjas/bolsa.',
+      abstracto: 'Ahora encuentra constantes en otras relaciones.',
+    },
+  },
   concreto: {
     manipulable: {
       tipo_concreto: 'dulces_agrupables',

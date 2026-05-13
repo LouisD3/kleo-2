@@ -10,6 +10,21 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia11: TareaCPA = {
   secuencia_ref: 11,
+  contexto: {
+    personaje: 'Roberto',
+    objetos: { a: { nombre: 'terreno', emoji: '🏗️' }, b: { nombre: 'cerca', emoji: '🪵' } },
+    valores_clave: { largo: 4, ancho: 3, perimetro: 14 },
+    tipo: 'medicion',
+    narrativa: 'Roberto quiere cercar un terreno rectangular. Necesita saber cuanta cerca comprar, asi que debe calcular el perimetro.',
+    pregunta_central: '¿Cuantos metros de cerca necesita Roberto para un terreno de 4×3?',
+    transiciones: {
+      concreto: 'Traza el rectangulo en el geoplano y cuenta el contorno.',
+      bridge_pictorico: 'El perimetro es 4 + 3 + 4 + 3 = 14 unidades.',
+      pictorico: 'Observa los lados del rectangulo en el modelo.',
+      bridge_abstracto: 'Formula: Perimetro = 2 × (largo + ancho).',
+      abstracto: 'Ahora calcula perimetros de otras figuras.',
+    },
+  },
   concreto: {
     manipulable: {
       tipo_concreto: 'geoplano',

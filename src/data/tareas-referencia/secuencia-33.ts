@@ -10,6 +10,21 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia33: TareaCPA = {
   secuencia_ref: 33,
+  contexto: {
+    personaje: 'Pablo',
+    objetos: { a: { nombre: 'ruleta', emoji: '🎡' }, b: { nombre: 'seccion', emoji: '🔴' } },
+    valores_clave: { secciones: 4, favorables: 1 },
+    tipo: 'probabilidad',
+    narrativa: 'Pablo gira una ruleta de 4 secciones de colores y quiere saber la probabilidad de caer en rojo.',
+    pregunta_central: '¿Cual es la probabilidad de caer en la seccion roja?',
+    transiciones: {
+      concreto: 'Gira la ruleta varias veces y registra los resultados.',
+      bridge_pictorico: '1 seccion roja de 4 totales: P = 1/4.',
+      pictorico: 'Observa el espacio muestral en el modelo.',
+      bridge_abstracto: 'El espacio muestral tiene 4 resultados equiprobables.',
+      abstracto: 'Ahora identifica espacios muestrales y calcula probabilidades.',
+    },
+  },
   concreto: {
     manipulable: {
       tipo_concreto: 'dados_ruleta',

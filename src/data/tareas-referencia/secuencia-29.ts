@@ -10,6 +10,21 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia29: TareaCPA = {
   secuencia_ref: 29,
+  contexto: {
+    personaje: 'Profesor Garcia',
+    objetos: { a: { nombre: 'deporte', emoji: '⚽' }, b: { nombre: 'grafica', emoji: '📊' } },
+    valores_clave: { total_alumnos: 20 },
+    tipo: 'estadistica',
+    narrativa: 'El Profesor Garcia hizo una encuesta sobre deportes favoritos en su clase de 20 alumnos. Quiere organizar los resultados en una grafica.',
+    pregunta_central: '¿Como se organizan los datos en una grafica de barras?',
+    transiciones: {
+      concreto: 'Construye el histograma ajustando la altura de cada barra segun los datos.',
+      bridge_pictorico: 'Futbol es el mas popular con 8 alumnos.',
+      pictorico: 'Observa la distribucion en el modelo de barras.',
+      bridge_abstracto: 'La grafica de barras muestra frecuencias de cada categoria.',
+      abstracto: 'Ahora interpreta y construye graficas.',
+    },
+  },
   concreto: {
     manipulable: {
       tipo_concreto: 'histograma_construible',

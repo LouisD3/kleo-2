@@ -10,6 +10,21 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia23: TareaCPA = {
   secuencia_ref: 23,
+  contexto: {
+    personaje: 'Camila',
+    objetos: { a: { nombre: 'circulo', emoji: '⭕' }, b: { nombre: 'cuerda', emoji: '🧵' } },
+    valores_clave: { radio: 3 },
+    tipo: 'geometria',
+    narrativa: 'Camila envuelve una cuerda alrededor de un circulo para descubrir la relacion entre radio y circunferencia.',
+    pregunta_central: '¿Cuanto mide la circunferencia de un circulo de radio 3?',
+    transiciones: {
+      concreto: 'Traza el circulo con el compas y mide su contorno.',
+      bridge_pictorico: 'La circunferencia es un poco mas de 6 diametros... en realidad es pi × d.',
+      pictorico: 'Observa la relacion en el modelo.',
+      bridge_abstracto: 'C = 2πr. Para r = 3, C ≈ 18.85.',
+      abstracto: 'Ahora calcula circunferencias.',
+    },
+  },
   concreto: {
     manipulable: {
       tipo_concreto: 'compas_circulo',

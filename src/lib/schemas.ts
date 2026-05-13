@@ -80,9 +80,9 @@ const contextoAnchorSchema = z.object({
     b: objetoContextoSchema,
   }),
   valores_clave: z.object({
-    razon: z.tuple([z.number(), z.number()]),
-    objetivo: z.number(),
-  }),
+    razon: z.tuple([z.number(), z.number()]).optional(),
+    objetivo: z.number().optional(),
+  }).passthrough(),
   tipo: z.string().min(1),
   narrativa: z.string().min(1),
   pregunta_central: z.string().min(1),

@@ -10,6 +10,21 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia06: TareaCPA = {
   secuencia_ref: 6,
+  contexto: {
+    personaje: 'Carlos',
+    objetos: { a: { nombre: 'ficha positiva', emoji: '🟢' }, b: { nombre: 'ficha negativa', emoji: '🔴' } },
+    valores_clave: { positivas: 4, negativas: 7, resultado: -3 },
+    tipo: 'numero',
+    narrativa: 'Carlos practica operaciones con enteros. Tiene 4 fichas positivas y 7 negativas y quiere saber el resultado.',
+    pregunta_central: '¿Que numero resulta al combinar (+4) y (-7)?',
+    transiciones: {
+      concreto: 'Cancela pares de fichas positivas y negativas para encontrar el resultado.',
+      bridge_pictorico: 'Al cancelar 4 pares, quedan 3 fichas negativas. Resultado: -3.',
+      pictorico: 'Observa la operacion en el modelo.',
+      bridge_abstracto: 'Cuando hay mas negativas que positivas, el resultado es negativo.',
+      abstracto: 'Ahora opera con enteros en diferentes situaciones.',
+    },
+  },
   concreto: {
     manipulable: {
       tipo_concreto: 'fichas_positivas_negativas',

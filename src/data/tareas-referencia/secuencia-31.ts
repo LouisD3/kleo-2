@@ -10,6 +10,21 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia31: TareaCPA = {
   secuencia_ref: 31,
+  contexto: {
+    personaje: 'Profesor Garcia',
+    objetos: { a: { nombre: 'calificacion', emoji: '📝' }, b: { nombre: 'promedio', emoji: '📊' } },
+    valores_clave: { datos: [5, 6, 7, 8, 9] },
+    tipo: 'estadistica',
+    narrativa: 'El Profesor Garcia tiene las calificaciones de sus alumnos y quiere calcular la moda, media y mediana para resumir los datos.',
+    pregunta_central: '¿Cual es la media, mediana y moda de las calificaciones?',
+    transiciones: {
+      concreto: 'Construye el histograma con las frecuencias de cada calificacion.',
+      bridge_pictorico: 'La barra mas alta indica la moda.',
+      pictorico: 'Observa la distribucion en el modelo.',
+      bridge_abstracto: 'Media = suma/n, Mediana = valor central, Moda = mas frecuente.',
+      abstracto: 'Ahora calcula medidas de tendencia central.',
+    },
+  },
   concreto: {
     manipulable: {
       tipo_concreto: 'histograma_construible',

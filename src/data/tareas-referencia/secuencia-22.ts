@@ -10,6 +10,21 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia22: TareaCPA = {
   secuencia_ref: 22,
+  contexto: {
+    personaje: 'Camila',
+    objetos: { a: { nombre: 'circulo', emoji: '⭕' }, b: { nombre: 'compas', emoji: '📐' } },
+    valores_clave: { radio: 3 },
+    tipo: 'geometria',
+    narrativa: 'Camila usa un compas para trazar circulos y descubrir la relacion entre radio y diametro.',
+    pregunta_central: '¿Cual es la relacion entre radio y diametro?',
+    transiciones: {
+      concreto: 'Ajusta el compas para trazar un circulo de radio 3.',
+      bridge_pictorico: 'El diametro siempre es el doble del radio: d = 2r.',
+      pictorico: 'Observa radio y diametro en el modelo.',
+      bridge_abstracto: 'Radio = 3, Diametro = 6. Siempre d = 2r.',
+      abstracto: 'Ahora calcula radios y diametros.',
+    },
+  },
   concreto: {
     manipulable: {
       tipo_concreto: 'compas_circulo',

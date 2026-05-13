@@ -10,6 +10,21 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia09a: TareaCPA = {
   secuencia_ref: 9,
+  contexto: {
+    personaje: 'Miguel',
+    objetos: { a: { nombre: 'figura', emoji: '🔷' }, b: { nombre: 'patron', emoji: '🔄' } },
+    valores_clave: { patron: [1, 3, 5], siguiente: 7 },
+    tipo: 'patron',
+    narrativa: 'Miguel observa una secuencia de figuras que crece siguiendo un patron. Quiere descubrir la regla.',
+    pregunta_central: '¿Cuantas figuras tendra el siguiente termino?',
+    transiciones: {
+      concreto: 'Construye el siguiente termino del patron con las piezas.',
+      bridge_pictorico: 'El patron crece de 2 en 2: 1, 3, 5... el siguiente es 7.',
+      pictorico: 'Observa la progresion en el modelo de barras.',
+      bridge_abstracto: 'La regla es sumar 2 cada vez. Es una sucesion aritmetica.',
+      abstracto: 'Ahora encuentra reglas en otras sucesiones.',
+    },
+  },
   concreto: {
     manipulable: {
       tipo_concreto: 'patron_figuras',

@@ -10,6 +10,21 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia36: TareaCPA = {
   secuencia_ref: 36,
+  contexto: {
+    personaje: 'Tomas',
+    objetos: { a: { nombre: 'interruptor', emoji: '🔘' }, b: { nombre: 'numero binario', emoji: '💻' } },
+    valores_clave: { bits: 4, objetivo: 13 },
+    tipo: 'numero',
+    narrativa: 'Tomas aprende que las computadoras usan solo 0 y 1. Cada interruptor encendido tiene un valor: 8, 4, 2, 1.',
+    pregunta_central: '¿Como se representa 13 en binario?',
+    transiciones: {
+      concreto: 'Enciende los interruptores correctos para sumar 13 (8+4+0+1).',
+      bridge_pictorico: '13 = 8+4+1 = 1101 en binario.',
+      pictorico: 'Observa el valor de cada bit en el modelo.',
+      bridge_abstracto: 'Cada posicion vale 2^n. De derecha a izquierda: 1, 2, 4, 8.',
+      abstracto: 'Ahora convierte otros numeros a binario y viceversa.',
+    },
+  },
   concreto: {
     manipulable: {
       tipo_concreto: 'interruptores_binarios',

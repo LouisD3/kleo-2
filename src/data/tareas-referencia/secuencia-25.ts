@@ -10,6 +10,21 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia25: TareaCPA = {
   secuencia_ref: 25,
+  contexto: {
+    personaje: 'Roberto',
+    objetos: { a: { nombre: 'punto', emoji: '📍' }, b: { nombre: 'distancia', emoji: '📏' } },
+    valores_clave: { horizontal: 4, vertical: 3, distancia: 5 },
+    tipo: 'geometria',
+    narrativa: 'Roberto quiere calcular la distancia entre dos puntos en un plano. Usa un triangulo rectangulo imaginario para encontrarla.',
+    pregunta_central: '¿Cual es la distancia entre (0,0) y (4,3)?',
+    transiciones: {
+      concreto: 'Traza los dos puntos en el geoplano y observa el triangulo rectangulo.',
+      bridge_pictorico: 'El cateto horizontal mide 4 y el vertical 3.',
+      pictorico: 'Observa los componentes horizontal y vertical en el modelo.',
+      bridge_abstracto: 'd = √(4² + 3²) = √25 = 5.',
+      abstracto: 'Ahora calcula distancias entre puntos.',
+    },
+  },
   concreto: {
     manipulable: {
       tipo_concreto: 'geoplano',
