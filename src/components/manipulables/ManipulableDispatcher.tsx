@@ -17,6 +17,8 @@ import PatronFiguras from './PatronFiguras'
 import RectaNumerica from './RectaNumerica'
 import TablaVerdad from './TablaVerdad'
 import TirasFracciones from './TirasFracciones'
+import Transportador from './Transportador'
+import VarillasTriangulo from './VarillasTriangulo'
 
 interface Props {
   bloque: BloqueConcreto
@@ -204,6 +206,28 @@ export default function ManipulableDispatcher({
     case 'interruptores_binarios':
       return (
         <InterruptoresBinarios
+          spec={spec}
+          intentos_para_pista={bloque.intentos_para_pista}
+          estadoInicial={estadoInicial}
+          onValidado={onValidado}
+          onChange={onChange}
+        />
+      )
+
+    case 'transportador':
+      return (
+        <Transportador
+          spec={spec}
+          intentos_para_pista={bloque.intentos_para_pista}
+          estadoInicial={estadoInicial}
+          onValidado={onValidado}
+          onChange={onChange}
+        />
+      )
+
+    case 'varillas_triangulo':
+      return (
+        <VarillasTriangulo
           spec={spec}
           intentos_para_pista={bloque.intentos_para_pista}
           estadoInicial={estadoInicial}

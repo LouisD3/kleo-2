@@ -4,8 +4,8 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  * Tarea de referencia — Secuencia 17: Ángulos
  * Concepto clave: Identificar tipos de ángulos (recto, agudo, obtuso)
  *
- * Concreto: Geoplano (trazar un ángulo recto de 90°)
- * Pictorico: Modelo en barras comparando medidas de ángulos
+ * Concreto: Transportador (medir un angulo de 90° arrastrando el brazo)
+ * Pictorico: Diagrama geometrico — tres angulos con arcos coloreados
  * Abstracto: 3 preguntas con progresión de dificultad sobre ángulos
  */
 export const tareaSecuencia17: TareaCPA = {
@@ -27,32 +27,46 @@ export const tareaSecuencia17: TareaCPA = {
   },
   concreto: {
     manipulable: {
-      tipo_concreto: 'geoplano',
-      filas: 5,
-      columnas: 5,
-      figura_objetivo: [
-        [2, 0],
-        [2, 2],
-        [0, 2],
-      ],
-      propiedad_a_medir: 'angulo',
-      valor_esperado: 90,
+      tipo_concreto: 'transportador',
+      angulo_objetivo: 90,
+      tolerancia: 5,
+      angulo_inicial: 0,
       pregunta:
-        'Traza la figura en el geoplano conectando los puntos para formar un ángulo recto. ¿Cuántos grados mide?',
-      pista: 'Un ángulo recto se forma cuando dos segmentos se encuentran de forma perpendicular. Mide exactamente 90°.',
+        'Arrastra el brazo del transportador hasta medir un angulo recto. ¿Cuantos grados mide?',
+      pista: 'Un angulo recto mide exactamente 90°. Arrastra el punto hasta que el numero muestre 90.',
     },
     intentos_para_pista: 3,
   },
   pictorico: {
     representacion: {
-      tipo_representacion: 'modelo_barras',
-      barras: [
-        { label: 'Agudo', valor: 45, color: 'verde' },
-        { label: 'Recto', valor: 90, color: 'azul' },
-        { label: 'Obtuso', valor: 135, color: 'rojo' },
+      tipo_representacion: 'diagrama_geometrico',
+      ancho: 10,
+      alto: 5,
+      puntos: [
+        { id: 'v1', x: 1, y: 1 },
+        { id: 'a1', x: 3, y: 1 },
+        { id: 'b1', x: 2.4, y: 2.4 },
+        { id: 'v2', x: 4.5, y: 1 },
+        { id: 'a2', x: 6.5, y: 1 },
+        { id: 'b2', x: 4.5, y: 3 },
+        { id: 'v3', x: 7.5, y: 1 },
+        { id: 'a3', x: 9.5, y: 1 },
+        { id: 'b3', x: 6.7, y: 3.2 },
       ],
-      total: { valor: 180, visible: true },
-      orientacion: 'horizontal',
+      segmentos: [
+        { tipo: 'segmento', desde: 'v1', hasta: 'a1', color: 'verde' },
+        { tipo: 'segmento', desde: 'v1', hasta: 'b1', color: 'verde' },
+        { tipo: 'segmento', desde: 'v2', hasta: 'a2', color: 'azul' },
+        { tipo: 'segmento', desde: 'v2', hasta: 'b2', color: 'azul' },
+        { tipo: 'segmento', desde: 'v3', hasta: 'a3', color: 'rojo' },
+        { tipo: 'segmento', desde: 'v3', hasta: 'b3', color: 'rojo' },
+      ],
+      angulos: [
+        { vertice: 'v1', lado_a: 'a1', lado_b: 'b1', medida: '45°', color: 'verde' },
+        { vertice: 'v2', lado_a: 'a2', lado_b: 'b2', medida: '90°', color: 'azul' },
+        { vertice: 'v3', lado_a: 'a3', lado_b: 'b3', medida: '135°', color: 'rojo' },
+      ],
+      titulo: 'Tres tipos de angulos: agudo (45°), recto (90°), obtuso (135°)',
     },
     preguntas: [
       {

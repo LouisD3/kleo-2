@@ -208,7 +208,7 @@ Quand l'élève passe de Concreto à Pictórico, il ne sait **pas pourquoi**. Il
 
 **Livrable** : 1 PR. Tests : 3 tareas avec contexte visible bout-en-bout.
 
-### Phase D — Refonte des Concretos faibles (2 sessions, gros impact)
+### Phase D — Refonte des Concretos faibles (2 sessions, gros impact) ✅ DONE
 
 **Objectif** : éliminer les Concretos qui sont des prétextes.
 

@@ -31,6 +31,8 @@ export type TipoConcreto =
   | 'compas_circulo' // compass/circle drawing tool
   | 'tabla_verdad' // truth table for logic propositions
   | 'interruptores_binarios' // ON/OFF switches for binary numbers
+  | 'transportador' // draggable protractor for measuring angles
+  | 'varillas_triangulo' // 3 adjustable rods — triangle inequality explorer
   | 'solidos_3d' // 3D solids (geometry, future)
 
 /** Spec for dulces_agrupables manipulable (generalized grouping) */
@@ -208,6 +210,29 @@ export interface InterruptoresBinariosSpec {
   pista?: string
 }
 
+/** Spec for transportador — draggable SVG protractor for measuring angles */
+export interface TransportadorSpec {
+  tipo_concreto: 'transportador'
+  angulo_objetivo: number // correct angle in degrees (e.g. 45)
+  tolerancia?: number // margin of error in degrees (default 5)
+  angulo_inicial?: number // starting angle (default 0)
+  pregunta: string
+  pista?: string
+}
+
+/** Spec for varillas_triangulo — 3 adjustable rods to explore triangle inequality */
+export interface VarillasTrianguloSpec {
+  tipo_concreto: 'varillas_triangulo'
+  lado_a: number // initial/suggested length for side a
+  lado_b: number // initial/suggested length for side b
+  lado_c: number // initial/suggested length for side c
+  max_longitud: number // max slider value (e.g. 10)
+  /** Whether the given sides form a valid triangle (for validation) */
+  forma_triangulo: boolean
+  pregunta: string
+  pista?: string
+}
+
 // Union of all concrete specs (extend as new manipulables are built)
 export type ManipulableSpec =
   | DulcesAgrupablesSpec
@@ -226,6 +251,8 @@ export type ManipulableSpec =
   | CompasCirculoSpec
   | TablaVerdadSpec
   | InterruptoresBinariosSpec
+  | TransportadorSpec
+  | VarillasTrianguloSpec
 // Future: SolidoSpec
 
 export interface BloqueConcreto {

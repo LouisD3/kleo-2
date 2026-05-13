@@ -4,7 +4,7 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  * Tarea de referencia — Secuencia 27: Desigualdad triangular
  * Concepto clave: La suma de dos lados de un triangulo siempre es mayor que el tercero
  *
- * Concreto: Geoplano 5x5 — trazar un triangulo valido
+ * Concreto: Varillas triangulo — ajustar 3 lados y verificar desigualdad triangular
  * Pictorico: Tabla — verificacion de las 3 condiciones de desigualdad triangular
  * Abstracto: 3 preguntas con progresion de dificultad sobre desigualdad triangular
  */
@@ -27,18 +27,16 @@ export const tareaSecuencia27: TareaCPA = {
   },
   concreto: {
     manipulable: {
-      tipo_concreto: 'geoplano',
-      filas: 5,
-      columnas: 5,
-      figura_objetivo: [
-        [0, 0],
-        [4, 0],
-        [2, 3],
-      ],
+      tipo_concreto: 'varillas_triangulo',
+      lado_a: 4,
+      lado_b: 3,
+      lado_c: 3,
+      max_longitud: 10,
+      forma_triangulo: true,
       pregunta:
-        'Traza un triangulo en el geoplano conectando los puntos (0,0), (4,0) y (2,3).',
+        'Ajusta las varillas para que midan a=4, b=3 y c=3. Observa si se puede formar un triangulo y verifica la desigualdad triangular.',
       pista:
-        'Conecta los tres puntos para formar un triangulo. Asegurate de que los tres lados esten bien trazados y que los puntos no esten alineados.',
+        'Para formar un triangulo, la suma de dos lados cualesquiera debe ser mayor que el tercero: 3+3=6 > 4, 4+3=7 > 3.',
     },
     intentos_para_pista: 3,
   },
