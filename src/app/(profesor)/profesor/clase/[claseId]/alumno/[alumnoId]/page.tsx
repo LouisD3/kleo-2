@@ -29,7 +29,7 @@ function useAlumnoById(alumnoId: string | undefined) {
 }
 
 export default function AlumnoDetalle() {
-  const { alumnoId } = useParams<{ alumnoId: string }>()
+  const { claseId, alumnoId } = useParams<{ claseId: string; alumnoId: string }>()
   const { profesor } = useAuthStore()
   const { data: alumno, isLoading: loadingAlumno } = useAlumnoById(alumnoId)
   const { data: tareasData, isLoading: loadingTareas } = useTareasProfesor(profesor?.id)
@@ -99,10 +99,10 @@ export default function AlumnoDetalle() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-8">
         <p className="text-gray-500">Alumno no encontrado.</p>
         <Link
-          href="/profesor/clase"
+          href={`/profesor/clase/${claseId}`}
           className="text-sm text-blue-600 hover:text-blue-800 mt-2 inline-block"
         >
-          Volver a Mi clase
+          Volver a la clase
         </Link>
       </div>
     )
@@ -112,11 +112,11 @@ export default function AlumnoDetalle() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-8 animate-fade-in">
       {/* Back */}
       <Link
-        href="/profesor/clase"
+        href={`/profesor/clase/${claseId}`}
         className="inline-flex items-center gap-1 text-sm text-gray-500 hover:text-gray-700 mb-6"
       >
         <ArrowLeft className="w-4 h-4" />
-        Mi clase
+        Volver a la clase
       </Link>
 
       {/* Header */}
@@ -176,7 +176,7 @@ export default function AlumnoDetalle() {
               </p>
               <div className="flex gap-2 mt-3">
                 <Link
-                  href={`/profesor/tarea/${bloqueado.tarea_id}`}
+                  href={`/profesor/clase/${claseId}/tarea/${bloqueado.tarea_id}`}
                   className="px-3 py-1.5 rounded-lg text-sm font-medium text-gray-600 border border-gray-200 hover:bg-gray-50 transition-colors"
                 >
                   Ver intentos detallados
@@ -237,7 +237,7 @@ export default function AlumnoDetalle() {
                 )}
                 {!t.completada && <p className="text-sm text-gray-400 mt-1">En curso</p>}
                 <Link
-                  href={`/profesor/tarea/${t.id}`}
+                  href={`/profesor/clase/${claseId}/tarea/${t.id}`}
                   className="text-xs text-blue-600 hover:text-blue-800 mt-2 inline-block"
                 >
                   Ver detalle

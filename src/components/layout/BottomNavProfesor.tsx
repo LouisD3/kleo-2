@@ -1,15 +1,15 @@
 'use client'
 
-import { BookOpen, Home, LogOut, Menu, Settings, Users, X } from 'lucide-react'
+import { BookOpen, Film, GraduationCap, LogOut, Menu, Settings, X } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { useState } from 'react'
 import useAuthStore from '@/store/useAuthStore.js'
 
 const NAV_ITEMS = [
-  { href: '/profesor', label: 'Hoy', icon: Home },
+  { href: '/profesor', label: 'Mis clases', icon: GraduationCap },
   { href: '/profesor/programa', label: 'Programa', icon: BookOpen },
-  { href: '/profesor/clase', label: 'Mi clase', icon: Users },
+  { href: '/profesor/recursos', label: 'Recursos', icon: Film },
 ]
 
 export default function BottomNavProfesor() {
@@ -19,7 +19,8 @@ export default function BottomNavProfesor() {
   const [menuOpen, setMenuOpen] = useState(false)
 
   function isActive(href: string) {
-    if (href === '/profesor') return pathname === '/profesor'
+    if (href === '/profesor')
+      return pathname === '/profesor' || pathname.startsWith('/profesor/clase')
     return pathname.startsWith(href)
   }
 
@@ -39,11 +40,11 @@ export default function BottomNavProfesor() {
           />
           <div className="fixed top-0 right-0 w-64 h-full bg-white z-50 md:hidden shadow-xl animate-slide-up">
             <div className="flex items-center justify-between px-4 py-4 border-b border-gray-100">
-              <span className="font-bold text-gray-900">Menu</span>
+              <span className="font-bold text-gray-900">Menú</span>
               <button
                 onClick={() => setMenuOpen(false)}
                 className="p-1.5 rounded-lg hover:bg-gray-100"
-                aria-label="Cerrar menu"
+                aria-label="Cerrar menú"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -92,7 +93,7 @@ export default function BottomNavProfesor() {
           <button
             onClick={() => setMenuOpen(true)}
             className="flex flex-col items-center justify-center gap-0.5 flex-1 h-full text-xs font-medium text-gray-400"
-            aria-label="Menu"
+            aria-label="Menú"
           >
             <Menu className="w-5 h-5" />
             Más

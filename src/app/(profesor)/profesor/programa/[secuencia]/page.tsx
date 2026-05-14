@@ -26,7 +26,9 @@ export default function SecuenciaDetalle() {
   const agregarTarea = useAgregarTarea()
 
   const [modalAsignar, setModalAsignar] = useState<number | null>(null)
-  const [claseId, setClaseId] = useState(clases?.[0]?.id ?? '')
+  const [clasesSeleccionadas, setClasesSeleccionadas] = useState<string[]>(
+    clases?.[0]?.id ? [clases[0].id] : [],
+  )
   const [fechaLimite, setFechaLimite] = useState('')
   const [asignando, setAsignando] = useState(false)
   const [toast, setToast] = useState(false)
@@ -38,20 +40,22 @@ export default function SecuenciaDetalle() {
   }
 
   async function handleAsignar() {
-    if (!claseId || !profesor || modalAsignar === null || !sec) return
+    if (clasesSeleccionadas.length === 0 || !profesor || modalAsignar === null || !sec) return
     const tareaCPA = tareasCPA[modalAsignar]
     setAsignando(true)
     try {
-      await (agregarTarea as any).mutateAsync({
-        profesor_id: profesor.id,
-        clase_id: claseId,
-        nombre: `${sec.titulo} — Sec ${sec.secuencia} (${modalAsignar + 1}/${tareasCPA.length})`,
-        dificultad: 'Media',
-        contenido_cpa: tareaCPA,
-        fecha_limite: fechaLimite || null,
-        secuencia_ref: sec.secuencia,
-        estado_override: 'en_curso',
-      })
+      for (const cId of clasesSeleccionadas) {
+        await (agregarTarea as any).mutateAsync({
+          profesor_id: profesor.id,
+          clase_id: cId,
+          nombre: `${sec.titulo} — Sec ${sec.secuencia} (${modalAsignar + 1}/${tareasCPA.length})`,
+          dificultad: 'Media',
+          contenido_cpa: tareaCPA,
+          fecha_limite: fechaLimite || null,
+          secuencia_ref: sec.secuencia,
+          estado_override: 'en_curso',
+        })
+      }
       setModalAsignar(null)
       setToast(true)
     } catch {
@@ -59,6 +63,12 @@ export default function SecuenciaDetalle() {
     } finally {
       setAsignando(false)
     }
+  }
+
+  function toggleClase(cId: string) {
+    setClasesSeleccionadas((prev) =>
+      prev.includes(cId) ? prev.filter((id) => id !== cId) : [...prev, cId],
+    )
   }
 
   return (
@@ -189,28 +199,52 @@ export default function SecuenciaDetalle() {
       >
         <div className="space-y-4">
           <div>
-            <label className="label-base">Clase</label>
+            <label className="label-base">Clase{clases.length > 1 ? 's' : ''}</label>
             {clases.length === 0 ? (
               <p className="text-sm text-gray-500">
-                No tienes clases. Ve a "Mi clase" para crear una.
+                No tienes clases. Ve a "Mis clases" para crear una.
               </p>
             ) : (
-              <select
-                value={claseId}
-                onChange={(e) => setClaseId(e.target.value)}
-                className="input-base"
-              >
+              <div className="space-y-2">
+                {clases.length > 1 && (
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setClasesSeleccionadas(
+                        clasesSeleccionadas.length === clases.length
+                          ? []
+                          : clases.map((c: { id: string }) => c.id),
+                      )
+                    }
+                    className="text-xs text-blue-600 hover:text-blue-800"
+                  >
+                    {clasesSeleccionadas.length === clases.length
+                      ? 'Deseleccionar todas'
+                      : 'Seleccionar todas'}
+                  </button>
+                )}
                 {clases.map((c: { id: string; nombre: string; grado: string }) => (
-                  <option key={c.id} value={c.id}>
-                    {c.nombre} · {c.grado}
-                  </option>
+                  <label
+                    key={c.id}
+                    className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-50 cursor-pointer"
+                  >
+                    <input
+                      type="checkbox"
+                      checked={clasesSeleccionadas.includes(c.id)}
+                      onChange={() => toggleClase(c.id)}
+                      className="w-4 h-4 rounded border-gray-300 text-amarillo focus:ring-amarillo"
+                    />
+                    <span className="text-sm text-gray-700">
+                      {c.nombre} · {c.grado}
+                    </span>
+                  </label>
                 ))}
-              </select>
+              </div>
             )}
           </div>
           <div>
             <label className="label-base">
-              Fecha limite <span className="text-gray-400 font-normal">(opcional)</span>
+              Fecha límite <span className="text-gray-400 font-normal">(opcional)</span>
             </label>
             <input
               type="datetime-local"
@@ -223,10 +257,14 @@ export default function SecuenciaDetalle() {
             variante="primario"
             size="md"
             onClick={handleAsignar}
-            disabled={asignando || !claseId}
+            disabled={asignando || clasesSeleccionadas.length === 0}
             className="w-full"
           >
-            {asignando ? 'Asignando...' : 'Asignar'}
+            {asignando
+              ? 'Asignando...'
+              : clasesSeleccionadas.length > 1
+                ? `Asignar a ${clasesSeleccionadas.length} clases`
+                : 'Asignar'}
           </Boton>
         </div>
       </Modal>
