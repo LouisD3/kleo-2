@@ -13,13 +13,13 @@ export const tareaSecuencia05c: TareaCPA = {
   contexto: {
     personaje: 'Diego',
     objetos: { a: { nombre: 'bloque', emoji: '🧱' }, b: { nombre: 'resta', emoji: '➖' } },
-    valores_clave: { objetivo: 168 },
+    valores_clave: { objetivo: 87 },
     tipo: 'numero',
-    narrativa: 'Diego quiere restar 500 - 332 usando bloques de base 10. A veces necesita desagrupar.',
-    pregunta_central: '¿Cuanto es 500 - 332?',
+    narrativa: 'Diego quiere restar 235 - 148 usando bloques de base 10. A veces necesita desagrupar.',
+    pregunta_central: '¿Cuanto es 235 - 148?',
     transiciones: {
       concreto: 'Quita bloques para restar. Desagrupa si necesitas mas unidades.',
-      bridge_pictorico: '500 - 332 = 168. Tuviste que desagrupar centenas.',
+      bridge_pictorico: '235 - 148 = 87. Tuviste que desagrupar una decena.',
       pictorico: 'Observa la resta en el modelo de barras.',
       bridge_abstracto: 'Restar es la operacion inversa de sumar.',
       abstracto: 'Ahora resta otros numeros.',

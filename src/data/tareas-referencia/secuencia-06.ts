@@ -13,10 +13,10 @@ export const tareaSecuencia06: TareaCPA = {
   contexto: {
     personaje: 'Carlos',
     objetos: { a: { nombre: 'ficha positiva', emoji: '🟢' }, b: { nombre: 'ficha negativa', emoji: '🔴' } },
-    valores_clave: { positivas: 4, negativas: 7, resultado: -3 },
+    valores_clave: { positivas: 5, negativas: 8, resultado: -3 },
     tipo: 'numero',
-    narrativa: 'Carlos practica operaciones con enteros. Tiene 4 fichas positivas y 7 negativas y quiere saber el resultado.',
-    pregunta_central: '¿Que numero resulta al combinar (+4) y (-7)?',
+    narrativa: 'Carlos practica operaciones con enteros. Tiene 5 fichas positivas y 8 negativas y quiere saber el resultado.',
+    pregunta_central: '¿Que numero resulta al combinar (+5) y (-8)?',
     transiciones: {
       concreto: 'Cancela pares de fichas positivas y negativas para encontrar el resultado.',
       bridge_pictorico: 'Al cancelar 4 pares, quedan 3 fichas negativas. Resultado: -3.',

@@ -13,13 +13,13 @@ export const tareaSecuencia05a: TareaCPA = {
   contexto: {
     personaje: 'Diego',
     objetos: { a: { nombre: 'bloque', emoji: '🧱' }, b: { nombre: 'numero', emoji: '🔢' } },
-    valores_clave: { objetivo: 253 },
+    valores_clave: { objetivo: 235 },
     tipo: 'numero',
     narrativa: 'Diego usa bloques de base 10 para entender como se descompone un numero en centenas, decenas y unidades.',
-    pregunta_central: '¿Como se descompone 253 en bloques de base 10?',
+    pregunta_central: '¿Como se descompone 235 en bloques de base 10?',
     transiciones: {
-      concreto: 'Usa los bloques para representar 253: cuadrados de 100, barras de 10 y unidades.',
-      bridge_pictorico: '253 = 2 centenas + 5 decenas + 3 unidades.',
+      concreto: 'Usa los bloques para representar 235: cuadrados de 100, barras de 10 y unidades.',
+      bridge_pictorico: '235 = 2 centenas + 3 decenas + 5 unidades.',
       pictorico: 'Observa la descomposicion en el modelo de barras.',
       bridge_abstracto: 'Cada posicion tiene un valor: centenas, decenas, unidades.',
       abstracto: 'Ahora descompone otros numeros.',
