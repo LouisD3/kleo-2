@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import type React from 'react'
 import type { DiagramaGeometricoSpec } from '@/types/tarea-cpa'
 
 const UNIT = 40 // pixels per grid unit
@@ -30,7 +30,18 @@ interface Props {
 }
 
 export default function DiagramaGeometrico({ spec, className }: Props) {
-  const { ancho, alto, puntos, segmentos, angulos, poligonos, cuadricula, titulo } = spec
+  const {
+    ancho,
+    alto,
+    puntos,
+    segmentos,
+    angulos,
+    poligonos,
+    cuadricula,
+    circulos,
+    arcos,
+    titulo,
+  } = spec
 
   const svgW = ancho * UNIT + PADDING * 2
   const svgH = alto * UNIT + PADDING * 2
@@ -66,6 +77,78 @@ export default function DiagramaGeometrico({ spec, className }: Props) {
           unit={UNIT}
         />
       )}
+
+      {/* Circles (behind everything except grid) */}
+      {circulos?.map((circ, i) => {
+        const centro = ptMap.get(circ.centro_id)
+        if (!centro) return null
+        const cx = px(centro.x)
+        const cy = py(centro.y)
+        const r = circ.radio * UNIT
+        const color = resolveColor(circ.color)
+        const estilo = circ.estilo ?? 'borde'
+        return (
+          <g key={`circ-${i}`}>
+            {circ.label && <title>{circ.label}</title>}
+            <circle
+              cx={cx}
+              cy={cy}
+              r={r}
+              fill={estilo === 'lleno' ? color : 'none'}
+              fillOpacity={estilo === 'lleno' ? 0.15 : undefined}
+              stroke={color}
+              strokeWidth={2}
+              strokeDasharray={estilo === 'punteado' ? '4 2' : undefined}
+              role={circ.label ? 'img' : undefined}
+              aria-label={circ.label}
+            />
+          </g>
+        )
+      })}
+
+      {/* Arcs / sectors */}
+      {arcos?.map((arco, i) => {
+        const centro = ptMap.get(arco.centro_id)
+        if (!centro) return null
+        const cx = px(centro.x)
+        const cy = py(centro.y)
+        const r = arco.radio * UNIT
+        const color = resolveColor(arco.color)
+
+        const startRad = (arco.desde_grados * Math.PI) / 180
+        const endRad = (arco.hasta_grados * Math.PI) / 180
+
+        // Compute endpoints in grid coords, then convert to SVG
+        const x1 = px(centro.x + arco.radio * Math.cos(startRad))
+        const y1 = py(centro.y + arco.radio * Math.sin(startRad))
+        const x2 = px(centro.x + arco.radio * Math.cos(endRad))
+        const y2 = py(centro.y + arco.radio * Math.sin(endRad))
+
+        let span = arco.hasta_grados - arco.desde_grados
+        if (span < 0) span += 360
+        const largeArc = span > 180 ? 1 : 0
+        // CCW in math + Y-flip = CCW in SVG
+        const sweep = 0
+
+        const d = arco.relleno
+          ? `M ${cx} ${cy} L ${x1} ${y1} A ${r} ${r} 0 ${largeArc} ${sweep} ${x2} ${y2} Z`
+          : `M ${x1} ${y1} A ${r} ${r} 0 ${largeArc} ${sweep} ${x2} ${y2}`
+
+        return (
+          <g key={`arco-${i}`}>
+            {arco.label && <title>{arco.label}</title>}
+            <path
+              d={d}
+              fill={arco.relleno ? color : 'none'}
+              fillOpacity={arco.relleno ? 0.2 : undefined}
+              stroke={color}
+              strokeWidth={2}
+              role={arco.label ? 'img' : undefined}
+              aria-label={arco.label}
+            />
+          </g>
+        )
+      })}
 
       {/* Polygons (render first, behind everything) */}
       {poligonos?.map((pol, i) => {
@@ -171,7 +254,7 @@ export default function DiagramaGeometrico({ spec, className }: Props) {
 
         return (
           <g key={`ang-${i}`}>
-            {(ang.arco !== false) && (
+            {ang.arco !== false && (
               <path
                 d={`M ${startX} ${startY} A ${r} ${r} 0 ${largeArc} ${sweepFlag} ${endX} ${endY}`}
                 fill="none"

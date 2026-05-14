@@ -327,6 +327,24 @@ export interface CuadriculaGeo {
   color_resaltado?: string
 }
 
+export interface CirculoGeo {
+  centro_id: string // ref to a punto
+  radio: number // in grid units
+  color?: string
+  estilo?: 'lleno' | 'borde' | 'punteado'
+  label?: string
+}
+
+export interface ArcoGeo {
+  centro_id: string // ref to a punto
+  radio: number
+  desde_grados: number // 0° = east, counterclockwise (math convention)
+  hasta_grados: number
+  color?: string
+  relleno?: boolean // if true, draw filled sector
+  label?: string
+}
+
 export interface DiagramaGeometricoSpec {
   tipo_representacion: 'diagrama_geometrico'
   ancho: number // viewBox width in grid units
@@ -336,6 +354,8 @@ export interface DiagramaGeometricoSpec {
   angulos?: AnguloGeo[]
   poligonos?: PoligonoGeo[]
   cuadricula?: CuadriculaGeo
+  circulos?: CirculoGeo[]
+  arcos?: ArcoGeo[]
   titulo?: string
 }
 
