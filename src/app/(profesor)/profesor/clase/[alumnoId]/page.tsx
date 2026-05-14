@@ -1,27 +1,43 @@
 'use client'
 
+import { useQuery } from '@tanstack/react-query'
 import { AlertTriangle, ArrowLeft, CheckCircle } from 'lucide-react'
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
 import { useMemo } from 'react'
 import Spinner from '@/components/ui/Spinner.jsx'
-import { useAlumnos, useTareasProfesor } from '@/hooks/useTareas.js'
+import { useTareasProfesor } from '@/hooks/useTareas.js'
+import { supabase } from '@/lib/supabase.js'
 import useAuthStore from '@/store/useAuthStore.js'
+
+function useAlumnoById(alumnoId: string | undefined) {
+  return useQuery({
+    queryKey: ['alumno', alumnoId],
+    queryFn: async () => {
+      const { data } = await (supabase as any)
+        .from('alumnos')
+        .select('*')
+        .eq('id', alumnoId!)
+        .single()
+      return data
+    },
+    enabled: !!alumnoId,
+  })
+}
 
 export default function AlumnoDetalle() {
   const { alumnoId } = useParams<{ alumnoId: string }>()
-  const { profesor, clase } = useAuthStore()
-  const { data: alumnos = [], isLoading: loadingAlumnos } = useAlumnos(clase?.id)
+  const { profesor } = useAuthStore()
+  const { data: alumno, isLoading: loadingAlumno } = useAlumnoById(alumnoId)
   const { data: tareasData, isLoading: loadingTareas } = useTareasProfesor(profesor?.id)
   const tareas = tareasData?.tareas ?? []
   const resultados = (tareasData?.resultados ?? {}) as Record<string, Record<string, any>>
 
-  const alumno = alumnos.find((a: { id: string }) => a.id === alumnoId)
-
   const tareasAlumno = useMemo(() => {
+    if (!alumno) return []
     const tareasClase = tareas.filter(
       (t: { clase_id: string; estado: string }) =>
-        t.clase_id === clase?.id && (t.estado === 'en_curso' || t.estado === 'completada'),
+        t.clase_id === alumno.clase_id && (t.estado === 'en_curso' || t.estado === 'completada'),
     )
     return tareasClase.map((t: { id: string; nombre: string; estado: string }) => {
       const res = resultados[t.id]?.[alumnoId]
@@ -29,13 +45,13 @@ export default function AlumnoDetalle() {
       const scoresCPA = res?.scores_cpa ?? null
       return { ...t, score, scoresCPA, completada: !!res }
     })
-  }, [tareas, resultados, alumnoId, clase?.id])
+  }, [tareas, resultados, alumnoId, alumno])
 
   const completadas = tareasAlumno.filter((t: { completada: boolean }) => t.completada).length
   const total = tareasAlumno.length
   const progreso = total > 0 ? Math.round((completadas / total) * 100) : 0
 
-  if (loadingAlumnos || loadingTareas) {
+  if (loadingAlumno || loadingTareas) {
     return (
       <div className="flex items-center justify-center py-20">
         <Spinner size="lg" />
@@ -79,7 +95,7 @@ export default function AlumnoDetalle() {
           <div>
             <h1 className="text-3xl font-bold text-gray-900">{alumno.nombre}</h1>
             <p className="text-sm text-gray-500 mt-1">
-              Codigo de acceso:{' '}
+              Código de acceso:{' '}
               <span className="font-mono bg-gray-100 px-2 py-0.5 rounded">
                 {alumno.codigo_acceso}
               </span>
@@ -106,7 +122,7 @@ export default function AlumnoDetalle() {
       <h2 className="text-lg font-bold text-gray-900 mb-4">Tareas asignadas</h2>
       {tareasAlumno.length === 0 ? (
         <div className="card p-12 text-center text-gray-400">
-          <p className="text-sm">Sin tareas asignadas aun.</p>
+          <p className="text-sm">Sin tareas asignadas aún.</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
