@@ -4,8 +4,11 @@ import { useQuery } from '@tanstack/react-query'
 import { AlertTriangle, ArrowLeft, CheckCircle } from 'lucide-react'
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
+import Boton from '@/components/ui/Boton.jsx'
 import Spinner from '@/components/ui/Spinner.jsx'
+import Toast from '@/components/ui/Toast.jsx'
+import { useAlumnoBloqueado } from '@/hooks/useAlumnosBloqueados.js'
 import { useTareasProfesor } from '@/hooks/useTareas.js'
 import { supabase } from '@/lib/supabase.js'
 import useAuthStore from '@/store/useAuthStore.js'
@@ -30,6 +33,9 @@ export default function AlumnoDetalle() {
   const { profesor } = useAuthStore()
   const { data: alumno, isLoading: loadingAlumno } = useAlumnoById(alumnoId)
   const { data: tareasData, isLoading: loadingTareas } = useTareasProfesor(profesor?.id)
+  const { data: bloqueado } = useAlumnoBloqueado(alumnoId, profesor?.id)
+  const [marcando, setMarcando] = useState(false)
+  const [toastCompletado, setToastCompletado] = useState(false)
   const tareas = tareasData?.tareas ?? []
   const resultados = (tareasData?.resultados ?? {}) as Record<string, Record<string, any>>
 
@@ -50,6 +56,35 @@ export default function AlumnoDetalle() {
   const completadas = tareasAlumno.filter((t: { completada: boolean }) => t.completada).length
   const total = tareasAlumno.length
   const progreso = total > 0 ? Math.round((completadas / total) * 100) : 0
+
+  async function handleMarcarCompletado() {
+    if (!bloqueado || !alumnoId) return
+    setMarcando(true)
+    try {
+      await (supabase as any).from('resultados').upsert(
+        {
+          tarea_id: bloqueado.tarea_id,
+          alumno_id: alumnoId,
+          calificacion: 10,
+          calificacion_manual: 10,
+          scores_cpa: {
+            concreto: { nota: 10, completada: true },
+            pictorico: { nota: 10, completada: true },
+            abstracto: { nota: 10, completada: true },
+            global: 10,
+          },
+          numero_intentos: bloqueado.numero_intentos,
+          ultima_tentativa_at: new Date().toISOString(),
+        },
+        { onConflict: 'tarea_id,alumno_id' },
+      )
+      setToastCompletado(true)
+    } catch {
+      // silent
+    } finally {
+      setMarcando(false)
+    }
+  }
 
   if (loadingAlumno || loadingTareas) {
     return (
@@ -118,6 +153,48 @@ export default function AlumnoDetalle() {
         </p>
       </div>
 
+      {/* Bloqueada */}
+      {bloqueado && (
+        <div className="bg-orange-50 border border-orange-200 rounded-xl p-6 mb-6">
+          <div className="flex items-start gap-3">
+            <AlertTriangle className="w-5 h-5 text-orange-600 flex-shrink-0 mt-0.5" />
+            <div className="flex-1">
+              <h2 className="font-semibold text-gray-900">Bloqueada</h2>
+              <p className="text-sm text-gray-700 mt-1">
+                Tarea {bloqueado.tarea_nombre} — etapa {bloqueado.etapa}
+              </p>
+              <p className="text-sm text-gray-500 mt-0.5">
+                Desde el{' '}
+                {new Date(bloqueado.inicio_at).toLocaleDateString('es-MX', {
+                  day: 'numeric',
+                  month: 'long',
+                })}
+              </p>
+              <p className="text-sm text-gray-500">
+                Intentos: {bloqueado.numero_intentos}. Pista usada:{' '}
+                {bloqueado.pista_usada ? 'Sí' : 'No'}.
+              </p>
+              <div className="flex gap-2 mt-3">
+                <Link
+                  href={`/profesor/tarea/${bloqueado.tarea_id}`}
+                  className="px-3 py-1.5 rounded-lg text-sm font-medium text-gray-600 border border-gray-200 hover:bg-gray-50 transition-colors"
+                >
+                  Ver intentos detallados
+                </Link>
+                <Boton
+                  variante="primario"
+                  size="sm"
+                  onClick={handleMarcarCompletado}
+                  disabled={marcando}
+                >
+                  {marcando ? 'Guardando...' : 'Marcar como completado'}
+                </Boton>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Tareas asignadas */}
       <h2 className="text-lg font-bold text-gray-900 mb-4">Tareas asignadas</h2>
       {tareasAlumno.length === 0 ? (
@@ -170,6 +247,12 @@ export default function AlumnoDetalle() {
           )}
         </div>
       )}
+
+      <Toast
+        mensaje="Tarea marcada como completada"
+        visible={toastCompletado}
+        onCerrar={() => setToastCompletado(false)}
+      />
     </div>
   )
 }
