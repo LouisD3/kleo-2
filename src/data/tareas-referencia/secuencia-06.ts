@@ -1,7 +1,7 @@
 import type { TareaCPA } from '@/types/tarea-cpa'
 
 /**
- * Tarea de referencia — Secuencia 6: Multiplicacion y division
+ * Tarea de referencia — Secuencia 6: Suma y resta de enteros
  * Concepto clave: Operar con numeros positivos y negativos usando fichas
  *
  * Concreto: FichasPositivasNegativas (5 positivas + 8 negativas, cancelar pares, resultado -3)

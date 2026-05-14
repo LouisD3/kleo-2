@@ -4,7 +4,7 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  * Tarea de referencia — Secuencia 11: Perímetros
  * Concepto clave: Calcular el perímetro de un rectángulo
  *
- * Concreto: Geoplano (rectángulo de 2×2 unidades, perímetro = 8)
+ * Concreto: Geoplano (rectángulo de 4×3 unidades, perímetro = 14)
  * Pictorico: Modelo en barras representando los lados del rectángulo
  * Abstracto: 3 preguntas con progresión de dificultad sobre perímetros
  */
@@ -31,16 +31,16 @@ export const tareaSecuencia11: TareaCPA = {
       filas: 5,
       columnas: 5,
       figura_objetivo: [
-        [1, 1],
-        [1, 3],
-        [3, 3],
-        [3, 1],
+        [0, 0],
+        [0, 4],
+        [3, 4],
+        [3, 0],
       ],
       propiedad_a_medir: 'perimetro',
-      valor_esperado: 8,
+      valor_esperado: 14,
       pregunta:
-        'Traza la figura en el geoplano conectando los puntos para formar un rectángulo. Luego calcula su perímetro.',
-      pista: 'Cuenta cuántas unidades mide cada lado del rectángulo y suma los cuatro lados.',
+        'Traza un rectangulo de 4 unidades de largo y 3 de ancho en el geoplano. Luego calcula su perimetro.',
+      pista: 'El perimetro es la suma de los 4 lados: 4 + 3 + 4 + 3 = 14 unidades.',
     },
     intentos_para_pista: 3,
   },
@@ -48,21 +48,21 @@ export const tareaSecuencia11: TareaCPA = {
     representacion: {
       tipo_representacion: 'modelo_barras',
       barras: [
-        { label: 'Largo', valor: 2, color: 'azul' },
-        { label: 'Largo', valor: 2, color: 'azul' },
-        { label: 'Ancho', valor: 2, color: 'verde' },
-        { label: 'Ancho', valor: 2, color: 'verde' },
+        { label: 'Largo', valor: 4, color: 'azul' },
+        { label: 'Largo', valor: 4, color: 'azul' },
+        { label: 'Ancho', valor: 3, color: 'verde' },
+        { label: 'Ancho', valor: 3, color: 'verde' },
       ],
-      total: { valor: 8, visible: true },
+      total: { valor: 14, visible: true },
       incognita: { posicion: 'total', label: 'Perímetro = ?' },
       orientacion: 'horizontal',
     },
     preguntas: [
       {
         pregunta:
-          'Observa el modelo de barras que representa los lados de un rectángulo. Si cada lado largo mide 2 unidades y cada lado corto mide 2 unidades, ¿cuál es el perímetro?',
+          'Observa el modelo de barras que representa los lados del rectangulo. Si cada lado largo mide 4 unidades y cada lado corto mide 3, ¿cual es el perimetro?',
         tipo: 'opcion_multiple',
-        opciones: ['A) 4', 'B) 6', 'C) 8', 'D) 10'],
+        opciones: ['A) 7', 'B) 12', 'C) 14', 'D) 24'],
         respuesta: 'C',
       },
       {
@@ -70,7 +70,7 @@ export const tareaSecuencia11: TareaCPA = {
           'Usando el modelo de barras, escribe la fórmula del perímetro de un rectángulo usando las variables l (largo) y a (ancho).',
         tipo: 'calculo',
         respuesta:
-          'El perímetro de un rectángulo se calcula sumando todos sus lados: P = l + l + a + a, que se simplifica como P = 2l + 2a o también P = 2(l + a). Con l = 2 y a = 2: P = 2(2 + 2) = 2(4) = 8 unidades.',
+          'El perimetro de un rectangulo se calcula sumando todos sus lados: P = l + l + a + a, que se simplifica como P = 2l + 2a o tambien P = 2(l + a). Con l = 4 y a = 3: P = 2(4 + 3) = 2(7) = 14 unidades.',
       },
     ],
   },

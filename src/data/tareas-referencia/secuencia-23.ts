@@ -13,16 +13,16 @@ export const tareaSecuencia23: TareaCPA = {
   contexto: {
     personaje: 'Camila',
     objetos: { a: { nombre: 'circulo', emoji: '⭕' }, b: { nombre: 'cuerda', emoji: '🧵' } },
-    valores_clave: { radio: 3 },
+    valores_clave: { radio: 2 },
     tipo: 'geometria',
-    narrativa: 'Camila envuelve una cuerda alrededor de un circulo para descubrir la relacion entre radio y circunferencia.',
-    pregunta_central: '¿Cuanto mide la circunferencia de un circulo de radio 3?',
+    narrativa: 'Camila envuelve una cuerda alrededor de un circulo de radio 2 para descubrir la relacion entre radio y circunferencia.',
+    pregunta_central: '¿Cuanto mide la circunferencia de un circulo de radio 2?',
     transiciones: {
-      concreto: 'Traza el circulo con el compas y mide su contorno.',
-      bridge_pictorico: 'La circunferencia es un poco mas de 6 diametros... en realidad es pi × d.',
-      pictorico: 'Observa la relacion en el modelo.',
-      bridge_abstracto: 'C = 2πr. Para r = 3, C ≈ 18.85.',
-      abstracto: 'Ahora calcula circunferencias.',
+      concreto: 'Traza el circulo con el compas de radio 2 y mide su contorno.',
+      bridge_pictorico: 'El diametro es 4. La circunferencia mide aproximadamente 12.56 (pi × 4).',
+      pictorico: 'Observa la relacion entre diametro y circunferencia en el modelo.',
+      bridge_abstracto: 'C = 2πr. Para r = 2, C ≈ 12.56.',
+      abstracto: 'Ahora calcula circunferencias con otros radios.',
     },
   },
   concreto: {
@@ -42,7 +42,7 @@ export const tareaSecuencia23: TareaCPA = {
       tipo_representacion: 'modelo_barras',
       barras: [
         { label: 'Diametro (2r)', valor: 4, color: 'azul', subdivisiones: 4 },
-        { label: 'Circunferencia (aprox)', valor: 12, color: 'verde', subdivisiones: 12 },
+        { label: 'Circunferencia (≈12.56)', valor: 13, color: 'verde' },
       ],
       orientacion: 'horizontal',
     },

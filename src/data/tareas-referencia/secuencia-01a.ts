@@ -69,10 +69,10 @@ export const tareaSecuencia01a: TareaCPA = {
       },
       {
         pregunta:
-          'Si la tableta tuviera 4 piezas mas (12 en total) y seleccionas la misma proporcion, cuantas piezas seleccionarias? Muestra tu procedimiento.',
+          'Si la tableta tuviera el doble de piezas (16 en total) y seleccionas la misma proporcion (3/8), cuantas piezas seleccionarias? Muestra tu procedimiento.',
         tipo: 'calculo',
         respuesta:
-          'La fraccion es 3/8, que significa 3 de cada 8. Si ahora hay 12 piezas: 12 x (3/8) = 36/8 = 4.5. Como no se puede partir una pieza exactamente, se necesitarian aproximadamente 4 o 5 piezas. Pero si mantenemos la proporcion exacta: 3/8 de 12 = 4.5 piezas.',
+          'La fraccion es 3/8, que significa 3 de cada 8. Si ahora hay 16 piezas: 16 x (3/8) = 48/8 = 6. Seleccionaria 6 piezas de las 16.',
       },
     ],
   },
