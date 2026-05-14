@@ -75,6 +75,12 @@ export const tareaSecuencia21b: TareaCPA = {
           angulos_rectos: 'Si (4 de 90°)',
         },
         {
+          figura: 'Rombo',
+          pares_paralelos: 2,
+          lados_iguales: 'Todos iguales',
+          angulos_rectos: 'No necesariamente',
+        },
+        {
           figura: 'Cuadrado',
           pares_paralelos: 2,
           lados_iguales: 'Todos iguales',
@@ -86,6 +92,7 @@ export const tareaSecuencia21b: TareaCPA = {
         { fila: 1, columna: 'pares_paralelos', color: '#3B82F6' },
         { fila: 2, columna: 'angulos_rectos', color: '#10B981' },
         { fila: 3, columna: 'lados_iguales', color: '#8B5CF6' },
+        { fila: 4, columna: 'lados_iguales', color: '#EC4899' },
       ],
       titulo: 'Comparacion de cuadrilateros por propiedades',
     },
