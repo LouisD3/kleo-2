@@ -6,6 +6,7 @@ import { useMemo } from 'react'
 import Spinner from '@/components/ui/Spinner.jsx'
 import { getAllSecuencias } from '@/content/biblioteca/matematicas-1'
 import { getTareasReferencia } from '@/data/tareas-referencia'
+import { useAlumnosBloqueados } from '@/hooks/useAlumnosBloqueados.js'
 import { useAlumnos, useTareasProfesor } from '@/hooks/useTareas.js'
 import useAuthStore from '@/store/useAuthStore.js'
 
@@ -47,30 +48,8 @@ export default function PaginaHoy() {
     return null
   }, [tareas])
 
-  // Blocked students: have a tarea en_curso but no resultado
-  const alumnosBloqueados = useMemo(() => {
-    if (!clase || alumnos.length === 0 || tareasEnCurso.length === 0) return []
-    const bloqueados = []
-    for (const alumno of alumnos) {
-      for (const tarea of tareasEnCurso) {
-        if (tarea.clase_id !== clase.id) continue
-        const res = resultados[tarea.id]?.[alumno.id]
-        if (!res) {
-          // Check if tarea was created more than 3 days ago
-          const created = new Date(tarea.created_at)
-          const diffDays = (Date.now() - created.getTime()) / (1000 * 60 * 60 * 24)
-          if (diffDays >= 3) {
-            bloqueados.push({
-              alumno,
-              tarea,
-              dias: Math.floor(diffDays),
-            })
-          }
-        }
-      }
-    }
-    return bloqueados.slice(0, 5)
-  }, [alumnos, tareasEnCurso, resultados, clase])
+  // Blocked students — uses intentos table via hook
+  const { data: alumnosBloqueados = [] } = useAlumnosBloqueados(profesor?.id)
 
   if (isLoading) {
     return (
@@ -98,17 +77,20 @@ export default function PaginaHoy() {
             <div>
               <h2 className="font-semibold text-gray-900 text-sm">
                 {alumnosBloqueados.length} alumno{alumnosBloqueados.length > 1 ? 's' : ''} sin
-                avanzar desde hace 3+ dias
+                avanzar desde hace 3+ días
               </h2>
               <div className="mt-2 space-y-1">
-                {alumnosBloqueados.map((b, i) => (
+                {alumnosBloqueados.slice(0, 5).map((b, i) => (
                   <Link
                     key={i}
-                    href={`/profesor/clase/${b.alumno.id}`}
+                    href={`/profesor/clase/${b.alumno_id}`}
                     className="block text-sm text-gray-700 hover:text-gray-900"
                   >
-                    <span className="font-medium">{b.alumno.nombre}</span>
-                    <span className="text-gray-400"> — {b.tarea.nombre}</span>
+                    <span className="font-medium">{b.alumno_nombre}</span>
+                    <span className="text-gray-400">
+                      {' '}
+                      — {b.tarea_nombre}, etapa {b.etapa}
+                    </span>
                   </Link>
                 ))}
               </div>
