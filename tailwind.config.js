@@ -8,6 +8,7 @@ export default {
       colors: {
         amarillo: '#FFD700',
         'amarillo-hover': '#F0C800',
+        'amarillo-soft': '#FFF8E1',
         background: 'var(--background)',
         foreground: 'var(--foreground)',
         card: { DEFAULT: 'var(--card)', foreground: 'var(--card-foreground)' },

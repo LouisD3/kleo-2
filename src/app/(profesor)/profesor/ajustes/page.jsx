@@ -2,7 +2,6 @@
 
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
-import NavBar from '@/components/layout/NavBar.jsx'
 import Boton from '@/components/ui/Boton.jsx'
 import MensajeError from '@/components/ui/MensajeError.jsx'
 import Modal from '@/components/ui/Modal.jsx'
@@ -82,101 +81,94 @@ export default function Ajustes() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <NavBar titulo="Ajustes" volver="/profesor" />
-
-      <main className="max-w-2xl mx-auto px-4 sm:px-6 py-8 animate-fade-in space-y-6">
-        {/* Perfil */}
-        <div className="card p-6">
-          <h2 className="text-lg font-bold text-gray-900 mb-4">Perfil</h2>
-          <form onSubmit={handleGuardarPerfil} className="space-y-4">
-            <div>
-              <label className="label-base">Nombre</label>
-              <input
-                type="text"
-                value={nombre}
-                onChange={(e) => setNombre(e.target.value)}
-                className="input-base"
-              />
-            </div>
-            <div>
-              <label className="label-base">
-                Escuela <span className="text-gray-400 font-normal">(opcional)</span>
-              </label>
-              <input
-                type="text"
-                value={escuela}
-                onChange={(e) => setEscuela(e.target.value)}
-                placeholder="Ej. Escuela Secundaria Tecnica #42"
-                className="input-base"
-              />
-            </div>
-            <div>
-              <label className="label-base">Correo electronico</label>
-              <input
-                type="email"
-                value={usuario?.email ?? ''}
-                disabled
-                className="input-base bg-gray-50 text-gray-500 cursor-not-allowed"
-              />
-            </div>
-
-            <div className="flex items-center gap-3">
-              <Boton type="submit" variante="primario" size="md" disabled={guardando}>
-                {guardando ? 'Guardando...' : 'Guardar cambios'}
-              </Boton>
-              {guardadoOk && <span className="text-sm text-green-600">Guardado</span>}
-            </div>
-          </form>
-        </div>
-
-        {/* Contrasena */}
-        <div className="card p-6">
-          <h2 className="text-lg font-bold text-gray-900 mb-4">Contrasena</h2>
-            <form onSubmit={handleCambiarPassword} className="space-y-4">
-              <div>
-                <label className="label-base">Nueva contrasena</label>
-                <input
-                  type="password"
-                  value={passwordNuevo}
-                  onChange={(e) => setPasswordNuevo(e.target.value)}
-                  placeholder="Minimo 6 caracteres"
-                  className="input-base"
-                />
-              </div>
-
-              <div className="flex items-center gap-3">
-                <Boton
-                  type="submit"
-                  variante="secundario"
-                  size="md"
-                  disabled={cambiandoPassword || !passwordNuevo}
-                >
-                  {cambiandoPassword ? 'Cambiando...' : 'Cambiar contrasena'}
-                </Boton>
-                {passwordOk && (
-                  <span className="text-sm text-green-600">Contrasena actualizada</span>
-                )}
-              </div>
-            </form>
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-8 animate-fade-in space-y-6">
+      {/* Perfil */}
+      <div className="card p-6">
+        <h2 className="text-lg font-bold text-gray-900 mb-4">Perfil</h2>
+        <form onSubmit={handleGuardarPerfil} className="space-y-4">
+          <div>
+            <label className="label-base">Nombre</label>
+            <input
+              type="text"
+              value={nombre}
+              onChange={(e) => setNombre(e.target.value)}
+              className="input-base"
+            />
+          </div>
+          <div>
+            <label className="label-base">
+              Escuela <span className="text-gray-400 font-normal">(opcional)</span>
+            </label>
+            <input
+              type="text"
+              value={escuela}
+              onChange={(e) => setEscuela(e.target.value)}
+              placeholder="Ej. Escuela Secundaria Tecnica #42"
+              className="input-base"
+            />
+          </div>
+          <div>
+            <label className="label-base">Correo electronico</label>
+            <input
+              type="email"
+              value={usuario?.email ?? ''}
+              disabled
+              className="input-base bg-gray-50 text-gray-500 cursor-not-allowed"
+            />
           </div>
 
-        {/* Zona de peligro */}
-        <div className="card p-6 border-red-100">
-          <h2 className="text-lg font-bold text-gray-900 mb-1">Zona de peligro</h2>
-          <p className="text-xs text-gray-500 mb-4">Estas acciones son irreversibles.</p>
-          <button
-            type="button"
-            onClick={() => setModalEliminar(true)}
-            className="text-sm text-red-500 hover:text-red-700 font-medium transition-colors"
-          >
-            Eliminar mi cuenta
-          </button>
-        </div>
+          <div className="flex items-center gap-3">
+            <Boton type="submit" variante="primario" size="md" disabled={guardando}>
+              {guardando ? 'Guardando...' : 'Guardar cambios'}
+            </Boton>
+            {guardadoOk && <span className="text-sm text-green-600">Guardado</span>}
+          </div>
+        </form>
+      </div>
 
-        <MensajeError mensaje={error} onCerrar={() => setError(null)} />
-      </main>
+      {/* Contrasena */}
+      <div className="card p-6">
+        <h2 className="text-lg font-bold text-gray-900 mb-4">Contrasena</h2>
+        <form onSubmit={handleCambiarPassword} className="space-y-4">
+          <div>
+            <label className="label-base">Nueva contrasena</label>
+            <input
+              type="password"
+              value={passwordNuevo}
+              onChange={(e) => setPasswordNuevo(e.target.value)}
+              placeholder="Minimo 6 caracteres"
+              className="input-base"
+            />
+          </div>
 
+          <div className="flex items-center gap-3">
+            <Boton
+              type="submit"
+              variante="secundario"
+              size="md"
+              disabled={cambiandoPassword || !passwordNuevo}
+            >
+              {cambiandoPassword ? 'Cambiando...' : 'Cambiar contrasena'}
+            </Boton>
+            {passwordOk && <span className="text-sm text-green-600">Contrasena actualizada</span>}
+          </div>
+        </form>
+      </div>
+
+      {/* Zona de peligro */}
+      <div className="card p-6 border-red-100">
+        <h2 className="text-lg font-bold text-gray-900 mb-1">Zona de peligro</h2>
+        <p className="text-xs text-gray-500 mb-4">Estas acciones son irreversibles.</p>
+        <button
+          type="button"
+          onClick={() => setModalEliminar(true)}
+          className="text-sm text-red-500 hover:text-red-700 font-medium transition-colors"
+        >
+          Eliminar mi cuenta
+        </button>
+      </div>
+
+      <MensajeError mensaje={error} onCerrar={() => setError(null)} />
       {/* Modal confirmar eliminacion */}
       <Modal
         abierto={modalEliminar}

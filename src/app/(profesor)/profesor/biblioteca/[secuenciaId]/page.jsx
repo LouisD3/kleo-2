@@ -2,7 +2,6 @@
 
 import { useParams, useRouter } from 'next/navigation'
 import { useState } from 'react'
-import NavBar from '@/components/layout/NavBar.jsx'
 import ManipulableDispatcher from '@/components/manipulables/ManipulableDispatcher'
 import DiagramaGeometrico from '@/components/pictorico/DiagramaGeometrico'
 import ModeloBarras from '@/components/pictorico/ModeloBarras'
@@ -38,48 +37,44 @@ export default function SecuenciaDetalle() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <NavBar titulo={`Secuencia ${id}`} volver="/profesor/biblioteca" />
-
-      <main className="max-w-4xl mx-auto px-4 sm:px-6 py-8 animate-fade-in">
-        {/* Header */}
-        <div className="card p-6 mb-6">
-          <div className="flex items-start gap-4">
-            <span className="text-4xl font-black text-gray-200 leading-none">
-              {String(id).padStart(2, '0')}
-            </span>
-            <div className="flex-1 min-w-0">
-              <h1 className="text-xl font-bold text-gray-900">{sec.titulo}</h1>
-              <p className="text-sm text-gray-600 mt-1">{sec.contenido}</p>
-              <p className="text-xs text-gray-400 mt-2 leading-relaxed">{sec.pda}</p>
-            </div>
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-8 animate-fade-in">
+      {/* Header */}
+      <div className="card p-6 mb-6">
+        <div className="flex items-start gap-4">
+          <span className="text-4xl font-black text-gray-200 leading-none">
+            {String(id).padStart(2, '0')}
+          </span>
+          <div className="flex-1 min-w-0">
+            <h1 className="text-xl font-bold text-gray-900">{sec.titulo}</h1>
+            <p className="text-sm text-gray-600 mt-1">{sec.contenido}</p>
+            <p className="text-xs text-gray-400 mt-2 leading-relaxed">{sec.pda}</p>
           </div>
         </div>
+      </div>
 
-        {/* Tabs */}
-        <div className="flex gap-1 mb-6 overflow-x-auto pb-1">
-          {TABS.map((t) => (
-            <button
-              key={t.id}
-              onClick={() => setTab(t.id)}
-              className={`px-4 py-2 rounded-xl text-sm font-medium whitespace-nowrap transition-all ${
-                tab === t.id
-                  ? 'bg-gray-900 text-white'
-                  : 'bg-white border border-gray-200 text-gray-600 hover:border-gray-300'
-              }`}
-            >
-              {t.label}
-            </button>
-          ))}
-        </div>
+      {/* Tabs */}
+      <div className="flex gap-1 mb-6 overflow-x-auto pb-1">
+        {TABS.map((t) => (
+          <button
+            key={t.id}
+            onClick={() => setTab(t.id)}
+            className={`px-4 py-2 rounded-xl text-sm font-medium whitespace-nowrap transition-all ${
+              tab === t.id
+                ? 'bg-gray-900 text-white'
+                : 'bg-white border border-gray-200 text-gray-600 hover:border-gray-300'
+            }`}
+          >
+            {t.label}
+          </button>
+        ))}
+      </div>
 
-        {/* Tab content */}
-        {tab === 'orientacion' && <TabOrientacion o={sec.orientacion} />}
-        {tab === 'diapositivas' && <TabDiapositivas slides={sec.diapositiva} />}
-        {tab === 'libro' && <TabLibro libro={sec.libro} />}
-        {tab === 'examenes' && <TabExamenes preguntas={sec.evaluacion.preguntas} />}
-        {tab === 'tarea' && <TabTareaSingapur tareasCPA={tareasCPA} secuencia={sec} />}
-      </main>
+      {/* Tab content */}
+      {tab === 'orientacion' && <TabOrientacion o={sec.orientacion} />}
+      {tab === 'diapositivas' && <TabDiapositivas slides={sec.diapositiva} />}
+      {tab === 'libro' && <TabLibro libro={sec.libro} />}
+      {tab === 'examenes' && <TabExamenes preguntas={sec.evaluacion.preguntas} />}
+      {tab === 'tarea' && <TabTareaSingapur tareasCPA={tareasCPA} secuencia={sec} />}
     </div>
   )
 }
@@ -405,7 +400,10 @@ function TabTareaSingapur({ tareasCPA, secuencia }) {
 
       {/* Preview Concreto — interactive */}
       <div className="card p-5">
-        <SectionHeader numero={1} titulo={`Concreto — ${spec.tipo_concreto.replaceAll('_', ' ')}`} />
+        <SectionHeader
+          numero={1}
+          titulo={`Concreto — ${spec.tipo_concreto.replaceAll('_', ' ')}`}
+        />
         <div className="mt-3">
           <ManipulableDispatcher
             key={tareaActiva}
@@ -436,7 +434,10 @@ function TabTareaSingapur({ tareasCPA, secuencia }) {
 
       {/* Preview Abstracto — all questions with answers */}
       <div className="card p-5">
-        <SectionHeader numero={3} titulo={`Abstracto — ${tareaCPA.abstracto.preguntas.length} preguntas`} />
+        <SectionHeader
+          numero={3}
+          titulo={`Abstracto — ${tareaCPA.abstracto.preguntas.length} preguntas`}
+        />
         <div className="mt-3 space-y-3">
           {tareaCPA.abstracto.preguntas.map((p, i) => (
             <PreviewPregunta key={i} pregunta={p} indice={i} />
@@ -522,7 +523,11 @@ function Section({ titulo, children }) {
 // ── Tarea preview helpers ───────────────────────────────────────
 
 function RepresentacionPreview({ pictorico }) {
-  const rep = pictorico.representacion ?? (pictorico.modelo_barras ? { ...pictorico.modelo_barras, tipo_representacion: 'modelo_barras' } : null)
+  const rep =
+    pictorico.representacion ??
+    (pictorico.modelo_barras
+      ? { ...pictorico.modelo_barras, tipo_representacion: 'modelo_barras' }
+      : null)
   if (!rep) return null
 
   switch (rep.tipo_representacion) {
