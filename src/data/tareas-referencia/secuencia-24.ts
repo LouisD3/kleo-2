@@ -39,13 +39,22 @@ export const tareaSecuencia24: TareaCPA = {
   },
   pictorico: {
     representacion: {
-      tipo_representacion: 'modelo_barras',
-      barras: [
-        { label: 'Sector (1/4 del circulo)', valor: 1, color: 'azul', subdivisiones: 1 },
-        { label: 'Resto del circulo', valor: 3, color: 'amarillo', subdivisiones: 3 },
+      tipo_representacion: 'diagrama_geometrico',
+      ancho: 8,
+      alto: 8,
+      puntos: [
+        { id: 'o', x: 4, y: 4, label: 'O' },
+        { id: 'r1', x: 8, y: 4 },
+        { id: 'r2', x: 4, y: 8 },
       ],
-      total: { valor: 4, visible: true },
-      orientacion: 'horizontal',
+      segmentos: [
+        { tipo: 'segmento', desde: 'o', hasta: 'r1', color: 'azul', medida: 'r = 4' },
+        { tipo: 'segmento', desde: 'o', hasta: 'r2', color: 'azul', medida: 'r = 4' },
+      ],
+      angulos: [
+        { vertice: 'o', lado_a: 'r1', lado_b: 'r2', medida: '90°', color: 'azul' },
+      ],
+      titulo: 'Sector circular de 90° (1/4 del circulo)',
     },
     preguntas: [
       {

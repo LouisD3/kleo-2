@@ -19,7 +19,7 @@ export const tareaSecuencia30: TareaCPA = {
     pregunta_central: '¿Cual es la frecuencia absoluta y relativa de cada color?',
     transiciones: {
       concreto: 'Construye el histograma con la frecuencia de cada color.',
-      bridge_pictorico: 'Rojo: 6/10 = 0.6. Azul: 3/10 = 0.3. Verde: 1/10 = 0.1.',
+      bridge_pictorico: 'Contaste la frecuencia de cada color en el histograma.',
       pictorico: 'Observa las frecuencias en el modelo.',
       bridge_abstracto: 'Frecuencia relativa = absoluta / total.',
       abstracto: 'Ahora calcula frecuencias en otros conjuntos.',

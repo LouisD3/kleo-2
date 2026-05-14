@@ -59,10 +59,11 @@ export const tareaSecuencia10: TareaCPA = {
       },
       {
         pregunta:
-          'Usando el modelo, explica qué operación hiciste para encontrar el valor de x en x + 5 = 9.',
-        tipo: 'calculo',
+          'Usando el modelo, explica que operacion hiciste para encontrar el valor de x en x + 5 = 9.',
+        tipo: 'abierta',
         respuesta:
-          'Se resta 5 de ambos lados: x + 5 - 5 = 9 - 5, entonces x = 4. La operación es una resta: al total se le quita la parte conocida.',
+          'Se resta 5 de ambos lados: x + 5 - 5 = 9 - 5, entonces x = 4. La operacion es una resta: al total se le quita la parte conocida.',
+        criterios_aceptacion: ['restar 5 de ambos lados', 'x = 4', 'operacion inversa o resta'],
       },
     ],
   },

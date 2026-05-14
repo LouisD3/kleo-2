@@ -84,15 +84,14 @@ export const tareaSecuencia09b: TareaCPA = {
       {
         tipo: 'abierta',
         pregunta:
-          'Explica como puedes encontrar el termino 100 de una sucesion aritmetica sin calcular todos los terminos anteriores. Usa la sucesion de circulos (2, 5, 8, 11, ...) como ejemplo.',
+          'La sucesion de circulos es 2, 5, 8, 11... Si quieres saber el termino 10, puedes sumar la diferencia 9 veces desde el inicio: 2 + 3 + 3 + 3... Calcula el termino 10 y explica tu metodo.',
         respuesta:
-          'Uso la formula: termino n = primer termino + (n-1) x diferencia. Para esta sucesion: 2 + (100-1) x 3 = 2 + 297 = 299. Asi no necesito calcular los 99 terminos anteriores.',
+          'La diferencia constante es 3. Desde el termino 1 (que es 2), sumo 3 nueve veces: 2 + 9×3 = 2 + 27 = 29. El termino 10 es 29.',
         criterios_aceptacion: [
-          'formula del termino n',
-          'primer termino = 2',
           'diferencia = 3',
-          'resultado 299',
-          'evita calcular uno por uno',
+          'sumar 3 nueve veces',
+          'resultado 29',
+          'partir del primer termino',
         ],
       },
     ],

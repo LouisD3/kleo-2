@@ -46,13 +46,25 @@ export const tareaSecuencia26: TareaCPA = {
   },
   pictorico: {
     representacion: {
-      tipo_representacion: 'modelo_barras',
-      barras: [
-        { label: 'Perpendicular', valor: 2, color: 'verde' },
-        { label: 'Oblicua', valor: 3, color: 'rojo' },
+      tipo_representacion: 'diagrama_geometrico',
+      ancho: 6,
+      alto: 5,
+      puntos: [
+        { id: 'l1', x: 0, y: 1 },
+        { id: 'l2', x: 6, y: 1 },
+        { id: 'p', x: 2, y: 3, label: 'P' },
+        { id: 'h', x: 2, y: 1, label: 'H' },
+        { id: 'q', x: 4, y: 1, label: 'Q' },
       ],
-      total: { valor: 3, visible: false },
-      orientacion: 'horizontal',
+      segmentos: [
+        { tipo: 'recta', desde: 'l1', hasta: 'l2', color: 'gris', label: 'Recta L' },
+        { tipo: 'segmento', desde: 'p', hasta: 'h', color: 'verde', medida: '2 u', label: 'Perpendicular' },
+        { tipo: 'segmento', desde: 'p', hasta: 'q', color: 'rojo', medida: '≈3 u', label: 'Oblicua', estilo: 'punteado' },
+      ],
+      angulos: [
+        { vertice: 'h', lado_a: 'l2', lado_b: 'p', medida: '90°', color: 'verde' },
+      ],
+      titulo: 'Distancia punto-recta: perpendicular (2 u) vs oblicua (≈3 u)',
     },
     preguntas: [
       {
@@ -70,9 +82,10 @@ export const tareaSecuencia26: TareaCPA = {
       {
         pregunta:
           'Usando el modelo, explica por que la distancia de un punto a una recta siempre se mide con la perpendicular.',
-        tipo: 'calculo',
+        tipo: 'abierta',
         respuesta:
-          'La distancia se define como la longitud mas corta entre el punto y la recta. El segmento perpendicular es siempre el mas corto porque forma un angulo de 90 grados con la recta. Cualquier otro segmento oblicuo es mas largo, ya que la hipotenusa de un triangulo rectangulo siempre es mayor que sus catetos.',
+          'La perpendicular es el segmento mas corto porque forma 90° con la recta. Cualquier oblicua es mas larga (es la hipotenusa de un triangulo rectangulo).',
+        criterios_aceptacion: ['perpendicular es la mas corta', 'angulo de 90 grados', 'oblicua mas larga', 'triangulo rectangulo o hipotenusa'],
       },
     ],
   },

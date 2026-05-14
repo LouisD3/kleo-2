@@ -1,7 +1,7 @@
 import type { TareaCPA } from '@/types/tarea-cpa'
 
 /**
- * Tarea de referencia — Secuencia 35: Condicionales y bicondicionales
+ * Tarea de referencia — Secuencia 35: Condicionales
  * Concepto clave: Evaluar proposiciones condicionales (SI...ENTONCES) con tabla de verdad
  *
  * Concreto: TablaVerdad (completar la tabla de SI p ENTONCES q)

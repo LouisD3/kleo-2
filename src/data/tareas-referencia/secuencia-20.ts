@@ -43,29 +43,41 @@ export const tareaSecuencia20: TareaCPA = {
   },
   pictorico: {
     representacion: {
-      tipo_representacion: 'modelo_barras',
-      barras: [
-        { label: 'Mitad A', valor: 2, color: 'azul' },
-        { label: 'Mitad B', valor: 2, color: 'verde' },
+      tipo_representacion: 'diagrama_geometrico',
+      ancho: 6,
+      alto: 5,
+      puntos: [
+        { id: 'a', x: 0, y: 0, label: 'A' },
+        { id: 'b', x: 5, y: 1, label: 'B' },
+        { id: 'c', x: 1, y: 4, label: 'C' },
+        { id: 'm', x: 2.5, y: 0.5, label: 'M' },
       ],
-      total: { valor: 4, visible: true },
-      incognita: { posicion: 'total', label: 'Lado = 4 u' },
-      orientacion: 'horizontal',
+      segmentos: [
+        { tipo: 'segmento', desde: 'a', hasta: 'b', color: 'gris' },
+        { tipo: 'segmento', desde: 'b', hasta: 'c', color: 'gris' },
+        { tipo: 'segmento', desde: 'c', hasta: 'a', color: 'gris' },
+        { tipo: 'segmento', desde: 'c', hasta: 'm', color: 'rojo', estilo: 'punteado', label: 'Mediana' },
+      ],
+      poligonos: [
+        { puntos: ['a', 'b', 'c'], relleno: 'azul', opacidad: 0.08 },
+      ],
+      titulo: 'Triangulo con mediana desde C al punto medio M de AB',
     },
     preguntas: [
       {
         pregunta:
-          'El modelo de barras muestra un lado de un triángulo dividido en dos partes iguales. La recta que va del vértice opuesto a ese punto medio se llama:',
+          'El diagrama muestra un triangulo con una linea punteada desde el vertice C hasta el punto medio M del lado AB. Esa recta se llama:',
         tipo: 'opcion_multiple',
         opciones: ['A) Altura', 'B) Bisectriz', 'C) Mediana', 'D) Mediatriz'],
         respuesta: 'C',
       },
       {
         pregunta:
-          'Describe las cuatro rectas notables de un triángulo y señala la diferencia principal entre cada una.',
-        tipo: 'calculo',
+          'Describe las cuatro rectas notables de un triangulo y senala la diferencia principal entre cada una.',
+        tipo: 'abierta',
         respuesta:
-          'La mediana va de un vértice al punto medio del lado opuesto. La altura va de un vértice y es perpendicular al lado opuesto. La mediatriz es perpendicular a un lado y pasa por su punto medio (no necesariamente pasa por un vértice). La bisectriz divide un ángulo interior del triángulo en dos ángulos iguales. La diferencia principal es: la mediana y la bisectriz parten de un vértice, la mediatriz no; la altura y la mediatriz son perpendiculares a un lado, la mediana y la bisectriz no.',
+          'La mediana va de un vertice al punto medio del lado opuesto. La altura es perpendicular al lado opuesto. La mediatriz es perpendicular a un lado y pasa por su punto medio. La bisectriz divide un angulo en dos iguales.',
+        criterios_aceptacion: ['mediana: punto medio', 'altura: perpendicular', 'mediatriz: perpendicular al lado', 'bisectriz: divide el angulo'],
       },
     ],
   },
@@ -88,15 +100,14 @@ export const tareaSecuencia20: TareaCPA = {
       {
         tipo: 'abierta',
         pregunta:
-          'Las tres medianas de un triángulo se cruzan en un solo punto llamado baricentro. Explica qué representa el baricentro y menciona una propiedad que lo haga especial.',
+          'Explica con tus palabras cual es la diferencia entre la mediana y la altura de un triangulo. Usa un ejemplo para que quede claro.',
         respuesta:
-          'El baricentro es el centro de gravedad del triángulo: si recortaras un triángulo de cartón, podrías equilibrarlo en ese punto. Una propiedad especial es que divide cada mediana en razón 2:1 (la parte del vértice es el doble que la del lado opuesto).',
+          'La mediana va de un vertice al punto medio del lado opuesto y lo divide en dos partes iguales. La altura va de un vertice y baja perpendicular al lado opuesto, formando un angulo de 90°. La mediana no siempre es perpendicular.',
         criterios_aceptacion: [
-          'centro de gravedad',
-          'equilibrio',
-          'razón 2:1',
-          'tres medianas',
-          'se cruzan en un punto',
+          'mediana: punto medio del lado opuesto',
+          'altura: perpendicular al lado opuesto',
+          'mediana no siempre es perpendicular',
+          'ejemplo o dibujo mental',
         ],
       },
     ],

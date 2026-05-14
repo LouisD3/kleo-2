@@ -74,7 +74,7 @@ export const tareaSecuencia28: TareaCPA = {
     preguntas: [
       {
         pregunta:
-          'Observa el modelo de barras. Si el largo es 4 y el ancho es 3, cual es el area del rectangulo?',
+          'Observa el diagrama. Si el largo es 4 y el ancho es 3, cual es el area del rectangulo?',
         tipo: 'opcion_multiple',
         opciones: ['A) 7', 'B) 12', 'C) 14', 'D) 16'],
         respuesta: 'B',

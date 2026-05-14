@@ -39,12 +39,20 @@ export const tareaSecuencia22: TareaCPA = {
   },
   pictorico: {
     representacion: {
-      tipo_representacion: 'modelo_barras',
-      barras: [
-        { label: 'Radio', valor: 3, color: 'rojo', subdivisiones: 3 },
-        { label: 'Diametro', valor: 6, color: 'azul', subdivisiones: 6 },
+      tipo_representacion: 'diagrama_geometrico',
+      ancho: 8,
+      alto: 8,
+      puntos: [
+        { id: 'o', x: 4, y: 4, label: 'O' },
+        { id: 'r', x: 7, y: 4, label: 'R' },
+        { id: 'd1', x: 1, y: 4 },
+        { id: 'd2', x: 7, y: 4 },
       ],
-      orientacion: 'horizontal',
+      segmentos: [
+        { tipo: 'segmento', desde: 'o', hasta: 'r', color: 'rojo', medida: 'r = 3', label: 'Radio' },
+        { tipo: 'segmento', desde: 'd1', hasta: 'd2', color: 'azul', medida: 'd = 6', label: 'Diametro', estilo: 'punteado' },
+      ],
+      titulo: 'Circulo: radio = 3, diametro = 6',
     },
     preguntas: [
       {

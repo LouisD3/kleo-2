@@ -67,7 +67,7 @@ export const tareaSecuencia21: TareaCPA = {
     preguntas: [
       {
         pregunta:
-          'El modelo de barras muestra los cuatro lados de un paralelogramo. ¿Qué observas sobre los lados opuestos?',
+          'La tabla muestra las propiedades de varios cuadrilateros. ¿Que observas sobre los lados opuestos del paralelogramo?',
         tipo: 'opcion_multiple',
         opciones: [
           'A) Todos miden igual',

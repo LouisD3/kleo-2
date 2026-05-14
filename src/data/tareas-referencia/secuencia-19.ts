@@ -89,10 +89,10 @@ export const tareaSecuencia19: TareaCPA = {
       {
         tipo: 'abierta',
         pregunta:
-          'Si trazas la bisectriz de cada ángulo de un triángulo, las tres bisectrices se encuentran en un solo punto. ¿Cómo se llama ese punto y qué propiedad especial tiene?',
+          'Un angulo de un triangulo mide 100°. Si trazas su bisectriz, cuanto mide cada mitad? Clasifica esas mitades como agudas u obtusas.',
         respuesta:
-          'Ese punto se llama incentro. Está a la misma distancia de los tres lados del triángulo y es el centro del círculo que cabe dentro del triángulo.',
-        criterios_aceptacion: ['incentro', 'equidistante a los tres lados', 'tres bisectrices se cruzan', 'círculo inscrito'],
+          'Cada mitad mide 100° / 2 = 50°. Como 50° es menor que 90°, ambas mitades son angulos agudos.',
+        criterios_aceptacion: ['100 / 2 = 50', 'angulos agudos', 'menores que 90°', 'bisectriz divide en partes iguales'],
       },
     ],
   },

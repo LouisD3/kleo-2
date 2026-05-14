@@ -18,7 +18,7 @@ export const tareaSecuencia17: TareaCPA = {
     narrativa: 'Roberto mide los angulos de diferentes objetos. Algunos son menores de 90° (agudos), otros son exactos (rectos) y otros son mayores (obtusos).',
     pregunta_central: '¿Como se clasifican los angulos segun su medida?',
     transiciones: {
-      concreto: 'Traza un angulo en el geoplano y observa su abertura.',
+      concreto: 'Arrastra el brazo del transportador para medir un angulo recto.',
       bridge_pictorico: 'Un angulo agudo mide menos de 90°, un recto 90° y un obtuso mas de 90°.',
       pictorico: 'Observa los tres tipos de angulo en el modelo.',
       bridge_abstracto: 'La clasificacion depende de comparar con 90°.',
@@ -71,7 +71,7 @@ export const tareaSecuencia17: TareaCPA = {
     preguntas: [
       {
         pregunta:
-          'Observa el modelo de barras que muestra tres tipos de ángulos. ¿Cuál barra representa un ángulo recto?',
+          'Observa el diagrama que muestra tres tipos de angulos. ¿Cual representa un angulo recto?',
         tipo: 'opcion_multiple',
         opciones: ['A) La verde (45°)', 'B) La azul (90°)', 'C) La roja (135°)', 'D) Ninguna'],
         respuesta: 'B',

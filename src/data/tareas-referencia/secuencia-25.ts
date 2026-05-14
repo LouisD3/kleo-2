@@ -45,14 +45,26 @@ export const tareaSecuencia25: TareaCPA = {
   },
   pictorico: {
     representacion: {
-      tipo_representacion: 'modelo_barras',
-      barras: [
-        { label: 'Horizontal', valor: 4, color: 'azul' },
-        { label: 'Vertical', valor: 3, color: 'verde' },
+      tipo_representacion: 'diagrama_geometrico',
+      ancho: 6,
+      alto: 5,
+      puntos: [
+        { id: 'a', x: 0, y: 0, label: 'A(0,0)' },
+        { id: 'b', x: 4, y: 3, label: 'B(4,3)' },
+        { id: 'c', x: 4, y: 0, label: 'C' },
       ],
-      total: { valor: 5, visible: true },
-      incognita: { posicion: 'total', label: 'Distancia = ?' },
-      orientacion: 'horizontal',
+      segmentos: [
+        { tipo: 'segmento', desde: 'a', hasta: 'c', color: 'azul', medida: '4 u', label: 'Horizontal' },
+        { tipo: 'segmento', desde: 'c', hasta: 'b', color: 'verde', medida: '3 u', label: 'Vertical' },
+        { tipo: 'segmento', desde: 'a', hasta: 'b', color: 'rojo', medida: 'd = ?', label: 'Distancia' },
+      ],
+      angulos: [
+        { vertice: 'c', lado_a: 'a', lado_b: 'b', medida: '90°', color: 'gris' },
+      ],
+      poligonos: [
+        { puntos: ['a', 'c', 'b'], relleno: 'azul', opacidad: 0.06 },
+      ],
+      titulo: 'Triangulo rectangulo: catetos 4 y 3, hipotenusa = distancia',
     },
     preguntas: [
       {
@@ -65,9 +77,10 @@ export const tareaSecuencia25: TareaCPA = {
       {
         pregunta:
           'Usando el modelo, explica como se calcula la distancia entre dos puntos cuando conoces el desplazamiento horizontal y vertical.',
-        tipo: 'calculo',
+        tipo: 'abierta',
         respuesta:
-          'Se forma un triangulo rectangulo donde los catetos son las distancias horizontal y vertical. Se aplica el teorema de Pitagoras: distancia = raiz cuadrada de (horizontal al cuadrado + vertical al cuadrado). Con catetos 4 y 3: distancia = raiz de (16 + 9) = raiz de 25 = 5.',
+          'Se forma un triangulo rectangulo con los catetos horizontal y vertical. Se aplica Pitagoras: d = raiz de (4² + 3²) = raiz de 25 = 5.',
+        criterios_aceptacion: ['triangulo rectangulo', 'teorema de Pitagoras', 'catetos horizontal y vertical', 'raiz cuadrada'],
       },
     ],
   },

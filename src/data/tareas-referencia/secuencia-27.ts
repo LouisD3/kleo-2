@@ -18,7 +18,7 @@ export const tareaSecuencia27: TareaCPA = {
     narrativa: 'Elena tiene 3 varillas y quiere saber si puede formar un triangulo. Descubre que la suma de dos lados siempre debe ser mayor que el tercero.',
     pregunta_central: '¿Se puede formar un triangulo con lados de 4, 3 y 3?',
     transiciones: {
-      concreto: 'Traza el triangulo en el geoplano conectando los puntos dados.',
+      concreto: 'Ajusta las varillas para que midan 4, 3 y 3. Observa si se forma un triangulo.',
       bridge_pictorico: 'El triangulo se forma porque 3+3=6 > 4, 4+3=7 > 3.',
       pictorico: 'Verifica las 3 condiciones de desigualdad en la tabla.',
       bridge_abstracto: 'Para formar triangulo: a+b > c, a+c > b, b+c > a.',
