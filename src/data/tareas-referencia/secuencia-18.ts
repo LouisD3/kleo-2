@@ -44,14 +44,24 @@ export const tareaSecuencia18: TareaCPA = {
   },
   pictorico: {
     representacion: {
-      tipo_representacion: 'modelo_barras',
-      barras: [
-        { label: 'Mitad izquierda', valor: 2, color: 'azul' },
-        { label: 'Mitad derecha', valor: 2, color: 'verde' },
+      tipo_representacion: 'diagrama_geometrico',
+      ancho: 6,
+      alto: 5,
+      puntos: [
+        { id: 'a', x: 0, y: 2.5, label: 'A (0)' },
+        { id: 'b', x: 4, y: 2.5, label: 'B (4)' },
+        { id: 'm', x: 2, y: 2.5, label: 'M (2)' },
+        { id: 'mt', x: 2, y: 0.5 },
+        { id: 'mb', x: 2, y: 4.5 },
       ],
-      total: { valor: 4, visible: true },
-      incognita: { posicion: 'total', label: 'Punto medio en 2' },
-      orientacion: 'horizontal',
+      segmentos: [
+        { tipo: 'segmento', desde: 'a', hasta: 'b', color: 'azul', label: 'Segmento AB = 4 u' },
+        { tipo: 'segmento', desde: 'mt', hasta: 'mb', color: 'rojo', estilo: 'punteado', label: 'Mediatriz' },
+      ],
+      angulos: [
+        { vertice: 'm', lado_a: 'b', lado_b: 'mt', medida: '90°', color: 'rojo' },
+      ],
+      titulo: 'Segmento AB con punto medio M y mediatriz perpendicular',
     },
     preguntas: [
       {
@@ -64,9 +74,10 @@ export const tareaSecuencia18: TareaCPA = {
       {
         pregunta:
           'Usando el modelo, explica cómo encontrar el punto medio de un segmento y qué es la mediatriz.',
-        tipo: 'calculo',
+        tipo: 'abierta',
         respuesta:
           'El punto medio de un segmento se encuentra dividiendo su longitud entre 2. En este caso, 4 ÷ 2 = 2, así que el punto medio está en la posición 2. La mediatriz es una recta perpendicular al segmento que pasa por su punto medio. Divide al segmento en dos partes iguales y todo punto sobre la mediatriz está a la misma distancia de ambos extremos del segmento.',
+        criterios_aceptacion: ['dividir longitud entre 2', 'punto medio en posicion 2', 'mediatriz perpendicular al segmento', 'pasa por el punto medio'],
       },
     ],
   },

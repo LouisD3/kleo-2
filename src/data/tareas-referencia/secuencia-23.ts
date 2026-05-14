@@ -42,7 +42,7 @@ export const tareaSecuencia23: TareaCPA = {
       tipo_representacion: 'modelo_barras',
       barras: [
         { label: 'Diametro (2r)', valor: 4, color: 'azul', subdivisiones: 4 },
-        { label: 'Circunferencia (≈12.56)', valor: 13, color: 'verde' },
+        { label: 'Circunferencia (≈12.56)', valor: 12.56, color: 'verde' },
       ],
       orientacion: 'horizontal',
     },
@@ -57,8 +57,9 @@ export const tareaSecuencia23: TareaCPA = {
       {
         pregunta:
           'Si divides la circunferencia entre el diametro, siempre obtienes el mismo numero (aproximadamente 3.14). Como se llama ese numero?',
-        tipo: 'calculo',
+        tipo: 'abierta',
         respuesta: 'Ese numero se llama pi (π). Circunferencia / diametro = 12.56 / 4 = 3.14. Pi es siempre igual, sin importar el tamano del circulo.',
+        criterios_aceptacion: ['pi o π', 'circunferencia / diametro', 'aproximadamente 3.14', 'constante'],
       },
     ],
   },

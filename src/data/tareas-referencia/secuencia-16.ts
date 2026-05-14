@@ -52,6 +52,7 @@ export const tareaSecuencia16: TareaCPA = {
         { id: 'b2', x: 5, y: 2 },
         { id: 'c1', x: 3, y: 0, label: 'C' },
         { id: 'c2', x: 3, y: 5 },
+        { id: 'ix', x: 3, y: 2, label: '' },
       ],
       segmentos: [
         { tipo: 'recta', desde: 'a1', hasta: 'a2', color: 'azul', label: 'Recta A' },
@@ -59,7 +60,7 @@ export const tareaSecuencia16: TareaCPA = {
         { tipo: 'recta', desde: 'c1', hasta: 'c2', color: 'rojo', label: 'Recta C (perpendicular)', estilo: 'punteado' },
       ],
       angulos: [
-        { vertice: 'b1', lado_a: 'b2', lado_b: 'c2', medida: '90°', color: 'rojo' },
+        { vertice: 'ix', lado_a: 'b2', lado_b: 'c2', medida: '90°', color: 'rojo' },
       ],
       titulo: 'Rectas paralelas y perpendiculares',
     },

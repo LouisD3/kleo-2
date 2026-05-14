@@ -38,8 +38,8 @@ export const tareaSecuencia07: TareaCPA = {
         { posicion: 10, texto: '10' },
       ],
       pregunta:
-        'Calcula 5 + 3 y ubica el resultado en la recta numerica. Luego piensa: si calculas 3 + 5, llegaras al mismo punto?',
-      pista: '5 + 3 = 8 y 3 + 5 = 8. Ambos dan el mismo resultado. Ubica el 8 en la recta.',
+        'Primero calcula 3 + 5 y ubica el resultado en la recta numerica. Ahora piensa: si sumas al reves, 5 + 3, ¿el resultado es el mismo punto?',
+      pista: '3 + 5 = 8 y 5 + 3 = 8. No importa el orden: ambas sumas llegan al 8. Ubica el 8.',
     },
     intentos_para_pista: 3,
   },

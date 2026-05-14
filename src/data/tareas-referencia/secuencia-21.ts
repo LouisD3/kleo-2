@@ -80,9 +80,10 @@ export const tareaSecuencia21: TareaCPA = {
       {
         pregunta:
           'Compara el paralelogramo con un rectángulo. ¿En qué se parecen y en qué se diferencian?',
-        tipo: 'calculo',
+        tipo: 'abierta',
         respuesta:
           'Semejanzas: ambos tienen dos pares de lados paralelos y los lados opuestos son iguales. Diferencias: en el rectángulo todos los ángulos son de 90°, mientras que en el paralelogramo los ángulos no son necesariamente rectos. El rectángulo es un caso particular de paralelogramo donde todos los ángulos son rectos.',
+        criterios_aceptacion: ['2 pares de lados paralelos en comun', 'rectangulo tiene angulos de 90°', 'paralelogramo no necesariamente 90°', 'rectangulo es caso particular'],
       },
     ],
   },

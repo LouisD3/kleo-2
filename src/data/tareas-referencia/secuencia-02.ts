@@ -55,7 +55,7 @@ export const tareaSecuencia02: TareaCPA = {
           subdivisiones: 3,
         },
       ],
-      total: { valor: 2, visible: true },
+      incognita: { posicion: 'total', label: 'Resultado = ?' },
       orientacion: 'horizontal',
     },
     preguntas: [

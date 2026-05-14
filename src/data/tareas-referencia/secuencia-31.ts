@@ -67,9 +67,10 @@ export const tareaSecuencia31: TareaCPA = {
       {
         pregunta:
           'Usando los datos del histograma, calcula la media (promedio) de las calificaciones.',
-        tipo: 'calculo',
+        tipo: 'abierta',
         respuesta:
           'Suma = (5x2) + (6x3) + (7x5) + (8x4) + (9x1) = 10 + 18 + 35 + 32 + 9 = 104.\nTotal de alumnos = 15.\nMedia = 104 / 15 = 6.93 (aproximadamente 6.9).',
+        criterios_aceptacion: ['suma total 104', 'dividir entre 15 alumnos', 'media aproximadamente 6.9 o 6.93 o 104/15'],
       },
     ],
   },

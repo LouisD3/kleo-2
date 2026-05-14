@@ -97,17 +97,17 @@ export const tareaSecuencia17: TareaCPA = {
       {
         tipo: 'calculo',
         pregunta:
-          'Dos segmentos se intersecan y forman un ángulo de 65°. ¿Cuánto mide el ángulo adyacente? Explica paso a paso.',
+          'Dos ángulos que están uno al lado del otro sobre una línea recta se llaman suplementarios y suman 180°. Si uno mide 65°, ¿cuánto mide el otro? Muestra el procedimiento.',
         respuesta:
-          'Paso 1: Cuando dos segmentos se intersecan, los ángulos adyacentes son suplementarios (suman 180°).\nPaso 2: Ángulo adyacente = 180° - 65°.\nPaso 3: Ángulo adyacente = 115°.\nRespuesta: El ángulo adyacente mide 115°.',
+          'Paso 1: Los ángulos suplementarios suman 180°.\nPaso 2: Ángulo desconocido = 180° - 65°.\nPaso 3: Ángulo desconocido = 115°.\nRespuesta: El otro ángulo mide 115°.',
       },
       {
         tipo: 'abierta',
         pregunta:
-          'Cuando dos rectas se cruzan, se forman cuatro ángulos. Explica qué relación tienen entre sí los ángulos opuestos y los ángulos adyacentes.',
+          'Dibuja mentalmente dos rectas que se cruzan. Se forman 4 ángulos. Si uno mide 70°, ¿cuánto miden los otros tres? Pista: los ángulos de al lado suman 180° y los de enfrente son iguales.',
         respuesta:
-          'Los ángulos opuestos por el vértice son iguales. Los ángulos adyacentes (uno al lado del otro) suman 180°.',
-        criterios_aceptacion: ['opuestos iguales', 'adyacentes suman 180°', 'suplementarios o ángulo recto mencionado', 'ejemplo numérico'],
+          'El ángulo de al lado mide 180° - 70° = 110°. El ángulo de enfrente mide igual: 70°. El cuarto ángulo mide 110°. Los cuatro ángulos son: 70°, 110°, 70°, 110°.',
+        criterios_aceptacion: ['adyacentes suman 180°', '180 - 70 = 110', 'opuestos iguales', 'cuatro angulos: 70, 110, 70, 110'],
       },
     ],
   },

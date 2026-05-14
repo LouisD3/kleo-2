@@ -68,9 +68,10 @@ export const tareaSecuencia11: TareaCPA = {
       {
         pregunta:
           'Usando el modelo de barras, escribe la fórmula del perímetro de un rectángulo usando las variables l (largo) y a (ancho).',
-        tipo: 'calculo',
+        tipo: 'abierta',
         respuesta:
           'El perimetro de un rectangulo se calcula sumando todos sus lados: P = l + l + a + a, que se simplifica como P = 2l + 2a o tambien P = 2(l + a). Con l = 4 y a = 3: P = 2(4 + 3) = 2(7) = 14 unidades.',
+        criterios_aceptacion: ['P = 2l + 2a o P = 2(l+a)', 'sumar los 4 lados', 'resultado 14'],
       },
     ],
   },

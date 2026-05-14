@@ -62,9 +62,10 @@ export const tareaSecuencia12a: TareaCPA = {
       {
         pregunta:
           'Usando el modelo, explica que operacion hiciste para encontrar el valor de x en x + 3 = 7.',
-        tipo: 'calculo',
+        tipo: 'abierta',
         respuesta:
           'Se resta 3 de ambos lados: x + 3 - 3 = 7 - 3, entonces x = 4. La operacion es una resta: al total se le quita la parte conocida.',
+        criterios_aceptacion: ['restar 3 de ambos lados', 'x = 4', 'operacion inversa o resta'],
       },
     ],
   },

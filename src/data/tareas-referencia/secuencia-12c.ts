@@ -63,9 +63,10 @@ export const tareaSecuencia12c: TareaCPA = {
       {
         pregunta:
           'Explica paso a paso como encontraste el valor de cada caja usando el modelo de barras.',
-        tipo: 'calculo',
+        tipo: 'abierta',
         respuesta:
           'Paso 1: El total es 7 y la pesa vale 1, entonces las 2 cajas juntas valen 7 - 1 = 6.\nPaso 2: Como hay 2 cajas iguales, cada una vale 6 / 2 = 3.\nRespuesta: Cada caja vale 3.',
+        criterios_aceptacion: ['restar la pesa (7 - 1 = 6)', 'dividir entre 2 cajas (6 / 2 = 3)', 'cada caja vale 3'],
       },
     ],
   },

@@ -22,7 +22,7 @@ export const tareaSecuencia35: TareaCPA = {
       bridge_pictorico: 'Solo 1 caso es falso: cuando p=V y q=F (la promesa se rompe).',
       pictorico: 'Observa en la tabla cual es el unico caso falso.',
       bridge_abstracto: 'El condicional solo es falso cuando la condicion se cumple pero la consecuencia no.',
-      abstracto: 'Ahora evalua condicionales y bicondicionales.',
+      abstracto: 'Ahora evalua condicionales en diferentes contextos.',
     },
   },
   concreto: {
@@ -93,7 +93,7 @@ export const tareaSecuencia35: TareaCPA = {
         pregunta:
           'Compara los resultados de "p Y q" (de la secuencia anterior) con "SI p ENTONCES q". En cuantos de los 4 casos dan el mismo resultado?',
         respuesta:
-          'p Y q: V, F, F, F.\nSI p ENTONCES q: V, F, V, V.\nComparando fila por fila: VV=iguales, FF=iguales, FV=diferentes, FV=diferentes.\nDan el mismo resultado en 2 de 4 casos.',
+          'p Y q: V, F, F, F.\nSI p ENTONCES q: V, F, V, V.\nComparando fila por fila: caso VV: V=V iguales, caso VF: F=F iguales, caso FV: F≠V diferentes, caso FF: F≠V diferentes.\nDan el mismo resultado en 2 de 4 casos.',
       },
       {
         tipo: 'abierta',

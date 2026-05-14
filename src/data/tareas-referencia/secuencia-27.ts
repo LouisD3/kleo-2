@@ -77,9 +77,10 @@ export const tareaSecuencia27: TareaCPA = {
       {
         pregunta:
           'Usando el modelo, explica que debe cumplirse con las longitudes de los tres lados para que se pueda formar un triangulo.',
-        tipo: 'calculo',
+        tipo: 'abierta',
         respuesta:
           'Para formar un triangulo, la suma de cualesquiera dos lados debe ser mayor que el tercer lado. En el modelo: a + b = 4 + 3 = 7 > 3 (lado c), a + c = 4 + 3 = 7 > 3 (lado b), y b + c = 3 + 3 = 6 > 4 (lado a). Las tres condiciones se cumplen, entonces si se puede formar el triangulo.',
+        criterios_aceptacion: ['suma de dos lados mayor que el tercero', 'verificar las 3 combinaciones', 'se cumple la desigualdad triangular'],
       },
     ],
   },
