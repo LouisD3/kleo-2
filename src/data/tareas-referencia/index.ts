@@ -9,6 +9,7 @@ import { tareaSecuencia05a } from './secuencia-05a'
 import { tareaSecuencia05b } from './secuencia-05b'
 import { tareaSecuencia05c } from './secuencia-05c'
 import { tareaSecuencia06 } from './secuencia-06'
+import { tareaSecuencia06b } from './secuencia-06b'
 import { tareaSecuencia07 } from './secuencia-07'
 import { tareaSecuencia07b } from './secuencia-07b'
 import { tareaSecuencia08 } from './secuencia-08'
@@ -51,6 +52,7 @@ import { tareaSecuencia27 } from './secuencia-27'
 import { tareaSecuencia28 } from './secuencia-28'
 import { tareaSecuencia28b } from './secuencia-28b'
 import { tareaSecuencia29 } from './secuencia-29'
+import { tareaSecuencia29b } from './secuencia-29b'
 import { tareaSecuencia30 } from './secuencia-30'
 import { tareaSecuencia30b } from './secuencia-30b'
 import { tareaSecuencia31 } from './secuencia-31'
@@ -65,6 +67,7 @@ import { tareaSecuencia34b } from './secuencia-34b'
 import { tareaSecuencia35 } from './secuencia-35'
 import { tareaSecuencia35b } from './secuencia-35b'
 import { tareaSecuencia36 } from './secuencia-36'
+import { tareaSecuencia36b } from './secuencia-36b'
 
 const TAREAS_REFERENCIA: TareaCPA[] = [
   // Secuencia 1 — Fracciones y decimales
@@ -83,6 +86,7 @@ const TAREAS_REFERENCIA: TareaCPA[] = [
   tareaSecuencia05c,
   // Secuencia 6 — Multiplicacion y division
   tareaSecuencia06,
+  tareaSecuencia06b,
   // Secuencia 7 — Propiedad conmutativa y asociativa
   tareaSecuencia07,
   tareaSecuencia07b,
@@ -148,6 +152,7 @@ const TAREAS_REFERENCIA: TareaCPA[] = [
   tareaSecuencia28b,
   // Secuencia 29 — Analisis estadistico
   tareaSecuencia29,
+  tareaSecuencia29b,
   // Secuencia 30 — Frecuencia absoluta y relativa
   tareaSecuencia30,
   tareaSecuencia30b,
@@ -169,6 +174,7 @@ const TAREAS_REFERENCIA: TareaCPA[] = [
   tareaSecuencia35b,
   // Secuencia 36 — Numeros binarios
   tareaSecuencia36,
+  tareaSecuencia36b,
 ]
 
 /** Get all reference tareas */
