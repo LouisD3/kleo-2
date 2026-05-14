@@ -10,6 +10,7 @@ import { tareaSecuencia05b } from './secuencia-05b'
 import { tareaSecuencia05c } from './secuencia-05c'
 import { tareaSecuencia06 } from './secuencia-06'
 import { tareaSecuencia07 } from './secuencia-07'
+import { tareaSecuencia07b } from './secuencia-07b'
 import { tareaSecuencia08 } from './secuencia-08'
 import { tareaSecuencia08b } from './secuencia-08b'
 import { tareaSecuencia09a } from './secuencia-09a'
@@ -27,18 +28,23 @@ import { tareaSecuencia14b } from './secuencia-14b'
 import { tareaSecuencia15a } from './secuencia-15a'
 import { tareaSecuencia15b } from './secuencia-15b'
 import { tareaSecuencia16 } from './secuencia-16'
+import { tareaSecuencia16b } from './secuencia-16b'
 import { tareaSecuencia17 } from './secuencia-17'
 import { tareaSecuencia17b } from './secuencia-17b'
 import { tareaSecuencia18 } from './secuencia-18'
 import { tareaSecuencia18b } from './secuencia-18b'
 import { tareaSecuencia19 } from './secuencia-19'
+import { tareaSecuencia19b } from './secuencia-19b'
 import { tareaSecuencia20 } from './secuencia-20'
 import { tareaSecuencia20b } from './secuencia-20b'
 import { tareaSecuencia20c } from './secuencia-20c'
 import { tareaSecuencia21 } from './secuencia-21'
+import { tareaSecuencia21b } from './secuencia-21b'
 import { tareaSecuencia22 } from './secuencia-22'
+import { tareaSecuencia22b } from './secuencia-22b'
 import { tareaSecuencia23 } from './secuencia-23'
 import { tareaSecuencia24 } from './secuencia-24'
+import { tareaSecuencia24b } from './secuencia-24b'
 import { tareaSecuencia25 } from './secuencia-25'
 import { tareaSecuencia26 } from './secuencia-26'
 import { tareaSecuencia27 } from './secuencia-27'
@@ -53,6 +59,7 @@ import { tareaSecuencia31c } from './secuencia-31c'
 import { tareaSecuencia32 } from './secuencia-32'
 import { tareaSecuencia32b } from './secuencia-32b'
 import { tareaSecuencia33 } from './secuencia-33'
+import { tareaSecuencia33b } from './secuencia-33b'
 import { tareaSecuencia34 } from './secuencia-34'
 import { tareaSecuencia34b } from './secuencia-34b'
 import { tareaSecuencia35 } from './secuencia-35'
@@ -78,6 +85,7 @@ const TAREAS_REFERENCIA: TareaCPA[] = [
   tareaSecuencia06,
   // Secuencia 7 — Propiedad conmutativa y asociativa
   tareaSecuencia07,
+  tareaSecuencia07b,
   // Secuencia 8 — Propiedad distributiva
   tareaSecuencia08,
   tareaSecuencia08b,
@@ -104,6 +112,7 @@ const TAREAS_REFERENCIA: TareaCPA[] = [
   tareaSecuencia15b,
   // Secuencia 16 — Rectas
   tareaSecuencia16,
+  tareaSecuencia16b,
   // Secuencia 17 — Angulos
   tareaSecuencia17,
   tareaSecuencia17b,
@@ -112,18 +121,22 @@ const TAREAS_REFERENCIA: TareaCPA[] = [
   tareaSecuencia18b,
   // Secuencia 19 — Bisectriz y angulos congruentes
   tareaSecuencia19,
+  tareaSecuencia19b,
   // Secuencia 20 — Rectas notables
   tareaSecuencia20,
   tareaSecuencia20b,
   tareaSecuencia20c,
   // Secuencia 21 — Tipos de triangulos y cuadrilateros
   tareaSecuencia21,
+  tareaSecuencia21b,
   // Secuencia 22 — Rectas notables en el circulo
   tareaSecuencia22,
+  tareaSecuencia22b,
   // Secuencia 23 — Figuras relacionadas con el circulo
   tareaSecuencia23,
   // Secuencia 24 — Partes del circulo
   tareaSecuencia24,
+  tareaSecuencia24b,
   // Secuencia 25 — Distancia entre dos puntos
   tareaSecuencia25,
   // Secuencia 26 — Distancia punto a recta
@@ -147,6 +160,7 @@ const TAREAS_REFERENCIA: TareaCPA[] = [
   tareaSecuencia32b,
   // Secuencia 33 — Eventos aleatorios
   tareaSecuencia33,
+  tareaSecuencia33b,
   // Secuencia 34 — Conjuncion y disyuncion
   tareaSecuencia34,
   tareaSecuencia34b,
