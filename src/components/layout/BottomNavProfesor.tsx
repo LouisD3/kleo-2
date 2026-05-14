@@ -95,7 +95,7 @@ export default function BottomNavProfesor() {
             aria-label="Menu"
           >
             <Menu className="w-5 h-5" />
-            Mas
+            Más
           </button>
         </div>
       </nav>

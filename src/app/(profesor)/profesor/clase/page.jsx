@@ -285,12 +285,12 @@ export default function MiClase() {
         titulo="Eliminar alumno"
       >
         <p className="text-sm text-gray-600 mb-4">
-          ¿Estas seguro? Se eliminaran todos los resultados de este alumno. Esta accion no se puede
+          ¿Estás seguro? Se eliminarán todos los resultados de este alumno. Esta acción no se puede
           deshacer.
         </p>
         <div className="flex gap-3">
           <Boton variante="peligro" onClick={handleEliminarAlumno}>
-            Si, eliminar
+            Sí, eliminar
           </Boton>
           <Boton variante="secundario" onClick={() => setConfirmEliminar(null)}>
             Cancelar
@@ -305,8 +305,8 @@ export default function MiClase() {
         titulo="Eliminar clase"
       >
         <p className="text-sm text-gray-600 mb-4">
-          ¿Estas seguro de que quieres eliminar <strong>{clase?.nombre}</strong>? Se eliminaran
-          tambien todos los alumnos, tareas y resultados asociados. Esta accion no se puede
+          ¿Estás seguro de que quieres eliminar <strong>{clase?.nombre}</strong>? Se eliminarán
+          también todos los alumnos, tareas y resultados asociados. Esta acción no se puede
           deshacer.
         </p>
         <div className="flex gap-3">
@@ -315,7 +315,7 @@ export default function MiClase() {
             onClick={handleEliminarClase}
             disabled={eliminarClaseMut.isPending}
           >
-            {eliminarClaseMut.isPending ? 'Eliminando...' : 'Si, eliminar'}
+            {eliminarClaseMut.isPending ? 'Eliminando...' : 'Sí, eliminar'}
           </Boton>
           <Boton variante="secundario" onClick={() => setConfirmEliminarClase(false)}>
             Cancelar

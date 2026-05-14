@@ -180,7 +180,7 @@ export default function Ajustes() {
       >
         <div className="space-y-4">
           <p className="text-sm text-gray-600">
-            Esta accion eliminara tu cuenta y todos tus datos (clases, alumnos, tareas, resultados).
+            Esta acción eliminará tu cuenta y todos tus datos (clases, alumnos, tareas, resultados).
             No se puede deshacer.
           </p>
           <div>

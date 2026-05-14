@@ -88,7 +88,7 @@ export default function SecuenciaDetalle() {
         </h2>
         {tareasCPA.length === 0 ? (
           <div className="card p-8 text-center text-gray-400">
-            <p className="text-sm">Esta secuencia aun no tiene tareas CPA disponibles.</p>
+            <p className="text-sm">Esta secuencia aún no tiene tareas CPA disponibles.</p>
           </div>
         ) : (
           <div className="space-y-3">
@@ -155,7 +155,7 @@ export default function SecuenciaDetalle() {
             className="card p-4 flex flex-col items-center gap-2 text-center hover:shadow-md hover:border-amarillo transition-all"
           >
             <FileText className="w-6 h-6 text-gray-400" />
-            <span className="text-sm font-medium text-gray-700">Guia profe</span>
+            <span className="text-sm font-medium text-gray-700">Guía profe</span>
           </Link>
           <Link
             href={`/profesor/biblioteca/${id}`}

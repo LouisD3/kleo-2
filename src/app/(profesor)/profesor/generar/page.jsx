@@ -443,7 +443,7 @@ export default function GenerarTarea() {
             <div className="card p-6">
               <label className="label-base">Tipo(s) de ejercicio</label>
               <p className="text-xs text-gray-400 mb-3">
-                Selecciona uno o mas. "Ejercicio mixto" combina todos los tipos.
+                Selecciona uno o más. "Ejercicio mixto" combina todos los tipos.
               </p>
               <div className="flex flex-wrap gap-2">
                 {TIPOS_EJERCICIO.map((tipo) => {
