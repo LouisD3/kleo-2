@@ -4,7 +4,9 @@ import { useParams, useRouter } from 'next/navigation'
 import { useState } from 'react'
 import NavBar from '@/components/layout/NavBar.jsx'
 import ManipulableDispatcher from '@/components/manipulables/ManipulableDispatcher'
+import DiagramaGeometrico from '@/components/pictorico/DiagramaGeometrico'
 import ModeloBarras from '@/components/pictorico/ModeloBarras'
+import TablaPictorica from '@/components/pictorico/TablaPictorica'
 import Boton from '@/components/ui/Boton.jsx'
 import Modal from '@/components/ui/Modal.jsx'
 import Toast from '@/components/ui/Toast.jsx'
@@ -423,8 +425,8 @@ function TabTareaSingapur({ tareasCPA, secuencia }) {
 
       {/* Preview Pictorico — bar model + questions with answers */}
       <div className="card p-5">
-        <SectionHeader numero={2} titulo="Pictorico — Modelo de barras" />
-        <ModeloBarras spec={tareaCPA.pictorico.modelo_barras} className="mt-3 mb-4" />
+        <SectionHeader numero={2} titulo="Pictorico — Representacion visual" />
+        <RepresentacionPreview pictorico={tareaCPA.pictorico} />
         <div className="space-y-3">
           {tareaCPA.pictorico.preguntas.map((p, i) => (
             <PreviewPregunta key={i} pregunta={p} indice={i} />
@@ -518,6 +520,22 @@ function Section({ titulo, children }) {
 }
 
 // ── Tarea preview helpers ───────────────────────────────────────
+
+function RepresentacionPreview({ pictorico }) {
+  const rep = pictorico.representacion ?? (pictorico.modelo_barras ? { ...pictorico.modelo_barras, tipo_representacion: 'modelo_barras' } : null)
+  if (!rep) return null
+
+  switch (rep.tipo_representacion) {
+    case 'modelo_barras':
+      return <ModeloBarras spec={rep} className="mt-3 mb-4" />
+    case 'diagrama_geometrico':
+      return <DiagramaGeometrico spec={rep} className="mt-3 mb-4" />
+    case 'tabla':
+      return <TablaPictorica spec={rep} className="mt-3 mb-4" />
+    default:
+      return null
+  }
+}
 
 function SectionHeader({ numero, titulo }) {
   return (

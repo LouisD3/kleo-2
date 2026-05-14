@@ -577,7 +577,7 @@ export default function GenerarTarea() {
                     2. Pictorico
                   </p>
                   <p className="text-sm text-gray-700 mb-1">
-                    {tareaGenerada.pictorico.modelo_barras.barras.length} barras ·{' '}
+                    {tareaGenerada.pictorico.representacion?.tipo_representacion ?? 'modelo_barras'} ·{' '}
                     {tareaGenerada.pictorico.preguntas.length} preguntas
                   </p>
                   {tareaGenerada.pictorico.preguntas.map((p, i) => (
