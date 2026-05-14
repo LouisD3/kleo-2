@@ -103,6 +103,12 @@ export async function POST(request: NextRequest) {
     if (!match) throw new Error('No se encontró JSON en la respuesta')
     const datos = JSON.parse(match[0])
 
+    // Normalize AI response: convert old modelo_barras to new representacion format
+    if (type === 'generar_cpa' && datos.pictorico?.modelo_barras && !datos.pictorico?.representacion) {
+      datos.pictorico.representacion = { tipo_representacion: 'modelo_barras', ...datos.pictorico.modelo_barras }
+      delete datos.pictorico.modelo_barras
+    }
+
     // Valider la réponse de Claude avec Zod
     const responseSchema =
       type === 'corregir'
@@ -319,7 +325,8 @@ Para las preguntas pictorico/abstracto, cada una tiene:
 - opciones: (solo opcion_multiple) array de 4 opciones con letras A-D
 - respuesta: respuesta correcta
 
-Para el modelo_barras:
+Para la representacion pictorica, usa modelo_barras con tipo_representacion:
+- tipo_representacion: "modelo_barras"
 - barras: array de { label, valor, color, subdivisiones }
 - total: { valor, visible: true }
 - orientacion: "horizontal"
@@ -349,7 +356,7 @@ Formato JSON de respuesta (UNICAMENTE el JSON, sin texto adicional):
     "intentos_para_pista": 3
   },
   "pictorico": {
-    "modelo_barras": { ... },
+    "representacion": { "tipo_representacion": "modelo_barras", "barras": [...], "total": {...}, "orientacion": "horizontal" },
     "preguntas": [ { "pregunta": "...", "tipo": "...", "respuesta": "..." } ]
   },
   "abstracto": {
