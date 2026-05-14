@@ -9,8 +9,9 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  * Pictorico: Diagrama geometrico — sector (90°) y segmento circular comparados
  * Abstracto: 3 preguntas progresivas sobre sector y segmento circular
  *
- * NOTA GEOMETRIA: Angulo 90° del sector verificado:
- *   O(5,5), A(9,5), B(5,1): vec O->A=(4,0), vec O->B=(0,-4), dot=0 => 90°.
+ * NOTA GEOMETRIA: Sector 0°→120° verified. Segmento chord from 220°→320°.
+ *   A at 0°: (9,5). B at 120°: (3, 8.46).
+ *   C at 220°: (1.94, 2.43). D at 320°: (8.06, 2.43).
  */
 export const tareaSecuencia24b: TareaCPA = {
   secuencia_ref: 24,
@@ -54,39 +55,52 @@ export const tareaSecuencia24b: TareaCPA = {
       ancho: 10,
       alto: 10,
       puntos: [
-        { id: 'o', x: 5, y: 5, label: 'O (centro)' },
+        { id: 'o', x: 5, y: 5, label: 'O' },
+        // Sector: A at 0°, B at 120°
         { id: 'a', x: 9, y: 5, label: 'A' },
-        { id: 'b', x: 5, y: 1, label: 'B' },
+        { id: 'b', x: 3, y: 8.46, label: 'B' },
+        // Segmento circular: C at 220°, D at 320°
+        // C: (5+4cos220°, 5+4sin220°) = (1.94, 2.43)
+        // D: (5+4cos320°, 5+4sin320°) = (8.06, 2.43)
+        { id: 'c', x: 1.94, y: 2.43, label: 'C' },
+        { id: 'd', x: 8.06, y: 2.43, label: 'D' },
       ],
       segmentos: [
+        { tipo: 'segmento', desde: 'o', hasta: 'a', color: 'azul', medida: 'r = 4' },
+        { tipo: 'segmento', desde: 'o', hasta: 'b', color: 'azul', medida: 'r = 4' },
         {
           tipo: 'segmento',
-          desde: 'o',
-          hasta: 'a',
-          color: 'azul',
-          medida: 'r = 4',
-          label: 'Radio OA',
-        },
-        {
-          tipo: 'segmento',
-          desde: 'o',
-          hasta: 'b',
-          color: 'azul',
-          medida: 'r = 4',
-          label: 'Radio OB',
-        },
-        {
-          tipo: 'segmento',
-          desde: 'a',
-          hasta: 'b',
+          desde: 'c',
+          hasta: 'd',
           color: 'verde',
-          label: 'Cuerda AB',
+          label: 'Cuerda CD',
           estilo: 'punteado',
         },
       ],
-      angulos: [{ vertice: 'o', lado_a: 'a', lado_b: 'b', medida: '90°', color: 'azul' }],
-      poligonos: [{ puntos: ['o', 'a', 'b'], relleno: 'azul', opacidad: 0.15 }],
-      titulo: 'Sector (azul, entre radios) vs Segmento circular (entre cuerda y arco)',
+      circulos: [
+        { centro_id: 'o', radio: 4, color: 'gris', estilo: 'borde', label: 'Circulo de radio 4' },
+      ],
+      arcos: [
+        {
+          centro_id: 'o',
+          radio: 4,
+          desde_grados: 0,
+          hasta_grados: 120,
+          color: 'azul',
+          relleno: true,
+          label: 'Sector (120°)',
+        },
+        {
+          centro_id: 'o',
+          radio: 4,
+          desde_grados: 220,
+          hasta_grados: 320,
+          color: 'verde',
+          relleno: false,
+          label: 'Arco del segmento circular',
+        },
+      ],
+      titulo: 'Sector (azul, entre radios) vs Segmento circular (verde, entre cuerda y arco)',
     },
     preguntas: [
       {

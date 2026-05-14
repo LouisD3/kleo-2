@@ -48,13 +48,17 @@ export const tareaSecuencia22b: TareaCPA = {
       ancho: 10,
       alto: 10,
       puntos: [
-        { id: 'o', x: 5, y: 5, label: 'O (centro)' },
-        { id: 'p', x: 1.5, y: 3, label: 'P' },
-        { id: 'q', x: 8.5, y: 3, label: 'Q' },
-        { id: 'r', x: 1.5, y: 7, label: 'R' },
-        { id: 's', x: 8.5, y: 7, label: 'S' },
-        { id: 'ext1', x: 0, y: 7.5 },
-        { id: 'ext2', x: 10, y: 6.5 },
+        { id: 'o', x: 5, y: 5, label: 'O' },
+        // Cuerda: P at 200°, Q at 340° on circle r=4
+        // P: (5+4cos200°, 5+4sin200°) = (1.24, 3.63)
+        // Q: (5+4cos340°, 5+4sin340°) = (8.76, 3.63)
+        { id: 'p', x: 1.24, y: 3.63, label: 'P' },
+        { id: 'q', x: 8.76, y: 3.63, label: 'Q' },
+        // Secante horizontal y=3: intersections at x=5±2sqrt(3)
+        { id: 'r', x: 1.54, y: 3, label: 'R' },
+        { id: 's', x: 8.46, y: 3, label: 'S' },
+        { id: 'ext1', x: 0, y: 3 },
+        { id: 'ext2', x: 10, y: 3 },
       ],
       segmentos: [
         { tipo: 'segmento', desde: 'p', hasta: 'q', color: 'azul', label: 'Cuerda PQ' },
@@ -66,6 +70,17 @@ export const tareaSecuencia22b: TareaCPA = {
           label: 'Secante',
           estilo: 'punteado',
         },
+        {
+          tipo: 'segmento',
+          desde: 'o',
+          hasta: 'p',
+          color: 'gris',
+          estilo: 'punteado',
+          medida: 'r = 4',
+        },
+      ],
+      circulos: [
+        { centro_id: 'o', radio: 4, color: 'gris', estilo: 'borde', label: 'Circulo de radio 4' },
       ],
       titulo: 'Circulo con cuerda (azul) y secante (roja)',
     },
