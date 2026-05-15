@@ -18,7 +18,7 @@ function resolveColor(c: string): string {
 
 // ── Layout constants ─────────────────────────────────────────────
 
-const LABEL_W = 56
+const LABEL_W = 80
 const BAR_H = 40
 const BAR_GAP = 8
 const PADDING = 12
@@ -66,8 +66,9 @@ export default function ModeloBarras({ spec, className }: Props) {
           <g key={barra.label}>
             {/* Label */}
             <text
-              x={PADDING}
+              x={PADDING + LABEL_W - 8}
               y={y + BAR_H / 2}
+              textAnchor="end"
               dominantBaseline="central"
               className="text-[11px] font-medium"
               fill="#6B7280"
