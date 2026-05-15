@@ -6,9 +6,32 @@ export default {
   theme: {
     extend: {
       colors: {
-        amarillo: '#FFD700',
-        'amarillo-hover': '#F0C800',
+        // Accent jaune — aligné sur le design system
+        amarillo: '#FFD93D',
+        'amarillo-hover': '#F5C800',
         'amarillo-soft': '#FFF8E1',
+
+        // Crème — échelle pour surfaces et bordures
+        crema: {
+          50: '#FBF8F2',
+          100: '#F5F1E8',  // = background
+          200: '#EFEAE0',  // = secondary
+          300: '#E8E2D5',  // = border
+          400: '#D4CCB8',
+          500: '#A8A092',
+        },
+
+        // Tinta — échelle noire pour texte et primary
+        tinta: {
+          DEFAULT: '#1A1A1A',
+          50: '#FAFAFA',
+          100: '#F5F5F5',
+          400: '#737373',
+          600: '#404040',
+          900: '#1A1A1A',
+        },
+
+        // Variables shadcn
         background: 'var(--background)',
         foreground: 'var(--foreground)',
         card: { DEFAULT: 'var(--card)', foreground: 'var(--card-foreground)' },

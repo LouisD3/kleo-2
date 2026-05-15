@@ -34,34 +34,34 @@ export default function ClaseCard({ clase }: { clase: ClaseEnriched }) {
   return (
     <Link
       href={`/profesor/clase/${clase.id}`}
-      className="block bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg hover:border-amarillo transition-all animate-fade-in group"
+      className="block bg-white border border-crema-300 rounded-3xl p-6 hover:shadow-sm hover:border-crema-400 transition-all animate-fade-in group"
     >
       {/* Header */}
       <div className="flex items-center gap-3 mb-1">
         <span className="text-2xl">{clase.emoji || '🎓'}</span>
-        <h3 className="text-lg font-bold text-gray-900 truncate">{clase.nombre}</h3>
+        <h3 className="text-lg font-semibold text-tinta truncate">{clase.nombre}</h3>
       </div>
-      <p className="text-sm text-gray-500 mb-4">{clase.alumnosCount} alumnos</p>
+      <p className="text-sm text-tinta-400 mb-4">{clase.alumnosCount} alumnos</p>
 
       {/* Progress section */}
       <div className="mb-4">
         {clase.bloqueActual && (
-          <p className="text-xs text-gray-500 mb-1">
+          <p className="text-xs text-tinta-400 mb-1">
             {clase.bloqueActual.emoji} {clase.bloqueActual.titulo}
           </p>
         )}
-        <div className="w-full bg-gray-100 rounded-full h-2 mb-1">
+        <div className="w-full bg-crema-200 rounded-full h-2 mb-1">
           <div
-            className="bg-amarillo h-2 rounded-full transition-all duration-500"
+            className="bg-tinta h-2 rounded-full transition-all duration-500"
             style={{ width: `${clase.progressPct}%` }}
           />
         </div>
-        <p className="text-xs text-gray-400">{clase.progressPct}% del programa</p>
+        <p className="text-xs text-tinta-400">{clase.progressPct}% del programa</p>
       </div>
 
       {/* Alerts */}
       {clase.alumnosBloqueadosCount > 0 ? (
-        <div className="flex items-center gap-2 text-sm text-orange-600 bg-orange-50 rounded-lg px-3 py-2 mb-4">
+        <div className="flex items-center gap-2 text-sm text-orange-600 bg-orange-50 rounded-2xl px-3 py-2 mb-4">
           <AlertTriangle className="w-4 h-4 flex-shrink-0" />
           <span>
             {clase.alumnosBloqueadosCount} alumno{clase.alumnosBloqueadosCount > 1 ? 's' : ''}{' '}
@@ -69,7 +69,7 @@ export default function ClaseCard({ clase }: { clase: ClaseEnriched }) {
           </span>
         </div>
       ) : (
-        <div className="flex items-center gap-2 text-sm text-green-600 bg-green-50 rounded-lg px-3 py-2 mb-4">
+        <div className="flex items-center gap-2 text-sm text-green-600 bg-green-50 rounded-2xl px-3 py-2 mb-4">
           <CheckCircle className="w-4 h-4 flex-shrink-0" />
           <span>Todo en orden</span>
         </div>
@@ -78,13 +78,13 @@ export default function ClaseCard({ clase }: { clase: ClaseEnriched }) {
       {/* Footer */}
       <div className="flex items-center justify-between">
         {clase.ultimaActividad ? (
-          <span className="text-xs text-gray-400">
+          <span className="text-xs text-tinta-400">
             Última actividad: {formatTiempoRelativo(clase.ultimaActividad)}
           </span>
         ) : (
-          <span className="text-xs text-gray-400">Sin actividad</span>
+          <span className="text-xs text-tinta-400">Sin actividad</span>
         )}
-        <span className="inline-flex items-center gap-1 text-sm font-medium text-gray-500 group-hover:text-gray-900 transition-colors">
+        <span className="inline-flex items-center gap-1 text-sm font-medium text-tinta-400 group-hover:text-tinta transition-colors">
           Entrar <ArrowRight className="w-4 h-4" />
         </span>
       </div>

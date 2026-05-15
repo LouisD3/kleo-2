@@ -4,34 +4,48 @@
 
 @layer base {
   :root {
-    --background: #fafafa;
-    --foreground: #171717;
-    --card: #ffffff;
-    --card-foreground: #171717;
-    --popover: #ffffff;
-    --popover-foreground: #171717;
-    --primary: #171717;
-    --primary-foreground: #fafafa;
-    --secondary: #f5f5f5;
-    --secondary-foreground: #171717;
-    --muted: #f5f5f5;
-    --muted-foreground: #737373;
-    --accent: #f5f5f5;
-    --accent-foreground: #171717;
-    --destructive: #ef4444;
-    --border: #e5e5e5;
-    --input: #e5e5e5;
-    --ring: #a3a3a3;
-    --radius: 0.625rem;
+    /* Surfaces */
+    --background: #F5F1E8;        /* Crème chaud — fond principal */
+    --card: #FFFFFF;               /* Cards blanches sur le crème */
+    --card-foreground: #1A1A1A;
+    --popover: #FFFFFF;
+    --popover-foreground: #1A1A1A;
+
+    /* Texte */
+    --foreground: #1A1A1A;         /* Texte principal — quasi noir */
+    --muted: #F5F1E8;              /* Backgrounds muted = même que body */
+    --muted-foreground: #737373;   /* Texte secondaire */
+
+    /* Primary = NOIR */
+    --primary: #1A1A1A;
+    --primary-foreground: #FAFAFA;
+
+    /* Secondary = surface alternative */
+    --secondary: #EFEAE0;          /* Crème un cran plus foncé */
+    --secondary-foreground: #1A1A1A;
+
+    /* Accent = JAUNE (highlights uniquement) */
+    --accent: #FFD93D;
+    --accent-foreground: #1A1A1A;
+
+    /* Destructive */
+    --destructive: #DC2626;
+
+    /* Borders / inputs / ring */
+    --border: #E8E2D5;             /* Bordure très douce, ton crème */
+    --input: #E8E2D5;
+    --ring: #1A1A1A;               /* Focus ring noir */
+
+    --radius: 1rem;                /* 16px */
   }
 
   html {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
     -webkit-font-smoothing: antialiased;
   }
 
   body {
-    @apply bg-gray-50 text-gray-900;
+    @apply bg-background text-foreground;
   }
 
   * {
@@ -41,15 +55,15 @@
 
 @layer components {
   .card {
-    @apply bg-white rounded-2xl border border-gray-100 shadow-sm;
+    @apply bg-white rounded-3xl border border-crema-300 shadow-none;
   }
 
   .input-base {
-    @apply w-full rounded-xl border border-gray-200 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-amarillo focus:border-amarillo transition-all;
+    @apply w-full rounded-2xl border border-crema-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-tinta focus:border-tinta transition-all;
   }
 
   .label-base {
-    @apply block text-sm font-medium text-gray-700 mb-1.5;
+    @apply block text-sm font-medium text-tinta mb-1.5;
   }
 }
 
@@ -78,6 +92,6 @@
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #d1d5db;
+  background: #D4CCB8;
   border-radius: 99px;
 }

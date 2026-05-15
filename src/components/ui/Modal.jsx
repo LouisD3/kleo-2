@@ -7,10 +7,10 @@ export default function Modal({ abierto, onCerrar, titulo, children, maxWidth = 
   return (
     <Dialog open={abierto} onOpenChange={(open) => !open && onCerrar?.()}>
       <DialogContent
-        className={cn('sm:max-w-lg rounded-2xl p-0', maxWidth === 'max-w-2xl' && 'sm:max-w-2xl')}
+        className={cn('sm:max-w-lg rounded-3xl p-0', maxWidth === 'max-w-2xl' && 'sm:max-w-2xl')}
       >
-        <DialogHeader className="px-6 py-4 border-b border-gray-100">
-          <DialogTitle className="text-lg font-semibold text-gray-900">{titulo}</DialogTitle>
+        <DialogHeader className="px-6 py-4 border-b border-crema-300">
+          <DialogTitle className="text-lg font-semibold text-tinta">{titulo}</DialogTitle>
         </DialogHeader>
         <div className="px-6 py-5">{children}</div>
       </DialogContent>

@@ -14,13 +14,13 @@ export default function NavBar({ titulo, volver }) {
   }
 
   return (
-    <header className="sticky top-0 z-40 bg-white border-b border-gray-100 shadow-sm">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-4">
+    <header className="sticky top-0 z-40 bg-crema-100 border-b border-crema-300">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-4">
         <div className="flex items-center gap-3">
           {volver && (
             <button
               onClick={() => router.push(volver)}
-              className="p-1.5 rounded-lg text-gray-400 hover:text-gray-700 hover:bg-gray-100 transition-colors"
+              className="p-1.5 rounded-full text-tinta-400 hover:text-tinta hover:bg-crema-200 transition-colors"
               aria-label="Volver"
             >
               <svg className="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
@@ -37,14 +37,14 @@ export default function NavBar({ titulo, volver }) {
               onClick={() =>
                 router.push(rol === 'profesor' ? '/profesor' : rol === 'alumno' ? '/alumno' : '/')
               }
-              className="text-xl font-bold text-gray-900 hover:text-amarillo transition-colors"
+              className="text-xl font-bold text-tinta hover:text-tinta-600 transition-colors"
             >
               Kleo
             </button>
             {titulo && (
               <>
-                <span className="text-gray-300">/</span>
-                <span className="text-sm text-gray-500 font-medium">{titulo}</span>
+                <span className="text-crema-400">/</span>
+                <span className="text-sm text-tinta-400 font-medium">{titulo}</span>
               </>
             )}
           </div>
@@ -58,17 +58,17 @@ export default function NavBar({ titulo, volver }) {
               >
                 {alumno.avatar}
               </span>
-              <span className="text-sm font-medium text-gray-700 hidden sm:block">
+              <span className="text-sm font-medium text-tinta-600 hidden sm:block">
                 {alumno.nombre}
               </span>
             </div>
           )}
           {rol === 'profesor' && profesor && (
             <div className="flex items-center gap-2">
-              <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-gray-100 text-xs font-bold text-gray-600">
+              <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-tinta text-tinta-50 text-xs font-bold">
                 {profesor.nombre?.charAt(0)?.toUpperCase() ?? 'P'}
               </span>
-              <span className="text-sm font-medium text-gray-700 hidden sm:block">
+              <span className="text-sm font-medium text-tinta-600 hidden sm:block">
                 {profesor.nombre}
               </span>
             </div>
@@ -76,7 +76,7 @@ export default function NavBar({ titulo, volver }) {
           {rol === 'profesor' && (
             <button
               onClick={() => router.push('/profesor/biblioteca')}
-              className="p-1.5 rounded-lg text-gray-400 hover:text-gray-700 hover:bg-gray-100 transition-colors"
+              className="p-1.5 rounded-full text-tinta-400 hover:text-tinta hover:bg-crema-200 transition-colors"
               title="Biblioteca"
             >
               <BookOpen className="w-[18px] h-[18px]" />
@@ -85,7 +85,7 @@ export default function NavBar({ titulo, volver }) {
           {rol === 'profesor' && (
             <button
               onClick={() => router.push('/profesor/ajustes')}
-              className="p-1.5 rounded-lg text-gray-400 hover:text-gray-700 hover:bg-gray-100 transition-colors"
+              className="p-1.5 rounded-full text-tinta-400 hover:text-tinta hover:bg-crema-200 transition-colors"
               title="Ajustes"
             >
               <Settings className="w-[18px] h-[18px]" />
@@ -93,7 +93,7 @@ export default function NavBar({ titulo, volver }) {
           )}
           <button
             onClick={handleSalir}
-            className="p-1.5 rounded-lg text-gray-400 hover:text-gray-700 hover:bg-gray-100 transition-colors"
+            className="p-1.5 rounded-full text-tinta-400 hover:text-tinta hover:bg-crema-200 transition-colors"
             title="Salir"
           >
             <LogOut className="w-[18px] h-[18px]" />

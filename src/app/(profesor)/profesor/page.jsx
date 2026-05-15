@@ -1,6 +1,6 @@
 'use client'
 
-import { Plus } from 'lucide-react'
+import { AlertTriangle, BookOpen, CheckCircle, Plus, Users } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import ClaseCard from '@/components/profesor/ClaseCard'
 import Boton from '@/components/ui/Boton.jsx'
@@ -69,6 +69,8 @@ export default function PaginaMisClases() {
 
   // Compute summary stats
   const totalAlumnos = (clasesEnriched ?? []).reduce((sum, c) => sum + c.alumnosCount, 0)
+  const totalTareasActivas = (clasesEnriched ?? []).reduce((sum, c) => sum + c.tareasActivas, 0)
+  const totalBloqueados = (clasesEnriched ?? []).reduce((sum, c) => sum + c.alumnosBloqueadosCount, 0)
 
   if (isLoading && clases.length > 0) {
     return (
@@ -80,33 +82,102 @@ export default function PaginaMisClases() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-8 animate-fade-in">
-      {/* Greeting */}
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">
-          {saludoDelDia()}, {profesor?.nombre?.split(' ')[0] ?? 'Profe'} 👋
-        </h1>
-        <p className="text-lg text-gray-600 mt-1">
-          {clases.length} grupo{clases.length !== 1 ? 's' : ''} · {totalAlumnos} alumno
-          {totalAlumnos !== 1 ? 's' : ''}
-        </p>
+      {/* Hero card — greeting + CTAs */}
+      <div className="grid grid-cols-12 gap-6 mb-8">
+        <div className="col-span-12 lg:col-span-8 bg-white rounded-3xl border border-crema-300 p-8 flex flex-col justify-between">
+          <div>
+            <h1 className="text-3xl font-bold text-tinta tracking-tight">
+              {saludoDelDia()}, {profesor?.nombre?.split(' ')[0]?.replace(/\./g, ' ') ?? 'Profe'} 👋
+            </h1>
+            <p className="text-sm text-tinta-400 mt-1">¿Qué quieres enseñar hoy?</p>
+          </div>
+          <div className="flex items-center gap-3 mt-6">
+            <Boton variante="primario" size="md" onClick={() => setModalNuevaClase(true)}>
+              <Plus className="w-4 h-4" />
+              Nueva clase
+            </Boton>
+            <Boton
+              variante="secundario"
+              size="md"
+              onClick={() => window.location.href = '/profesor/biblioteca'}
+            >
+              <BookOpen className="w-4 h-4" />
+              Biblioteca
+            </Boton>
+          </div>
+        </div>
+
+        {/* Stats card */}
+        <div className="col-span-12 lg:col-span-4 bg-white rounded-3xl border border-crema-300 p-6 flex flex-col justify-between gap-3">
+          <div className="flex items-center gap-3 p-3 rounded-2xl bg-crema-50">
+            <div className="w-10 h-10 rounded-full bg-tinta text-tinta-50 flex items-center justify-center flex-shrink-0">
+              <Users className="w-5 h-5" />
+            </div>
+            <div>
+              <p className="text-2xl font-bold text-tinta tabular-nums leading-none">{totalAlumnos}</p>
+              <p className="text-xs text-tinta-400 mt-0.5">Alumnos</p>
+            </div>
+          </div>
+          <div className="flex items-center gap-3 p-3 rounded-2xl bg-crema-50">
+            <div className="w-10 h-10 rounded-full bg-amarillo text-tinta flex items-center justify-center flex-shrink-0">
+              <BookOpen className="w-5 h-5" />
+            </div>
+            <div>
+              <p className="text-2xl font-bold text-tinta tabular-nums leading-none">{totalTareasActivas}</p>
+              <p className="text-xs text-tinta-400 mt-0.5">Tareas activas</p>
+            </div>
+          </div>
+          {totalBloqueados > 0 ? (
+            <div className="flex items-center gap-3 p-3 rounded-2xl bg-orange-50">
+              <div className="w-10 h-10 rounded-full bg-orange-100 text-orange-600 flex items-center justify-center flex-shrink-0">
+                <AlertTriangle className="w-5 h-5" />
+              </div>
+              <div>
+                <p className="text-2xl font-bold text-orange-600 tabular-nums leading-none">{totalBloqueados}</p>
+                <p className="text-xs text-orange-500 mt-0.5">Necesitan atención</p>
+              </div>
+            </div>
+          ) : (
+            <div className="flex items-center gap-3 p-3 rounded-2xl bg-green-50">
+              <div className="w-10 h-10 rounded-full bg-green-100 text-green-600 flex items-center justify-center flex-shrink-0">
+                <CheckCircle className="w-5 h-5" />
+              </div>
+              <div>
+                <p className="text-sm font-medium text-green-600">Todo en orden</p>
+                <p className="text-xs text-green-500 mt-0.5">Sin alumnos bloqueados</p>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
 
       {/* Empty state */}
       {clases.length === 0 && !isLoading && (
-        <div className="card p-12 text-center">
-          <p className="text-lg font-medium text-gray-600 mb-2">Aún no tienes clases.</p>
-          <p className="text-sm text-gray-400 mb-6">¡Crea tu primera para empezar el viaje! 🗺️</p>
+        <div className="bg-white rounded-3xl border border-crema-300 p-12 text-center">
+          <p className="text-lg font-semibold text-tinta mb-2">Aún no tienes clases.</p>
+          <p className="text-sm text-tinta-400 mb-6">¡Crea tu primera para empezar el viaje!</p>
           <Boton variante="primario" onClick={() => setModalNuevaClase(true)}>
             Crear mi primera clase
           </Boton>
         </div>
       )}
 
-      {/* Class cards grid */}
+      {/* Class cards grid — asymmetric */}
       {(clasesEnriched ?? []).length > 0 && (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-          {clasesEnriched.map((clase) => (
-            <ClaseCard key={clase.id} clase={clase} />
+        <div className="grid grid-cols-12 gap-6 mb-8">
+          {clasesEnriched.map((clase, i) => (
+            <div
+              key={clase.id}
+              className={
+                i === 0
+                  ? 'col-span-12 lg:col-span-7'
+                  : i === 1
+                    ? 'col-span-12 lg:col-span-5'
+                    : 'col-span-12 md:col-span-6 lg:col-span-4'
+              }
+            >
+              <ClaseCard clase={clase} />
+            </div>
           ))}
         </div>
       )}
@@ -115,7 +186,7 @@ export default function PaginaMisClases() {
       {clases.length > 0 && (
         <button
           onClick={() => setModalNuevaClase(true)}
-          className="flex items-center justify-center gap-2 w-full max-w-md mx-auto px-4 py-3 rounded-xl border-2 border-dashed border-gray-300 text-gray-500 hover:border-amarillo hover:text-gray-700 transition-colors"
+          className="flex items-center justify-center gap-2 w-full max-w-md mx-auto px-4 py-3 rounded-3xl border-2 border-dashed border-crema-300 text-tinta-400 hover:border-crema-400 hover:text-tinta transition-colors"
         >
           <Plus className="w-5 h-5" />
           <span className="font-medium">Crear nueva clase</span>
@@ -152,10 +223,10 @@ export default function PaginaMisClases() {
                   key={e}
                   type="button"
                   onClick={() => setFormClase((p) => ({ ...p, emoji: e }))}
-                  className={`w-10 h-10 rounded-lg text-xl flex items-center justify-center border-2 transition-colors ${
+                  className={`w-10 h-10 rounded-2xl text-xl flex items-center justify-center border-2 transition-colors ${
                     formClase.emoji === e
-                      ? 'border-amarillo bg-amarillo/10'
-                      : 'border-gray-200 hover:border-gray-300'
+                      ? 'border-tinta bg-crema-100'
+                      : 'border-crema-300 hover:border-crema-400'
                   }`}
                 >
                   {e}
