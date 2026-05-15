@@ -11,6 +11,11 @@ import { useClasesEnriched } from '@/hooks/useClasesEnriched.js'
 import { supabase } from '@/lib/supabase.js'
 import useAuthStore from '@/store/useAuthStore.js'
 
+function capitalize(str) {
+  if (!str) return ''
+  return str.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase()).join(' ')
+}
+
 function saludoDelDia() {
   const h = new Date().getHours()
   if (h < 12) return 'Buenos días'
@@ -87,7 +92,7 @@ export default function PaginaMisClases() {
         <div className="col-span-12 lg:col-span-8 bg-white rounded-3xl border border-crema-300 p-8 flex flex-col justify-between">
           <div>
             <h1 className="text-3xl font-bold text-tinta tracking-tight">
-              {saludoDelDia()}, {profesor?.nombre?.split(' ')[0]?.replace(/\./g, ' ') ?? 'Profe'} 👋
+              {saludoDelDia()}, {capitalize(profesor?.nombre?.replace(/\./g, ' ')) || 'Profe'} 👋
             </h1>
             <p className="text-sm text-tinta-400 mt-1">¿Qué quieres enseñar hoy?</p>
           </div>
@@ -110,7 +115,7 @@ export default function PaginaMisClases() {
         {/* Stats card */}
         <div className="col-span-12 lg:col-span-4 bg-white rounded-3xl border border-crema-300 p-6 flex flex-col justify-between gap-3">
           <div className="flex items-center gap-3 p-3 rounded-2xl bg-crema-50">
-            <div className="w-10 h-10 rounded-full bg-tinta text-tinta-50 flex items-center justify-center flex-shrink-0">
+            <div className="w-10 h-10 rounded-full bg-tinta text-amarillo flex items-center justify-center flex-shrink-0">
               <Users className="w-5 h-5" />
             </div>
             <div>

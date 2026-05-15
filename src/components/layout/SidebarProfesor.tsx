@@ -75,7 +75,7 @@ export default function SidebarProfesor() {
               href={item.href}
               className={`flex items-center gap-3 px-3 py-2.5 rounded-2xl text-sm font-medium transition-colors ${
                 active
-                  ? 'bg-tinta text-tinta-50'
+                  ? 'bg-tinta text-amarillo'
                   : 'text-tinta-400 hover:bg-crema-100 hover:text-tinta'
               }`}
               aria-label={item.label}
@@ -93,7 +93,7 @@ export default function SidebarProfesor() {
         {/* Profile */}
         {profesor && (
           <div className="flex items-center gap-3 px-3 py-2.5 mb-2">
-            <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-tinta text-tinta-50 text-xs font-bold flex-shrink-0">
+            <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-tinta text-amarillo text-xs font-bold flex-shrink-0">
               {profesor.nombre?.charAt(0)?.toUpperCase() ?? 'P'}
             </span>
             <span className="text-sm font-medium text-tinta truncate">{profesor.nombre}</span>
@@ -108,7 +108,7 @@ export default function SidebarProfesor() {
               href={item.href}
               className={`flex items-center gap-3 px-3 py-2.5 rounded-2xl text-sm font-medium transition-colors ${
                 active
-                  ? 'bg-tinta text-tinta-50'
+                  ? 'bg-tinta text-amarillo'
                   : 'text-tinta-400 hover:bg-crema-100 hover:text-tinta'
               }`}
               aria-label={item.label}
@@ -132,7 +132,7 @@ export default function SidebarProfesor() {
       <div className="px-3 pb-4">
         <button
           onClick={handleAccionRapida}
-          className="flex items-center justify-center gap-2 w-full px-3 py-2.5 rounded-full bg-tinta text-tinta-50 text-sm font-medium hover:bg-tinta-600 transition-colors"
+          className="flex items-center justify-center gap-2 w-full px-3 py-2.5 rounded-full bg-tinta text-amarillo text-sm font-medium hover:bg-tinta-600 transition-colors"
         >
           <Plus className="w-4 h-4" />
           Acción rápida

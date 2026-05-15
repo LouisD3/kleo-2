@@ -17,7 +17,7 @@ const SIZE_MAP = {
 }
 
 const PRIMARIO_CLASSES =
-  'bg-tinta hover:bg-tinta-600 text-tinta-50 border-tinta focus-visible:ring-tinta shadow-none active:scale-95'
+  'bg-tinta hover:bg-tinta-600 text-amarillo border-tinta focus-visible:ring-tinta shadow-none active:scale-95'
 
 const SECUNDARIO_CLASSES =
   'bg-white hover:bg-crema-50 text-tinta border border-crema-300 shadow-none'

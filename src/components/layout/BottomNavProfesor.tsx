@@ -85,7 +85,7 @@ export default function BottomNavProfesor() {
                 }`}
                 aria-label={item.label}
               >
-                <div className={`p-1 rounded-full ${active ? 'bg-tinta text-tinta-50' : ''}`}>
+                <div className={`p-1 rounded-full ${active ? 'bg-tinta text-amarillo' : ''}`}>
                   <Icon className="w-5 h-5" />
                 </div>
                 {item.label}
