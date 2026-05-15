@@ -7,26 +7,26 @@
     /* Surfaces */
     --background: #F5F1E8;        /* Crème chaud — fond principal */
     --card: #FFFFFF;               /* Cards blanches sur le crème */
-    --card-foreground: #1A1A1A;
+    --card-foreground: #2D2D2D;
     --popover: #FFFFFF;
-    --popover-foreground: #1A1A1A;
+    --popover-foreground: #2D2D2D;
 
     /* Texte */
-    --foreground: #1A1A1A;         /* Texte principal — quasi noir */
+    --foreground: #2D2D2D;         /* Texte principal — noir doux */
     --muted: #F5F1E8;              /* Backgrounds muted = même que body */
     --muted-foreground: #737373;   /* Texte secondaire */
 
-    /* Primary = NOIR */
-    --primary: #1A1A1A;
+    /* Primary = NOIR DOUX */
+    --primary: #2D2D2D;
     --primary-foreground: #FAFAFA;
 
     /* Secondary = surface alternative */
     --secondary: #EFEAE0;          /* Crème un cran plus foncé */
-    --secondary-foreground: #1A1A1A;
+    --secondary-foreground: #2D2D2D;
 
     /* Accent = JAUNE (highlights uniquement) */
     --accent: #FFD93D;
-    --accent-foreground: #1A1A1A;
+    --accent-foreground: #2D2D2D;
 
     /* Destructive */
     --destructive: #DC2626;
@@ -34,7 +34,7 @@
     /* Borders / inputs / ring */
     --border: #E8E2D5;             /* Bordure très douce, ton crème */
     --input: #E8E2D5;
-    --ring: #1A1A1A;               /* Focus ring noir */
+    --ring: #2D2D2D;               /* Focus ring */
 
     --radius: 1rem;                /* 16px */
   }

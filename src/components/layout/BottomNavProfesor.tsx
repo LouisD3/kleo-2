@@ -38,29 +38,29 @@ export default function BottomNavProfesor() {
             className="fixed inset-0 bg-black/30 z-40 md:hidden"
             onClick={() => setMenuOpen(false)}
           />
-          <div className="fixed top-0 right-0 w-64 h-full bg-white z-50 md:hidden shadow-xl animate-slide-up">
-            <div className="flex items-center justify-between px-4 py-4 border-b border-gray-100">
-              <span className="font-bold text-gray-900">Menú</span>
+          <div className="fixed bottom-0 inset-x-0 bg-white z-50 md:hidden rounded-t-3xl border-t border-crema-300 animate-slide-up">
+            <div className="flex items-center justify-between px-6 py-4 border-b border-crema-300">
+              <span className="font-semibold text-tinta">Menú</span>
               <button
                 onClick={() => setMenuOpen(false)}
-                className="p-1.5 rounded-lg hover:bg-gray-100"
+                className="p-1.5 rounded-full hover:bg-crema-100"
                 aria-label="Cerrar menú"
               >
-                <X className="w-5 h-5" />
+                <X className="w-5 h-5 text-tinta-400" />
               </button>
             </div>
             <nav className="p-3 space-y-1">
               <Link
                 href="/profesor/ajustes"
                 onClick={() => setMenuOpen(false)}
-                className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-100"
+                className="flex items-center gap-3 px-3 py-2.5 rounded-2xl text-sm font-medium text-tinta-400 hover:bg-crema-100 hover:text-tinta"
               >
                 <Settings className="w-5 h-5" />
                 Ajustes
               </Link>
               <button
                 onClick={handleSalir}
-                className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-100 w-full"
+                className="flex items-center gap-3 px-3 py-2.5 rounded-2xl text-sm font-medium text-tinta-400 hover:bg-crema-100 hover:text-tinta w-full"
               >
                 <LogOut className="w-5 h-5" />
                 Salir
@@ -71,7 +71,7 @@ export default function BottomNavProfesor() {
       )}
 
       {/* Bottom bar */}
-      <nav className="fixed bottom-0 inset-x-0 z-30 bg-white border-t border-gray-100 md:hidden">
+      <nav className="fixed bottom-3 inset-x-3 z-30 bg-white rounded-full border border-crema-300 md:hidden">
         <div className="flex items-center justify-around h-14">
           {NAV_ITEMS.map((item) => {
             const active = isActive(item.href)
@@ -81,21 +81,25 @@ export default function BottomNavProfesor() {
                 key={item.href}
                 href={item.href}
                 className={`flex flex-col items-center justify-center gap-0.5 flex-1 h-full text-xs font-medium transition-colors ${
-                  active ? 'text-gray-900' : 'text-gray-400'
+                  active ? 'text-tinta' : 'text-tinta-400'
                 }`}
                 aria-label={item.label}
               >
-                <Icon className={`w-5 h-5 ${active ? 'text-amarillo' : ''}`} />
+                <div className={`p-1 rounded-full ${active ? 'bg-tinta text-tinta-50' : ''}`}>
+                  <Icon className="w-5 h-5" />
+                </div>
                 {item.label}
               </Link>
             )
           })}
           <button
             onClick={() => setMenuOpen(true)}
-            className="flex flex-col items-center justify-center gap-0.5 flex-1 h-full text-xs font-medium text-gray-400"
+            className="flex flex-col items-center justify-center gap-0.5 flex-1 h-full text-xs font-medium text-tinta-400"
             aria-label="Menú"
           >
-            <Menu className="w-5 h-5" />
+            <div className="p-1">
+              <Menu className="w-5 h-5" />
+            </div>
             Más
           </button>
         </div>

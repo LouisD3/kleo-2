@@ -21,14 +21,14 @@ export default {
           500: '#A8A092',
         },
 
-        // Tinta — échelle noire pour texte et primary
+        // Tinta — échelle noir doux pour texte et primary
         tinta: {
-          DEFAULT: '#1A1A1A',
+          DEFAULT: '#2D2D2D',
           50: '#FAFAFA',
           100: '#F5F5F5',
-          400: '#737373',
-          600: '#404040',
-          900: '#1A1A1A',
+          400: '#8C8C8C',
+          600: '#525252',
+          900: '#2D2D2D',
         },
 
         // Variables shadcn

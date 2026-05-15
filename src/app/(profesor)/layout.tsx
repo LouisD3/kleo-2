@@ -7,9 +7,9 @@ import SearchGlobalModal from '@/components/profesor/SearchGlobalModal'
 export default function ProfesorLayout({ children }: { children: React.ReactNode }) {
   return (
     <ProtectedRoute requiere="profesor">
-      <div className="flex min-h-screen bg-gray-50">
+      <div className="flex min-h-screen bg-crema-100">
         <SidebarProfesor />
-        <main className="flex-1 md:ml-60 pb-16 md:pb-0">{children}</main>
+        <main className="flex-1 md:ml-64 pb-20 md:pb-0">{children}</main>
         <BottomNavProfesor />
         <SearchGlobalModal />
         <AccionRapidaMenu />
