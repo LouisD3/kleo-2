@@ -203,7 +203,7 @@ export default function DiagramaGeometrico({ spec, className }: Props) {
                 x={(x1 + x2) / 2}
                 y={(y1 + y2) / 2 - 8}
                 textAnchor="middle"
-                className={`text-[${FONT_SIZE}px] font-medium`}
+                style={{ fontSize: FONT_SIZE }} className="font-medium"
                 fill={color}
               >
                 {seg.medida}
@@ -214,7 +214,7 @@ export default function DiagramaGeometrico({ spec, className }: Props) {
                 x={(x1 + x2) / 2}
                 y={(y1 + y2) / 2 + 14}
                 textAnchor="middle"
-                className={`text-[${FONT_SIZE}px] font-medium`}
+                style={{ fontSize: FONT_SIZE }} className="font-medium"
                 fill="#6B7280"
               >
                 {seg.label}
@@ -268,7 +268,7 @@ export default function DiagramaGeometrico({ spec, className }: Props) {
                 y={vy + labelR * Math.sin(midAngle)}
                 textAnchor="middle"
                 dominantBaseline="central"
-                className={`text-[${FONT_SIZE}px] font-bold`}
+                style={{ fontSize: FONT_SIZE }} className="font-bold"
                 fill={color}
               >
                 {ang.medida}
@@ -287,7 +287,7 @@ export default function DiagramaGeometrico({ spec, className }: Props) {
               x={px(p.x)}
               y={py(p.y) - 10}
               textAnchor="middle"
-              className={`text-[${FONT_SIZE}px] font-bold`}
+              style={{ fontSize: FONT_SIZE }} className="font-bold"
               fill="#374151"
             >
               {p.label}

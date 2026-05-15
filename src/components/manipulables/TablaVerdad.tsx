@@ -118,7 +118,7 @@ export default function TablaVerdad({
                   {v}
                 </th>
               ))}
-              <th className="px-4 py-3 font-semibold text-center min-w-[80px] border-l-2 border-gray-700">
+              <th className="px-4 py-3 font-semibold text-center min-w-[120px] border-l-2 border-gray-700">
                 {spec.expresion}
               </th>
             </tr>

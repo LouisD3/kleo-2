@@ -111,9 +111,11 @@ function RuletaSVG({
         return (
           <g key={`${sec.label}-${i}`}>
             <path d={d} fill={resolveColor(sec.color)} stroke="white" strokeWidth="1" />
-            <text x={lx} y={ly + 1} textAnchor="middle" fontSize="5" fontWeight="bold" fill="white" style={{ textShadow: '0 0 2px rgba(0,0,0,0.5)' }}>
-              {sec.label}
-            </text>
+            {anglePerSection >= 30 && (
+              <text x={lx} y={ly + 1} textAnchor="middle" fontSize={anglePerSection < 45 ? 4 : 5} fontWeight="bold" fill="white" style={{ textShadow: '0 0 2px rgba(0,0,0,0.5)' }}>
+                {sec.label}
+              </text>
+            )}
           </g>
         )
       })}

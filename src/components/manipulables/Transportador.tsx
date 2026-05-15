@@ -219,16 +219,26 @@ export default function Transportador({
           {/* Center dot */}
           <circle cx={CENTER_X} cy={CENTER_Y} r={4} fill="#374151" />
 
-          {/* Angle label */}
-          <text
-            x={CENTER_X}
-            y={CENTER_Y - RADIUS * 0.6}
-            textAnchor="middle"
-            className="text-[16px] font-bold"
-            fill="#374151"
-          >
-            {angulo}°
-          </text>
+          {/* Angle label — positioned at midpoint of arc */}
+          {(() => {
+            const midRad = (Math.PI + (Math.PI - (angulo * Math.PI) / 180)) / 2
+            const labelR = RADIUS * 0.45
+            const lx = CENTER_X + labelR * Math.cos(midRad)
+            const ly = CENTER_Y + labelR * Math.sin(midRad)
+            return (
+              <text
+                x={lx}
+                y={ly}
+                textAnchor="middle"
+                dominantBaseline="central"
+                style={{ fontSize: 16 }}
+                className="font-bold"
+                fill="#374151"
+              >
+                {angulo}°
+              </text>
+            )
+          })()}
         </svg>
 
         <p className="text-xs text-gray-500 mt-1">Arrastra el punto amarillo para medir el angulo</p>

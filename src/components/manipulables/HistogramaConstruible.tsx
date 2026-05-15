@@ -100,7 +100,7 @@ export default function HistogramaConstruible({
   const BAR_WIDTH = 48
   const BAR_GAP = 16
   const CHART_HEIGHT = 180
-  const Y_LABEL_WIDTH = 28
+  const Y_LABEL_WIDTH = 36
   const chartWidth = Y_LABEL_WIDTH + spec.categorias.length * (BAR_WIDTH + BAR_GAP) + BAR_GAP
 
   // Y-axis ticks

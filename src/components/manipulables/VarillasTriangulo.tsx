@@ -152,8 +152,11 @@ export default function VarillasTriangulo({
               <text x={SVG_W / 2} y={30} textAnchor="middle" className="text-[13px] font-bold" fill="#EF4444">
                 No se puede formar un triangulo
               </text>
-              <text x={SVG_W / 2} y={50} textAnchor="middle" className="text-[11px]" fill="#6B7280">
-                {a}+{b}={a + b} {a + b > c ? '>' : '≤'} {c} | {a}+{c}={a + c} {a + c > b ? '>' : '≤'} {b} | {b}+{c}={b + c} {b + c > a ? '>' : '≤'} {a}
+              <text x={SVG_W / 2} y={48} textAnchor="middle" style={{ fontSize: 10 }} fill="#6B7280">
+                {a}+{b}={a + b} {a + b > c ? '>' : '≤'} {c}  ·  {a}+{c}={a + c} {a + c > b ? '>' : '≤'} {b}
+              </text>
+              <text x={SVG_W / 2} y={62} textAnchor="middle" style={{ fontSize: 10 }} fill="#6B7280">
+                {b}+{c}={b + c} {b + c > a ? '>' : '≤'} {a}
               </text>
             </g>
           )}

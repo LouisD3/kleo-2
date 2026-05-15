@@ -164,7 +164,8 @@ export default function TirasFracciones({
   }, [validado, seleccionPorFila, spec, intentos, intentos_para_pista, pistaVisible, onValidado])
 
   // ── SVG dimensions ──
-  const labelW = 48
+  const maxDenom = Math.max(...spec.filas.map((f) => f.divisiones))
+  const labelW = maxDenom >= 10 ? 56 : 48
   const padding = 8
   const stripH = 44 // height of each strip (large touch targets)
   const rowGap = 6
