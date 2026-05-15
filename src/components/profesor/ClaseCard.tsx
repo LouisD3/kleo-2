@@ -34,7 +34,7 @@ export default function ClaseCard({ clase }: { clase: ClaseEnriched }) {
   return (
     <Link
       href={`/profesor/clase/${clase.id}`}
-      className="block bg-white border border-crema-300 rounded-3xl p-6 hover:shadow-sm hover:border-crema-400 transition-all animate-fade-in group"
+      className="block bg-white rounded-2xl shadow-sm ring-1 ring-black/[0.04] p-6 hover:shadow-md hover:ring-black/[0.06] transition-all animate-fade-in group"
     >
       {/* Header */}
       <div className="flex items-center gap-3 mb-1">
@@ -50,7 +50,7 @@ export default function ClaseCard({ clase }: { clase: ClaseEnriched }) {
             {clase.bloqueActual.emoji} {clase.bloqueActual.titulo}
           </p>
         )}
-        <div className="w-full bg-crema-200 rounded-full h-2 mb-1">
+        <div className="w-full bg-crema-100 rounded-full h-2 mb-1">
           <div
             className="bg-tinta h-2 rounded-full transition-all duration-500"
             style={{ width: `${clase.progressPct}%` }}
@@ -61,7 +61,7 @@ export default function ClaseCard({ clase }: { clase: ClaseEnriched }) {
 
       {/* Alerts */}
       {clase.alumnosBloqueadosCount > 0 ? (
-        <div className="flex items-center gap-2 text-sm text-orange-600 bg-orange-50 rounded-2xl px-3 py-2 mb-4">
+        <div className="flex items-center gap-2 text-sm text-orange-600 bg-orange-50 rounded-xl px-3 py-2 mb-4">
           <AlertTriangle className="w-4 h-4 flex-shrink-0" />
           <span>
             {clase.alumnosBloqueadosCount} alumno{clase.alumnosBloqueadosCount > 1 ? 's' : ''}{' '}
@@ -69,7 +69,7 @@ export default function ClaseCard({ clase }: { clase: ClaseEnriched }) {
           </span>
         </div>
       ) : (
-        <div className="flex items-center gap-2 text-sm text-green-600 bg-green-50 rounded-2xl px-3 py-2 mb-4">
+        <div className="flex items-center gap-2 text-sm text-green-600 bg-green-50 rounded-xl px-3 py-2 mb-4">
           <CheckCircle className="w-4 h-4 flex-shrink-0" />
           <span>Todo en orden</span>
         </div>

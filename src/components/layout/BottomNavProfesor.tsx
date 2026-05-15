@@ -38,8 +38,8 @@ export default function BottomNavProfesor() {
             className="fixed inset-0 bg-black/30 z-40 md:hidden"
             onClick={() => setMenuOpen(false)}
           />
-          <div className="fixed bottom-0 inset-x-0 bg-white z-50 md:hidden rounded-t-3xl border-t border-crema-300 animate-slide-up">
-            <div className="flex items-center justify-between px-6 py-4 border-b border-crema-300">
+          <div className="fixed bottom-0 inset-x-0 bg-white z-50 md:hidden rounded-t-2xl shadow-2xl animate-slide-up">
+            <div className="flex items-center justify-between px-6 py-4 border-b border-crema-200">
               <span className="font-semibold text-tinta">Menú</span>
               <button
                 onClick={() => setMenuOpen(false)}
@@ -53,14 +53,14 @@ export default function BottomNavProfesor() {
               <Link
                 href="/profesor/ajustes"
                 onClick={() => setMenuOpen(false)}
-                className="flex items-center gap-3 px-3 py-2.5 rounded-2xl text-sm font-medium text-tinta-400 hover:bg-crema-100 hover:text-tinta"
+                className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-tinta-400 hover:bg-crema-100 hover:text-tinta"
               >
                 <Settings className="w-5 h-5" />
                 Ajustes
               </Link>
               <button
                 onClick={handleSalir}
-                className="flex items-center gap-3 px-3 py-2.5 rounded-2xl text-sm font-medium text-tinta-400 hover:bg-crema-100 hover:text-tinta w-full"
+                className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-tinta-400 hover:bg-crema-100 hover:text-tinta w-full"
               >
                 <LogOut className="w-5 h-5" />
                 Salir
@@ -71,7 +71,7 @@ export default function BottomNavProfesor() {
       )}
 
       {/* Bottom bar */}
-      <nav className="fixed bottom-3 inset-x-3 z-30 bg-white rounded-full border border-crema-300 md:hidden">
+      <nav className="fixed bottom-3 inset-x-3 z-30 bg-white rounded-full shadow-lg shadow-black/[0.06] ring-1 ring-black/[0.04] md:hidden">
         <div className="flex items-center justify-around h-14">
           {NAV_ITEMS.map((item) => {
             const active = isActive(item.href)

@@ -4,39 +4,39 @@
 
 @layer base {
   :root {
-    /* Surfaces */
-    --background: #F5F1E8;        /* Crème chaud — fond principal */
-    --card: #FFFFFF;               /* Cards blanches sur le crème */
-    --card-foreground: #2D2D2D;
+    /* Surfaces — blanc cassé froid */
+    --background: #F7F7F8;
+    --card: #FFFFFF;
+    --card-foreground: #1A1A1A;
     --popover: #FFFFFF;
-    --popover-foreground: #2D2D2D;
+    --popover-foreground: #1A1A1A;
 
     /* Texte */
-    --foreground: #2D2D2D;         /* Texte principal — noir doux */
-    --muted: #F5F1E8;              /* Backgrounds muted = même que body */
-    --muted-foreground: #737373;   /* Texte secondaire */
+    --foreground: #1A1A1A;
+    --muted: #F2F2F3;
+    --muted-foreground: #6B6B6B;
 
-    /* Primary = NOIR DOUX */
-    --primary: #2D2D2D;
+    /* Primary = noir profond */
+    --primary: #1A1A1A;
     --primary-foreground: #FAFAFA;
 
-    /* Secondary = surface alternative */
-    --secondary: #EFEAE0;          /* Crème un cran plus foncé */
-    --secondary-foreground: #2D2D2D;
+    /* Secondary = gris très clair */
+    --secondary: #F0F0F1;
+    --secondary-foreground: #1A1A1A;
 
-    /* Accent = JAUNE (highlights uniquement) */
-    --accent: #FFD93D;
-    --accent-foreground: #2D2D2D;
+    /* Accent = JAUNE vif */
+    --accent: #FFD43B;
+    --accent-foreground: #1A1A1A;
 
     /* Destructive */
-    --destructive: #DC2626;
+    --destructive: #EF4444;
 
     /* Borders / inputs / ring */
-    --border: #E8E2D5;             /* Bordure très douce, ton crème */
-    --input: #E8E2D5;
-    --ring: #2D2D2D;               /* Focus ring */
+    --border: #E5E5E6;
+    --input: #E5E5E6;
+    --ring: #1A1A1A;
 
-    --radius: 1rem;                /* 16px */
+    --radius: 1rem;
   }
 
   html {
@@ -54,11 +54,11 @@
 
 @layer components {
   .card {
-    @apply bg-white rounded-3xl border border-crema-300 shadow-none;
+    @apply bg-white rounded-2xl shadow-sm ring-1 ring-black/[0.04];
   }
 
   .input-base {
-    @apply w-full rounded-2xl border border-crema-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-tinta focus:border-tinta transition-all;
+    @apply w-full rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-gray-900 transition-all;
   }
 
   .label-base {
@@ -91,6 +91,6 @@
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #D4CCB8;
+  background: #D1D1D2;
   border-radius: 99px;
 }

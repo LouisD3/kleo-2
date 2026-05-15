@@ -6,29 +6,29 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Accent jaune — aligné sur le design system
-        amarillo: '#FFD93D',
-        'amarillo-hover': '#F5C800',
-        'amarillo-soft': '#FFF8E1',
+        // Accent jaune vif
+        amarillo: '#FFD43B',
+        'amarillo-hover': '#FCC419',
+        'amarillo-soft': '#FFF9DB',
 
-        // Crème — échelle pour surfaces et bordures
+        // Gris froid — surfaces et bordures
         crema: {
-          50: '#FBF8F2',
-          100: '#F5F1E8',  // = background
-          200: '#EFEAE0',  // = secondary
-          300: '#E8E2D5',  // = border
-          400: '#D4CCB8',
-          500: '#A8A092',
+          50: '#FAFAFA',
+          100: '#F7F7F8',  // = background
+          200: '#F0F0F1',  // = secondary
+          300: '#E5E5E6',  // = border
+          400: '#D1D1D2',
+          500: '#9A9A9C',
         },
 
-        // Tinta — échelle noir doux pour texte et primary
+        // Tinta — noir profond pour texte et primary
         tinta: {
-          DEFAULT: '#2D2D2D',
+          DEFAULT: '#1A1A1A',
           50: '#FAFAFA',
           100: '#F5F5F5',
-          400: '#8C8C8C',
-          600: '#525252',
-          900: '#2D2D2D',
+          400: '#6B6B6B',
+          600: '#404040',
+          900: '#1A1A1A',
         },
 
         // Variables shadcn

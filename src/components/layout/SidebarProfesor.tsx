@@ -39,7 +39,7 @@ export default function SidebarProfesor() {
   }, [])
 
   return (
-    <aside className="hidden md:flex md:flex-col md:fixed md:inset-y-4 md:left-4 md:w-56 bg-white rounded-3xl border border-crema-300 z-30">
+    <aside className="hidden md:flex md:flex-col md:fixed md:inset-y-3 md:left-3 md:w-56 bg-white rounded-2xl shadow-lg shadow-black/[0.04] ring-1 ring-black/[0.04] z-30">
       {/* Logo */}
       <div className="px-6 py-5">
         <Link
@@ -54,11 +54,11 @@ export default function SidebarProfesor() {
       <div className="px-3 pb-3">
         <button
           onClick={handleSearchClick}
-          className="flex items-center gap-2 w-full px-3 py-2 rounded-full bg-crema-100 border border-crema-300 text-sm text-tinta-400 hover:bg-crema-200 hover:border-crema-400 transition-colors"
+          className="flex items-center gap-2 w-full px-3 py-2 rounded-xl bg-crema-100 text-sm text-tinta-400 hover:bg-crema-200 transition-colors"
         >
           <Search className="w-4 h-4" />
           <span className="flex-1 text-left">Buscar...</span>
-          <kbd className="hidden lg:inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded-full bg-crema-200 border border-crema-300 text-[10px] font-mono text-tinta-400">
+          <kbd className="hidden lg:inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded bg-crema-200 text-[10px] font-mono text-tinta-400">
             ⌘K
           </kbd>
         </button>
@@ -73,7 +73,7 @@ export default function SidebarProfesor() {
             <Link
               key={item.href}
               href={item.href}
-              className={`flex items-center gap-3 px-3 py-2.5 rounded-2xl text-sm font-medium transition-colors ${
+              className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-colors ${
                 active
                   ? 'bg-tinta text-amarillo'
                   : 'text-tinta-400 hover:bg-crema-100 hover:text-tinta'
@@ -89,7 +89,7 @@ export default function SidebarProfesor() {
 
       {/* Secondary nav */}
       <div className="px-3 pb-4 space-y-1">
-        <div className="border-t border-crema-300 mb-3" />
+        <div className="border-t border-crema-200 mb-3" />
         {/* Profile */}
         {profesor && (
           <div className="flex items-center gap-3 px-3 py-2.5 mb-2">
@@ -106,7 +106,7 @@ export default function SidebarProfesor() {
             <Link
               key={item.href}
               href={item.href}
-              className={`flex items-center gap-3 px-3 py-2.5 rounded-2xl text-sm font-medium transition-colors ${
+              className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-colors ${
                 active
                   ? 'bg-tinta text-amarillo'
                   : 'text-tinta-400 hover:bg-crema-100 hover:text-tinta'
@@ -120,7 +120,7 @@ export default function SidebarProfesor() {
         })}
         <button
           onClick={handleSalir}
-          className="flex items-center gap-3 px-3 py-2.5 rounded-2xl text-sm font-medium text-tinta-400 hover:bg-crema-100 hover:text-tinta transition-colors w-full"
+          className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-tinta-400 hover:bg-crema-100 hover:text-tinta transition-colors w-full"
           aria-label="Salir"
         >
           <LogOut className="w-5 h-5 flex-shrink-0" />
@@ -132,7 +132,7 @@ export default function SidebarProfesor() {
       <div className="px-3 pb-4">
         <button
           onClick={handleAccionRapida}
-          className="flex items-center justify-center gap-2 w-full px-3 py-2.5 rounded-full bg-tinta text-amarillo text-sm font-medium hover:bg-tinta-600 transition-colors"
+          className="flex items-center justify-center gap-2 w-full px-3 py-2.5 rounded-xl bg-tinta text-amarillo text-sm font-medium hover:bg-tinta-600 active:scale-[0.98] transition-all"
         >
           <Plus className="w-4 h-4" />
           Acción rápida

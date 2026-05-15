@@ -139,7 +139,7 @@ export default function ProgramaPage() {
                   <Link
                     key={secNum}
                     href={`/profesor/programa/${secNum}`}
-                    className="group bg-white rounded-3xl p-5 border border-crema-300 hover:border-tinta/20 transition-all flex items-start gap-4"
+                    className="group bg-white rounded-2xl p-5 shadow-sm ring-1 ring-black/[0.04] hover:shadow-md hover:ring-black/[0.06] transition-all flex items-start gap-4"
                   >
                     {/* Number badge */}
                     <div

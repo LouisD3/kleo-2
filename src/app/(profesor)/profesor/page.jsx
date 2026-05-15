@@ -89,7 +89,7 @@ export default function PaginaMisClases() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-8 animate-fade-in">
       {/* Hero card — greeting + CTAs */}
       <div className="grid grid-cols-12 gap-6 mb-8">
-        <div className="col-span-12 lg:col-span-8 bg-white rounded-3xl border border-crema-300 p-8 flex flex-col justify-between">
+        <div className="col-span-12 lg:col-span-8 bg-white rounded-2xl shadow-sm ring-1 ring-black/[0.04] p-8 flex flex-col justify-between">
           <div>
             <h1 className="text-3xl font-bold text-tinta tracking-tight">
               {saludoDelDia()}, {capitalize(profesor?.nombre?.replace(/\./g, ' ')) || 'Profe'} 👋
@@ -113,7 +113,7 @@ export default function PaginaMisClases() {
         </div>
 
         {/* Stats card */}
-        <div className="col-span-12 lg:col-span-4 bg-white rounded-3xl border border-crema-300 p-6 flex flex-col justify-between gap-3">
+        <div className="col-span-12 lg:col-span-4 bg-white rounded-2xl shadow-sm ring-1 ring-black/[0.04] p-6 flex flex-col justify-between gap-3">
           <div className="flex items-center gap-3 p-3 rounded-2xl bg-crema-50">
             <div className="w-10 h-10 rounded-full bg-tinta text-amarillo flex items-center justify-center flex-shrink-0">
               <Users className="w-5 h-5" />
@@ -158,7 +158,7 @@ export default function PaginaMisClases() {
 
       {/* Empty state */}
       {clases.length === 0 && !isLoading && (
-        <div className="bg-white rounded-3xl border border-crema-300 p-12 text-center">
+        <div className="bg-white rounded-2xl shadow-sm ring-1 ring-black/[0.04] p-12 text-center">
           <p className="text-lg font-semibold text-tinta mb-2">Aún no tienes clases.</p>
           <p className="text-sm text-tinta-400 mb-6">¡Crea tu primera para empezar el viaje!</p>
           <Boton variante="primario" onClick={() => setModalNuevaClase(true)}>
@@ -191,7 +191,7 @@ export default function PaginaMisClases() {
       {clases.length > 0 && (
         <button
           onClick={() => setModalNuevaClase(true)}
-          className="flex items-center justify-center gap-2 w-full max-w-md mx-auto px-4 py-3 rounded-3xl border-2 border-dashed border-crema-300 text-tinta-400 hover:border-crema-400 hover:text-tinta transition-colors"
+          className="flex items-center justify-center gap-2 w-full max-w-md mx-auto px-4 py-3 rounded-2xl border-2 border-dashed border-crema-300 text-tinta-400 hover:border-tinta-400 hover:text-tinta transition-colors"
         >
           <Plus className="w-5 h-5" />
           <span className="font-medium">Crear nueva clase</span>
