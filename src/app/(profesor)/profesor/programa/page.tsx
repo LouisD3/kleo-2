@@ -78,7 +78,7 @@ export default function ProgramaPage() {
   }, [vista, clases, tareasDB])
 
   return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 md:px-8 py-10 animate-fade-in">
+    <div className="px-4 sm:px-6 md:px-8 py-10 animate-fade-in">
       {/* Header */}
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-tinta tracking-tight">Programa</h1>

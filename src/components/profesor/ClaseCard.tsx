@@ -34,52 +34,49 @@ export default function ClaseCard({ clase }: { clase: ClaseEnriched }) {
   return (
     <Link
       href={`/profesor/clase/${clase.id}`}
-      className="block bg-white rounded-2xl shadow-sm ring-1 ring-black/[0.04] p-6 hover:shadow-md hover:ring-black/[0.06] transition-all animate-fade-in group"
+      className="block bg-white rounded-3xl border border-crema-300 p-6 hover:border-crema-400 transition-all animate-fade-in group"
     >
       {/* Header */}
-      <div className="flex items-center gap-3 mb-1">
-        <span className="text-2xl">{clase.emoji || '🎓'}</span>
-        <h3 className="text-lg font-semibold text-tinta truncate">{clase.nombre}</h3>
+      <div className="flex items-start justify-between mb-4">
+        <div className="flex items-center gap-3">
+          <span className="text-2xl">{clase.emoji || '🎓'}</span>
+          <div>
+            <h3 className="text-lg font-semibold text-tinta truncate">{clase.nombre}</h3>
+            <p className="text-sm text-tinta-400">{clase.alumnosCount} alumnos</p>
+          </div>
+        </div>
+        {clase.alumnosBloqueadosCount > 0 ? (
+          <span className="inline-flex items-center gap-1.5 text-xs font-medium text-orange-600 bg-orange-50 rounded-full px-2.5 py-1">
+            <AlertTriangle className="w-3.5 h-3.5" />
+            {clase.alumnosBloqueadosCount}
+          </span>
+        ) : (
+          <span className="inline-flex items-center gap-1.5 text-xs font-medium text-tinta-400 bg-crema-200 rounded-full px-2.5 py-1">
+            <CheckCircle className="w-3.5 h-3.5" />
+            OK
+          </span>
+        )}
       </div>
-      <p className="text-sm text-tinta-400 mb-4">{clase.alumnosCount} alumnos</p>
 
       {/* Progress section */}
-      <div className="mb-4">
-        {clase.bloqueActual && (
-          <p className="text-xs text-tinta-400 mb-1">
-            {clase.bloqueActual.emoji} {clase.bloqueActual.titulo}
-          </p>
-        )}
-        <div className="w-full bg-crema-100 rounded-full h-2 mb-1">
-          <div
-            className="bg-tinta h-2 rounded-full transition-all duration-500"
-            style={{ width: `${clase.progressPct}%` }}
-          />
-        </div>
-        <p className="text-xs text-tinta-400">{clase.progressPct}% del programa</p>
-      </div>
-
-      {/* Alerts */}
-      {clase.alumnosBloqueadosCount > 0 ? (
-        <div className="flex items-center gap-2 text-sm text-orange-600 bg-orange-50 rounded-xl px-3 py-2 mb-4">
-          <AlertTriangle className="w-4 h-4 flex-shrink-0" />
-          <span>
-            {clase.alumnosBloqueadosCount} alumno{clase.alumnosBloqueadosCount > 1 ? 's' : ''}{' '}
-            necesita{clase.alumnosBloqueadosCount > 1 ? 'n' : ''} atención
-          </span>
-        </div>
-      ) : (
-        <div className="flex items-center gap-2 text-sm text-green-600 bg-green-50 rounded-xl px-3 py-2 mb-4">
-          <CheckCircle className="w-4 h-4 flex-shrink-0" />
-          <span>Todo en orden</span>
-        </div>
+      {clase.bloqueActual && (
+        <p className="text-xs text-tinta-400 mb-1.5">
+          {clase.bloqueActual.emoji} {clase.bloqueActual.titulo}
+        </p>
       )}
+      <div className="w-full bg-crema-200 rounded-full h-1.5 mb-1.5">
+        <div
+          className="bg-amarillo h-1.5 rounded-full transition-all duration-500"
+          style={{ width: `${Math.max(clase.progressPct, 2)}%` }}
+        />
+      </div>
+      <p className="text-xs text-tinta-400 mb-4">{clase.progressPct}% del programa</p>
 
       {/* Footer */}
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between pt-3 border-t border-crema-200">
         {clase.ultimaActividad ? (
           <span className="text-xs text-tinta-400">
-            Última actividad: {formatTiempoRelativo(clase.ultimaActividad)}
+            {formatTiempoRelativo(clase.ultimaActividad)}
           </span>
         ) : (
           <span className="text-xs text-tinta-400">Sin actividad</span>

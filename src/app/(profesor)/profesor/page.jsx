@@ -11,9 +11,11 @@ import { useClasesEnriched } from '@/hooks/useClasesEnriched.js'
 import { supabase } from '@/lib/supabase.js'
 import useAuthStore from '@/store/useAuthStore.js'
 
-function capitalize(str) {
-  if (!str) return ''
-  return str.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase()).join(' ')
+function extractFirstName(nombre) {
+  if (!nombre) return 'Profe'
+  const cleaned = nombre.includes('@') ? nombre.split('@')[0] : nombre
+  const first = cleaned.split(/[\s._-]/)[0]
+  return first.charAt(0).toUpperCase() + first.slice(1).toLowerCase()
 }
 
 function saludoDelDia() {
@@ -86,17 +88,15 @@ export default function PaginaMisClases() {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-8 animate-fade-in">
+    <div className="px-4 sm:px-6 md:px-8 py-8 animate-fade-in">
       {/* Hero card — greeting + CTAs */}
       <div className="grid grid-cols-12 gap-6 mb-8">
-        <div className="col-span-12 lg:col-span-8 bg-white rounded-2xl shadow-sm ring-1 ring-black/[0.04] p-8 flex flex-col justify-between">
-          <div>
-            <h1 className="text-3xl font-bold text-tinta tracking-tight">
-              {saludoDelDia()}, {capitalize(profesor?.nombre?.replace(/\./g, ' ')) || 'Profe'} 👋
-            </h1>
-            <p className="text-sm text-tinta-400 mt-1">¿Qué quieres enseñar hoy?</p>
-          </div>
-          <div className="flex items-center gap-3 mt-6">
+        <div className="col-span-12 lg:col-span-8 bg-white rounded-3xl border border-crema-300 p-8">
+          <h1 className="text-3xl font-bold text-tinta tracking-tight">
+            {saludoDelDia()}, {extractFirstName(profesor?.nombre)} 👋
+          </h1>
+          <p className="text-sm text-tinta-400 mt-1 mb-5">¿Qué quieres enseñar hoy?</p>
+          <div className="flex items-center gap-3">
             <Boton variante="primario" size="md" onClick={() => setModalNuevaClase(true)}>
               <Plus className="w-4 h-4" />
               Nueva clase
@@ -113,7 +113,7 @@ export default function PaginaMisClases() {
         </div>
 
         {/* Stats card */}
-        <div className="col-span-12 lg:col-span-4 bg-white rounded-2xl shadow-sm ring-1 ring-black/[0.04] p-6 flex flex-col justify-between gap-3">
+        <div className="col-span-12 lg:col-span-4 bg-white rounded-3xl border border-crema-300 p-6 flex flex-col justify-between gap-3">
           <div className="flex items-center gap-3 p-3 rounded-2xl bg-crema-50">
             <div className="w-10 h-10 rounded-full bg-tinta text-amarillo flex items-center justify-center flex-shrink-0">
               <Users className="w-5 h-5" />
@@ -143,13 +143,13 @@ export default function PaginaMisClases() {
               </div>
             </div>
           ) : (
-            <div className="flex items-center gap-3 p-3 rounded-2xl bg-green-50">
-              <div className="w-10 h-10 rounded-full bg-green-100 text-green-600 flex items-center justify-center flex-shrink-0">
+            <div className="flex items-center gap-3 p-3 rounded-2xl bg-crema-200">
+              <div className="w-10 h-10 rounded-full bg-crema-300 text-tinta-400 flex items-center justify-center flex-shrink-0">
                 <CheckCircle className="w-5 h-5" />
               </div>
               <div>
-                <p className="text-sm font-medium text-green-600">Todo en orden</p>
-                <p className="text-xs text-green-500 mt-0.5">Sin alumnos bloqueados</p>
+                <p className="text-sm font-medium text-tinta-400">Todo en orden</p>
+                <p className="text-xs text-crema-500 mt-0.5">Sin alumnos bloqueados</p>
               </div>
             </div>
           )}
@@ -158,7 +158,7 @@ export default function PaginaMisClases() {
 
       {/* Empty state */}
       {clases.length === 0 && !isLoading && (
-        <div className="bg-white rounded-2xl shadow-sm ring-1 ring-black/[0.04] p-12 text-center">
+        <div className="bg-white rounded-3xl border border-crema-300 p-12 text-center">
           <p className="text-lg font-semibold text-tinta mb-2">Aún no tienes clases.</p>
           <p className="text-sm text-tinta-400 mb-6">¡Crea tu primera para empezar el viaje!</p>
           <Boton variante="primario" onClick={() => setModalNuevaClase(true)}>
@@ -167,22 +167,11 @@ export default function PaginaMisClases() {
         </div>
       )}
 
-      {/* Class cards grid — asymmetric */}
+      {/* Class cards grid */}
       {(clasesEnriched ?? []).length > 0 && (
-        <div className="grid grid-cols-12 gap-6 mb-8">
-          {clasesEnriched.map((clase, i) => (
-            <div
-              key={clase.id}
-              className={
-                i === 0
-                  ? 'col-span-12 lg:col-span-7'
-                  : i === 1
-                    ? 'col-span-12 lg:col-span-5'
-                    : 'col-span-12 md:col-span-6 lg:col-span-4'
-              }
-            >
-              <ClaseCard clase={clase} />
-            </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+          {clasesEnriched.map((clase) => (
+            <ClaseCard key={clase.id} clase={clase} />
           ))}
         </div>
       )}
@@ -191,10 +180,10 @@ export default function PaginaMisClases() {
       {clases.length > 0 && (
         <button
           onClick={() => setModalNuevaClase(true)}
-          className="flex items-center justify-center gap-2 w-full max-w-md mx-auto px-4 py-3 rounded-2xl border-2 border-dashed border-crema-300 text-tinta-400 hover:border-tinta-400 hover:text-tinta transition-colors"
+          className="flex items-center justify-center gap-2 w-full max-w-sm mx-auto px-4 py-3 rounded-full bg-crema-200 text-tinta-400 hover:bg-crema-300 hover:text-tinta transition-colors font-medium text-sm"
         >
-          <Plus className="w-5 h-5" />
-          <span className="font-medium">Crear nueva clase</span>
+          <Plus className="w-4 h-4" />
+          Crear nueva clase
         </button>
       )}
 

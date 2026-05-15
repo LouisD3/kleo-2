@@ -32,7 +32,7 @@ export default function RecursosPage() {
   }, [busqueda])
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-8 animate-fade-in">
+    <div className="px-4 sm:px-6 md:px-8 py-8 animate-fade-in">
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900">Recursos</h1>
         <p className="text-lg text-gray-600 mt-1">

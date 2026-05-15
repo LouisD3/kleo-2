@@ -259,7 +259,7 @@ export default function GenerarTarea() {
   }, [pdasFiltrados])
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-8 animate-fade-in">
+    <div className="px-4 sm:px-6 md:px-8 py-8 animate-fade-in">
       {!tareaGenerada ? (
         <div className="space-y-6">
           <div>

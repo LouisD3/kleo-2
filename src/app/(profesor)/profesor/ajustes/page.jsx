@@ -84,7 +84,7 @@ export default function Ajustes() {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-8 animate-fade-in space-y-6">
+    <div className="px-4 sm:px-6 md:px-8 py-8 animate-fade-in space-y-6">
       {/* Perfil */}
       <div className="card p-6">
         <h2 className="text-lg font-bold text-gray-900 mb-4">Perfil</h2>

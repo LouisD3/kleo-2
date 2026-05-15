@@ -11,14 +11,14 @@ export default {
         'amarillo-hover': '#FCC419',
         'amarillo-soft': '#FFF9DB',
 
-        // Gris froid — surfaces et bordures
+        // Crème chaud — surfaces et bordures
         crema: {
-          50: '#FAFAFA',
-          100: '#F7F7F8',  // = background
-          200: '#F0F0F1',  // = secondary
-          300: '#E5E5E6',  // = border
-          400: '#D1D1D2',
-          500: '#9A9A9C',
+          50: '#FBF8F2',
+          100: '#F5F1E8',  // = background
+          200: '#EFEAE0',  // = secondary
+          300: '#E8E2D5',  // = border
+          400: '#D4CCB8',
+          500: '#A8A092',
         },
 
         // Tinta — noir profond pour texte et primary
@@ -26,7 +26,7 @@ export default {
           DEFAULT: '#1A1A1A',
           50: '#FAFAFA',
           100: '#F5F5F5',
-          400: '#6B6B6B',
+          400: '#737373',
           600: '#404040',
           900: '#1A1A1A',
         },

@@ -4,8 +4,8 @@
 
 @layer base {
   :root {
-    /* Surfaces — blanc cassé froid */
-    --background: #F7F7F8;
+    /* Surfaces — crème chaud */
+    --background: #F5F1E8;
     --card: #FFFFFF;
     --card-foreground: #1A1A1A;
     --popover: #FFFFFF;
@@ -13,27 +13,27 @@
 
     /* Texte */
     --foreground: #1A1A1A;
-    --muted: #F2F2F3;
-    --muted-foreground: #6B6B6B;
+    --muted: #F5F1E8;
+    --muted-foreground: #737373;
 
     /* Primary = noir profond */
     --primary: #1A1A1A;
     --primary-foreground: #FAFAFA;
 
-    /* Secondary = gris très clair */
-    --secondary: #F0F0F1;
+    /* Secondary = crème un cran plus foncé */
+    --secondary: #EFEAE0;
     --secondary-foreground: #1A1A1A;
 
-    /* Accent = JAUNE vif */
-    --accent: #FFD43B;
+    /* Accent = JAUNE chaud */
+    --accent: #FFD93D;
     --accent-foreground: #1A1A1A;
 
     /* Destructive */
     --destructive: #EF4444;
 
     /* Borders / inputs / ring */
-    --border: #E5E5E6;
-    --input: #E5E5E6;
+    --border: #E8E2D5;
+    --input: #E8E2D5;
     --ring: #1A1A1A;
 
     --radius: 1rem;
