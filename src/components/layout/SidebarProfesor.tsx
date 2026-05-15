@@ -1,6 +1,6 @@
 'use client'
 
-import { BookOpen, Film, GraduationCap, LogOut, Plus, Search, Settings } from 'lucide-react'
+import { BookOpen, Film, GraduationCap, LogOut, Plus, Settings } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { useCallback } from 'react'
@@ -30,42 +30,22 @@ export default function SidebarProfesor() {
     return pathname.startsWith(href)
   }
 
-  const handleSearchClick = useCallback(() => {
-    document.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', metaKey: true }))
-  }, [])
-
   const handleAccionRapida = useCallback(() => {
     document.dispatchEvent(new CustomEvent('accion-rapida'))
   }, [])
 
   return (
-    <aside className="hidden md:flex md:flex-col md:fixed md:inset-y-3 md:left-3 md:w-56 bg-white rounded-2xl shadow-lg shadow-black/[0.04] ring-1 ring-black/[0.04] z-30">
+    <aside className="hidden md:flex md:flex-col md:items-center md:fixed md:inset-y-3 md:left-3 md:w-[72px] bg-white rounded-3xl shadow-sm ring-1 ring-crema-300 z-30 py-5 gap-2">
       {/* Logo */}
-      <div className="px-6 py-5">
-        <Link
-          href="/profesor"
-          className="text-xl font-bold text-tinta hover:text-tinta-600 transition-colors"
-        >
-          Kleo
-        </Link>
-      </div>
-
-      {/* Search bar */}
-      <div className="px-3 pb-3">
-        <button
-          onClick={handleSearchClick}
-          className="flex items-center gap-2 w-full px-3 py-2 rounded-xl bg-crema-100 text-sm text-tinta-400 hover:bg-crema-200 transition-colors"
-        >
-          <Search className="w-4 h-4" />
-          <span className="flex-1 text-left">Buscar...</span>
-          <kbd className="hidden lg:inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded bg-crema-200 text-[10px] font-mono text-tinta-400">
-            ⌘K
-          </kbd>
-        </button>
-      </div>
+      <Link
+        href="/profesor"
+        className="flex items-center justify-center w-10 h-10 rounded-full bg-tinta text-amarillo font-bold text-sm mb-2"
+      >
+        K
+      </Link>
 
       {/* Main nav */}
-      <nav className="flex-1 px-3 space-y-1">
+      <nav className="flex-1 flex flex-col items-center gap-1.5">
         {NAV_ITEMS.map((item) => {
           const active = isActive(item.href)
           const Icon = item.icon
@@ -73,32 +53,40 @@ export default function SidebarProfesor() {
             <Link
               key={item.href}
               href={item.href}
-              className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-colors ${
+              className={`relative flex items-center justify-center w-10 h-10 rounded-full transition-colors group ${
                 active
                   ? 'bg-tinta text-amarillo'
                   : 'text-tinta-400 hover:bg-crema-100 hover:text-tinta'
               }`}
               aria-label={item.label}
             >
-              <Icon className="w-5 h-5 flex-shrink-0" />
-              {item.label}
+              <Icon className="w-5 h-5" />
+              {/* Tooltip */}
+              <span className="absolute left-full ml-3 px-2.5 py-1 rounded-lg bg-tinta text-tinta-50 text-xs font-medium whitespace-nowrap opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity shadow-lg">
+                {item.label}
+              </span>
             </Link>
           )
         })}
       </nav>
 
-      {/* Secondary nav */}
-      <div className="px-3 pb-4 space-y-1">
-        <div className="border-t border-crema-200 mb-3" />
-        {/* Profile */}
-        {profesor && (
-          <div className="flex items-center gap-3 px-3 py-2.5 mb-2">
-            <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-tinta text-amarillo text-xs font-bold flex-shrink-0">
-              {profesor.nombre?.charAt(0)?.toUpperCase() ?? 'P'}
-            </span>
-            <span className="text-sm font-medium text-tinta truncate">{profesor.nombre}</span>
-          </div>
-        )}
+      {/* Bottom section */}
+      <div className="flex flex-col items-center gap-2 pt-2">
+        <div className="w-8 border-t border-crema-200 mb-1" />
+
+        {/* Accion rapida */}
+        <button
+          onClick={handleAccionRapida}
+          className="relative flex items-center justify-center w-10 h-10 rounded-full bg-amarillo text-tinta hover:bg-amarillo-hover active:scale-95 transition-all group"
+          aria-label="Accion rapida"
+        >
+          <Plus className="w-5 h-5" />
+          <span className="absolute left-full ml-3 px-2.5 py-1 rounded-lg bg-tinta text-tinta-50 text-xs font-medium whitespace-nowrap opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity shadow-lg">
+            Accion rapida
+          </span>
+        </button>
+
+        {/* Settings */}
         {SECONDARY_ITEMS.map((item) => {
           const active = isActive(item.href)
           const Icon = item.icon
@@ -106,37 +94,46 @@ export default function SidebarProfesor() {
             <Link
               key={item.href}
               href={item.href}
-              className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-colors ${
+              className={`relative flex items-center justify-center w-10 h-10 rounded-full transition-colors group ${
                 active
                   ? 'bg-tinta text-amarillo'
                   : 'text-tinta-400 hover:bg-crema-100 hover:text-tinta'
               }`}
               aria-label={item.label}
             >
-              <Icon className="w-5 h-5 flex-shrink-0" />
-              {item.label}
+              <Icon className="w-5 h-5" />
+              <span className="absolute left-full ml-3 px-2.5 py-1 rounded-lg bg-tinta text-tinta-50 text-xs font-medium whitespace-nowrap opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity shadow-lg">
+                {item.label}
+              </span>
             </Link>
           )
         })}
+
+        {/* Logout */}
         <button
           onClick={handleSalir}
-          className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-tinta-400 hover:bg-crema-100 hover:text-tinta transition-colors w-full"
+          className="relative flex items-center justify-center w-10 h-10 rounded-full text-tinta-400 hover:bg-crema-100 hover:text-tinta transition-colors group"
           aria-label="Salir"
         >
-          <LogOut className="w-5 h-5 flex-shrink-0" />
-          Salir
+          <LogOut className="w-5 h-5" />
+          <span className="absolute left-full ml-3 px-2.5 py-1 rounded-lg bg-tinta text-tinta-50 text-xs font-medium whitespace-nowrap opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity shadow-lg">
+            Salir
+          </span>
         </button>
-      </div>
 
-      {/* Acción rápida */}
-      <div className="px-3 pb-4">
-        <button
-          onClick={handleAccionRapida}
-          className="flex items-center justify-center gap-2 w-full px-3 py-2.5 rounded-xl bg-tinta text-amarillo text-sm font-medium hover:bg-tinta-600 active:scale-[0.98] transition-all"
-        >
-          <Plus className="w-4 h-4" />
-          Acción rápida
-        </button>
+        {/* Avatar */}
+        {profesor && (
+          <Link
+            href="/profesor/ajustes"
+            className="relative flex items-center justify-center w-10 h-10 rounded-full bg-tinta text-amarillo text-xs font-bold mt-1 hover:ring-2 hover:ring-amarillo transition-all group"
+            aria-label={profesor.nombre ?? 'Perfil'}
+          >
+            {profesor.nombre?.charAt(0)?.toUpperCase() ?? 'P'}
+            <span className="absolute left-full ml-3 px-2.5 py-1 rounded-lg bg-tinta text-tinta-50 text-xs font-medium whitespace-nowrap opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity shadow-lg">
+              {profesor.nombre}
+            </span>
+          </Link>
+        )}
       </div>
     </aside>
   )

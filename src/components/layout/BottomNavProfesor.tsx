@@ -1,9 +1,9 @@
 'use client'
 
-import { BookOpen, Film, GraduationCap, LogOut, Menu, Settings, X } from 'lucide-react'
+import { BookOpen, Film, GraduationCap, LogOut, Menu, Plus, Settings, X } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import useAuthStore from '@/store/useAuthStore.js'
 
 const NAV_ITEMS = [
@@ -29,6 +29,11 @@ export default function BottomNavProfesor() {
     router.push('/')
   }
 
+  const handleAccionRapida = useCallback(() => {
+    setMenuOpen(false)
+    document.dispatchEvent(new CustomEvent('accion-rapida'))
+  }, [])
+
   return (
     <>
       {/* Mobile menu overlay */}
@@ -38,18 +43,25 @@ export default function BottomNavProfesor() {
             className="fixed inset-0 bg-black/30 z-40 md:hidden"
             onClick={() => setMenuOpen(false)}
           />
-          <div className="fixed bottom-0 inset-x-0 bg-white z-50 md:hidden rounded-t-2xl shadow-2xl animate-slide-up">
+          <div className="fixed bottom-0 inset-x-0 bg-white z-50 md:hidden rounded-t-3xl shadow-2xl animate-slide-up">
             <div className="flex items-center justify-between px-6 py-4 border-b border-crema-200">
-              <span className="font-semibold text-tinta">Menú</span>
+              <span className="font-semibold text-tinta">Menu</span>
               <button
                 onClick={() => setMenuOpen(false)}
                 className="p-1.5 rounded-full hover:bg-crema-100"
-                aria-label="Cerrar menú"
+                aria-label="Cerrar menu"
               >
                 <X className="w-5 h-5 text-tinta-400" />
               </button>
             </div>
             <nav className="p-3 space-y-1">
+              <button
+                onClick={handleAccionRapida}
+                className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium bg-amarillo text-tinta hover:bg-amarillo-hover w-full"
+              >
+                <Plus className="w-5 h-5" />
+                Accion rapida
+              </button>
               <Link
                 href="/profesor/ajustes"
                 onClick={() => setMenuOpen(false)}
@@ -71,7 +83,7 @@ export default function BottomNavProfesor() {
       )}
 
       {/* Bottom bar */}
-      <nav className="fixed bottom-3 inset-x-3 z-30 bg-white rounded-full shadow-lg shadow-black/[0.06] ring-1 ring-black/[0.04] md:hidden">
+      <nav className="fixed bottom-3 inset-x-3 z-30 bg-white rounded-full shadow-sm ring-1 ring-crema-300 md:hidden">
         <div className="flex items-center justify-around h-14">
           {NAV_ITEMS.map((item) => {
             const active = isActive(item.href)
@@ -85,22 +97,22 @@ export default function BottomNavProfesor() {
                 }`}
                 aria-label={item.label}
               >
-                <div className={`p-1 rounded-full ${active ? 'bg-tinta text-amarillo' : ''}`}>
+                <div className={`p-1.5 rounded-full ${active ? 'bg-tinta text-amarillo' : ''}`}>
                   <Icon className="w-5 h-5" />
                 </div>
-                {item.label}
+                <span className={active ? 'text-tinta' : ''}>{item.label}</span>
               </Link>
             )
           })}
           <button
             onClick={() => setMenuOpen(true)}
             className="flex flex-col items-center justify-center gap-0.5 flex-1 h-full text-xs font-medium text-tinta-400"
-            aria-label="Menú"
+            aria-label="Menu"
           >
-            <div className="p-1">
+            <div className="p-1.5">
               <Menu className="w-5 h-5" />
             </div>
-            Más
+            Mas
           </button>
         </div>
       </nav>
