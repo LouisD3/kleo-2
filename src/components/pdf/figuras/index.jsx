@@ -167,7 +167,8 @@ export function CirculoNotable({ radio = 50, elementos = [], width = 180, height
 // FRACCION VISUAL (Fraction as shaded rectangle)
 // { tipo: "fraccion", numerador: 3, denominador: 4 }
 // ============================================
-export function FraccionVisual({ numerador = 3, denominador = 4, width = 120, height = 30 }) {
+export function FraccionVisual({ numerador = 3, denominador = 4, width = 120, height = 50 }) {
+  const cellH = 26
   const cellW = (width - 4) / denominador
 
   return (
@@ -178,14 +179,14 @@ export function FraccionVisual({ numerador = 3, denominador = 4, width = 120, he
           x={2 + i * cellW}
           y={2}
           width={cellW - 1}
-          height={height - 4}
-          fill={i < numerador ? C.fill : 'white'}
+          height={cellH}
+          fill={i < numerador ? '#BFDBFE' : 'white'}
           stroke={i < numerador ? C.point : C.grid}
           strokeWidth={1}
           rx={2}
         />
       ))}
-      <SvgText x={width / 2} y={height / 2 + 4} fontSize={9} fill={C.axis} textAnchor="middle" fontWeight={700}>
+      <SvgText x={width / 2} y={cellH + 16} fontSize={9} fill={C.axis} textAnchor="middle" fontWeight={700}>
         {numerador}/{denominador}
       </SvgText>
     </Svg>
