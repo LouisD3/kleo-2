@@ -11,14 +11,14 @@ export default {
         'amarillo-hover': '#FCC419',
         'amarillo-soft': '#FFF9DB',
 
-        // Crème chaud — surfaces et bordures
+        // Crème grisé — surfaces et bordures
         crema: {
-          50: '#FBF8F2',
-          100: '#F5F1E8',  // = background
-          200: '#EFEAE0',  // = secondary
-          300: '#E8E2D5',  // = border
-          400: '#D4CCB8',
-          500: '#A8A092',
+          50: '#F7F6F4',
+          100: '#F0EEEB',  // = background
+          200: '#E8E7E4',  // = secondary
+          300: '#DFDDD9',  // = border
+          400: '#CFCDC9',
+          500: '#A3A1A0',
         },
 
         // Tinta — noir profond pour texte et primary
