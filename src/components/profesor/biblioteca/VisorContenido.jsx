@@ -1,7 +1,7 @@
 'use client'
 
 import { X, FileText, BookOpen, Presentation, Play, ClipboardCheck, ChevronLeft, ChevronRight, Download, Eye } from 'lucide-react'
-import { useState, useEffect, Suspense } from 'react'
+import { useState, useEffect } from 'react'
 
 function usePDFModules() {
   const [mods, setMods] = useState(null)
@@ -25,67 +25,11 @@ function usePDFModules() {
 }
 
 const TIPO_CONFIG = {
-  orientacion: { label: 'Orientacion didactica', icon: FileText },
+  orientacion: { label: 'Guia del profesor', icon: FileText },
   libro: { label: 'Libro del alumno', icon: BookOpen },
   diapositiva: { label: 'Diapositivas', icon: Presentation },
   video_script: { label: 'Video leccion (script)', icon: Play },
   evaluacion: { label: 'Evaluacion', icon: ClipboardCheck },
-}
-
-function renderMarkdown(text) {
-  if (!text) return null
-  const lines = text.split('\n')
-  const elements = []
-  let listItems = []
-
-  function flushList() {
-    if (listItems.length > 0) {
-      elements.push(
-        <ul key={`list-${elements.length}`} className="list-disc list-inside space-y-1 mb-3">
-          {listItems.map((item, i) => (
-            <li key={i} className="text-sm text-gray-700">{item}</li>
-          ))}
-        </ul>
-      )
-      listItems = []
-    }
-  }
-
-  for (let i = 0; i < lines.length; i++) {
-    const line = lines[i]
-
-    if (line.startsWith('### ')) {
-      flushList()
-      elements.push(<h4 key={i} className="text-sm font-semibold text-gray-900 mt-4 mb-2">{line.slice(4)}</h4>)
-    } else if (line.startsWith('## ')) {
-      flushList()
-      elements.push(<h3 key={i} className="text-base font-semibold text-gray-900 mt-5 mb-2">{line.slice(3)}</h3>)
-    } else if (line.startsWith('# ')) {
-      flushList()
-      elements.push(<h2 key={i} className="text-lg font-bold text-gray-900 mt-5 mb-2">{line.slice(2)}</h2>)
-    } else if (line.startsWith('- ') || line.startsWith('* ')) {
-      listItems.push(line.slice(2))
-    } else if (line.match(/^\d+\.\s/)) {
-      listItems.push(line)
-    } else if (line.trim() === '') {
-      flushList()
-    } else {
-      flushList()
-      const formatted = line
-        .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-        .replace(/\[VISUAL:\s*(.+?)\]/g, '<em class="text-blue-600">[VISUAL: $1]</em>')
-      elements.push(
-        <p key={i} className="text-sm text-gray-700 mb-2" dangerouslySetInnerHTML={{ __html: formatted }} />
-      )
-    }
-  }
-  flushList()
-
-  return elements
-}
-
-function VisorMarkdown({ contenido }) {
-  return <div className="prose-sm max-w-none">{renderMarkdown(contenido)}</div>
 }
 
 function VisorDiapositivas({ slides }) {
@@ -432,9 +376,17 @@ function VisorLibroEstructurado({ libro }) {
   )
 }
 
+function VisorMarkdown({ contenido }) {
+  if (!contenido) return null
+  return (
+    <div className="prose prose-sm max-w-none text-gray-700 whitespace-pre-line leading-relaxed">
+      {contenido}
+    </div>
+  )
+}
+
 export default function VisorContenido({ semana, tipo, contenido, onCerrar }) {
   const config = TIPO_CONFIG[tipo]
-  const Icon = config?.icon ?? FileText
   const [verPDF, setVerPDF] = useState(true)
   const pdfMods = usePDFModules()
 
@@ -451,78 +403,78 @@ export default function VisorContenido({ semana, tipo, contenido, onCerrar }) {
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-start justify-center bg-black/40 backdrop-blur-sm overflow-y-auto py-8">
-      <div className="bg-white rounded-2xl shadow-xl w-full max-w-3xl mx-4 animate-slide-up">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/20 backdrop-blur-md" onClick={onCerrar}>
+      <div
+        className="bg-white rounded-2xl shadow-xl ring-1 ring-black/5 w-full max-w-3xl mx-4 max-h-[85vh] flex flex-col animate-fade-in"
+        onClick={(e) => e.stopPropagation()}
+      >
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-amber-50 flex items-center justify-center">
-              <Icon className="w-4 h-4 text-amber-600" />
-            </div>
+        <div className="px-6 pt-5 pb-4 border-b border-gray-100 shrink-0">
+          <div className="flex items-start justify-between gap-4">
             <div>
-              <h2 className="text-sm font-semibold text-gray-900">{config?.label}</h2>
-              <p className="text-xs text-gray-400">
-                Semana {semana.secuencia} &middot; {semana.titulo}
+              <h2 className="text-lg font-bold text-gray-900">{config?.label}</h2>
+              <p className="text-sm text-gray-500 mt-1">
+                Secuencia {semana.secuencia} &middot; {semana.titulo}
               </p>
             </div>
-          </div>
-          <div className="flex items-center gap-2">
-            {tienePDF && (
-              <>
-                <button
-                  type="button"
-                  onClick={() => setVerPDF((v) => !v)}
-                  className={`flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-lg transition-colors ${
-                    verPDF
-                      ? 'bg-amber-100 text-amber-800 hover:bg-amber-200'
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                  }`}
-                >
-                  <Eye className="w-3.5 h-3.5" />
-                  {verPDF ? 'Ver contenido' : 'Ver PDF'}
-                </button>
-                <pdfMods.PDFDownloadLink
-                  document={pdfDoc}
-                  fileName={`${tipo}-semana-${semana.secuencia}.pdf`}
-                >
-                  {({ loading }) => (
-                    <button
-                      type="button"
-                      disabled={loading}
-                      className="flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-lg bg-gray-900 text-white hover:bg-gray-800 disabled:opacity-50 transition-colors"
-                    >
-                      <Download className="w-3.5 h-3.5" />
-                      {loading ? 'Generando...' : 'Descargar PDF'}
-                    </button>
-                  )}
-                </pdfMods.PDFDownloadLink>
-              </>
-            )}
-            <button
-              type="button"
-              onClick={onCerrar}
-              className="p-2 rounded-lg text-gray-400 hover:text-gray-700 hover:bg-gray-100 transition-colors"
-            >
-              <X className="w-5 h-5" />
-            </button>
+            <div className="flex items-center gap-2">
+              {tienePDF && (
+                <>
+                  <button
+                    type="button"
+                    onClick={() => setVerPDF((v) => !v)}
+                    className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium border transition-colors ${
+                      !verPDF
+                        ? 'bg-gray-900 text-white border-gray-900'
+                        : 'text-gray-600 border-gray-200 hover:bg-gray-50'
+                    }`}
+                  >
+                    <Eye className="w-3.5 h-3.5" />
+                    {verPDF ? 'Ver contenido' : 'Ver PDF'}
+                  </button>
+                  <pdfMods.PDFDownloadLink
+                    document={pdfDoc}
+                    fileName={`${tipo}-secuencia-${semana.secuencia}.pdf`}
+                  >
+                    {({ loading }) => (
+                      <button
+                        type="button"
+                        disabled={loading}
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-gray-600 border border-gray-200 hover:bg-gray-50 disabled:opacity-50 transition-colors"
+                      >
+                        <Download className="w-3.5 h-3.5" />
+                        {loading ? 'Generando...' : 'PDF'}
+                      </button>
+                    )}
+                  </pdfMods.PDFDownloadLink>
+                </>
+              )}
+              <button
+                type="button"
+                onClick={onCerrar}
+                className="p-1.5 rounded-lg text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
           </div>
         </div>
 
         {/* Content */}
         {tienePDF && verPDF ? (
-          <div className="h-[75vh]">
+          <div className="flex-1 min-h-0">
             <pdfMods.BlobProvider document={pdfDoc}>
               {({ url, loading }) =>
                 loading ? (
-                  <div className="flex items-center justify-center h-full text-sm text-gray-400">Generando PDF...</div>
+                  <div className="flex items-center justify-center h-64 text-sm text-gray-400">Generando PDF...</div>
                 ) : (
-                  <iframe src={url} title="Vista previa PDF" className="w-full h-full rounded-b-2xl" />
+                  <iframe src={url} title="Vista previa PDF" className="w-full h-full rounded-b-2xl" style={{ minHeight: '60vh' }} />
                 )
               }
             </pdfMods.BlobProvider>
           </div>
         ) : (
-          <div className="px-6 py-5 max-h-[70vh] overflow-y-auto">
+          <div className="flex-1 overflow-y-auto px-6 py-5">
             {tipo === 'evaluacion' && <VisorEvaluacion preguntas={contenido?.preguntas ?? contenido} />}
             {tipo === 'diapositiva' && <VisorDiapositivas slides={contenido} />}
             {tipo === 'orientacion' && typeof contenido === 'object' && (
