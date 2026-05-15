@@ -10,6 +10,7 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia16: TareaCPA = {
   secuencia_ref: 16,
+  concepto_clave: 'Trazar rectas paralelas y perpendiculares',
   contexto: {
     personaje: 'Roberto',
     objetos: { a: { nombre: 'recta', emoji: '📐' }, b: { nombre: 'angulo', emoji: '📏' } },

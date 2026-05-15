@@ -10,6 +10,7 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia33b: TareaCPA = {
   secuencia_ref: 33,
+  concepto_clave: 'P(A y B) = P(A) x P(B) cuando los eventos son independientes',
   contexto: {
     personaje: 'Pablo',
     objetos: { a: { nombre: 'moneda', emoji: '🪙' }, b: { nombre: 'resultado', emoji: '📊' } },

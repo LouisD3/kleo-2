@@ -10,6 +10,7 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia01b: TareaCPA = {
   secuencia_ref: 1,
+  concepto_clave: 'Encontrar fracciones equivalentes usando tiras de fracciones',
   contexto: {
     personaje: 'Sofia',
     objetos: { a: { nombre: 'tira', emoji: '📏' }, b: { nombre: 'fraccion', emoji: '🔢' } },

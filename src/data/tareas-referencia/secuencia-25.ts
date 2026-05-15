@@ -10,6 +10,7 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia25: TareaCPA = {
   secuencia_ref: 25,
+  concepto_clave: 'La distancia entre dos puntos es la longitud del segmento que los une',
   contexto: {
     personaje: 'Roberto',
     objetos: { a: { nombre: 'punto', emoji: '📍' }, b: { nombre: 'distancia', emoji: '📏' } },

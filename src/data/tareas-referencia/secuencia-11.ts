@@ -10,6 +10,7 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia11: TareaCPA = {
   secuencia_ref: 11,
+  concepto_clave: 'Calcular el perímetro de un rectángulo',
   contexto: {
     personaje: 'Roberto',
     objetos: { a: { nombre: 'terreno', emoji: '🏗️' }, b: { nombre: 'cerca', emoji: '🪵' } },

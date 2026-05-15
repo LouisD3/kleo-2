@@ -10,6 +10,7 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia24: TareaCPA = {
   secuencia_ref: 24,
+  concepto_clave: 'Identificar sector circular y arco',
   contexto: {
     personaje: 'Camila',
     objetos: { a: { nombre: 'sector', emoji: '🍕' }, b: { nombre: 'arco', emoji: '🌙' } },

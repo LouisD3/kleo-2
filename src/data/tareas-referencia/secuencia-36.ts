@@ -10,6 +10,7 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia36: TareaCPA = {
   secuencia_ref: 36,
+  concepto_clave: 'Representar numeros en binario usando interruptores ON/OFF',
   contexto: {
     personaje: 'Tomas',
     objetos: { a: { nombre: 'interruptor', emoji: '🔘' }, b: { nombre: 'numero binario', emoji: '💻' } },

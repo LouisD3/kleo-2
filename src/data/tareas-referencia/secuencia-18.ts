@@ -10,6 +10,7 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia18: TareaCPA = {
   secuencia_ref: 18,
+  concepto_clave: 'Encontrar el punto medio de un segmento y trazar la mediatriz',
   contexto: {
     personaje: 'Elena',
     objetos: { a: { nombre: 'segmento', emoji: '📏' }, b: { nombre: 'punto medio', emoji: '📍' } },

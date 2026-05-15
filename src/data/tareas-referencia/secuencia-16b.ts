@@ -13,6 +13,7 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia16b: TareaCPA = {
   secuencia_ref: 16,
+  concepto_clave: 'Dos rectas son perpendiculares si forman un angulo de 90°',
   contexto: {
     personaje: 'Roberto',
     objetos: { a: { nombre: 'recta', emoji: '📐' }, b: { nombre: 'angulo recto', emoji: '📏' } },

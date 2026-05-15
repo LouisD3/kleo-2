@@ -18,6 +18,7 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia19b: TareaCPA = {
   secuencia_ref: 19,
+  concepto_clave: 'Dos angulos son congruentes si tienen la misma medida',
   contexto: {
     personaje: 'Elena',
     objetos: { a: { nombre: 'angulo', emoji: '📐' }, b: { nombre: 'medida', emoji: '📏' } },

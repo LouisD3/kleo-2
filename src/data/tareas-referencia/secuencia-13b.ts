@@ -10,6 +10,7 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia13b: TareaCPA = {
   secuencia_ref: 13,
+  concepto_clave: 'Calcular un descuento con porcentajes usando la cuadricula de 100',
   contexto: {
     personaje: 'Laura',
     objetos: { a: { nombre: 'producto', emoji: '🏷️' }, b: { nombre: 'descuento', emoji: '💰' } },

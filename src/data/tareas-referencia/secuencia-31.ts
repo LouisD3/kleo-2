@@ -10,6 +10,7 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia31: TareaCPA = {
   secuencia_ref: 31,
+  concepto_clave: 'Calcular moda, media y mediana a partir de datos organizados',
   contexto: {
     personaje: 'Profesor Garcia',
     objetos: { a: { nombre: 'calificacion', emoji: '📝' }, b: { nombre: 'promedio', emoji: '📊' } },

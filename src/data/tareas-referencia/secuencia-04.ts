@@ -10,6 +10,7 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia04: TareaCPA = {
   secuencia_ref: 4,
+  concepto_clave: 'Ubicar fracciones y decimales entre enteros en la recta',
   contexto: {
     personaje: 'Lucia',
     objetos: { a: { nombre: 'fraccion', emoji: '🔢' }, b: { nombre: 'recta', emoji: '📏' } },

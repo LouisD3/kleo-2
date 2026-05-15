@@ -10,6 +10,7 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia06b: TareaCPA = {
   secuencia_ref: 6,
+  concepto_clave: 'Regla de signos (+)(+)=+, (+)(-)=-, (-)(+)=-, (-)(-)=+',
   contexto: {
     personaje: 'Carlos',
     objetos: { a: { nombre: 'ficha', emoji: '🟢' }, b: { nombre: 'producto', emoji: '✖️' } },

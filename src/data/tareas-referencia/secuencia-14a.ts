@@ -11,6 +11,7 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia14a: TareaCPA = {
   secuencia_ref: 14,
+  concepto_clave: 'Razon como reparto equitativo',
   contexto: {
     personaje: 'Maria',
     objetos: {

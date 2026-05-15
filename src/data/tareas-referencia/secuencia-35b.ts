@@ -10,6 +10,7 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia35b: TareaCPA = {
   secuencia_ref: 35,
+  concepto_clave: 'Evaluar proposiciones bicondicionales (SI Y SOLO SI) con tabla de verdad',
   contexto: {
     personaje: 'Marco',
     objetos: { a: { nombre: 'equivalencia', emoji: '⚖️' }, b: { nombre: 'condicion', emoji: '❓' } },

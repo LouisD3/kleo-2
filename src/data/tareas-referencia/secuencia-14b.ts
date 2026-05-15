@@ -11,6 +11,7 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia14b: TareaCPA = {
   secuencia_ref: 14,
+  concepto_clave: 'Comparar dos razones diferentes',
   contexto: {
     personaje: 'Don Pedro',
     objetos: {

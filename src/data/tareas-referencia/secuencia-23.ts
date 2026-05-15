@@ -10,6 +10,7 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia23: TareaCPA = {
   secuencia_ref: 23,
+  concepto_clave: 'Explorar la relacion entre radio y circunferencia',
   contexto: {
     personaje: 'Camila',
     objetos: { a: { nombre: 'circulo', emoji: '⭕' }, b: { nombre: 'cuerda', emoji: '🧵' } },

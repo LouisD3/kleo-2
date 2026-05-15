@@ -10,6 +10,7 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia20c: TareaCPA = {
   secuencia_ref: 20,
+  concepto_clave: 'Trazar la mediatriz de un lado del triangulo (perpendicular por el punto medio)',
   contexto: {
     personaje: 'Elena',
     objetos: { a: { nombre: 'triangulo', emoji: '🔺' }, b: { nombre: 'mediatriz', emoji: '📐' } },

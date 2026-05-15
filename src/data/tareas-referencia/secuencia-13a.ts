@@ -10,6 +10,7 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia13a: TareaCPA = {
   secuencia_ref: 13,
+  concepto_clave: 'Encontrar el porcentaje de una cantidad usando la cuadricula de 100',
   contexto: {
     personaje: 'Laura',
     objetos: { a: { nombre: 'cuadrito', emoji: '🟩' }, b: { nombre: 'porcentaje', emoji: '%' } },

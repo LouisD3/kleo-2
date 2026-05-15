@@ -13,6 +13,7 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia36b: TareaCPA = {
   secuencia_ref: 36,
+  concepto_clave: 'Convertir un numero binario a decimal sumando las potencias de 2 activas',
   contexto: {
     personaje: 'Tomas',
     objetos: {

@@ -10,6 +10,7 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia05a: TareaCPA = {
   secuencia_ref: 5,
+  concepto_clave: 'Descomponer un numero en centenas, decenas y unidades',
   contexto: {
     personaje: 'Diego',
     objetos: { a: { nombre: 'bloque', emoji: '🧱' }, b: { nombre: 'numero', emoji: '🔢' } },

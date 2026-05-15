@@ -10,6 +10,7 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia08b: TareaCPA = {
   secuencia_ref: 8,
+  concepto_clave: 'Visualizar la distributiva con numeros antes de pasar al algebra',
   contexto: {
     personaje: 'Ana',
     objetos: { a: { nombre: 'bloque', emoji: '🧱' }, b: { nombre: 'multiplicacion', emoji: '✖️' } },

@@ -10,6 +10,7 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia33: TareaCPA = {
   secuencia_ref: 33,
+  concepto_clave: 'Identificar el espacio muestral y calcular probabilidad con una ruleta',
   contexto: {
     personaje: 'Pablo',
     objetos: { a: { nombre: 'ruleta', emoji: '🎡' }, b: { nombre: 'seccion', emoji: '🔴' } },

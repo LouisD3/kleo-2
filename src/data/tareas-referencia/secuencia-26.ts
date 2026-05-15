@@ -10,6 +10,7 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia26: TareaCPA = {
   secuencia_ref: 26,
+  concepto_clave: 'La distancia de un punto a una recta es la perpendicular mas corta',
   contexto: {
     personaje: 'Roberto',
     objetos: { a: { nombre: 'punto', emoji: '📍' }, b: { nombre: 'recta', emoji: '📏' } },

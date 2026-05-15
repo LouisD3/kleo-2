@@ -10,6 +10,7 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia01c: TareaCPA = {
   secuencia_ref: 1,
+  concepto_clave: 'Ubicar una fraccion en la recta numerica como decimal',
   contexto: {
     personaje: 'Sofia',
     objetos: { a: { nombre: 'punto', emoji: '📍' }, b: { nombre: 'recta', emoji: '📏' } },

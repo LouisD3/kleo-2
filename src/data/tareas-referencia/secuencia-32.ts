@@ -10,6 +10,7 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia32: TareaCPA = {
   secuencia_ref: 32,
+  concepto_clave: 'Calcular la probabilidad teorica de un evento con un dado',
   contexto: {
     personaje: 'Pablo',
     objetos: { a: { nombre: 'dado', emoji: '🎲' }, b: { nombre: 'probabilidad', emoji: '🔢' } },

@@ -10,6 +10,7 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia01a: TareaCPA = {
   secuencia_ref: 1,
+  concepto_clave: 'Representar una fraccion como parte de un todo',
   contexto: {
     personaje: 'Sofia',
     objetos: { a: { nombre: 'chocolate', emoji: '🍫' }, b: { nombre: 'pedazo', emoji: '🟫' } },

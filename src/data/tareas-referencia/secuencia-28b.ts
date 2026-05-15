@@ -10,6 +10,7 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia28b: TareaCPA = {
   secuencia_ref: 28,
+  concepto_clave: 'Calcular el area de triangulos y figuras compuestas',
   contexto: {
     personaje: 'Roberto',
     objetos: { a: { nombre: 'triangulo', emoji: '🔺' }, b: { nombre: 'area', emoji: '📐' } },

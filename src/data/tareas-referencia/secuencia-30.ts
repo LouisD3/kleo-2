@@ -10,6 +10,7 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia30: TareaCPA = {
   secuencia_ref: 30,
+  concepto_clave: 'Distinguir frecuencia absoluta de frecuencia relativa',
   contexto: {
     personaje: 'Profesor Garcia',
     objetos: { a: { nombre: 'color', emoji: '🎨' }, b: { nombre: 'frecuencia', emoji: '📊' } },

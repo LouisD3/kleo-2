@@ -10,6 +10,7 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia21: TareaCPA = {
   secuencia_ref: 21,
+  concepto_clave: 'Clasificar triángulos y cuadriláteros por sus propiedades',
   contexto: {
     personaje: 'Roberto',
     objetos: { a: { nombre: 'figura', emoji: '🔷' }, b: { nombre: 'propiedad', emoji: '📋' } },

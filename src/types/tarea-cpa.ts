@@ -462,6 +462,8 @@ export interface ContextoAnchor {
 export interface TareaCPA {
   /** Reference secuencia number (1-36), null for custom AI-generated tareas */
   secuencia_ref: number | null
+  /** Short concept label shown to teachers (e.g. "Fracción como parte de un todo") */
+  concepto_clave?: string
   /** Contexto narrativo que atraviesa las 3 etapas (anchor task).
    *  Opcional para backward compat con tareas existentes. */
   contexto?: ContextoAnchor

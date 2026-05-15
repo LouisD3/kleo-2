@@ -10,6 +10,7 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia02: TareaCPA = {
   secuencia_ref: 2,
+  concepto_clave: 'Representar numeros positivos y negativos',
   contexto: {
     personaje: 'Carlos',
     objetos: { a: { nombre: 'ficha positiva', emoji: '🟢' }, b: { nombre: 'ficha negativa', emoji: '🔴' } },

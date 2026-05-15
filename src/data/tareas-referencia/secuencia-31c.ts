@@ -10,6 +10,7 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia31c: TareaCPA = {
   secuencia_ref: 31,
+  concepto_clave: 'Identificar la moda como el dato que mas se repite',
   contexto: {
     personaje: 'Profesor Garcia',
     objetos: { a: { nombre: 'sabor', emoji: '🍦' }, b: { nombre: 'moda', emoji: '📊' } },

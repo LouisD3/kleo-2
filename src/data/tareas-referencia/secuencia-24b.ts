@@ -15,6 +15,7 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia24b: TareaCPA = {
   secuencia_ref: 24,
+  concepto_clave: 'Diferenciar sector circular y segmento circular',
   contexto: {
     personaje: 'Camila',
     objetos: {

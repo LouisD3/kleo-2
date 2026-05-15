@@ -10,6 +10,7 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia22: TareaCPA = {
   secuencia_ref: 22,
+  concepto_clave: 'Identificar radio y diametro usando un compas',
   contexto: {
     personaje: 'Camila',
     objetos: { a: { nombre: 'circulo', emoji: '⭕' }, b: { nombre: 'compas', emoji: '📐' } },

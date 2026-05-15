@@ -10,6 +10,7 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia17b: TareaCPA = {
   secuencia_ref: 17,
+  concepto_clave: 'Medir y reconocer angulos obtusos (entre 90° y 180°)',
   contexto: {
     personaje: 'Roberto',
     objetos: { a: { nombre: 'angulo', emoji: '📐' }, b: { nombre: 'grado', emoji: '°' } },

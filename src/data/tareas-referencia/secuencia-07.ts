@@ -10,6 +10,7 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia07: TareaCPA = {
   secuencia_ref: 7,
+  concepto_clave: 'Verificar que el orden de la suma no cambia el resultado',
   contexto: {
     personaje: 'Ana',
     objetos: { a: { nombre: 'salto', emoji: '🦘' }, b: { nombre: 'recta', emoji: '📏' } },

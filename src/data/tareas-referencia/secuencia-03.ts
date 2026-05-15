@@ -10,6 +10,7 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia03: TareaCPA = {
   secuencia_ref: 3,
+  concepto_clave: 'Comparar y ordenar numeros con signo en la recta numerica',
   contexto: {
     personaje: 'Carlos',
     objetos: { a: { nombre: 'temperatura', emoji: '🌡️' }, b: { nombre: 'recta', emoji: '📏' } },

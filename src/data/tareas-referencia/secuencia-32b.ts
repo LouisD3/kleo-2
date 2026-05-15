@@ -10,6 +10,7 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia32b: TareaCPA = {
   secuencia_ref: 32,
+  concepto_clave: 'Calcular probabilidad teorica y comparar con frecuencia experimental (moneda)',
   contexto: {
     personaje: 'Pablo',
     objetos: { a: { nombre: 'moneda', emoji: '🪙' }, b: { nombre: 'probabilidad', emoji: '🔢' } },

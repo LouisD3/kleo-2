@@ -10,6 +10,7 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia11b: TareaCPA = {
   secuencia_ref: 11,
+  concepto_clave: 'Calcular el perimetro de una figura compuesta (en L)',
   contexto: {
     personaje: 'Roberto',
     objetos: { a: { nombre: 'patio', emoji: '🏗️' }, b: { nombre: 'cerca', emoji: '🪵' } },

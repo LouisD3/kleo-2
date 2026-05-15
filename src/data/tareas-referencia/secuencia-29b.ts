@@ -14,6 +14,7 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia29b: TareaCPA = {
   secuencia_ref: 29,
+  concepto_clave: 'Representar frecuencias relativas como sectores de un circulo',
   contexto: {
     personaje: 'Profesor Garcia',
     objetos: {

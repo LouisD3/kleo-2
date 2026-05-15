@@ -10,6 +10,7 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia12c: TareaCPA = {
   secuencia_ref: 12,
+  concepto_clave: 'Resolver ecuaciones de la forma ax + b = c',
   contexto: {
     personaje: 'Valentina',
     objetos: { a: { nombre: 'pesa', emoji: '⚖️' }, b: { nombre: 'incognita', emoji: '❓' } },

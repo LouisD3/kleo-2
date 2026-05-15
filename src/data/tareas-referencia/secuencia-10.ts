@@ -10,6 +10,7 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia10: TareaCPA = {
   secuencia_ref: 10,
+  concepto_clave: 'Traducir del lenguaje común al lenguaje algebraico (x + a = b)',
   contexto: {
     personaje: 'Valentina',
     objetos: { a: { nombre: 'azulejo', emoji: '🟦' }, b: { nombre: 'expresion', emoji: '🔤' } },

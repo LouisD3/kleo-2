@@ -10,6 +10,7 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia07b: TareaCPA = {
   secuencia_ref: 7,
+  concepto_clave: '(a+b)+c = a+(b+c), agrupar diferente da el mismo resultado',
   contexto: {
     personaje: 'Ana',
     objetos: { a: { nombre: 'cubo', emoji: '🧊' }, b: { nombre: 'grupo', emoji: '📦' } },

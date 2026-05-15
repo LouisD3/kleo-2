@@ -10,6 +10,7 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia27: TareaCPA = {
   secuencia_ref: 27,
+  concepto_clave: 'La suma de dos lados de un triangulo siempre es mayor que el tercero',
   contexto: {
     personaje: 'Elena',
     objetos: { a: { nombre: 'varilla', emoji: '🪵' }, b: { nombre: 'triangulo', emoji: '🔺' } },

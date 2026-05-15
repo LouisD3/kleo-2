@@ -10,6 +10,7 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia05b: TareaCPA = {
   secuencia_ref: 5,
+  concepto_clave: 'Sumar dos numeros con reagrupacion',
   contexto: {
     personaje: 'Diego',
     objetos: { a: { nombre: 'bloque', emoji: '🧱' }, b: { nombre: 'suma', emoji: '➕' } },

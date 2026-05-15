@@ -10,6 +10,7 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia17: TareaCPA = {
   secuencia_ref: 17,
+  concepto_clave: 'Identificar tipos de ángulos (recto, agudo, obtuso)',
   contexto: {
     personaje: 'Roberto',
     objetos: { a: { nombre: 'angulo', emoji: '📐' }, b: { nombre: 'grado', emoji: '°' } },

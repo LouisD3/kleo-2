@@ -10,6 +10,7 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia34: TareaCPA = {
   secuencia_ref: 34,
+  concepto_clave: 'Evaluar proposiciones con AND y OR usando tablas de verdad',
   contexto: {
     personaje: 'Marco',
     objetos: { a: { nombre: 'proposicion', emoji: '💬' }, b: { nombre: 'tabla', emoji: '📋' } },

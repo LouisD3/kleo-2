@@ -10,6 +10,7 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia29: TareaCPA = {
   secuencia_ref: 29,
+  concepto_clave: 'Organizar datos en una grafica de barras',
   contexto: {
     personaje: 'Profesor Garcia',
     objetos: { a: { nombre: 'deporte', emoji: '⚽' }, b: { nombre: 'grafica', emoji: '📊' } },

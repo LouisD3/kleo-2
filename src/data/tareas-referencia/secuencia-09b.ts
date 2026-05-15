@@ -10,6 +10,7 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia09b: TareaCPA = {
   secuencia_ref: 9,
+  concepto_clave: 'Predecir terminos de una sucesion aritmetica',
   contexto: {
     personaje: 'Miguel',
     objetos: { a: { nombre: 'figura', emoji: '🔷' }, b: { nombre: 'sucesion', emoji: '📈' } },

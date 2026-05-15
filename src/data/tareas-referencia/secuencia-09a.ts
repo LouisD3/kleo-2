@@ -10,6 +10,7 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia09a: TareaCPA = {
   secuencia_ref: 9,
+  concepto_clave: 'Identificar el patron en una sucesion aritmetica',
   contexto: {
     personaje: 'Miguel',
     objetos: { a: { nombre: 'figura', emoji: '🔷' }, b: { nombre: 'patron', emoji: '🔄' } },

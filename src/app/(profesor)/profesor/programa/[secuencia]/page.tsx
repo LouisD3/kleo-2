@@ -103,8 +103,8 @@ export default function SecuenciaDetalle() {
         ) : (
           <div className="space-y-3">
             {tareasCPA.map((tarea, i) => {
-              const label = tarea.contexto?.personaje
-                ? `${sec.secuencia}${String.fromCharCode(97 + i)} · ${tarea.contexto.personaje} (${(tarea as any).concepto_clave ?? ''})`
+              const label = tarea.concepto_clave
+                ? `${sec.secuencia}${String.fromCharCode(97 + i)} · ${tarea.concepto_clave}`
                 : `${sec.secuencia}${String.fromCharCode(97 + i)} · Tarea ${i + 1}`
               return (
                 <div

@@ -10,6 +10,7 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia15b: TareaCPA = {
   secuencia_ref: 15,
+  concepto_clave: 'Usar la constante para predecir',
   contexto: {
     personaje: 'Daniela',
     objetos: { a: { nombre: 'galleta', emoji: '🍪' }, b: { nombre: 'amigo', emoji: '🧑' } },

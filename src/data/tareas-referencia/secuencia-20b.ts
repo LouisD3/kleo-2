@@ -10,6 +10,7 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia20b: TareaCPA = {
   secuencia_ref: 20,
+  concepto_clave: 'Trazar la altura de un triangulo (perpendicular al lado opuesto)',
   contexto: {
     personaje: 'Elena',
     objetos: { a: { nombre: 'triangulo', emoji: '🔺' }, b: { nombre: 'altura', emoji: '📐' } },

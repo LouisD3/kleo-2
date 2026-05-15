@@ -10,6 +10,7 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia28: TareaCPA = {
   secuencia_ref: 28,
+  concepto_clave: 'Calcular perimetro y area de poligonos',
   contexto: {
     personaje: 'Roberto',
     objetos: { a: { nombre: 'terreno', emoji: '🏗️' }, b: { nombre: 'medida', emoji: '📏' } },

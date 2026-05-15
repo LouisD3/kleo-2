@@ -10,6 +10,7 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia05c: TareaCPA = {
   secuencia_ref: 5,
+  concepto_clave: 'Restar como operacion inversa de la suma',
   contexto: {
     personaje: 'Diego',
     objetos: { a: { nombre: 'bloque', emoji: '🧱' }, b: { nombre: 'resta', emoji: '➖' } },

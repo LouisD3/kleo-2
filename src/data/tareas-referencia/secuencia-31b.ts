@@ -13,6 +13,7 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia31b: TareaCPA = {
   secuencia_ref: 31,
+  concepto_clave: 'Encontrar la mediana ordenando los datos y ubicando el valor central',
   contexto: {
     personaje: 'Profesor Garcia',
     objetos: { a: { nombre: 'calificacion', emoji: '📝' }, b: { nombre: 'mediana', emoji: '🎯' } },

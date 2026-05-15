@@ -10,6 +10,7 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia30b: TareaCPA = {
   secuencia_ref: 30,
+  concepto_clave: 'Calcular e interpretar la frecuencia relativa como proporcion del total',
   contexto: {
     personaje: 'Profesor Garcia',
     objetos: { a: { nombre: 'deporte', emoji: '⚽' }, b: { nombre: 'frecuencia', emoji: '📊' } },

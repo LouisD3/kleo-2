@@ -11,6 +11,7 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia22b: TareaCPA = {
   secuencia_ref: 22,
+  concepto_clave: 'Diferenciar cuerda y secante en el circulo',
   contexto: {
     personaje: 'Camila',
     objetos: { a: { nombre: 'cuerda', emoji: '🪢' }, b: { nombre: 'secante', emoji: '📏' } },

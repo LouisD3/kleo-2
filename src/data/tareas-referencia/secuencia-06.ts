@@ -10,6 +10,7 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia06: TareaCPA = {
   secuencia_ref: 6,
+  concepto_clave: 'Operar con numeros positivos y negativos usando fichas',
   contexto: {
     personaje: 'Carlos',
     objetos: { a: { nombre: 'ficha positiva', emoji: '🟢' }, b: { nombre: 'ficha negativa', emoji: '🔴' } },

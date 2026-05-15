@@ -10,6 +10,7 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia35: TareaCPA = {
   secuencia_ref: 35,
+  concepto_clave: 'Evaluar proposiciones condicionales (SI...ENTONCES) con tabla de verdad',
   contexto: {
     personaje: 'Marco',
     objetos: { a: { nombre: 'promesa', emoji: '🤝' }, b: { nombre: 'condicion', emoji: '❓' } },

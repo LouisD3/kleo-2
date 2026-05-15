@@ -10,6 +10,7 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia19: TareaCPA = {
   secuencia_ref: 19,
+  concepto_clave: 'Trazar la bisectriz de un ángulo y reconocer ángulos congruentes',
   contexto: {
     personaje: 'Elena',
     objetos: { a: { nombre: 'angulo', emoji: '📐' }, b: { nombre: 'bisectriz', emoji: '✂️' } },

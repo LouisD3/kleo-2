@@ -10,6 +10,7 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia18b: TareaCPA = {
   secuencia_ref: 18,
+  concepto_clave: 'Trazar la mediatriz y verificar la propiedad de equidistancia',
   contexto: {
     personaje: 'Elena',
     objetos: { a: { nombre: 'segmento', emoji: '📏' }, b: { nombre: 'mediatriz', emoji: '✂️' } },

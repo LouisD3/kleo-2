@@ -10,6 +10,7 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia21b: TareaCPA = {
   secuencia_ref: 21,
+  concepto_clave: 'Diferenciar trapecio, rombo, paralelogramo, cuadrado, rectangulo',
   contexto: {
     personaje: 'Roberto',
     objetos: { a: { nombre: 'trapecio', emoji: '🔷' }, b: { nombre: 'propiedad', emoji: '📋' } },

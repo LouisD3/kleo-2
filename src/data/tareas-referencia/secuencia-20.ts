@@ -10,6 +10,7 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia20: TareaCPA = {
   secuencia_ref: 20,
+  concepto_clave: 'Identificar y trazar las rectas notables de un triángulo',
   contexto: {
     personaje: 'Elena',
     objetos: { a: { nombre: 'triangulo', emoji: '🔺' }, b: { nombre: 'recta notable', emoji: '📏' } },

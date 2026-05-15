@@ -10,6 +10,7 @@ import type { TareaCPA } from '@/types/tarea-cpa'
  */
 export const tareaSecuencia08: TareaCPA = {
   secuencia_ref: 8,
+  concepto_clave: 'Aplicar la propiedad distributiva',
   contexto: {
     personaje: 'Ana',
     objetos: { a: { nombre: 'azulejo', emoji: '🟦' }, b: { nombre: 'ecuacion', emoji: '🟰' } },
