@@ -61,6 +61,7 @@ const useAuthStore = create((set, get) => ({
             .from('clases')
             .select('*')
             .eq('profesor_id', profesor.id)
+            .or('archivada.is.null,archivada.eq.false')
             .order('created_at', { ascending: false })
 
           set({
@@ -158,6 +159,7 @@ const useAuthStore = create((set, get) => ({
       .from('clases')
       .select('*')
       .eq('profesor_id', data.user.id)
+      .or('archivada.is.null,archivada.eq.false')
       .order('created_at', { ascending: false })
 
     set({

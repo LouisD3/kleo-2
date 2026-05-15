@@ -138,7 +138,12 @@ export async function seedDemoData(profesorId: string) {
         tarea_id: tarea.id,
         alumno_id: alumno.id,
         calificacion: global,
-        scores_cpa: { concreto: scoreC, pictorico: scoreP, abstracto: scoreA },
+        scores_cpa: {
+          concreto: { nota: scoreC, completada: true },
+          pictorico: { nota: scoreP, completada: true },
+          abstracto: { nota: scoreA, completada: true },
+          global,
+        },
         numero_intentos: numIntentos,
         ultima_tentativa_at: new Date(baseTime + numIntentos * 3600000).toISOString(),
       })
@@ -158,9 +163,10 @@ export async function seedDemoData(profesorId: string) {
           tiempo_pictorico_ms: 90000 + (seed % 180000),
           tiempo_abstracto_ms: 120000 + (seed % 240000),
           scores_cpa: {
-            concreto: Math.round(scoreC * factor * 10) / 10,
-            pictorico: Math.round(scoreP * factor * 10) / 10,
-            abstracto: Math.round(scoreA * factor * 10) / 10,
+            concreto: { nota: Math.round(scoreC * factor * 10) / 10, completada: true },
+            pictorico: { nota: Math.round(scoreP * factor * 10) / 10, completada: true },
+            abstracto: { nota: Math.round(scoreA * factor * 10) / 10, completada: true },
+            global: Math.round((scoreC * factor * 0.2 + scoreP * factor * 0.3 + scoreA * factor * 0.5) * 10) / 10,
           },
         })
       }

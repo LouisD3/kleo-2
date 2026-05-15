@@ -68,6 +68,13 @@ export default function ClaseDetalle() {
   const [nuevoAlumno, setNuevoAlumno] = useState('')
   const [error, setError] = useState(null)
   const [menuOpen, setMenuOpen] = useState(false)
+  const [modalRenombrar, setModalRenombrar] = useState(false)
+  const [nuevoNombre, setNuevoNombre] = useState('')
+  const [modalEmoji, setModalEmoji] = useState(false)
+  const [modalArchivar, setModalArchivar] = useState(false)
+  const [modalEliminar, setModalEliminar] = useState(false)
+  const [confirmEliminar, setConfirmEliminar] = useState('')
+  const [eliminando, setEliminando] = useState(false)
 
   const tareas = tareasData?.tareas ?? []
   const resultados = tareasData?.resultados ?? {}
@@ -193,14 +200,30 @@ export default function ClaseDetalle() {
             <>
               <div className="fixed inset-0 z-40" onClick={() => setMenuOpen(false)} />
               <div className="absolute top-full right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-50 min-w-[180px] py-1">
-                <button className="w-full text-left px-4 py-2 text-sm text-gray-600 hover:bg-gray-50">
+                <button
+                  onClick={() => { setMenuOpen(false); setNuevoNombre(clase.nombre); setModalRenombrar(true) }}
+                  className="w-full text-left px-4 py-2 text-sm text-gray-600 hover:bg-gray-50"
+                >
                   Renombrar
                 </button>
-                <button className="w-full text-left px-4 py-2 text-sm text-gray-600 hover:bg-gray-50">
+                <button
+                  onClick={() => { setMenuOpen(false); setModalEmoji(true) }}
+                  className="w-full text-left px-4 py-2 text-sm text-gray-600 hover:bg-gray-50"
+                >
                   Cambiar emoji
                 </button>
-                <button className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50">
+                <div className="border-t border-gray-100 my-1" />
+                <button
+                  onClick={() => { setMenuOpen(false); setModalArchivar(true) }}
+                  className="w-full text-left px-4 py-2 text-sm text-orange-600 hover:bg-orange-50"
+                >
                   Archivar clase
+                </button>
+                <button
+                  onClick={() => { setMenuOpen(false); setConfirmEliminar(''); setModalEliminar(true) }}
+                  className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50"
+                >
+                  Eliminar clase
                 </button>
               </div>
             </>
@@ -450,6 +473,173 @@ export default function ClaseDetalle() {
             Agregar alumno
           </Boton>
         </form>
+      </Modal>
+
+      {/* Modal renombrar */}
+      <Modal
+        abierto={modalRenombrar}
+        onCerrar={() => setModalRenombrar(false)}
+        titulo="Renombrar clase"
+      >
+        <form
+          onSubmit={async (e) => {
+            e.preventDefault()
+            if (!nuevoNombre.trim()) return
+            const { error: err } = await supabase
+              .from('clases')
+              .update({ nombre: nuevoNombre.trim() })
+              .eq('id', claseId)
+            if (!err) {
+              setModalRenombrar(false)
+              window.location.reload()
+            } else {
+              setError(err.message)
+            }
+          }}
+          className="space-y-4"
+        >
+          <div>
+            <label className="label-base">Nombre de la clase</label>
+            <input
+              type="text"
+              value={nuevoNombre}
+              onChange={(e) => setNuevoNombre(e.target.value)}
+              className="input-base"
+              autoFocus
+            />
+          </div>
+          <Boton type="submit" variante="primario" size="md" className="w-full" disabled={!nuevoNombre.trim()}>
+            Guardar
+          </Boton>
+        </form>
+      </Modal>
+
+      {/* Modal cambiar emoji */}
+      <Modal
+        abierto={modalEmoji}
+        onCerrar={() => setModalEmoji(false)}
+        titulo="Cambiar emoji"
+      >
+        <div className="grid grid-cols-6 gap-2">
+          {['📐', '📏', '🔢', '📊', '🧮', '✏️', '📚', '🎓', '🏫', '⭐', '🌟', '💡', '🔬', '🧪', '🎯', '📝', '🗂️', '🌈'].map((emoji) => (
+            <button
+              key={emoji}
+              onClick={async () => {
+                const { error: err } = await supabase
+                  .from('clases')
+                  .update({ emoji })
+                  .eq('id', claseId)
+                if (!err) {
+                  setModalEmoji(false)
+                  window.location.reload()
+                } else {
+                  setError(err.message)
+                }
+              }}
+              className="text-2xl p-3 rounded-lg hover:bg-gray-100 transition-colors"
+            >
+              {emoji}
+            </button>
+          ))}
+        </div>
+      </Modal>
+
+      {/* Modal archivar clase */}
+      <Modal
+        abierto={modalArchivar}
+        onCerrar={() => setModalArchivar(false)}
+        titulo="Archivar clase"
+      >
+        <div className="space-y-4">
+          <p className="text-sm text-gray-600">
+            Al archivar esta clase, dejará de aparecer en tu lista de clases activas.
+            Los datos (alumnos, tareas, resultados) se conservan y podrás restaurarla después.
+          </p>
+          <p className="text-sm font-medium text-gray-700">
+            Clase: <strong>{clase?.nombre}</strong> ({alumnos.length} alumno{alumnos.length !== 1 ? 's' : ''})
+          </p>
+          <div className="flex gap-3">
+            <Boton
+              variante="peligro"
+              onClick={async () => {
+                const { error: err } = await supabase
+                  .from('clases')
+                  .update({ archivada: true })
+                  .eq('id', claseId)
+                if (!err) {
+                  router.push('/profesor')
+                } else {
+                  setError(err.message)
+                  setModalArchivar(false)
+                }
+              }}
+            >
+              Archivar
+            </Boton>
+            <Boton variante="secundario" onClick={() => setModalArchivar(false)}>
+              Cancelar
+            </Boton>
+          </div>
+        </div>
+      </Modal>
+
+      {/* Modal eliminar clase */}
+      <Modal
+        abierto={modalEliminar}
+        onCerrar={() => { setModalEliminar(false); setConfirmEliminar('') }}
+        titulo="Eliminar clase"
+      >
+        <div className="space-y-4">
+          <p className="text-sm text-gray-600">
+            Esta acción es <strong>irreversible</strong>. Se eliminarán permanentemente todos los alumnos, tareas, resultados e intentos asociados a esta clase.
+          </p>
+          <p className="text-sm font-medium text-gray-700">
+            Clase: <strong>{clase?.nombre}</strong> ({alumnos.length} alumno{alumnos.length !== 1 ? 's' : ''}, {tareasClase.length} tarea{tareasClase.length !== 1 ? 's' : ''})
+          </p>
+          <div>
+            <label className="label-base">
+              Escribe <strong>ELIMINAR</strong> para confirmar
+            </label>
+            <input
+              type="text"
+              value={confirmEliminar}
+              onChange={(e) => setConfirmEliminar(e.target.value)}
+              className="input-base"
+              placeholder="ELIMINAR"
+            />
+          </div>
+          <div className="flex gap-3">
+            <Boton
+              variante="peligro"
+              disabled={confirmEliminar !== 'ELIMINAR' || eliminando}
+              onClick={async () => {
+                setEliminando(true)
+                try {
+                  // Delete in order: intentos → resultados → tareas → alumnos → clase
+                  const tareaIds = tareasClase.map((t) => t.id)
+                  if (tareaIds.length > 0) {
+                    await supabase.from('intentos').delete().in('tarea_id', tareaIds)
+                    await supabase.from('resultados').delete().in('tarea_id', tareaIds)
+                    await supabase.from('tareas').delete().in('id', tareaIds)
+                  }
+                  await supabase.from('alumnos').delete().eq('clase_id', claseId)
+                  const { error: err } = await supabase.from('clases').delete().eq('id', claseId)
+                  if (err) throw err
+                  router.push('/profesor')
+                } catch (err) {
+                  setError(err.message ?? 'Error al eliminar la clase')
+                  setEliminando(false)
+                  setModalEliminar(false)
+                }
+              }}
+            >
+              {eliminando ? 'Eliminando...' : 'Eliminar definitivamente'}
+            </Boton>
+            <Boton variante="secundario" onClick={() => { setModalEliminar(false); setConfirmEliminar('') }}>
+              Cancelar
+            </Boton>
+          </div>
+        </div>
       </Modal>
     </div>
   )
