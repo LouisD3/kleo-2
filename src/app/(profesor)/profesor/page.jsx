@@ -8,8 +8,10 @@ import {
   ClipboardCheck,
   GraduationCap,
   HandHelping,
+  PartyPopper,
   Plus,
   Sparkles,
+  Star,
   TrendingDown,
   Users,
 } from 'lucide-react'
@@ -70,6 +72,7 @@ export default function PaginaMisClases() {
   const [modalNuevaClase, setModalNuevaClase] = useState(false)
   const [formClase, setFormClase] = useState({ nombre: '', emoji: '🎓' })
   const [error, setError] = useState(null)
+  const [showAllNotifs, setShowAllNotifs] = useState(false)
 
   useEffect(() => {
     if (!profesor) return
@@ -199,6 +202,43 @@ export default function PaginaMisClases() {
       })
     }
 
+    // --- Prio 5b: Tarea 100% completada (tous les élèves ont un résultat) ---
+    for (const t of tareas) {
+      if (t.estado !== 'en_curso' && t.estado !== 'completada') continue
+      const res = resultados[t.id]
+      if (!res) continue
+      const clase = enriched.find((c) => c.id === t.clase_id)
+      if (!clase || clase.alumnosCount === 0) continue
+      const completados = Object.values(res).filter((r) => r.calificacion != null).length
+      if (completados === clase.alumnosCount) {
+        items.push({
+          key: `tarea-100-${t.id}`,
+          icon: PartyPopper,
+          iconBg: 'bg-emerald-100',
+          iconColor: 'text-emerald-600',
+          href: `/profesor/tarea/${t.id}`,
+          bold: 'Todos completaron una tarea',
+          rest: t.nombre,
+        })
+        break // only show the first one
+      }
+    }
+
+    // --- Prio 5c: Best CPA step (celebrate what's working) ---
+    if (steps.length > 0) {
+      const best = steps.reduce((max, s) => (s.avg > max.avg ? s : max))
+      if (best.avg >= 7) {
+        items.push({
+          key: 'paso-fuerte',
+          icon: Star,
+          iconBg: 'bg-yellow-100',
+          iconColor: 'text-yellow-600',
+          bold: `Tu grupo domina ${best.label}`,
+          rest: `prom. ${best.avg.toFixed(1)}`,
+        })
+      }
+    }
+
     // --- Prio 6: Actividad reciente (semana) ---
     let completadosSemana = 0
     for (const tareaId of Object.keys(resultados)) {
@@ -237,7 +277,16 @@ export default function PaginaMisClases() {
       rest: siguiente?.titulo ?? '36 secuencias disponibles',
     })
 
-    return items
+    // Mix: 2 urgent max + always 1 positive in slot 3
+    const urgentKeys = new Set(['bloqueados', 'resultados', 'deadline', 'paso-dificil'])
+    const positiveKeys = new Set(['tarea-100', 'paso-fuerte', 'avance', 'actividad', 'siguiente'])
+    const urgent = items.filter((n) => urgentKeys.has(n.key))
+    const positive = items.filter((n) => positiveKeys.has(n.key) || n.key.startsWith('tarea-100'))
+
+    if (urgent.length >= 2 && positive.length > 0) {
+      return [...urgent.slice(0, 2), positive[0]]
+    }
+    return items.slice(0, 3)
   }, [tareasData, clasesEnriched])
 
   async function handleCrearClase(e) {
@@ -304,6 +353,22 @@ export default function PaginaMisClases() {
               <NotificationRow key={n.key} item={n} />
             ))}
           </div>
+          {notifications.length > 3 && (
+            <button
+              type="button"
+              onClick={() => setShowAllNotifs((v) => !v)}
+              className="mt-4 text-sm text-tinta-400 hover:text-tinta transition-colors"
+            >
+              {showAllNotifs ? 'Ver menos' : `Ver mas (${notifications.length - 3})`}
+            </button>
+          )}
+          {showAllNotifs && (
+            <div className="mt-2 space-y-4">
+              {notifications.slice(3).map((n) => (
+                <NotificationRow key={n.key} item={n} />
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Stats card */}

@@ -51,7 +51,7 @@ export default function ClaseCard({ clase }: { clase: ClaseEnriched }) {
             {clase.alumnosBloqueadosCount}
           </span>
         ) : (
-          <span className="inline-flex items-center gap-1.5 text-xs font-medium text-tinta-400 bg-crema-200 rounded-full px-2.5 py-1">
+          <span className="inline-flex items-center gap-1.5 text-xs font-medium text-emerald-600 bg-emerald-50 rounded-full px-2.5 py-1">
             <CheckCircle className="w-3.5 h-3.5" />
             OK
           </span>
