@@ -56,6 +56,16 @@ export default function DetalleTarea() {
 
   const resultadosPorAlumno = resultados[tareaId] ?? {}
   const promedio = calcularPromedio(resultadosPorAlumno)
+
+  // Extract questions from CPA structure (pictorico + abstracto)
+  const preguntas = useMemo(() => {
+    const cpa = tarea?.contenido_cpa
+    if (!cpa) return []
+    // Legacy format: array of questions
+    if (Array.isArray(cpa)) return cpa
+    // CPA format: { concreto, pictorico, abstracto }
+    return [...(cpa.pictorico?.preguntas ?? []), ...(cpa.abstracto?.preguntas ?? [])]
+  }, [tarea?.contenido_cpa])
   const [descargandoPDF, setDescargandoPDF] = useState(null)
   const [editandoNota, setEditandoNota] = useState(null)
   const [notaManual, setNotaManual] = useState('')
@@ -173,7 +183,7 @@ export default function DetalleTarea() {
               <span>Matemáticas 1° Sec</span>
               <span>{tarea.dificultad}</span>
               <span>Singapur</span>
-              <span>{tarea.contenido_cpa?.length ?? 0} preguntas</span>
+              <span>{preguntas.length} preguntas</span>
               <span>{new Date(tarea.created_at).toLocaleDateString('es-MX')}</span>
               {fechaLimite && (
                 <span className={vencida ? 'text-red-500 font-medium' : ''}>
@@ -250,7 +260,7 @@ export default function DetalleTarea() {
           <span className="text-sm text-gray-400">{tarea.contenido_cpa?.length ?? 0} en total</span>
         </div>
         <div className="divide-y divide-gray-50">
-          {tarea.contenido_cpa?.map((p, i) => (
+          {preguntas.map((p, i) => (
             <div key={i} className="px-6 py-4 hover:bg-gray-50 transition-colors">
               <div className="flex items-start gap-4">
                 <span className="flex-shrink-0 inline-flex items-center justify-center w-7 h-7 rounded-full bg-gray-100 text-xs font-bold text-gray-600">

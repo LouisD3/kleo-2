@@ -86,7 +86,7 @@ export default function TopBarProfesor() {
         {/* Quick action */}
         <button
           onClick={handleAccionRapida}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-tinta text-tinta-50 text-sm font-medium hover:bg-tinta-600 transition-colors"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-tinta text-amarillo text-sm font-medium hover:bg-tinta-600 transition-colors"
         >
           <Plus className="w-4 h-4" />
           <span className="hidden lg:inline">Nueva tarea</span>

@@ -163,9 +163,9 @@ export default function Ajustes() {
         <div className="card p-6 border-blue-100">
           <h2 className="text-lg font-bold text-gray-900 mb-1">Datos de demostración</h2>
           <p className="text-xs text-gray-500 mb-4">
-            Crea 2 clases, 24 alumnos, tareas con resultados e intentos para probar la plataforma.
+            Crea 6 clases, ~134 alumnos con perfiles variados, ~56 tareas, resultados e intentos para probar la plataforma.
           </p>
-          <div className="flex items-center gap-3">
+          <div className="flex flex-wrap items-center gap-3">
             <Boton
               variante="secundario"
               size="md"
@@ -178,7 +178,6 @@ export default function Ajustes() {
                   const { seedDemoData } = await import('@/lib/seed-demo')
                   const created = await seedDemoData(profesor.id)
                   setSeedResult(created)
-                  // Reload after 1.5s so the store picks up new classes
                   setTimeout(() => window.location.reload(), 1500)
                 } catch (err) {
                   setError(err instanceof Error ? err.message : 'Error al crear datos demo')
@@ -188,6 +187,30 @@ export default function Ajustes() {
               }}
             >
               {seedLoading ? 'Creando...' : 'Cargar datos demo'}
+            </Boton>
+            <Boton
+              variante="secundario"
+              size="md"
+              disabled={seedLoading}
+              onClick={async () => {
+                if (!confirm('Esto eliminara TODAS tus clases, alumnos, tareas y resultados. Continuar?')) return
+                setSeedLoading(true)
+                setSeedResult(null)
+                setError(null)
+                try {
+                  const { clearDemoData, seedDemoData } = await import('@/lib/seed-demo')
+                  await clearDemoData(profesor.id)
+                  const created = await seedDemoData(profesor.id)
+                  setSeedResult(created)
+                  setTimeout(() => window.location.reload(), 1500)
+                } catch (err) {
+                  setError(err instanceof Error ? err.message : 'Error al reiniciar datos demo')
+                } finally {
+                  setSeedLoading(false)
+                }
+              }}
+            >
+              {seedLoading ? 'Reiniciando...' : 'Reiniciar datos demo'}
             </Boton>
             {seedResult && (
               <span className="text-sm text-green-600">

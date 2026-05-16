@@ -138,11 +138,13 @@ export default function SecuenciaDetalle() {
                 const code = `${sec.secuencia}${String.fromCharCode(97 + i)}`
                 const label = tarea.concepto_clave ?? `Tarea ${i + 1}`
                 return (
-                  <button
+                  <div
                     key={i}
-                    type="button"
+                    role="button"
+                    tabIndex={0}
                     onClick={() => openPreview(i)}
-                    className="group/card bg-white rounded-xl overflow-hidden border border-crema-100 hover:border-tinta-400/30 hover:shadow-sm transition-all text-left flex flex-col"
+                    onKeyDown={(e) => { if (e.key === 'Enter') openPreview(i) }}
+                    className="group/card bg-white rounded-xl overflow-hidden border border-crema-100 hover:border-tinta-400/30 hover:shadow-sm transition-all text-left flex flex-col cursor-pointer"
                   >
                     {/* Concreto miniature */}
                     <div className="relative h-36 overflow-hidden bg-crema-50">
@@ -179,7 +181,7 @@ export default function SecuenciaDetalle() {
                         Asignar a una clase
                       </span>
                     </div>
-                  </button>
+                  </div>
                 )
               })}
             </div>

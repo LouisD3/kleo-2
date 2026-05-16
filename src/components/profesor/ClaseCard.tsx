@@ -38,12 +38,12 @@ export default function ClaseCard({ clase }: { clase: ClaseEnriched }) {
     >
       {/* Header */}
       <div className="flex items-start justify-between mb-4">
-        <div className="flex items-center gap-3">
-          <span className="text-2xl">{clase.emoji || '🎓'}</span>
-          <div>
+        <div>
+          <div className="flex items-center gap-2">
+            <span className="text-xl leading-none">{clase.emoji || '🎓'}</span>
             <h3 className="text-lg font-semibold text-tinta truncate">{clase.nombre}</h3>
-            <p className="text-sm text-tinta-400">{clase.alumnosCount} alumnos</p>
           </div>
+          <p className="text-sm text-tinta-400 mt-0.5">{clase.alumnosCount} alumnos</p>
         </div>
         {clase.alumnosBloqueadosCount > 0 ? (
           <span className="inline-flex items-center gap-1.5 text-xs font-medium text-orange-600 bg-orange-50 rounded-full px-2.5 py-1">

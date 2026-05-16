@@ -1,14 +1,29 @@
 'use client'
 
-import { AlertTriangle, BookOpen, CheckCircle, Plus, Users } from 'lucide-react'
-import { useEffect, useState } from 'react'
+import {
+  Activity,
+  AlertTriangle,
+  BookOpen,
+  CalendarClock,
+  CheckCircle,
+  ClipboardCheck,
+  GraduationCap,
+  Plus,
+  Sparkles,
+  TrendingDown,
+  Users,
+} from 'lucide-react'
+import Link from 'next/link'
+import { useEffect, useMemo, useState } from 'react'
 import ClaseCard from '@/components/profesor/ClaseCard'
 import Boton from '@/components/ui/Boton.jsx'
 import MensajeError from '@/components/ui/MensajeError.jsx'
 import Modal from '@/components/ui/Modal.jsx'
 import Spinner from '@/components/ui/Spinner.jsx'
 import { useClasesEnriched } from '@/hooks/useClasesEnriched.js'
+import { useTareasProfesor } from '@/hooks/useTareas.js'
 import { supabase } from '@/lib/supabase.js'
+import { PDAS_MATEMATICAS_1 } from '@/mock/pdas/matematicas_1.js'
 import useAuthStore from '@/store/useAuthStore.js'
 
 function extractFirstName(nombre) {
@@ -23,6 +38,30 @@ function saludoDelDia() {
   if (h < 12) return 'Buenos días'
   if (h < 18) return 'Buenas tardes'
   return 'Buenas noches'
+}
+
+function NotificationRow({ item }) {
+  const Icon = item.icon
+  const inner = (
+    <div className="flex items-center gap-3 group">
+      <div
+        className={`w-8 h-8 rounded-lg ${item.iconBg} flex items-center justify-center shrink-0`}
+      >
+        <Icon className={`w-4 h-4 ${item.iconColor}`} />
+      </div>
+      <p className="text-sm text-tinta-600 group-hover:text-tinta transition-colors">
+        <span className="font-semibold">{item.bold}</span>
+        <span className="text-tinta-400"> · {item.rest}</span>
+      </p>
+    </div>
+  )
+  return item.href ? (
+    <Link href={item.href} className="block">
+      {inner}
+    </Link>
+  ) : (
+    inner
+  )
 }
 
 export default function PaginaMisClases() {
@@ -43,6 +82,163 @@ export default function PaginaMisClases() {
   }, [profesor])
 
   const { data: clasesEnriched, isLoading } = useClasesEnriched(profesor?.id, clases)
+  const { data: tareasData } = useTareasProfesor(profesor?.id)
+
+  // Priority-based notification items for hero card (always shows top 3)
+  const notifications = useMemo(() => {
+    const tareas = tareasData?.tareas ?? []
+    const resultados = tareasData?.resultados ?? {}
+    const enriched = clasesEnriched ?? []
+    const now = Date.now()
+    const items = []
+
+    // --- Prio 1: Alumnos bloqueados ---
+    const bloqueados = enriched.reduce((sum, c) => sum + c.alumnosBloqueadosCount, 0)
+    if (bloqueados > 0) {
+      items.push({
+        key: 'bloqueados',
+        icon: AlertTriangle,
+        iconBg: 'bg-red-100',
+        iconColor: 'text-red-600',
+        href: '/profesor/clase',
+        bold: `${bloqueados} ${bloqueados === 1 ? 'alumno bloqueado' : 'alumnos bloqueados'}`,
+        rest: 'hace +3 dias',
+      })
+    }
+
+    // --- Prio 2: Tareas con resultados sin revisar ---
+    const tareasConRes = tareas.filter(
+      (t) =>
+        t.estado === 'en_curso' && resultados[t.id] && Object.keys(resultados[t.id]).length > 0,
+    )
+    if (tareasConRes.length > 0) {
+      items.push({
+        key: 'resultados',
+        icon: ClipboardCheck,
+        iconBg: 'bg-amber-100',
+        iconColor: 'text-amber-600',
+        href: `/profesor/tarea/${tareasConRes[0].id}`,
+        bold: `${tareasConRes.length} ${tareasConRes.length === 1 ? 'tarea tiene' : 'tareas tienen'} resultados`,
+        rest: 'sin revisar',
+      })
+    }
+
+    // --- Prio 3: Deadline dans < 3 jours ---
+    const tresDiasMs = 3 * 24 * 60 * 60 * 1000
+    const tareasConFecha = tareas
+      .filter((t) => t.estado === 'en_curso' && t.fecha_limite)
+      .map((t) => ({ ...t, fechaMs: new Date(t.fecha_limite).getTime() }))
+      .filter((t) => t.fechaMs > now && t.fechaMs - now < tresDiasMs)
+      .sort((a, b) => a.fechaMs - b.fechaMs)
+    if (tareasConFecha.length > 0) {
+      const prox = tareasConFecha[0]
+      const dias = Math.floor((prox.fechaMs - now) / (1000 * 60 * 60 * 24))
+      const fechaLabel = dias === 0 ? 'hoy' : dias === 1 ? 'manana' : `en ${dias} dias`
+      const res = resultados[prox.id] ?? {}
+      const completados = Object.values(res).filter((r) => r.calificacion != null).length
+      const clase = enriched.find((c) => c.id === prox.clase_id)
+      const total = clase?.alumnosCount ?? 0
+      items.push({
+        key: 'deadline',
+        icon: CalendarClock,
+        iconBg: 'bg-blue-100',
+        iconColor: 'text-blue-600',
+        href: `/profesor/tarea/${prox.id}`,
+        bold: `Fecha limite ${fechaLabel}`,
+        rest: `${completados}/${total} completaron`,
+      })
+    }
+
+    // --- Prio 4: Paso mas dificil (semana) ---
+    const unaSemanMs = 7 * 24 * 60 * 60 * 1000
+    const cutoff = now - unaSemanMs
+    const scoresC = []
+    const scoresP = []
+    const scoresA = []
+    for (const tareaId of Object.keys(resultados)) {
+      for (const r of Object.values(resultados[tareaId])) {
+        if (!r.scores_cpa || !r.ultima_tentativa_at) continue
+        if (new Date(r.ultima_tentativa_at).getTime() < cutoff) continue
+        if (r.scores_cpa.concreto?.score != null) scoresC.push(r.scores_cpa.concreto.score)
+        if (r.scores_cpa.pictorico?.score != null) scoresP.push(r.scores_cpa.pictorico.score)
+        if (r.scores_cpa.abstracto?.score != null) scoresA.push(r.scores_cpa.abstracto.score)
+      }
+    }
+    const avg = (arr) => (arr.length > 0 ? arr.reduce((a, b) => a + b, 0) / arr.length : null)
+    const steps = [
+      { label: 'Concreto', avg: avg(scoresC) },
+      { label: 'Pictorico', avg: avg(scoresP) },
+      { label: 'Abstracto', avg: avg(scoresA) },
+    ].filter((s) => s.avg !== null)
+    if (steps.length > 0) {
+      const hardest = steps.reduce((min, s) => (s.avg < min.avg ? s : min))
+      items.push({
+        key: 'paso-dificil',
+        icon: TrendingDown,
+        iconBg: 'bg-rose-100',
+        iconColor: 'text-rose-600',
+        bold: `Paso mas dificil: ${hardest.label}`,
+        rest: `prom. ${hardest.avg.toFixed(1)}`,
+      })
+    }
+
+    // --- Prio 5: Avance del programa ---
+    const secCompletadas = new Set()
+    for (const t of tareas) {
+      if (t.secuencia_ref && t.estado === 'completada') secCompletadas.add(t.secuencia_ref)
+    }
+    if (secCompletadas.size > 0) {
+      items.push({
+        key: 'avance',
+        icon: GraduationCap,
+        iconBg: 'bg-violet-100',
+        iconColor: 'text-violet-600',
+        href: '/profesor/programa',
+        bold: `${secCompletadas.size}/36 secuencias completadas`,
+        rest: `${Math.round((secCompletadas.size / 36) * 100)}% del programa`,
+      })
+    }
+
+    // --- Prio 6: Actividad reciente (semana) ---
+    let completadosSemana = 0
+    for (const tareaId of Object.keys(resultados)) {
+      for (const r of Object.values(resultados[tareaId])) {
+        if (r.ultima_tentativa_at && new Date(r.ultima_tentativa_at).getTime() > cutoff) {
+          completadosSemana++
+        }
+      }
+    }
+    if (completadosSemana > 0) {
+      items.push({
+        key: 'actividad',
+        icon: Activity,
+        iconBg: 'bg-emerald-100',
+        iconColor: 'text-emerald-600',
+        bold: `${completadosSemana} ${completadosSemana === 1 ? 'tarea completada' : 'tareas completadas'}`,
+        rest: 'esta semana',
+      })
+    }
+
+    // --- Prio 7: Siguiente secuencia (fallback) ---
+    const secEnCursoOrDone = new Set()
+    for (const t of tareas) {
+      if (t.secuencia_ref && (t.estado === 'en_curso' || t.estado === 'completada')) {
+        secEnCursoOrDone.add(t.secuencia_ref)
+      }
+    }
+    const siguiente = PDAS_MATEMATICAS_1.find((p) => !secEnCursoOrDone.has(p.secuencia))
+    items.push({
+      key: 'siguiente',
+      icon: Sparkles,
+      iconBg: 'bg-tinta/10',
+      iconColor: 'text-tinta',
+      href: siguiente ? `/profesor/programa/${siguiente.secuencia}` : '/profesor/programa',
+      bold: siguiente ? `Siguiente: Sec. ${siguiente.secuencia}` : 'Explorar el programa',
+      rest: siguiente?.titulo ?? '36 secuencias disponibles',
+    })
+
+    return items
+  }, [tareasData, clasesEnriched])
 
   async function handleCrearClase(e) {
     e.preventDefault()
@@ -77,7 +273,10 @@ export default function PaginaMisClases() {
   // Compute summary stats
   const totalAlumnos = (clasesEnriched ?? []).reduce((sum, c) => sum + c.alumnosCount, 0)
   const totalTareasActivas = (clasesEnriched ?? []).reduce((sum, c) => sum + c.tareasActivas, 0)
-  const totalBloqueados = (clasesEnriched ?? []).reduce((sum, c) => sum + c.alumnosBloqueadosCount, 0)
+  const totalBloqueados = (clasesEnriched ?? []).reduce(
+    (sum, c) => sum + c.alumnosBloqueadosCount,
+    0,
+  )
 
   if (isLoading && clases.length > 0) {
     return (
@@ -95,20 +294,15 @@ export default function PaginaMisClases() {
           <h1 className="text-3xl font-bold text-tinta tracking-tight">
             {saludoDelDia()}, {extractFirstName(profesor?.nombre)} 👋
           </h1>
-          <p className="text-sm text-tinta-400 mt-1 mb-5">¿Qué quieres enseñar hoy?</p>
-          <div className="flex items-center gap-3">
-            <Boton variante="primario" size="md" onClick={() => setModalNuevaClase(true)}>
-              <Plus className="w-4 h-4" />
-              Nueva clase
-            </Boton>
-            <Boton
-              variante="secundario"
-              size="md"
-              onClick={() => window.location.href = '/profesor/biblioteca'}
-            >
-              <BookOpen className="w-4 h-4" />
-              Biblioteca
-            </Boton>
+          <p className="text-sm text-tinta-400 mt-1 mb-5">
+            {notifications.some((n) => ['bloqueados', 'resultados', 'deadline'].includes(n.key))
+              ? 'Esto necesita tu atencion'
+              : 'Todo va bien — sigue asi'}
+          </p>
+          <div className="space-y-4">
+            {notifications.slice(0, 3).map((n) => (
+              <NotificationRow key={n.key} item={n} />
+            ))}
           </div>
         </div>
 
@@ -119,7 +313,9 @@ export default function PaginaMisClases() {
               <Users className="w-5 h-5" />
             </div>
             <div>
-              <p className="text-2xl font-bold text-tinta tabular-nums leading-none">{totalAlumnos}</p>
+              <p className="text-2xl font-bold text-tinta tabular-nums leading-none">
+                {totalAlumnos}
+              </p>
               <p className="text-xs text-tinta-400 mt-0.5">Alumnos</p>
             </div>
           </div>
@@ -128,7 +324,9 @@ export default function PaginaMisClases() {
               <BookOpen className="w-5 h-5" />
             </div>
             <div>
-              <p className="text-2xl font-bold text-tinta tabular-nums leading-none">{totalTareasActivas}</p>
+              <p className="text-2xl font-bold text-tinta tabular-nums leading-none">
+                {totalTareasActivas}
+              </p>
               <p className="text-xs text-tinta-400 mt-0.5">Tareas activas</p>
             </div>
           </div>
@@ -138,7 +336,9 @@ export default function PaginaMisClases() {
                 <AlertTriangle className="w-5 h-5" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-orange-600 tabular-nums leading-none">{totalBloqueados}</p>
+                <p className="text-2xl font-bold text-orange-600 tabular-nums leading-none">
+                  {totalBloqueados}
+                </p>
                 <p className="text-xs text-orange-500 mt-0.5">Necesitan atención</p>
               </div>
             </div>
@@ -169,7 +369,7 @@ export default function PaginaMisClases() {
 
       {/* Class cards grid */}
       {(clasesEnriched ?? []).length > 0 && (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
           {clasesEnriched.map((clase) => (
             <ClaseCard key={clase.id} clase={clase} />
           ))}
