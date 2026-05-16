@@ -7,6 +7,7 @@ import { getAllSecuencias, getSecuenciaById } from '@/content/biblioteca/matemat
 import { getTareasReferencia } from '@/data/tareas-referencia'
 import { useTareasProfesor } from '@/hooks/useTareas.js'
 import { BLOQUES_NEM } from '@/lib/bloques-nem'
+import { supabase } from '@/lib/supabase.js'
 import useAuthStore from '@/store/useAuthStore.js'
 import VisorContenido from '@/components/profesor/biblioteca/VisorContenido'
 
@@ -35,16 +36,39 @@ export default function ProgramaPage() {
   const { profesor } = useAuthStore()
   const { data: tareasData } = useTareasProfesor(profesor?.id)
   const tareasDB = tareasData?.tareas ?? []
+  const [clases, setClases] = useState<{ id: string; nombre: string }[]>([])
+  const [claseId, setClaseId] = useState<string | null>(null)
   const [trimestre, setTrimestre] = useState<Trimestre | null>(null) // auto-detect
   const [openBloques, setOpenBloques] = useState<Set<number>>(new Set())
   const [recurso, setRecurso] = useState<{ secNum: number; tipo: 'libro' | 'guia' | 'diapositivas' } | null>(null)
   const currentRef = useRef<HTMLAnchorElement>(null)
   const didScroll = useRef(false)
 
+  // Fetch classes
+  useEffect(() => {
+    if (!profesor) return
+    ;(supabase as any)
+      .from('clases')
+      .select('id, nombre')
+      .eq('profesor_id', profesor.id)
+      .order('created_at', { ascending: true })
+      .then(({ data }: { data: any[] | null }) => {
+        const list = data ?? []
+        setClases(list)
+        if (list.length > 0 && !claseId) setClaseId(list[0].id)
+      })
+  }, [profesor, claseId])
+
+  // Filter tareas by selected class
+  const tareasClase = useMemo(
+    () => (claseId ? tareasDB.filter((t: any) => t.clase_id === claseId) : tareasDB),
+    [tareasDB, claseId],
+  )
+
   const statusMap = useMemo(() => {
     const map: Record<number, 'completada' | 'en_curso' | 'sin_asignar'> = {}
     for (let i = 1; i <= 36; i++) map[i] = 'sin_asignar'
-    for (const t of tareasDB) {
+    for (const t of tareasClase) {
       const sec = t.secuencia_ref
       if (!sec) continue
       if (t.estado === 'completada') {
@@ -54,7 +78,7 @@ export default function ProgramaPage() {
       }
     }
     return map
-  }, [tareasDB])
+  }, [tareasClase])
 
   // Find the "current" sequence: first en_curso, or first sin_asignar after the last completed
   const currentSecNum = useMemo(() => {
@@ -133,7 +157,7 @@ export default function ProgramaPage() {
           </span>
         </div>
 
-        {/* Trimestre tabs */}
+        {/* Trimestre tabs + class selector */}
         <div className="flex items-center gap-2 flex-wrap">
           <div className="flex items-center gap-1 bg-crema-100 p-1 rounded-full">
             {TRIMESTRES.map((t) => (
@@ -151,6 +175,23 @@ export default function ProgramaPage() {
             ))}
           </div>
 
+          {clases.length > 1 && (
+            <div className="flex items-center gap-1 bg-crema-100 p-1 rounded-full ml-auto">
+              {clases.map((c) => (
+                <button
+                  key={c.id}
+                  onClick={() => setClaseId(c.id)}
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                    claseId === c.id
+                      ? 'bg-tinta text-tinta-50 shadow-sm'
+                      : 'text-tinta-600 hover:bg-crema-50'
+                  }`}
+                >
+                  {c.nombre}
+                </button>
+              ))}
+            </div>
+          )}
         </div>
       </div>
 

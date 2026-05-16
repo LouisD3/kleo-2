@@ -1,6 +1,6 @@
 'use client'
 
-import { BookOpen, Film, GraduationCap, LogOut, Menu, Plus, Settings, X } from 'lucide-react'
+import { BookOpen, GraduationCap, LogOut, Menu, Plus, Settings, X } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { useCallback, useState } from 'react'
@@ -9,7 +9,6 @@ import useAuthStore from '@/store/useAuthStore.js'
 const NAV_ITEMS = [
   { href: '/profesor', label: 'Mis clases', icon: GraduationCap },
   { href: '/profesor/programa', label: 'Programa', icon: BookOpen },
-  { href: '/profesor/recursos', label: 'Recursos', icon: Film },
 ]
 
 export default function BottomNavProfesor() {
