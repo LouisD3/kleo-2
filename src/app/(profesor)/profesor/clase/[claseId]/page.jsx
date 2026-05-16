@@ -419,28 +419,29 @@ export default function ClaseDetalle() {
         )}
       </div>
 
-      {/* Tabs with counters */}
-      <div className="flex items-center gap-1 border-b border-crema-300 mb-6">
+      {/* Tabs with counters — pill style */}
+      <div className="flex items-center gap-2 mb-6">
         {TABS.map((t) => {
           let count = null
           if (t.id === 'alumnos') count = alumnos.length
           if (t.id === 'tareas') count = tareasClase.length
+          const active = tab === t.id
           return (
             <button
               key={t.id}
               onClick={() => setTab(t.id)}
-              className={`flex items-center gap-2 px-4 py-2.5 text-sm font-medium border-b-2 transition-colors ${
-                tab === t.id
-                  ? 'border-amarillo text-tinta'
-                  : 'border-transparent text-tinta-400 hover:text-tinta'
+              className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                active
+                  ? 'bg-tinta text-white'
+                  : 'bg-white border border-crema-300 text-tinta-600 hover:bg-crema-50'
               }`}
             >
               {t.label}
               {count != null && (
                 <span
                   className={`inline-flex items-center justify-center min-w-[20px] h-5 px-1.5 rounded-full text-xs font-semibold ${
-                    tab === t.id
-                      ? 'bg-amarillo text-tinta'
+                    active
+                      ? 'bg-white/20 text-white'
                       : 'bg-crema-200 text-tinta-400'
                   }`}
                 >
