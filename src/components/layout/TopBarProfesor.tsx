@@ -48,7 +48,7 @@ export default function TopBarProfesor() {
       {/* Search */}
       <button
         onClick={handleSearchClick}
-        className="flex items-center gap-2.5 px-4 py-2 rounded-full bg-white border border-crema-300 text-sm text-tinta-400 hover:border-crema-400 transition-colors w-full max-w-xs"
+        className="flex items-center gap-2.5 px-4 py-2 rounded-full bg-white border border-crema-300 text-sm text-tinta-400 hover:border-tinta-400/30 transition-colors w-full max-w-xs"
       >
         <Search className="w-4 h-4 flex-shrink-0" />
         <span className="flex-1 text-left">Buscar...</span>
@@ -65,10 +65,10 @@ export default function TopBarProfesor() {
             <Link
               key={href}
               href={href}
-              className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+              className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium border transition-colors ${
                 active
-                  ? 'bg-amarillo text-tinta'
-                  : 'text-tinta-400 hover:bg-white hover:text-tinta'
+                  ? 'bg-tinta text-amarillo border-tinta'
+                  : 'bg-white text-tinta-400 border-crema-300 hover:border-tinta-400/30 hover:text-tinta'
               }`}
             >
               <Icon className="w-4 h-4" />
@@ -86,7 +86,7 @@ export default function TopBarProfesor() {
         {/* Quick action */}
         <button
           onClick={handleAccionRapida}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-tinta text-amarillo text-sm font-medium hover:bg-tinta-600 transition-colors"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-tinta bg-tinta text-amarillo text-sm font-medium hover:bg-tinta-600 transition-colors"
         >
           <Plus className="w-4 h-4" />
           <span className="hidden lg:inline">Nueva tarea</span>

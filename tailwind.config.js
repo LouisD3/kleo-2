@@ -13,12 +13,12 @@ export default {
 
         // Crème grisé — surfaces et bordures
         crema: {
-          50: '#F7F6F4',
-          100: '#F0EEEB',  // = background
-          200: '#E8E7E4',  // = secondary
-          300: '#DFDDD9',  // = border
-          400: '#CFCDC9',
-          500: '#A3A1A0',
+          50: '#FFFFFF',
+          100: '#F6F5F3',  // = background
+          200: '#F9F9F8',  // = secondary
+          300: '#F6F6F5',  // = border
+          400: '#F0F0EE',
+          500: '#BBBAB8',
         },
 
         // Tinta — noir profond pour texte et primary
