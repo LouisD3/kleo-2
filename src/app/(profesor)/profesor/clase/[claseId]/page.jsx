@@ -1,7 +1,16 @@
 'use client'
 
 import { useQuery } from '@tanstack/react-query'
-import { ArrowLeft, MoreHorizontal, Plus, UserPlus } from 'lucide-react'
+import {
+  ArrowLeft,
+  ArrowUpDown,
+  ChevronDown,
+  ChevronUp,
+  Download,
+  MoreHorizontal,
+  Plus,
+  UserPlus,
+} from 'lucide-react'
 import Link from 'next/link'
 import { useParams, useRouter } from 'next/navigation'
 import { useEffect, useMemo, useState } from 'react'
@@ -13,10 +22,12 @@ import MensajeError from '@/components/ui/MensajeError.jsx'
 import Modal from '@/components/ui/Modal.jsx'
 import Spinner from '@/components/ui/Spinner.jsx'
 import { useAlumnosBloqueados } from '@/hooks/useAlumnosBloqueados.js'
-import { useAgregarAlumno, useAlumnos, useTareasProfesor } from '@/hooks/useTareas.js'
+import { calcularPromedio, useAgregarAlumno, useAlumnos, useTareasProfesor } from '@/hooks/useTareas.js'
 import { BLOQUES_NEM } from '@/lib/bloques-nem'
 import { supabase } from '@/lib/supabase.js'
 import useAuthStore from '@/store/useAuthStore.js'
+
+// ── Helpers ────────────────────────────────────────────────────
 
 function useClaseById(claseId) {
   return useQuery({
@@ -24,7 +35,6 @@ function useClaseById(claseId) {
     queryFn: async () => {
       const { data } = await supabase.from('clases').select('*').eq('id', claseId).single()
       if (data) return { type: 'clase', data }
-      // Legacy fallback: maybe claseId is actually an alumnoId
       const { data: alumno } = await supabase
         .from('alumnos')
         .select('id, clase_id')
@@ -37,11 +47,88 @@ function useClaseById(claseId) {
   })
 }
 
+function formatFecha(dateStr) {
+  if (!dateStr) return '-'
+  return new Date(dateStr).toLocaleDateString('es-MX', { day: 'numeric', month: 'short' })
+}
+
+function promedioCPAClase(resultados, alumnos) {
+  const scores = { concreto: [], pictorico: [], abstracto: [] }
+  for (const alumnoId of alumnos.map((a) => a.id)) {
+    const r = resultados?.[alumnoId]
+    if (!r?.scores_cpa) continue
+    if (r.scores_cpa.concreto?.nota != null) scores.concreto.push(r.scores_cpa.concreto.nota)
+    if (r.scores_cpa.pictorico?.nota != null) scores.pictorico.push(r.scores_cpa.pictorico.nota)
+    if (r.scores_cpa.abstracto?.nota != null) scores.abstracto.push(r.scores_cpa.abstracto.nota)
+  }
+  const avg = (arr) => (arr.length ? arr.reduce((a, b) => a + b, 0) / arr.length : null)
+  return { concreto: avg(scores.concreto), pictorico: avg(scores.pictorico), abstracto: avg(scores.abstracto) }
+}
+
+function CPADots({ resultados, alumnos }) {
+  const avgs = promedioCPAClase(resultados, alumnos)
+  return (
+    <div className="flex items-center gap-1">
+      <CPADot nota={avgs.concreto} label="C" />
+      <CPADot nota={avgs.pictorico} label="P" />
+      <CPADot nota={avgs.abstracto} label="A" />
+    </div>
+  )
+}
+
+function CPADot({ nota, label }) {
+  let color = 'bg-gray-200'
+  if (nota != null) {
+    if (nota >= 7) color = 'bg-green-400'
+    else if (nota >= 5) color = 'bg-yellow-400'
+    else color = 'bg-red-400'
+  }
+  return (
+    <div className="flex items-center gap-0.5" title={`${label}: ${nota != null ? nota.toFixed(1) : '-'}`}>
+      <span className="text-[9px] text-gray-400 font-medium">{label}</span>
+      <div className={`w-2 h-2 rounded-full ${color}`} />
+    </div>
+  )
+}
+
+function exportCSV(tareasClase, resultados, alumnos) {
+  const headers = ['Tarea', 'Secuencia', 'Estado', 'Alumno', 'Calificacion', 'Concreto', 'Pictorico', 'Abstracto']
+  const rows = []
+  for (const tarea of tareasClase) {
+    const resTarea = resultados[tarea.id] ?? {}
+    for (const alumno of alumnos) {
+      const r = resTarea[alumno.id]
+      rows.push([
+        tarea.nombre,
+        tarea.secuencia_ref ?? '',
+        tarea.estado,
+        alumno.nombre,
+        r ? (r.calificacion_manual ?? r.calificacion ?? '') : '',
+        r?.scores_cpa?.concreto?.nota ?? '',
+        r?.scores_cpa?.pictorico?.nota ?? '',
+        r?.scores_cpa?.abstracto?.nota ?? '',
+      ])
+    }
+  }
+  const csv = [headers, ...rows].map((r) => r.map((c) => `"${c}"`).join(',')).join('\n')
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' })
+  const url = URL.createObjectURL(blob)
+  const a = document.createElement('a')
+  a.href = url
+  a.download = 'resultados-clase.csv'
+  a.click()
+  URL.revokeObjectURL(url)
+}
+
+// ── Tabs ────────────────────────────────────────────────────────
+
 const TABS = [
-  { id: 'alumnos', label: 'Alumnos' },
-  { id: 'progreso', label: 'Progreso' },
-  { id: 'tareas', label: 'Tareas' },
+  { id: 'alumnos', label: 'Alumnos', icon: null },
+  { id: 'tareas', label: 'Tareas', icon: null },
+  { id: 'progreso', label: 'Progreso', icon: null },
 ]
+
+// ── Main page ────────────────────────────────────────────────────
 
 export default function ClaseDetalle() {
   const { claseId } = useParams()
@@ -49,7 +136,6 @@ export default function ClaseDetalle() {
   const { profesor } = useAuthStore()
   const { data: claseResult, isLoading: loadingClase } = useClaseById(claseId)
 
-  // Legacy redirect: if claseId is actually an alumnoId
   useEffect(() => {
     if (claseResult?.type === 'alumno') {
       router.replace(`/profesor/clase/${claseResult.data.clase_id}/alumno/${claseResult.data.id}`)
@@ -76,6 +162,11 @@ export default function ClaseDetalle() {
   const [confirmEliminar, setConfirmEliminar] = useState('')
   const [eliminando, setEliminando] = useState(false)
 
+  // Sort state for tareas table
+  const [sortKey, setSortKey] = useState('created_at')
+  const [sortDir, setSortDir] = useState('desc')
+  const [filtroEstado, setFiltroEstado] = useState('todos')
+
   const tareas = tareasData?.tareas ?? []
   const resultados = tareasData?.resultados ?? {}
   const tareasClase = useMemo(() => tareas.filter((t) => t.clase_id === claseId), [tareas, claseId])
@@ -85,7 +176,7 @@ export default function ClaseDetalle() {
     [alumnosBloqueados, alumnos],
   )
 
-  // Get latest intento per alumno for CPA dots and activity
+  // Latest intento per alumno
   const { data: intentosData } = useQuery({
     queryKey: ['intentos-clase', claseId],
     queryFn: async () => {
@@ -96,7 +187,6 @@ export default function ClaseDetalle() {
         .select('alumno_id, tarea_id, scores_cpa, inicio_at')
         .in('tarea_id', activeTareaIds)
         .order('numero', { ascending: false })
-      // Group by alumno, keep latest
       const map = {}
       for (const i of data ?? []) {
         if (!map[i.alumno_id]) map[i.alumno_id] = i
@@ -106,7 +196,7 @@ export default function ClaseDetalle() {
     enabled: tareasClase.length > 0,
   })
 
-  // Compute bloque actual
+  // Bloque actual
   const bloqueActual = useMemo(() => {
     const secRefs = tareasClase
       .filter((t) => t.secuencia_ref && (t.estado === 'en_curso' || t.estado === 'completada'))
@@ -127,6 +217,10 @@ export default function ClaseDetalle() {
     return Math.round((completed.size / 36) * 100)
   }, [tareasClase])
 
+  // Tab counts
+  const tareasEnCurso = tareasClase.filter((t) => t.estado === 'en_curso').length
+  const tareasCompletadas = tareasClase.filter((t) => t.estado === 'completada').length
+
   // Filter alumnos
   const bloqueadosIds = new Set(bloqueadosClase.map((b) => b.alumno_id))
   const filteredAlumnos = useMemo(() => {
@@ -136,6 +230,41 @@ export default function ClaseDetalle() {
     if (filtro === 'sin_actividad') return alumnos.filter((a) => !intentosData?.[a.id])
     return alumnos
   }, [alumnos, filtro, bloqueadosIds, intentosData])
+
+  // Filtered + sorted tareas for table
+  const filteredTareas = useMemo(() => {
+    let list = tareasClase
+    if (filtroEstado !== 'todos') {
+      list = list.filter((t) => t.estado === filtroEstado)
+    }
+    list = [...list].sort((a, b) => {
+      let va, vb
+      if (sortKey === 'promedio') {
+        va = calcularPromedio(resultados[a.id]) ?? -1
+        vb = calcularPromedio(resultados[b.id]) ?? -1
+      } else if (sortKey === 'completada') {
+        va = Object.keys(resultados[a.id] ?? {}).length
+        vb = Object.keys(resultados[b.id] ?? {}).length
+      } else if (sortKey === 'created_at') {
+        va = new Date(a.created_at).getTime()
+        vb = new Date(b.created_at).getTime()
+      } else if (sortKey === 'fecha_limite') {
+        va = a.fecha_limite ? new Date(a.fecha_limite).getTime() : 0
+        vb = b.fecha_limite ? new Date(b.fecha_limite).getTime() : 0
+      }
+      return sortDir === 'asc' ? va - vb : vb - va
+    })
+    return list
+  }, [tareasClase, filtroEstado, sortKey, sortDir, resultados])
+
+  function toggleSort(key) {
+    if (sortKey === key) {
+      setSortDir((d) => (d === 'asc' ? 'desc' : 'asc'))
+    } else {
+      setSortKey(key)
+      setSortDir('desc')
+    }
+  }
 
   async function handleAgregarAlumno(e) {
     e.preventDefault()
@@ -162,10 +291,7 @@ export default function ClaseDetalle() {
     return (
       <div className="px-4 sm:px-6 md:px-8 py-8">
         <p className="text-gray-500">Clase no encontrada.</p>
-        <Link
-          href="/profesor"
-          className="text-sm text-blue-600 hover:text-blue-800 mt-2 inline-block"
-        >
+        <Link href="/profesor" className="text-sm text-blue-600 hover:text-blue-800 mt-2 inline-block">
           Volver a Mis clases
         </Link>
       </div>
@@ -177,97 +303,156 @@ export default function ClaseDetalle() {
       {/* Breadcrumb */}
       <Link
         href="/profesor"
-        className="inline-flex items-center gap-1 text-sm text-gray-500 hover:text-gray-700 mb-6"
+        className="inline-flex items-center gap-1 text-sm text-gray-500 hover:text-gray-700 mb-4"
       >
         <ArrowLeft className="w-4 h-4" />
         Mis clases
       </Link>
 
       {/* Header */}
-      <div className="flex items-start justify-between gap-4 mb-2">
+      <div className="flex items-start justify-between gap-4 mb-1">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">{clase.nombre}</h1>
+          <div className="flex items-center gap-2">
+            <span className="text-2xl leading-none">{clase.emoji || '🎓'}</span>
+            <h1 className="text-2xl font-bold text-gray-900">{clase.nombre}</h1>
+          </div>
           <ClaseSwitcher currentClaseId={claseId} />
         </div>
-        <div className="relative">
-          <button
-            onClick={() => setMenuOpen(!menuOpen)}
-            className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
+        <div className="flex items-center gap-2">
+          <Link
+            href="/profesor/programa"
+            className="hidden sm:flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-semibold bg-amarillo text-gray-900 hover:bg-amarillo-hover transition-colors"
           >
-            <MoreHorizontal className="w-5 h-5 text-gray-500" />
-          </button>
-          {menuOpen && (
-            <>
-              <div className="fixed inset-0 z-40" onClick={() => setMenuOpen(false)} />
-              <div className="absolute top-full right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-50 min-w-[180px] py-1">
-                <button
-                  onClick={() => { setMenuOpen(false); setNuevoNombre(clase.nombre); setModalRenombrar(true) }}
-                  className="w-full text-left px-4 py-2 text-sm text-gray-600 hover:bg-gray-50"
-                >
-                  Renombrar
-                </button>
-                <button
-                  onClick={() => { setMenuOpen(false); setModalEmoji(true) }}
-                  className="w-full text-left px-4 py-2 text-sm text-gray-600 hover:bg-gray-50"
-                >
-                  Cambiar emoji
-                </button>
-                <div className="border-t border-gray-100 my-1" />
-                <button
-                  onClick={() => { setMenuOpen(false); setModalArchivar(true) }}
-                  className="w-full text-left px-4 py-2 text-sm text-orange-600 hover:bg-orange-50"
-                >
-                  Archivar clase
-                </button>
-                <button
-                  onClick={() => { setMenuOpen(false); setConfirmEliminar(''); setModalEliminar(true) }}
-                  className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50"
-                >
-                  Eliminar clase
-                </button>
-              </div>
-            </>
-          )}
+            <Plus className="w-4 h-4" />
+            Asignar tarea
+          </Link>
+          <div className="relative">
+            <button
+              onClick={() => setMenuOpen(!menuOpen)}
+              className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
+            >
+              <MoreHorizontal className="w-5 h-5 text-gray-500" />
+            </button>
+            {menuOpen && (
+              <>
+                <div className="fixed inset-0 z-40" onClick={() => setMenuOpen(false)} />
+                <div className="absolute top-full right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-50 min-w-[180px] py-1">
+                  <button
+                    onClick={() => { setMenuOpen(false); setNuevoNombre(clase.nombre); setModalRenombrar(true) }}
+                    className="w-full text-left px-4 py-2 text-sm text-gray-600 hover:bg-gray-50"
+                  >
+                    Renombrar
+                  </button>
+                  <button
+                    onClick={() => { setMenuOpen(false); setModalEmoji(true) }}
+                    className="w-full text-left px-4 py-2 text-sm text-gray-600 hover:bg-gray-50"
+                  >
+                    Cambiar emoji
+                  </button>
+                  <div className="border-t border-gray-100 my-1" />
+                  <button
+                    onClick={() => { setMenuOpen(false); setModalArchivar(true) }}
+                    className="w-full text-left px-4 py-2 text-sm text-orange-600 hover:bg-orange-50"
+                  >
+                    Archivar clase
+                  </button>
+                  <button
+                    onClick={() => { setMenuOpen(false); setConfirmEliminar(''); setModalEliminar(true) }}
+                    className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50"
+                  >
+                    Eliminar clase
+                  </button>
+                </div>
+              </>
+            )}
+          </div>
         </div>
       </div>
 
-      <p className="text-sm text-gray-500 mb-4">
-        {alumnos.length} alumno{alumnos.length !== 1 ? 's' : ''}
-        {bloqueActual && ` · ${bloqueActual.emoji} ${bloqueActual.titulo}`}
-        {` · ${progressPct}% del programa`}
-      </p>
+      {/* Stats line */}
+      <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-gray-500 mb-1">
+        <span>{alumnos.length} alumno{alumnos.length !== 1 ? 's' : ''}</span>
+        <span className="text-gray-300">·</span>
+        <span>{tareasClase.length} tarea{tareasClase.length !== 1 ? 's' : ''}</span>
+        {bloqueActual && (
+          <>
+            <span className="text-gray-300">·</span>
+            <span>{bloqueActual.emoji} {bloqueActual.titulo}</span>
+          </>
+        )}
+        <span className="text-gray-300">·</span>
+        <span>{progressPct}% del programa</span>
+      </div>
+
+      {/* Progress bar */}
+      <div className="w-full max-w-xs h-1.5 bg-gray-100 rounded-full overflow-hidden mb-6">
+        <div
+          className="h-full bg-amarillo rounded-full transition-all"
+          style={{ width: `${progressPct}%` }}
+        />
+      </div>
 
       {/* Blocked students banner */}
       {bloqueadosClase.length > 0 && (
         <div className="bg-orange-50 border border-orange-200 rounded-xl p-4 mb-6">
-          <p className="text-sm font-medium text-orange-700">
-            ⚠️ {bloqueadosClase.length} alumno{bloqueadosClase.length > 1 ? 's' : ''} necesita
-            {bloqueadosClase.length > 1 ? 'n' : ''} atención
+          <p className="text-sm font-medium text-orange-700 mb-1">
+            {bloqueadosClase.length} alumno{bloqueadosClase.length > 1 ? 's' : ''} bloqueado{bloqueadosClase.length > 1 ? 's' : ''}
           </p>
+          <div className="flex flex-wrap gap-x-4 gap-y-1">
+            {bloqueadosClase.slice(0, 5).map((b) => (
+              <Link
+                key={`${b.alumno_id}-${b.tarea_id}`}
+                href={`/profesor/clase/${claseId}/alumno/${b.alumno_id}`}
+                className="text-xs text-orange-600 hover:text-orange-800 hover:underline"
+              >
+                <span className="font-semibold">{b.alumno_nombre.split(' ')[0]}</span>
+                {' '}
+                <span className="text-orange-500">({b.etapa})</span>
+              </Link>
+            ))}
+            {bloqueadosClase.length > 5 && (
+              <span className="text-xs text-orange-500">+{bloqueadosClase.length - 5} mas</span>
+            )}
+          </div>
         </div>
       )}
 
-      {/* Tabs */}
+      {/* Tabs with counters */}
       <div className="flex items-center gap-1 border-b border-gray-200 mb-6">
-        {TABS.map((t) => (
-          <button
-            key={t.id}
-            onClick={() => setTab(t.id)}
-            className={`px-4 py-2.5 text-sm font-medium border-b-2 transition-colors ${
-              tab === t.id
-                ? 'border-amarillo text-gray-900'
-                : 'border-transparent text-gray-500 hover:text-gray-700'
-            }`}
-          >
-            {t.label}
-          </button>
-        ))}
+        {TABS.map((t) => {
+          let count = null
+          if (t.id === 'alumnos') count = alumnos.length
+          if (t.id === 'tareas') count = tareasClase.length
+          return (
+            <button
+              key={t.id}
+              onClick={() => setTab(t.id)}
+              className={`flex items-center gap-2 px-4 py-2.5 text-sm font-medium border-b-2 transition-colors ${
+                tab === t.id
+                  ? 'border-amarillo text-gray-900'
+                  : 'border-transparent text-gray-500 hover:text-gray-700'
+              }`}
+            >
+              {t.label}
+              {count != null && (
+                <span
+                  className={`inline-flex items-center justify-center min-w-[20px] h-5 px-1.5 rounded-full text-xs font-semibold ${
+                    tab === t.id
+                      ? 'bg-amarillo text-gray-900'
+                      : 'bg-gray-100 text-gray-500'
+                  }`}
+                >
+                  {count}
+                </span>
+              )}
+            </button>
+          )
+        })}
       </div>
 
-      {/* Tab: Alumnos */}
+      {/* ── Tab: Alumnos ────────────────────────── */}
       {tab === 'alumnos' && (
         <div>
-          {/* Filters + actions */}
           <div className="flex flex-wrap items-center gap-2 mb-6">
             {[
               { id: 'todos', label: 'Todos' },
@@ -295,12 +480,6 @@ export default function ClaseDetalle() {
               <UserPlus className="w-4 h-4" />
               <span className="hidden sm:inline">Agregar alumno</span>
             </button>
-            <Link
-              href={`/profesor/programa`}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium bg-amarillo text-gray-900 hover:bg-amarillo-hover transition-colors"
-            >
-              Asignar tarea ›
-            </Link>
           </div>
 
           {filteredAlumnos.length === 0 ? (
@@ -308,7 +487,7 @@ export default function ClaseDetalle() {
               <p className="text-sm">
                 {filtro === 'todos'
                   ? 'Sin alumnos. Agrega el primero.'
-                  : 'Ningún alumno en esta categoría.'}
+                  : 'Ningun alumno en esta categoria.'}
               </p>
             </div>
           ) : (
@@ -340,114 +519,165 @@ export default function ClaseDetalle() {
         </div>
       )}
 
-      {/* Tab: Progreso */}
+      {/* ── Tab: Tareas (table) ────────────────── */}
+      {tab === 'tareas' && (
+        <div>
+          {/* Filters + actions */}
+          <div className="flex flex-wrap items-center gap-2 mb-4">
+            {[
+              { id: 'todos', label: 'Todos' },
+              { id: 'en_curso', label: `En curso (${tareasEnCurso})` },
+              { id: 'completada', label: `Completadas (${tareasCompletadas})` },
+              { id: 'borrador', label: 'Borradores' },
+            ].map((f) => (
+              <button
+                key={f.id}
+                onClick={() => setFiltroEstado(f.id)}
+                className={`px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${
+                  filtroEstado === f.id
+                    ? 'bg-gray-900 text-white'
+                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                }`}
+              >
+                {f.label}
+              </button>
+            ))}
+            <div className="flex-1" />
+            <button
+              onClick={() => exportCSV(tareasClase, resultados, alumnos)}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-100 border border-gray-200 transition-colors"
+              title="Descargar CSV"
+            >
+              <Download className="w-4 h-4" />
+              <span className="hidden sm:inline">CSV</span>
+            </button>
+            <Link
+              href="/profesor/programa"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium bg-amarillo text-gray-900 hover:bg-amarillo-hover transition-colors sm:hidden"
+            >
+              <Plus className="w-4 h-4" />
+            </Link>
+          </div>
+
+          {filteredTareas.length === 0 ? (
+            <div className="card p-12 text-center text-gray-400">
+              <p className="text-sm">Sin tareas asignadas aun.</p>
+            </div>
+          ) : (
+            <div className="overflow-x-auto -mx-4 sm:mx-0">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="border-b border-gray-200">
+                    <th className="text-left py-3 px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                      Estado
+                    </th>
+                    <th className="text-left py-3 px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                      Tarea
+                    </th>
+                    <th className="text-left py-3 px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider hidden md:table-cell">
+                      Sec
+                    </th>
+                    <SortableHeader
+                      label="Completada"
+                      sortKey_="completada"
+                      currentSort={sortKey}
+                      currentDir={sortDir}
+                      onToggle={toggleSort}
+                    />
+                    <SortableHeader
+                      label="Promedio"
+                      sortKey_="promedio"
+                      currentSort={sortKey}
+                      currentDir={sortDir}
+                      onToggle={toggleSort}
+                    />
+                    <th className="text-center py-3 px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider hidden lg:table-cell">
+                      C·P·A
+                    </th>
+                    <SortableHeader
+                      label="Inicio"
+                      sortKey_="created_at"
+                      currentSort={sortKey}
+                      currentDir={sortDir}
+                      onToggle={toggleSort}
+                      className="hidden sm:table-cell"
+                    />
+                    <SortableHeader
+                      label="Limite"
+                      sortKey_="fecha_limite"
+                      currentSort={sortKey}
+                      currentDir={sortDir}
+                      onToggle={toggleSort}
+                      className="hidden sm:table-cell"
+                    />
+                  </tr>
+                </thead>
+                <tbody>
+                  {filteredTareas.map((tarea) => {
+                    const resTarea = resultados[tarea.id] ?? {}
+                    const completados = Object.keys(resTarea).length
+                    const prom = calcularPromedio(resTarea)
+                    const pct = alumnos.length > 0 ? Math.round((completados / alumnos.length) * 100) : 0
+                    return (
+                      <tr
+                        key={tarea.id}
+                        onClick={() => router.push(`/profesor/clase/${claseId}/tarea/${tarea.id}`)}
+                        className="border-b border-gray-100 hover:bg-crema-50 cursor-pointer transition-colors"
+                      >
+                        <td className="py-3 px-4">
+                          <EstadoBadge estado={tarea.estado} />
+                        </td>
+                        <td className="py-3 px-4">
+                          <span className="font-medium text-gray-900">{tarea.nombre}</span>
+                        </td>
+                        <td className="py-3 px-4 text-gray-500 hidden md:table-cell">
+                          {tarea.secuencia_ref ?? '-'}
+                        </td>
+                        <td className="py-3 px-4 text-center">
+                          <span className="text-gray-700">{completados}/{alumnos.length}</span>
+                          <span className="text-gray-400 ml-1 text-xs">({pct}%)</span>
+                        </td>
+                        <td className="py-3 px-4 text-center">
+                          <span className={`font-semibold ${prom != null ? (prom >= 7 ? 'text-green-600' : prom >= 5 ? 'text-yellow-600' : 'text-red-600') : 'text-gray-400'}`}>
+                            {prom != null ? prom.toFixed(1) : '-'}
+                          </span>
+                        </td>
+                        <td className="py-3 px-4 hidden lg:table-cell">
+                          <div className="flex justify-center">
+                            <CPADots resultados={resTarea} alumnos={alumnos} />
+                          </div>
+                        </td>
+                        <td className="py-3 px-4 text-gray-500 hidden sm:table-cell">
+                          {formatFecha(tarea.created_at)}
+                        </td>
+                        <td className="py-3 px-4 text-gray-500 hidden sm:table-cell">
+                          {formatFecha(tarea.fecha_limite)}
+                        </td>
+                      </tr>
+                    )
+                  })}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* ── Tab: Progreso ────────────────────────── */}
       {tab === 'progreso' && (
         <div>
-          <div className="flex gap-2 mb-4">
-            <span className="px-3 py-1.5 rounded-full text-xs font-medium bg-gray-900 text-white">
-              Heatmap
-            </span>
-            <span className="px-3 py-1.5 rounded-full text-xs font-medium bg-gray-100 text-gray-400 cursor-not-allowed">
-              Curvas semanales (próximamente)
-            </span>
-          </div>
           <div className="card p-4 overflow-hidden">
             <HeatmapCPA alumnos={alumnos} tareas={tareasClase} resultados={resultados} />
           </div>
         </div>
       )}
 
-      {/* Tab: Tareas */}
-      {tab === 'tareas' && (
-        <div>
-          <div className="flex items-center justify-between mb-6">
-            <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider">
-              Tareas de esta clase
-            </h3>
-            <Link
-              href="/profesor/programa"
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium bg-amarillo text-gray-900 hover:bg-amarillo-hover transition-colors"
-            >
-              <Plus className="w-4 h-4" />
-              Asignar nueva tarea
-            </Link>
-          </div>
-
-          {tareasClase.length === 0 ? (
-            <div className="card p-12 text-center text-gray-400">
-              <p className="text-sm">Sin tareas asignadas aún.</p>
-            </div>
-          ) : (
-            <div className="space-y-6">
-              {['en_curso', 'completada', 'borrador'].map((estado) => {
-                const group = tareasClase.filter((t) => t.estado === estado)
-                if (group.length === 0) return null
-                const labels = {
-                  en_curso: 'En curso',
-                  completada: 'Completadas',
-                  borrador: 'Borradores',
-                }
-                return (
-                  <div key={estado}>
-                    <h4 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">
-                      {labels[estado]} ({group.length})
-                    </h4>
-                    <div className="space-y-3">
-                      {group.map((tarea) => {
-                        const resTarea = resultados[tarea.id] ?? {}
-                        const completados = Object.keys(resTarea).length
-                        return (
-                          <Link
-                            key={tarea.id}
-                            href={`/profesor/clase/${claseId}/tarea/${tarea.id}`}
-                            className="block card p-4 hover:shadow-md hover:border-amarillo transition-all"
-                          >
-                            <div className="flex items-center justify-between gap-4">
-                              <div className="min-w-0">
-                                <h5 className="font-semibold text-gray-900 text-sm truncate">
-                                  {tarea.nombre}
-                                </h5>
-                                {tarea.secuencia_ref && (
-                                  <p className="text-xs text-gray-400 mt-0.5">
-                                    Sec {tarea.secuencia_ref}
-                                  </p>
-                                )}
-                              </div>
-                              <div className="text-right flex-shrink-0">
-                                <p className="text-sm text-gray-600">
-                                  {completados}/{alumnos.length} completaron
-                                </p>
-                                {tarea.fecha_limite && (
-                                  <p className="text-xs text-gray-400">
-                                    Límite:{' '}
-                                    {new Date(tarea.fecha_limite).toLocaleDateString('es-MX', {
-                                      day: 'numeric',
-                                      month: 'short',
-                                    })}
-                                  </p>
-                                )}
-                              </div>
-                            </div>
-                          </Link>
-                        )
-                      })}
-                    </div>
-                  </div>
-                )
-              })}
-            </div>
-          )}
-        </div>
-      )}
+      {/* ── Modals ────────────────────────────────── */}
 
       {/* Modal agregar alumno */}
       <Modal
         abierto={modalAgregarAlumno}
-        onCerrar={() => {
-          setModalAgregarAlumno(false)
-          setNuevoAlumno('')
-          setError(null)
-        }}
+        onCerrar={() => { setModalAgregarAlumno(false); setNuevoAlumno(''); setError(null) }}
         titulo="Agregar alumno"
       >
         <form onSubmit={handleAgregarAlumno} className="space-y-4">
@@ -457,56 +687,33 @@ export default function ClaseDetalle() {
               type="text"
               value={nuevoAlumno}
               onChange={(e) => setNuevoAlumno(e.target.value)}
-              placeholder="Ej. María López García"
+              placeholder="Ej. Maria Lopez Garcia"
               className="input-base"
               autoFocus
             />
           </div>
           <MensajeError mensaje={error} onCerrar={() => setError(null)} />
-          <Boton
-            type="submit"
-            variante="primario"
-            size="md"
-            className="w-full"
-            disabled={!nuevoAlumno.trim()}
-          >
+          <Boton type="submit" variante="primario" size="md" className="w-full" disabled={!nuevoAlumno.trim()}>
             Agregar alumno
           </Boton>
         </form>
       </Modal>
 
       {/* Modal renombrar */}
-      <Modal
-        abierto={modalRenombrar}
-        onCerrar={() => setModalRenombrar(false)}
-        titulo="Renombrar clase"
-      >
+      <Modal abierto={modalRenombrar} onCerrar={() => setModalRenombrar(false)} titulo="Renombrar clase">
         <form
           onSubmit={async (e) => {
             e.preventDefault()
             if (!nuevoNombre.trim()) return
-            const { error: err } = await supabase
-              .from('clases')
-              .update({ nombre: nuevoNombre.trim() })
-              .eq('id', claseId)
-            if (!err) {
-              setModalRenombrar(false)
-              window.location.reload()
-            } else {
-              setError(err.message)
-            }
+            const { error: err } = await supabase.from('clases').update({ nombre: nuevoNombre.trim() }).eq('id', claseId)
+            if (!err) { setModalRenombrar(false); window.location.reload() }
+            else setError(err.message)
           }}
           className="space-y-4"
         >
           <div>
             <label className="label-base">Nombre de la clase</label>
-            <input
-              type="text"
-              value={nuevoNombre}
-              onChange={(e) => setNuevoNombre(e.target.value)}
-              className="input-base"
-              autoFocus
-            />
+            <input type="text" value={nuevoNombre} onChange={(e) => setNuevoNombre(e.target.value)} className="input-base" autoFocus />
           </div>
           <Boton type="submit" variante="primario" size="md" className="w-full" disabled={!nuevoNombre.trim()}>
             Guardar
@@ -515,26 +722,15 @@ export default function ClaseDetalle() {
       </Modal>
 
       {/* Modal cambiar emoji */}
-      <Modal
-        abierto={modalEmoji}
-        onCerrar={() => setModalEmoji(false)}
-        titulo="Cambiar emoji"
-      >
+      <Modal abierto={modalEmoji} onCerrar={() => setModalEmoji(false)} titulo="Cambiar emoji">
         <div className="grid grid-cols-6 gap-2">
           {['📐', '📏', '🔢', '📊', '🧮', '✏️', '📚', '🎓', '🏫', '⭐', '🌟', '💡', '🔬', '🧪', '🎯', '📝', '🗂️', '🌈'].map((emoji) => (
             <button
               key={emoji}
               onClick={async () => {
-                const { error: err } = await supabase
-                  .from('clases')
-                  .update({ emoji })
-                  .eq('id', claseId)
-                if (!err) {
-                  setModalEmoji(false)
-                  window.location.reload()
-                } else {
-                  setError(err.message)
-                }
+                const { error: err } = await supabase.from('clases').update({ emoji }).eq('id', claseId)
+                if (!err) { setModalEmoji(false); window.location.reload() }
+                else setError(err.message)
               }}
               className="text-2xl p-3 rounded-lg hover:bg-gray-100 transition-colors"
             >
@@ -544,16 +740,12 @@ export default function ClaseDetalle() {
         </div>
       </Modal>
 
-      {/* Modal archivar clase */}
-      <Modal
-        abierto={modalArchivar}
-        onCerrar={() => setModalArchivar(false)}
-        titulo="Archivar clase"
-      >
+      {/* Modal archivar */}
+      <Modal abierto={modalArchivar} onCerrar={() => setModalArchivar(false)} titulo="Archivar clase">
         <div className="space-y-4">
           <p className="text-sm text-gray-600">
-            Al archivar esta clase, dejará de aparecer en tu lista de clases activas.
-            Los datos (alumnos, tareas, resultados) se conservan y podrás restaurarla después.
+            Al archivar esta clase, dejara de aparecer en tu lista de clases activas.
+            Los datos se conservan y podras restaurarla despues.
           </p>
           <p className="text-sm font-medium text-gray-700">
             Clase: <strong>{clase?.nombre}</strong> ({alumnos.length} alumno{alumnos.length !== 1 ? 's' : ''})
@@ -562,28 +754,19 @@ export default function ClaseDetalle() {
             <Boton
               variante="peligro"
               onClick={async () => {
-                const { error: err } = await supabase
-                  .from('clases')
-                  .update({ archivada: true })
-                  .eq('id', claseId)
-                if (!err) {
-                  router.push('/profesor')
-                } else {
-                  setError(err.message)
-                  setModalArchivar(false)
-                }
+                const { error: err } = await supabase.from('clases').update({ archivada: true }).eq('id', claseId)
+                if (!err) router.push('/profesor')
+                else { setError(err.message); setModalArchivar(false) }
               }}
             >
               Archivar
             </Boton>
-            <Boton variante="secundario" onClick={() => setModalArchivar(false)}>
-              Cancelar
-            </Boton>
+            <Boton variante="secundario" onClick={() => setModalArchivar(false)}>Cancelar</Boton>
           </div>
         </div>
       </Modal>
 
-      {/* Modal eliminar clase */}
+      {/* Modal eliminar */}
       <Modal
         abierto={modalEliminar}
         onCerrar={() => { setModalEliminar(false); setConfirmEliminar('') }}
@@ -591,22 +774,14 @@ export default function ClaseDetalle() {
       >
         <div className="space-y-4">
           <p className="text-sm text-gray-600">
-            Esta acción es <strong>irreversible</strong>. Se eliminarán permanentemente todos los alumnos, tareas, resultados e intentos asociados a esta clase.
+            Esta accion es <strong>irreversible</strong>. Se eliminaran permanentemente todos los alumnos, tareas, resultados e intentos.
           </p>
           <p className="text-sm font-medium text-gray-700">
             Clase: <strong>{clase?.nombre}</strong> ({alumnos.length} alumno{alumnos.length !== 1 ? 's' : ''}, {tareasClase.length} tarea{tareasClase.length !== 1 ? 's' : ''})
           </p>
           <div>
-            <label className="label-base">
-              Escribe <strong>ELIMINAR</strong> para confirmar
-            </label>
-            <input
-              type="text"
-              value={confirmEliminar}
-              onChange={(e) => setConfirmEliminar(e.target.value)}
-              className="input-base"
-              placeholder="ELIMINAR"
-            />
+            <label className="label-base">Escribe <strong>ELIMINAR</strong> para confirmar</label>
+            <input type="text" value={confirmEliminar} onChange={(e) => setConfirmEliminar(e.target.value)} className="input-base" placeholder="ELIMINAR" />
           </div>
           <div className="flex gap-3">
             <Boton
@@ -615,7 +790,6 @@ export default function ClaseDetalle() {
               onClick={async () => {
                 setEliminando(true)
                 try {
-                  // Delete in order: intentos → resultados → tareas → alumnos → clase
                   const tareaIds = tareasClase.map((t) => t.id)
                   if (tareaIds.length > 0) {
                     await supabase.from('intentos').delete().in('tarea_id', tareaIds)
@@ -642,5 +816,50 @@ export default function ClaseDetalle() {
         </div>
       </Modal>
     </div>
+  )
+}
+
+// ── Sub-components ────────────────────────────────────────────
+
+function EstadoBadge({ estado }) {
+  const styles = {
+    en_curso: 'bg-green-50 text-green-700 border-green-200',
+    completada: 'bg-gray-50 text-gray-600 border-gray-200',
+    borrador: 'bg-yellow-50 text-yellow-700 border-yellow-200',
+  }
+  const labels = {
+    en_curso: 'En curso',
+    completada: 'Finalizada',
+    borrador: 'Borrador',
+  }
+  return (
+    <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium border ${styles[estado] ?? styles.borrador}`}>
+      {estado === 'en_curso' && <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />}
+      {estado === 'completada' && <span className="text-green-500">✓</span>}
+      {labels[estado] ?? estado}
+    </span>
+  )
+}
+
+function SortableHeader({ label, sortKey_, currentSort, currentDir, onToggle, className = '' }) {
+  const active = currentSort === sortKey_
+  return (
+    <th
+      className={`py-3 px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider cursor-pointer hover:text-gray-700 select-none text-center ${className}`}
+      onClick={() => onToggle(sortKey_)}
+    >
+      <div className="inline-flex items-center gap-1">
+        {label}
+        {active ? (
+          currentDir === 'asc' ? (
+            <ChevronUp className="w-3 h-3" />
+          ) : (
+            <ChevronDown className="w-3 h-3" />
+          )
+        ) : (
+          <ArrowUpDown className="w-3 h-3 opacity-30" />
+        )}
+      </div>
+    </th>
   )
 }
