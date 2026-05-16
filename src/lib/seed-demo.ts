@@ -525,6 +525,7 @@ export async function seedDemoData(profesorId: string) {
         },
         estado,
         secuencia_ref: secRef,
+        created_at: createdAt.toISOString(),
         fecha_limite: fechaLimite?.toISOString() ?? null,
         pda: `Secuencia ${secRef}`,
       })
