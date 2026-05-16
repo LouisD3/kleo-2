@@ -6,39 +6,50 @@ import { useEffect, useState } from 'react'
 import { supabase } from '@/lib/supabase.js'
 import useAuthStore from '@/store/useAuthStore.js'
 
-export default function ClaseSwitcher({ currentClaseId }: { currentClaseId: string }) {
+interface Props {
+  currentClaseId: string
+  currentName: string
+  emoji?: string
+}
+
+export default function ClaseSwitcher({ currentClaseId, currentName, emoji }: Props) {
   const { profesor } = useAuthStore()
   const router = useRouter()
-  const [clases, setClases] = useState<{ id: string; nombre: string }[]>([])
+  const [clases, setClases] = useState<{ id: string; nombre: string; emoji?: string }[]>([])
   const [open, setOpen] = useState(false)
 
   useEffect(() => {
     if (!profesor) return
     ;(supabase as any)
       .from('clases')
-      .select('id, nombre')
+      .select('id, nombre, emoji')
       .eq('profesor_id', profesor.id)
       .order('created_at', { ascending: false })
-      .then(({ data }: { data: { id: string; nombre: string }[] | null }) => setClases(data ?? []))
+      .then(({ data }: { data: { id: string; nombre: string; emoji?: string }[] | null }) =>
+        setClases(data ?? []),
+      )
   }, [profesor])
 
-  const current = clases.find((c) => c.id === currentClaseId)
-
-  if (clases.length <= 1) return null
+  const hasMultiple = clases.length > 1
 
   return (
-    <div className="relative">
+    <div className="relative inline-flex">
       <button
-        onClick={() => setOpen(!open)}
-        className="flex items-center gap-1 text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
+        onClick={() => hasMultiple && setOpen(!open)}
+        className={`flex items-center gap-2 ${hasMultiple ? 'cursor-pointer' : 'cursor-default'}`}
       >
-        {current?.nombre ?? 'Clase'}
-        <ChevronDown className={`w-4 h-4 transition-transform ${open ? 'rotate-180' : ''}`} />
+        <span className="text-2xl leading-none">{emoji || '🎓'}</span>
+        <h1 className="text-2xl font-bold text-tinta">{currentName}</h1>
+        {hasMultiple && (
+          <ChevronDown
+            className={`w-5 h-5 text-tinta-400 transition-transform ${open ? 'rotate-180' : ''}`}
+          />
+        )}
       </button>
       {open && (
         <>
           <div className="fixed inset-0 z-40" onClick={() => setOpen(false)} />
-          <div className="absolute top-full left-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-50 min-w-[200px] py-1">
+          <div className="absolute top-full left-0 mt-2 bg-white border border-crema-300 rounded-2xl shadow-lg z-50 min-w-[220px] py-1">
             {clases.map((c) => (
               <button
                 key={c.id}
@@ -48,12 +59,13 @@ export default function ClaseSwitcher({ currentClaseId }: { currentClaseId: stri
                     router.push(`/profesor/clase/${c.id}`)
                   }
                 }}
-                className={`w-full text-left px-4 py-2 text-sm hover:bg-gray-50 transition-colors ${
+                className={`w-full text-left px-4 py-2.5 text-sm hover:bg-crema-50 transition-colors flex items-center gap-2 ${
                   c.id === currentClaseId
-                    ? 'font-semibold text-gray-900 bg-amarillo/10'
-                    : 'text-gray-600'
+                    ? 'font-semibold text-tinta bg-amarillo/10'
+                    : 'text-tinta-600'
                 }`}
               >
+                <span className="text-base">{c.emoji || '🎓'}</span>
                 {c.nombre}
               </button>
             ))}

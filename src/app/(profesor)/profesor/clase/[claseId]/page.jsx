@@ -312,13 +312,7 @@ export default function ClaseDetalle() {
       {/* Header card */}
       <div className="bg-white rounded-3xl border border-crema-300 p-6 sm:p-8 mb-6">
         <div className="flex items-start justify-between gap-4 mb-3">
-          <div>
-            <div className="flex items-center gap-2">
-              <span className="text-2xl leading-none">{clase.emoji || '🎓'}</span>
-              <h1 className="text-2xl font-bold text-tinta">{clase.nombre}</h1>
-            </div>
-            <ClaseSwitcher currentClaseId={claseId} />
-          </div>
+          <ClaseSwitcher currentClaseId={claseId} currentName={clase.nombre} emoji={clase.emoji} />
           <div className="flex items-center gap-2">
             <Link
               href="/profesor/programa"
