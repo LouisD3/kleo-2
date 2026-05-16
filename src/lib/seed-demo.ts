@@ -616,9 +616,14 @@ export async function seedDemoData(profesorId: string) {
       const numIntentos = attemptsForArchetype(seed + 3, arch)
       if (numIntentos === 0) continue
 
-      // Time base: completada tareas spread from creation, en_curso tareas are recent (0-2 days ago)
+      // Time base: completada tareas spread from creation.
+      // en_curso: most students are recent (0-2d), but debil/luchador with incomplete
+      // steps get 4-6 days ago so they cross the 3-day bloqueado threshold.
+      const isStuckStudent = isEnCurso && stepsCompleted < 3 && (arch === 'debil' || arch === 'luchador')
       const baseTime = isEnCurso
-        ? now - Math.floor(seededRandom(seed + 10) * 2 * DAY_MS)
+        ? isStuckStudent
+          ? now - (4 + Math.floor(seededRandom(seed + 10) * 2)) * DAY_MS
+          : now - Math.floor(seededRandom(seed + 10) * 2 * DAY_MS)
         : new Date(tarea.created_at).getTime() +
           DAY_MS +
           Math.floor(seededRandom(seed + 10) * 2 * DAY_MS)
