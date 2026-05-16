@@ -616,11 +616,12 @@ export async function seedDemoData(profesorId: string) {
       const numIntentos = attemptsForArchetype(seed + 3, arch)
       if (numIntentos === 0) continue
 
-      // Time base: spread attempts over days before deadline
-      const baseTime =
-        new Date(tarea.created_at).getTime() +
-        DAY_MS +
-        Math.floor(seededRandom(seed + 10) * 2 * DAY_MS)
+      // Time base: completada tareas spread from creation, en_curso tareas are recent (0-2 days ago)
+      const baseTime = isEnCurso
+        ? now - Math.floor(seededRandom(seed + 10) * 2 * DAY_MS)
+        : new Date(tarea.created_at).getTime() +
+          DAY_MS +
+          Math.floor(seededRandom(seed + 10) * 2 * DAY_MS)
 
       resultados.push({
         tarea_id: tarea.id,
