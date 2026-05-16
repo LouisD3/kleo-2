@@ -311,7 +311,8 @@ export default function ClaseDetalle() {
 
       {/* Header card */}
       <div className="bg-white rounded-3xl border border-crema-300 p-6 sm:p-8 mb-6">
-        <div className="flex items-start justify-between gap-4 mb-3">
+        {/* Row 1: title + actions */}
+        <div className="flex items-center justify-between gap-4">
           <ClaseSwitcher currentClaseId={claseId} currentName={clase.nombre} emoji={clase.emoji} />
           <div className="flex items-center gap-2">
             <Link
@@ -364,8 +365,11 @@ export default function ClaseDetalle() {
           </div>
         </div>
 
-        {/* Stats + tabs row */}
-        <div className="flex flex-wrap items-center justify-between gap-3 mt-1">
+        {/* Divider */}
+        <div className="border-t border-crema-200 my-5" />
+
+        {/* Row 2: tabs + progress */}
+        <div className="flex flex-wrap items-center justify-between gap-4">
           <div className="flex items-center gap-2">
             {TABS.map((t) => {
               let count = null
@@ -376,7 +380,7 @@ export default function ClaseDetalle() {
                 <button
                   key={t.id}
                   onClick={() => setTab(t.id)}
-                  className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-sm font-medium transition-colors ${
+                  className={`flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                     active
                       ? 'bg-tinta text-white'
                       : 'bg-crema-100 text-tinta-600 hover:bg-crema-200'
@@ -411,7 +415,7 @@ export default function ClaseDetalle() {
 
         {/* Blocked students banner */}
         {bloqueadosClase.length > 0 && (
-          <div className="bg-orange-50 rounded-2xl p-4 mt-4">
+          <div className="bg-orange-50 rounded-2xl p-4 mt-5">
             <p className="text-sm font-medium text-orange-700 mb-1">
               {bloqueadosClase.length} alumno{bloqueadosClase.length > 1 ? 's' : ''} bloqueado{bloqueadosClase.length > 1 ? 's' : ''}
             </p>
