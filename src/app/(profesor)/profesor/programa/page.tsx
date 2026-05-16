@@ -7,13 +7,11 @@ import { getAllSecuencias, getSecuenciaById } from '@/content/biblioteca/matemat
 import { getTareasReferencia } from '@/data/tareas-referencia'
 import { useTareasProfesor } from '@/hooks/useTareas.js'
 import { BLOQUES_NEM } from '@/lib/bloques-nem'
-import { supabase } from '@/lib/supabase.js'
 import useAuthStore from '@/store/useAuthStore.js'
 import VisorContenido from '@/components/profesor/biblioteca/VisorContenido'
 
 const secuencias = getAllSecuencias()
 
-type Vista = 'programa' | 'clases'
 type Trimestre = 1 | 2 | 3
 
 const TRIMESTRES: { id: Trimestre; label: string; secuencias: number[] }[] = [
@@ -37,23 +35,11 @@ export default function ProgramaPage() {
   const { profesor } = useAuthStore()
   const { data: tareasData } = useTareasProfesor(profesor?.id)
   const tareasDB = tareasData?.tareas ?? []
-  const [vista, setVista] = useState<Vista>('programa')
-  const [clases, setClases] = useState<{ id: string; nombre: string; emoji?: string }[]>([])
   const [trimestre, setTrimestre] = useState<Trimestre | null>(null) // auto-detect
   const [openBloques, setOpenBloques] = useState<Set<number>>(new Set())
   const [recurso, setRecurso] = useState<{ secNum: number; tipo: 'libro' | 'guia' | 'diapositivas' } | null>(null)
   const currentRef = useRef<HTMLAnchorElement>(null)
   const didScroll = useRef(false)
-
-  useEffect(() => {
-    if (!profesor) return
-    ;(supabase as any)
-      .from('clases')
-      .select('id, nombre')
-      .eq('profesor_id', profesor.id)
-      .order('created_at', { ascending: false })
-      .then(({ data }: { data: any[] | null }) => setClases(data ?? []))
-  }, [profesor])
 
   const statusMap = useMemo(() => {
     const map: Record<number, 'completada' | 'en_curso' | 'sin_asignar'> = {}
@@ -110,26 +96,6 @@ export default function ProgramaPage() {
     }
   })
 
-  const clasePorSecuencia = useMemo(() => {
-    const map: Record<number, string[]> = {}
-    if (vista !== 'clases') return map
-    for (const clase of clases) {
-      const claseTareas = tareasDB.filter((t: any) => t.clase_id === clase.id)
-      let latestSec = 0
-      for (const t of claseTareas) {
-        if (!t.secuencia_ref) continue
-        if (t.estado === 'en_curso' || t.estado === 'completada') {
-          latestSec = Math.max(latestSec, t.secuencia_ref)
-        }
-      }
-      if (latestSec > 0) {
-        if (!map[latestSec]) map[latestSec] = []
-        map[latestSec].push(clase.id)
-      }
-    }
-    return map
-  }, [vista, clases, tareasDB])
-
   // Filter bloques by trimestre
   const activeTrimestre = TRIMESTRES.find((t) => t.id === trimestre) ?? TRIMESTRES[0]
   const visibleBloques = BLOQUES_NEM.filter((b) =>
@@ -153,9 +119,9 @@ export default function ProgramaPage() {
 
   return (
     <div className="px-4 sm:px-6 md:px-8 py-10 animate-fade-in">
-      {/* Header */}
-      <div className="mb-6">
-        <div className="flex items-baseline justify-between gap-4 flex-wrap">
+      {/* Header card */}
+      <div className="card px-6 py-5 mb-6">
+        <div className="flex items-baseline justify-between gap-4 flex-wrap mb-5">
           <div>
             <h1 className="text-3xl font-bold text-tinta tracking-tight">Programa</h1>
             <p className="text-sm text-tinta-400 mt-1">
@@ -166,51 +132,26 @@ export default function ProgramaPage() {
             {totalAssigned}/36 asignadas
           </span>
         </div>
-      </div>
 
-      {/* Trimestre tabs */}
-      <div className="flex items-center gap-2 mb-6 flex-wrap">
-        <div className="flex items-center gap-1 bg-crema-200 p-1 rounded-full">
-          {TRIMESTRES.map((t) => (
-            <button
-              key={t.id}
-              onClick={() => setTrimestre(t.id)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-                trimestre === t.id
-                  ? 'bg-tinta text-tinta-50 shadow-sm'
-                  : 'text-tinta-600 hover:bg-white'
-              }`}
-            >
-              {t.label}
-            </button>
-          ))}
-        </div>
-
-        {/* Vista toggle */}
-        {clases.length > 1 && (
-          <div className="flex items-center gap-1 bg-crema-200 p-1 rounded-full ml-auto">
-            <button
-              onClick={() => setVista('programa')}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-                vista === 'programa'
-                  ? 'bg-tinta text-tinta-50 shadow-sm'
-                  : 'text-tinta-600 hover:bg-white'
-              }`}
-            >
-              Programa
-            </button>
-            <button
-              onClick={() => setVista('clases')}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-                vista === 'clases'
-                  ? 'bg-tinta text-tinta-50 shadow-sm'
-                  : 'text-tinta-600 hover:bg-white'
-              }`}
-            >
-              Mis clases
-            </button>
+        {/* Trimestre tabs */}
+        <div className="flex items-center gap-2 flex-wrap">
+          <div className="flex items-center gap-1 bg-crema-100 p-1 rounded-full">
+            {TRIMESTRES.map((t) => (
+              <button
+                key={t.id}
+                onClick={() => setTrimestre(t.id)}
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                  trimestre === t.id
+                    ? 'bg-tinta text-tinta-50 shadow-sm'
+                    : 'text-tinta-600 hover:bg-crema-50'
+                }`}
+              >
+                {t.label}
+              </button>
+            ))}
           </div>
-        )}
+
+        </div>
       </div>
 
       {/* Bloques — accordion */}
@@ -230,38 +171,36 @@ export default function ProgramaPage() {
               {/* Bloque header — clickable */}
               <button
                 onClick={() => toggleBloque(bloque.id)}
-                className="w-full flex items-center gap-3 px-5 py-4 hover:bg-crema-50 transition-colors text-left"
+                className="w-full flex flex-col gap-2 px-5 py-4 hover:bg-crema-50 transition-colors text-left"
               >
-                <span className="text-xl">{bloque.emoji}</span>
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-3">
-                    <h2 className="text-base font-semibold text-tinta">
-                      Bloque {bloque.id} &middot; {bloque.titulo}
-                    </h2>
-                    <span className="text-xs text-tinta-400 bg-crema-200 px-2.5 py-0.5 rounded-full shrink-0">
-                      {bloqueSecuencias.length} sec.
-                    </span>
-                  </div>
-                  {/* Progress bar */}
-                  <div className="flex items-center gap-2 mt-1.5">
-                    <div className="flex-1 h-1.5 bg-crema-200 rounded-full overflow-hidden max-w-48">
-                      <div
-                        className="h-full bg-amarillo rounded-full transition-all duration-500"
-                        style={{
-                          width: `${bloqueSecuencias.length > 0 ? (assigned / bloqueSecuencias.length) * 100 : 0}%`,
-                        }}
-                      />
-                    </div>
-                    <span className="text-xs text-tinta-400">
-                      {assigned}/{bloqueSecuencias.length}
-                    </span>
-                  </div>
+                <div className="flex items-center gap-3 w-full">
+                  <span className="text-xl">{bloque.emoji}</span>
+                  <h2 className="text-base font-semibold text-tinta">
+                    Bloque {bloque.id} &middot; {bloque.titulo}
+                  </h2>
+                  <span className="text-xs text-tinta-400 bg-crema-200 px-2.5 py-0.5 rounded-full shrink-0">
+                    {bloqueSecuencias.length} sec.
+                  </span>
+                  <ChevronDown
+                    className={`w-5 h-5 text-tinta-400 transition-transform duration-200 shrink-0 ml-auto ${
+                      isOpen ? 'rotate-180' : ''
+                    }`}
+                  />
                 </div>
-                <ChevronDown
-                  className={`w-5 h-5 text-tinta-400 transition-transform duration-200 shrink-0 ${
-                    isOpen ? 'rotate-180' : ''
-                  }`}
-                />
+                {/* Progress bar */}
+                <div className="flex items-center gap-2">
+                  <div className="flex-1 h-1.5 bg-crema-200 rounded-full overflow-hidden max-w-48">
+                    <div
+                      className="h-full bg-amarillo rounded-full transition-all duration-500"
+                      style={{
+                        width: `${bloqueSecuencias.length > 0 ? (assigned / bloqueSecuencias.length) * 100 : 0}%`,
+                      }}
+                    />
+                  </div>
+                  <span className="text-xs text-tinta-400">
+                    {assigned}/{bloqueSecuencias.length}
+                  </span>
+                </div>
               </button>
 
               {/* Expandable content */}
@@ -272,7 +211,6 @@ export default function ProgramaPage() {
                       const sec = secuencias.find((s: any) => s.secuencia === secNum)
                       const numTareas = getTareasReferencia(secNum).length
                       const status = statusMap[secNum] ?? 'sin_asignar'
-                      const clasesEnSec = clasePorSecuencia[secNum] ?? []
                       const colorClass =
                         BLOQUE_COLORS[bloque.id] ?? 'bg-crema-200 text-tinta-600'
                       const isCurrent = secNum === currentSecNum
@@ -282,10 +220,10 @@ export default function ProgramaPage() {
                           key={secNum}
                           ref={isCurrent ? currentRef : undefined}
                           href={`/profesor/programa/${secNum}`}
-                          className={`group bg-white rounded-xl p-4 ring-1 transition-all flex items-start gap-3 ${
+                          className={`group bg-crema-50 rounded-xl p-4 transition-all flex items-start gap-3 ${
                             isCurrent
                               ? 'ring-2 ring-amarillo shadow-md'
-                              : 'ring-black/[0.04] hover:shadow-md hover:ring-black/[0.06]'
+                              : 'hover:bg-crema-100 hover:shadow-sm'
                           }`}
                         >
                           {/* Number badge */}
@@ -367,23 +305,6 @@ export default function ProgramaPage() {
                               </button>
                             </div>
 
-                            {/* Vista por clases: class indicators */}
-                            {vista === 'clases' && clasesEnSec.length > 0 && (
-                              <div className="flex gap-1 mt-2 flex-wrap">
-                                {clasesEnSec.map((cId) => {
-                                  const c = clases.find((cl) => cl.id === cId)
-                                  return (
-                                    <span
-                                      key={cId}
-                                      className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-amarillo/20 text-[10px] font-bold text-tinta-600"
-                                      title={c?.nombre}
-                                    >
-                                      {c?.nombre?.charAt(0)?.toUpperCase() ?? '?'}
-                                    </span>
-                                  )
-                                })}
-                              </div>
-                            )}
                           </div>
                         </Link>
                       )
