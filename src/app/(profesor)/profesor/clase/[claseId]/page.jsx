@@ -441,8 +441,8 @@ export default function ClaseDetalle() {
 
       {/* ── Tab: Alumnos ────────────────────────── */}
       {tab === 'alumnos' && (
-        <div>
-          <div className="flex flex-wrap items-center gap-2 mb-6">
+        <div className="bg-white rounded-3xl border border-crema-300 p-6">
+          <div className="flex flex-wrap items-center gap-2 mb-5">
             {[
               { id: 'todos', label: 'Todos' },
               { id: 'bloqueados', label: 'Bloqueados' },
@@ -455,7 +455,7 @@ export default function ClaseDetalle() {
                 className={`px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${
                   filtro === f.id
                     ? 'bg-tinta text-white'
-                    : 'bg-crema-200 text-tinta-600 hover:bg-crema-300'
+                    : 'bg-crema-100 text-tinta-600 hover:bg-crema-200'
                 }`}
               >
                 {f.label}
@@ -472,7 +472,7 @@ export default function ClaseDetalle() {
           </div>
 
           {filteredAlumnos.length === 0 ? (
-            <div className="bg-white rounded-3xl border border-crema-300 p-12 text-center text-tinta-400">
+            <div className="py-8 text-center text-tinta-400">
               <p className="text-sm">
                 {filtro === 'todos'
                   ? 'Sin alumnos. Agrega el primero.'
@@ -510,9 +510,9 @@ export default function ClaseDetalle() {
 
       {/* ── Tab: Tareas (table) ────────────────── */}
       {tab === 'tareas' && (
-        <div>
-          {/* Filters + actions */}
-          <div className="flex flex-wrap items-center gap-2 mb-4">
+        <div className="bg-white rounded-3xl border border-crema-300 overflow-hidden">
+          {/* Filters + actions (inside card) */}
+          <div className="flex flex-wrap items-center gap-2 px-6 pt-5 pb-4">
             {[
               { id: 'todos', label: 'Todos' },
               { id: 'en_curso', label: `En curso (${tareasEnCurso})` },
@@ -525,7 +525,7 @@ export default function ClaseDetalle() {
                 className={`px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${
                   filtroEstado === f.id
                     ? 'bg-tinta text-white'
-                    : 'bg-crema-200 text-tinta-600 hover:bg-crema-300'
+                    : 'bg-crema-100 text-tinta-600 hover:bg-crema-200'
                 }`}
               >
                 {f.label}
@@ -549,12 +549,11 @@ export default function ClaseDetalle() {
           </div>
 
           {filteredTareas.length === 0 ? (
-            <div className="bg-white rounded-3xl border border-crema-300 p-12 text-center text-tinta-400">
+            <div className="px-6 pb-8 pt-4 text-center text-tinta-400">
               <p className="text-sm">Sin tareas asignadas aun.</p>
             </div>
           ) : (
-            <div className="bg-white rounded-3xl border border-crema-300 overflow-hidden">
-              <div className="overflow-x-auto">
+            <div className="overflow-x-auto">
                 <table className="w-full text-sm">
                   <thead>
                     <tr className="border-b border-crema-200">
@@ -649,7 +648,6 @@ export default function ClaseDetalle() {
                   </tbody>
                 </table>
               </div>
-            </div>
           )}
         </div>
       )}
