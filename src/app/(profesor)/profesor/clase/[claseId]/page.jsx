@@ -123,8 +123,8 @@ function exportCSV(tareasClase, resultados, alumnos) {
 // ── Tabs ────────────────────────────────────────────────────────
 
 const TABS = [
-  { id: 'alumnos', label: 'Alumnos', icon: null },
   { id: 'tareas', label: 'Tareas', icon: null },
+  { id: 'alumnos', label: 'Alumnos', icon: null },
   { id: 'progreso', label: 'Progreso', icon: null },
 ]
 
@@ -148,7 +148,7 @@ export default function ClaseDetalle() {
   const { data: alumnosBloqueados = [] } = useAlumnosBloqueados(profesor?.id)
   const agregarAlumnoMut = useAgregarAlumno()
 
-  const [tab, setTab] = useState('alumnos')
+  const [tab, setTab] = useState('tareas')
   const [filtro, setFiltro] = useState('todos')
   const [modalAgregarAlumno, setModalAgregarAlumno] = useState(false)
   const [nuevoAlumno, setNuevoAlumno] = useState('')
