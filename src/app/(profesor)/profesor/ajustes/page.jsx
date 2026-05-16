@@ -222,13 +222,13 @@ export default function Ajustes() {
       )}
 
       {/* Zona de peligro */}
-      <div className="card p-6 border-red-100">
+      <div className="card p-6 border-amber-100">
         <h2 className="text-lg font-bold text-gray-900 mb-1">Zona de peligro</h2>
         <p className="text-xs text-gray-500 mb-4">Estas acciones son irreversibles.</p>
         <button
           type="button"
           onClick={() => setModalEliminar(true)}
-          className="text-sm text-red-500 hover:text-red-700 font-medium transition-colors"
+          className="text-sm text-amber-500 hover:text-amber-700 font-medium transition-colors"
         >
           Eliminar mi cuenta
         </button>

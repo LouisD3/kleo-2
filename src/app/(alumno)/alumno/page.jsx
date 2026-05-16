@@ -116,7 +116,7 @@ export default function DashboardAlumno() {
                         <h3 className="font-semibold text-gray-900 truncate">{tarea.nombre}</h3>
                         <Badge valor={tarea.estadoAlumno} texto={estadoTexto(tarea.estadoAlumno)} />
                         {vencida && (
-                          <span className="text-xs font-medium text-red-600 bg-red-50 px-2 py-0.5 rounded-full">
+                          <span className="text-xs font-medium text-amber-600 bg-amber-50 px-2 py-0.5 rounded-full">
                             Vencida
                           </span>
                         )}
@@ -128,7 +128,7 @@ export default function DashboardAlumno() {
                         {fechaLimite && (
                           <>
                             <span>·</span>
-                            <span className={vencida ? 'text-red-500' : ''}>
+                            <span className={vencida ? 'text-amber-500' : ''}>
                               Límite:{' '}
                               {fechaLimite.toLocaleDateString('es-MX', {
                                 day: 'numeric',
@@ -151,7 +151,7 @@ export default function DashboardAlumno() {
                               : (tarea.resultadoAlumno.calificacion_manual ??
                                     tarea.resultadoAlumno.calificacion) >= 6
                                 ? 'text-orange-500'
-                                : 'text-red-500'
+                                : 'text-amber-500'
                           }`}
                         >
                           {tarea.resultadoAlumno.calificacion_manual ??

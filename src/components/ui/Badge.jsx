@@ -5,7 +5,7 @@ const ESTILOS = {
   pendiente: 'bg-crema-200 text-tinta-400',
   facil: 'bg-crema-200 text-tinta-600',
   media: 'bg-amarillo text-tinta',
-  dificil: 'bg-red-100 text-red-700',
+  dificil: 'bg-amber-100 text-amber-700',
   default: 'bg-crema-200 text-tinta-600',
 }
 

@@ -382,7 +382,7 @@ export default function GenerarTarea() {
                       onClick={() =>
                         setForm((p) => ({ ...p, pdas: p.pdas.filter((_, i) => i !== idx) }))
                       }
-                      className="flex-shrink-0 p-1 text-red-400 hover:text-red-600 transition-colors"
+                      className="flex-shrink-0 p-1 text-amber-400 hover:text-amber-600 transition-colors"
                       title="Quitar PDA"
                     >
                       <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">

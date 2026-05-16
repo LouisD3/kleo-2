@@ -368,7 +368,7 @@ export default function ManipulableAgrupable({
                   <button
                     type="button"
                     onClick={() => eliminarGrupo(gId)}
-                    className="ml-2 text-red-300 hover:text-red-500"
+                    className="ml-2 text-amber-300 hover:text-amber-500"
                   >
                     x
                   </button>
@@ -433,7 +433,7 @@ export default function ManipulableAgrupable({
               sinAsignar.length > 0
                 ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
                 : errorFlash
-                  ? 'bg-red-500 text-white animate-[shake_0.3s_ease-in-out]'
+                  ? 'bg-amber-500 text-white animate-[shake_0.3s_ease-in-out]'
                   : 'bg-gray-900 text-white hover:bg-gray-800 active:scale-[0.98]'
             }
           `}

@@ -43,14 +43,14 @@ export default function ResultadoTarea() {
         ? 'text-blue-600'
         : aprobado
           ? 'text-orange-500'
-          : 'text-red-500',
+          : 'text-amber-500',
     fondo: excelente
       ? 'from-green-50 to-emerald-50'
       : calificacion >= 7
         ? 'from-blue-50 to-indigo-50'
         : aprobado
           ? 'from-orange-50 to-yellow-50'
-          : 'from-red-50 to-pink-50',
+          : 'from-amber-50 to-yellow-50',
   }
 
   const mensajeMotivacion = excelente
@@ -164,8 +164,8 @@ function CPABreakdown({ scores }) {
           if (!score) return null
           const nota = score.nota
           const colorNota =
-            nota >= 8 ? 'text-green-600' : nota >= 6 ? 'text-orange-500' : 'text-red-500'
-          const bgBar = nota >= 8 ? 'bg-green-400' : nota >= 6 ? 'bg-orange-400' : 'bg-red-400'
+            nota >= 8 ? 'text-green-600' : nota >= 6 ? 'text-orange-500' : 'text-amber-500'
+          const bgBar = nota >= 8 ? 'bg-green-400' : nota >= 6 ? 'bg-orange-400' : 'bg-amber-400'
 
           return (
             <div key={key} className="px-6 py-4">
@@ -213,7 +213,7 @@ function LegacyRetroalimentacion({ retroalimentacion, tarea, resultado }) {
           </div>
           <div className="w-px h-8 bg-gray-200" />
           <div className="text-center">
-            <p className="text-2xl font-bold text-red-500">{total - correctas}</p>
+            <p className="text-2xl font-bold text-amber-500">{total - correctas}</p>
             <p className="text-xs text-gray-500">Incorrectas</p>
           </div>
         </div>
@@ -230,12 +230,12 @@ function LegacyRetroalimentacion({ retroalimentacion, tarea, resultado }) {
             return (
               <div
                 key={i}
-                className={`px-6 py-4 ${fb.correcta ? 'hover:bg-green-50/50' : 'hover:bg-red-50/50'} transition-colors`}
+                className={`px-6 py-4 ${fb.correcta ? 'hover:bg-green-50/50' : 'hover:bg-amber-50/50'} transition-colors`}
               >
                 <div className="flex items-start gap-4">
                   <div
                     className={`flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold ${
-                      fb.correcta ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-600'
+                      fb.correcta ? 'bg-green-100 text-green-700' : 'bg-amber-100 text-amber-600'
                     }`}
                   >
                     {fb.correcta ? '✓' : '✗'}
@@ -249,7 +249,7 @@ function LegacyRetroalimentacion({ retroalimentacion, tarea, resultado }) {
                         <span className="font-medium">Tu respuesta:</span> {String(respAlumno)}
                       </p>
                     )}
-                    <p className={`text-sm ${fb.correcta ? 'text-green-700' : 'text-red-700'}`}>
+                    <p className={`text-sm ${fb.correcta ? 'text-green-700' : 'text-amber-700'}`}>
                       {fb.comentario}
                     </p>
                   </div>

@@ -1,7 +1,7 @@
 'use client'
 
 import { useQuery } from '@tanstack/react-query'
-import { AlertTriangle, ArrowLeft, CheckCircle } from 'lucide-react'
+import { ArrowLeft, CheckCircle, HandHelping, Clock } from 'lucide-react'
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
 import { useMemo, useState } from 'react'
@@ -157,7 +157,7 @@ export default function AlumnoDetalle() {
       {bloqueado && (
         <div className="bg-orange-50 border border-orange-200 rounded-xl p-6 mb-6">
           <div className="flex items-start gap-3">
-            <AlertTriangle className="w-5 h-5 text-orange-600 flex-shrink-0 mt-0.5" />
+            <HandHelping className="w-5 h-5 text-orange-600 flex-shrink-0 mt-0.5" />
             <div className="flex-1">
               <h2 className="font-semibold text-gray-900">Bloqueada</h2>
               <p className="text-sm text-gray-700 mt-1">
@@ -222,7 +222,7 @@ export default function AlumnoDetalle() {
                   {t.completada ? (
                     <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
                   ) : (
-                    <AlertTriangle className="w-5 h-5 text-yellow-500 flex-shrink-0" />
+                    <Clock className="w-5 h-5 text-yellow-500 flex-shrink-0" />
                   )}
                 </div>
                 {t.completada && t.score != null && (

@@ -1,6 +1,6 @@
 'use client'
 
-import { AlertTriangle, ArrowRight, CheckCircle } from 'lucide-react'
+import { ArrowRight, CheckCircle, HandHelping } from 'lucide-react'
 import Link from 'next/link'
 
 function formatTiempoRelativo(fecha: Date | null) {
@@ -46,8 +46,8 @@ export default function ClaseCard({ clase }: { clase: ClaseEnriched }) {
           <p className="text-sm text-tinta-400 mt-0.5">{clase.alumnosCount} alumnos</p>
         </div>
         {clase.alumnosBloqueadosCount > 0 ? (
-          <span className="inline-flex items-center gap-1.5 text-xs font-medium text-orange-600 bg-orange-50 rounded-full px-2.5 py-1">
-            <AlertTriangle className="w-3.5 h-3.5" />
+          <span className="inline-flex items-center gap-1.5 text-xs font-medium text-amber-600 bg-amber-50 rounded-full px-2.5 py-1">
+            <HandHelping className="w-3.5 h-3.5" />
             {clase.alumnosBloqueadosCount}
           </span>
         ) : (

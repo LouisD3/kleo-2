@@ -48,14 +48,14 @@ function notaColor(nota: number | undefined): string {
   if (nota === undefined || nota === null) return 'bg-gray-100'
   if (nota >= 8) return 'bg-green-400'
   if (nota >= 6) return 'bg-yellow-400'
-  return 'bg-red-400'
+  return 'bg-amber-400'
 }
 
 function notaTextColor(nota: number | undefined): string {
   if (nota === undefined || nota === null) return 'text-gray-300'
   if (nota >= 8) return 'text-green-700'
   if (nota >= 6) return 'text-yellow-700'
-  return 'text-red-700'
+  return 'text-amber-700'
 }
 
 // ── Component ────────────────────────────────────────────────────
@@ -136,7 +136,7 @@ export default function HeatmapCPA({ alumnos, tareas, resultados }: Props) {
           <span className="w-3 h-3 rounded-sm bg-yellow-400" /> 6-7
         </span>
         <span className="flex items-center gap-1">
-          <span className="w-3 h-3 rounded-sm bg-red-400" /> &lt;6
+          <span className="w-3 h-3 rounded-sm bg-amber-400" /> &lt;6
         </span>
         <span className="flex items-center gap-1">
           <span className="w-3 h-3 rounded-sm bg-gray-100" /> Sin datos

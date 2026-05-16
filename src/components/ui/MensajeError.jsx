@@ -9,15 +9,15 @@ export default function MensajeError({ mensaje, onCerrar }) {
   return (
     <Alert
       variant="destructive"
-      className="animate-slide-up bg-red-50 border-red-200 rounded-xl py-3"
+      className="animate-slide-up bg-amber-50 border-amber-200 rounded-xl py-3"
     >
-      <CircleAlert className="size-5 text-red-500" />
-      <AlertDescription className="text-sm text-red-700">{mensaje}</AlertDescription>
+      <CircleAlert className="size-5 text-amber-500" />
+      <AlertDescription className="text-sm text-amber-700">{mensaje}</AlertDescription>
       {onCerrar && (
         <AlertAction>
           <button
             onClick={onCerrar}
-            className="text-red-400 hover:text-red-600 transition-colors"
+            className="text-amber-400 hover:text-amber-600 transition-colors"
             aria-label="Cerrar"
           >
             <X className="size-4" />

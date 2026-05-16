@@ -568,7 +568,7 @@ function EtapaPictorico({
           variante="primario"
           size="lg"
           onClick={onValidar}
-          className={`w-full ${error ? 'animate-[shake_0.3s_ease-in-out] !bg-red-500' : ''}`}
+          className={`w-full ${error ? 'animate-[shake_0.3s_ease-in-out] !bg-amber-500' : ''}`}
         >
           {error ? 'Revisa tus respuestas' : 'Verificar'}
         </Boton>
@@ -655,7 +655,7 @@ function EtapaAbstracto({
                 className={`mx-1 -mt-1 rounded-b-xl px-4 py-3 text-sm border-x border-b ${
                   retro.correcta
                     ? 'bg-green-50 border-green-200 text-green-700'
-                    : 'bg-red-50 border-red-200 text-red-700'
+                    : 'bg-amber-50 border-amber-200 text-amber-700'
                 }`}
               >
                 <span className="font-semibold">{retro.correcta ? 'Correcto' : 'Incorrecto'}:</span>{' '}
@@ -667,7 +667,7 @@ function EtapaAbstracto({
       })}
 
       {errorIA && (
-        <div className="rounded-xl bg-red-50 border border-red-200 px-4 py-3 text-sm text-red-700">
+        <div className="rounded-xl bg-amber-50 border border-amber-200 px-4 py-3 text-sm text-amber-700">
           {errorIA}
         </div>
       )}

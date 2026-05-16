@@ -136,7 +136,7 @@ export default function TablaVerdad({
                   <td
                     key={colIndex}
                     className={`px-4 py-3 text-center font-medium ${
-                      val ? 'text-green-700' : 'text-red-600'
+                      val ? 'text-green-700' : 'text-amber-600'
                     }`}
                   >
                     {val ? 'V' : 'F'}
@@ -158,7 +158,7 @@ export default function TablaVerdad({
                           ? 'bg-gray-100 text-gray-400 border-2 border-dashed border-gray-300'
                           : respuestas[rowIndex] === true
                             ? 'bg-green-100 text-green-700 border-2 border-green-300'
-                            : 'bg-red-100 text-red-600 border-2 border-red-300'
+                            : 'bg-amber-100 text-amber-600 border-2 border-amber-300'
                       }
                     `}
                   >
@@ -206,7 +206,7 @@ export default function TablaVerdad({
               !todasRespondidas
                 ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
                 : errorFlash
-                  ? 'bg-red-500 text-white animate-[shake_0.3s_ease-in-out]'
+                  ? 'bg-amber-500 text-white animate-[shake_0.3s_ease-in-out]'
                   : 'bg-gray-900 text-white hover:bg-gray-800 active:scale-[0.98]'
             }
           `}

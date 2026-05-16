@@ -110,7 +110,7 @@ export default function TablaTareas({ tareas, clasesMap, resultados, onEliminar,
                       </Boton>
                       <button
                         onClick={() => setTareaAEliminar(tarea)}
-                        className="p-1.5 rounded-lg text-gray-400 hover:text-red-600 hover:bg-red-50 transition-colors"
+                        className="p-1.5 rounded-lg text-gray-400 hover:text-amber-600 hover:bg-amber-50 transition-colors"
                         title="Eliminar tarea"
                       >
                         <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
@@ -148,7 +148,7 @@ export default function TablaTareas({ tareas, clasesMap, resultados, onEliminar,
           <Boton
             variante="primario"
             size="sm"
-            className="!bg-red-600 hover:!bg-red-700"
+            className="!bg-amber-600 hover:!bg-amber-700"
             disabled={eliminando}
             onClick={async () => {
               await onEliminar(tareaAEliminar.id)

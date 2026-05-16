@@ -173,7 +173,7 @@ export default function DetalleTarea() {
               <h1 className="text-2xl font-bold text-gray-900">{tarea.nombre}</h1>
               <Badge valor={tarea.estado} />
               {vencida && (
-                <span className="text-xs font-medium text-red-600 bg-red-50 px-2 py-0.5 rounded-full">
+                <span className="text-xs font-medium text-amber-600 bg-amber-50 px-2 py-0.5 rounded-full">
                   Vencida
                 </span>
               )}
@@ -186,7 +186,7 @@ export default function DetalleTarea() {
               <span>{preguntas.length} preguntas</span>
               <span>{new Date(tarea.created_at).toLocaleDateString('es-MX')}</span>
               {fechaLimite && (
-                <span className={vencida ? 'text-red-500 font-medium' : ''}>
+                <span className={vencida ? 'text-amber-500 font-medium' : ''}>
                   Límite: {fechaLimite}
                 </span>
               )}
@@ -245,7 +245,7 @@ export default function DetalleTarea() {
           <Boton
             variante="secundario"
             size="sm"
-            className="!text-red-600 hover:!bg-red-50 sm:ml-auto"
+            className="!text-amber-600 hover:!bg-amber-50 sm:ml-auto"
             onClick={() => setMostrarModalEliminar(true)}
           >
             Eliminar
@@ -358,7 +358,7 @@ export default function DetalleTarea() {
           <Boton
             variante="primario"
             size="sm"
-            className="!bg-red-600 hover:!bg-red-700"
+            className="!bg-amber-600 hover:!bg-amber-700"
             disabled={eliminarTareaMut.isPending}
             onClick={async () => {
               await eliminarTareaMut.mutateAsync(tarea.id)

@@ -45,7 +45,7 @@ export default function Boton({
         'rounded-full gap-2 font-medium active:scale-95',
         variante === 'primario' && PRIMARIO_CLASSES,
         variante === 'secundario' && SECUNDARIO_CLASSES,
-        variante === 'peligro' && 'bg-red-50 hover:bg-red-100 text-red-700 border-red-200',
+        variante === 'peligro' && 'bg-amber-50 hover:bg-amber-100 text-amber-700 border-amber-200',
         size === 'sm' && 'px-3 py-1.5 h-auto text-sm',
         size === 'md' && 'px-5 py-2.5 h-auto text-sm',
         size === 'lg' && 'px-7 py-3 h-auto text-base',

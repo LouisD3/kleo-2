@@ -2,12 +2,12 @@
 
 import {
   Activity,
-  AlertTriangle,
   BookOpen,
   CalendarClock,
   CheckCircle,
   ClipboardCheck,
   GraduationCap,
+  HandHelping,
   Plus,
   Sparkles,
   TrendingDown,
@@ -97,9 +97,9 @@ export default function PaginaMisClases() {
     if (bloqueados > 0) {
       items.push({
         key: 'bloqueados',
-        icon: AlertTriangle,
-        iconBg: 'bg-red-100',
-        iconColor: 'text-red-600',
+        icon: HandHelping,
+        iconBg: 'bg-amber-100',
+        iconColor: 'text-amber-600',
         href: '/profesor/clase',
         bold: `${bloqueados} ${bloqueados === 1 ? 'alumno bloqueado' : 'alumnos bloqueados'}`,
         rest: 'hace +3 dias',
@@ -331,15 +331,15 @@ export default function PaginaMisClases() {
             </div>
           </div>
           {totalBloqueados > 0 ? (
-            <div className="flex items-center gap-3 p-3 rounded-2xl bg-orange-50">
-              <div className="w-10 h-10 rounded-full bg-orange-100 text-orange-600 flex items-center justify-center flex-shrink-0">
-                <AlertTriangle className="w-5 h-5" />
+            <div className="flex items-center gap-3 p-3 rounded-2xl bg-amber-50">
+              <div className="w-10 h-10 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center flex-shrink-0">
+                <HandHelping className="w-5 h-5" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-orange-600 tabular-nums leading-none">
+                <p className="text-2xl font-bold text-amber-600 tabular-nums leading-none">
                   {totalBloqueados}
                 </p>
-                <p className="text-xs text-orange-500 mt-0.5">Necesitan atención</p>
+                <p className="text-xs text-amber-500 mt-0.5">Necesitan ayuda</p>
               </div>
             </div>
           ) : (

@@ -259,7 +259,7 @@ export default function Transportador({
           type="button"
           onClick={verificar}
           className={`w-full rounded-xl py-3 font-bold text-white transition ${
-            errorFlash ? 'bg-red-500 animate-[shake_0.3s_ease-in-out]' : 'bg-amarillo hover:bg-amarillo-hover text-gray-900'
+            errorFlash ? 'bg-amber-500 animate-[shake_0.3s_ease-in-out]' : 'bg-amarillo hover:bg-amarillo-hover text-gray-900'
           }`}
         >
           {errorFlash ? 'Intenta de nuevo' : 'Verificar'}

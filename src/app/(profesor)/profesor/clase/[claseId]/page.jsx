@@ -81,7 +81,7 @@ function CPADot({ nota, label }) {
   if (nota != null) {
     if (nota >= 7) color = 'bg-green-400'
     else if (nota >= 5) color = 'bg-yellow-400'
-    else color = 'bg-red-400'
+    else color = 'bg-amber-400'
   }
   return (
     <div className="flex items-center gap-0.5" title={`${label}: ${nota != null ? nota.toFixed(1) : '-'}`}>
@@ -354,7 +354,7 @@ export default function ClaseDetalle() {
                     </button>
                     <button
                       onClick={() => { setMenuOpen(false); setConfirmEliminar(''); setModalEliminar(true) }}
-                      className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50"
+                      className="w-full text-left px-4 py-2 text-sm text-amber-600 hover:bg-amber-50"
                     >
                       Eliminar clase
                     </button>
@@ -627,7 +627,7 @@ export default function ClaseDetalle() {
                             <span className="text-tinta-400 ml-1 text-xs">({pct}%)</span>
                           </td>
                           <td className="py-3 px-4 text-center">
-                            <span className={`font-semibold ${prom != null ? (prom >= 7 ? 'text-green-600' : prom >= 5 ? 'text-yellow-600' : 'text-red-600') : 'text-tinta-400'}`}>
+                            <span className={`font-semibold ${prom != null ? (prom >= 7 ? 'text-green-600' : prom >= 5 ? 'text-yellow-600' : 'text-amber-600') : 'text-tinta-400'}`}>
                               {prom != null ? prom.toFixed(1) : '-'}
                             </span>
                           </td>

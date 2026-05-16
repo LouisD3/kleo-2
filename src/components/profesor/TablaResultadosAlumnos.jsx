@@ -121,7 +121,7 @@ export default function TablaResultadosAlumnos({
                               ? 'text-green-600'
                               : notaFinal >= 6
                                 ? 'text-orange-500'
-                                : 'text-red-500'
+                                : 'text-amber-500'
                           }`}
                         >
                           {notaFinal}/10

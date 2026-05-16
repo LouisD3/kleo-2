@@ -164,7 +164,7 @@ export default function VarillasTriangulo({
       </div>
 
       {/* Status badge */}
-      <div className={`text-center text-sm font-semibold px-3 py-1.5 rounded-lg ${formsTriangle ? 'bg-green-50 text-green-700' : 'bg-red-50 text-red-700'}`}>
+      <div className={`text-center text-sm font-semibold px-3 py-1.5 rounded-lg ${formsTriangle ? 'bg-green-50 text-green-700' : 'bg-amber-50 text-amber-700'}`}>
         {formsTriangle
           ? `Se forma triangulo (${a}+${b}=${a + b} > ${c}, ${a}+${c}=${a + c} > ${b}, ${b}+${c}=${b + c} > ${a})`
           : `No se forma triangulo`}
@@ -197,7 +197,7 @@ export default function VarillasTriangulo({
           />
         </div>
         <div>
-          <label className="text-xs font-semibold text-red-600">Lado c = {c}</label>
+          <label className="text-xs font-semibold text-amber-600">Lado c = {c}</label>
           <input
             type="range"
             min={1}
@@ -225,7 +225,7 @@ export default function VarillasTriangulo({
           type="button"
           onClick={verificar}
           className={`w-full rounded-xl py-3 font-bold text-white transition ${
-            errorFlash ? 'bg-red-500 animate-[shake_0.3s_ease-in-out]' : 'bg-amarillo hover:bg-amarillo-hover text-gray-900'
+            errorFlash ? 'bg-amber-500 animate-[shake_0.3s_ease-in-out]' : 'bg-amarillo hover:bg-amarillo-hover text-gray-900'
           }`}
         >
           {errorFlash ? 'Intenta de nuevo' : 'Verificar'}

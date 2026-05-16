@@ -173,7 +173,7 @@ export default function InterruptoresBinarios({
             w-full py-3 rounded-xl text-sm font-semibold transition-all
             ${
               errorFlash
-                ? 'bg-red-500 text-white animate-[shake_0.3s_ease-in-out]'
+                ? 'bg-amber-500 text-white animate-[shake_0.3s_ease-in-out]'
                 : 'bg-gray-900 text-white hover:bg-gray-800 active:scale-[0.98]'
             }
           `}

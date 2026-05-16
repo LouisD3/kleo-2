@@ -213,7 +213,7 @@ export default function FichasPositivasNegativas({
       {/* Live counter */}
       <div className="flex items-center justify-center gap-4 text-sm">
         <span className="flex items-center gap-1">
-          <span className="w-3 h-3 rounded-full bg-red-500 inline-block" />
+          <span className="w-3 h-3 rounded-full bg-amber-500 inline-block" />
           <span className="font-semibold text-gray-700">Positivas: {positivasRestantes}</span>
         </span>
         <span className="text-gray-300">|</span>
@@ -276,7 +276,7 @@ export default function FichasPositivasNegativas({
             w-full py-3 rounded-xl text-sm font-semibold transition-all
             ${
               errorFlash
-                ? 'bg-red-500 text-white animate-[shake_0.3s_ease-in-out]'
+                ? 'bg-amber-500 text-white animate-[shake_0.3s_ease-in-out]'
                 : 'bg-gray-900 text-white hover:bg-gray-800 active:scale-[0.98]'
             }
           `}
