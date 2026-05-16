@@ -370,30 +370,52 @@ export default function ClaseDetalle() {
           </div>
         </div>
 
-        {/* Stats line */}
-        <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-tinta-400 mb-2">
-          <span>{alumnos.length} alumno{alumnos.length !== 1 ? 's' : ''}</span>
-          <span className="text-crema-400">·</span>
-          <span>{tareasClase.length} tarea{tareasClase.length !== 1 ? 's' : ''}</span>
-          {bloqueActual && (
-            <>
-              <span className="text-crema-400">·</span>
-              <span>{bloqueActual.emoji} {bloqueActual.titulo}</span>
-            </>
-          )}
-          <span className="text-crema-400">·</span>
-          <span>{progressPct}% del programa</span>
+        {/* Stats + tabs row */}
+        <div className="flex flex-wrap items-center justify-between gap-3 mt-1">
+          <div className="flex items-center gap-2">
+            {TABS.map((t) => {
+              let count = null
+              if (t.id === 'alumnos') count = alumnos.length
+              if (t.id === 'tareas') count = tareasClase.length
+              const active = tab === t.id
+              return (
+                <button
+                  key={t.id}
+                  onClick={() => setTab(t.id)}
+                  className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-sm font-medium transition-colors ${
+                    active
+                      ? 'bg-tinta text-white'
+                      : 'bg-crema-100 text-tinta-600 hover:bg-crema-200'
+                  }`}
+                >
+                  {t.label}
+                  {count != null && (
+                    <span
+                      className={`inline-flex items-center justify-center min-w-[18px] h-[18px] px-1 rounded-full text-[11px] font-semibold ${
+                        active
+                          ? 'bg-white/20 text-white'
+                          : 'bg-crema-300 text-tinta-400'
+                      }`}
+                    >
+                      {count}
+                    </span>
+                  )}
+                </button>
+              )
+            })}
+          </div>
+          <div className="flex items-center gap-x-3 text-xs text-tinta-400">
+            {bloqueActual && <span>{bloqueActual.emoji} {bloqueActual.titulo}</span>}
+            <span className="flex items-center gap-1.5">
+              {progressPct}%
+              <span className="inline-block w-16 h-1 bg-crema-200 rounded-full overflow-hidden">
+                <span className="block h-full bg-amarillo rounded-full" style={{ width: `${progressPct}%` }} />
+              </span>
+            </span>
+          </div>
         </div>
 
-        {/* Progress bar */}
-        <div className="w-full max-w-xs h-1.5 bg-crema-200 rounded-full overflow-hidden">
-          <div
-            className="h-full bg-amarillo rounded-full transition-all"
-            style={{ width: `${progressPct}%` }}
-          />
-        </div>
-
-        {/* Blocked students banner (inside header card) */}
+        {/* Blocked students banner */}
         {bloqueadosClase.length > 0 && (
           <div className="bg-orange-50 rounded-2xl p-4 mt-4">
             <p className="text-sm font-medium text-orange-700 mb-1">
@@ -417,40 +439,6 @@ export default function ClaseDetalle() {
             </div>
           </div>
         )}
-      </div>
-
-      {/* Tabs with counters — pill style */}
-      <div className="flex items-center gap-2 mb-6">
-        {TABS.map((t) => {
-          let count = null
-          if (t.id === 'alumnos') count = alumnos.length
-          if (t.id === 'tareas') count = tareasClase.length
-          const active = tab === t.id
-          return (
-            <button
-              key={t.id}
-              onClick={() => setTab(t.id)}
-              className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-                active
-                  ? 'bg-tinta text-white'
-                  : 'bg-white border border-crema-300 text-tinta-600 hover:bg-crema-50'
-              }`}
-            >
-              {t.label}
-              {count != null && (
-                <span
-                  className={`inline-flex items-center justify-center min-w-[20px] h-5 px-1.5 rounded-full text-xs font-semibold ${
-                    active
-                      ? 'bg-white/20 text-white'
-                      : 'bg-crema-200 text-tinta-400'
-                  }`}
-                >
-                  {count}
-                </span>
-              )}
-            </button>
-          )
-        })}
       </div>
 
       {/* ── Tab: Alumnos ────────────────────────── */}
