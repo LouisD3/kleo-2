@@ -54,7 +54,7 @@
 
 @layer components {
   .card {
-    @apply bg-white rounded-2xl shadow-sm ring-1 ring-black/[0.04];
+    @apply bg-white rounded-2xl shadow-sm;
   }
 
   .input-base {
