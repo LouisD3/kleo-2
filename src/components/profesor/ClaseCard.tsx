@@ -34,7 +34,7 @@ export default function ClaseCard({ clase }: { clase: ClaseEnriched }) {
   return (
     <Link
       href={`/profesor/clase/${clase.id}`}
-      className="block bg-white rounded-3xl shadow-sm p-6 hover:shadow-md transition-all animate-fade-in group"
+      className="block bg-crema-100 rounded-2xl p-5 hover:bg-crema-200 transition-all duration-300 animate-fade-in group"
     >
       {/* Header */}
       <div className="flex items-start justify-between mb-4">
