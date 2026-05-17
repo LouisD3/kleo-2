@@ -53,7 +53,7 @@ function StatPill({ icon: Icon, value, label, accent = false, delay = '' }) {
       } ${delay}`}
     >
       <div
-        className={`w-11 h-11 rounded-xl flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:rotate-3 ${
+        className={`w-11 h-11 rounded-2xl flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:rotate-3 ${
           accent
             ? 'bg-gradient-to-br from-amarillo to-amarillo-hover shadow-sm shadow-amarillo/20'
             : 'bg-tinta text-amarillo'
@@ -75,9 +75,9 @@ function NotificationRow({ item, index }) {
   const Icon = item.icon
   const delays = ['animate-slide-up-1', 'animate-slide-up-2', 'animate-slide-up-3', 'animate-slide-up-4', 'animate-slide-up-5']
   const inner = (
-    <div className={`flex items-center gap-3 group p-3 -mx-3 rounded-xl transition-all duration-200 hover:bg-white/60 ${delays[index] ?? ''}`}>
+    <div className={`flex items-center gap-3 group p-3 -mx-3 rounded-2xl transition-all duration-200 hover:bg-white/60 ${delays[index] ?? ''}`}>
       <div
-        className={`w-9 h-9 rounded-xl ${item.iconBg} flex items-center justify-center shrink-0 transition-transform duration-200 group-hover:scale-110`}
+        className={`w-9 h-9 rounded-2xl ${item.iconBg} flex items-center justify-center shrink-0 transition-transform duration-200 group-hover:scale-110`}
       >
         <Icon className={`w-4 h-4 ${item.iconColor}`} />
       </div>
@@ -395,7 +395,7 @@ export default function PaginaMisClases() {
           />
           {totalBloqueados > 0 ? (
             <div className="group relative flex items-center gap-3 p-4 rounded-2xl bg-gradient-to-br from-amber-50 to-amber-100/60 transition-all duration-300 hover:scale-[1.02] animate-slide-up-3">
-              <div className="w-11 h-11 rounded-xl bg-amber-200 flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:rotate-3">
+              <div className="w-11 h-11 rounded-2xl bg-amber-200 flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:rotate-3">
                 <HandHelping className="w-5 h-5 text-amber-700" />
               </div>
               <div className="min-w-0">
@@ -452,7 +452,7 @@ export default function PaginaMisClases() {
             <div className="space-y-2.5">
               <Link
                 href="/profesor/biblioteca"
-                className="flex items-center gap-3 p-3 rounded-xl bg-white/10 hover:bg-white/15 transition-colors group"
+                className="flex items-center gap-3 p-3 rounded-2xl bg-white/10 hover:bg-white/15 transition-colors group"
               >
                 <BookOpen className="w-4 h-4 text-amarillo" />
                 <span className="text-sm text-white font-medium">Asignar tarea</span>
@@ -460,7 +460,7 @@ export default function PaginaMisClases() {
               </Link>
               <Link
                 href="/profesor/generar"
-                className="flex items-center gap-3 p-3 rounded-xl bg-white/10 hover:bg-white/15 transition-colors group"
+                className="flex items-center gap-3 p-3 rounded-2xl bg-white/10 hover:bg-white/15 transition-colors group"
               >
                 <Sparkles className="w-4 h-4 text-amarillo" />
                 <span className="text-sm text-white font-medium">Generar con IA</span>
@@ -468,7 +468,7 @@ export default function PaginaMisClases() {
               </Link>
               <Link
                 href="/profesor/clase"
-                className="flex items-center gap-3 p-3 rounded-xl bg-white/10 hover:bg-white/15 transition-colors group"
+                className="flex items-center gap-3 p-3 rounded-2xl bg-white/10 hover:bg-white/15 transition-colors group"
               >
                 <Users className="w-4 h-4 text-amarillo" />
                 <span className="text-sm text-white font-medium">Gestionar clase</span>
