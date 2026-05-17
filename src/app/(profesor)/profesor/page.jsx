@@ -361,7 +361,7 @@ export default function PaginaMisClases() {
   return (
     <div className="px-4 sm:px-6 md:px-8 py-8 max-w-7xl mx-auto">
       {/* Main dashboard card */}
-      <div className="bg-white rounded-3xl shadow-sm p-6 sm:p-8 mb-8 animate-fade-in">
+      <div className="bg-white rounded-3xl shadow-[0_1px_2px_rgba(0,0,0,0.03),0_2px_8px_rgba(0,0,0,0.02)] p-6 sm:p-8 mb-8 animate-fade-in">
         {/* Greeting */}
         <div className="relative mb-8">
           <div className="absolute -top-2 -left-2 w-28 h-28 bg-amarillo/10 rounded-full blur-3xl pointer-events-none" />
@@ -480,7 +480,7 @@ export default function PaginaMisClases() {
       </div>
 
       {/* Mis clases card */}
-      <div className="bg-white rounded-3xl shadow-sm p-6 sm:p-8 mb-8 animate-slide-up-4">
+      <div className="bg-white rounded-3xl shadow-[0_1px_2px_rgba(0,0,0,0.03),0_2px_8px_rgba(0,0,0,0.02)] p-6 sm:p-8 mb-8 animate-slide-up-4">
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-lg font-bold text-tinta">Mis clases</h2>
           {clases.length > 0 && (
