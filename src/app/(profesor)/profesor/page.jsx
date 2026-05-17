@@ -46,7 +46,7 @@ function saludoDelDia() {
 function StatPill({ icon: Icon, value, label, accent = false, delay = '' }) {
   return (
     <div
-      className={`group relative flex items-center gap-3 p-4 rounded-[28px] transition-all duration-300 hover:scale-[1.02] ${
+      className={`group relative flex items-center gap-3 p-4 rounded-[28px] shadow-[inset_0_1px_3px_rgba(0,0,0,0.015)] transition-all duration-300 hover:scale-[1.02] ${
         accent
           ? 'bg-gradient-to-br from-amarillo-soft to-amber-100/50'
           : 'bg-crema-100'
@@ -394,7 +394,7 @@ export default function PaginaMisClases() {
             delay="animate-slide-up-2"
           />
           {totalBloqueados > 0 ? (
-            <div className="group relative flex items-center gap-3 p-4 rounded-[28px] bg-gradient-to-br from-amber-50 to-amber-100/60 transition-all duration-300 hover:scale-[1.02] animate-slide-up-3">
+            <div className="group relative flex items-center gap-3 p-4 rounded-[28px] shadow-[inset_0_1px_3px_rgba(0,0,0,0.015)] bg-gradient-to-br from-amber-50 to-amber-100/60 transition-all duration-300 hover:scale-[1.02] animate-slide-up-3">
               <div className="w-11 h-11 rounded-2xl bg-amber-200 flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:rotate-3">
                 <HandHelping className="w-5 h-5 text-amber-700" />
               </div>
@@ -419,7 +419,7 @@ export default function PaginaMisClases() {
         {/* Notifications + Quick actions — sub-cards */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
           {/* Notifications panel */}
-          <div className="lg:col-span-2 bg-crema-100 rounded-[28px] p-5 sm:p-6">
+          <div className="lg:col-span-2 bg-crema-100 rounded-[28px] shadow-[inset_0_1px_3px_rgba(0,0,0,0.015)] p-5 sm:p-6">
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-xs font-bold text-tinta uppercase tracking-wider">
                 Actividad reciente
