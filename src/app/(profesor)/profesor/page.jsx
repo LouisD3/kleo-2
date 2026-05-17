@@ -46,7 +46,7 @@ function saludoDelDia() {
 function StatPill({ icon: Icon, value, label, accent = false, delay = '' }) {
   return (
     <div
-      className={`group relative flex items-center gap-3 p-4 rounded-3xl transition-all duration-300 hover:scale-[1.02] ${
+      className={`group relative flex items-center gap-3 p-4 rounded-[28px] transition-all duration-300 hover:scale-[1.02] ${
         accent
           ? 'bg-gradient-to-br from-amarillo-soft to-amber-100/50'
           : 'bg-crema-100'
@@ -361,7 +361,7 @@ export default function PaginaMisClases() {
   return (
     <div className="px-4 sm:px-6 md:px-8 py-8 max-w-7xl mx-auto">
       {/* Main dashboard card */}
-      <div className="bg-white rounded-[28px] shadow-[0_1px_2px_rgba(0,0,0,0.03),0_2px_8px_rgba(0,0,0,0.02)] p-6 sm:p-8 mb-8 animate-fade-in">
+      <div className="bg-white rounded-[36px] shadow-[0_1px_2px_rgba(0,0,0,0.03),0_2px_8px_rgba(0,0,0,0.02)] p-6 sm:p-8 mb-8 animate-fade-in">
         {/* Greeting */}
         <div className="relative mb-8">
           <div className="absolute -top-2 -left-2 w-28 h-28 bg-amarillo/10 rounded-full blur-3xl pointer-events-none" />
@@ -394,7 +394,7 @@ export default function PaginaMisClases() {
             delay="animate-slide-up-2"
           />
           {totalBloqueados > 0 ? (
-            <div className="group relative flex items-center gap-3 p-4 rounded-3xl bg-gradient-to-br from-amber-50 to-amber-100/60 transition-all duration-300 hover:scale-[1.02] animate-slide-up-3">
+            <div className="group relative flex items-center gap-3 p-4 rounded-[28px] bg-gradient-to-br from-amber-50 to-amber-100/60 transition-all duration-300 hover:scale-[1.02] animate-slide-up-3">
               <div className="w-11 h-11 rounded-2xl bg-amber-200 flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:rotate-3">
                 <HandHelping className="w-5 h-5 text-amber-700" />
               </div>
@@ -419,7 +419,7 @@ export default function PaginaMisClases() {
         {/* Notifications + Quick actions — sub-cards */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
           {/* Notifications panel */}
-          <div className="lg:col-span-2 bg-crema-100 rounded-3xl p-5 sm:p-6">
+          <div className="lg:col-span-2 bg-crema-100 rounded-[28px] p-5 sm:p-6">
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-xs font-bold text-tinta uppercase tracking-wider">
                 Actividad reciente
@@ -442,7 +442,7 @@ export default function PaginaMisClases() {
           </div>
 
           {/* Quick actions */}
-          <div className="bg-gradient-to-br from-tinta to-tinta-600 rounded-3xl p-5 sm:p-6 flex flex-col justify-between animate-slide-up-3">
+          <div className="bg-gradient-to-br from-tinta to-tinta-600 rounded-[28px] p-5 sm:p-6 flex flex-col justify-between animate-slide-up-3">
             <div>
               <h2 className="text-xs font-bold text-amarillo uppercase tracking-wider mb-0.5">
                 Acciones rapidas
@@ -480,7 +480,7 @@ export default function PaginaMisClases() {
       </div>
 
       {/* Mis clases card */}
-      <div className="bg-white rounded-[28px] shadow-[0_1px_2px_rgba(0,0,0,0.03),0_2px_8px_rgba(0,0,0,0.02)] p-6 sm:p-8 mb-8 animate-slide-up-4">
+      <div className="bg-white rounded-[36px] shadow-[0_1px_2px_rgba(0,0,0,0.03),0_2px_8px_rgba(0,0,0,0.02)] p-6 sm:p-8 mb-8 animate-slide-up-4">
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-lg font-bold text-tinta">Mis clases</h2>
           {clases.length > 0 && (
@@ -496,7 +496,7 @@ export default function PaginaMisClases() {
 
         {/* Empty state */}
         {clases.length === 0 && !isLoading && (
-          <div className="bg-crema-100 rounded-3xl p-10 text-center">
+          <div className="bg-crema-100 rounded-[28px] p-10 text-center">
             <div className="w-14 h-14 bg-amarillo/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
               <GraduationCap className="w-7 h-7 text-amarillo-hover" />
             </div>
