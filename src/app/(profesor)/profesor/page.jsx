@@ -359,7 +359,7 @@ export default function PaginaMisClases() {
   }
 
   return (
-    <div className="px-4 sm:px-6 md:px-8 py-8 max-w-7xl mx-auto">
+    <div className="px-4 sm:px-6 md:px-8 pt-4 pb-8 max-w-7xl mx-auto">
       {/* Main dashboard card */}
       <div className="bg-white rounded-[36px] shadow-[0_1px_2px_rgba(0,0,0,0.03),0_2px_8px_rgba(0,0,0,0.02)] p-6 sm:p-8 mb-8 animate-fade-in">
         {/* Greeting */}
@@ -486,7 +486,7 @@ export default function PaginaMisClases() {
           {clases.length > 0 && (
             <button
               onClick={() => setModalNuevaClase(true)}
-              className="flex items-center gap-1.5 text-sm font-medium text-tinta-400 hover:text-tinta transition-colors"
+              className="flex items-center gap-1.5 text-sm font-medium text-tinta-400 hover:text-tinta transition-colors focus:outline-none"
             >
               <Plus className="w-4 h-4" />
               Nueva clase

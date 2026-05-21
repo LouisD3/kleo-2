@@ -33,13 +33,15 @@ export default function TopBarProfesor() {
   }
 
   return (
-    <header className="hidden md:flex sticky top-0 z-20 h-16 items-center gap-4 px-4 sm:px-6 md:px-8 bg-crema-100/80 backdrop-blur-md">
+    <header className="hidden md:block sticky top-0 z-20 pt-3 pb-0">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+      <div className="h-16 flex items-center gap-4 px-6 bg-white/80 backdrop-blur-lg shadow-[0_1px_2px_rgba(0,0,0,0.03),0_2px_8px_rgba(0,0,0,0.02)] rounded-full">
       {/* Logo */}
       <Link
         href="/profesor"
         className="flex items-center gap-2 flex-shrink-0 mr-2"
       >
-        <div className="w-8 h-8 rounded-lg bg-tinta flex items-center justify-center">
+        <div className="w-10 h-10 rounded-full bg-tinta flex items-center justify-center">
           <GraduationCap className="w-4.5 h-4.5 text-amarillo" />
         </div>
         <span className="text-lg font-bold text-tinta tracking-tight">Kleo</span>
@@ -48,11 +50,11 @@ export default function TopBarProfesor() {
       {/* Search */}
       <button
         onClick={handleSearchClick}
-        className="flex items-center gap-2.5 px-4 py-2 rounded-full bg-white border border-crema-300 text-sm text-tinta-400 hover:border-tinta-400/30 transition-colors w-full max-w-xs"
+        className="flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-white border border-crema-300 text-sm text-tinta-400 hover:border-tinta-400/30 transition-colors w-full max-w-xs"
       >
         <Search className="w-4 h-4 flex-shrink-0" />
         <span className="flex-1 text-left">Buscar...</span>
-        <kbd className="hidden lg:inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded-md bg-crema-100 text-[10px] font-mono text-tinta-400">
+        <kbd className="hidden lg:inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded-full bg-crema-100 text-[10px] font-mono text-tinta-400">
           Cmd+K
         </kbd>
       </button>
@@ -65,7 +67,7 @@ export default function TopBarProfesor() {
             <Link
               key={href}
               href={href}
-              className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium border transition-colors ${
+              className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium border transition-colors ${
                 active
                   ? 'bg-tinta text-amarillo border-tinta'
                   : 'bg-white text-tinta-400 border-crema-300 hover:border-tinta-400/30 hover:text-tinta'
@@ -86,7 +88,7 @@ export default function TopBarProfesor() {
         {/* Quick action */}
         <button
           onClick={handleAccionRapida}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-tinta bg-tinta text-amarillo text-sm font-medium hover:bg-tinta-600 transition-colors"
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-tinta bg-tinta text-amarillo text-sm font-medium hover:bg-tinta-600 transition-colors"
         >
           <Plus className="w-4 h-4" />
           <span className="hidden lg:inline">Nueva tarea</span>
@@ -100,7 +102,7 @@ export default function TopBarProfesor() {
               onBlur={(e) => {
                 if (!menuRef.current?.contains(e.relatedTarget as Node)) setMenuOpen(false)
               }}
-              className="w-9 h-9 rounded-full bg-tinta text-amarillo text-xs font-bold flex items-center justify-center hover:ring-2 hover:ring-amarillo transition-all flex-shrink-0"
+              className="w-10 h-10 rounded-full bg-tinta text-amarillo text-sm font-bold flex items-center justify-center hover:ring-2 hover:ring-amarillo transition-all flex-shrink-0"
               aria-label={profesor.nombre ?? 'Perfil'}
             >
               {profesor.nombre?.charAt(0)?.toUpperCase() ?? 'P'}
@@ -130,6 +132,8 @@ export default function TopBarProfesor() {
             )}
           </div>
         )}
+      </div>
+      </div>
       </div>
     </header>
   )

@@ -14,7 +14,7 @@ export default function NavBar({ titulo, volver }) {
   }
 
   return (
-    <header className="sticky top-0 z-40 px-4 sm:px-6 pt-3">
+    <header className="fixed top-4 left-0 right-0 z-40 px-4 sm:px-6">
       <div className="max-w-5xl mx-auto px-4 sm:px-5 h-12 flex items-center justify-between gap-4 bg-white/80 backdrop-blur-lg shadow-[0_1px_2px_rgba(0,0,0,0.03),0_2px_8px_rgba(0,0,0,0.02)] rounded-full">
         <div className="flex items-center gap-3">
           {volver && (
