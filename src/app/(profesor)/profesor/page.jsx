@@ -2,6 +2,7 @@
 
 import {
   Activity,
+  ArrowRight,
   BookOpen,
   CalendarClock,
   CheckCircle,
@@ -37,24 +38,58 @@ function extractFirstName(nombre) {
 
 function saludoDelDia() {
   const h = new Date().getHours()
-  if (h < 12) return 'Buenos días'
+  if (h < 12) return 'Buenos dias'
   if (h < 18) return 'Buenas tardes'
   return 'Buenas noches'
 }
 
-function NotificationRow({ item }) {
-  const Icon = item.icon
-  const inner = (
-    <div className="flex items-center gap-3 group">
+function StatPill({ icon: Icon, value, label, accent = false, delay = '' }) {
+  return (
+    <div
+      className={`group relative flex items-center gap-3 p-4 rounded-[28px] shadow-[inset_0_1px_3px_rgba(0,0,0,0.015)] transition-all duration-300 hover:scale-[1.02] ${
+        accent
+          ? 'bg-gradient-to-br from-amarillo-soft to-amber-100/50'
+          : 'bg-crema-100'
+      } ${delay}`}
+    >
       <div
-        className={`w-8 h-8 rounded-lg ${item.iconBg} flex items-center justify-center shrink-0`}
+        className={`w-11 h-11 rounded-2xl flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:rotate-3 ${
+          accent
+            ? 'bg-gradient-to-br from-amarillo to-amarillo-hover shadow-sm shadow-amarillo/20'
+            : 'bg-tinta text-amarillo'
+        }`}
+      >
+        <Icon className={`w-5 h-5 ${accent ? 'text-tinta' : ''}`} />
+      </div>
+      <div className="min-w-0">
+        <p className="text-2xl font-extrabold text-tinta tabular-nums leading-none tracking-tight animate-count-up">
+          {value}
+        </p>
+        <p className="text-xs text-tinta-400 mt-1 font-medium">{label}</p>
+      </div>
+    </div>
+  )
+}
+
+function NotificationRow({ item, index }) {
+  const Icon = item.icon
+  const delays = ['animate-slide-up-1', 'animate-slide-up-2', 'animate-slide-up-3', 'animate-slide-up-4', 'animate-slide-up-5']
+  const inner = (
+    <div className={`flex items-center gap-3 group p-3 -mx-3 rounded-2xl transition-all duration-200 hover:bg-white/60 ${delays[index] ?? ''}`}>
+      <div
+        className={`w-9 h-9 rounded-2xl ${item.iconBg} flex items-center justify-center shrink-0 transition-transform duration-200 group-hover:scale-110`}
       >
         <Icon className={`w-4 h-4 ${item.iconColor}`} />
       </div>
-      <p className="text-sm text-tinta-600 group-hover:text-tinta transition-colors">
-        <span className="font-semibold">{item.bold}</span>
-        <span className="text-tinta-400"> · {item.rest}</span>
-      </p>
+      <div className="flex-1 min-w-0">
+        <p className="text-sm text-tinta-600 font-medium truncate">
+          {item.bold}
+        </p>
+        <p className="text-xs text-tinta-400 mt-0.5">{item.rest}</p>
+      </div>
+      {item.href && (
+        <ArrowRight className="w-4 h-4 text-tinta-400/0 group-hover:text-tinta-400 transition-all duration-200 group-hover:translate-x-0.5" />
+      )}
     </div>
   )
   return item.href ? (
@@ -70,7 +105,7 @@ export default function PaginaMisClases() {
   const { profesor, clases: authClases, setClase, agregarClaseLocal } = useAuthStore()
   const [clases, setClases] = useState([])
   const [modalNuevaClase, setModalNuevaClase] = useState(false)
-  const [formClase, setFormClase] = useState({ nombre: '', emoji: '🎓' })
+  const [formClase, setFormClase] = useState({ nombre: '', emoji: '�' })
   const [error, setError] = useState(null)
   const [showAllNotifs, setShowAllNotifs] = useState(false)
 
@@ -87,7 +122,7 @@ export default function PaginaMisClases() {
   const { data: clasesEnriched, isLoading } = useClasesEnriched(profesor?.id, clases)
   const { data: tareasData } = useTareasProfesor(profesor?.id)
 
-  // Priority-based notification items for hero card (always shows top 3)
+  // Priority-based notification items
   const notifications = useMemo(() => {
     const tareas = tareasData?.tareas ?? []
     const resultados = tareasData?.resultados ?? {}
@@ -95,7 +130,6 @@ export default function PaginaMisClases() {
     const now = Date.now()
     const items = []
 
-    // --- Prio 1: Alumnos bloqueados ---
     const bloqueados = enriched.reduce((sum, c) => sum + c.alumnosBloqueadosCount, 0)
     if (bloqueados > 0) {
       items.push({
@@ -105,11 +139,10 @@ export default function PaginaMisClases() {
         iconColor: 'text-amber-600',
         href: '/profesor/clase',
         bold: `${bloqueados} ${bloqueados === 1 ? 'alumno bloqueado' : 'alumnos bloqueados'}`,
-        rest: 'hace +3 dias',
+        rest: 'Hace +3 dias sin avance',
       })
     }
 
-    // --- Prio 2: Tareas con resultados sin revisar ---
     const tareasConRes = tareas.filter(
       (t) =>
         t.estado === 'en_curso' && resultados[t.id] && Object.keys(resultados[t.id]).length > 0,
@@ -122,11 +155,10 @@ export default function PaginaMisClases() {
         iconColor: 'text-amber-600',
         href: `/profesor/tarea/${tareasConRes[0].id}`,
         bold: `${tareasConRes.length} ${tareasConRes.length === 1 ? 'tarea tiene' : 'tareas tienen'} resultados`,
-        rest: 'sin revisar',
+        rest: 'Sin revisar',
       })
     }
 
-    // --- Prio 3: Deadline dans < 3 jours ---
     const tresDiasMs = 3 * 24 * 60 * 60 * 1000
     const tareasConFecha = tareas
       .filter((t) => t.estado === 'en_curso' && t.fecha_limite)
@@ -152,7 +184,6 @@ export default function PaginaMisClases() {
       })
     }
 
-    // --- Prio 4: Paso mas dificil (semana) ---
     const unaSemanMs = 7 * 24 * 60 * 60 * 1000
     const cutoff = now - unaSemanMs
     const scoresC = []
@@ -181,11 +212,10 @@ export default function PaginaMisClases() {
         iconBg: 'bg-rose-100',
         iconColor: 'text-rose-600',
         bold: `Paso mas dificil: ${hardest.label}`,
-        rest: `prom. ${hardest.avg.toFixed(1)}`,
+        rest: `Promedio ${hardest.avg.toFixed(1)}/10`,
       })
     }
 
-    // --- Prio 5: Avance del programa ---
     const secCompletadas = new Set()
     for (const t of tareas) {
       if (t.secuencia_ref && t.estado === 'completada') secCompletadas.add(t.secuencia_ref)
@@ -202,7 +232,6 @@ export default function PaginaMisClases() {
       })
     }
 
-    // --- Prio 5b: Tarea 100% completada (tous les élèves ont un résultat) ---
     for (const t of tareas) {
       if (t.estado !== 'en_curso' && t.estado !== 'completada') continue
       const res = resultados[t.id]
@@ -220,11 +249,10 @@ export default function PaginaMisClases() {
           bold: 'Todos completaron una tarea',
           rest: t.nombre,
         })
-        break // only show the first one
+        break
       }
     }
 
-    // --- Prio 5c: Best CPA step (celebrate what's working) ---
     if (steps.length > 0) {
       const best = steps.reduce((max, s) => (s.avg > max.avg ? s : max))
       if (best.avg >= 7) {
@@ -234,12 +262,11 @@ export default function PaginaMisClases() {
           iconBg: 'bg-yellow-100',
           iconColor: 'text-yellow-600',
           bold: `Tu grupo domina ${best.label}`,
-          rest: `prom. ${best.avg.toFixed(1)}`,
+          rest: `Promedio ${best.avg.toFixed(1)}/10`,
         })
       }
     }
 
-    // --- Prio 6: Actividad reciente (semana) ---
     let completadosSemana = 0
     for (const tareaId of Object.keys(resultados)) {
       for (const r of Object.values(resultados[tareaId])) {
@@ -255,11 +282,10 @@ export default function PaginaMisClases() {
         iconBg: 'bg-emerald-100',
         iconColor: 'text-emerald-600',
         bold: `${completadosSemana} ${completadosSemana === 1 ? 'tarea completada' : 'tareas completadas'}`,
-        rest: 'esta semana',
+        rest: 'Esta semana',
       })
     }
 
-    // --- Prio 7: Siguiente secuencia (fallback) ---
     const secEnCursoOrDone = new Set()
     for (const t of tareas) {
       if (t.secuencia_ref && (t.estado === 'en_curso' || t.estado === 'completada')) {
@@ -277,7 +303,6 @@ export default function PaginaMisClases() {
       rest: siguiente?.titulo ?? '36 secuencias disponibles',
     })
 
-    // Mix: 2 urgent max + always 1 positive in slot 3
     const urgentKeys = new Set(['bloqueados', 'resultados', 'deadline', 'paso-dificil'])
     const positiveKeys = new Set(['tarea-100', 'paso-fuerte', 'avance', 'actividad', 'siguiente'])
     const urgent = items.filter((n) => urgentKeys.has(n.key))
@@ -300,7 +325,7 @@ export default function PaginaMisClases() {
       .insert({
         profesor_id: profesor.id,
         nombre: formClase.nombre,
-        grado: '1° Secundaria',
+        grado: '1 Secundaria',
       })
       .select()
       .single()
@@ -310,7 +335,6 @@ export default function PaginaMisClases() {
       return
     }
 
-    // Store emoji in local enriched data (DB doesn't have emoji column yet)
     const claseConEmoji = { ...data, emoji: formClase.emoji }
     setClases((prev) => [claseConEmoji, ...prev])
     setClase(data)
@@ -319,7 +343,6 @@ export default function PaginaMisClases() {
     setFormClase({ nombre: '', emoji: '🎓' })
   }
 
-  // Compute summary stats
   const totalAlumnos = (clasesEnriched ?? []).reduce((sum, c) => sum + c.alumnosCount, 0)
   const totalTareasActivas = (clasesEnriched ?? []).reduce((sum, c) => sum + c.tareasActivas, 0)
   const totalBloqueados = (clasesEnriched ?? []).reduce(
@@ -336,121 +359,164 @@ export default function PaginaMisClases() {
   }
 
   return (
-    <div className="px-4 sm:px-6 md:px-8 py-8 animate-fade-in">
-      {/* Hero card — greeting + CTAs */}
-      <div className="grid grid-cols-12 gap-6 mb-8">
-        <div className="col-span-12 lg:col-span-8 bg-white rounded-3xl shadow-sm p-8">
-          <h1 className="text-3xl font-bold text-tinta tracking-tight">
-            {saludoDelDia()}, {extractFirstName(profesor?.nombre)} 👋
-          </h1>
-          <p className="text-sm text-tinta-400 mt-1 mb-5">
-            {notifications.some((n) => ['bloqueados', 'resultados', 'deadline'].includes(n.key))
-              ? 'Esto necesita tu atencion'
-              : 'Todo va bien — sigue asi'}
-          </p>
-          <div className="space-y-4">
-            {notifications.slice(0, 3).map((n) => (
-              <NotificationRow key={n.key} item={n} />
-            ))}
+    <div className="px-4 sm:px-6 md:px-8 pt-4 pb-8 max-w-7xl mx-auto">
+      {/* Main dashboard card */}
+      <div className="bg-white rounded-[36px] shadow-[0_1px_2px_rgba(0,0,0,0.03),0_2px_8px_rgba(0,0,0,0.02)] p-6 sm:p-8 mb-8 animate-fade-in">
+        {/* Greeting */}
+        <div className="relative mb-8">
+          <div className="absolute -top-2 -left-2 w-28 h-28 bg-amarillo/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="relative">
+            <h1 className="text-3xl sm:text-4xl font-extrabold text-tinta tracking-tight">
+              {saludoDelDia()},{' '}
+              {extractFirstName(profesor?.nombre)}
+            </h1>
+            <p className="text-tinta-400 mt-1.5 text-sm">
+              {notifications.some((n) => ['bloqueados', 'resultados', 'deadline'].includes(n.key))
+                ? 'Tienes cosas pendientes hoy'
+                : 'Todo va bien, sigue asi'}
+            </p>
           </div>
-          {notifications.length > 3 && (
-            <button
-              type="button"
-              onClick={() => setShowAllNotifs((v) => !v)}
-              className="mt-4 text-sm text-tinta-400 hover:text-tinta transition-colors"
-            >
-              {showAllNotifs ? 'Ver menos' : `Ver mas (${notifications.length - 3})`}
-            </button>
-          )}
-          {showAllNotifs && (
-            <div className="mt-2 space-y-4">
-              {notifications.slice(3).map((n) => (
-                <NotificationRow key={n.key} item={n} />
-              ))}
+        </div>
+
+        {/* Stats row — sub-cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mb-6">
+          <StatPill
+            icon={Users}
+            value={totalAlumnos}
+            label="Alumnos"
+            delay="animate-slide-up-1"
+          />
+          <StatPill
+            icon={BookOpen}
+            value={totalTareasActivas}
+            label="Tareas activas"
+            accent
+            delay="animate-slide-up-2"
+          />
+          {totalBloqueados > 0 ? (
+            <div className="group relative flex items-center gap-3 p-4 rounded-[28px] shadow-[inset_0_1px_3px_rgba(0,0,0,0.015)] bg-gradient-to-br from-amber-50 to-amber-100/60 transition-all duration-300 hover:scale-[1.02] animate-slide-up-3">
+              <div className="w-11 h-11 rounded-2xl bg-amber-200 flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:rotate-3">
+                <HandHelping className="w-5 h-5 text-amber-700" />
+              </div>
+              <div className="min-w-0">
+                <p className="text-2xl font-extrabold text-amber-700 tabular-nums leading-none tracking-tight animate-count-up">
+                  {totalBloqueados}
+                </p>
+                <p className="text-xs text-amber-600 mt-1 font-medium">Necesitan ayuda</p>
+              </div>
+              <div className="absolute top-3 right-3 w-2 h-2 rounded-full bg-amber-400 animate-pulse-soft" />
             </div>
+          ) : (
+            <StatPill
+              icon={CheckCircle}
+              value="0"
+              label="Sin bloqueos"
+              delay="animate-slide-up-3"
+            />
           )}
         </div>
 
-        {/* Stats card */}
-        <div className="col-span-12 lg:col-span-4 bg-white rounded-3xl shadow-sm p-6 flex flex-col justify-between gap-3">
-          <div className="flex items-center gap-3 p-3 rounded-2xl bg-crema-50">
-            <div className="w-10 h-10 rounded-full bg-tinta text-amarillo flex items-center justify-center flex-shrink-0">
-              <Users className="w-5 h-5" />
+        {/* Notifications + Quick actions — sub-cards */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+          {/* Notifications panel */}
+          <div className="lg:col-span-2 bg-crema-100 rounded-[28px] shadow-[inset_0_1px_3px_rgba(0,0,0,0.015)] p-5 sm:p-6">
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-xs font-bold text-tinta uppercase tracking-wider">
+                Actividad reciente
+              </h2>
+              {notifications.length > 3 && (
+                <button
+                  type="button"
+                  onClick={() => setShowAllNotifs((v) => !v)}
+                  className="text-xs text-tinta-400 hover:text-tinta transition-colors font-medium"
+                >
+                  {showAllNotifs ? 'Menos' : `+${notifications.length - 3} mas`}
+                </button>
+              )}
             </div>
-            <div>
-              <p className="text-2xl font-bold text-tinta tabular-nums leading-none">
-                {totalAlumnos}
-              </p>
-              <p className="text-xs text-tinta-400 mt-0.5">Alumnos</p>
+            <div className="space-y-1">
+              {notifications.slice(0, showAllNotifs ? undefined : 3).map((n, i) => (
+                <NotificationRow key={n.key} item={n} index={i} />
+              ))}
             </div>
           </div>
-          <div className="flex items-center gap-3 p-3 rounded-2xl bg-crema-50">
-            <div className="w-10 h-10 rounded-full bg-amarillo text-tinta flex items-center justify-center flex-shrink-0">
-              <BookOpen className="w-5 h-5" />
-            </div>
+
+          {/* Quick actions */}
+          <div className="bg-gradient-to-br from-tinta to-tinta-600 rounded-[28px] p-5 sm:p-6 flex flex-col justify-between animate-slide-up-3">
             <div>
-              <p className="text-2xl font-bold text-tinta tabular-nums leading-none">
-                {totalTareasActivas}
-              </p>
-              <p className="text-xs text-tinta-400 mt-0.5">Tareas activas</p>
+              <h2 className="text-xs font-bold text-amarillo uppercase tracking-wider mb-0.5">
+                Acciones rapidas
+              </h2>
+              <p className="text-xs text-white/50 mb-4">Atajos para tu dia a dia</p>
+            </div>
+            <div className="space-y-2.5">
+              <Link
+                href="/profesor/biblioteca"
+                className="flex items-center gap-3 p-3 rounded-2xl bg-white/10 hover:bg-white/15 transition-colors group"
+              >
+                <BookOpen className="w-4 h-4 text-amarillo" />
+                <span className="text-sm text-white font-medium">Asignar tarea</span>
+                <ArrowRight className="w-3.5 h-3.5 text-white/40 ml-auto group-hover:translate-x-0.5 transition-transform" />
+              </Link>
+              <Link
+                href="/profesor/generar"
+                className="flex items-center gap-3 p-3 rounded-2xl bg-white/10 hover:bg-white/15 transition-colors group"
+              >
+                <Sparkles className="w-4 h-4 text-amarillo" />
+                <span className="text-sm text-white font-medium">Generar con IA</span>
+                <ArrowRight className="w-3.5 h-3.5 text-white/40 ml-auto group-hover:translate-x-0.5 transition-transform" />
+              </Link>
+              <Link
+                href="/profesor/clase"
+                className="flex items-center gap-3 p-3 rounded-2xl bg-white/10 hover:bg-white/15 transition-colors group"
+              >
+                <Users className="w-4 h-4 text-amarillo" />
+                <span className="text-sm text-white font-medium">Gestionar clase</span>
+                <ArrowRight className="w-3.5 h-3.5 text-white/40 ml-auto group-hover:translate-x-0.5 transition-transform" />
+              </Link>
             </div>
           </div>
-          {totalBloqueados > 0 ? (
-            <div className="flex items-center gap-3 p-3 rounded-2xl bg-amber-50">
-              <div className="w-10 h-10 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center flex-shrink-0">
-                <HandHelping className="w-5 h-5" />
-              </div>
-              <div>
-                <p className="text-2xl font-bold text-amber-600 tabular-nums leading-none">
-                  {totalBloqueados}
-                </p>
-                <p className="text-xs text-amber-500 mt-0.5">Necesitan ayuda</p>
-              </div>
-            </div>
-          ) : (
-            <div className="flex items-center gap-3 p-3 rounded-2xl bg-crema-200">
-              <div className="w-10 h-10 rounded-full bg-crema-300 text-tinta-400 flex items-center justify-center flex-shrink-0">
-                <CheckCircle className="w-5 h-5" />
-              </div>
-              <div>
-                <p className="text-sm font-medium text-tinta-400">Todo en orden</p>
-                <p className="text-xs text-crema-500 mt-0.5">Sin alumnos bloqueados</p>
-              </div>
-            </div>
-          )}
         </div>
       </div>
 
-      {/* Empty state */}
-      {clases.length === 0 && !isLoading && (
-        <div className="bg-white rounded-3xl shadow-sm p-12 text-center">
-          <p className="text-lg font-semibold text-tinta mb-2">Aún no tienes clases.</p>
-          <p className="text-sm text-tinta-400 mb-6">¡Crea tu primera para empezar el viaje!</p>
-          <Boton variante="primario" onClick={() => setModalNuevaClase(true)}>
-            Crear mi primera clase
-          </Boton>
+      {/* Mis clases card */}
+      <div className="bg-white rounded-[36px] shadow-[0_1px_2px_rgba(0,0,0,0.03),0_2px_8px_rgba(0,0,0,0.02)] p-6 sm:p-8 mb-8 animate-slide-up-4">
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-lg font-bold text-tinta">Mis clases</h2>
+          {clases.length > 0 && (
+            <button
+              onClick={() => setModalNuevaClase(true)}
+              className="flex items-center gap-1.5 text-sm font-medium text-tinta-400 hover:text-tinta transition-colors focus:outline-none"
+            >
+              <Plus className="w-4 h-4" />
+              Nueva clase
+            </button>
+          )}
         </div>
-      )}
 
-      {/* Class cards grid */}
-      {(clasesEnriched ?? []).length > 0 && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-          {clasesEnriched.map((clase) => (
-            <ClaseCard key={clase.id} clase={clase} />
-          ))}
-        </div>
-      )}
+        {/* Empty state */}
+        {clases.length === 0 && !isLoading && (
+          <div className="bg-crema-100 rounded-[28px] p-10 text-center">
+            <div className="w-14 h-14 bg-amarillo/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
+              <GraduationCap className="w-7 h-7 text-amarillo-hover" />
+            </div>
+            <p className="text-base font-bold text-tinta mb-1.5">Aun no tienes clases</p>
+            <p className="text-sm text-tinta-400 mb-5">Crea tu primera para empezar el viaje</p>
+            <Boton variante="primario" onClick={() => setModalNuevaClase(true)}>
+              Crear mi primera clase
+            </Boton>
+          </div>
+        )}
 
-      {/* Create new class button */}
-      {clases.length > 0 && (
-        <button
-          onClick={() => setModalNuevaClase(true)}
-          className="flex items-center justify-center gap-2 w-full max-w-sm mx-auto px-4 py-3 rounded-full bg-crema-200 text-tinta-400 hover:bg-crema-300 hover:text-tinta transition-colors font-medium text-sm"
-        >
-          <Plus className="w-4 h-4" />
-          Crear nueva clase
-        </button>
-      )}
+        {/* Class cards grid */}
+        {(clasesEnriched ?? []).length > 0 && (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {clasesEnriched.map((clase) => (
+              <ClaseCard key={clase.id} clase={clase} />
+            ))}
+          </div>
+        )}
+      </div>
 
       {/* Modal nueva clase */}
       <Modal
@@ -469,7 +535,7 @@ export default function PaginaMisClases() {
               type="text"
               value={formClase.nombre}
               onChange={(e) => setFormClase((p) => ({ ...p, nombre: e.target.value }))}
-              placeholder="Ej. 1°A Vespertino"
+              placeholder="Ej. 1A Vespertino"
               className="input-base"
               autoFocus
             />

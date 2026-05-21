@@ -53,7 +53,14 @@ export default {
       animation: {
         'fade-in': 'fadeIn 0.4s ease-in-out',
         'slide-up': 'slideUp 0.3s ease-out',
+        'slide-up-1': 'slideUp 0.4s ease-out 0.05s both',
+        'slide-up-2': 'slideUp 0.4s ease-out 0.1s both',
+        'slide-up-3': 'slideUp 0.4s ease-out 0.15s both',
+        'slide-up-4': 'slideUp 0.4s ease-out 0.2s both',
+        'slide-up-5': 'slideUp 0.4s ease-out 0.25s both',
         'nota-pop': 'notaPop 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+        'pulse-soft': 'pulseSoft 3s ease-in-out infinite',
+        'count-up': 'countUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both',
       },
       keyframes: {
         fadeIn: {
@@ -61,12 +68,20 @@ export default {
           '100%': { opacity: '1' },
         },
         slideUp: {
-          '0%': { transform: 'translateY(12px)', opacity: '0' },
+          '0%': { transform: 'translateY(16px)', opacity: '0' },
           '100%': { transform: 'translateY(0)', opacity: '1' },
         },
         notaPop: {
           '0%': { transform: 'scale(0.5)', opacity: '0' },
           '100%': { transform: 'scale(1)', opacity: '1' },
+        },
+        pulseSoft: {
+          '0%, 100%': { opacity: '1' },
+          '50%': { opacity: '0.7' },
+        },
+        countUp: {
+          '0%': { transform: 'translateY(8px) scale(0.95)', opacity: '0' },
+          '100%': { transform: 'translateY(0) scale(1)', opacity: '1' },
         },
       },
     },

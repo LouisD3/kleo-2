@@ -82,11 +82,9 @@ export default function ProgramaPage() {
 
   // Find the "current" sequence: first en_curso, or first sin_asignar after the last completed
   const currentSecNum = useMemo(() => {
-    // First en_curso
     for (let i = 1; i <= 36; i++) {
       if (statusMap[i] === 'en_curso') return i
     }
-    // First sin_asignar after last completed
     let lastCompleted = 0
     for (let i = 1; i <= 36; i++) {
       if (statusMap[i] === 'completada') lastCompleted = i
@@ -142,13 +140,13 @@ export default function ProgramaPage() {
   const recursoSec = recurso ? getSecuenciaById(recurso.secNum) : null
 
   return (
-    <div className="px-4 sm:px-6 md:px-8 py-10 animate-fade-in">
+    <div className="px-4 sm:px-6 md:px-8 pt-4 pb-8 max-w-7xl mx-auto animate-fade-in">
       {/* Header card */}
-      <div className="card px-6 py-5 mb-6">
+      <div className="bg-white rounded-[36px] shadow-[0_1px_2px_rgba(0,0,0,0.03),0_2px_8px_rgba(0,0,0,0.02)] p-6 sm:p-8 mb-6">
         <div className="flex items-baseline justify-between gap-4 flex-wrap mb-5">
           <div>
-            <h1 className="text-3xl font-bold text-tinta tracking-tight">Programa</h1>
-            <p className="text-sm text-tinta-400 mt-1">
+            <h1 className="text-3xl sm:text-4xl font-extrabold text-tinta tracking-tight">Programa</h1>
+            <p className="text-sm text-tinta-400 mt-1.5">
               36 secuencias del programa NEM &mdash; Matematicas 1° Secundaria
             </p>
           </div>
@@ -159,12 +157,12 @@ export default function ProgramaPage() {
 
         {/* Trimestre tabs + class selector */}
         <div className="flex items-center gap-2 flex-wrap">
-          <div className="flex items-center gap-1 bg-crema-100 p-1 rounded-full">
+          <div className="flex items-center gap-1 bg-crema-100 shadow-[inset_0_1px_3px_rgba(0,0,0,0.015)] p-1 rounded-full">
             {TRIMESTRES.map((t) => (
               <button
                 key={t.id}
                 onClick={() => setTrimestre(t.id)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors focus:outline-none ${
                   trimestre === t.id
                     ? 'bg-tinta text-tinta-50 shadow-sm'
                     : 'text-tinta-600 hover:bg-crema-50'
@@ -176,12 +174,12 @@ export default function ProgramaPage() {
           </div>
 
           {clases.length > 1 && (
-            <div className="flex items-center gap-1 bg-crema-100 p-1 rounded-full ml-auto">
+            <div className="flex items-center gap-1 bg-crema-100 shadow-[inset_0_1px_3px_rgba(0,0,0,0.015)] p-1 rounded-full ml-auto">
               {clases.map((c) => (
                 <button
                   key={c.id}
                   onClick={() => setClaseId(c.id)}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-colors focus:outline-none ${
                     claseId === c.id
                       ? 'bg-tinta text-tinta-50 shadow-sm'
                       : 'text-tinta-600 hover:bg-crema-50'
@@ -199,7 +197,6 @@ export default function ProgramaPage() {
       <div className="space-y-4">
         {visibleBloques.map((bloque) => {
           const isOpen = openBloques.has(bloque.id)
-          // Only show secuencias that belong to current trimestre
           const bloqueSecuencias = bloque.secuencias.filter((s) =>
             activeTrimestre.secuencias.includes(s),
           )
@@ -208,18 +205,18 @@ export default function ProgramaPage() {
           ).length
 
           return (
-            <section key={bloque.id} className="card overflow-hidden">
+            <section key={bloque.id} className="bg-white rounded-[36px] shadow-[0_1px_2px_rgba(0,0,0,0.03),0_2px_8px_rgba(0,0,0,0.02)] overflow-hidden">
               {/* Bloque header — clickable */}
               <button
                 onClick={() => toggleBloque(bloque.id)}
-                className="w-full flex flex-col gap-2 px-5 py-4 hover:bg-crema-50 transition-colors text-left"
+                className="w-full flex flex-col gap-2 px-6 sm:px-8 py-5 hover:bg-crema-50 transition-colors text-left focus:outline-none"
               >
                 <div className="flex items-center gap-3 w-full">
                   <span className="text-xl">{bloque.emoji}</span>
                   <h2 className="text-base font-semibold text-tinta">
                     Bloque {bloque.id} &middot; {bloque.titulo}
                   </h2>
-                  <span className="text-xs text-tinta-400 bg-crema-200 px-2.5 py-0.5 rounded-full shrink-0">
+                  <span className="text-xs text-tinta-400 bg-crema-100 px-2.5 py-0.5 rounded-full shrink-0">
                     {bloqueSecuencias.length} sec.
                   </span>
                   <ChevronDown
@@ -230,7 +227,7 @@ export default function ProgramaPage() {
                 </div>
                 {/* Progress bar */}
                 <div className="flex items-center gap-2">
-                  <div className="flex-1 h-1.5 bg-crema-200 rounded-full overflow-hidden max-w-48">
+                  <div className="flex-1 h-1.5 bg-crema-100 rounded-full overflow-hidden max-w-48">
                     <div
                       className="h-full bg-amarillo rounded-full transition-all duration-500"
                       style={{
@@ -246,7 +243,7 @@ export default function ProgramaPage() {
 
               {/* Expandable content */}
               {isOpen && (
-                <div className="px-5 pb-5">
+                <div className="px-6 sm:px-8 pb-6">
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                     {bloqueSecuencias.map((secNum) => {
                       const sec = secuencias.find((s: any) => s.secuencia === secNum)
@@ -261,15 +258,15 @@ export default function ProgramaPage() {
                           key={secNum}
                           ref={isCurrent ? currentRef : undefined}
                           href={`/profesor/programa/${secNum}`}
-                          className={`group bg-crema-50 rounded-xl p-4 transition-all flex items-start gap-3 ${
+                          className={`group bg-crema-100 rounded-[28px] p-4 shadow-[inset_0_1px_3px_rgba(0,0,0,0.015)] transition-all flex items-start gap-3 ${
                             isCurrent
                               ? 'ring-2 ring-amarillo shadow-md'
-                              : 'hover:bg-crema-100 hover:shadow-sm'
+                              : 'hover:bg-crema-200 hover:shadow-[inset_0_1px_2px_rgba(0,0,0,0.01)]'
                           }`}
                         >
                           {/* Number badge */}
                           <div
-                            className={`flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center text-base font-bold ${colorClass}`}
+                            className={`flex-shrink-0 w-10 h-10 rounded-2xl flex items-center justify-center text-base font-bold ${colorClass}`}
                           >
                             {secNum}
                           </div>
@@ -317,7 +314,7 @@ export default function ProgramaPage() {
                                   e.stopPropagation()
                                   setRecurso({ secNum, tipo: 'libro' })
                                 }}
-                                className="p-1.5 rounded-lg text-tinta-400 hover:text-tinta hover:bg-crema-100 transition-colors"
+                                className="p-1.5 rounded-full text-tinta-400 hover:text-tinta hover:bg-crema-200 transition-colors"
                                 title="Libro alumno"
                               >
                                 <BookOpen className="w-3.5 h-3.5" />
@@ -328,7 +325,7 @@ export default function ProgramaPage() {
                                   e.stopPropagation()
                                   setRecurso({ secNum, tipo: 'guia' })
                                 }}
-                                className="p-1.5 rounded-lg text-tinta-400 hover:text-tinta hover:bg-crema-100 transition-colors"
+                                className="p-1.5 rounded-full text-tinta-400 hover:text-tinta hover:bg-crema-200 transition-colors"
                                 title="Guia profe"
                               >
                                 <FileText className="w-3.5 h-3.5" />
@@ -339,7 +336,7 @@ export default function ProgramaPage() {
                                   e.stopPropagation()
                                   setRecurso({ secNum, tipo: 'diapositivas' })
                                 }}
-                                className="p-1.5 rounded-lg text-tinta-400 hover:text-tinta hover:bg-crema-100 transition-colors"
+                                className="p-1.5 rounded-full text-tinta-400 hover:text-tinta hover:bg-crema-200 transition-colors"
                                 title="Diapositivas"
                               >
                                 <Presentation className="w-3.5 h-3.5" />
