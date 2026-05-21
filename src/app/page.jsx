@@ -1,9 +1,9 @@
 import LandingPage from '@/components/landing/LandingPage'
 
 export const metadata = {
-  title: 'Kleo — Matemáticas de secundaria, enseñadas como en Singapur',
+  title: 'Kleo — Matemáticas que tus alumnos por fin van a entender',
   description:
-    'Kleo entrega el currículo de la Nueva Escuela Mexicana siguiendo el método singapurense, con un tutor socrático de IA. Rigor pedagógico para estudiantes mexicanos de secundaria.',
+    'Kleo es una plataforma mexicana que enseña matemáticas de secundaria con el método singapurense y un tutor socrático de IA. Convocatoria 2026: 20 colegios fundadores.',
 }
 
 export default function Page() {

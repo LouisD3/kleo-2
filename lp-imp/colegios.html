@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Programa Fundador 2026 — Kleo</title>
+<meta name="description" content="Postula tu colegio al programa fundador de Kleo. 20 colegios privados de México. Un ciclo escolar completo. Matemáticas de secundaria sin costo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          cream: '#FAFAF7',
+          oxford: '#0F2C4A',
+          ocre: '#B8732F',
+          carbon: '#1A1A1A',
+        },
+        fontFamily: {
+          serif: ['Fraunces', 'Georgia', 'serif'],
+          sans: ['Inter', 'system-ui', 'sans-serif'],
+        }
+      }
+    }
+  }
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', system-ui, sans-serif; background-color: #FAFAF7; color: #1A1A1A; }
+  .font-serif { font-family: 'Fraunces', Georgia, serif; }
+  .cta-btn {
+    background-color: #0F2C4A;
+    color: #FAFAF7;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+  }
+  .cta-btn:hover { background-color: #1a3d5f; transform: translateY(-1px); }
+  details { border-top: 1px solid rgba(15, 44, 74, 0.12); }
+  details:last-of-type { border-bottom: 1px solid rgba(15, 44, 74, 0.12); }
+  details > summary { list-style: none; cursor: pointer; padding: 20px 0; }
+  details > summary::-webkit-details-marker { display: none; }
+  details > summary .chevron { transition: transform 0.2s ease; }
+  details[open] > summary .chevron { transform: rotate(45deg); }
+  .input-field {
+    width: 100%;
+    background-color: #fff;
+    border: 1px solid rgba(15, 44, 74, 0.15);
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-size: 15px;
+    color: #1A1A1A;
+    transition: border-color 0.2s ease;
+  }
+  .input-field:focus {
+    outline: none;
+    border-color: #0F2C4A;
+    box-shadow: 0 0 0 3px rgba(15, 44, 74, 0.08);
+  }
+  .label { font-size: 14px; font-weight: 500; color: #0F2C4A; margin-bottom: 6px; display: block; }
+</style>
+</head>
+<body class="antialiased">
+
+<!-- Header -->
+<header class="border-b border-black/5">
+  <div class="max-w-6xl mx-auto px-6 py-5 flex items-center justify-between">
+    <a href="index.html" class="text-sm font-medium text-oxford/80 hover:text-oxford flex items-center gap-2">
+      <span>←</span> Volver a Kleo
+    </a>
+    <span class="font-serif text-lg font-medium text-oxford tracking-tight">Kleo</span>
+  </div>
+</header>
+
+<!-- ═══════════ HEADER DE PÁGINA ═══════════ -->
+<section class="px-6 pt-16 sm:pt-20 pb-14">
+  <div class="max-w-4xl mx-auto">
+
+    <span class="inline-block px-3 py-1.5 text-xs font-medium tracking-wider uppercase rounded-full bg-ocre/10 text-ocre border border-ocre/20">
+      Programa Fundador 2026
+    </span>
+
+    <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-medium leading-[1.05] text-oxford mt-6">
+      Postula tu colegio al programa fundador de Kleo.
+    </h1>
+
+    <p class="text-lg sm:text-xl text-carbon/75 mt-6 leading-relaxed">
+      20 colegios privados de México. Un ciclo escolar completo. Matemáticas de secundaria sin costo.
+    </p>
+
+    <div class="mt-10">
+      <a href="#postular" class="cta-btn inline-flex items-center justify-center px-6 py-4 rounded-lg font-semibold text-base shadow-sm">
+        Ir al formulario de postulación
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════ SECCIÓN 1 · CÓMO FUNCIONA ═══════════ -->
+<section class="px-6 py-16 sm:py-20 border-t border-black/5 bg-white/40">
+  <div class="max-w-5xl mx-auto">
+
+    <h2 class="font-serif text-3xl sm:text-4xl font-medium leading-tight text-oxford mb-14">
+      Así funciona el programa fundador.
+    </h2>
+
+    <div class="space-y-10">
+
+      <!-- Hito 1 -->
+      <div class="grid sm:grid-cols-[180px_1fr] gap-4 sm:gap-10 pb-10 border-b border-black/8">
+        <div>
+          <div class="text-xs font-semibold text-ocre tracking-wider uppercase">Hito 1</div>
+          <div class="text-sm text-carbon/65 mt-1">Junio – Agosto 2026</div>
+        </div>
+        <div>
+          <h3 class="font-serif text-xl font-semibold text-oxford mb-3">Postulación y selección</h3>
+          <p class="text-base text-carbon/80 leading-relaxed">
+            Las postulaciones se reciben hasta el 30 de agosto de 2026. Kleo revisa cada una y selecciona a los 20 colegios fundadores con base en el perfil del colegio y el compromiso del equipo docente.
+          </p>
+        </div>
+      </div>
+
+      <!-- Hito 2 -->
+      <div class="grid sm:grid-cols-[180px_1fr] gap-4 sm:gap-10 pb-10 border-b border-black/8">
+        <div>
+          <div class="text-xs font-semibold text-ocre tracking-wider uppercase">Hito 2</div>
+          <div class="text-sm text-carbon/65 mt-1">Agosto 2026</div>
+        </div>
+        <div>
+          <h3 class="font-serif text-xl font-semibold text-oxford mb-3">Capacitación del equipo docente</h3>
+          <p class="text-base text-carbon/80 leading-relaxed">
+            Antes de iniciar el ciclo escolar, Kleo capacita al equipo docente del colegio en el uso de la plataforma y en los fundamentos del método singapurense.
+          </p>
+        </div>
+      </div>
+
+      <!-- Hito 3 -->
+      <div class="grid sm:grid-cols-[180px_1fr] gap-4 sm:gap-10 pb-10 border-b border-black/8">
+        <div>
+          <div class="text-xs font-semibold text-ocre tracking-wider uppercase">Hito 3</div>
+          <div class="text-sm text-carbon/65 mt-1">Agosto 2026 – Julio 2027</div>
+        </div>
+        <div>
+          <h3 class="font-serif text-xl font-semibold text-oxford mb-3">Implementación durante el ciclo escolar</h3>
+          <p class="text-base text-carbon/80 leading-relaxed">
+            Los alumnos de 1º, 2º y 3º de secundaria usan Kleo durante todo el ciclo escolar 2026-2027. Kleo da soporte pedagógico continuo al equipo docente.
+          </p>
+        </div>
+      </div>
+
+      <!-- Hito 4 -->
+      <div class="grid sm:grid-cols-[180px_1fr] gap-4 sm:gap-10">
+        <div>
+          <div class="text-xs font-semibold text-ocre tracking-wider uppercase">Hito 4</div>
+          <div class="text-sm text-carbon/65 mt-1">Junio – Julio 2027</div>
+        </div>
+        <div>
+          <h3 class="font-serif text-xl font-semibold text-oxford mb-3">Medición de resultados</h3>
+          <p class="text-base text-carbon/80 leading-relaxed">
+            En alianza con una universidad mexicana de prestigio, Kleo mide el impacto del piloto: comprensión, dominio de aprendizajes y experiencia docente.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ SECCIÓN 2 · QUÉ INCLUYE Y QUÉ NO ═══════════ -->
+<section class="px-6 py-16 sm:py-20 border-t border-black/5">
+  <div class="max-w-5xl mx-auto">
+
+    <h2 class="font-serif text-3xl sm:text-4xl font-medium leading-tight text-oxford mb-12">
+      Qué incluye y qué no.
+    </h2>
+
+    <div class="grid md:grid-cols-2 gap-10 lg:gap-12">
+
+      <div class="bg-white border border-black/8 rounded-2xl p-7 sm:p-9">
+        <h3 class="font-serif text-xl font-semibold text-oxford mb-5 pb-3 border-b border-ocre/30">
+          Qué incluye
+        </h3>
+        <ul class="space-y-3.5 text-base text-carbon/85">
+          <li class="flex gap-3"><span class="text-ocre font-semibold flex-shrink-0">+</span><span>Acceso completo a Kleo Matemáticas para 1º, 2º y 3º de secundaria.</span></li>
+          <li class="flex gap-3"><span class="text-ocre font-semibold flex-shrink-0">+</span><span>Capacitación inicial al equipo docente (formato a definir con cada colegio).</span></li>
+          <li class="flex gap-3"><span class="text-ocre font-semibold flex-shrink-0">+</span><span>Acceso gratuito a los recursos para docentes de futuras materias que Kleo vaya lanzando durante el ciclo.</span></li>
+          <li class="flex gap-3"><span class="text-ocre font-semibold flex-shrink-0">+</span><span>Soporte pedagógico durante todo el ciclo escolar.</span></li>
+          <li class="flex gap-3"><span class="text-ocre font-semibold flex-shrink-0">+</span><span>Reportes de aprendizaje para docentes y coordinación académica.</span></li>
+          <li class="flex gap-3"><span class="text-ocre font-semibold flex-shrink-0">+</span><span>Reconocimiento público como Colegio Fundador.</span></li>
+          <li class="flex gap-3"><span class="text-ocre font-semibold flex-shrink-0">+</span><span>Condiciones preferentes permanentes al término del piloto.</span></li>
+        </ul>
+      </div>
+
+      <div class="bg-white border border-black/8 rounded-2xl p-7 sm:p-9">
+        <h3 class="font-serif text-xl font-semibold text-oxford mb-5 pb-3 border-b border-oxford/20">
+          Qué no incluye
+        </h3>
+        <ul class="space-y-3.5 text-base text-carbon/85">
+          <li class="flex gap-3"><span class="text-oxford/50 font-semibold flex-shrink-0">−</span><span>Otras materias distintas a matemáticas durante el ciclo (a menos que Kleo las lance durante el periodo, en cuyo caso se incluyen sin costo).</span></li>
+          <li class="flex gap-3"><span class="text-oxford/50 font-semibold flex-shrink-0">−</span><span>Dispositivos o hardware (los alumnos usan los equipos del colegio o personales).</span></li>
+          <li class="flex gap-3"><span class="text-oxford/50 font-semibold flex-shrink-0">−</span><span>Soporte técnico de infraestructura del colegio.</span></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ SECCIÓN 3 · REQUISITOS ═══════════ -->
+<section class="px-6 py-16 sm:py-20 border-t border-black/5 bg-white/40">
+  <div class="max-w-3xl mx-auto">
+
+    <h2 class="font-serif text-3xl sm:text-4xl font-medium leading-tight text-oxford mb-10">
+      Lo que necesitamos de tu colegio para postular.
+    </h2>
+
+    <ul class="space-y-5 text-base text-carbon/85">
+      <li class="flex gap-4 pb-5 border-b border-black/8">
+        <span class="text-ocre text-lg font-semibold flex-shrink-0">✓</span>
+        <span>Colegio privado en México.</span>
+      </li>
+      <li class="flex gap-4 pb-5 border-b border-black/8">
+        <span class="text-ocre text-lg font-semibold flex-shrink-0">✓</span>
+        <span>Mínimo 100 estudiantes sumando 1º, 2º y 3º de secundaria.</span>
+      </li>
+      <li class="flex gap-4 pb-5 border-b border-black/8">
+        <span class="text-ocre text-lg font-semibold flex-shrink-0">✓</span>
+        <span>Compromiso del equipo directivo de implementar Kleo durante el ciclo.</span>
+      </li>
+      <li class="flex gap-4 pb-5 border-b border-black/8">
+        <span class="text-ocre text-lg font-semibold flex-shrink-0">✓</span>
+        <span>Disposición del equipo docente para capacitarse y usar la plataforma.</span>
+      </li>
+      <li class="flex gap-4">
+        <span class="text-ocre text-lg font-semibold flex-shrink-0">✓</span>
+        <span>Autorización para que Kleo y su universidad aliada midan resultados durante el ciclo (con manejo confidencial y anonimizado de datos).</span>
+      </li>
+    </ul>
+
+  </div>
+</section>
+
+<!-- ═══════════ SECCIÓN 4 · FORMULARIO ═══════════ -->
+<section id="postular" class="px-6 py-16 sm:py-20 border-t border-black/5">
+  <div class="max-w-2xl mx-auto">
+
+    <h2 class="font-serif text-3xl sm:text-4xl font-medium leading-tight text-oxford">
+      Postula tu colegio.
+    </h2>
+    <p class="text-sm text-carbon/65 mt-3">Respuesta del equipo en 48 horas hábiles.</p>
+
+    <form action="#" method="POST" class="mt-10 space-y-6" onsubmit="event.preventDefault(); alert('Formulario listo. Conectar a Formspree o Tally antes del deploy.');">
+
+      <div>
+        <label class="label" for="nombre">Nombre completo</label>
+        <input id="nombre" name="nombre" type="text" required class="input-field" placeholder="Tu nombre">
+      </div>
+
+      <div>
+        <label class="label" for="cargo">Cargo</label>
+        <select id="cargo" name="cargo" required class="input-field bg-white">
+          <option value="">Selecciona…</option>
+          <option>Director</option>
+          <option>Coordinador académico</option>
+          <option>Dueño</option>
+          <option>Otro</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="label" for="colegio">Nombre del colegio</label>
+        <input id="colegio" name="colegio" type="text" required class="input-field" placeholder="Ej. Colegio Cervantes">
+      </div>
+
+      <div>
+        <label class="label" for="ciudad">Ciudad y estado</label>
+        <input id="ciudad" name="ciudad" type="text" required class="input-field" placeholder="Ej. Mérida, Yucatán">
+      </div>
+
+      <div>
+        <label class="label" for="estudiantes">Número de estudiantes en secundaria (1º + 2º + 3º)</label>
+        <input id="estudiantes" name="estudiantes" type="number" min="0" required class="input-field" placeholder="Ej. 240">
+      </div>
+
+      <div>
+        <label class="label" for="correo">Correo institucional</label>
+        <input id="correo" name="correo" type="email" required class="input-field" placeholder="director@tucolegio.mx">
+      </div>
+
+      <div>
+        <label class="label" for="telefono">Teléfono <span class="text-carbon/50 font-normal">(opcional)</span></label>
+        <input id="telefono" name="telefono" type="tel" class="input-field" placeholder="+52 ...">
+      </div>
+
+      <div>
+        <label class="label" for="motivo">¿Por qué quieres que tu colegio sea fundador de Kleo?</label>
+        <textarea id="motivo" name="motivo" rows="4" required class="input-field" placeholder="Cuéntanos brevemente…"></textarea>
+      </div>
+
+      <div>
+        <label class="label" for="referencia">¿Cómo nos conociste? <span class="text-carbon/50 font-normal">(opcional)</span></label>
+        <input id="referencia" name="referencia" type="text" class="input-field" placeholder="LinkedIn, un colega, prensa…">
+      </div>
+
+      <div class="pt-2">
+        <button type="submit" class="cta-btn w-full inline-flex items-center justify-center px-6 py-4 rounded-lg font-semibold text-base shadow-sm">
+          Postular mi colegio ahora
+        </button>
+      </div>
+
+      <p class="text-xs text-carbon/55 text-center pt-2">
+        Toda la información es confidencial. NDA disponible bajo solicitud.
+      </p>
+    </form>
+
+  </div>
+</section>
+
+<!-- ═══════════ SECCIÓN 5 · FAQ ═══════════ -->
+<section class="px-6 py-16 sm:py-20 border-t border-black/5 bg-white/40">
+  <div class="max-w-3xl mx-auto">
+
+    <h2 class="font-serif text-3xl sm:text-4xl font-medium leading-tight text-oxford mb-10">
+      Preguntas frecuentes.
+    </h2>
+
+    <div>
+
+      <details>
+        <summary class="flex items-start justify-between gap-6">
+          <span class="font-serif text-lg font-medium text-oxford">¿Realmente es gratis o hay letra chiquita?</span>
+          <span class="chevron text-ocre text-xl flex-shrink-0 mt-1">+</span>
+        </summary>
+        <p class="text-base text-carbon/80 leading-relaxed pb-6 pr-12">
+          Es gratis durante todo el ciclo escolar 2026-2027. Al término del piloto, los colegios fundadores tienen condiciones preferentes permanentes si deciden continuar, pero no hay obligación de continuar.
+        </p>
+      </details>
+
+      <details>
+        <summary class="flex items-start justify-between gap-6">
+          <span class="font-serif text-lg font-medium text-oxford">¿Qué pasa si nuestros docentes no están familiarizados con el método singapurense?</span>
+          <span class="chevron text-ocre text-xl flex-shrink-0 mt-1">+</span>
+        </summary>
+        <p class="text-base text-carbon/80 leading-relaxed pb-6 pr-12">
+          La mayoría de los docentes mexicanos no lo está, y eso está perfectamente bien. Kleo incluye capacitación específica antes de iniciar el ciclo y soporte pedagógico durante todo el año.
+        </p>
+      </details>
+
+      <details>
+        <summary class="flex items-start justify-between gap-6">
+          <span class="font-serif text-lg font-medium text-oxford">¿Cuántos colegios serán seleccionados?</span>
+          <span class="chevron text-ocre text-xl flex-shrink-0 mt-1">+</span>
+        </summary>
+        <p class="text-base text-carbon/80 leading-relaxed pb-6 pr-12">
+          Un máximo de 20 colegios fundadores. La selección considera el perfil del colegio, su tamaño, su ubicación geográfica (buscamos diversidad nacional) y el compromiso del equipo docente.
+        </p>
+      </details>
+
+      <details>
+        <summary class="flex items-start justify-between gap-6">
+          <span class="font-serif text-lg font-medium text-oxford">¿Kleo reemplaza al maestro de matemáticas?</span>
+          <span class="chevron text-ocre text-xl flex-shrink-0 mt-1">+</span>
+        </summary>
+        <p class="text-base text-carbon/80 leading-relaxed pb-6 pr-12">
+          No. Kleo es una herramienta que el maestro usa con sus alumnos. La autoridad pedagógica del aula sigue siendo del docente. Kleo le devuelve tiempo y le da mejor diagnóstico de sus estudiantes.
+        </p>
+      </details>
+
+      <details>
+        <summary class="flex items-start justify-between gap-6">
+          <span class="font-serif text-lg font-medium text-oxford">¿Quién mide los resultados del piloto?</span>
+          <span class="chevron text-ocre text-xl flex-shrink-0 mt-1">+</span>
+        </summary>
+        <p class="text-base text-carbon/80 leading-relaxed pb-6 pr-12">
+          Kleo está iniciando conversaciones con universidades mexicanas de prestigio para formalizar esta alianza. La medición se realizará con rigor académico y validez externa una vez establecido el acuerdo.
+        </p>
+      </details>
+
+      <details>
+        <summary class="flex items-start justify-between gap-6">
+          <span class="font-serif text-lg font-medium text-oxford">¿Qué pasa con los datos de nuestros alumnos?</span>
+          <span class="chevron text-ocre text-xl flex-shrink-0 mt-1">+</span>
+        </summary>
+        <p class="text-base text-carbon/80 leading-relaxed pb-6 pr-12">
+          Toda la información se maneja de forma confidencial y anonimizada. Kleo cumple con la Ley Federal de Protección de Datos Personales en Posesión de los Particulares. Hay NDA disponible bajo solicitud.
+        </p>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer class="px-6 py-12 border-t border-black/5">
+  <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+    <div class="flex items-center gap-8">
+      <a href="index.html" class="font-serif text-xl font-medium text-oxford">Kleo</a>
+      <a href="mailto:hola@kleo.mx" class="text-sm text-carbon/70 hover:text-oxford">hola@kleo.mx</a>
+    </div>
+    <div class="flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-carbon/70">
+      <a href="investigacion.html" class="hover:text-oxford">Soy investigador o académico →</a>
+      <a href="#" class="hover:text-oxford">Aviso de privacidad</a>
+      <span class="text-carbon/50">© 2026 Kleo Educación</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

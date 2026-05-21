@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kleo — Matemáticas que tus alumnos por fin van a entender</title>
+<meta name="description" content="Kleo es una plataforma mexicana que enseña matemáticas de secundaria con el método singapurense y un tutor socrático de IA. Convocatoria 2026: 20 colegios fundadores.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          cream: '#FAFAF7',
+          oxford: '#0F2C4A',
+          ocre: '#B8732F',
+          carbon: '#1A1A1A',
+        },
+        fontFamily: {
+          serif: ['Fraunces', 'Georgia', 'serif'],
+          sans: ['Inter', 'system-ui', 'sans-serif'],
+        }
+      }
+    }
+  }
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', system-ui, sans-serif; background-color: #FAFAF7; color: #1A1A1A; }
+  .font-serif { font-family: 'Fraunces', Georgia, serif; }
+  .placeholder-visual {
+    background-color: rgba(15, 44, 74, 0.04);
+    border: 1px dashed rgba(15, 44, 74, 0.18);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: rgba(15, 44, 74, 0.55);
+    font-size: 12px;
+    line-height: 1.5;
+    padding: 24px;
+    font-style: italic;
+  }
+  .progression-icon {
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    background-color: rgba(15, 44, 74, 0.06);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #0F2C4A;
+  }
+  .arrow {
+    width: 40px;
+    height: 2px;
+    background-color: #B8732F;
+    position: relative;
+  }
+  .arrow::after {
+    content: '';
+    position: absolute;
+    right: -1px;
+    top: -4px;
+    width: 10px;
+    height: 10px;
+    border-top: 2px solid #B8732F;
+    border-right: 2px solid #B8732F;
+    transform: rotate(45deg);
+  }
+  details > summary { list-style: none; cursor: pointer; }
+  details > summary::-webkit-details-marker { display: none; }
+  .cta-btn {
+    background-color: #0F2C4A;
+    color: #FAFAF7;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+  }
+  .cta-btn:hover { background-color: #1a3d5f; transform: translateY(-1px); }
+  .cta-btn-light {
+    background-color: #FAFAF7;
+    color: #0F2C4A;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+  }
+  .cta-btn-light:hover { background-color: #fff; transform: translateY(-1px); }
+</style>
+</head>
+<body class="antialiased">
+
+<!-- Top bar mínima -->
+<header class="border-b border-black/5">
+  <div class="max-w-6xl mx-auto px-6 py-5 flex items-center justify-between">
+    <a href="index.html" class="font-serif text-2xl font-medium text-oxford tracking-tight">Kleo</a>
+    <a href="#programa-fundador" class="hidden sm:inline-block text-sm font-medium text-oxford/80 hover:text-oxford">
+      Conocer el programa →
+    </a>
+  </div>
+</header>
+
+<!-- ═══════════ SECCIÓN 1 · HERO ═══════════ -->
+<section class="px-6 py-16 sm:py-24">
+  <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+
+    <div>
+      <span class="inline-block px-3 py-1.5 text-xs font-medium tracking-wider uppercase rounded-full bg-ocre/10 text-ocre border border-ocre/20">
+        Convocatoria 2026 · 20 colegios fundadores
+      </span>
+
+      <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-medium leading-[1.05] text-oxford mt-6">
+        Matemáticas que tus alumnos por fin van a entender.
+      </h1>
+
+      <p class="text-lg sm:text-xl text-carbon/75 mt-6 leading-relaxed max-w-xl">
+        Kleo es una plataforma mexicana que enseña matemáticas de secundaria con el método que usa Singapur, el país número uno del mundo en esta materia.
+      </p>
+
+      <div class="mt-10 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6">
+        <a href="colegios.html#postular" class="cta-btn inline-flex items-center justify-center px-6 py-4 rounded-lg font-semibold text-base shadow-sm">
+          Postular mi colegio al programa fundador 2026
+        </a>
+        <a href="#como-funciona" class="text-sm font-medium text-oxford underline underline-offset-4 decoration-ocre/50 hover:decoration-ocre">
+          Ver cómo funciona en 1 minuto
+        </a>
+      </div>
+    </div>
+
+    <!-- Visual: TOCAR → VER → ENTENDER -->
+    <div class="lg:pl-8">
+      <div class="bg-white border border-black/5 rounded-2xl p-8 sm:p-10 shadow-sm">
+        <div class="flex items-center justify-between gap-4">
+
+          <div class="flex flex-col items-center text-center flex-1">
+            <div class="progression-icon">
+              <!-- ícono de objeto físico -->
+              <svg viewBox="0 0 64 64" width="44" height="44" fill="none" stroke="currentColor" stroke-width="2.5">
+                <rect x="12" y="28" width="14" height="14" rx="2"/>
+                <rect x="30" y="28" width="14" height="14" rx="2"/>
+                <rect x="21" y="14" width="14" height="14" rx="2"/>
+              </svg>
+            </div>
+            <p class="font-serif text-lg font-semibold text-oxford mt-4 tracking-wide">TOCAR</p>
+          </div>
+
+          <div class="arrow flex-shrink-0"></div>
+
+          <div class="flex flex-col items-center text-center flex-1">
+            <div class="progression-icon">
+              <!-- ícono de barras de Singapur -->
+              <svg viewBox="0 0 64 64" width="44" height="44" fill="none" stroke="currentColor" stroke-width="2.5">
+                <rect x="8" y="20" width="48" height="10" rx="1"/>
+                <rect x="8" y="34" width="32" height="10" rx="1"/>
+              </svg>
+            </div>
+            <p class="font-serif text-lg font-semibold text-oxford mt-4 tracking-wide">VER</p>
+          </div>
+
+          <div class="arrow flex-shrink-0"></div>
+
+          <div class="flex flex-col items-center text-center flex-1">
+            <div class="progression-icon">
+              <!-- fórmula y = kx -->
+              <svg viewBox="0 0 64 64" width="44" height="44">
+                <text x="32" y="42" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-style="italic" font-size="22" font-weight="600" fill="#0F2C4A">y = kx</text>
+              </svg>
+            </div>
+            <p class="font-serif text-lg font-semibold text-oxford mt-4 tracking-wide">ENTENDER</p>
+          </div>
+
+        </div>
+
+        <p class="text-xs text-carbon/55 text-center mt-8 italic">
+          Tres pasos. Sin atajos. Como lo enseña Singapur desde hace 40 años.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════ SECCIÓN 2 · EL PROBLEMA ═══════════ -->
+<section class="px-6 py-20 sm:py-28 border-t border-black/5 bg-white/40">
+  <div class="max-w-3xl mx-auto text-center">
+
+    <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-medium leading-tight text-oxford">
+      El problema no es que los estudiantes mexicanos sean malos en matemáticas. Es cómo se las están enseñando.
+    </h2>
+
+    <div class="mt-16 sm:mt-20">
+      <p class="font-serif text-7xl sm:text-8xl lg:text-9xl font-semibold text-oxford leading-none">
+        53<span class="text-ocre">%</span>
+      </p>
+      <p class="text-lg sm:text-xl text-carbon/85 mt-6 max-w-xl mx-auto leading-relaxed">
+        de los jóvenes mexicanos no entiende matemáticas básicas a los 15 años.
+      </p>
+      <p class="text-sm text-carbon/55 mt-6">
+        Fuente: PISA 2022, la evaluación internacional de la OCDE que mide cómo aprenden los estudiantes en cada país.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════ SECCIÓN 3 · LA SOLUCIÓN ═══════════ -->
+<section id="como-funciona" class="px-6 py-20 sm:py-28 border-t border-black/5">
+  <div class="max-w-6xl mx-auto">
+
+    <div class="max-w-2xl mb-16 sm:mb-20">
+      <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-medium leading-tight text-oxford">
+        Así es como Kleo cambia la manera de enseñar.
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-10 lg:gap-14">
+
+      <!-- Bloque 1 -->
+      <div>
+        <div class="placeholder-visual h-56 mb-6">
+          [Ilustración: tres íconos en secuencia — objetos físicos (cubos) → barras de Singapur → fórmula y = kx, con flechas entre ellos]
+        </div>
+        <h3 class="font-serif text-xl font-semibold text-oxford leading-snug">
+          Primero tocan. Después dibujan. Al final, la fórmula.
+        </h3>
+        <p class="text-base text-carbon/75 mt-4 leading-relaxed">
+          Antes de memorizar fórmulas, el estudiante construye la idea con ejemplos visuales. Como lo hace Singapur desde hace 40 años.
+        </p>
+      </div>
+
+      <!-- Bloque 2 -->
+      <div>
+        <div class="placeholder-visual h-56 mb-6">
+          [Ilustración: ícono abstracto de tutor con burbuja de pregunta "¿Por qué?"]
+        </div>
+        <h3 class="font-serif text-xl font-semibold text-oxford leading-snug">
+          Un tutor que nunca da la respuesta.
+        </h3>
+        <p class="text-base text-carbon/75 mt-4 leading-relaxed">
+          La inteligencia artificial de Kleo hace preguntas. El alumno explica lo que entendió con sus propias palabras. Así sabemos si de verdad aprendió.
+        </p>
+      </div>
+
+      <!-- Bloque 3 -->
+      <div>
+        <div class="placeholder-visual h-56 mb-6">
+          [Ilustración: candado abriéndose o barra de progreso con umbral marcado en 85%]
+        </div>
+        <h3 class="font-serif text-xl font-semibold text-oxford leading-snug">
+          No avanza hasta dominar el tema.
+        </h3>
+        <p class="text-base text-carbon/75 mt-4 leading-relaxed">
+          En vez de pasar al siguiente tema porque toca, el estudiante avanza cuando realmente entiende. Sin huecos. Sin temas a medias.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ SECCIÓN 4 · PROGRAMA FUNDADOR ═══════════ -->
+<section id="programa-fundador" class="px-6 py-20 sm:py-28 border-t border-black/5 bg-white/40">
+  <div class="max-w-5xl mx-auto">
+
+    <div class="text-center max-w-3xl mx-auto mb-14">
+      <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-medium leading-tight text-oxford">
+        Convocatoria 2026: 20 colegios fundadores.
+      </h2>
+      <p class="text-lg text-carbon/75 mt-6 leading-relaxed">
+        Buscamos 20 colegios privados de México que quieran probar Kleo durante el ciclo escolar 2026-2027, sin costo.
+      </p>
+    </div>
+
+    <!-- Caja con dos columnas -->
+    <div class="bg-white border border-black/8 rounded-2xl p-8 sm:p-12 shadow-sm">
+      <div class="grid md:grid-cols-2 gap-10 md:gap-16">
+
+        <div>
+          <h3 class="font-serif text-xl font-semibold text-oxford mb-6 pb-3 border-b border-ocre/30">
+            Qué recibe tu colegio
+          </h3>
+          <ul class="space-y-4 text-base text-carbon/85">
+            <li class="flex gap-3">
+              <span class="text-ocre font-semibold mt-0.5 flex-shrink-0">✓</span>
+              <span>Acceso gratuito a Kleo Matemáticas (1º, 2º y 3º de secundaria) durante todo el ciclo escolar 2026-2027.</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="text-ocre font-semibold mt-0.5 flex-shrink-0">✓</span>
+              <span>Capacitación al equipo docente en el uso de Kleo y en el método singapurense.</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="text-ocre font-semibold mt-0.5 flex-shrink-0">✓</span>
+              <span>Acceso gratuito a los recursos para docentes de las materias que Kleo vaya desarrollando durante el ciclo.</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="text-ocre font-semibold mt-0.5 flex-shrink-0">✓</span>
+              <span>Reconocimiento público como Colegio Fundador de Kleo en México.</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="text-ocre font-semibold mt-0.5 flex-shrink-0">✓</span>
+              <span>Condiciones preferentes permanentes cuando Kleo se vuelva de paga.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="font-serif text-xl font-semibold text-oxford mb-6 pb-3 border-b border-oxford/20">
+            Qué esperamos de tu colegio
+          </h3>
+          <ul class="space-y-4 text-base text-carbon/85">
+            <li class="flex gap-3">
+              <span class="text-oxford/60 font-semibold mt-1 flex-shrink-0">○</span>
+              <span>Que sea un colegio privado con al menos 100 estudiantes en secundaria (sumando los tres grados).</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="text-oxford/60 font-semibold mt-1 flex-shrink-0">○</span>
+              <span>Que el equipo docente se comprometa a usar Kleo y participar en la capacitación.</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="text-oxford/60 font-semibold mt-1 flex-shrink-0">○</span>
+              <span>Que nos permita medir resultados de aprendizaje durante el ciclo (en alianza con una universidad).</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="text-oxford/60 font-semibold mt-1 flex-shrink-0">○</span>
+              <span>Que nos dé retroalimentación honesta y constante.</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="mt-12 text-center">
+      <a href="colegios.html#postular" class="cta-btn inline-flex items-center justify-center px-6 py-4 rounded-lg font-semibold text-base shadow-sm">
+        Postular mi colegio al programa fundador 2026
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════ SECCIÓN 5 · RESPALDO Y CONFIANZA ═══════════ -->
+<section class="px-6 py-20 sm:py-28 border-t border-black/5">
+  <div class="max-w-6xl mx-auto">
+
+    <div class="max-w-2xl mb-14">
+      <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-medium leading-tight text-oxford">
+        Quiénes están detrás de Kleo.
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-10 lg:gap-14">
+
+      <!-- Bloque 1 -->
+      <div>
+        <h3 class="font-serif text-lg font-semibold text-oxford mb-5">
+          Construido sobre evidencia internacional.
+        </h3>
+        <ul class="space-y-3 text-sm text-carbon/80">
+          <li class="flex gap-3">
+            <span class="text-ocre flex-shrink-0">•</span>
+            <span>Método singapurense (Singapore Math).</span>
+          </li>
+          <li class="flex gap-3">
+            <span class="text-ocre flex-shrink-0">•</span>
+            <span>Investigación de Jerome Bruner sobre cómo aprenden los niños.</span>
+          </li>
+          <li class="flex gap-3">
+            <span class="text-ocre flex-shrink-0">•</span>
+            <span>Investigación de Benjamin Bloom sobre tutoría personalizada.</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Bloque 2 -->
+      <div>
+        <h3 class="font-serif text-lg font-semibold text-oxford mb-5">
+          Medición con respaldo universitario.
+        </h3>
+        <p class="text-sm text-carbon/80 leading-relaxed">
+          Kleo está iniciando conversaciones con universidades mexicanas de prestigio para medir los resultados del piloto con rigor académico y validez externa.
+        </p>
+      </div>
+
+      <!-- Bloque 3 -->
+      <div>
+        <h3 class="font-serif text-lg font-semibold text-oxford mb-5">
+          Hecho en México, para México.
+        </h3>
+        <p class="text-sm text-carbon/80 leading-relaxed">
+          Alineado al plan de estudios de la SEP (Secretaría de Educación Pública) y a la Nueva Escuela Mexicana. Kleo no reemplaza lo que la escuela debe enseñar; mejora la forma de enseñarlo.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ CTA FINAL ═══════════ -->
+<section class="px-6 py-16 sm:py-20 bg-oxford text-cream">
+  <div class="max-w-4xl mx-auto text-center">
+    <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-medium leading-tight">
+      ¿Tu colegio podría ser uno de los 20 fundadores?
+    </h2>
+    <div class="mt-10">
+      <a href="colegios.html#postular" class="cta-btn-light inline-flex items-center justify-center px-7 py-4 rounded-lg font-semibold text-base shadow-sm">
+        Postular ahora
+      </a>
+    </div>
+    <p class="text-sm text-cream/70 mt-6">
+      Cierre de convocatoria: 30 de agosto de 2026. Respuesta del equipo en 48 horas hábiles.
+    </p>
+  </div>
+</section>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer class="px-6 py-12 border-t border-black/5">
+  <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+    <div class="flex items-center gap-8">
+      <a href="index.html" class="font-serif text-xl font-medium text-oxford">Kleo</a>
+      <a href="mailto:hola@kleo.mx" class="text-sm text-carbon/70 hover:text-oxford">hola@kleo.mx</a>
+    </div>
+    <div class="flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-carbon/70">
+      <a href="investigacion.html" class="hover:text-oxford">Soy investigador o académico →</a>
+      <a href="#" class="hover:text-oxford">Aviso de privacidad</a>
+      <span class="text-carbon/50">© 2026 Kleo Educación</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

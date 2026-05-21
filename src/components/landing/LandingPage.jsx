@@ -1,12 +1,12 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import Link from 'next/link'
-import { ArrowRight, Menu, X } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 
-/* ═══════════════════════════════════════════
+/* ═══════════════════════════════════════
    CountUp — animated number on scroll
-   ═══════════════════════════════════════════ */
+   ═══════════════════════════════════════ */
 function CountUp({ target, suffix = '' }) {
   const [value, setValue] = useState(0)
   const ref = useRef(null)
@@ -43,1420 +43,577 @@ function CountUp({ target, suffix = '' }) {
   )
 }
 
-/* ═══════════════════════════════════════════
-   NAV LINKS
-   ═══════════════════════════════════════════ */
-const NAV_LINKS = [
-  { label: 'Método', href: '#metodo' },
-  { label: 'Para Colegios', href: '#directores' },
-  { label: 'Para Padres', href: '#colegios' },
-  { label: 'Investigación', href: '#respaldo' },
-]
-
-/* ═══════════════════════════════════════════
-   MAIN COMPONENT
-   ═══════════════════════════════════════════ */
-export default function LandingPage() {
-  const [menuOpen, setMenuOpen] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
-  const [activeSection, setActiveSection] = useState('')
-  const [audienceTab, setAudienceTab] = useState('est')
-  const [demoOpen, setDemoOpen] = useState(false)
-  const [demoForm, setDemoForm] = useState({
-    nombre: '',
-    cargo: '',
-    colegio: '',
-    correo: '',
-    mensaje: '',
-  })
-  const [demoStatus, setDemoStatus] = useState('idle')
+/* ═══════════════════════════════════════
+   Reveal — scroll-triggered entrance
+   ═══════════════════════════════════════ */
+function Reveal({ children, className = '', delay = 0 }) {
+  const ref = useRef(null)
+  const [visible, setVisible] = useState(false)
 
   useEffect(() => {
-    const fn = () => setScrolled(window.scrollY > 40)
+    const el = ref.current
+    if (!el) return
+    const obs = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting) {
+          setVisible(true)
+          obs.unobserve(el)
+        }
+      },
+      { threshold: 0.15 },
+    )
+    obs.observe(el)
+    return () => obs.disconnect()
+  }, [])
+
+  return (
+    <div
+      ref={ref}
+      className={className}
+      style={{
+        opacity: visible ? 1 : 0,
+        transform: visible ? 'translateY(0)' : 'translateY(32px)',
+        transition: `opacity 0.8s cubic-bezier(0.16,1,0.3,1) ${delay}s, transform 0.8s cubic-bezier(0.16,1,0.3,1) ${delay}s`,
+      }}
+    >
+      {children}
+    </div>
+  )
+}
+
+/* ═══════════════════════════════════════
+   MAIN
+   ═══════════════════════════════════════ */
+export default function LandingPage() {
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const fn = () => setScrolled(window.scrollY > 20)
     window.addEventListener('scroll', fn, { passive: true })
     return () => window.removeEventListener('scroll', fn)
   }, [])
 
-  useEffect(() => {
-    const sections = document.querySelectorAll('section[id]')
-    const obs = new IntersectionObserver(
-      (entries) => {
-        for (const e of entries) {
-          if (e.isIntersecting) setActiveSection(e.target.id)
-        }
-      },
-      { rootMargin: '-40% 0px -60% 0px' },
-    )
-    for (const s of sections) obs.observe(s)
-    return () => obs.disconnect()
-  }, [])
-
-  useEffect(() => {
-    const obs = new IntersectionObserver(
-      (entries) => {
-        for (const e of entries) {
-          if (e.isIntersecting) {
-            e.target.classList.add('revealed')
-            obs.unobserve(e.target)
-          }
-        }
-      },
-      { threshold: 0.08 },
-    )
-    for (const el of document.querySelectorAll('.reveal-item')) obs.observe(el)
-    return () => obs.disconnect()
-  }, [])
-
-  useEffect(() => {
-    document.body.style.overflow = demoOpen || menuOpen ? 'hidden' : ''
-    return () => {
-      document.body.style.overflow = ''
-    }
-  }, [demoOpen, menuOpen])
-
-  useEffect(() => {
-    const fn = (e) => {
-      if (e.key === 'Escape') setDemoOpen(false)
-    }
-    window.addEventListener('keydown', fn)
-    return () => window.removeEventListener('keydown', fn)
-  }, [])
-
-  const openDemo = () => {
-    setDemoOpen(true)
-    setDemoStatus('idle')
-    setDemoForm({ nombre: '', cargo: '', colegio: '', correo: '', mensaje: '' })
-  }
-
-  const handleDemoSubmit = (e) => {
-    e.preventDefault()
-    setDemoStatus('submitting')
-    setTimeout(() => setDemoStatus('success'), 1200)
-  }
-
-  const navLinkCls = (href) =>
-    `transition-colors hover:text-tinta ${
-      activeSection === href.replace('#', '') ? 'text-tinta font-medium' : ''
-    }`
-
   return (
-    <div className="bg-crema-100 text-tinta min-h-screen">
-      {/* ── ANNOUNCEMENT BAR ── */}
-      <div className="bg-tinta">
-        <div className="max-w-7xl mx-auto px-6 lg:px-10 py-2.5 flex items-center justify-between text-xs">
-          <div className="flex items-center gap-3">
-            <span className="inline-block w-1.5 h-1.5 rounded-full bg-amarillo" />
-            <span className="hidden sm:inline text-white/80">
-              Convocatoria 2026 abierta para colegios fundadores
-            </span>
-            <span className="sm:hidden text-white/80">Convocatoria 2026 abierta</span>
-          </div>
-          <a
-            href="#consejo"
-            className="hidden md:inline text-white/60 hover:text-white transition-colors"
-          >
-            Conoce al consejo asesor pedagógico →
-          </a>
-        </div>
-      </div>
+    <div className="bg-crema-100 text-tinta min-h-screen relative">
+      {/* Subtle grain overlay */}
+      <div
+        className="pointer-events-none fixed inset-0 z-50 opacity-[0.03]"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
+        }}
+      />
 
-      {/* ── NAVBAR ── */}
+      {/* ── NAV ── */}
       <header
-        className={`sticky top-0 z-40 transition-all duration-200 ${scrolled ? 'nav-scrolled' : 'bg-crema-100'}`}
+        className={`sticky top-0 z-40 transition-all duration-300 ${
+          scrolled
+            ? 'bg-white/80 backdrop-blur-xl shadow-[0_1px_0_rgba(0,0,0,0.04)]'
+            : 'bg-transparent'
+        }`}
       >
-        <div className="max-w-7xl mx-auto px-6 lg:px-10 h-16 flex items-center justify-between">
-          <a href="#" className="text-2xl font-bold text-tinta">
+        <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+          <Link href="/" className="text-2xl font-extrabold text-tinta tracking-tight">
             Kleo
-          </a>
-
-          <nav className="hidden lg:flex items-center gap-8 text-sm text-tinta-400">
-            {NAV_LINKS.map(({ label, href }) => (
-              <a key={href} href={href} className={navLinkCls(href)}>
-                {label}
-              </a>
-            ))}
-          </nav>
-
-          <div className="flex items-center gap-3">
-            <button
-              type="button"
-              onClick={openDemo}
-              className="hidden sm:inline-flex items-center gap-2 bg-tinta text-amarillo text-sm font-medium px-5 py-2.5 rounded-full hover:bg-tinta-600 transition-colors"
+          </Link>
+          <div className="flex items-center gap-6">
+            <Link
+              href="/investigacion"
+              className="hidden md:inline-block text-sm text-tinta-400 hover:text-tinta transition-colors"
             >
-              Hablar con el equipo
+              Investigación
+            </Link>
+            <Link
+              href="/colegios#postular"
+              className="inline-flex items-center gap-2 text-sm font-semibold bg-tinta text-amarillo px-5 py-2.5 rounded-full hover:bg-tinta-600 transition-colors"
+            >
+              <span className="hidden sm:inline">Programa fundador</span>
+              <span className="sm:hidden">Postular</span>
               <ArrowRight className="w-3.5 h-3.5" />
-            </button>
-            <button
-              type="button"
-              onClick={() => setMenuOpen(!menuOpen)}
-              className="lg:hidden p-2"
-              aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'}
-            >
-              {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-            </button>
+            </Link>
           </div>
         </div>
-
-        {menuOpen && (
-          <div className="lg:hidden border-t border-crema-300 bg-white">
-            <div className="px-6 py-6 flex flex-col gap-5 text-base">
-              {NAV_LINKS.map(({ label, href }) => (
-                <a key={href} href={href} onClick={() => setMenuOpen(false)}>
-                  {label}
-                </a>
-              ))}
-              <button
-                type="button"
-                onClick={() => {
-                  setMenuOpen(false)
-                  openDemo()
-                }}
-                className="mt-2 self-start bg-tinta text-amarillo text-sm font-medium px-5 py-2.5 rounded-full"
-              >
-                Hablar con el equipo →
-              </button>
-            </div>
-          </div>
-        )}
       </header>
 
-      {/* ══════════════════════════════════════════════════
-         HERO
-         ══════════════════════════════════════════════════ */}
-      <section className="relative overflow-hidden bg-white">
-        <div className="max-w-7xl mx-auto px-6 lg:px-10 py-16 lg:py-24 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          <div className="lg:col-span-7">
-            <div className="flex items-center gap-3 mb-8 text-xs font-medium uppercase tracking-widest text-tinta-400">
-              <span className="inline-block w-8 h-px bg-crema-500" />
-              <span>Una plataforma de matemáticas para secundaria</span>
-            </div>
-
-            <h1 className="text-4xl sm:text-5xl lg:text-[56px] font-extrabold leading-[1.08] tracking-tight text-tinta">
-              La diferencia entre{' '}
-              <em className="not-italic text-amarillo">aprobar</em> y{' '}
-              <em className="not-italic text-amarillo">comprender</em> define el futuro
-              intelectual de un adolescente.
-            </h1>
-
-            <p className="mt-8 max-w-2xl text-lg leading-relaxed text-tinta-400">
-              Kleo entrega íntegro el currículo de la{' '}
-              <span className="text-tinta font-medium">Nueva Escuela Mexicana</span>{' '}
-              siguiendo el método singapurense —concreto, pictórico, abstracto— con un tutor
-              socrático de IA que nunca da la respuesta, sólo formula la siguiente pregunta.
-            </p>
-
-            <div className="mt-10 flex flex-wrap items-center gap-3">
-              <a
-                href="#metodo"
-                className="inline-flex items-center gap-2 bg-tinta text-amarillo font-medium px-6 py-3 rounded-full hover:bg-tinta-600 transition-colors"
-              >
-                Conocer el método
-                <ArrowRight className="w-4 h-4" />
-              </a>
-              <button
-                type="button"
-                onClick={openDemo}
-                className="inline-flex items-center gap-2 bg-white hover:bg-crema-50 text-tinta border border-crema-300 font-medium px-6 py-3 rounded-full hover:border-tinta-400 transition-colors"
-              >
-                Solicitar demo para mi colegio
-              </button>
-            </div>
-
-            <div className="mt-10 flex flex-wrap gap-x-6 gap-y-2 text-xs text-tinta-400">
-              <span className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 bg-tinta rounded-full" />
-                NEM · Aprendizajes esperados SEP
+      {/* ── HERO ── */}
+      <section className="px-6 pt-12 sm:pt-20 pb-20 sm:pb-28 overflow-hidden">
+        <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          <div>
+            <Reveal>
+              <span className="inline-flex items-center gap-2 px-4 py-2 text-xs font-semibold tracking-wider uppercase rounded-full bg-amarillo/15 text-tinta border border-amarillo/25">
+                <span className="w-1.5 h-1.5 rounded-full bg-amarillo animate-pulse-soft" />
+                Convocatoria 2026 &middot; 20 colegios fundadores
               </span>
-              <span className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 bg-amarillo rounded-full" />
-                Singapore Math Curriculum
-              </span>
-              <span className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 bg-tinta-400 rounded-full" />
-                Tutor socrático de IA
-              </span>
-            </div>
-          </div>
+            </Reveal>
 
-          {/* Platform mockup */}
-          <div className="lg:col-span-5 reveal-item">
-            <div className="relative">
-              <div className="absolute -top-3 left-6 z-10">
-                <span className="bg-crema-200 border border-crema-300 text-[10px] font-mono px-2 py-1 text-tinta-400 rounded-lg">
-                  kleo.mx / tutor
-                </span>
-              </div>
-              <div className="bg-white border border-crema-300 rounded-3xl shadow-sm overflow-hidden">
-                <div className="flex items-center justify-between px-5 py-3 border-b border-crema-200">
-                  <div className="flex items-center gap-1.5">
-                    <span className="w-2 h-2 rounded-full bg-crema-400" />
-                    <span className="w-2 h-2 rounded-full bg-crema-400" />
-                    <span className="w-2 h-2 rounded-full bg-crema-400" />
-                  </div>
-                  <div className="font-mono text-[10px] text-tinta-400">
-                    Sec. 1 · Unidad 4 · Proporcionalidad directa
-                  </div>
-                  <div className="font-mono text-[10px] text-tinta-400">⌁ activo</div>
-                </div>
+            <Reveal delay={0.08}>
+              <h1 className="text-[2.5rem] sm:text-5xl lg:text-[3.5rem] font-extrabold leading-[1.08] text-tinta mt-8 tracking-tight">
+                Matemáticas que tus alumnos{' '}
+                <span className="relative inline-block">
+                  por fin
+                  <span className="absolute -bottom-1 left-0 right-0 h-[6px] bg-amarillo/30 rounded-full" />
+                </span>{' '}
+                van a entender.
+              </h1>
+            </Reveal>
 
-                <div className="px-5 py-5">
-                  <div className="font-mono text-[10px] uppercase tracking-widest text-tinta-400 mb-2">
-                    Pregunta 3 de 7 · variación problemática
-                  </div>
-                  <p className="text-base font-semibold leading-snug text-tinta">
-                    Si <em>4</em> obreros construyen un muro en <em>9</em> días, ¿en cuánto
-                    tiempo lo construirían <em>6</em> obreros trabajando al mismo ritmo?
-                  </p>
-
-                  <div className="mt-4 border border-crema-200 rounded-2xl p-3 bg-crema-50">
-                    <div className="flex items-center justify-between mb-2 text-[10px] font-mono text-tinta-400">
-                      <span>Modelo pictórico — barra</span>
-                      <span>4 obreros · 9 días</span>
-                    </div>
-                    <div className="space-y-1.5">
-                      <div className="flex gap-1">
-                        {[1, 2, 3, 4].map((i) => (
-                          <div key={i} className="h-3.5 flex-1 bg-tinta rounded-sm" />
-                        ))}
-                        {[5, 6].map((i) => (
-                          <div
-                            key={i}
-                            className="h-3.5 flex-1 bg-crema-200 border border-crema-300 rounded-sm"
-                          />
-                        ))}
-                      </div>
-                      <div className="flex justify-between text-[10px] font-mono text-tinta-400">
-                        <span>1 obrero</span>
-                        <span>6 obreros</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="mt-4 border-l-2 border-amarillo pl-3">
-                    <div className="font-mono text-[10px] uppercase tracking-widest text-tinta-400 mb-1">
-                      Tutor · siguiente pregunta
-                    </div>
-                    <p className="text-sm leading-relaxed text-tinta">
-                      Antes de calcular: si añadimos obreros, ¿el tiempo debe aumentar o
-                      disminuir? Explica con tus palabras por qué.
-                      <span className="caret" />
-                    </p>
-                  </div>
-
-                  <div className="mt-4 border border-crema-300 rounded-xl px-3 py-2.5 text-sm text-crema-500">
-                    Escribe tu razonamiento…
-                  </div>
-
-                  <div className="mt-4 flex items-center gap-3">
-                    <div className="flex-1">
-                      <div className="flex justify-between text-[10px] font-mono text-tinta-400 mb-1">
-                        <span>Dominio del aprendizaje</span>
-                        <span>68%</span>
-                      </div>
-                      <div className="h-1.5 bg-crema-200 rounded-full overflow-hidden">
-                        <div
-                          className="h-full bg-amarillo rounded-full"
-                          style={{ width: '68%' }}
-                        />
-                      </div>
-                    </div>
-                    <span className="font-mono text-[10px] text-tinta-400 whitespace-nowrap">
-                      bloqueado hasta ≥ 85%
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <p className="mt-3 font-mono text-[11px] text-tinta-400 leading-relaxed">
-                Fig. 1 — Tutor socrático explicando proporcionalidad directa. El estudiante
-                avanza al alcanzar dominio, no al completar tiempo.
+            <Reveal delay={0.16}>
+              <p className="text-lg text-tinta-400 mt-7 leading-relaxed max-w-lg">
+                Kleo es una plataforma mexicana que enseña matemáticas de secundaria con el método
+                que usa Singapur, el país #1 del mundo en esta materia.
               </p>
-            </div>
-          </div>
-        </div>
-      </section>
+            </Reveal>
 
-      {/* ══════════════════════════════════════════════════
-         §01 · EVIDENCIA
-         ══════════════════════════════════════════════════ */}
-      <section id="investigacion" className="bg-crema-100">
-        <div className="max-w-7xl mx-auto px-6 lg:px-10 py-20 lg:py-28">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-end">
-            <div className="lg:col-span-5">
-              <div className="text-xs font-medium uppercase tracking-widest text-tinta-400 mb-5">
-                § 01 · Evidencia
-              </div>
-              <h2 className="text-3xl sm:text-4xl font-extrabold leading-tight tracking-tight text-tinta">
-                México no tiene un problema de currículo. Tiene un problema de{' '}
-                <em className="not-italic">pedagogía</em>.
-              </h2>
-            </div>
-            <div className="lg:col-span-6 lg:col-start-7">
-              <p className="text-base leading-relaxed text-tinta-400">
-                La evidencia internacional es consistente: cambiar lo que se enseña importa menos
-                que cambiar cómo se enseña. Las brechas que hoy observa PISA en los estudiantes
-                mexicanos no se cierran con un nuevo plan de estudios; se cierran con un método
-                riguroso, sostenido y centrado en la comprensión profunda.
-              </p>
-            </div>
-          </div>
-
-          {/* Stats */}
-          <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-4">
-            {[
-              {
-                label: 'Dato 01',
-                target: 53,
-                suffix: '%',
-                text: (
-                  <>
-                    de los estudiantes mexicanos de 15 años{' '}
-                    <strong>no alcanza el nivel mínimo</strong> de competencia matemática.
-                  </>
-                ),
-                source: 'Fuente — OCDE, PISA 2022. Resultados México.',
-              },
-              {
-                label: 'Dato 02',
-                target: 20,
-                suffix: '+ años',
-                text: (
-                  <>
-                    Singapur en el <strong>#1 mundial</strong> en matemáticas. Su método, no su
-                    currículo, explica la diferencia.
-                  </>
-                ),
-                source: 'Fuente — TIMSS & PISA, rondas comparativas 1995–2023.',
-              },
-              {
-                label: 'Dato 03',
-                target: 2,
-                suffix: 'σ',
-                text: (
-                  <>
-                    de desviación estándar separan al estudiante con{' '}
-                    <strong>tutoría individual</strong> del aula tradicional.
-                  </>
-                ),
-                source: (
-                  <>
-                    Fuente — Bloom, B. (1984). <em>The 2 Sigma Problem.</em>
-                  </>
-                ),
-              },
-            ].map((stat) => (
-              <article key={stat.label} className="reveal-item bg-white rounded-3xl shadow-sm p-8">
-                <div className="flex items-baseline gap-3 mb-5">
-                  <span className="font-mono text-[11px] uppercase tracking-widest text-tinta-400">
-                    {stat.label}
-                  </span>
-                  <span className="h-px flex-1 bg-crema-300" />
-                </div>
-                <div className="text-6xl lg:text-7xl font-extrabold leading-none text-tinta">
-                  <CountUp target={stat.target} suffix={stat.suffix} />
-                </div>
-                <p className="mt-5 text-base leading-relaxed text-tinta max-w-xs">{stat.text}</p>
-                <p className="mt-4 font-mono text-[11px] text-tinta-400">{stat.source}</p>
-              </article>
-            ))}
-          </div>
-
-          {/* Quote */}
-          <figure className="mt-20 bg-white rounded-3xl shadow-sm p-8 lg:p-12 grid grid-cols-1 lg:grid-cols-12 gap-10">
-            <div className="lg:col-span-2 text-xs font-medium uppercase tracking-widest text-tinta-400">
-              Cita
-            </div>
-            <blockquote className="lg:col-span-10">
-              <p className="text-2xl sm:text-3xl font-bold leading-snug tracking-tight text-tinta">
-                &ldquo;El propósito de la educación no es memorizar respuestas. Es desarrollar la
-                capacidad de hacer mejores preguntas.&rdquo;
-              </p>
-              <figcaption className="mt-6 font-mono text-xs text-tinta-400 uppercase tracking-widest">
-                Jerome S. Bruner · Sobre los procesos de la educación, 1960
-              </figcaption>
-            </blockquote>
-          </figure>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════
-         §02 · EL MÉTODO
-         ══════════════════════════════════════════════════ */}
-      <section id="metodo" className="bg-white">
-        <div className="max-w-7xl mx-auto px-6 lg:px-10 py-20 lg:py-28">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-end mb-14">
-            <div className="lg:col-span-7">
-              <div className="text-xs font-medium uppercase tracking-widest text-tinta-400 mb-5">
-                § 02 · El método
-              </div>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight tracking-tight text-tinta">
-                Tres principios pedagógicos.{' '}
-                <em className="not-italic">Cero atajos.</em>
-              </h2>
-            </div>
-            <div className="lg:col-span-5">
-              <p className="text-base leading-relaxed text-tinta-400">
-                Kleo no inventa una pedagogía nueva. Toma tres tradiciones investigadas durante
-                décadas y las opera con consistencia inflexible, lección tras lección.
-              </p>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {/* Pilar 1 — Singapore Math */}
-            <article className="reveal-item bg-crema-100 p-8 lg:p-10 rounded-3xl">
-              <div className="flex items-baseline justify-between mb-8">
-                <span className="font-mono text-[11px] uppercase tracking-widest text-tinta-400">
-                  Pilar 01 — Singapore Math
-                </span>
-                <span className="text-xl font-bold text-tinta-400">i</span>
-              </div>
-
-              <div className="flex items-stretch gap-3 mb-8 h-20">
-                <div className="flex-1 flex flex-col items-center justify-center text-center px-2 bg-white rounded-2xl">
-                  <div className="flex gap-0.5">
-                    <span className="w-2 h-2 rounded-full bg-tinta-400" />
-                    <span className="w-2 h-2 rounded-full bg-tinta-400" />
-                    <span className="w-2 h-2 rounded-full bg-tinta-400" />
-                  </div>
-                  <div className="font-mono text-[9px] mt-2 uppercase tracking-widest text-tinta-400">
-                    Concreto
-                  </div>
-                </div>
-                <div className="self-center font-mono text-tinta-400">→</div>
-                <div className="flex-1 flex flex-col items-center justify-center text-center px-2 bg-white rounded-2xl">
-                  <div className="flex gap-0.5 items-end">
-                    <span className="w-1.5 h-3 bg-tinta inline-block rounded-sm" />
-                    <span className="w-1.5 h-4 bg-tinta inline-block rounded-sm" />
-                    <span className="w-1.5 h-2.5 bg-tinta inline-block rounded-sm" />
-                  </div>
-                  <div className="font-mono text-[9px] mt-1.5 uppercase tracking-widest text-tinta-400">
-                    Pictórico
-                  </div>
-                </div>
-                <div className="self-center font-mono text-tinta-400">→</div>
-                <div className="flex-1 flex flex-col items-center justify-center text-center px-2 bg-white rounded-2xl">
-                  <div className="italic text-lg text-tinta font-semibold">y = kx</div>
-                  <div className="font-mono text-[9px] mt-1 uppercase tracking-widest text-tinta-400">
-                    Abstracto
-                  </div>
-                </div>
-              </div>
-
-              <h3 className="text-2xl font-bold leading-tight text-tinta">
-                Concreto, pictórico, abstracto.
-              </h3>
-              <p className="mt-4 text-sm leading-relaxed text-tinta-400">
-                Toda idea matemática se introduce primero con objetos, luego se traduce a un
-                modelo visual (la &ldquo;barra de Singapur&rdquo;) y sólo después se formaliza en
-                símbolos.
-              </p>
-              <p className="mt-6 font-mono text-[11px] text-tinta-400 uppercase tracking-widest border-t border-crema-300 pt-4">
-                Base — Jerome Bruner · teoría de la representación.
-              </p>
-            </article>
-
-            {/* Pilar 2 — Mastery Learning */}
-            <article className="reveal-item bg-crema-100 p-8 lg:p-10 rounded-3xl">
-              <div className="flex items-baseline justify-between mb-8">
-                <span className="font-mono text-[11px] uppercase tracking-widest text-tinta-400">
-                  Pilar 02 — Mastery Learning
-                </span>
-                <span className="text-xl font-bold text-tinta-400">ii</span>
-              </div>
-
-              <div className="mb-8 h-20 flex items-end gap-2.5">
-                <div className="w-7 bg-crema-200 border border-crema-300 rounded-sm" style={{ height: '30%' }} />
-                <div className="w-7 bg-crema-200 border border-crema-300 rounded-sm" style={{ height: '50%' }} />
-                <div className="w-7 bg-crema-200 border border-crema-300 rounded-sm" style={{ height: '65%' }} />
-                <div className="w-7 bg-tinta rounded-sm" style={{ height: '85%' }} />
-                <div className="flex-1" />
-                <div className="font-mono text-[10px] uppercase tracking-widest text-tinta-400 self-center leading-tight text-right">
-                  umbral
-                  <br />
-                  de avance
-                  <br />≥ 85%
-                </div>
-              </div>
-
-              <h3 className="text-2xl font-bold leading-tight text-tinta">
-                Dominio antes del avance.
-              </h3>
-              <p className="mt-4 text-sm leading-relaxed text-tinta-400">
-                El estudiante no progresa por calendario. Progresa cuando demuestra dominio
-                sostenido del aprendizaje anterior. El currículo se respeta; el ritmo, no.
-              </p>
-              <p className="mt-6 font-mono text-[11px] text-tinta-400 uppercase tracking-widest border-t border-crema-300 pt-4">
-                Base — Benjamin Bloom · mastery learning, 1968.
-              </p>
-            </article>
-
-            {/* Pilar 3 — Tutor socrático */}
-            <article className="reveal-item bg-crema-100 p-8 lg:p-10 rounded-3xl">
-              <div className="flex items-baseline justify-between mb-8">
-                <span className="font-mono text-[11px] uppercase tracking-widest text-tinta-400">
-                  Pilar 03 — Tutor socrático
-                </span>
-                <span className="text-xl font-bold text-tinta-400">iii</span>
-              </div>
-
-              <div className="mb-8 h-20 relative flex flex-col justify-center gap-2">
-                <div className="bg-white border border-crema-300 rounded-2xl px-3 py-1.5 text-sm font-medium text-tinta self-start">
-                  ¿Por qué?
-                </div>
-                <div className="bg-white border border-crema-300 rounded-2xl px-3 py-1.5 text-sm text-tinta-400 self-start ml-4">
-                  Explícalo con tus palabras.
-                </div>
-              </div>
-
-              <h3 className="text-2xl font-bold leading-tight text-tinta">
-                Nunca la respuesta.{' '}
-                <em className="not-italic">Siempre la siguiente pregunta.</em>
-              </h3>
-              <p className="mt-4 text-sm leading-relaxed text-tinta-400">
-                La IA de Kleo formula preguntas, no entrega soluciones. El estudiante demuestra
-                comprensión explicando con sus propias palabras (técnica Feynman).
-              </p>
-              <p className="mt-6 font-mono text-[11px] text-tinta-400 uppercase tracking-widest border-t border-crema-300 pt-4">
-                Base — Feynman · Bjork · efecto 2σ, Bloom.
-              </p>
-            </article>
-          </div>
-
-          {/* Bjork quote */}
-          <div className="mt-14 border-l-2 border-amarillo pl-6 max-w-3xl">
-            <p className="text-xl italic leading-relaxed text-tinta">
-              &ldquo;La dificultad deseable —el esfuerzo cognitivo del estudiante por recuperar y
-              reconstruir— es el predictor más confiable del aprendizaje duradero.&rdquo;
-            </p>
-            <p className="mt-3 font-mono text-[11px] text-tinta-400 uppercase tracking-widest">
-              Robert A. Bjork · UCLA, Memory Lab
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════
-         §03 · MANIFIESTO
-         ══════════════════════════════════════════════════ */}
-      <section id="manifiesto" className="bg-crema-100">
-        <div className="max-w-7xl mx-auto px-6 lg:px-10 py-20 lg:py-28">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-end mb-14">
-            <div className="lg:col-span-7">
-              <div className="text-xs font-medium uppercase tracking-widest text-tinta-400 mb-5">
-                § 03 · Manifiesto
-              </div>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight tracking-tight text-tinta">
-                Lo que Kleo <em className="not-italic">no es</em>.
-              </h2>
-            </div>
-            <div className="lg:col-span-5">
-              <p className="text-base leading-relaxed text-tinta-400">
-                La claridad sobre lo que Kleo rechaza es la mejor manera de entender lo que Kleo
-                entrega. Esta declaración es una sola página, y es vinculante.
-              </p>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {[
-              {
-                title: 'Kleo no es un banco de ejercicios.',
-                desc: 'Es',
-                emphasis: 'producción de comprensión',
-                rest: '. El estudiante explica con sus palabras antes de avanzar.',
-              },
-              {
-                title: 'Kleo no es un repositorio de videos.',
-                desc: 'El estudiante',
-                emphasis: 'explica, no consume',
-                rest: '. La pantalla devuelve preguntas, no clases pasivas.',
-              },
-              {
-                title: 'Kleo no es un asistente que responde dudas.',
-                desc: 'El tutor',
-                emphasis: 'formula la siguiente pregunta',
-                rest: '. La respuesta llega del estudiante o no llega.',
-              },
-              {
-                title: 'Kleo no es entretenimiento educativo.',
-                desc: 'Optimiza',
-                emphasis: 'aprendizaje, no engagement',
-                rest: '. Sin avatares, sin rachas, sin estrellas en la home.',
-              },
-              {
-                title: 'Kleo no es un sustituto del docente.',
-                desc: 'Es una herramienta que',
-                emphasis: 'amplifica al maestro',
-                rest: '. La autoridad pedagógica del aula permanece intacta.',
-              },
-              {
-                title: 'Kleo no es un experimento contra la NEM.',
-                desc: 'Respeta íntegramente el',
-                emphasis: 'currículo nacional',
-                rest: '. Cambia el método, no la materia.',
-              },
-            ].map((item) => (
-              <article key={item.title} className="reveal-item bg-white p-7 lg:p-8 rounded-3xl shadow-sm">
-                <div className="flex items-start gap-4">
-                  <span className="text-2xl text-crema-500 leading-none mt-0.5 font-bold">✕</span>
-                  <div>
-                    <p className="text-lg font-bold leading-snug text-tinta">{item.title}</p>
-                    <p className="mt-3 text-sm leading-relaxed text-tinta-400">
-                      {item.desc}{' '}
-                      <span className="text-tinta font-medium">{item.emphasis}</span>
-                      {item.rest}
-                    </p>
-                  </div>
-                </div>
-              </article>
-            ))}
-          </div>
-
-          <p className="mt-8 font-mono text-[11px] text-tinta-400 max-w-2xl">
-            Declaración pública — vinculante para el equipo, el producto y los aliados de Kleo.
-            Cualquier desviación es motivo de corrección y comunicación abierta.
-          </p>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════
-         §04 · COMPARATIVA
-         ══════════════════════════════════════════════════ */}
-      <section id="comparativa" className="bg-white">
-        <div className="max-w-7xl mx-auto px-6 lg:px-10 py-20 lg:py-28">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-end mb-12">
-            <div className="lg:col-span-7">
-              <div className="text-xs font-medium uppercase tracking-widest text-tinta-400 mb-5">
-                § 04 · Comparativa
-              </div>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight tracking-tight text-tinta">
-                La diferencia entre{' '}
-                <em className="not-italic">enseñar para aprobar</em> y enseñar
-                para comprender.
-              </h2>
-            </div>
-            <div className="lg:col-span-5">
-              <p className="text-base leading-relaxed text-tinta-400">
-                Seis decisiones pedagógicas que distinguen la operación cotidiana de Kleo de la de
-                un aula tradicional.
-              </p>
-            </div>
-          </div>
-
-          <div className="bg-crema-100 rounded-3xl overflow-hidden">
-            <div className="grid grid-cols-2 px-6 lg:px-8 py-4 border-b border-crema-300">
-              <div className="font-mono text-[11px] uppercase tracking-widest text-tinta-400">
-                Educación tradicional
-              </div>
-              <div className="font-mono text-[11px] uppercase tracking-widest text-tinta flex items-center gap-2">
-                <span className="w-1.5 h-1.5 bg-amarillo rounded-full" />
-                Kleo
-              </div>
-            </div>
-
-            <ul className="divide-y divide-crema-300">
-              {[
-                ['Evalúa reconocimiento', 'Evalúa comprensión'],
-                ['Avanza por calendario', 'Avanza por dominio'],
-                ['Castiga el error', 'Usa el error como diagnóstico'],
-                ['Memorización de procedimientos', 'Construcción de modelos mentales'],
-                ['60% aprueba', 'Iteración hasta el dominio real'],
-                ['IA que da respuestas', 'IA que formula preguntas'],
-              ].map(([old, neo]) => (
-                <li key={old} className="grid grid-cols-2 px-6 lg:px-8 py-5 gap-8 items-baseline">
-                  <span className="text-sm text-tinta-400 line-through decoration-crema-500">
-                    {old}
-                  </span>
-                  <span className="text-base font-semibold text-tinta">{neo}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <p className="mt-6 font-mono text-[11px] text-tinta-400">
-            Tabla II — Operaciones pedagógicas que Kleo reescribe respecto al aula tradicional.
-          </p>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════
-         §05 · COMPATIBILIDAD NEM
-         ══════════════════════════════════════════════════ */}
-      <section id="nem" className="bg-crema-100">
-        <div className="max-w-7xl mx-auto px-6 lg:px-10 py-20 lg:py-28">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-            <div className="lg:col-span-5">
-              <div className="text-xs font-medium uppercase tracking-widest text-tinta-400 mb-5">
-                § 05 · Compatibilidad
-              </div>
-              <h2 className="text-3xl sm:text-4xl font-extrabold leading-tight tracking-tight text-tinta">
-                Kleo no sustituye el currículo nacional. Sustituye el{' '}
-                <em className="not-italic">método de entrega</em>.
-              </h2>
-              <p className="mt-7 text-base leading-relaxed text-tinta-400">
-                Cada lección de Kleo cubre los aprendizajes esperados de la SEP en su{' '}
-                <strong className="text-tinta">secuencia oficial</strong>. El plan y programa
-                de la Nueva Escuela Mexicana permanece intacto. Lo que cambia es la forma de
-                entregarlo: el orden interno de la comprensión (concreto → pictórico → abstracto),
-                el umbral de avance (dominio) y el rol de la pregunta (socrático).
-              </p>
-              <div className="mt-8 grid grid-cols-2 gap-5">
-                <div className="border-t-2 border-crema-500 pt-4">
-                  <div className="font-mono text-[11px] uppercase tracking-widest text-tinta-400">
-                    Conservado
-                  </div>
-                  <div className="text-xl font-bold mt-1 text-tinta">Currículo NEM</div>
-                  <p className="mt-1 text-sm text-tinta-400 leading-snug">
-                    Aprendizajes esperados, ejes y secuencia SEP.
-                  </p>
-                </div>
-                <div className="border-t-2 border-amarillo pt-4">
-                  <div className="font-mono text-[11px] uppercase tracking-widest text-tinta-400">
-                    Reemplazado
-                  </div>
-                  <div className="text-xl font-bold mt-1 text-tinta">Método de entrega</div>
-                  <p className="mt-1 text-sm text-tinta-400 leading-snug">
-                    Singapore Math + dominio + IA socrática.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="lg:col-span-7 reveal-item">
-              <div className="bg-white rounded-3xl shadow-sm overflow-hidden">
-                <div className="px-6 py-4 border-b border-crema-200 flex items-baseline justify-between">
-                  <span className="font-mono text-[11px] uppercase tracking-widest text-tinta-400">
-                    Tabla I — Mapeo NEM × Singapore Math
-                  </span>
-                  <span className="font-mono text-[11px] text-tinta-400">1.º Sec.</span>
-                </div>
-                <table className="w-full text-left text-sm">
-                  <thead>
-                    <tr className="text-[11px] font-mono uppercase tracking-widest text-tinta-400 border-b border-crema-200">
-                      <th className="px-6 py-3 font-medium">Aprendizaje SEP</th>
-                      <th className="px-6 py-3 font-medium hidden sm:table-cell">Fase Singapur</th>
-                      <th className="px-6 py-3 font-medium text-right">Dominio req.</th>
-                    </tr>
-                  </thead>
-                  <tbody className="text-tinta divide-y divide-crema-100">
-                    {[
-                      ['Números enteros y operaciones', 'C → P → A', '85%'],
-                      ['Fracciones y decimales', 'Modelo de barra', '85%'],
-                      ['Proporcionalidad directa e inversa', 'Variación problemática', '90%'],
-                      ['Ecuaciones lineales de primer grado', 'Abstracción guiada', '85%'],
-                      ['Perímetro, área y volumen', 'Concreto manipulable', '80%'],
-                      ['Probabilidad y tratamiento de datos', 'Pictórico → abstracto', '80%'],
-                    ].map(([aprendizaje, fase, dominio]) => (
-                      <tr key={aprendizaje}>
-                        <td className="px-6 py-3.5">{aprendizaje}</td>
-                        <td className="px-6 py-3.5 text-tinta-400 hidden sm:table-cell">{fase}</td>
-                        <td className="px-6 py-3.5 text-right font-mono text-sm">{dominio}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-                <div className="px-6 py-3 border-t border-crema-200 flex items-baseline justify-between text-[11px] font-mono text-tinta-400">
-                  <span>Extracto. Secuencia completa: 1.º–3.º Sec.</span>
-                  <span className="text-tinta-400 hover:underline cursor-pointer">
-                    Descargar mapeo PDF ↓
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════
-         §06 · COBERTURA CURRICULAR
-         ══════════════════════════════════════════════════ */}
-      <section id="cobertura" className="bg-white">
-        <div className="max-w-7xl mx-auto px-6 lg:px-10 py-20 lg:py-28">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-end mb-12">
-            <div className="lg:col-span-7">
-              <div className="text-xs font-medium uppercase tracking-widest text-tinta-400 mb-5">
-                § 06 · Cobertura curricular
-              </div>
-              <h2 className="text-3xl sm:text-4xl font-extrabold leading-tight tracking-tight text-tinta">
-                Empezamos donde la evidencia es más sólida y donde México{' '}
-                <em className="not-italic">más lo necesita</em>.
-              </h2>
-            </div>
-            <div className="lg:col-span-5">
-              <p className="text-base leading-relaxed text-tinta-400">
-                Kleo inicia con matemáticas de secundaria: el momento donde la brecha PISA es más
-                alarmante y donde el método singapurense cuenta con cuatro décadas de evidencia
-                internacional.
-              </p>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-14">
-            {[
-              { label: 'Asignatura actual', title: 'Matemáticas', sub: 'Secundaria · 1.º · 2.º · 3.º' },
-              { label: 'Alineación', title: '100% NEM', sub: 'Aprendizajes esperados SEP, secuencia oficial.' },
-              { label: 'Hoja de ruta', title: 'K-12 progresivo', sub: 'Expansión gradual, mismo estándar de rigor.' },
-            ].map((c) => (
-              <div key={c.label} className="bg-crema-100 p-7 rounded-3xl">
-                <div className="font-mono text-[11px] uppercase tracking-widest text-tinta-400">{c.label}</div>
-                <div className="text-2xl font-bold mt-2 text-tinta">{c.title}</div>
-                <div className="text-sm mt-1 text-tinta-400">{c.sub}</div>
-              </div>
-            ))}
-          </div>
-
-          <div className="border-t border-crema-500 pt-10">
-            <div className="flex items-baseline justify-between mb-6">
-              <div className="font-mono text-[11px] uppercase tracking-widest text-tinta-400">Lám. III — Mapa de cobertura K-12</div>
-              <div className="font-mono text-[11px] text-tinta-400">2026 → 2030</div>
-            </div>
-            <div className="relative">
-              <div className="absolute left-0 right-0 top-[18px] h-px bg-crema-500 hidden md:block" />
-              <ol className="relative grid grid-cols-2 md:grid-cols-5 gap-6">
-                {[
-                  { year: '2026 · Hoy', title: 'Matemáticas', sub: 'Secundaria · 1.º–3.º', status: 'En operación', active: true },
-                  { year: '2027', title: 'Matemáticas', sub: 'Primaria alta · 4.º–6.º', status: 'Planeación' },
-                  { year: '2028', title: 'Comprensión lectora', sub: 'Secundaria', status: 'Investigación' },
-                  { year: '2029', title: 'Ciencias naturales', sub: 'Secundaria', status: 'Investigación' },
-                  { year: '2030+', title: 'K-12 progresivo', sub: 'Currículo completo', status: 'Visión' },
-                ].map((item) => (
-                  <li key={item.year}>
-                    <div className="flex items-center gap-2">
-                      <span className={`w-3 h-3 rounded-full ${item.active ? 'bg-tinta' : 'border border-crema-500 bg-white'}`} />
-                      <span className={`font-mono text-[11px] uppercase tracking-widest ${item.active ? 'text-tinta font-medium' : 'text-tinta-400'}`}>{item.year}</span>
-                    </div>
-                    <div className={`mt-5 text-lg font-bold leading-tight ${item.active ? 'text-tinta' : 'text-tinta-400'}`}>{item.title}</div>
-                    <div className="text-sm text-tinta-400">{item.sub}</div>
-                    <div className={`mt-2 font-mono text-[10px] uppercase tracking-widest ${item.active ? 'text-tinta' : 'text-tinta-400'}`}>{item.status}</div>
-                  </li>
-                ))}
-              </ol>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════
-         §07 · AUDIENCIAS (dark)
-         ══════════════════════════════════════════════════ */}
-      <section id="colegios" className="bg-tinta text-white">
-        <div className="max-w-7xl mx-auto px-6 lg:px-10 py-20 lg:py-28">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-end mb-12">
-            <div className="lg:col-span-7">
-              <div className="text-xs font-medium uppercase tracking-widest text-amarillo mb-5">§ 07 · Audiencias</div>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight tracking-tight">
-                Una plataforma. Tres compromisos distintos.
-              </h2>
-            </div>
-            <div className="lg:col-span-5">
-              <p className="text-base leading-relaxed text-crema-500">
-                La promesa pedagógica es la misma para todos. Lo que cambia es lo que Kleo entrega
-                a quien acompaña al estudiante.
-              </p>
-            </div>
-          </div>
-
-          <div role="tablist" className="flex flex-wrap gap-x-8 gap-y-3 border-b border-white/20 mb-10 text-sm">
-            {[
-              { id: 'est', label: 'Estudiantes' },
-              { id: 'pad', label: 'Padres y madres' },
-              { id: 'col', label: 'Colegios' },
-            ].map((tab) => (
-              <button
-                key={tab.id}
-                type="button"
-                role="tab"
-                aria-selected={audienceTab === tab.id}
-                onClick={() => setAudienceTab(tab.id)}
-                className={`py-3 border-b-2 transition-colors ${
-                  audienceTab === tab.id
-                    ? 'border-amarillo text-white'
-                    : 'border-transparent text-crema-500 hover:text-white'
-                }`}
-              >
-                {tab.label}
-              </button>
-            ))}
-          </div>
-
-          {[
-            {
-              id: 'est',
-              title: 'Comprender, no memorizar.',
-              desc: 'Kleo acompaña al estudiante con un tutor que adapta la dificultad, formula preguntas a su nivel y exige que explique cada paso antes de avanzar. La meta no es terminar la lección. Es comprenderla.',
-              points: [
-                'Ruta personalizada según dominio, no según calendario.',
-                'Cada respuesta requiere una explicación en sus propias palabras.',
-                'Repaso espaciado automático sobre temas vulnerables.',
-              ],
-            },
-            {
-              id: 'pad',
-              title: 'Visibilidad sin ansiedad.',
-              desc: 'Kleo entrega a cada familia un reporte semanal que prioriza el tipo de comprensión sobre la calificación. No publica rankings, no envía notificaciones invasivas, no convierte el aprendizaje en juego competitivo.',
-              points: [
-                'Reportes pedagógicos, no calificaciones aisladas.',
-                'Diagnóstico mensual de aprendizajes vulnerables.',
-                'Recomendaciones específicas, no genéricas.',
-              ],
-            },
-            {
-              id: 'col',
-              title: 'Integración con la NEM, no contra ella.',
-              desc: 'Kleo se integra al plan vigente del colegio. Cada grupo cuenta con tableros docentes en tiempo real, mapeo curricular descargable, e instrumentos de evaluación formativa alineados a los aprendizajes esperados de la SEP.',
-              points: [
-                'Tableros docentes con foco en aprendizajes vulnerables.',
-                'Acompañamiento de formación docente en método singapurense.',
-                'Modelo de implementación gradual por ciclo escolar.',
-              ],
-            },
-          ]
-            .filter((panel) => panel.id === audienceTab)
-            .map((panel) => (
-              <div key={panel.id} className="grid grid-cols-1 lg:grid-cols-12 gap-10">
-                <div className="lg:col-span-7">
-                  <h3 className="text-3xl font-bold leading-tight">{panel.title}</h3>
-                  <p className="mt-5 text-base leading-relaxed text-crema-500 max-w-2xl">{panel.desc}</p>
-                </div>
-                <ul className="lg:col-span-5 space-y-5 text-sm text-crema-500">
-                  {panel.points.map((text, i) => (
-                    <li key={i} className="flex gap-4 border-t border-white/20 pt-5">
-                      <span className="font-mono text-[11px] text-amarillo uppercase tracking-widest mt-0.5">0{i + 1}</span>
-                      <span>{text}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════
-         §08 · RESULTADOS
-         ══════════════════════════════════════════════════ */}
-      <section id="resultados" className="bg-crema-100">
-        <div className="max-w-7xl mx-auto px-6 lg:px-10 py-20 lg:py-28">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-end mb-14">
-            <div className="lg:col-span-7">
-              <div className="text-xs font-medium uppercase tracking-widest text-tinta-400 mb-5">§ 08 · Resultados</div>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight tracking-tight text-tinta">
-                Resultados que importan a <em className="not-italic">tu colegio</em>.
-              </h2>
-            </div>
-            <div className="lg:col-span-5">
-              <p className="text-base leading-relaxed text-tinta-400">
-                Kleo no promete porcentajes inventados. Promete tres compromisos verificables que
-                cualquier coordinación académica puede observar dentro del primer ciclo escolar.
-              </p>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {[
-              { num: '01', roman: 'i', title: 'Diferenciación de marca en un mercado saturado.', desc: 'Kleo dota al colegio de una propuesta pedagógica defendible —con investigadores citables y currículo auditable— frente a competidores que ofrecen ejercicios o videos.', target: 'Para dirección general y mercadotecnia educativa.' },
-              { num: '02', roman: 'ii', title: 'Tu maestro recupera tiempo para enseñar.', desc: 'El docente deja de preparar material, examen y reporte semanal: lo recibe alineado a la NEM, listo para conducir el aula. El tiempo se devuelve a la pedagogía viva.', target: 'Para coordinación académica y cuerpo docente.' },
-              { num: '03', roman: 'iii', title: 'Padres que ven a su hijo entender, no sólo aprobar.', desc: 'El reporte semanal de Kleo prioriza el tipo de comprensión sobre la calificación. La familia identifica con precisión dónde su hijo razona y dónde memoriza.', target: 'Para comunicación con familias.' },
-            ].map((c) => (
-              <article key={c.num} className="reveal-item bg-white p-8 lg:p-10 rounded-3xl shadow-sm">
-                <div className="flex items-baseline justify-between">
-                  <span className="font-mono text-[11px] uppercase tracking-widest text-tinta-400">Compromiso {c.num}</span>
-                  <span className="text-xl font-bold text-tinta-400">{c.roman}</span>
-                </div>
-                <h3 className="mt-8 text-xl font-bold leading-snug text-tinta">{c.title}</h3>
-                <p className="mt-5 text-sm leading-relaxed text-tinta-400">{c.desc}</p>
-                <p className="mt-6 font-mono text-[11px] text-tinta-400 uppercase tracking-widest border-t border-crema-300 pt-4">{c.target}</p>
-              </article>
-            ))}
-          </div>
-
-          <div className="mt-8 flex items-center gap-3 text-xs font-mono text-tinta-400">
-            <span className="inline-block w-1.5 h-1.5 rounded-full bg-amarillo" />
-            <span>Piloto con colegios fundadores en curso. Testimonios y métricas —próximamente, con fuente verificable.</span>
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════
-         §09 · PARA COLEGIOS
-         ══════════════════════════════════════════════════ */}
-      <section id="directores" className="bg-white">
-        <div className="max-w-7xl mx-auto px-6 lg:px-10 py-20 lg:py-28">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-            <div className="lg:col-span-7">
-              <div className="text-xs font-medium uppercase tracking-widest text-tinta-400 mb-5">§ 09 · Para colegios</div>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-[1.05] tracking-tight text-tinta">
-                Para directores y coordinadores <em className="not-italic">académicos</em>.
-              </h2>
-              <p className="mt-7 text-base leading-relaxed text-tinta-400 max-w-2xl">
-                Kleo se implementa por convocatoria, con colegios fundadores. El proceso está
-                diseñado para integrarse al plan vigente, no para reemplazar al equipo docente.
-              </p>
-
-              <ol className="mt-10 border-t border-crema-500">
-                {[
-                  { title: 'Diferenciador real frente a la competencia local.', desc: 'Una propuesta pedagógica con base teórica citable —Singapur, Bloom, Bruner— frente a apps de ejercicios o videos.' },
-                  { title: 'Evidencia pedagógica que respalda tu propuesta educativa.', desc: 'Mapeo curricular descargable, instrumentos de evaluación formativa y reportes mensuales para padres alineados a la NEM.' },
-                  { title: 'Implementación gradual sin sustituir al docente.', desc: 'Piloto controlado por grado, acompañamiento de formación docente en método singapurense y soporte pedagógico continuo.' },
-                ].map((item, i) => (
-                  <li key={i} className="grid grid-cols-12 gap-6 py-6 border-b border-crema-300">
-                    <span className="col-span-2 font-mono text-[11px] text-tinta-400 uppercase tracking-widest pt-1">0{i + 1}</span>
-                    <div className="col-span-10">
-                      <h3 className="text-lg font-bold leading-tight text-tinta">{item.title}</h3>
-                      <p className="mt-2 text-sm text-tinta-400 leading-relaxed">{item.desc}</p>
-                    </div>
-                  </li>
-                ))}
-              </ol>
-            </div>
-
-            <aside className="lg:col-span-5 lg:sticky lg:top-28">
-              <div className="bg-crema-100 border border-crema-300 p-7 lg:p-8 rounded-3xl">
-                <div className="font-mono text-[11px] uppercase tracking-widest text-tinta-400 mb-3">Convocatoria 2026 · cupos limitados</div>
-                <h3 className="text-2xl font-bold leading-tight text-tinta">Agenda una demo para tu colegio.</h3>
-                <p className="mt-3 text-sm leading-relaxed text-tinta-400">
-                  Sesión privada de 45 min con el equipo pedagógico. NDA disponible. Respuesta en menos de 48 h hábiles.
-                </p>
-                <ul className="mt-6 space-y-3 text-sm text-tinta-400">
-                  {['Recorrido del producto en datos reales.', 'Mapeo NEM × Singapur para tu calendario.', 'Plan de implementación por ciclo escolar.'].map((text) => (
-                    <li key={text} className="flex gap-3">
-                      <span className="font-mono text-tinta-400">—</span>{text}
-                    </li>
-                  ))}
-                </ul>
-                <button
-                  type="button"
-                  onClick={openDemo}
-                  className="mt-6 w-full flex items-center justify-center gap-2 bg-tinta text-amarillo font-medium py-3 rounded-full hover:bg-tinta-600 transition-colors"
+            <Reveal delay={0.24}>
+              <div className="mt-10 flex flex-col sm:flex-row sm:items-center gap-4">
+                <Link
+                  href="/colegios#postular"
+                  className="group inline-flex items-center justify-center gap-2.5 bg-tinta text-amarillo font-semibold px-7 py-4 rounded-full hover:bg-tinta-600 transition-all hover:shadow-lg hover:shadow-tinta/10"
                 >
-                  Agendar demo para mi colegio
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-                <a href="mailto:colegios@kleo.mx" className="mt-3 block text-center text-xs font-mono text-tinta-400 hover:text-tinta transition-colors">
-                  o escribe a colegios@kleo.mx
+                  Postular mi colegio
+                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+                </Link>
+                <a
+                  href="#como-funciona"
+                  className="text-sm font-medium text-tinta-400 hover:text-tinta transition-colors flex items-center gap-1.5"
+                >
+                  <span className="w-6 h-6 rounded-full border border-tinta-400/30 flex items-center justify-center">
+                    <span className="w-0 h-0 border-t-[4px] border-t-transparent border-b-[4px] border-b-transparent border-l-[6px] border-l-tinta-400 ml-0.5" />
+                  </span>
+                  Cómo funciona
                 </a>
               </div>
-            </aside>
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════
-         §10 · CONSEJO ASESOR
-         ══════════════════════════════════════════════════ */}
-      <section id="consejo" className="bg-crema-100">
-        <div className="max-w-7xl mx-auto px-6 lg:px-10 py-20 lg:py-28">
-          <div className="flex flex-wrap items-end justify-between gap-6 mb-12">
-            <div className="max-w-2xl">
-              <div className="text-xs font-medium uppercase tracking-widest text-tinta-400 mb-5">§ 10 · Consejo asesor pedagógico</div>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight tracking-tight text-tinta">
-                Quienes garantizarán el <em className="not-italic">rigor</em> detrás del producto.
-              </h2>
-            </div>
-            <div className="border-l-2 border-amarillo pl-4 self-end">
-              <div className="font-mono text-[11px] uppercase tracking-widest text-tinta-400">En formación</div>
-              <div className="font-mono text-[11px] text-tinta-400">Anuncio · 2.º trim. 2026</div>
-            </div>
+            </Reveal>
           </div>
 
-          <div className="reveal-item bg-white p-8 lg:p-12 max-w-5xl rounded-3xl shadow-sm">
-            <div className="flex items-baseline gap-4 mb-6">
-              <span className="font-mono text-[11px] uppercase tracking-widest text-tinta-400">Declaración pública</span>
-              <span className="h-px flex-1 bg-crema-500" />
-              <span className="font-mono text-[11px] text-tinta-400">Mayo 2026</span>
-            </div>
-            <p className="text-xl sm:text-2xl font-bold leading-snug tracking-tight text-tinta">
-              Consejo Asesor en formación. Kleo está convocando a investigadores en didáctica de
-              las matemáticas —<span className="font-semibold">CINVESTAV</span>,{' '}
-              <span className="font-semibold">UPN</span>, Escuelas Normales— y a coordinadores
-              académicos de colegios líderes en México para conformar el Consejo Asesor Pedagógico fundador.
-            </p>
-            <p className="mt-6 text-base leading-relaxed text-tinta-400 max-w-3xl">
-              Cada decisión pedagógica de Kleo pasará por este consejo. La composición se hará
-              pública al concluir el proceso de convocatoria, con biografías, líneas de investigación y declaración de intereses.
-            </p>
-            <div className="mt-8 flex flex-wrap items-center gap-4 text-sm">
-              <a href="mailto:consejo@kleo.mx" className="inline-flex items-center gap-2 bg-white hover:bg-crema-50 text-tinta border border-crema-300 font-medium px-5 py-2.5 rounded-full hover:border-tinta-400 transition-colors">
-                Postular a investigador o docente
-              </a>
-              <span className="font-mono text-[11px] text-tinta-400">consejo@kleo.mx</span>
-            </div>
-          </div>
-
-          <div className="mt-14">
-            <div className="flex items-baseline justify-between mb-5">
-              <div className="font-mono text-[11px] uppercase tracking-widest text-tinta-400">Instituciones a las que Kleo convoca</div>
-              <div className="font-mono text-[11px] text-tinta-400">Líneas formales abiertas</div>
-            </div>
-            <ul className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
-              {['CINVESTAV', 'UPN', 'UNAM', 'Escuelas Normales', 'Mejoredu', 'Tec de Monterrey'].map((inst) => (
-                <li key={inst} className="bg-white px-5 py-7 flex items-center justify-center rounded-3xl shadow-sm">
-                  <span className="italic text-lg text-tinta-400 text-center leading-tight font-medium">{inst}</span>
-                </li>
-              ))}
-            </ul>
-            <p className="mt-6 font-mono text-[11px] text-tinta-400">
-              Lám. II — Instituciones a las que se ha extendido la convocatoria formal. La incorporación no implica respaldo institucional previo.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════
-         §11 · RESPALDO Y TRANSPARENCIA (dark)
-         ══════════════════════════════════════════════════ */}
-      <section id="respaldo" className="bg-tinta text-white">
-        <div className="max-w-7xl mx-auto px-6 lg:px-10 py-20 lg:py-28">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-            <div className="lg:col-span-5">
-              <div className="text-xs font-medium uppercase tracking-widest text-amarillo mb-5">§ 11 · Respaldo y transparencia</div>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight tracking-tight">
-                La evidencia no se afirma. <em className="text-amarillo not-italic">Se publica.</em>
-              </h2>
-              <p className="mt-7 text-base leading-relaxed text-crema-500 max-w-md">
-                Kleo opera bajo dos compromisos públicos que cualquier colegio, familia o investigador puede invocar.
-              </p>
-            </div>
-
-            <div className="lg:col-span-7 space-y-6">
-              <article className="border border-white/20 p-7 lg:p-9 rounded-3xl">
-                <div className="flex items-baseline gap-4 mb-5">
-                  <span className="font-mono text-[11px] uppercase tracking-widest text-amarillo">Compromiso I</span>
-                  <span className="h-px flex-1 bg-white/20" />
-                  <span className="font-mono text-[11px] text-crema-500">Publicación abierta</span>
+          {/* TOCAR → VER → ENTENDER — elevated card */}
+          <Reveal delay={0.15} className="lg:pl-4">
+            <div className="relative">
+              {/* Glow behind the card */}
+              <div className="absolute -inset-6 bg-gradient-to-br from-amarillo/8 via-transparent to-tinta/3 rounded-[2.5rem] blur-2xl" />
+              <div className="relative bg-white rounded-[2rem] p-8 sm:p-10 shadow-[0_2px_40px_-12px_rgba(0,0,0,0.08)] border border-crema-300/50">
+                <div className="flex items-center justify-between gap-2 sm:gap-4">
+                  {[
+                    {
+                      label: 'Tocar',
+                      icon: (
+                        <svg viewBox="0 0 64 64" width="32" height="32" fill="none" stroke="currentColor" strokeWidth="2.2">
+                          <rect x="14" y="28" width="12" height="12" rx="2" />
+                          <rect x="30" y="28" width="12" height="12" rx="2" />
+                          <rect x="22" y="16" width="12" height="12" rx="2" />
+                        </svg>
+                      ),
+                    },
+                    {
+                      label: 'Ver',
+                      icon: (
+                        <svg viewBox="0 0 64 64" width="32" height="32" fill="none" stroke="currentColor" strokeWidth="2.2">
+                          <rect x="10" y="21" width="44" height="9" rx="1.5" />
+                          <rect x="10" y="34" width="28" height="9" rx="1.5" />
+                        </svg>
+                      ),
+                    },
+                    {
+                      label: 'Entender',
+                      icon: <span className="italic text-lg font-semibold text-tinta">y = kx</span>,
+                    },
+                  ].map((step, i) => (
+                    <div key={step.label} className="flex items-center gap-2 sm:gap-4 flex-1">
+                      {i > 0 && (
+                        <div className="flex items-center flex-shrink-0">
+                          <div className="w-6 sm:w-8 h-px bg-amarillo" />
+                          <div className="w-0 h-0 border-t-[3px] border-t-transparent border-b-[3px] border-b-transparent border-l-[5px] border-l-amarillo" />
+                        </div>
+                      )}
+                      <div className="flex flex-col items-center text-center flex-1 min-w-0">
+                        <div className="w-14 h-14 sm:w-[4.5rem] sm:h-[4.5rem] rounded-full bg-crema-100 flex items-center justify-center text-tinta transition-all hover:bg-amarillo/10 hover:scale-105">
+                          {step.icon}
+                        </div>
+                        <p className="text-[11px] sm:text-xs font-bold text-tinta mt-2.5 tracking-[0.15em] uppercase">
+                          {step.label}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
                 </div>
-                <p className="text-xl sm:text-2xl font-bold leading-snug tracking-tight">
-                  Kleo se compromete a publicar la evidencia de eficacia de su método una vez completado el piloto con colegios fundadores.
-                </p>
-                <p className="mt-5 text-sm leading-relaxed text-crema-500">
-                  Reporte técnico, metodología, datos anonimizados y limitaciones. Sin selección favorable, sin omisión de resultados negativos.
-                </p>
-              </article>
 
-              <article className="border border-white/20 p-7 lg:p-9 rounded-3xl">
-                <div className="flex items-baseline gap-4 mb-5">
-                  <span className="font-mono text-[11px] uppercase tracking-widest text-amarillo">Compromiso II</span>
-                  <span className="h-px flex-1 bg-white/20" />
-                  <span className="font-mono text-[11px] text-crema-500">Auditoría externa</span>
+                <div className="mt-8 pt-6 border-t border-crema-300/60">
+                  <p className="text-[13px] text-tinta-400 text-center leading-relaxed">
+                    Tres pasos. Sin atajos. El mismo método que usa Singapur desde hace 40 años.
+                  </p>
                 </div>
-                <p className="text-xl sm:text-2xl font-bold leading-snug tracking-tight">
-                  Kleo invita a investigadores externos a auditar su pedagogía y resultados.
-                </p>
-                <p className="mt-5 text-sm leading-relaxed text-crema-500">
-                  Acceso a currículo, diseño de tareas, prompts del tutor y muestras de interacción. Las observaciones críticas se publican junto al reporte.
-                </p>
-              </article>
-
-              <p className="font-mono text-[11px] text-crema-500 leading-relaxed max-w-2xl">
-                — La transparencia no es una política de comunicación. Es una política de producto.
-                Quien afirme rigor sin permitir auditoría no está ofreciendo educación; está ofreciendo marketing.
-              </p>
+              </div>
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════════════
-         §12 · CTA FINAL
-         ══════════════════════════════════════════════════ */}
-      <section id="cta" className="bg-crema-100">
-        <div className="max-w-7xl mx-auto px-6 lg:px-10 py-24 lg:py-32">
-          <div className="text-center max-w-5xl mx-auto">
-            <div className="text-xs font-medium uppercase tracking-widest text-tinta-400 mb-6">§ 12 · Construir</div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight tracking-tight text-tinta">
-              Construyamos juntos la educación{' '}
-              <span className="block"><em className="not-italic">que México merece.</em></span>
+      {/* ── EL PROBLEMA ── */}
+      <section className="relative px-6 py-24 sm:py-32 bg-tinta text-white overflow-hidden">
+        {/* Diagonal accent */}
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-amarillo via-amarillo/40 to-transparent" />
+        <div className="max-w-4xl mx-auto text-center relative">
+          <Reveal>
+            <p className="text-xs font-semibold tracking-[0.2em] uppercase text-amarillo mb-8">
+              El problema
+            </p>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold leading-snug tracking-tight text-white/90">
+              El problema no es que los estudiantes mexicanos sean malos en matemáticas.
+              <span className="block mt-2 text-white">
+                Es cómo se las están enseñando.
+              </span>
             </h2>
-            <p className="mt-8 max-w-2xl mx-auto text-base leading-relaxed text-tinta-400">
-              Kleo busca aliados: colegios dispuestos a elevar el estándar, familias que exigen comprensión, investigadores que defienden el rigor.
-            </p>
-          </div>
+          </Reveal>
 
-          <div className="mt-14 grid grid-cols-1 md:grid-cols-3 gap-4">
-            <button
-              type="button"
-              onClick={openDemo}
-              className="text-left bg-tinta text-white p-8 lg:p-10 rounded-3xl flex flex-col justify-between hover:bg-tinta-600 transition-colors"
-            >
-              <div>
-                <div className="flex items-center justify-between">
-                  <span className="font-mono text-[11px] uppercase tracking-widest text-amarillo">Vía 01 · Recomendada</span>
-                  <span className="font-mono text-[11px] text-crema-500">B2B</span>
-                </div>
-                <h3 className="mt-8 text-3xl font-extrabold leading-tight">Soy colegio.</h3>
-                <p className="mt-3 text-sm text-crema-500 max-w-sm leading-snug">
-                  Agenda una demo privada de 45 min con el equipo pedagógico.
+          <Reveal delay={0.1}>
+            <div className="mt-16 sm:mt-20 flex flex-col items-center">
+              <div className="relative">
+                <p className="text-[7rem] sm:text-[9rem] lg:text-[11rem] font-extrabold text-white leading-none tabular-nums">
+                  <CountUp target={53} suffix="" />
+                  <span className="text-amarillo">%</span>
                 </p>
+                {/* Subtle radial glow behind number */}
+                <div className="absolute inset-0 bg-amarillo/5 rounded-full blur-3xl -z-10 scale-150" />
               </div>
-              <div className="mt-10 flex items-center justify-between">
-                <span className="font-mono text-xs uppercase tracking-widest text-crema-500">Cupo limitado · 2026</span>
-                <span className="inline-flex items-center gap-2 text-sm text-amarillo border-b border-amarillo pb-0.5">
-                  Agendar demo <ArrowRight className="w-3.5 h-3.5" />
-                </span>
-              </div>
-            </button>
+              <p className="text-lg sm:text-xl text-crema-500 mt-6 max-w-md mx-auto leading-relaxed">
+                de los jóvenes mexicanos no entiende matemáticas básicas a los 15 años.
+              </p>
+              <p className="text-xs text-crema-500/60 mt-6 font-mono">
+                Fuente: PISA 2022 &middot; OCDE
+              </p>
+            </div>
+          </Reveal>
+        </div>
+      </section>
 
-            <div className="text-left bg-white p-8 lg:p-10 rounded-3xl shadow-sm flex flex-col justify-between">
-              <div>
-                <div className="flex items-center justify-between">
-                  <span className="font-mono text-[11px] uppercase tracking-widest text-tinta-400">Vía 02</span>
-                  <span className="font-mono text-[11px] text-tinta-400">B2C</span>
+      {/* ── LA SOLUCIÓN ── */}
+      <section id="como-funciona" className="px-6 py-24 sm:py-32">
+        <div className="max-w-6xl mx-auto">
+          <Reveal>
+            <div className="max-w-2xl mb-16 sm:mb-20">
+              <p className="text-xs font-semibold tracking-[0.2em] uppercase text-tinta-400 mb-4">
+                El método
+              </p>
+              <h2 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-extrabold leading-tight text-tinta tracking-tight">
+                Así es como Kleo cambia la manera de enseñar.
+              </h2>
+            </div>
+          </Reveal>
+
+          <div className="grid md:grid-cols-3 gap-5">
+            {[
+              {
+                num: '01',
+                title: 'Primero tocan. Después dibujan. Al final, la fórmula.',
+                desc: 'Antes de memorizar fórmulas, el estudiante construye la idea con ejemplos visuales. Como lo hace Singapur desde hace 40 años.',
+                visual: (
+                  <div className="flex items-center gap-4 justify-center">
+                    <div className="flex flex-col items-center gap-1.5">
+                      <div className="flex gap-1">
+                        <span className="w-3 h-3 rounded-full bg-tinta/20" />
+                        <span className="w-3 h-3 rounded-full bg-tinta/20" />
+                        <span className="w-3 h-3 rounded-full bg-tinta/40" />
+                      </div>
+                      <span className="text-[8px] font-mono text-tinta-400 uppercase tracking-widest">Concreto</span>
+                    </div>
+                    <span className="text-tinta-400/40 text-lg">&rarr;</span>
+                    <div className="flex flex-col items-center gap-1.5">
+                      <div className="flex gap-[3px] items-end">
+                        <span className="w-2 h-4 bg-tinta/30 rounded-[2px]" />
+                        <span className="w-2 h-6 bg-tinta/50 rounded-[2px]" />
+                        <span className="w-2 h-3.5 bg-tinta/20 rounded-[2px]" />
+                      </div>
+                      <span className="text-[8px] font-mono text-tinta-400 uppercase tracking-widest">Pictórico</span>
+                    </div>
+                    <span className="text-tinta-400/40 text-lg">&rarr;</span>
+                    <div className="flex flex-col items-center gap-1.5">
+                      <span className="italic text-base font-semibold text-tinta/70">y=kx</span>
+                      <span className="text-[8px] font-mono text-tinta-400 uppercase tracking-widest">Abstracto</span>
+                    </div>
+                  </div>
+                ),
+              },
+              {
+                num: '02',
+                title: 'Un tutor que nunca da la respuesta.',
+                desc: 'La inteligencia artificial de Kleo hace preguntas. El alumno explica lo que entendió con sus propias palabras.',
+                visual: (
+                  <div className="flex flex-col gap-2.5 items-start max-w-[200px] mx-auto">
+                    <div className="bg-white rounded-xl px-3.5 py-2 border border-crema-300 text-xs font-medium text-tinta shadow-sm">
+                      ¿Por qué crees eso?
+                    </div>
+                    <div className="bg-white rounded-xl px-3.5 py-2 border border-crema-300 text-xs text-tinta-400 ml-6 shadow-sm">
+                      Explícalo con tus palabras.
+                    </div>
+                    <div className="bg-amarillo/15 rounded-xl px-3.5 py-2 border border-amarillo/30 text-xs text-tinta ml-3 shadow-sm">
+                      ¿Y si fueran 6 obreros?
+                    </div>
+                  </div>
+                ),
+              },
+              {
+                num: '03',
+                title: 'No avanza hasta dominar el tema.',
+                desc: 'En vez de pasar al siguiente tema porque toca, el estudiante avanza cuando realmente entiende.',
+                visual: (
+                  <div className="flex flex-col items-center gap-3">
+                    <div className="flex items-end gap-2">
+                      {[24, 38, 52, 68].map((h, i) => (
+                        <div
+                          key={i}
+                          className={`w-5 rounded-[3px] transition-all ${i === 3 ? 'bg-tinta' : 'bg-tinta/15'}`}
+                          style={{ height: h }}
+                        />
+                      ))}
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="w-16 h-1.5 bg-crema-300 rounded-full overflow-hidden">
+                        <div className="w-[85%] h-full bg-amarillo rounded-full" />
+                      </div>
+                      <span className="text-[10px] font-mono text-tinta-400">&ge;85%</span>
+                    </div>
+                  </div>
+                ),
+              },
+            ].map((card, i) => (
+              <Reveal key={card.num} delay={i * 0.1}>
+                <div className="group bg-white rounded-[1.75rem] p-7 sm:p-8 shadow-sm hover:shadow-md transition-all duration-300 h-full flex flex-col border border-transparent hover:border-crema-300/80">
+                  <div className="font-mono text-[10px] font-semibold text-tinta-400/60 tracking-[0.2em] uppercase mb-6">
+                    {card.num}
+                  </div>
+
+                  <div className="h-36 bg-crema-100/80 rounded-2xl mb-7 flex items-center justify-center px-4 group-hover:bg-crema-100 transition-colors">
+                    {card.visual}
+                  </div>
+
+                  <h3 className="text-lg font-bold text-tinta leading-snug">
+                    {card.title}
+                  </h3>
+                  <p className="text-[15px] text-tinta-400 mt-3 leading-relaxed flex-1">
+                    {card.desc}
+                  </p>
                 </div>
-                <h3 className="mt-8 text-2xl font-bold leading-tight text-tinta">Soy padre o madre.</h3>
-                <p className="mt-3 text-sm text-tinta-400 leading-snug">Conocer Kleo para mi hijo.</p>
-              </div>
-              <div className="mt-8 flex items-center justify-between text-tinta">
-                <span className="font-mono text-[11px] uppercase tracking-widest text-tinta-400">Inscripción personal</span>
-                <button type="button" onClick={openDemo} className="inline-flex items-center gap-1 text-sm border-b border-tinta pb-0.5">Conocer Kleo →</button>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── PROGRAMA FUNDADOR ── */}
+      <section id="programa-fundador" className="px-6 py-24 sm:py-32 bg-white">
+        <div className="max-w-5xl mx-auto">
+          <Reveal>
+            <div className="text-center max-w-3xl mx-auto mb-16">
+              <p className="text-xs font-semibold tracking-[0.2em] uppercase text-tinta-400 mb-4">
+                Programa fundador
+              </p>
+              <h2 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-extrabold leading-tight text-tinta tracking-tight">
+                Convocatoria 2026: 20 colegios fundadores.
+              </h2>
+              <p className="text-lg text-tinta-400 mt-6 leading-relaxed max-w-xl mx-auto">
+                Buscamos 20 colegios privados de México que quieran probar Kleo durante el ciclo
+                escolar 2026-2027, sin costo.
+              </p>
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.1}>
+            <div className="bg-crema-100 rounded-[2rem] p-8 sm:p-12 border border-crema-300/50">
+              <div className="grid md:grid-cols-2 gap-10 md:gap-16">
+                <div>
+                  <h3 className="text-lg font-bold text-tinta mb-6 pb-3 border-b-2 border-amarillo/40 flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-amarillo" />
+                    Qué recibe tu colegio
+                  </h3>
+                  <ul className="space-y-4 text-[15px] text-tinta-400">
+                    {[
+                      'Acceso gratuito a Kleo Matemáticas (1.°, 2.° y 3.° de secundaria) durante todo el ciclo escolar 2026-2027.',
+                      'Capacitación al equipo docente en el uso de Kleo y en el método singapurense.',
+                      'Acceso gratuito a los recursos para docentes de las materias que Kleo vaya desarrollando durante el ciclo.',
+                      'Reconocimiento público como Colegio Fundador de Kleo en México.',
+                      'Condiciones preferentes permanentes cuando Kleo se vuelva de paga.',
+                    ].map((item) => (
+                      <li key={item} className="flex gap-3">
+                        <span className="text-amarillo font-bold mt-0.5 flex-shrink-0">+</span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div>
+                  <h3 className="text-lg font-bold text-tinta mb-6 pb-3 border-b border-crema-300 flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-crema-500" />
+                    Qué esperamos de tu colegio
+                  </h3>
+                  <ul className="space-y-4 text-[15px] text-tinta-400">
+                    {[
+                      'Que sea un colegio privado con al menos 100 estudiantes en secundaria (sumando los tres grados).',
+                      'Que el equipo docente se comprometa a usar Kleo y participar en la capacitación.',
+                      'Que nos permita medir resultados de aprendizaje durante el ciclo (en alianza con una universidad).',
+                      'Que nos dé retroalimentación honesta y constante.',
+                    ].map((item) => (
+                      <li key={item} className="flex gap-3">
+                        <span className="text-tinta-400/40 font-medium mt-0.5 flex-shrink-0">
+                          &#9675;
+                        </span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             </div>
+          </Reveal>
 
-            <a href="mailto:investigacion@kleo.mx" className="text-left bg-white p-8 lg:p-10 rounded-3xl shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
-              <div>
-                <div className="flex items-center justify-between">
-                  <span className="font-mono text-[11px] uppercase tracking-widest text-tinta-400">Vía 03</span>
-                  <span className="font-mono text-[11px] text-tinta-400">Acad.</span>
+          <Reveal delay={0.15}>
+            <div className="mt-12 text-center">
+              <Link
+                href="/colegios#postular"
+                className="group inline-flex items-center justify-center gap-2.5 bg-tinta text-amarillo font-semibold px-8 py-4 rounded-full hover:bg-tinta-600 transition-all hover:shadow-lg hover:shadow-tinta/10"
+              >
+                Postular mi colegio al programa fundador 2026
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+              </Link>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ── RESPALDO ── */}
+      <section className="px-6 py-24 sm:py-32">
+        <div className="max-w-6xl mx-auto">
+          <Reveal>
+            <div className="max-w-2xl mb-14">
+              <p className="text-xs font-semibold tracking-[0.2em] uppercase text-tinta-400 mb-4">
+                Respaldo
+              </p>
+              <h2 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-extrabold leading-tight text-tinta tracking-tight">
+                Quiénes están detrás de Kleo.
+              </h2>
+            </div>
+          </Reveal>
+
+          <div className="grid md:grid-cols-3 gap-5">
+            {[
+              {
+                title: 'Construido sobre evidencia internacional.',
+                content: (
+                  <ul className="space-y-3 text-sm text-tinta-400">
+                    {[
+                      'Método singapurense (Singapore Math).',
+                      'Investigación de Jerome Bruner sobre cómo aprenden los niños.',
+                      'Investigación de Benjamin Bloom sobre tutoría personalizada.',
+                    ].map((t) => (
+                      <li key={t} className="flex gap-3">
+                        <span className="w-1 h-1 rounded-full bg-amarillo mt-2 flex-shrink-0" />
+                        <span>{t}</span>
+                      </li>
+                    ))}
+                  </ul>
+                ),
+              },
+              {
+                title: 'Medición con respaldo universitario.',
+                content: (
+                  <p className="text-sm text-tinta-400 leading-relaxed">
+                    Kleo está iniciando conversaciones con universidades mexicanas de prestigio para
+                    medir los resultados del piloto con rigor académico y validez externa.
+                  </p>
+                ),
+              },
+              {
+                title: 'Hecho en México, para México.',
+                content: (
+                  <p className="text-sm text-tinta-400 leading-relaxed">
+                    Alineado al plan de estudios de la SEP y a la Nueva Escuela Mexicana. Kleo no
+                    reemplaza lo que la escuela debe enseñar; mejora la forma de enseñarlo.
+                  </p>
+                ),
+              },
+            ].map((card, i) => (
+              <Reveal key={card.title} delay={i * 0.08}>
+                <div className="bg-white rounded-[1.75rem] p-7 sm:p-8 shadow-sm h-full border border-crema-300/50">
+                  <h3 className="text-base font-bold text-tinta mb-5 leading-snug">
+                    {card.title}
+                  </h3>
+                  {card.content}
                 </div>
-                <h3 className="mt-8 text-2xl font-bold leading-tight text-tinta">Soy investigador o docente.</h3>
-                <p className="mt-3 text-sm text-tinta-400 leading-snug">Contactar al equipo pedagógico.</p>
-              </div>
-              <div className="mt-8 flex items-center justify-between">
-                <span className="font-mono text-[11px] uppercase tracking-widest text-tinta-400">Auditoría · consejo</span>
-                <span className="inline-flex items-center gap-1 text-sm text-tinta border-b border-tinta pb-0.5">Escribir →</span>
-              </div>
+              </Reveal>
+            ))}
+          </div>
+
+          <Reveal delay={0.15}>
+            <div className="mt-10 text-center">
+              <Link
+                href="/investigacion"
+                className="inline-flex items-center gap-2 text-sm font-medium text-tinta-400 hover:text-tinta transition-colors group"
+              >
+                Ver la investigación completa
+                <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
+              </Link>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ── CTA FINAL ── */}
+      <section className="relative px-6 py-20 sm:py-28 bg-tinta text-white overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-amarillo/50 to-transparent" />
+        {/* Radial glow */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-amarillo/5 rounded-full blur-3xl" />
+        <div className="max-w-3xl mx-auto text-center relative">
+          <Reveal>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight tracking-tight">
+              ¿Tu colegio podría ser uno de los{' '}
+              <span className="text-amarillo">20</span> fundadores?
+            </h2>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <div className="mt-10">
+              <Link
+                href="/colegios#postular"
+                className="group inline-flex items-center justify-center gap-2.5 bg-amarillo text-tinta font-bold px-8 py-4 rounded-full hover:bg-amarillo-hover transition-all hover:shadow-lg hover:shadow-amarillo/20"
+              >
+                Postular ahora
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+              </Link>
+            </div>
+            <p className="text-sm text-crema-500 mt-8">
+              Cierre de convocatoria: 30 de agosto de 2026.
+              <br className="sm:hidden" />
+              <span className="hidden sm:inline"> &middot; </span>
+              Respuesta del equipo en 48 horas hábiles.
+            </p>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ── FOOTER ── */}
+      <footer className="bg-tinta text-white border-t border-white/5">
+        <div className="max-w-6xl mx-auto px-6 py-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+          <div className="flex items-center gap-6">
+            <span className="text-lg font-extrabold tracking-tight">Kleo</span>
+            <a
+              href="mailto:hola@kleo.mx"
+              className="text-sm text-crema-500 hover:text-white transition-colors"
+            >
+              hola@kleo.mx
             </a>
           </div>
-
-          <p className="mt-10 text-center font-mono text-[11px] text-tinta-400 max-w-2xl mx-auto">
-            Respuesta del equipo en menos de 48 h hábiles. Todas las conversaciones están cubiertas por NDA bajo solicitud.
-          </p>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════
-         FOOTER
-         ══════════════════════════════════════════════════ */}
-      <footer className="bg-tinta text-white">
-        <div className="max-w-7xl mx-auto px-6 lg:px-10 py-16 grid grid-cols-1 md:grid-cols-12 gap-10">
-          <div className="md:col-span-5">
-            <div className="text-3xl font-bold">Kleo</div>
-            <p className="mt-5 max-w-md text-sm leading-relaxed text-crema-500">
-              Plataforma mexicana de aprendizaje. Currículo de la Nueva Escuela Mexicana entregado
-              con el método singapurense y un tutor socrático de IA.
-            </p>
-            <p className="mt-8 font-mono text-[11px] text-crema-500 leading-relaxed">
-              Ciudad de México, México<br />hola@kleo.mx
-            </p>
-          </div>
-
-          <div className="md:col-span-2">
-            <div className="font-mono text-[11px] uppercase tracking-widest text-crema-500 mb-4">Producto</div>
-            <ul className="space-y-2.5 text-sm text-crema-500">
-              <li><a href="#metodo" className="hover:text-white transition-colors">Método</a></li>
-              <li><a href="#manifiesto" className="hover:text-white transition-colors">Manifiesto</a></li>
-              <li><a href="#comparativa" className="hover:text-white transition-colors">Comparativa</a></li>
-              <li><a href="#nem" className="hover:text-white transition-colors">NEM × Singapur</a></li>
-              <li><a href="#cobertura" className="hover:text-white transition-colors">Cobertura curricular</a></li>
-            </ul>
-          </div>
-
-          <div className="md:col-span-2">
-            <div className="font-mono text-[11px] uppercase tracking-widest text-crema-500 mb-4">Audiencias</div>
-            <ul className="space-y-2.5 text-sm text-crema-500">
-              <li><a href="#directores" className="hover:text-white transition-colors">Para colegios</a></li>
-              <li><a href="#colegios" className="hover:text-white transition-colors">Para padres</a></li>
-              <li><a href="#consejo" className="hover:text-white transition-colors">Consejo asesor</a></li>
-              <li><a href="#respaldo" className="hover:text-white transition-colors">Respaldo</a></li>
-            </ul>
-          </div>
-
-          <div className="md:col-span-3">
-            <div className="font-mono text-[11px] uppercase tracking-widest text-crema-500 mb-4">Legal</div>
-            <ul className="space-y-2.5 text-sm text-crema-500">
-              <li><Link href="/legal/privacidad" className="hover:text-white transition-colors">Aviso de privacidad</Link></li>
-              <li><Link href="/legal/terminos" className="hover:text-white transition-colors">Términos y condiciones</Link></li>
-            </ul>
-          </div>
-        </div>
-        <div className="border-t border-white/10">
-          <div className="max-w-7xl mx-auto px-6 lg:px-10 py-5 flex flex-wrap items-center justify-between gap-4 text-[11px] font-mono text-crema-500">
-            <span>© 2026 Kleo Educación</span>
-            <span>Hecho con rigor en Ciudad de México</span>
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-crema-500">
+            <Link href="/investigacion" className="hover:text-white transition-colors">
+              Investigación
+            </Link>
+            <Link href="/colegios" className="hover:text-white transition-colors">
+              Programa fundador
+            </Link>
+            <Link href="/legal/privacidad" className="hover:text-white transition-colors">
+              Privacidad
+            </Link>
+            <span className="text-crema-500/40">&copy; 2026 Kleo</span>
           </div>
         </div>
       </footer>
-
-      {/* ══════════════════════════════════════════════════
-         DEMO MODAL
-         ══════════════════════════════════════════════════ */}
-      {demoOpen && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center modal-mask p-4"
-          onClick={(e) => { if (e.target === e.currentTarget) setDemoOpen(false) }}
-          role="presentation"
-        >
-          <div role="dialog" aria-modal="true" aria-labelledby="demoTitle" className="bg-white max-w-xl w-full rounded-3xl shadow-2xl overflow-hidden">
-            <div className="flex items-center justify-between px-6 py-4 border-b border-crema-300">
-              <div className="flex items-baseline gap-3">
-                <span className="text-xl font-bold text-tinta">Kleo</span>
-                <span className="font-mono text-[11px] uppercase tracking-widest text-tinta-400">Solicitar demo</span>
-              </div>
-              <button type="button" onClick={() => setDemoOpen(false)} aria-label="Cerrar" className="text-tinta-400 hover:text-tinta transition-colors">
-                <X className="w-5 h-5" />
-              </button>
-            </div>
-
-            {demoStatus !== 'success' ? (
-              <form onSubmit={handleDemoSubmit} className="px-6 py-6 space-y-5">
-                <div>
-                  <h3 id="demoTitle" className="text-2xl font-bold leading-tight text-tinta">Conversemos sobre tu colegio.</h3>
-                  <p className="mt-2 text-sm text-tinta-400 leading-relaxed">El equipo pedagógico responde en menos de 48 h hábiles.</p>
-                </div>
-
-                <div className="grid grid-cols-2 gap-4">
-                  <label className="block">
-                    <span className="font-mono text-[11px] uppercase tracking-widest text-tinta-400">Nombre</span>
-                    <input required value={demoForm.nombre} onChange={(e) => setDemoForm({ ...demoForm, nombre: e.target.value })} className="mt-1 w-full border border-crema-300 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-tinta focus:border-tinta" />
-                  </label>
-                  <label className="block">
-                    <span className="font-mono text-[11px] uppercase tracking-widest text-tinta-400">Cargo</span>
-                    <input value={demoForm.cargo} onChange={(e) => setDemoForm({ ...demoForm, cargo: e.target.value })} className="mt-1 w-full border border-crema-300 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-tinta focus:border-tinta" />
-                  </label>
-                </div>
-
-                <label className="block">
-                  <span className="font-mono text-[11px] uppercase tracking-widest text-tinta-400">Colegio o institución</span>
-                  <input required value={demoForm.colegio} onChange={(e) => setDemoForm({ ...demoForm, colegio: e.target.value })} className="mt-1 w-full border border-crema-300 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-tinta focus:border-tinta" />
-                </label>
-
-                <label className="block">
-                  <span className="font-mono text-[11px] uppercase tracking-widest text-tinta-400">Correo institucional</span>
-                  <input required type="email" value={demoForm.correo} onChange={(e) => setDemoForm({ ...demoForm, correo: e.target.value })} className="mt-1 w-full border border-crema-300 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-tinta focus:border-tinta" />
-                </label>
-
-                <label className="block">
-                  <span className="font-mono text-[11px] uppercase tracking-widest text-tinta-400">¿Qué te gustaría explorar?</span>
-                  <textarea rows={3} value={demoForm.mensaje} onChange={(e) => setDemoForm({ ...demoForm, mensaje: e.target.value })} className="mt-1 w-full border border-crema-300 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-tinta focus:border-tinta resize-none" />
-                </label>
-
-                <div className="flex items-center justify-between pt-2">
-                  <span className="font-mono text-[11px] text-tinta-400">Confidencial · NDA disponible.</span>
-                  <button type="submit" disabled={demoStatus === 'submitting'} className="bg-tinta text-amarillo font-medium px-5 py-2.5 rounded-full hover:bg-tinta-600 transition-colors disabled:opacity-50">
-                    {demoStatus === 'submitting' ? 'Enviando…' : 'Enviar solicitud →'}
-                  </button>
-                </div>
-              </form>
-            ) : (
-              <div className="px-6 py-10 text-center">
-                <div className="text-2xl font-bold text-tinta">Gracias.</div>
-                <p className="mt-2 text-sm text-tinta-400">Hemos recibido tu solicitud. El equipo te contactará pronto.</p>
-                <button type="button" onClick={() => setDemoOpen(false)} className="mt-6 bg-white hover:bg-crema-50 text-tinta border border-crema-300 font-medium px-5 py-2.5 rounded-full hover:border-tinta-400 transition-colors">
-                  Cerrar
-                </button>
-              </div>
-            )}
-          </div>
-        </div>
-      )}
     </div>
   )
 }
